@@ -30,7 +30,9 @@
             <EditText
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:inputType="number"/>
+                android:gravity="center"
+                android:inputType="number"
+                android:text="@string/zero"/>
         </LinearLayout>
 
         <LinearLayout
@@ -47,7 +49,9 @@
             <EditText
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:inputType="number"/>
+                android:gravity="center"
+                android:inputType="number"
+                android:text="@string/zero"/>
         </LinearLayout>
 
         <LinearLayout
@@ -64,7 +68,9 @@
             <EditText
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:inputType="number"/>
+                android:gravity="center"
+                android:inputType="number"
+                android:text="@string/zero"/>
         </LinearLayout>
 
         <LinearLayout
@@ -81,7 +87,9 @@
             <EditText
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:inputType="number"/>
+                android:gravity="center"
+                android:inputType="number"
+                android:text="@string/zero"/>
         </LinearLayout>
 
         <LinearLayout
@@ -98,7 +106,9 @@
             <EditText
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:inputType="number"/>
+                android:gravity="center"
+                android:inputType="number"
+                android:text="@string/zero"/>
         </LinearLayout>
 
 
@@ -116,7 +126,9 @@
             <EditText
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:inputType="number"/>
+                android:gravity="center"
+                android:inputType="number"
+                android:text="@string/zero"/>
         </LinearLayout>
 
         <LinearLayout
@@ -133,7 +145,9 @@
             <EditText
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:inputType="number"/>
+                android:gravity="center"
+                android:inputType="number"
+                android:text="@string/zero"/>
         </LinearLayout>
 
     </LinearLayout>
@@ -146,6 +160,7 @@
         android:layout_alignParentBottom="true"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
+        android:onClick="rollDices"
         android:text="@string/launchButtonText"/>
 
 </RelativeLayout>

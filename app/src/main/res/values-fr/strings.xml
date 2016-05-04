@@ -1,10 +1,11 @@
 <resources>
-    <string name="app_name">WarHammerDiceLauncher</string>
+    <string name="app_name">Lanceur de dés WarHammer</string>
 
     <string name="launchButtonText">Lancez !</string>
+    <string name="resultsTitle">Résultats</string>
 
     <!--Image descriptions-->
-    <string name="characteristicDice">"Dé de caractéristique"</string>
+    <string name="characteristicDice">Dé de caractéristique</string>
     <string name="recklessDice">Dé de témérité</string>
     <string name="conservativeDice">Dé de prudence</string>
     <string name="expertiseDice">Dé d\'expertise</string>
