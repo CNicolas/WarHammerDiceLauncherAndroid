@@ -1,3 +1,28 @@
 <resources>
     <string name="app_name">WarHammerDiceLauncher</string>
+
+    <string-array name="values">
+        <item>0</item>
+        <item>1</item>
+        <item>2</item>
+        <item>3</item>
+        <item>4</item>
+        <item>5</item>
+        <item>6</item>
+        <item>7</item>
+        <item>8</item>
+        <item>9</item>
+        <item>10</item>
+    </string-array>
+
+    <string name="launchButtonText">Roll !</string>
+
+    <!--Image descriptions-->
+    <string name="characteristicDice">Characteristic Dice</string>
+    <string name="recklessDice">Reckless Dice</string>
+    <string name="conservativeDice">Conservative Dice</string>
+    <string name="expertiseDice">Expertise Dice</string>
+    <string name="fortuneDice">fortune Dice</string>
+    <string name="misfortuneDice">Misfortune Dice</string>
+    <string name="challengeDice">Challenge Dice</string>
 </resources>

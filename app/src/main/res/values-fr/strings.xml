@@ -1,0 +1,14 @@
+<resources>
+    <string name="app_name">WarHammerDiceLauncher</string>
+
+    <string name="launchButtonText">Lancez !</string>
+
+    <!--Image descriptions-->
+    <string name="characteristicDice">"Dé de caractéristique"</string>
+    <string name="recklessDice">Dé de témérité</string>
+    <string name="conservativeDice">Dé de prudence</string>
+    <string name="expertiseDice">Dé d\'expertise</string>
+    <string name="fortuneDice">Dé de fortune</string>
+    <string name="misfortuneDice">Dé d\'infortune</string>
+    <string name="challengeDice">Dé de défi</string>
+</resources>
