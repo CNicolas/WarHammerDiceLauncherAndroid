@@ -2,7 +2,9 @@
     <string name="app_name">WarHammerDiceLauncher</string>
 
     <string name="zero">0</string>
+    <string name="ok">OK</string>
     <string name="launchButtonText">Roll !</string>
+
 
     <!--Image descriptions-->
     <string name="characteristicDice">Characteristic Dice</string>

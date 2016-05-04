@@ -72,7 +72,7 @@ public class MainActivity extends AppCompatActivity {
             builder.setTitle(R.string.resultsTitle)
                     .setMessage(res.toString())
                     .setCancelable(false)
-                    .setPositiveButton("Ok", new DialogInterface.OnClickListener() {
+                    .setPositiveButton(R.string.ok, new DialogInterface.OnClickListener() {
                         @Override
                         public void onClick(DialogInterface dialog, int which) {
                             dialog.dismiss();

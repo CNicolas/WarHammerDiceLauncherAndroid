@@ -1,7 +1,5 @@
 package com.aku.warhammerdicelauncher.services;
 
-import android.util.Log;
-
 import com.aku.warhammerdicelauncher.model.IDice;
 import com.aku.warhammerdicelauncher.utils.constants.Constants;
 import com.aku.warhammerdicelauncher.utils.enums.DiceFace;
@@ -22,11 +20,7 @@ public class DicesRoller {
         for (IDice dice : pool) {
             tmp.addAll(dice.roll());
         }
-
-        Log.d("DiceRoller", "rollDices: " + tmp);
         Map<DiceFace, Integer> res = reduceV2(tmp);
-        Log.d("DiceRoller", "rollDices: " + res);
-
         return res;
     }
 
