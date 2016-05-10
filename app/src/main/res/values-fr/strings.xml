@@ -11,10 +11,12 @@
     <string name="challengeDice">Dé de défi</string>
     <!--Fin des images-->
 
-    <string name="launchButtonText">Lancez !</string>
+    <string name="launchButtonText">Lancer !</string>
     <string name="resultsTitle">Résultats</string>
-    <string name="saveButtonText">Sauvegarder</string>
+    <string name="saveButtonText">Sauvegarder cette main</string>
     <string name="close">Fermer</string>
+    <string name="savedToastText">Sauvegardé !</string>
+    <string name="insertHandTitleTitle">Insérer un titre pour cette main</string>
 
 
 </resources>

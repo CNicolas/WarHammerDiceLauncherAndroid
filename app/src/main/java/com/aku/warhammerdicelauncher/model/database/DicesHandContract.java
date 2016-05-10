@@ -11,7 +11,6 @@ public final class DicesHandContract {
 
     public static abstract class HandEntry implements BaseColumns {
         public static final String TABLE_NAME = "hand";
-        public static final String COLUMN_NAME_ID = "id";
         public static final String COLUMN_NAME_TITLE = "title";
         public static final String COLUMN_NAME_CHARACTERISTIC = "characteristic";
         public static final String COLUMN_NAME_RECKLESS = "reckless";

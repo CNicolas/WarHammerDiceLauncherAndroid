@@ -14,6 +14,8 @@
     <string name="zero">0</string>
     <string name="ok">OK</string>
     <string name="launchButtonText">Roll !</string>
-    <string name="saveButtonText">Save</string>
+    <string name="saveButtonText">Save the hand</string>
     <string name="close">Close</string>
+    <string name="savedToastText">Saved !</string>
+    <string name="insertHandTitleTitle">Insert a title for this hand</string>
 </resources>
