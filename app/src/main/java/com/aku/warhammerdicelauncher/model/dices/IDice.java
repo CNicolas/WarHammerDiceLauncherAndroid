@@ -1,4 +1,4 @@
-package com.aku.warhammerdicelauncher.model;
+package com.aku.warhammerdicelauncher.model.dices;
 
 import com.aku.warhammerdicelauncher.utils.enums.DiceFace;
 

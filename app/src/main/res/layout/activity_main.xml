@@ -14,6 +14,6 @@
     <ImageView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:src="@drawable/warhammerV3logo"/>
+        android:src="@drawable/warhammer_v3_logo"/>
 
 </RelativeLayout>

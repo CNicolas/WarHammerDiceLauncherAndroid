@@ -1,11 +1,6 @@
 <resources>
     <string name="app_name">WarHammerDiceLauncher</string>
 
-    <string name="zero">0</string>
-    <string name="ok">OK</string>
-    <string name="launchButtonText">Roll !</string>
-
-
     <!--Image descriptions-->
     <string name="characteristicDice">Characteristic Dice</string>
     <string name="recklessDice">Reckless Dice</string>
@@ -15,4 +10,10 @@
     <string name="misfortuneDice">Misfortune Dice</string>
     <string name="challengeDice">Challenge Dice</string>
     <string name="resultsTitle">Results</string>
+
+    <string name="zero">0</string>
+    <string name="ok">OK</string>
+    <string name="launchButtonText">Roll !</string>
+    <string name="saveButtonText">Save</string>
+    <string name="close">Close</string>
 </resources>

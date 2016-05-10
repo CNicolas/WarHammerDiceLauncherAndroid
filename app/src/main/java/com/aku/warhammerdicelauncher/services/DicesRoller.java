@@ -1,6 +1,6 @@
 package com.aku.warhammerdicelauncher.services;
 
-import com.aku.warhammerdicelauncher.model.IDice;
+import com.aku.warhammerdicelauncher.model.dices.IDice;
 import com.aku.warhammerdicelauncher.utils.constants.Constants;
 import com.aku.warhammerdicelauncher.utils.enums.DiceFace;
 
@@ -20,8 +20,7 @@ public class DicesRoller {
         for (IDice dice : pool) {
             tmp.addAll(dice.roll());
         }
-        Map<DiceFace, Integer> res = reduceV2(tmp);
-        return res;
+        return reduceV2(tmp);
     }
 
     private static Map<DiceFace, Integer> reduceV2(List<DiceFace> faces) {

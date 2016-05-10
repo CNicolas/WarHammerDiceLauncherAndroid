@@ -1,55 +1,108 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
               android:layout_width="match_parent"
-              android:layout_height="match_parent"
-              android:orientation="horizontal">
+              android:layout_height="wrap_content"
+              android:orientation="vertical">
 
-    <ImageView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_weight="1"
-        android:src="@drawable/successblack"/>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="horizontal">
 
-    <ImageView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_weight="1"
-        android:src="@drawable/boonblack"/>
+        <TextView
+            android:id="@+id/successNumberResults"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:drawableTop="@drawable/successblack"
+            android:gravity="center"
+            android:padding="5dp"
+            android:text="@string/ok"
+            android:textSize="50sp"/>
 
-    <ImageView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_weight="1"
-        android:src="@drawable/baneblack"/>
+        <TextView
+            android:id="@+id/benefitNumberResults"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:drawableTop="@drawable/boonblack"
+            android:gravity="center"
+            android:padding="5dp"
+            android:text="@string/ok"
+            android:textSize="50sp"/>
 
-    <ImageView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_weight="1"
-        android:src="@drawable/challengeblack"/>
+        <TextView
+            android:id="@+id/mischiefNumberResults"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:drawableTop="@drawable/baneblack"
+            android:gravity="center"
+            android:padding="5dp"
+            android:text="@string/ok"
+            android:textSize="50sp"/>
 
-    <ImageView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_weight="1"
-        android:src="@drawable/cometblack"/>
+        <TextView
+            android:id="@+id/failureNumberResults"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:drawableTop="@drawable/challengeblack"
+            android:gravity="center"
+            android:padding="5dp"
+            android:text="@string/ok"
+            android:textSize="50sp"/>
 
-    <ImageView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_weight="1"
-        android:src="@drawable/exertionblack"/>
+        <TextView
+            android:id="@+id/sigmarNumberResults"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:drawableTop="@drawable/cometblack"
+            android:gravity="center"
+            android:padding="5dp"
+            android:text="@string/ok"
+            android:textSize="50sp"/>
 
-    <ImageView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_weight="1"
-        android:src="@drawable/delayblack"/>
+        <TextView
+            android:id="@+id/tirednessNumberResults"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:drawableTop="@drawable/tirednessblack"
+            android:gravity="center"
+            android:padding="5dp"
+            android:text="@string/ok"
+            android:textSize="50sp"/>
 
-    <ImageView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_weight="1"
-        android:src="@drawable/chaosblack"/>
+        <TextView
+            android:id="@+id/delayNumberResults"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:drawableTop="@drawable/delayblack"
+            android:gravity="center"
+            android:padding="5dp"
+            android:text="@string/ok"
+            android:textSize="50sp"/>
+
+
+        <TextView
+            android:id="@+id/chaosNumberResults"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:drawableTop="@drawable/chaosblack"
+            android:gravity="center"
+            android:padding="5dp"
+            android:text="@string/ok"
+            android:textSize="50sp"/>
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/dismissResultsPopupButton"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:text="@string/close"/>
 
 </LinearLayout>

@@ -1,23 +1,27 @@
 package com.aku.warhammerdicelauncher;
 
-import android.app.AlertDialog;
-import android.content.DialogInterface;
+import android.app.Dialog;
 import android.content.pm.ActivityInfo;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
+import android.view.Menu;
+import android.view.MenuInflater;
 import android.view.View;
+import android.widget.Button;
 import android.widget.NumberPicker;
+import android.widget.TextView;
 
-import com.aku.warhammerdicelauncher.model.IDice;
-import com.aku.warhammerdicelauncher.model.impl.ChallengeDice;
-import com.aku.warhammerdicelauncher.model.impl.CharacteristicDice;
-import com.aku.warhammerdicelauncher.model.impl.ConservativeDice;
-import com.aku.warhammerdicelauncher.model.impl.ExpertiseDice;
-import com.aku.warhammerdicelauncher.model.impl.FortuneDice;
-import com.aku.warhammerdicelauncher.model.impl.MisfortuneDice;
-import com.aku.warhammerdicelauncher.model.impl.RecklessDice;
+import com.aku.warhammerdicelauncher.model.dices.IDice;
+import com.aku.warhammerdicelauncher.model.dices.impl.ChallengeDice;
+import com.aku.warhammerdicelauncher.model.dices.impl.CharacteristicDice;
+import com.aku.warhammerdicelauncher.model.dices.impl.ConservativeDice;
+import com.aku.warhammerdicelauncher.model.dices.impl.ExpertiseDice;
+import com.aku.warhammerdicelauncher.model.dices.impl.FortuneDice;
+import com.aku.warhammerdicelauncher.model.dices.impl.MisfortuneDice;
+import com.aku.warhammerdicelauncher.model.dices.impl.RecklessDice;
 import com.aku.warhammerdicelauncher.services.DicesRoller;
+import com.aku.warhammerdicelauncher.utils.constants.Constants;
 import com.aku.warhammerdicelauncher.utils.enums.DiceFace;
 
 import java.util.ArrayList;
@@ -33,6 +37,15 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
     }
 
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.menu_main, menu);
+        return true;
+    }
+
+    //-----------CUSTOM METHODS-----------
     public void rollDices(View v) {
         try {
             int characteristic = ((NumberPicker) findViewById(R.id.numberPickerCharacteristic)).getValue();
@@ -68,22 +81,38 @@ public class MainActivity extends AppCompatActivity {
 
             Map<DiceFace, Integer> res = DicesRoller.rollDices(pool);
 
-            AlertDialog.Builder builder = new AlertDialog.Builder(this);
-            builder.setTitle(R.string.resultsTitle)
-                    .setMessage(res.toString())
-                    .setCancelable(false)
-                    .setPositiveButton(R.string.ok, new DialogInterface.OnClickListener() {
-                        @Override
-                        public void onClick(DialogInterface dialog, int which) {
-                            dialog.dismiss();
-                        }
-                    });
-            AlertDialog dialog = builder.create();
-            dialog.show();
+            showResults(res);
+
         } catch (Exception e) {
             Log.e("MainActivity", "rollDices: ", e);
             throw e;
         }
+    }
+
+    private void showResults(Map<DiceFace, Integer> map) {
+        final Dialog dialog = new Dialog(this);
+        dialog.setContentView(R.layout.popup_results);
+        dialog.setTitle(R.string.resultsTitle);
+
+        for (DiceFace face : Constants.popupTextViews.keySet()) {
+            TextView textView = (TextView) dialog.findViewById(Constants.popupTextViews.get(face));
+            if (map.containsKey(face)) {
+                textView.setText(String.format("%d", map.get(face)));
+            } else {
+                textView.setVisibility(View.GONE);
+            }
+        }
+
+        Button dialogButton = (Button) dialog.findViewById(R.id.dismissResultsPopupButton);
+        // if button is clicked, close the custom dialog
+        dialogButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                dialog.dismiss();
+            }
+        });
+
+        dialog.show();
     }
 
 }

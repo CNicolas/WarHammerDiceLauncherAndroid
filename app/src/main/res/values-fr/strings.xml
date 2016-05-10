@@ -1,9 +1,6 @@
 <resources>
     <string name="app_name">Lanceur de dés WarHammer</string>
 
-    <string name="launchButtonText">Lancez !</string>
-    <string name="resultsTitle">Résultats</string>
-
     <!--Image descriptions-->
     <string name="characteristicDice">Dé de caractéristique</string>
     <string name="recklessDice">Dé de témérité</string>
@@ -12,4 +9,12 @@
     <string name="fortuneDice">Dé de fortune</string>
     <string name="misfortuneDice">Dé d\'infortune</string>
     <string name="challengeDice">Dé de défi</string>
+    <!--Fin des images-->
+
+    <string name="launchButtonText">Lancez !</string>
+    <string name="resultsTitle">Résultats</string>
+    <string name="saveButtonText">Sauvegarder</string>
+    <string name="close">Fermer</string>
+
+
 </resources>
