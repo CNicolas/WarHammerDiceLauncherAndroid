@@ -27,7 +27,4 @@ dependencies {
     testCompile 'junit:junit:4.12'
     compile 'com.android.support:appcompat-v7:23.3.0'
     compile 'org.apache.commons:commons-lang3:3.4'
-
-//    compile 'com.wefika:horizontal-picker:1.1.1'
-//    compile 'com.hrules:horizontalnumberpicker:1.1.1'
 }
