@@ -18,4 +18,7 @@
     <string name="close">Close</string>
     <string name="savedToastText">Saved !</string>
     <string name="insertHandTitleTitle">Insert a title for this hand</string>
+    <string name="drawer_open">Open navigation drawer</string>
+    <string name="drawer_close">Close navigation drawer</string>
+    <string name="hands_list">Saved hands list</string>
 </resources>

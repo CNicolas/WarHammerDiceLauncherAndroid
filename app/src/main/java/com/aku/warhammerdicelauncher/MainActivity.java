@@ -3,18 +3,26 @@ package com.aku.warhammerdicelauncher;
 import android.app.AlertDialog;
 import android.app.Dialog;
 import android.content.DialogInterface;
+import android.content.res.Configuration;
 import android.content.res.Resources;
 import android.os.Bundle;
+import android.support.v4.view.GravityCompat;
+import android.support.v4.widget.DrawerLayout;
+import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.text.InputType;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ListView;
 import android.widget.NumberPicker;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.aku.warhammerdicelauncher.model.dao.HandDao;
 import com.aku.warhammerdicelauncher.model.database.helper.WarHammerDatabaseHelper;
@@ -37,13 +45,85 @@ import java.util.Map;
 
 public class MainActivity extends AppCompatActivity {
 
+    private DrawerLayout drawerLayout;
+    private ListView drawerList;
+    private ActionBarDrawerToggle drawerToggle;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.navigation_layout);
+
+        drawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
+        drawerList = (ListView) findViewById(R.id.left_drawer);
+
+        drawerLayout.setDrawerShadow(R.drawable.drawer_shadow, GravityCompat.START);
+
+        WarHammerDatabaseHelper whdHelper = new WarHammerDatabaseHelper(MainActivity.this);
+        HandDao dao = new HandDao(whdHelper);
+        List<String> titles = dao.findAllTitles();
+        drawerList.setAdapter(new ArrayAdapter<>(this, R.layout.drawer_list_item, titles));
+        drawerList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                WarHammerDatabaseHelper whdHelper = new WarHammerDatabaseHelper(MainActivity.this);
+                HandDao dao = new HandDao(whdHelper);
+                String title = dao.findAllTitles().get(position);
+                useHand(title);
+                drawerList.setItemChecked(position, true);
+                getSupportActionBar().setTitle(title);
+                drawerLayout.closeDrawer(drawerList);
+            }
+        });
+
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setHomeButtonEnabled(true);
+
+        drawerToggle = new ActionBarDrawerToggle(this, drawerLayout, R.string.drawer_open, R.string.drawer_close) {
+            public void onDrawerClosed(View view) {
+                getSupportActionBar().setTitle(getTitle());
+                invalidateOptionsMenu();
+            }
+
+            public void onDrawerOpened(View drawerView) {
+                getSupportActionBar().setTitle(R.string.hands_list);
+                invalidateOptionsMenu();
+            }
+        };
+        drawerLayout.addDrawerListener(drawerToggle);
     }
 
     @Override
+    public boolean onPrepareOptionsMenu(Menu menu) {
+        return super.onPrepareOptionsMenu(menu);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        // The action bar home/up action should open or close the drawer.
+        // ActionBarDrawerToggle will take care of this.
+        if (drawerToggle.onOptionsItemSelected(item)) {
+            return true;
+        }
+        Toast.makeText(this, R.string.savedToastText, Toast.LENGTH_LONG).show();
+        return super.onOptionsItemSelected(item);
+    }
+
+    @Override
+    protected void onPostCreate(Bundle savedInstanceState) {
+        super.onPostCreate(savedInstanceState);
+        // Sync the toggle state after onRestoreInstanceState has occurred.
+        drawerToggle.syncState();
+    }
+
+    @Override
+    public void onConfigurationChanged(Configuration newConfig) {
+        super.onConfigurationChanged(newConfig);
+        // Pass any configuration change to the drawer toggls
+        drawerToggle.onConfigurationChanged(newConfig);
+    }
+
+    /*@Override
     public boolean onPrepareOptionsMenu(Menu menu) {
         menu.clear();
 
@@ -86,7 +166,7 @@ public class MainActivity extends AppCompatActivity {
         }
 
         return false;
-    }
+    }*/
 
     //-----------CUSTOM METHODS-----------
 
@@ -205,6 +285,53 @@ public class MainActivity extends AppCompatActivity {
         });
 
         dialog.show();
+    }
+
+    private void useHand(String title) {
+        WarHammerDatabaseHelper whdHelper = new WarHammerDatabaseHelper(MainActivity.this);
+        HandDao dao = new HandDao(whdHelper);
+
+        try {
+            HandDto hand = dao.findByTitle(title);
+
+            NumberPicker characteristicPicker = (NumberPicker) findViewById(R.id.numberPickerCharacteristic);
+            characteristicPicker.setValue(hand.getCharacteristic());
+            NumberPicker recklessPicker = (NumberPicker) findViewById(R.id.numberPickerReckless);
+            recklessPicker.setValue(hand.getReckless());
+            NumberPicker conservativePicker = (NumberPicker) findViewById(R.id.numberPickerConservative);
+            conservativePicker.setValue(hand.getConservative());
+            NumberPicker expertisePicker = (NumberPicker) findViewById(R.id.numberPickerExpertise);
+            expertisePicker.setValue(hand.getExpertise());
+            NumberPicker fortunePicker = (NumberPicker) findViewById(R.id.numberPickerFortune);
+            fortunePicker.setValue(hand.getFortune());
+            NumberPicker misfortunePicker = (NumberPicker) findViewById(R.id.numberPickerMisfortune);
+            misfortunePicker.setValue(hand.getMisfortune());
+            NumberPicker challengePicker = (NumberPicker) findViewById(R.id.numberPickerChallenge);
+            challengePicker.setValue(hand.getChallenge());
+        } catch (Resources.NotFoundException nfe) {
+            Log.e("MainActivity", "useHand: ", nfe);
+        }
+    }
+
+    private void emptyPickers() {
+        try {
+            NumberPicker characteristicPicker = (NumberPicker) findViewById(R.id.numberPickerCharacteristic);
+            characteristicPicker.setValue(0);
+            NumberPicker recklessPicker = (NumberPicker) findViewById(R.id.numberPickerReckless);
+            recklessPicker.setValue(0);
+            NumberPicker conservativePicker = (NumberPicker) findViewById(R.id.numberPickerConservative);
+            conservativePicker.setValue(0);
+            NumberPicker expertisePicker = (NumberPicker) findViewById(R.id.numberPickerExpertise);
+            expertisePicker.setValue(0);
+            NumberPicker fortunePicker = (NumberPicker) findViewById(R.id.numberPickerFortune);
+            fortunePicker.setValue(0);
+            NumberPicker misfortunePicker = (NumberPicker) findViewById(R.id.numberPickerMisfortune);
+            misfortunePicker.setValue(0);
+            NumberPicker challengePicker = (NumberPicker) findViewById(R.id.numberPickerChallenge);
+            challengePicker.setValue(0);
+        } catch (Resources.NotFoundException nfe) {
+            Log.e("MainActivity", "emptyPickers: ", nfe);
+        }
     }
 
 }

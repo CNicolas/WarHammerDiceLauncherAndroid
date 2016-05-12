@@ -17,6 +17,11 @@
     <string name="close">Fermer</string>
     <string name="savedToastText">Sauvegardé !</string>
     <string name="insertHandTitleTitle">Insérer un titre pour cette main</string>
+    <string name="zero">0</string>
+    <string name="ok">OK</string>
+    <string name="hands_list">Liste des mains</string>
+    <string name="drawer_open">Ouvrir le panneau</string>
+    <string name="drawer_close">Fermer le panneau</string>
 
 
 </resources>
