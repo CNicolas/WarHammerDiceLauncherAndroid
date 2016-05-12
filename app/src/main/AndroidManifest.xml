@@ -2,14 +2,17 @@
 <manifest package="com.aku.warhammerdicelauncher"
           xmlns:android="http://schemas.android.com/apk/res/android">
 
+    <!--android:icon="@mipmap/ic_launcher"-->
+
     <application
         android:allowBackup="true"
-        android:icon="@mipmap/ic_launcher"
+        android:icon="@drawable/warhammer_v3_logo"
         android:label="@string/app_name"
         android:screenOrientation="landscape"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".MainActivity">
+        <activity android:name=".MainActivity"/>
+        <activity android:name=".SplashActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
 
