@@ -6,13 +6,14 @@
 
     <application
         android:allowBackup="true"
+        android:configChanges="keyboardHidden|orientation|screenSize"
         android:icon="@drawable/warhammer_v3_logo"
         android:label="@string/app_name"
         android:screenOrientation="landscape"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".MainActivity"/>
-        <activity android:name=".SplashActivity">
+        <activity android:name=".activities.MainActivity"/>
+        <activity android:name=".activities.SplashActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
 

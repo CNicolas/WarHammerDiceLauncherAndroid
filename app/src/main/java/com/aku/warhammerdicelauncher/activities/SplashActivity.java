@@ -1,9 +1,11 @@
-package com.aku.warhammerdicelauncher;
+package com.aku.warhammerdicelauncher.activities;
 
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
+
+import com.aku.warhammerdicelauncher.R;
 
 /**
  * Created by cnicolas on 11/05/2016.
@@ -12,7 +14,7 @@ public class SplashActivity extends Activity {
     /**
      * Duration of wait
      **/
-    private final int SPLASH_DISPLAY_LENGTH = 1000;
+    private final int SPLASH_DISPLAY_LENGTH = 500;
 
     /**
      * Called when the activity is first created.

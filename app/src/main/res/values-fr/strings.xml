@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Lanceur de dés WarHammer</string>
+    <string name="app_name">WarHammerDicesLauncher</string>
 
     <!--Image descriptions-->
     <string name="characteristicDice">Dé de caractéristique</string>
@@ -12,16 +12,21 @@
     <!--Fin des images-->
 
     <string name="launchButtonText">Lancer !</string>
-    <string name="resultsTitle">Résultats</string>
     <string name="saveButtonText">Sauvegarder cette main</string>
-    <string name="close">Fermer</string>
-    <string name="savedToastText">Sauvegardé !</string>
+    <string name="resultsTitle">Résultats</string>
     <string name="insertHandTitleTitle">Insérer un titre pour cette main</string>
+
     <string name="zero">0</string>
     <string name="ok">OK</string>
+    <string name="close">Fermer</string>
+
     <string name="hands_list">Liste des mains</string>
     <string name="drawer_open">Ouvrir le panneau</string>
     <string name="drawer_close">Fermer le panneau</string>
 
+    <string name="action_home">Accueil</string>
+    <string name="action_launch10">Lancer 10 fois</string>
+    <string name="action_launch100">Lancer 100 fois</string>
+    <string name="action_launch1000">Lancer 1000 fois</string>
 
 </resources>

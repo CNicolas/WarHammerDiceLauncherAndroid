@@ -1,9 +1,11 @@
 package com.aku.warhammerdicelauncher.model.dto;
 
+import java.io.Serializable;
+
 /**
  * Created by cnicolas on 11/05/2016.
  */
-public class HandDto {
+public class HandDto implements Serializable {
     private String title;
     private int characteristic;
     private int reckless;

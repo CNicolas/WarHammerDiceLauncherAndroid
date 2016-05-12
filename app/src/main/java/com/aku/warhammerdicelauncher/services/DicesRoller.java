@@ -1,6 +1,14 @@
 package com.aku.warhammerdicelauncher.services;
 
 import com.aku.warhammerdicelauncher.model.dices.IDice;
+import com.aku.warhammerdicelauncher.model.dices.impl.ChallengeDice;
+import com.aku.warhammerdicelauncher.model.dices.impl.CharacteristicDice;
+import com.aku.warhammerdicelauncher.model.dices.impl.ConservativeDice;
+import com.aku.warhammerdicelauncher.model.dices.impl.ExpertiseDice;
+import com.aku.warhammerdicelauncher.model.dices.impl.FortuneDice;
+import com.aku.warhammerdicelauncher.model.dices.impl.MisfortuneDice;
+import com.aku.warhammerdicelauncher.model.dices.impl.RecklessDice;
+import com.aku.warhammerdicelauncher.model.dto.HandDto;
 import com.aku.warhammerdicelauncher.utils.constants.Constants;
 import com.aku.warhammerdicelauncher.utils.enums.DiceFace;
 
@@ -15,15 +23,44 @@ import java.util.Map;
  */
 public class DicesRoller {
 
-    public static Map<DiceFace, Integer> rollDices(List<IDice> pool) {
+    public static Map<DiceFace, Integer> rollDices(HandDto dto) {
+        List<IDice> pool = createPool(dto);
         List<DiceFace> tmp = new ArrayList<>();
         for (IDice dice : pool) {
             tmp.addAll(dice.roll());
         }
-        return reduceV2(tmp);
+        return reduce(tmp);
     }
 
-    private static Map<DiceFace, Integer> reduceV2(List<DiceFace> faces) {
+    private static List<IDice> createPool(HandDto dto) {
+        List<IDice> pool = new ArrayList<>();
+
+        for (int i = 0; i < dto.getCharacteristic(); i++) {
+            pool.add(new CharacteristicDice());
+        }
+        for (int i = 0; i < dto.getReckless(); i++) {
+            pool.add(new RecklessDice());
+        }
+        for (int i = 0; i < dto.getConservative(); i++) {
+            pool.add(new ConservativeDice());
+        }
+        for (int i = 0; i < dto.getExpertise(); i++) {
+            pool.add(new ExpertiseDice());
+        }
+        for (int i = 0; i < dto.getFortune(); i++) {
+            pool.add(new FortuneDice());
+        }
+        for (int i = 0; i < dto.getMisfortune(); i++) {
+            pool.add(new MisfortuneDice());
+        }
+        for (int i = 0; i < dto.getChallenge(); i++) {
+            pool.add(new ChallengeDice());
+        }
+
+        return pool;
+    }
+
+    private static Map<DiceFace, Integer> reduce(List<DiceFace> faces) {
         Map<DiceFace, Integer> res = new HashMap<>();
         for (DiceFace element : DiceFace.values()) {
             DiceFace inverse = Constants.inversionMap.get(element);
@@ -57,14 +94,5 @@ public class DicesRoller {
         }
         return faces;
     }
-
-    /*private static DiceFace[] relaunch(IDice dice) {
-        DiceFace[] res = dice.roll();
-        if (res[0] != DiceFace.SUCCESS_PLUS) {
-            return res;
-        } else {
-            return (DiceFace[]) ArrayUtils.addAll(new DiceFace[]{DiceFace.SUCCESS}, relaunch(dice));
-        }
-    }*/
 
 }
