@@ -12,7 +12,6 @@ import java.util.Map;
 public abstract class Constants {
     public static final Map<DiceFace, DiceFace> inversionMap;
     public static final Map<DiceFace, Integer> popupResultsTextViews;
-    public static final Map<DiceFace, Integer> statisticsResultsTextViews;
 
     static {
         Map<DiceFace, DiceFace> map = new HashMap<>();
@@ -20,8 +19,6 @@ public abstract class Constants {
         map.put(DiceFace.FAILURE, DiceFace.SUCCESS);
         map.put(DiceFace.BENEFIT, DiceFace.MISCHIEF);
         map.put(DiceFace.MISCHIEF, DiceFace.BENEFIT);
-        map.put(DiceFace.SIGMAR, DiceFace.CHAOS);
-        map.put(DiceFace.CHAOS, DiceFace.SIGMAR);
         inversionMap = map;
     }
 
@@ -38,16 +35,4 @@ public abstract class Constants {
         popupResultsTextViews = map;
     }
 
-    static {
-        Map<DiceFace, Integer> map = new HashMap<>();
-        map.put(DiceFace.SUCCESS, R.id.successNumberResultsStat);
-        map.put(DiceFace.BENEFIT, R.id.benefitNumberResultsStat);
-        map.put(DiceFace.MISCHIEF, R.id.mischiefNumberResultsStat);
-        map.put(DiceFace.FAILURE, R.id.failureNumberResultsStat);
-        map.put(DiceFace.SIGMAR, R.id.sigmarNumberResultsStat);
-        map.put(DiceFace.TIREDNESS, R.id.tirednessNumberResultsStat);
-        map.put(DiceFace.DELAY, R.id.delayNumberResultsStat);
-        map.put(DiceFace.CHAOS, R.id.chaosNumberResultsStat);
-        statisticsResultsTextViews = map;
-    }
 }

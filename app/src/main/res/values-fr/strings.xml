@@ -29,4 +29,10 @@
     <string name="action_launch100">Lancer 100 fois</string>
     <string name="action_launch1000">Lancer 1000 fois</string>
 
+    <string name="averageBenefitFormat">Nombre moyen de bienfaits  : %1$s</string>
+    <string name="successfulRollsNumberFormat">Vous avez réussi %1$d lancés  (%2$s%%)</string>
+    <string name="averageSigmarFormat">Nombre moyen de comètes de Sigmar : %1$s</string>
+    <string name="averageChaosFormat">Nombre moyen d\'étoiles du Chaos : %1$s</string>
+    <string name="throwsNumberFormat">Sur %s lancés...</string>
+
 </resources>

@@ -51,6 +51,10 @@ public class DicesRoller {
         return res;
     }
 
+    public static boolean isSuccessful(Map<DiceFace, Integer> handResults) {
+        return handResults.containsKey(DiceFace.SUCCESS);
+    }
+
     private static List<IDice> createPool(HandDto dto) {
         List<IDice> pool = new ArrayList<>();
 

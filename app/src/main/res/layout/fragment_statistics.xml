@@ -1,109 +1,89 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-              android:layout_width="match_parent"
-              android:layout_height="match_parent"
-              android:orientation="vertical">
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    android:fillViewport="true"
+    android:orientation="vertical">
 
-    <TextView
-        android:id="@+id/successNumberResultsStat"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_weight="1"
-        android:drawableLeft="@drawable/successblack"
-        android:drawablePadding="10dp"
-        android:gravity="center"
-        android:text="@string/ok"
-        android:textSize="30sp"
-        android:typeface="monospace"/>
-
-    <TextView
-        android:id="@+id/benefitNumberResultsStat"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_weight="1"
-        android:drawableLeft="@drawable/boonblack"
-        android:drawablePadding="10dp"
-        android:gravity="center"
-        android:text="@string/ok"
-        android:textSize="30sp"
-        android:typeface="monospace"/>
-
-    <TextView
-        android:id="@+id/mischiefNumberResultsStat"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_weight="1"
-        android:drawableLeft="@drawable/baneblack"
-        android:drawablePadding="10dp"
-        android:gravity="center"
-        android:text="@string/ok"
-        android:textSize="30sp"
-        android:typeface="monospace"/>
-
-    <TextView
-        android:id="@+id/failureNumberResultsStat"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_weight="1"
-        android:drawableLeft="@drawable/challengeblack"
-        android:drawablePadding="10dp"
-        android:gravity="center"
-        android:text="@string/ok"
-        android:textSize="30sp"
-        android:typeface="monospace"/>
-
-    <TextView
-        android:id="@+id/sigmarNumberResultsStat"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_weight="1"
-        android:drawableLeft="@drawable/cometblack"
-        android:drawablePadding="10dp"
-        android:gravity="center"
-        android:text="@string/ok"
-        android:textSize="30sp"
-        android:typeface="monospace"/>
-
-    <TextView
-        android:id="@+id/tirednessNumberResultsStat"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_weight="1"
-        android:drawableLeft="@drawable/tirednessblack"
-        android:drawablePadding="10dp"
-        android:gravity="center"
-        android:text="@string/ok"
-        android:textSize="30sp"
-        android:typeface="monospace"/>
-
-    <TextView
-        android:id="@+id/delayNumberResultsStat"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_weight="1"
-        android:drawableLeft="@drawable/delayblack"
-        android:drawablePadding="10dp"
-        android:gravity="center"
-        android:text="@string/ok"
-        android:textSize="30sp"
-        android:typeface="monospace"/>
-
-
-    <TextView
-        android:id="@+id/chaosNumberResultsStat"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_weight="1"
-        android:drawableLeft="@drawable/chaosblack"
-        android:drawablePadding="10dp"
-        android:gravity="center"
-        android:text="@string/ok"
-        android:textSize="30sp"
-        android:typeface="monospace"/>
-
-    <Button
-        android:id="@+id/btn_relaunch"
+    <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/btn_launchText"/>
-</LinearLayout>
+        android:background="@color/white"
+        android:isScrollContainer="true"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_alignParentTop="true"
+            android:layout_weight="1"
+            android:orientation="vertical"
+            android:paddingBottom="50dp">
+
+            <TextView
+                android:id="@+id/throwsNumberView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:padding="10dp"
+                android:text="@string/ok"
+                android:textSize="30sp"/>
+
+            <TextView
+                android:id="@+id/successRollsView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:drawableLeft="@drawable/successblack"
+                android:gravity="center"
+                android:padding="5dp"
+                android:text="@string/ok"/>
+
+            <TextView
+                android:id="@+id/averageBenefitView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:drawableLeft="@drawable/boonblack"
+                android:gravity="center"
+                android:padding="5dp"
+                android:text="@string/ok"/>
+
+            <TextView
+                android:id="@+id/averageSigmarView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:drawableLeft="@drawable/cometblack"
+                android:gravity="center"
+                android:padding="5dp"
+                android:text="@string/ok"/>
+
+            <TextView
+                android:id="@+id/averageChaosView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:drawableLeft="@drawable/chaosblack"
+                android:gravity="center"
+                android:padding="5dp"
+                android:text="@string/ok"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_weight="1">
+
+            <Button
+                android:id="@+id/btn_relaunch"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/btn_launchText"/>
+        </LinearLayout>
+    </RelativeLayout>
+</ScrollView>

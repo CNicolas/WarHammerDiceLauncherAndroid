@@ -28,5 +28,10 @@
     <string name="action_launch10">Launch 10 times</string>
     <string name="action_launch100">Launch 100 times</string>
     <string name="action_launch1000">Launch 1000 times</string>
+    <string name="averageBenefitFormat">Average number of benefits : %1$s</string>
+    <string name="successfulRollsNumberFormat">You succeeded on %1$d throws (%2$s%%)</string>
+    <string name="averageSigmarFormat">Average number of Sigmar comets : %1$s</string>
+    <string name="averageChaosFormat">Average number of Chaos star : %1$s</string>
+    <string name="throwsNumberFormat">On %s throws...</string>
 
 </resources>

@@ -41,9 +41,12 @@ import java.util.Map;
 
 public class MainActivity extends AppCompatActivity {
 
+    private String FRAGMENT_TAG = "fragmentContent";
+
     private DrawerLayout drawerLayout;
     private ListView drawerList;
     private ActionBarDrawerToggle drawerToggle;
+    private Fragment fragmentContent;
 
     private boolean onMainFragment;
 
@@ -78,6 +81,8 @@ public class MainActivity extends AppCompatActivity {
 
         if (savedInstanceState == null) {
             replaceByMainFragment();
+        } else if (!onMainFragment) {
+            fragmentContent = getFragmentManager().getFragment(savedInstanceState, FRAGMENT_TAG);
         }
     }
 
@@ -148,16 +153,23 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     public void onSaveInstanceState(Bundle savedInstanceState) {
-        HandDto dto = currentHandToDto();
-        savedInstanceState.putSerializable("dto", dto);
         super.onSaveInstanceState(savedInstanceState);
+
+        if (onMainFragment) {
+            HandDto dto = currentHandToDto();
+            savedInstanceState.putSerializable(StatisticsFragment.HAND_TAG, dto);
+        }
+        getFragmentManager().putFragment(savedInstanceState, FRAGMENT_TAG, fragmentContent);
     }
 
     @Override
     public void onRestoreInstanceState(Bundle savedInstanceState) {
         super.onRestoreInstanceState(savedInstanceState);
-        HandDto dto = (HandDto) savedInstanceState.getSerializable("dto");
-        dtoToCurrentHand(dto);
+        if (onMainFragment) {
+            HandDto dto = (HandDto) savedInstanceState.getSerializable(StatisticsFragment.HAND_TAG);
+            dtoToCurrentHand(dto);
+        }
+        fragmentContent = getFragmentManager().getFragment(savedInstanceState, FRAGMENT_TAG);
     }
 
     //-------------------------------------------------------------------------------------------------
@@ -176,7 +188,7 @@ public class MainActivity extends AppCompatActivity {
 
             showResults(res);
         } catch (Exception e) {
-            Log.e("MainActivity", "rollDices: ", e);
+            Log.e(this.getLocalClassName(), "rollDices: ", e);
             throw e;
         }
     }
@@ -239,7 +251,7 @@ public class MainActivity extends AppCompatActivity {
 
             builder.show();
         } catch (Exception e) {
-            Log.e("MainActivity", "saveHand: ", e);
+            Log.e(this.getLocalClassName(), "saveHand: ", e);
             throw e;
         }
     }
@@ -253,7 +265,7 @@ public class MainActivity extends AppCompatActivity {
             HandDto dto = dao.findByTitle(title);
             dtoToCurrentHand(dto);
         } catch (Resources.NotFoundException nfe) {
-            Log.e("MainActivity", "useHand: ", nfe);
+            Log.e(this.getLocalClassName(), "useHand: ", nfe);
         }
     }
 
@@ -300,10 +312,10 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void replaceByMainFragment() {
-        Fragment fragment = new MainFragment();
+        fragmentContent = new MainFragment();
 
         FragmentManager fragmentManager = getFragmentManager();
-        fragmentManager.beginTransaction().replace(R.id.content_frame, fragment).commit();
+        fragmentManager.beginTransaction().replace(R.id.content_frame, fragmentContent).commit();
         fragmentManager.executePendingTransactions();
 
         onMainFragment = true;
@@ -314,15 +326,14 @@ public class MainActivity extends AppCompatActivity {
     private void replaceByStatisticsFragment(int times) {
         HandDto dto = currentHandToDto();
 
-        Fragment fragment = new StatisticsFragment();
+        fragmentContent = new StatisticsFragment();
         Bundle args = new Bundle();
-        args.putSerializable(StatisticsFragment.HAND, dto);
-        args.putInt(StatisticsFragment.TIMES, times);
-        fragment.setArguments(args);
+        args.putSerializable(StatisticsFragment.HAND_TAG, dto);
+        args.putInt(StatisticsFragment.TIMES_TAG, times);
+        fragmentContent.setArguments(args);
 
         FragmentManager fragmentManager = getFragmentManager();
-        fragmentManager.beginTransaction().replace(R.id.content_frame, fragment).commit();
-//        fragmentManager.executePendingTransactions();
+        fragmentManager.beginTransaction().replace(R.id.content_frame, fragmentContent).commit();
 
         onMainFragment = false;
 

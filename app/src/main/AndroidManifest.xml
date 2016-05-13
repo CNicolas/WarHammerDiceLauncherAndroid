@@ -9,7 +9,6 @@
         android:configChanges="keyboardHidden|orientation|screenSize"
         android:icon="@drawable/warhammer_v3_logo"
         android:label="@string/app_name"
-        android:screenOrientation="landscape"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity android:name=".activities.MainActivity"/>
