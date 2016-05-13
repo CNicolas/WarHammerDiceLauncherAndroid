@@ -11,8 +11,8 @@
     <string name="challengeDice">Challenge Dice</string>
     <!--End of images-->
 
-    <string name="launchButtonText">Roll !</string>
-    <string name="saveButtonText">Save the hand</string>
+    <string name="btn_launchText">Roll !</string>
+    <string name="btn_saveText">Save the hand</string>
     <string name="resultsTitle">Results</string>
     <string name="insertHandTitleTitle">Insert a title for this hand</string>
 

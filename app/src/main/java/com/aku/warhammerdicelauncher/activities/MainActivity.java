@@ -186,8 +186,8 @@ public class MainActivity extends AppCompatActivity {
         dialog.setContentView(R.layout.popup_results);
         dialog.setTitle(R.string.resultsTitle);
 
-        for (DiceFace face : Constants.popupTextViews.keySet()) {
-            TextView textView = (TextView) dialog.findViewById(Constants.popupTextViews.get(face));
+        for (DiceFace face : Constants.popupResultsTextViews.keySet()) {
+            TextView textView = (TextView) dialog.findViewById(Constants.popupResultsTextViews.get(face));
             if (map.containsKey(face)) {
                 textView.setText(map.get(face).toString());
             } else {
@@ -322,7 +322,7 @@ public class MainActivity extends AppCompatActivity {
 
         FragmentManager fragmentManager = getFragmentManager();
         fragmentManager.beginTransaction().replace(R.id.content_frame, fragment).commit();
-        fragmentManager.executePendingTransactions();
+//        fragmentManager.executePendingTransactions();
 
         onMainFragment = false;
 
@@ -356,8 +356,6 @@ public class MainActivity extends AppCompatActivity {
             drawerList.setItemChecked(position, true);
             getSupportActionBar().setTitle(title);
             drawerLayout.closeDrawer(drawerList);
-
-
         }
     }
 

@@ -19,17 +19,6 @@ public class HandDto implements Serializable {
 
     }
 
-    public HandDto(String title, int characteristic, int reckless, int conservative, int expertise, int fortune, int misfortune, int challenge) {
-        this.title = title;
-        this.characteristic = characteristic;
-        this.reckless = reckless;
-        this.conservative = conservative;
-        this.expertise = expertise;
-        this.fortune = fortune;
-        this.misfortune = misfortune;
-        this.challenge = challenge;
-    }
-
     public String getTitle() {
         return title;
     }
@@ -92,5 +81,20 @@ public class HandDto implements Serializable {
 
     public void setChallenge(int challenge) {
         this.challenge = challenge;
+    }
+
+    @Override
+    public String toString() {
+        final StringBuffer sb = new StringBuffer("HandDto{");
+        sb.append("title='").append(title).append('\'');
+        sb.append(", characteristic=").append(characteristic);
+        sb.append(", reckless=").append(reckless);
+        sb.append(", conservative=").append(conservative);
+        sb.append(", expertise=").append(expertise);
+        sb.append(", fortune=").append(fortune);
+        sb.append(", misfortune=").append(misfortune);
+        sb.append(", challenge=").append(challenge);
+        sb.append('}');
+        return sb.toString();
     }
 }

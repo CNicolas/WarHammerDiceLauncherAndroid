@@ -180,7 +180,7 @@
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:onClick="saveHand"
-            android:text="@string/saveButtonText"/>
+            android:text="@string/btn_saveText"/>
 
         <Button
             android:id="@+id/launchButton"
@@ -188,7 +188,7 @@
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:onClick="rollDices"
-            android:text="@string/launchButtonText"/>
+            android:text="@string/btn_launchText"/>
 
 
     </LinearLayout>

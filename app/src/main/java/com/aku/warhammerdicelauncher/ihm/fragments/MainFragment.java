@@ -23,8 +23,4 @@ public class MainFragment extends Fragment {
         View rootView = inflater.inflate(R.layout.fragment_main, container, false);
         return rootView;
     }
-
-    public boolean isFragmentUIActive() {
-        return isAdded() && !isDetached() && !isRemoving();
-    }
 }

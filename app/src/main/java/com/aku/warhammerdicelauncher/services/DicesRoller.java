@@ -32,6 +32,25 @@ public class DicesRoller {
         return reduce(tmp);
     }
 
+    public static Map<DiceFace, Integer> rollDices(HandDto dto, int times) {
+        List<IDice> pool = createPool(dto);
+
+        Map<DiceFace, Integer> res = new HashMap<>();
+        for (int i = 0; i < times; i++) {
+            List<DiceFace> tmp = new ArrayList<>();
+            for (IDice dice : pool) {
+                tmp.addAll(dice.roll());
+            }
+            Map<DiceFace, Integer> currentMap = reduce(tmp);
+            for (DiceFace face : currentMap.keySet()) {
+                int old = res.get(face) != null ? res.get(face) : 0;
+                res.put(face, old + currentMap.get(face));
+            }
+        }
+
+        return res;
+    }
+
     private static List<IDice> createPool(HandDto dto) {
         List<IDice> pool = new ArrayList<>();
 
@@ -80,19 +99,4 @@ public class DicesRoller {
         }
         return res;
     }
-
-    private static List<DiceFace> removeSomeElements(List<DiceFace> faces, DiceFace element, int number) {
-        List<DiceFace> tmpFaces = new ArrayList<>(faces);
-        for (DiceFace face : tmpFaces) {
-            if (face == element) {
-                faces.remove(face);
-                number--;
-                if (number == 0) {
-                    break;
-                }
-            }
-        }
-        return faces;
-    }
-
 }
