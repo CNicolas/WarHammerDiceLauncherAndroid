@@ -37,6 +37,7 @@ import com.aku.warhammerdicelauncher.services.DicesRoller;
 import com.aku.warhammerdicelauncher.utils.constants.Constants;
 import com.aku.warhammerdicelauncher.utils.enums.DiceFace;
 
+import java.lang.reflect.Array;
 import java.util.List;
 import java.util.Map;
 
@@ -61,7 +62,8 @@ public class MainActivity extends AppCompatActivity {
 
         drawerLayout.setDrawerShadow(R.drawable.drawer_shadow, GravityCompat.START);
 
-        setTitlesInDrawerList();
+        setupNavigationDrawer();
+        fillHandsSpinner();
 
         drawerList.setOnItemClickListener(new HandItemClickListener());
 
@@ -81,11 +83,13 @@ public class MainActivity extends AppCompatActivity {
         };
         drawerLayout.addDrawerListener(drawerToggle);
 
+        /* LAST */
         if (savedInstanceState == null) {
             replaceByMainFragment();
         } else if (!onMainFragment) {
             fragmentContent = getFragmentManager().getFragment(savedInstanceState, FRAGMENT_TAG);
         }
+        /* LAST */
     }
 
     @Override
@@ -242,7 +246,7 @@ public class MainActivity extends AppCompatActivity {
                         HandDao dao = new HandDao(whdHelper);
                         dao.insert(dto);
 
-                        setTitlesInDrawerList();
+                        fillHandsSpinner();
 
                         invalidateOptionsMenu();
                     }
@@ -278,6 +282,8 @@ public class MainActivity extends AppCompatActivity {
             }
         }
     }
+
+    //region Hand and dto helpers
 
     /**
      * Uses the dto's values to set pickers' value
@@ -317,7 +323,7 @@ public class MainActivity extends AppCompatActivity {
         return dto;
     }
 
-    private void resetHand(){
+    private void resetHand() {
         NumberPicker characteristicPicker = (NumberPicker) findViewById(R.id.numberPickerCharacteristic);
         NumberPicker recklessPicker = (NumberPicker) findViewById(R.id.numberPickerReckless);
         NumberPicker conservativePicker = (NumberPicker) findViewById(R.id.numberPickerConservative);
@@ -334,7 +340,9 @@ public class MainActivity extends AppCompatActivity {
         misfortunePicker.setValue(0);
         challengePicker.setValue(0);
     }
+    //endregion
 
+    //region Fragments gestion
     private void replaceByMainFragment() {
         fragmentContent = new MainFragment();
 
@@ -363,40 +371,33 @@ public class MainActivity extends AppCompatActivity {
 
         invalidateOptionsMenu();
     }
+    //endregion
 
-    private void setTitlesInDrawerList() {
-        WarHammerDatabaseHelper whdHelper = new WarHammerDatabaseHelper(MainActivity.this);
-        HandDao dao = new HandDao(whdHelper);
-        List<String> titles = dao.findAllTitles();
-
-        drawerList.setAdapter(new ArrayAdapter<>(this, R.layout.drawer_list_item, titles));
-
+    private void fillHandsSpinner() {
         if (onMainFragment) {
             MainFragment fragment = (MainFragment) getFragmentManager().findFragmentByTag(FRAGMENT_TAG);
             fragment.fillHandsSpinner();
         }
     }
 
-    //-------------------------------------------------------------------------------------------------
-    //---------------------------------LISTENERS-------------------------------------------------------
-    //-------------------------------------------------------------------------------------------------
+    //region Navigation Drawer
+    private void setupNavigationDrawer() {
+        ArrayAdapter adapter = ArrayAdapter.createFromResource(this, R.array.pages, R.layout.drawer_list_item);
+        drawerList.setAdapter(adapter);
+    }
 
     private class HandItemClickListener implements ListView.OnItemClickListener {
         @Override
         public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-            if (!onMainFragment) {
+            String title = ((TextView) view).getText().toString();
+            if ("Home".equals(title)) {
                 replaceByMainFragment();
             }
-
-            WarHammerDatabaseHelper whdHelper = new WarHammerDatabaseHelper(MainActivity.this);
-            HandDao dao = new HandDao(whdHelper);
-            String title = dao.findAllTitles().get(position);
-            useHand(title);
 
             drawerList.setItemChecked(position, true);
             getSupportActionBar().setTitle(title);
             drawerLayout.closeDrawer(drawerList);
         }
     }
-
+    //endregion
 }
