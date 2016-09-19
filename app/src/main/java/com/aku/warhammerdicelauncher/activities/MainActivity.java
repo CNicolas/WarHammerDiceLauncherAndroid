@@ -25,6 +25,7 @@ import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.NumberPicker;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.aku.warhammerdicelauncher.R;
 import com.aku.warhammerdicelauncher.ihm.fragments.MainFragment;
@@ -61,6 +62,7 @@ public class MainActivity extends AppCompatActivity {
         drawerLayout.setDrawerShadow(R.drawable.drawer_shadow, GravityCompat.START);
 
         setTitlesInDrawerList();
+
         drawerList.setOnItemClickListener(new HandItemClickListener());
 
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
@@ -98,7 +100,6 @@ public class MainActivity extends AppCompatActivity {
      * After a invalidateOptionsMenu();
      *
      * @param menu
-     * @return
      */
     @Override
     public boolean onPrepareOptionsMenu(Menu menu) {
@@ -231,15 +232,20 @@ public class MainActivity extends AppCompatActivity {
             builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
                 @Override
                 public void onClick(DialogInterface dialog, int which) {
-                    HandDto dto = currentHandToDto();
-                    dto.setTitle(input.getText().toString());
+                    if (input.getText().toString().trim().isEmpty()) {
+                        Toast.makeText(getApplicationContext(), R.string.empty_hand_name, Toast.LENGTH_SHORT).show();
+                    } else {
+                        HandDto dto = currentHandToDto();
+                        dto.setTitle(input.getText().toString());
 
-                    WarHammerDatabaseHelper whdHelper = new WarHammerDatabaseHelper(MainActivity.this);
-                    HandDao dao = new HandDao(whdHelper);
-                    dao.insert(dto);
+                        WarHammerDatabaseHelper whdHelper = new WarHammerDatabaseHelper(MainActivity.this);
+                        HandDao dao = new HandDao(whdHelper);
+                        dao.insert(dto);
 
-                    setTitlesInDrawerList();
-                    invalidateOptionsMenu();
+                        setTitlesInDrawerList();
+
+                        invalidateOptionsMenu();
+                    }
                 }
             });
             builder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
@@ -257,22 +263,24 @@ public class MainActivity extends AppCompatActivity {
     }
 
 
-    private void useHand(String title) {
-        WarHammerDatabaseHelper whdHelper = new WarHammerDatabaseHelper(MainActivity.this);
-        HandDao dao = new HandDao(whdHelper);
+    public void useHand(String title) {
+        if (title.trim().isEmpty()) {
+            resetHand();
+        } else {
+            WarHammerDatabaseHelper whdHelper = new WarHammerDatabaseHelper(MainActivity.this);
+            HandDao dao = new HandDao(whdHelper);
 
-        try {
-            HandDto dto = dao.findByTitle(title);
-            dtoToCurrentHand(dto);
-        } catch (Resources.NotFoundException nfe) {
-            Log.e(this.getLocalClassName(), "useHand: ", nfe);
+            try {
+                HandDto dto = dao.findByTitle(title);
+                dtoToCurrentHand(dto);
+            } catch (Resources.NotFoundException nfe) {
+                Log.e(this.getLocalClassName(), "useHand: ", nfe);
+            }
         }
     }
 
     /**
-     * Uses the dto's values to set pickers'
-     *
-     * @return
+     * Uses the dto's values to set pickers' value
      */
     private void dtoToCurrentHand(HandDto dto) {
         NumberPicker characteristicPicker = (NumberPicker) findViewById(R.id.numberPickerCharacteristic);
@@ -294,8 +302,6 @@ public class MainActivity extends AppCompatActivity {
 
     /**
      * Get current pickers' value and create a HandDto with them
-     *
-     * @return
      */
     private HandDto currentHandToDto() {
         HandDto dto = new HandDto();
@@ -311,11 +317,29 @@ public class MainActivity extends AppCompatActivity {
         return dto;
     }
 
+    private void resetHand(){
+        NumberPicker characteristicPicker = (NumberPicker) findViewById(R.id.numberPickerCharacteristic);
+        NumberPicker recklessPicker = (NumberPicker) findViewById(R.id.numberPickerReckless);
+        NumberPicker conservativePicker = (NumberPicker) findViewById(R.id.numberPickerConservative);
+        NumberPicker expertisePicker = (NumberPicker) findViewById(R.id.numberPickerExpertise);
+        NumberPicker fortunePicker = (NumberPicker) findViewById(R.id.numberPickerFortune);
+        NumberPicker misfortunePicker = (NumberPicker) findViewById(R.id.numberPickerMisfortune);
+        NumberPicker challengePicker = (NumberPicker) findViewById(R.id.numberPickerChallenge);
+
+        characteristicPicker.setValue(0);
+        recklessPicker.setValue(0);
+        conservativePicker.setValue(0);
+        expertisePicker.setValue(0);
+        fortunePicker.setValue(0);
+        misfortunePicker.setValue(0);
+        challengePicker.setValue(0);
+    }
+
     private void replaceByMainFragment() {
         fragmentContent = new MainFragment();
 
         FragmentManager fragmentManager = getFragmentManager();
-        fragmentManager.beginTransaction().replace(R.id.content_frame, fragmentContent).commit();
+        fragmentManager.beginTransaction().replace(R.id.content_frame, fragmentContent, FRAGMENT_TAG).commit();
         fragmentManager.executePendingTransactions();
 
         onMainFragment = true;
@@ -333,7 +357,7 @@ public class MainActivity extends AppCompatActivity {
         fragmentContent.setArguments(args);
 
         FragmentManager fragmentManager = getFragmentManager();
-        fragmentManager.beginTransaction().replace(R.id.content_frame, fragmentContent).commit();
+        fragmentManager.beginTransaction().replace(R.id.content_frame, fragmentContent, FRAGMENT_TAG).commit();
 
         onMainFragment = false;
 
@@ -346,6 +370,11 @@ public class MainActivity extends AppCompatActivity {
         List<String> titles = dao.findAllTitles();
 
         drawerList.setAdapter(new ArrayAdapter<>(this, R.layout.drawer_list_item, titles));
+
+        if (onMainFragment) {
+            MainFragment fragment = (MainFragment) getFragmentManager().findFragmentByTag(FRAGMENT_TAG);
+            fragment.fillHandsSpinner();
+        }
     }
 
     //-------------------------------------------------------------------------------------------------

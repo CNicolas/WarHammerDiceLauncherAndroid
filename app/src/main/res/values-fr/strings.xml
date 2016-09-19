@@ -34,5 +34,6 @@
     <string name="averageSigmarFormat">Nombre moyen de comètes de Sigmar : %1$s</string>
     <string name="averageChaosFormat">Nombre moyen d\'étoiles du Chaos : %1$s</string>
     <string name="throwsNumberFormat">Sur %s lancés...</string>
+    <string name="empty_hand_name">Nom invalide</string>
 
 </resources>
