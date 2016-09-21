@@ -8,6 +8,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.NumberPicker;
 import android.widget.Spinner;
 import android.widget.TextView;
 
@@ -15,6 +16,7 @@ import com.aku.warhammerdicelauncher.R;
 import com.aku.warhammerdicelauncher.activities.MainActivity;
 import com.aku.warhammerdicelauncher.model.dao.HandDao;
 import com.aku.warhammerdicelauncher.model.database.helper.WarHammerDatabaseHelper;
+import com.aku.warhammerdicelauncher.model.dto.HandDto;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -66,6 +68,23 @@ public class MainFragment extends Fragment {
         titles.addAll(dao.findAllTitles());
 
         handsSpinner.setAdapter(new ArrayAdapter<>(getActivity(), R.layout.hand_spinner_item, titles));
+    }
+
+    /**
+     * Get current pickers' value and create a HandDto with them
+     */
+    public HandDto currentHandToDto(View v) {
+        HandDto dto = new HandDto();
+
+        dto.setCharacteristic(((NumberPicker) v.findViewById(R.id.numberPickerCharacteristic)).getValue());
+        dto.setReckless(((NumberPicker) v.findViewById(R.id.numberPickerReckless)).getValue());
+        dto.setConservative(((NumberPicker) v.findViewById(R.id.numberPickerConservative)).getValue());
+        dto.setExpertise(((NumberPicker) v.findViewById(R.id.numberPickerExpertise)).getValue());
+        dto.setFortune(((NumberPicker) v.findViewById(R.id.numberPickerFortune)).getValue());
+        dto.setMisfortune(((NumberPicker) v.findViewById(R.id.numberPickerMisfortune)).getValue());
+        dto.setChallenge(((NumberPicker) v.findViewById(R.id.numberPickerChallenge)).getValue());
+
+        return dto;
     }
 
 }

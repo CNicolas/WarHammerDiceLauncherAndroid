@@ -10,7 +10,7 @@ import android.widget.TextView;
 
 import com.aku.warhammerdicelauncher.R;
 import com.aku.warhammerdicelauncher.model.dto.HandDto;
-import com.aku.warhammerdicelauncher.services.DicesRoller;
+import com.aku.warhammerdicelauncher.services.DicesRollerService;
 import com.aku.warhammerdicelauncher.utils.enums.DiceFace;
 
 import java.math.RoundingMode;
@@ -111,14 +111,14 @@ public class StatisticsFragment extends Fragment {
 
         allThrows = new HashMap<>();
         for (int i = 0; i < times; i++) {
-            Map<DiceFace, Integer> map = DicesRoller.rollDices(dto);
+            Map<DiceFace, Integer> map = DicesRollerService.rollDices(dto);
 
             for (DiceFace face : map.keySet()) {
                 int old = allThrows.get(face) != null ? allThrows.get(face) : 0;
                 allThrows.put(face, old + map.get(face));
             }
 
-            successfulRolls += DicesRoller.isSuccessful(map) ? 1 : 0;
+            successfulRolls += DicesRollerService.isSuccessful(map) ? 1 : 0;
         }
 
         averageBenefitNumber = allThrows.containsKey(DiceFace.BENEFIT) ? allThrows.get(DiceFace.BENEFIT) / ((double) times) : 0;

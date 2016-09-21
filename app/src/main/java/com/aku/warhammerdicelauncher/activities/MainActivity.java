@@ -1,9 +1,7 @@
 package com.aku.warhammerdicelauncher.activities;
 
 import android.app.AlertDialog;
-import android.app.Dialog;
 import android.app.Fragment;
-import android.app.FragmentManager;
 import android.content.DialogInterface;
 import android.content.res.Configuration;
 import android.content.res.Resources;
@@ -20,7 +18,6 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
-import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.NumberPicker;
@@ -33,12 +30,11 @@ import com.aku.warhammerdicelauncher.ihm.fragments.StatisticsFragment;
 import com.aku.warhammerdicelauncher.model.dao.HandDao;
 import com.aku.warhammerdicelauncher.model.database.helper.WarHammerDatabaseHelper;
 import com.aku.warhammerdicelauncher.model.dto.HandDto;
-import com.aku.warhammerdicelauncher.services.DicesRoller;
-import com.aku.warhammerdicelauncher.utils.constants.Constants;
+import com.aku.warhammerdicelauncher.services.DicesRollerService;
 import com.aku.warhammerdicelauncher.utils.enums.DiceFace;
+import com.aku.warhammerdicelauncher.utils.helpers.DialogHelper;
+import com.aku.warhammerdicelauncher.utils.helpers.FragmentHelper;
 
-import java.lang.reflect.Array;
-import java.util.List;
 import java.util.Map;
 
 public class MainActivity extends AppCompatActivity {
@@ -65,7 +61,7 @@ public class MainActivity extends AppCompatActivity {
         setupNavigationDrawer();
         fillHandsSpinner();
 
-        drawerList.setOnItemClickListener(new HandItemClickListener());
+        drawerList.setOnItemClickListener(new NavigationDrawerListItemClickListener());
 
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setHomeButtonEnabled(true);
@@ -189,39 +185,13 @@ public class MainActivity extends AppCompatActivity {
     public void rollDices(View v) {
         try {
             HandDto dto = currentHandToDto();
-            Map<DiceFace, Integer> res = DicesRoller.rollDices(dto);
+            Map<DiceFace, Integer> res = DicesRollerService.rollDices(dto);
 
-            showResults(res);
+            DialogHelper.showLaunchResults(res, this);
         } catch (Exception e) {
             Log.e(this.getLocalClassName(), "rollDices: ", e);
             throw e;
         }
-    }
-
-    private void showResults(Map<DiceFace, Integer> map) {
-        final Dialog dialog = new Dialog(this);
-        dialog.setContentView(R.layout.popup_results);
-        dialog.setTitle(R.string.resultsTitle);
-
-        for (DiceFace face : Constants.popupResultsTextViews.keySet()) {
-            TextView textView = (TextView) dialog.findViewById(Constants.popupResultsTextViews.get(face));
-            if (map.containsKey(face)) {
-                textView.setText(map.get(face).toString());
-            } else {
-                textView.setVisibility(View.GONE);
-            }
-        }
-
-        Button dialogButton = (Button) dialog.findViewById(R.id.dismissResultsPopupButton);
-
-        dialogButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                dialog.dismiss();
-            }
-        });
-
-        dialog.show();
     }
 
     public void saveHand(View v) {
@@ -342,33 +312,16 @@ public class MainActivity extends AppCompatActivity {
     }
     //endregion
 
-    //region Fragments gestion
+    //region Fragments management
     private void replaceByMainFragment() {
-        fragmentContent = new MainFragment();
-
-        FragmentManager fragmentManager = getFragmentManager();
-        fragmentManager.beginTransaction().replace(R.id.content_frame, fragmentContent, FRAGMENT_TAG).commit();
-        fragmentManager.executePendingTransactions();
-
+        fragmentContent = FragmentHelper.replaceByMainFragment(getFragmentManager());
         onMainFragment = true;
-
         invalidateOptionsMenu();
     }
 
     private void replaceByStatisticsFragment(int times) {
-        HandDto dto = currentHandToDto();
-
-        fragmentContent = new StatisticsFragment();
-        Bundle args = new Bundle();
-        args.putSerializable(StatisticsFragment.HAND_TAG, dto);
-        args.putInt(StatisticsFragment.TIMES_TAG, times);
-        fragmentContent.setArguments(args);
-
-        FragmentManager fragmentManager = getFragmentManager();
-        fragmentManager.beginTransaction().replace(R.id.content_frame, fragmentContent, FRAGMENT_TAG).commit();
-
+        fragmentContent = FragmentHelper.replaceByStatisticsFragment(currentHandToDto(), times, getFragmentManager());
         onMainFragment = false;
-
         invalidateOptionsMenu();
     }
     //endregion
@@ -386,7 +339,7 @@ public class MainActivity extends AppCompatActivity {
         drawerList.setAdapter(adapter);
     }
 
-    private class HandItemClickListener implements ListView.OnItemClickListener {
+    private class NavigationDrawerListItemClickListener implements ListView.OnItemClickListener {
         @Override
         public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
             String title = ((TextView) view).getText().toString();
