@@ -129,6 +129,9 @@ public class MainActivity extends AppCompatActivity {
             case R.id.action_launch1000:
                 replaceByStatisticsFragment(1000);
                 return true;
+            case R.id.action_launch10000:
+                replaceByStatisticsFragment(10000);
+                return true;
             default:
                 return super.onOptionsItemSelected(item);
         }
@@ -234,7 +237,6 @@ public class MainActivity extends AppCompatActivity {
             throw e;
         }
     }
-
 
     public void useHand(String title) {
         if (title.trim().isEmpty()) {

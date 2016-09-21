@@ -35,5 +35,6 @@
     <string name="averageChaosFormat">Nombre moyen d\'étoiles du Chaos : %1$s</string>
     <string name="throwsNumberFormat">Sur %s lancés...</string>
     <string name="empty_hand_name">Nom invalide</string>
+    <string name="action_launch10000">Lancer 10000 fois</string>
 
 </resources>

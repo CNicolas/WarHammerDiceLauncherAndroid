@@ -34,5 +34,6 @@
     <string name="averageChaosFormat">Average number of Chaos star : %1$s</string>
     <string name="throwsNumberFormat">On %s throws...</string>
     <string name="empty_hand_name">Empty hand name</string>
+    <string name="action_launch10000">Launch 10000 times</string>
 
 </resources>

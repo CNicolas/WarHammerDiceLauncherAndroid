@@ -15,4 +15,7 @@
     <item
         android:id="@+id/action_launch1000"
         android:title="@string/action_launch1000"/>
+    <item
+        android:id="@+id/action_launch10000"
+        android:title="@string/action_launch10000" />
 </menu>
