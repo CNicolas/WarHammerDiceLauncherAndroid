@@ -37,5 +37,6 @@
     <string name="empty_hand_name">Nom invalide</string>
     <string name="action_launch10000">Lancer 10000 fois</string>
     <string name="btn_resetText">Reset</string>
+    <string name="cancel">Annuler</string>
 
 </resources>

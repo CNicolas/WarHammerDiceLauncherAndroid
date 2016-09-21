@@ -209,26 +209,8 @@ public class MainActivity extends AppCompatActivity {
             input.setInputType(InputType.TYPE_CLASS_TEXT);
             builder.setView(input);
 
-            builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
-                @Override
-                public void onClick(DialogInterface dialog, int which) {
-                    if (input.getText().toString().trim().isEmpty()) {
-                        Toast.makeText(getApplicationContext(), R.string.empty_hand_name, Toast.LENGTH_SHORT).show();
-                    } else {
-                        HandDto dto = currentHandToDto();
-                        dto.setTitle(input.getText().toString());
-
-                        WarHammerDatabaseHelper whdHelper = new WarHammerDatabaseHelper(MainActivity.this);
-                        HandDao dao = new HandDao(whdHelper);
-                        dao.insert(dto);
-
-                        fillHandsSpinner();
-
-                        invalidateOptionsMenu();
-                    }
-                }
-            });
-            builder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+            builder.setPositiveButton(R.string.ok, new ResultDialogOkClickListener(input));
+            builder.setNegativeButton(R.string.cancel, new DialogInterface.OnClickListener() {
                 @Override
                 public void onClick(DialogInterface dialog, int which) {
                     dialog.cancel();
@@ -255,6 +237,13 @@ public class MainActivity extends AppCompatActivity {
             } catch (Resources.NotFoundException nfe) {
                 Log.e(this.getLocalClassName(), "useHand: ", nfe);
             }
+        }
+    }
+
+    private void fillHandsSpinner() {
+        if (onLaunchFragment) {
+            LaunchFragment fragment = FragmentHelper.getCurrentLaunchFragment(getFragmentManager());
+            fragment.fillHandsSpinner();
         }
     }
 
@@ -295,13 +284,6 @@ public class MainActivity extends AppCompatActivity {
     }
     //endregion
 
-    private void fillHandsSpinner() {
-        if (onLaunchFragment) {
-            LaunchFragment fragment = FragmentHelper.getCurrentLaunchFragment(getFragmentManager());
-            fragment.fillHandsSpinner();
-        }
-    }
-
     //region Navigation Drawer
     private void setupNavigationDrawer() {
         ArrayAdapter adapter = ArrayAdapter.createFromResource(this, R.array.pages, R.layout.drawer_list_item);
@@ -322,4 +304,31 @@ public class MainActivity extends AppCompatActivity {
         }
     }
     //endregion
+
+    private class ResultDialogOkClickListener implements DialogInterface.OnClickListener {
+        private final EditText input;
+
+        public ResultDialogOkClickListener(EditText input) {
+            this.input = input;
+        }
+
+        @Override
+        public void onClick(DialogInterface dialog, int which) {
+            if (input.getText().toString().trim().isEmpty()) {
+                Toast.makeText(getApplicationContext(), R.string.empty_hand_name, Toast.LENGTH_SHORT).show();
+            } else {
+                HandDto dto = currentHandToDto();
+                dto.setTitle(input.getText().toString());
+
+                WarHammerDatabaseHelper whdHelper = new WarHammerDatabaseHelper(MainActivity.this);
+                HandDao dao = new HandDao(whdHelper);
+                dao.insert(dto);
+
+                fillHandsSpinner();
+
+                invalidateOptionsMenu();
+            }
+
+        }
+    }
 }

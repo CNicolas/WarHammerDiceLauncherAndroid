@@ -36,5 +36,6 @@
     <string name="empty_hand_name">Empty hand name</string>
     <string name="action_launch10000">Launch 10000 times</string>
     <string name="btn_resetText">Reset</string>
+    <string name="cancel">Cancel</string>
 
 </resources>
