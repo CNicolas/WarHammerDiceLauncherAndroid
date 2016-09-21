@@ -20,12 +20,11 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.ListView;
-import android.widget.NumberPicker;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.aku.warhammerdicelauncher.R;
-import com.aku.warhammerdicelauncher.ihm.fragments.MainFragment;
+import com.aku.warhammerdicelauncher.ihm.fragments.LaunchFragment;
 import com.aku.warhammerdicelauncher.ihm.fragments.StatisticsFragment;
 import com.aku.warhammerdicelauncher.model.dao.HandDao;
 import com.aku.warhammerdicelauncher.model.database.helper.WarHammerDatabaseHelper;
@@ -46,7 +45,7 @@ public class MainActivity extends AppCompatActivity {
     private ActionBarDrawerToggle drawerToggle;
     private Fragment fragmentContent;
 
-    private boolean onMainFragment;
+    private boolean onLaunchFragment;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -81,8 +80,8 @@ public class MainActivity extends AppCompatActivity {
 
         /* LAST */
         if (savedInstanceState == null) {
-            replaceByMainFragment();
-        } else if (!onMainFragment) {
+            replaceByLaunchFragment();
+        } else if (!onLaunchFragment) {
             fragmentContent = getFragmentManager().getFragment(savedInstanceState, FRAGMENT_TAG);
         }
         /* LAST */
@@ -92,7 +91,7 @@ public class MainActivity extends AppCompatActivity {
     public boolean onCreateOptionsMenu(Menu menu) {
         MenuInflater inflater = getMenuInflater();
         inflater.inflate(R.menu.main, menu);
-        menu.findItem(R.id.action_home).setVisible(!onMainFragment);
+        menu.findItem(R.id.action_home).setVisible(!onLaunchFragment);
         return super.onCreateOptionsMenu(menu);
     }
 
@@ -103,12 +102,12 @@ public class MainActivity extends AppCompatActivity {
      */
     @Override
     public boolean onPrepareOptionsMenu(Menu menu) {
-        if (!onMainFragment) {
+        if (!onLaunchFragment) {
             for (int i = 0; i < menu.size(); i++) {
                 menu.getItem(i).setVisible(false);
             }
         }
-        menu.findItem(R.id.action_home).setVisible(!onMainFragment);
+        menu.findItem(R.id.action_home).setVisible(!onLaunchFragment);
         return super.onPrepareOptionsMenu(menu);
     }
 
@@ -119,7 +118,7 @@ public class MainActivity extends AppCompatActivity {
         }
         switch (item.getItemId()) {
             case R.id.action_home:
-                replaceByMainFragment();
+                replaceByLaunchFragment();
                 return true;
             case R.id.action_launch10:
                 replaceByStatisticsFragment(10);
@@ -156,7 +155,7 @@ public class MainActivity extends AppCompatActivity {
     public void onSaveInstanceState(Bundle savedInstanceState) {
         super.onSaveInstanceState(savedInstanceState);
 
-        if (onMainFragment) {
+        if (onLaunchFragment) {
             HandDto dto = currentHandToDto();
             savedInstanceState.putSerializable(StatisticsFragment.HAND_TAG, dto);
         }
@@ -166,7 +165,7 @@ public class MainActivity extends AppCompatActivity {
     @Override
     public void onRestoreInstanceState(Bundle savedInstanceState) {
         super.onRestoreInstanceState(savedInstanceState);
-        if (onMainFragment) {
+        if (onLaunchFragment) {
             HandDto dto = (HandDto) savedInstanceState.getSerializable(StatisticsFragment.HAND_TAG);
             dtoToCurrentHand(dto);
         }
@@ -259,76 +258,41 @@ public class MainActivity extends AppCompatActivity {
      * Uses the dto's values to set pickers' value
      */
     private void dtoToCurrentHand(HandDto dto) {
-        NumberPicker characteristicPicker = (NumberPicker) findViewById(R.id.numberPickerCharacteristic);
-        NumberPicker recklessPicker = (NumberPicker) findViewById(R.id.numberPickerReckless);
-        NumberPicker conservativePicker = (NumberPicker) findViewById(R.id.numberPickerConservative);
-        NumberPicker expertisePicker = (NumberPicker) findViewById(R.id.numberPickerExpertise);
-        NumberPicker fortunePicker = (NumberPicker) findViewById(R.id.numberPickerFortune);
-        NumberPicker misfortunePicker = (NumberPicker) findViewById(R.id.numberPickerMisfortune);
-        NumberPicker challengePicker = (NumberPicker) findViewById(R.id.numberPickerChallenge);
-
-        characteristicPicker.setValue(dto.getCharacteristic());
-        recklessPicker.setValue(dto.getReckless());
-        conservativePicker.setValue(dto.getConservative());
-        expertisePicker.setValue(dto.getExpertise());
-        fortunePicker.setValue(dto.getFortune());
-        misfortunePicker.setValue(dto.getMisfortune());
-        challengePicker.setValue(dto.getChallenge());
+        LaunchFragment fragment = FragmentHelper.getCurrentLaunchFragment(getFragmentManager());
+        fragment.dtoToCurrentHand(dto, this);
     }
 
     /**
      * Get current pickers' value and create a HandDto with them
      */
     private HandDto currentHandToDto() {
-        HandDto dto = new HandDto();
-
-        dto.setCharacteristic(((NumberPicker) findViewById(R.id.numberPickerCharacteristic)).getValue());
-        dto.setReckless(((NumberPicker) findViewById(R.id.numberPickerReckless)).getValue());
-        dto.setConservative(((NumberPicker) findViewById(R.id.numberPickerConservative)).getValue());
-        dto.setExpertise(((NumberPicker) findViewById(R.id.numberPickerExpertise)).getValue());
-        dto.setFortune(((NumberPicker) findViewById(R.id.numberPickerFortune)).getValue());
-        dto.setMisfortune(((NumberPicker) findViewById(R.id.numberPickerMisfortune)).getValue());
-        dto.setChallenge(((NumberPicker) findViewById(R.id.numberPickerChallenge)).getValue());
-
-        return dto;
+        LaunchFragment fragment = FragmentHelper.getCurrentLaunchFragment(getFragmentManager());
+        return fragment.currentHandToDto(this);
     }
 
     private void resetHand() {
-        NumberPicker characteristicPicker = (NumberPicker) findViewById(R.id.numberPickerCharacteristic);
-        NumberPicker recklessPicker = (NumberPicker) findViewById(R.id.numberPickerReckless);
-        NumberPicker conservativePicker = (NumberPicker) findViewById(R.id.numberPickerConservative);
-        NumberPicker expertisePicker = (NumberPicker) findViewById(R.id.numberPickerExpertise);
-        NumberPicker fortunePicker = (NumberPicker) findViewById(R.id.numberPickerFortune);
-        NumberPicker misfortunePicker = (NumberPicker) findViewById(R.id.numberPickerMisfortune);
-        NumberPicker challengePicker = (NumberPicker) findViewById(R.id.numberPickerChallenge);
-
-        characteristicPicker.setValue(0);
-        recklessPicker.setValue(0);
-        conservativePicker.setValue(0);
-        expertisePicker.setValue(0);
-        fortunePicker.setValue(0);
-        misfortunePicker.setValue(0);
-        challengePicker.setValue(0);
+        LaunchFragment fragment = FragmentHelper.getCurrentLaunchFragment(getFragmentManager());
+        fragment.resetHand(this);
     }
     //endregion
 
     //region Fragments management
-    private void replaceByMainFragment() {
-        fragmentContent = FragmentHelper.replaceByMainFragment(getFragmentManager());
-        onMainFragment = true;
+    private void replaceByLaunchFragment() {
+        fragmentContent = FragmentHelper.replaceByLaunchFragment(getFragmentManager());
+        onLaunchFragment = true;
         invalidateOptionsMenu();
     }
 
     private void replaceByStatisticsFragment(int times) {
         fragmentContent = FragmentHelper.replaceByStatisticsFragment(currentHandToDto(), times, getFragmentManager());
-        onMainFragment = false;
+        onLaunchFragment = false;
         invalidateOptionsMenu();
     }
     //endregion
 
     private void fillHandsSpinner() {
-        if (onMainFragment) {
-            MainFragment fragment = (MainFragment) getFragmentManager().findFragmentByTag(FRAGMENT_TAG);
+        if (onLaunchFragment) {
+            LaunchFragment fragment = (LaunchFragment) getFragmentManager().findFragmentByTag(FRAGMENT_TAG);
             fragment.fillHandsSpinner();
         }
     }
@@ -344,7 +308,7 @@ public class MainActivity extends AppCompatActivity {
         public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
             String title = ((TextView) view).getText().toString();
             if ("Home".equals(title)) {
-                replaceByMainFragment();
+                replaceByLaunchFragment();
             }
 
             drawerList.setItemChecked(position, true);

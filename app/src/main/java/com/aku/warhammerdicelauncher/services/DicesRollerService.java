@@ -32,25 +32,6 @@ public class DicesRollerService {
         return reduce(tmp);
     }
 
-    public static Map<DiceFace, Integer> rollDices(HandDto dto, int times) {
-        List<IDice> pool = createPool(dto);
-
-        Map<DiceFace, Integer> res = new HashMap<>();
-        for (int i = 0; i < times; i++) {
-            List<DiceFace> tmp = new ArrayList<>();
-            for (IDice dice : pool) {
-                tmp.addAll(dice.roll());
-            }
-            Map<DiceFace, Integer> currentMap = reduce(tmp);
-            for (DiceFace face : currentMap.keySet()) {
-                int old = res.get(face) != null ? res.get(face) : 0;
-                res.put(face, old + currentMap.get(face));
-            }
-        }
-
-        return res;
-    }
-
     public static boolean isSuccessful(Map<DiceFace, Integer> handResults) {
         return handResults.containsKey(DiceFace.SUCCESS);
     }

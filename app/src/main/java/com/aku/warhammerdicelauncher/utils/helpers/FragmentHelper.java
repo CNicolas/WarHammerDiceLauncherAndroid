@@ -5,7 +5,7 @@ import android.app.FragmentManager;
 import android.os.Bundle;
 
 import com.aku.warhammerdicelauncher.R;
-import com.aku.warhammerdicelauncher.ihm.fragments.MainFragment;
+import com.aku.warhammerdicelauncher.ihm.fragments.LaunchFragment;
 import com.aku.warhammerdicelauncher.ihm.fragments.StatisticsFragment;
 import com.aku.warhammerdicelauncher.model.dto.HandDto;
 
@@ -17,8 +17,8 @@ public abstract class FragmentHelper {
 
     private static String FRAGMENT_TAG = "fragmentContent";
 
-    public static Fragment replaceByMainFragment(FragmentManager fragmentManager) {
-        Fragment fragmentContent = new MainFragment();
+    public static Fragment replaceByLaunchFragment(FragmentManager fragmentManager) {
+        Fragment fragmentContent = new LaunchFragment();
 
         fragmentManager.beginTransaction().replace(R.id.content_frame, fragmentContent, FRAGMENT_TAG).commit();
         fragmentManager.executePendingTransactions();
@@ -37,5 +37,9 @@ public abstract class FragmentHelper {
         fragmentManager.beginTransaction().replace(R.id.content_frame, fragmentContent, FRAGMENT_TAG).commit();
 
         return fragmentContent;
+    }
+
+    public static LaunchFragment getCurrentLaunchFragment(FragmentManager fragmentManager){
+        return (LaunchFragment) fragmentManager.findFragmentByTag(FRAGMENT_TAG);
     }
 }

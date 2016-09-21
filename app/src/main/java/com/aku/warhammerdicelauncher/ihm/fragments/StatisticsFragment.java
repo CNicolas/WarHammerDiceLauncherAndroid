@@ -130,7 +130,7 @@ public class StatisticsFragment extends Fragment {
 
     private void updateUI() {
         TextView throwsNumberView = (TextView) getActivity().findViewById(R.id.throwsNumberView);
-        throwsNumberView.setText(String.format(getResources().getString(R.string.throwsNumberFormat), times));
+        throwsNumberView.setText(String.format(getResources().getString(R.string.throwsNumberFormat), String.valueOf(times)));
         TextView successNumberTextView = (TextView) getActivity().findViewById(R.id.successRollsView);
         successNumberTextView.setText(String.format(getResources().getString(R.string.successfulRollsNumberFormat), successfulRolls, df.format(successfulRolls / (double) 10)));
         TextView averageBenefitTextView = (TextView) getActivity().findViewById(R.id.averageBenefitView);
