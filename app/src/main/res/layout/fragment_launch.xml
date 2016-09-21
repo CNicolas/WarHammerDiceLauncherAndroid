@@ -171,14 +171,22 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:orientation="vertical"
         android:layout_centerVertical="true">
 
         <Spinner
             android:id="@+id/hands_spinner"
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="match_parent" />
 
-        </Spinner>
+        <Button
+            android:id="@+id/saveButton"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginTop="20dp"
+            android:layout_weight="1"
+            android:onClick="saveHand"
+            android:text="@string/btn_saveText" />
     </LinearLayout>
     <!--END OF HANDS LAYOUT-->
 
@@ -190,14 +198,6 @@
         android:orientation="horizontal">
 
         <Button
-            android:id="@+id/saveButton"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:onClick="saveHand"
-            android:text="@string/btn_saveText" />
-
-        <Button
             android:id="@+id/launchButton"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
@@ -205,7 +205,13 @@
             android:onClick="rollDices"
             android:text="@string/btn_launchText" />
 
-
+        <Button
+            android:id="@+id/resetButton"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:onClick="btnResetHandClick"
+            android:text="@string/btn_resetText" />
     </LinearLayout>
 
     <!--END OF BUTTONS LAYOUT-->

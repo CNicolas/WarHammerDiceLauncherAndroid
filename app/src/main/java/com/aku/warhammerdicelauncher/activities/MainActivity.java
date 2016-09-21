@@ -196,6 +196,10 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
+    public void btnResetHandClick(View v) {
+        resetHand();
+    }
+
     public void saveHand(View v) {
         try {
             AlertDialog.Builder builder = new AlertDialog.Builder(this);
