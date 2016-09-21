@@ -175,9 +175,16 @@ public class MainActivity extends AppCompatActivity {
         fragmentContent = getFragmentManager().getFragment(savedInstanceState, FRAGMENT_TAG);
     }
 
-    //-------------------------------------------------------------------------------------------------
-    //---------------------------------CUSTOM METHODS--------------------------------------------------
-    //-------------------------------------------------------------------------------------------------
+    //region Click events handlers
+
+    /**
+     * React to a click on the saveButton. Save the hand
+     *
+     * @param v the view
+     */
+    public void saveHand(View v) {
+        saveHand();
+    }
 
     /**
      * React to a click on the rollButton. Roll dices and show the results in a popup
@@ -185,6 +192,21 @@ public class MainActivity extends AppCompatActivity {
      * @param v the view
      */
     public void rollDices(View v) {
+        rollDices();
+    }
+
+    /**
+     * React to a click on the resetButton. Reset the numberpickers
+     *
+     * @param v the view
+     */
+    public void btnResetHandClick(View v) {
+        resetHand();
+    }
+
+    //endregion
+
+    private void rollDices() {
         try {
             HandDto dto = currentHandToDto();
             Map<DiceFace, Integer> res = DicesRollerService.rollDices(dto);
@@ -196,11 +218,7 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-    public void btnResetHandClick(View v) {
-        resetHand();
-    }
-
-    public void saveHand(View v) {
+    private void saveHand() {
         try {
             AlertDialog.Builder builder = new AlertDialog.Builder(this);
             builder.setTitle(R.string.insertHandTitleTitle);
@@ -248,6 +266,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     //region Hand and dto helpers
+
     /**
      * Uses the dto's values to set pickers' value
      */
