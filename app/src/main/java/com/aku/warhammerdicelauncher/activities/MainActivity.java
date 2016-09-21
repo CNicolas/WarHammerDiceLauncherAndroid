@@ -253,7 +253,6 @@ public class MainActivity extends AppCompatActivity {
     }
 
     //region Hand and dto helpers
-
     /**
      * Uses the dto's values to set pickers' value
      */
@@ -292,7 +291,7 @@ public class MainActivity extends AppCompatActivity {
 
     private void fillHandsSpinner() {
         if (onLaunchFragment) {
-            LaunchFragment fragment = (LaunchFragment) getFragmentManager().findFragmentByTag(FRAGMENT_TAG);
+            LaunchFragment fragment = FragmentHelper.getCurrentLaunchFragment(getFragmentManager());
             fragment.fillHandsSpinner();
         }
     }
