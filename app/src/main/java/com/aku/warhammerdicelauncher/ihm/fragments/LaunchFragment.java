@@ -154,7 +154,14 @@ public class LaunchFragment extends Fragment {
         }
 
         @Override
-        public void onNothingSelected(AdapterView<?> parentView) {
+        public void onNothingSelected(AdapterView<?> parent) {
+        }
+    }
+
+    private class SpinnerItemLongClickListener implements AdapterView.OnItemLongClickListener {
+        @Override
+        public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
+            return false;
         }
     }
 }
