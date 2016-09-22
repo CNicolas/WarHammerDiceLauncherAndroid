@@ -7,6 +7,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.NumberPicker;
 import android.widget.Spinner;
 import android.widget.TextView;
@@ -26,6 +27,8 @@ import java.util.List;
 public class LaunchFragment extends Fragment {
 
     private Spinner handsSpinner;
+    private Button updateButton;
+    private boolean initialized;
 
     public LaunchFragment() {
         // Empty constructor required for fragment subclasses
@@ -37,26 +40,25 @@ public class LaunchFragment extends Fragment {
         View rootView = inflater.inflate(R.layout.fragment_launch, container, false);
 
         handsSpinner = (Spinner) rootView.findViewById(R.id.hands_spinner);
-        handsSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-            @Override
-            public void onItemSelected(AdapterView<?> parentView, View selectedItemView, int position, long id) {
-                String title = ((TextView) selectedItemView).getText().toString();
-                ((MainActivity) getActivity()).useHand(title);
-            }
+        fillHandsSpinner();
+        handsSpinner.setSelection(0, false);
+        handsSpinner.setOnItemSelectedListener(new SpinnerItemSelectedListener());
 
-            @Override
-            public void onNothingSelected(AdapterView<?> parentView) {
-            }
+        updateButton = (Button) rootView.findViewById(R.id.updateButton);
+        updateButton.setVisibility(View.GONE);
 
-        });
         return rootView;
     }
 
     @Override
     public void onResume() {
         super.onResume();
-
         fillHandsSpinner();
+    }
+
+    public String getCurrentHandName() {
+        String currentHandName = (String) handsSpinner.getSelectedItem();
+        return currentHandName;
     }
 
     public void fillHandsSpinner() {
@@ -68,6 +70,8 @@ public class LaunchFragment extends Fragment {
 
         handsSpinner.setAdapter(new ArrayAdapter<>(getActivity(), R.layout.hand_spinner_item, titles));
     }
+
+    //region Number Pickers
 
     /**
      * Get current pickers' value and create a HandDto with them
@@ -88,6 +92,9 @@ public class LaunchFragment extends Fragment {
 
     /**
      * Uses the dto's values to set pickers' value
+     *
+     * @param dto
+     * @param ctx
      */
     public void dtoToCurrentHand(HandDto dto, MainActivity ctx) {
         NumberPicker characteristicPicker = (NumberPicker) ctx.findViewById(R.id.numberPickerCharacteristic);
@@ -107,6 +114,11 @@ public class LaunchFragment extends Fragment {
         challengePicker.setValue(dto.getChallenge());
     }
 
+    /**
+     * Reset the number pickers values
+     *
+     * @param ctx
+     */
     public void resetHand(MainActivity ctx) {
         NumberPicker characteristicPicker = (NumberPicker) ctx.findViewById(R.id.numberPickerCharacteristic);
         NumberPicker recklessPicker = (NumberPicker) ctx.findViewById(R.id.numberPickerReckless);
@@ -124,5 +136,25 @@ public class LaunchFragment extends Fragment {
         misfortunePicker.setValue(0);
         challengePicker.setValue(0);
     }
+    //endregion
 
+    private class SpinnerItemSelectedListener implements AdapterView.OnItemSelectedListener {
+        @Override
+        public void onItemSelected(AdapterView<?> parentView, View selectedItemView, int position, long id) {
+            if (initialized) {
+                if (position == 0) {
+                    ((MainActivity) getActivity()).resetHand();
+                } else {
+                    TextView selectedTextView = ((TextView) selectedItemView);
+                    String title = selectedTextView.getText().toString();
+                    ((MainActivity) getActivity()).useHand(title);
+                }
+            }
+            initialized = true;
+        }
+
+        @Override
+        public void onNothingSelected(AdapterView<?> parentView) {
+        }
+    }
 }

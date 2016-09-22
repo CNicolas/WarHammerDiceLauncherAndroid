@@ -92,20 +92,36 @@ public class HandDao {
         }
     }
 
-    public long insert(HandDto hand) {
+    public long insert(HandDto handDto) {
         SQLiteDatabase db = whdHelper.getWritableDatabase();
 
-        ContentValues values = new ContentValues();
-        values.put(HandEntry.COLUMN_NAME_TITLE, hand.getTitle());
-        values.put(HandEntry.COLUMN_NAME_CHARACTERISTIC, hand.getCharacteristic());
-        values.put(HandEntry.COLUMN_NAME_RECKLESS, hand.getReckless());
-        values.put(HandEntry.COLUMN_NAME_CONSERVATIVE, hand.getConservative());
-        values.put(HandEntry.COLUMN_NAME_EXPERTISE, hand.getExpertise());
-        values.put(HandEntry.COLUMN_NAME_FORTUNE, hand.getFortune());
-        values.put(HandEntry.COLUMN_NAME_MISFORTUNE, hand.getMisfortune());
-        values.put(HandEntry.COLUMN_NAME_CHALLENGE, hand.getChallenge());
+        ContentValues values = contentValuesFromHandDto(handDto);
 
         return db.insert(HandEntry.TABLE_NAME, null, values);
+    }
+
+    public long update(HandDto handDto, String title) {
+        SQLiteDatabase db = whdHelper.getWritableDatabase();
+
+        ContentValues values = contentValuesFromHandDto(handDto);
+
+        String[] filters = {title};
+        return db.update(HandEntry.TABLE_NAME, values, String.format("%s = ?", HandEntry.COLUMN_NAME_TITLE), filters);
+    }
+
+    private ContentValues contentValuesFromHandDto(HandDto handDto) {
+        ContentValues values = new ContentValues();
+
+        values.put(HandEntry.COLUMN_NAME_TITLE, handDto.getTitle());
+        values.put(HandEntry.COLUMN_NAME_CHARACTERISTIC, handDto.getCharacteristic());
+        values.put(HandEntry.COLUMN_NAME_RECKLESS, handDto.getReckless());
+        values.put(HandEntry.COLUMN_NAME_CONSERVATIVE, handDto.getConservative());
+        values.put(HandEntry.COLUMN_NAME_EXPERTISE, handDto.getExpertise());
+        values.put(HandEntry.COLUMN_NAME_FORTUNE, handDto.getFortune());
+        values.put(HandEntry.COLUMN_NAME_MISFORTUNE, handDto.getMisfortune());
+        values.put(HandEntry.COLUMN_NAME_CHALLENGE, handDto.getChallenge());
+
+        return values;
     }
 
 }

@@ -47,23 +47,18 @@ public class MainActivity extends AppCompatActivity {
 
     private boolean onLaunchFragment;
 
+    //region Overrides
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.navigation_layout);
 
         drawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
-        drawerList = (ListView) findViewById(R.id.left_drawer);
-
         drawerLayout.setDrawerShadow(R.drawable.drawer_shadow, GravityCompat.START);
 
+        drawerList = (ListView) findViewById(R.id.left_drawer);
         setupNavigationDrawer();
-        fillHandsSpinner();
-
         drawerList.setOnItemClickListener(new NavigationDrawerListItemClickListener());
-
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        getSupportActionBar().setHomeButtonEnabled(true);
 
         drawerToggle = new ActionBarDrawerToggle(this, drawerLayout, R.string.drawer_open, R.string.drawer_close) {
             public void onDrawerClosed(View view) {
@@ -77,6 +72,10 @@ public class MainActivity extends AppCompatActivity {
             }
         };
         drawerLayout.addDrawerListener(drawerToggle);
+
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setHomeButtonEnabled(true);
+
 
         /* LAST */
         if (savedInstanceState == null) {
@@ -174,6 +173,7 @@ public class MainActivity extends AppCompatActivity {
         }
         fragmentContent = getFragmentManager().getFragment(savedInstanceState, FRAGMENT_TAG);
     }
+    //endregion
 
     //region Click events handlers
 
@@ -184,6 +184,15 @@ public class MainActivity extends AppCompatActivity {
      */
     public void saveHand(View v) {
         saveHand();
+    }
+
+    /**
+     * React to a click on the saveButton. Save the hand
+     *
+     * @param v the view
+     */
+    public void updateHand(View v) {
+        updateHand();
     }
 
     /**
@@ -203,7 +212,6 @@ public class MainActivity extends AppCompatActivity {
     public void btnResetHandClick(View v) {
         resetHand();
     }
-
     //endregion
 
     private void rollDices() {
@@ -242,12 +250,23 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
+    private void updateHand() {
+        String currentHandName = getCurrentLaunchFragment().getCurrentHandName();
+        if (!currentHandName.isEmpty()) {
+            updateHandWithTitle(currentHandName);
+        }
+    }
+
+    public void resetHand() {
+        getCurrentLaunchFragment().resetHand(this);
+        findViewById(R.id.updateButton).setVisibility(View.GONE);
+    }
+
     public void useHand(String title) {
         if (title.trim().isEmpty()) {
             resetHand();
         } else {
-            WarHammerDatabaseHelper whdHelper = new WarHammerDatabaseHelper(MainActivity.this);
-            HandDao dao = new HandDao(whdHelper);
+            HandDao dao = getHandDao();
 
             try {
                 HandDto dto = dao.findByTitle(title);
@@ -255,41 +274,64 @@ public class MainActivity extends AppCompatActivity {
             } catch (Resources.NotFoundException nfe) {
                 Log.e(this.getLocalClassName(), "useHand: ", nfe);
             }
+
+            findViewById(R.id.updateButton).setVisibility(View.VISIBLE);
         }
     }
 
     private void fillHandsSpinner() {
         if (onLaunchFragment) {
-            LaunchFragment fragment = FragmentHelper.getCurrentLaunchFragment(getFragmentManager());
-            fragment.fillHandsSpinner();
+            getCurrentLaunchFragment().fillHandsSpinner();
         }
     }
 
+    private void updateUI() {
+        fillHandsSpinner();
+        invalidateOptionsMenu();
+    }
+
+    //region Db
+    private void updateHandWithTitle(String title) {
+        HandDto handDto = prepareDto(title);
+
+        getHandDao().update(handDto, title);
+    }
+
+    private void saveHandWithTitle(String title) {
+        HandDto handDto = prepareDto(title);
+
+        getHandDao().insert(handDto);
+
+        updateUI();
+    }
+    //endregion
+
     //region Hand and dto helpers
-
-    /**
-     * Uses the dto's values to set pickers' value
-     */
     private void dtoToCurrentHand(HandDto dto) {
-        LaunchFragment fragment = FragmentHelper.getCurrentLaunchFragment(getFragmentManager());
-        fragment.dtoToCurrentHand(dto, this);
+        getCurrentLaunchFragment().dtoToCurrentHand(dto, this);
     }
 
-    /**
-     * Get current pickers' value and create a HandDto with them
-     */
     private HandDto currentHandToDto() {
-        LaunchFragment fragment = FragmentHelper.getCurrentLaunchFragment(getFragmentManager());
-        return fragment.currentHandToDto(this);
+        return getCurrentLaunchFragment().currentHandToDto(this);
     }
 
-    private void resetHand() {
-        LaunchFragment fragment = FragmentHelper.getCurrentLaunchFragment(getFragmentManager());
-        fragment.resetHand(this);
+    private HandDto prepareDto(String title) {
+        HandDto handDto = currentHandToDto();
+        handDto.setTitle(title);
+        return handDto;
+    }
+
+    private HandDao getHandDao() {
+        WarHammerDatabaseHelper whdHelper = new WarHammerDatabaseHelper(MainActivity.this);
+        return new HandDao(whdHelper);
     }
     //endregion
 
     //region Fragments management
+    private LaunchFragment getCurrentLaunchFragment() {
+        return FragmentHelper.getCurrentLaunchFragment(getFragmentManager());
+    }
+
     private void replaceByLaunchFragment() {
         fragmentContent = FragmentHelper.replaceByLaunchFragment(getFragmentManager());
         onLaunchFragment = true;
@@ -336,16 +378,7 @@ public class MainActivity extends AppCompatActivity {
             if (input.getText().toString().trim().isEmpty()) {
                 Toast.makeText(getApplicationContext(), R.string.empty_hand_name, Toast.LENGTH_SHORT).show();
             } else {
-                HandDto dto = currentHandToDto();
-                dto.setTitle(input.getText().toString());
-
-                WarHammerDatabaseHelper whdHelper = new WarHammerDatabaseHelper(MainActivity.this);
-                HandDao dao = new HandDao(whdHelper);
-                dao.insert(dto);
-
-                fillHandsSpinner();
-
-                invalidateOptionsMenu();
+                saveHandWithTitle(input.getText().toString());
             }
 
         }

@@ -12,7 +12,8 @@
     <!--End of images-->
 
     <string name="btn_launchText">Roll !</string>
-    <string name="btn_saveText">Save the hand</string>
+    <string name="btn_saveHand">Save the hand</string>
+    <string name="btn_updateHand">Update the hand</string>
     <string name="resultsTitle">Results</string>
     <string name="insertHandTitleTitle">Insert a title for this hand</string>
 
