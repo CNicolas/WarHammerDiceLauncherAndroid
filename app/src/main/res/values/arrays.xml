@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string-array name="pages">
-        <item>Home</item>
+        <item>@string/page_home</item>
+        <item>@string/page_character</item>
     </string-array>
 </resources>

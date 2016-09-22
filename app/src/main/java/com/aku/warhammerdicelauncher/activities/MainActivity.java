@@ -89,7 +89,7 @@ public class MainActivity extends AppCompatActivity {
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         MenuInflater inflater = getMenuInflater();
-        inflater.inflate(R.menu.main, menu);
+        inflater.inflate(R.menu.launch_statistics, menu);
         menu.findItem(R.id.action_home).setVisible(!onLaunchFragment);
         return super.onCreateOptionsMenu(menu);
     }
@@ -355,7 +355,12 @@ public class MainActivity extends AppCompatActivity {
         @Override
         public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
             String title = ((TextView) view).getText().toString();
-            if ("Home".equals(title)) {
+
+            if (getString(R.string.page_home).equals(title)) {
+                replaceByLaunchFragment();
+            } else if (getString(R.string.page_character).equals(title)) {
+                replaceByStatisticsFragment(10);
+            } else {
                 replaceByLaunchFragment();
             }
 

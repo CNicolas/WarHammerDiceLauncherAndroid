@@ -38,5 +38,7 @@
     <string name="action_launch10000">Launch 10000 times</string>
     <string name="btn_resetText">Reset</string>
     <string name="cancel">Cancel</string>
+    <string name="page_home">Home</string>
+    <string name="page_character">Character</string>
 
 </resources>
