@@ -68,7 +68,7 @@ public class LaunchFragment extends Fragment {
         titles.add("");
         titles.addAll(dao.findAllTitles());
 
-        handsSpinner.setAdapter(new ArrayAdapter<>(getActivity(), R.layout.hand_spinner_item, titles));
+        handsSpinner.setAdapter(new ArrayAdapter<>(getActivity(), R.layout.item_hand_spinner, titles));
     }
 
     //region Number Pickers

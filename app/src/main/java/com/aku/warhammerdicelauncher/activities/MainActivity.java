@@ -51,7 +51,7 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.navigation_layout);
+        setContentView(R.layout.activity_navigation_layout);
 
         drawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawerLayout.setDrawerShadow(R.drawable.drawer_shadow, GravityCompat.START);
@@ -347,7 +347,7 @@ public class MainActivity extends AppCompatActivity {
 
     //region Navigation Drawer
     private void setupNavigationDrawer() {
-        ArrayAdapter adapter = ArrayAdapter.createFromResource(this, R.array.pages, R.layout.drawer_list_item);
+        ArrayAdapter adapter = ArrayAdapter.createFromResource(this, R.array.pages, R.layout.item_drawer_list);
         drawerList.setAdapter(adapter);
     }
 

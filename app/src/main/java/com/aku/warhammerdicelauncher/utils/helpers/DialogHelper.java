@@ -20,7 +20,7 @@ public abstract class DialogHelper {
 
     public static void showLaunchResults(Map<DiceFace, Integer> map, Context ctx) {
         final Dialog dialog = new Dialog(ctx);
-        dialog.setContentView(R.layout.popup_results);
+        dialog.setContentView(R.layout.dialog_results);
         dialog.setTitle(R.string.resultsTitle);
 
         for (DiceFace face : Constants.popupResultsTextViews.keySet()) {
