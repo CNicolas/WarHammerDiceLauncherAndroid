@@ -11,37 +11,51 @@
     <string name="challengeDice">Challenge Dice</string>
     <!--End of images-->
 
+    <!--Constant Values-->
+    <string name="zero">0</string>
+    <string name="ok">OK</string>
+    <string name="close">Close</string>
+    <string name="cancel">Cancel</string>
+
+    <string name="strength">Strength</string>
+    <string name="toughness">Toughness</string>
+    <string name="agility">Agility</string>
+    <string name="intelligence">Intelligence</string>
+    <string name="willpower">Will power</string>
+    <string name="fellowship">Fellowship</string>
+    <!--End of Constant Values-->
+
     <string name="btn_launchText">Roll !</string>
     <string name="btn_saveHand">Save the hand</string>
     <string name="btn_updateHand">Update the hand</string>
     <string name="resultsTitle">Results</string>
     <string name="insertHandTitleTitle">Insert a title for this hand</string>
 
-    <string name="zero">0</string>
-    <string name="ok">OK</string>
-    <string name="close">Close</string>
-
     <string name="hands_list">Saved hands list</string>
     <string name="drawer_open">Open navigation drawer</string>
     <string name="drawer_close">Close navigation drawer</string>
 
+    <!--Actions-->
     <string name="action_home">Home</string>
     <string name="action_launch10">Launch 10 times</string>
     <string name="action_launch100">Launch 100 times</string>
     <string name="action_launch1000">Launch 1000 times</string>
+    <string name="action_launch10000">Launch 10000 times</string>
+    <!--End of Actions-->
+
     <string name="averageBenefitFormat">Average number of benefits : %1$s</string>
     <string name="successfulRollsNumberFormat">You succeeded on %1$d throws (%2$s%%)</string>
     <string name="averageSigmarFormat">Average number of Sigmar comets : %1$s</string>
     <string name="averageChaosFormat">Average number of Chaos star : %1$s</string>
     <string name="throwsNumberFormat">On %s throws...</string>
     <string name="empty_hand_name">Empty hand name</string>
-    <string name="action_launch10000">Launch 10000 times</string>
     <string name="btn_resetText">Reset</string>
-    <string name="cancel">Cancel</string>
+
+    <!--Pages-->
     <string name="page_home">Home</string>
     <string name="page_character">Character</string>
-
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="page_characteristics">Characteristics</string>
+    <string name="page_inventory">Inventory</string>
+    <!--End of pages-->
 
 </resources>

@@ -9,7 +9,21 @@
     <string name="fortuneDice">Dé de fortune</string>
     <string name="misfortuneDice">Dé d\'infortune</string>
     <string name="challengeDice">Dé de défi</string>
-    <!--Fin des images-->
+    <!--End of images-->
+
+    <!--Constant Values-->
+    <string name="zero">0</string>
+    <string name="ok">OK</string>
+    <string name="close">Fermer</string>
+    <string name="cancel">Annuler</string>
+
+    <string name="strength">Force</string>
+    <string name="toughness">Endurance</string>
+    <string name="agility">Agilité</string>
+    <string name="intelligence">Intelligence</string>
+    <string name="willpower">Force mentale</string>
+    <string name="fellowship">Sociabilité</string>
+    <!--Constant Values-->
 
     <string name="btn_launchText">Lancer !</string>
     <string name="btn_saveHand">Sauvegarder cette main</string>
@@ -17,18 +31,17 @@
     <string name="resultsTitle">Résultats</string>
     <string name="insertHandTitleTitle">Insérer un titre pour cette main</string>
 
-    <string name="zero">0</string>
-    <string name="ok">OK</string>
-    <string name="close">Fermer</string>
-
     <string name="hands_list">Liste des mains</string>
     <string name="drawer_open">Ouvrir le panneau</string>
     <string name="drawer_close">Fermer le panneau</string>
 
+    <!--Actions-->
     <string name="action_home">Accueil</string>
     <string name="action_launch10">Lancer 10 fois</string>
     <string name="action_launch100">Lancer 100 fois</string>
     <string name="action_launch1000">Lancer 1000 fois</string>
+    <string name="action_launch10000">Lancer 10000 fois</string>
+    <!--End of Actions-->
 
     <string name="averageBenefitFormat">Nombre moyen de bienfaits  : %1$s</string>
     <string name="successfulRollsNumberFormat">Vous avez réussi %1$d lancés  (%2$s%%)</string>
@@ -36,10 +49,14 @@
     <string name="averageChaosFormat">Nombre moyen d\'étoiles du Chaos : %1$s</string>
     <string name="throwsNumberFormat">Sur %s lancés...</string>
     <string name="empty_hand_name">Nom invalide</string>
-    <string name="action_launch10000">Lancer 10000 fois</string>
+
     <string name="btn_resetText">Reset</string>
-    <string name="cancel">Annuler</string>
+
+    <!--Pages-->
     <string name="page_home">Accueil</string>
     <string name="page_character">Personnage</string>
+    <string name="page_characteristics">Caractéristiques</string>
+    <string name="page_inventory">Inventaire</string>
+    <!--End of pages-->
 
 </resources>
