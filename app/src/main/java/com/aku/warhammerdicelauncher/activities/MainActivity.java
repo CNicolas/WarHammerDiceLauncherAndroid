@@ -343,6 +343,12 @@ public class MainActivity extends AppCompatActivity {
         onLaunchFragment = false;
         invalidateOptionsMenu();
     }
+
+    private void replaceByCharacterFragment() {
+        fragmentContent = FragmentHelper.replaceByCharacterFragment(getFragmentManager());
+        onLaunchFragment = false;
+        invalidateOptionsMenu();
+    }
     //endregion
 
     //region Navigation Drawer
@@ -359,7 +365,7 @@ public class MainActivity extends AppCompatActivity {
             if (getString(R.string.page_home).equals(title)) {
                 replaceByLaunchFragment();
             } else if (getString(R.string.page_character).equals(title)) {
-                replaceByStatisticsFragment(10);
+                replaceByCharacterFragment();
             } else {
                 replaceByLaunchFragment();
             }
