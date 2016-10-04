@@ -24,7 +24,7 @@ public class SplashActivity extends Activity {
         super.onCreate(icicle);
         setContentView(R.layout.activity_splash_layout);
 
-        /* New Handler to start the Menu-Activity
+        /* New Handler to start the MainActivity
          * and close this Splash-Screen after some seconds.*/
         new Handler().postDelayed(new Runnable() {
             @Override

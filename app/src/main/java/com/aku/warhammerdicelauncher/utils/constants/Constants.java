@@ -12,6 +12,8 @@ import java.util.Map;
 public abstract class Constants {
     public static final Map<DiceFace, DiceFace> inversionMap;
     public static final Map<DiceFace, Integer> popupResultsTextViews;
+    public static final String HAND_TAG = "hand";
+    public static final String TIMES_TAG = "times";
 
     static {
         Map<DiceFace, DiceFace> map = new HashMap<>();
@@ -34,5 +36,4 @@ public abstract class Constants {
         map.put(DiceFace.CHAOS, R.id.chaosNumberResults);
         popupResultsTextViews = map;
     }
-
 }

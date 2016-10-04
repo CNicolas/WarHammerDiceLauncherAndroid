@@ -1,6 +1,7 @@
 package com.aku.warhammerdicelauncher.activities;
 
 import android.app.Fragment;
+import android.content.Intent;
 import android.content.res.Configuration;
 import android.os.Bundle;
 import android.support.v4.view.GravityCompat;
@@ -18,8 +19,8 @@ import android.widget.TextView;
 
 import com.aku.warhammerdicelauncher.R;
 import com.aku.warhammerdicelauncher.ihm.fragments.LaunchFragment;
-import com.aku.warhammerdicelauncher.ihm.fragments.StatisticsFragment;
 import com.aku.warhammerdicelauncher.model.dto.HandDto;
+import com.aku.warhammerdicelauncher.utils.constants.Constants;
 import com.aku.warhammerdicelauncher.utils.helpers.FragmentHelper;
 
 public class MainActivity extends AppCompatActivity {
@@ -145,7 +146,7 @@ public class MainActivity extends AppCompatActivity {
 
         if (onLaunchFragment) {
             HandDto dto = currentHandToDto();
-            savedInstanceState.putSerializable(StatisticsFragment.HAND_TAG, dto);
+            savedInstanceState.putSerializable(Constants.HAND_TAG, dto);
         }
         getFragmentManager().putFragment(savedInstanceState, FRAGMENT_TAG, fragmentContent);
     }
@@ -154,7 +155,7 @@ public class MainActivity extends AppCompatActivity {
     public void onRestoreInstanceState(Bundle savedInstanceState) {
         super.onRestoreInstanceState(savedInstanceState);
         if (onLaunchFragment) {
-            HandDto dto = (HandDto) savedInstanceState.getSerializable(StatisticsFragment.HAND_TAG);
+            HandDto dto = (HandDto) savedInstanceState.getSerializable(Constants.HAND_TAG);
             getCurrentLaunchFragment().dtoToCurrentHand(this, dto);
         }
         fragmentContent = getFragmentManager().getFragment(savedInstanceState, FRAGMENT_TAG);
@@ -226,8 +227,14 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void replaceByStatisticsFragment(int times) {
-        fragmentContent = FragmentHelper.replaceByStatisticsFragment(currentHandToDto(), times, getFragmentManager());
-        onLaunchFragment = false;
+        Bundle bundle = new Bundle();
+        bundle.putSerializable(Constants.HAND_TAG, currentHandToDto());
+        bundle.putInt(Constants.TIMES_TAG, times);
+
+        Intent statisticsIntent = new Intent(this, StatisticsActivity.class);
+        statisticsIntent.putExtras(bundle);
+
+        startActivity(statisticsIntent);
         invalidateOptionsMenu();
     }
 
