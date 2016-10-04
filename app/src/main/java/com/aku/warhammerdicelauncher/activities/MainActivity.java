@@ -107,16 +107,16 @@ public class MainActivity extends AppCompatActivity {
                 replaceByLaunchFragment();
                 return true;
             case R.id.action_launch10:
-                replaceByStatisticsFragment(10);
+                launchStatisticsActivity(10);
                 return true;
             case R.id.action_launch100:
-                replaceByStatisticsFragment(100);
+                launchStatisticsActivity(100);
                 return true;
             case R.id.action_launch1000:
-                replaceByStatisticsFragment(1000);
+                launchStatisticsActivity(1000);
                 return true;
             case R.id.action_launch10000:
-                replaceByStatisticsFragment(10000);
+                launchStatisticsActivity(10000);
                 return true;
             default:
                 return super.onOptionsItemSelected(item);
@@ -215,7 +215,7 @@ public class MainActivity extends AppCompatActivity {
     }
     //endregion
 
-    //region Fragments management
+    //region Navigation management
     private LaunchFragment getCurrentLaunchFragment() {
         return FragmentHelper.getCurrentLaunchFragment(getFragmentManager());
     }
@@ -226,7 +226,13 @@ public class MainActivity extends AppCompatActivity {
         invalidateOptionsMenu();
     }
 
-    private void replaceByStatisticsFragment(int times) {
+    private void replaceByCharacterFragment() {
+        fragmentContent = FragmentHelper.replaceByCharacterFragment(getFragmentManager());
+        onLaunchFragment = false;
+        invalidateOptionsMenu();
+    }
+
+    private void launchStatisticsActivity(int times) {
         Bundle bundle = new Bundle();
         bundle.putSerializable(Constants.HAND_TAG, currentHandToDto());
         bundle.putInt(Constants.TIMES_TAG, times);
@@ -235,12 +241,6 @@ public class MainActivity extends AppCompatActivity {
         statisticsIntent.putExtras(bundle);
 
         startActivity(statisticsIntent);
-        invalidateOptionsMenu();
-    }
-
-    private void replaceByCharacterFragment() {
-        fragmentContent = FragmentHelper.replaceByCharacterFragment(getFragmentManager());
-        onLaunchFragment = false;
         invalidateOptionsMenu();
     }
     //endregion
