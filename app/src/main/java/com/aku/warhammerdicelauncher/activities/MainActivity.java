@@ -1,40 +1,26 @@
 package com.aku.warhammerdicelauncher.activities;
 
-import android.app.AlertDialog;
 import android.app.Fragment;
-import android.content.DialogInterface;
 import android.content.res.Configuration;
-import android.content.res.Resources;
 import android.os.Bundle;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
-import android.text.InputType;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
-import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.aku.warhammerdicelauncher.R;
 import com.aku.warhammerdicelauncher.ihm.fragments.LaunchFragment;
 import com.aku.warhammerdicelauncher.ihm.fragments.StatisticsFragment;
-import com.aku.warhammerdicelauncher.model.dao.HandDao;
-import com.aku.warhammerdicelauncher.model.database.helper.WarHammerDatabaseHelper;
 import com.aku.warhammerdicelauncher.model.dto.HandDto;
-import com.aku.warhammerdicelauncher.services.DicesRollerService;
-import com.aku.warhammerdicelauncher.utils.enums.DiceFace;
-import com.aku.warhammerdicelauncher.utils.helpers.DialogHelper;
 import com.aku.warhammerdicelauncher.utils.helpers.FragmentHelper;
-
-import java.util.Map;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -169,7 +155,7 @@ public class MainActivity extends AppCompatActivity {
         super.onRestoreInstanceState(savedInstanceState);
         if (onLaunchFragment) {
             HandDto dto = (HandDto) savedInstanceState.getSerializable(StatisticsFragment.HAND_TAG);
-            dtoToCurrentHand(dto);
+            getCurrentLaunchFragment().dtoToCurrentHand(this, dto);
         }
         fragmentContent = getFragmentManager().getFragment(savedInstanceState, FRAGMENT_TAG);
     }
@@ -183,7 +169,9 @@ public class MainActivity extends AppCompatActivity {
      * @param v the view
      */
     public void saveHand(View v) {
-        saveHand();
+        if (onLaunchFragment) {
+            getCurrentLaunchFragment().saveHand(this);
+        }
     }
 
     /**
@@ -192,7 +180,9 @@ public class MainActivity extends AppCompatActivity {
      * @param v the view
      */
     public void updateHand(View v) {
-        updateHand();
+        if (onLaunchFragment) {
+            getCurrentLaunchFragment().updateHand(this);
+        }
     }
 
     /**
@@ -201,7 +191,9 @@ public class MainActivity extends AppCompatActivity {
      * @param v the view
      */
     public void rollDices(View v) {
-        rollDices();
+        if (onLaunchFragment) {
+            getCurrentLaunchFragment().rollDices(this);
+        }
     }
 
     /**
@@ -209,121 +201,16 @@ public class MainActivity extends AppCompatActivity {
      *
      * @param v the view
      */
-    public void btnResetHandClick(View v) {
-        resetHand();
-    }
-    //endregion
-
-    private void rollDices() {
-        try {
-            HandDto dto = currentHandToDto();
-            Map<DiceFace, Integer> res = DicesRollerService.rollDices(dto);
-
-            DialogHelper.showLaunchResults(res, this);
-        } catch (Exception e) {
-            Log.e(this.getLocalClassName(), "rollDices: ", e);
-            throw e;
-        }
-    }
-
-    private void saveHand() {
-        try {
-            AlertDialog.Builder builder = new AlertDialog.Builder(this);
-            builder.setTitle(R.string.insertHandTitleTitle);
-
-            final EditText input = new EditText(this);
-            input.setInputType(InputType.TYPE_CLASS_TEXT);
-            builder.setView(input);
-
-            builder.setPositiveButton(R.string.ok, new ResultDialogOkClickListener(input));
-            builder.setNegativeButton(R.string.cancel, new DialogInterface.OnClickListener() {
-                @Override
-                public void onClick(DialogInterface dialog, int which) {
-                    dialog.cancel();
-                }
-            });
-
-            builder.show();
-        } catch (Exception e) {
-            Log.e(this.getLocalClassName(), "saveHand: ", e);
-            throw e;
-        }
-    }
-
-    private void updateHand() {
-        String currentHandName = getCurrentLaunchFragment().getCurrentHandName();
-        if (!currentHandName.isEmpty()) {
-            updateHandWithTitle(currentHandName);
-        }
-    }
-
-    public void resetHand() {
-        getCurrentLaunchFragment().resetHand(this);
-        findViewById(R.id.updateButton).setVisibility(View.GONE);
-    }
-
-    public void useHand(String title) {
-        if (title.trim().isEmpty()) {
-            resetHand();
-        } else {
-            HandDao dao = getHandDao();
-
-            try {
-                HandDto dto = dao.findByTitle(title);
-                dtoToCurrentHand(dto);
-            } catch (Resources.NotFoundException nfe) {
-                Log.e(this.getLocalClassName(), "useHand: ", nfe);
-            }
-
-            findViewById(R.id.updateButton).setVisibility(View.VISIBLE);
-        }
-    }
-
-    private void fillHandsSpinner() {
+    public void resetHand(View v) {
         if (onLaunchFragment) {
-            getCurrentLaunchFragment().fillHandsSpinner();
+            getCurrentLaunchFragment().resetHand(this);
         }
-    }
-
-    private void updateUI() {
-        fillHandsSpinner();
-        invalidateOptionsMenu();
-    }
-
-    //region Db
-    private void updateHandWithTitle(String title) {
-        HandDto handDto = prepareDto(title);
-
-        getHandDao().update(handDto, title);
-    }
-
-    private void saveHandWithTitle(String title) {
-        HandDto handDto = prepareDto(title);
-
-        getHandDao().insert(handDto);
-
-        updateUI();
     }
     //endregion
 
     //region Hand and dto helpers
-    private void dtoToCurrentHand(HandDto dto) {
-        getCurrentLaunchFragment().dtoToCurrentHand(dto, this);
-    }
-
     private HandDto currentHandToDto() {
         return getCurrentLaunchFragment().currentHandToDto(this);
-    }
-
-    private HandDto prepareDto(String title) {
-        HandDto handDto = currentHandToDto();
-        handDto.setTitle(title);
-        return handDto;
-    }
-
-    private HandDao getHandDao() {
-        WarHammerDatabaseHelper whdHelper = new WarHammerDatabaseHelper(MainActivity.this);
-        return new HandDao(whdHelper);
     }
     //endregion
 
@@ -377,21 +264,5 @@ public class MainActivity extends AppCompatActivity {
     }
     //endregion
 
-    private class ResultDialogOkClickListener implements DialogInterface.OnClickListener {
-        private final EditText input;
 
-        public ResultDialogOkClickListener(EditText input) {
-            this.input = input;
-        }
-
-        @Override
-        public void onClick(DialogInterface dialog, int which) {
-            if (input.getText().toString().trim().isEmpty()) {
-                Toast.makeText(getApplicationContext(), R.string.empty_hand_name, Toast.LENGTH_SHORT).show();
-            } else {
-                saveHandWithTitle(input.getText().toString());
-            }
-
-        }
-    }
 }
