@@ -24,9 +24,9 @@ import com.aku.warhammerdicelauncher.activities.MainActivity;
 import com.aku.warhammerdicelauncher.model.dao.HandDao;
 import com.aku.warhammerdicelauncher.model.database.helper.WarHammerDatabaseHelper;
 import com.aku.warhammerdicelauncher.model.dto.HandDto;
-import com.aku.warhammerdicelauncher.services.DicesRollerService;
 import com.aku.warhammerdicelauncher.utils.enums.DiceFace;
 import com.aku.warhammerdicelauncher.utils.helpers.DialogHelper;
+import com.aku.warhammerdicelauncher.utils.helpers.DicesRollerHelper;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -75,7 +75,7 @@ public class LaunchFragment extends Fragment {
     public void rollDices(MainActivity ctx) {
         try {
             HandDto dto = currentHandToDto(ctx);
-            Map<DiceFace, Integer> res = DicesRollerService.rollDices(dto);
+            Map<DiceFace, Integer> res = DicesRollerHelper.rollDices(dto);
 
             DialogHelper.showLaunchResults(res, ctx);
         } catch (Exception e) {
@@ -105,6 +105,7 @@ public class LaunchFragment extends Fragment {
 
             builder.show();
         } catch (Exception e) {
+            Log.e(getClass().getName(), "saveHand: ", e);
             throw e;
         }
     }

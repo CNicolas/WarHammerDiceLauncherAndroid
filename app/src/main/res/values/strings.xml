@@ -56,6 +56,7 @@
     <string name="page_character">Character</string>
     <string name="page_characteristics">Characteristics</string>
     <string name="page_inventory">Inventory</string>
+    <string name="averageSuccessFormat">Average number of success : %1$s</string>
     <!--End of pages-->
 
 </resources>

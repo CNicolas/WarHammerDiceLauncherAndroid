@@ -1,4 +1,4 @@
-package com.aku.warhammerdicelauncher.services;
+package com.aku.warhammerdicelauncher.utils.helpers;
 
 import com.aku.warhammerdicelauncher.model.dices.IDice;
 import com.aku.warhammerdicelauncher.model.dices.impl.ChallengeDice;
@@ -21,7 +21,7 @@ import java.util.Map;
 /**
  * Created by cnicolas on 04/05/2016.
  */
-public class DicesRollerService {
+public class DicesRollerHelper {
 
     public static Map<DiceFace, Integer> rollDices(HandDto dto) {
         List<IDice> pool = createPool(dto);
