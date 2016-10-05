@@ -8,5 +8,5 @@ import java.util.List;
  * Created by cnicolas on 04/05/2016.
  */
 public interface IDice {
-    public List<DiceFace> roll();
+    List<DiceFace> roll();
 }

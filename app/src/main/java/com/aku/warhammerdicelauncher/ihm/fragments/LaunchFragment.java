@@ -21,8 +21,8 @@ import android.widget.Toast;
 
 import com.aku.warhammerdicelauncher.R;
 import com.aku.warhammerdicelauncher.activities.MainActivity;
-import com.aku.warhammerdicelauncher.model.dao.HandDao;
-import com.aku.warhammerdicelauncher.model.database.helper.WarHammerDatabaseHelper;
+import com.aku.warhammerdicelauncher.database.WarHammerDatabaseHelper;
+import com.aku.warhammerdicelauncher.database.dao.HandDao;
 import com.aku.warhammerdicelauncher.model.dto.HandDto;
 import com.aku.warhammerdicelauncher.utils.enums.DiceFace;
 import com.aku.warhammerdicelauncher.utils.helpers.DialogHelper;
