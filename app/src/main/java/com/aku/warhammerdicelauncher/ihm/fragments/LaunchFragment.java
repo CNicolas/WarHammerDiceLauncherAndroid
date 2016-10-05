@@ -20,11 +20,11 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.aku.warhammerdicelauncher.R;
-import com.aku.warhammerdicelauncher.activities.MainActivity;
 import com.aku.warhammerdicelauncher.database.WarHammerDatabaseHelper;
 import com.aku.warhammerdicelauncher.database.dao.HandDao;
+import com.aku.warhammerdicelauncher.ihm.activities.MainActivity;
 import com.aku.warhammerdicelauncher.model.dto.HandDto;
-import com.aku.warhammerdicelauncher.utils.enums.DiceFace;
+import com.aku.warhammerdicelauncher.utils.enums.DiceFaces;
 import com.aku.warhammerdicelauncher.utils.helpers.DialogHelper;
 import com.aku.warhammerdicelauncher.utils.helpers.DicesRollerHelper;
 
@@ -75,7 +75,7 @@ public class LaunchFragment extends Fragment {
     public void rollDices(MainActivity ctx) {
         try {
             HandDto dto = currentHandToDto(ctx);
-            Map<DiceFace, Integer> res = DicesRollerHelper.rollDices(dto);
+            Map<DiceFaces, Integer> res = DicesRollerHelper.rollDices(dto);
 
             DialogHelper.showLaunchResults(res, ctx);
         } catch (Exception e) {

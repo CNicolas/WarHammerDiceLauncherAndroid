@@ -10,7 +10,7 @@ import android.view.ViewGroup;
 import android.widget.TabHost;
 
 import com.aku.warhammerdicelauncher.R;
-import com.aku.warhammerdicelauncher.activities.MainActivity;
+import com.aku.warhammerdicelauncher.ihm.activities.MainActivity;
 
 /**
  * A simple {@link Fragment} subclass.

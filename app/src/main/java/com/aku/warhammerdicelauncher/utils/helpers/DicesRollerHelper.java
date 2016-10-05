@@ -9,8 +9,8 @@ import com.aku.warhammerdicelauncher.model.dices.impl.FortuneDice;
 import com.aku.warhammerdicelauncher.model.dices.impl.MisfortuneDice;
 import com.aku.warhammerdicelauncher.model.dices.impl.RecklessDice;
 import com.aku.warhammerdicelauncher.model.dto.HandDto;
-import com.aku.warhammerdicelauncher.utils.constants.Constants;
-import com.aku.warhammerdicelauncher.utils.enums.DiceFace;
+import com.aku.warhammerdicelauncher.utils.constants.HandConstants;
+import com.aku.warhammerdicelauncher.utils.enums.DiceFaces;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -23,17 +23,17 @@ import java.util.Map;
  */
 public class DicesRollerHelper {
 
-    public static Map<DiceFace, Integer> rollDices(HandDto dto) {
+    public static Map<DiceFaces, Integer> rollDices(HandDto dto) {
         List<IDice> pool = createPool(dto);
-        List<DiceFace> tmp = new ArrayList<>();
+        List<DiceFaces> tmp = new ArrayList<>();
         for (IDice dice : pool) {
             tmp.addAll(dice.roll());
         }
         return reduce(tmp);
     }
 
-    public static boolean isSuccessful(Map<DiceFace, Integer> handResults) {
-        return handResults.containsKey(DiceFace.SUCCESS);
+    public static boolean isSuccessful(Map<DiceFaces, Integer> handResults) {
+        return handResults.containsKey(DiceFaces.SUCCESS);
     }
 
     private static List<IDice> createPool(HandDto dto) {
@@ -64,10 +64,10 @@ public class DicesRollerHelper {
         return pool;
     }
 
-    private static Map<DiceFace, Integer> reduce(List<DiceFace> faces) {
-        Map<DiceFace, Integer> res = new HashMap<>();
-        for (DiceFace element : DiceFace.values()) {
-            DiceFace inverse = Constants.inversionMap.get(element);
+    private static Map<DiceFaces, Integer> reduce(List<DiceFaces> faces) {
+        Map<DiceFaces, Integer> res = new HashMap<>();
+        for (DiceFaces element : DiceFaces.values()) {
+            DiceFaces inverse = HandConstants.inversionMap.get(element);
             if (faces.contains(element)) {
                 if (inverse == null) {
                     res.put(element, Collections.frequency(faces, element));
