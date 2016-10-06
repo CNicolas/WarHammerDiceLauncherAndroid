@@ -14,14 +14,7 @@ public abstract class HandConstants implements IConstants {
     public static final String TIMES_TAG = "times";
 
     public static final Map<DiceFaces, DiceFaces> inversionMap;
-    static {
-        Map<DiceFaces, DiceFaces> map = new HashMap<>();
-        map.put(DiceFaces.SUCCESS, DiceFaces.FAILURE);
-        map.put(DiceFaces.FAILURE, DiceFaces.SUCCESS);
-        map.put(DiceFaces.BENEFIT, DiceFaces.MISCHIEF);
-        map.put(DiceFaces.MISCHIEF, DiceFaces.BENEFIT);
-        inversionMap = map;
-    }
+    public static final Map<DiceFaces, Integer> popupResultsTextViews;
 
     static {
         Map<DiceFaces, DiceFaces> map = new HashMap<>();
@@ -30,7 +23,7 @@ public abstract class HandConstants implements IConstants {
         map.put(DiceFaces.BENEFIT, DiceFaces.MISCHIEF);
         map.put(DiceFaces.MISCHIEF, DiceFaces.BENEFIT);
         inversionMap = map;
-    }    public static final Map<DiceFaces, Integer> popupResultsTextViews;
+    }
 
     static {
         Map<DiceFaces, Integer> map = new HashMap<>();
