@@ -13,10 +13,7 @@ public class HandDto implements IDto {
     private int misfortune;
     private int challenge;
 
-    public HandDto() {
-
-    }
-
+    //region Get & Set
     public String getTitle() {
         return title;
     }
@@ -80,7 +77,9 @@ public class HandDto implements IDto {
     public void setChallenge(int challenge) {
         this.challenge = challenge;
     }
+    //endregion
 
+    //region Overrides
     @Override
     public String toString() {
         final StringBuffer sb = new StringBuffer("HandDto{");
@@ -126,4 +125,5 @@ public class HandDto implements IDto {
         result = 31 * result + getChallenge();
         return result;
     }
+    //endregion
 }
