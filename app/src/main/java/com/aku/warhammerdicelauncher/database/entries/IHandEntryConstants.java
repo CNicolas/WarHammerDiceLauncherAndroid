@@ -8,7 +8,9 @@ import android.provider.BaseColumns;
 
 public interface IHandEntryConstants extends BaseColumns {
     String TABLE_NAME = "hand";
+
     String COLUMN_NAME_TITLE = "title";
+
     String COLUMN_NAME_CHARACTERISTIC = "characteristic";
     String COLUMN_NAME_RECKLESS = "reckless";
     String COLUMN_NAME_CONSERVATIVE = "conservative";

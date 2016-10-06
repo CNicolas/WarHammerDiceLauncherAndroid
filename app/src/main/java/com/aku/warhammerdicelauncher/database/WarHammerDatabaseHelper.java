@@ -4,6 +4,7 @@ import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
+import com.aku.warhammerdicelauncher.database.queries.ISqlCharacteristicsQueries;
 import com.aku.warhammerdicelauncher.database.queries.ISqlHandQueries;
 
 /**
@@ -20,11 +21,13 @@ public class WarHammerDatabaseHelper extends SQLiteOpenHelper {
     @Override
     public void onCreate(SQLiteDatabase db) {
         db.execSQL(ISqlHandQueries.SQL_CREATE_ENTRIES);
+        db.execSQL(ISqlCharacteristicsQueries.SQL_CREATE_ENTRIES);
     }
 
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
         db.execSQL(ISqlHandQueries.SQL_DELETE_ENTRIES);
+        db.execSQL(ISqlCharacteristicsQueries.SQL_DELETE_ENTRIES);
         onCreate(db);
     }
 }

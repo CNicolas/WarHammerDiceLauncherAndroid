@@ -5,6 +5,8 @@ package com.aku.warhammerdicelauncher.model.dto;
  */
 
 public class CharacteristicsDto implements IDto {
+    private int id;
+
     private int strength;
     private int toughness;
     private int agility;
@@ -20,6 +22,15 @@ public class CharacteristicsDto implements IDto {
     private int fellowship_fortune;
 
     //region Get & Set
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
     public int getStrength() {
         return strength;
     }
@@ -117,11 +128,11 @@ public class CharacteristicsDto implements IDto {
     }
     //endregion
 
-    //region Overrides
     @Override
     public String toString() {
         return "CharacteristicsDto{" +
-                "strength=" + strength +
+                "id=" + id +
+                ", strength=" + strength +
                 ", toughness=" + toughness +
                 ", agility=" + agility +
                 ", intelligence=" + intelligence +
@@ -143,6 +154,7 @@ public class CharacteristicsDto implements IDto {
 
         CharacteristicsDto that = (CharacteristicsDto) o;
 
+        if (getId() != that.getId()) return false;
         if (getStrength() != that.getStrength()) return false;
         if (getToughness() != that.getToughness()) return false;
         if (getAgility() != that.getAgility()) return false;
@@ -160,7 +172,8 @@ public class CharacteristicsDto implements IDto {
 
     @Override
     public int hashCode() {
-        int result = getStrength();
+        int result = getId();
+        result = 31 * result + getStrength();
         result = 31 * result + getToughness();
         result = 31 * result + getAgility();
         result = 31 * result + getIntelligence();
@@ -174,5 +187,6 @@ public class CharacteristicsDto implements IDto {
         result = 31 * result + getFellowship_fortune();
         return result;
     }
-//endregion
+
+    //endregion
 }

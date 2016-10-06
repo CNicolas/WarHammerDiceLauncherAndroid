@@ -7,5 +7,8 @@ package com.aku.warhammerdicelauncher.database.queries;
 public interface ISqlConstants {
     String TEXT_TYPE = " TEXT";
     String INTEGER_TYPE = " INTEGER";
+
+    String PRIMARY_KEY = " PRIMARY KEY";
+
     String COMMA_SEP = ",";
 }

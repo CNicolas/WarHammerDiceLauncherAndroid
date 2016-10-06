@@ -15,14 +15,13 @@ import java.util.List;
 /**
  * Created by cnicolas on 11/05/2016.
  */
-public class HandDao implements IDao<HandDto> {
-    private WarHammerDatabaseHelper whdHelper;
-
+public class HandDao extends AbstractDao<HandDto> {
     public HandDao(WarHammerDatabaseHelper whdHelper) {
-        this.whdHelper = whdHelper;
+        super(whdHelper);
     }
 
     //region Find
+    @Override
     public List<HandDto> findAll() {
         List<HandDto> res = new ArrayList<>();
         SQLiteDatabase db = whdHelper.getReadableDatabase();
@@ -30,7 +29,7 @@ public class HandDao implements IDao<HandDto> {
         Cursor cursor = db.query(IHandEntryConstants.TABLE_NAME, null, null, null, null, null, null);
         if (cursor.moveToFirst()) {
             while (!cursor.isAfterLast()) {
-                HandDto dto = createHandDtoFromCursor(cursor);
+                HandDto dto = createDtoFromCursor(cursor);
                 res.add(dto);
                 cursor.moveToNext();
             }
@@ -64,7 +63,7 @@ public class HandDao implements IDao<HandDto> {
 
         Cursor cursor = db.query(IHandEntryConstants.TABLE_NAME, null, IHandEntryConstants.COLUMN_NAME_TITLE + "=?", selectionArgs, null, null, null);
         if (cursor.moveToFirst()) {
-            HandDto dto = createHandDtoFromCursor(cursor);
+            HandDto dto = createDtoFromCursor(cursor);
             cursor.close();
             return dto;
         } else {
@@ -75,10 +74,11 @@ public class HandDao implements IDao<HandDto> {
     //endregion
 
     //region Insert
+    @Override
     public long insert(HandDto handDto) {
         SQLiteDatabase db = whdHelper.getWritableDatabase();
 
-        ContentValues values = contentValuesFromHandDto(handDto);
+        ContentValues values = contentValuesFromDto(handDto);
 
         long res = db.insert(IHandEntryConstants.TABLE_NAME, null, values);
         return res;
@@ -88,7 +88,7 @@ public class HandDao implements IDao<HandDto> {
     //region Update
     public long update(HandDto handDto, String title) {
         SQLiteDatabase db = whdHelper.getWritableDatabase();
-        ContentValues values = contentValuesFromHandDto(handDto);
+        ContentValues values = contentValuesFromDto(handDto);
         String[] filters = {title};
 
         long res = db.update(IHandEntryConstants.TABLE_NAME, values, String.format("%s = ?", IHandEntryConstants.COLUMN_NAME_TITLE), filters);
@@ -97,6 +97,7 @@ public class HandDao implements IDao<HandDto> {
     //endregion
 
     //region Delete
+    @Override
     public long delete(HandDto handDto) {
         SQLiteDatabase db = whdHelper.getWritableDatabase();
         String[] filters = {handDto.getTitle()};
@@ -107,7 +108,7 @@ public class HandDao implements IDao<HandDto> {
     //endregion
 
     //region Private Methods
-    private ContentValues contentValuesFromHandDto(HandDto handDto) {
+    private ContentValues contentValuesFromDto(HandDto handDto) {
         ContentValues values = new ContentValues();
 
         values.put(IHandEntryConstants.COLUMN_NAME_TITLE, handDto.getTitle());
@@ -122,7 +123,7 @@ public class HandDao implements IDao<HandDto> {
         return values;
     }
 
-    private HandDto createHandDtoFromCursor(Cursor cursor) {
+    private HandDto createDtoFromCursor(Cursor cursor) {
         HandDto dto = new HandDto();
 
         dto.setTitle(cursor.getString(cursor.getColumnIndexOrThrow(IHandEntryConstants.COLUMN_NAME_TITLE)));
