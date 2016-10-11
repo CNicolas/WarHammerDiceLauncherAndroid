@@ -6,10 +6,10 @@ import com.aku.warhammerdicelauncher.database.entries.ICharacteristicsEntryConst
  * Created by cnicolas on 05/10/2016.
  */
 
-public interface ISqlCharacteristicsQueries extends ISqlConstants {
+public interface ICharacteristicsQueries extends IConstants {
     String SQL_CREATE_ENTRIES =
             "CREATE TABLE " + ICharacteristicsEntryConstants.TABLE_NAME + " (" +
-                    ICharacteristicsEntryConstants.COLUMN_NAME_ID + INTEGER_TYPE + PRIMARY_KEY + COMMA_SEP +
+                    ICharacteristicsEntryConstants.COLUMN_NAME_ID + INTEGER_TYPE + PRIMARY_KEY + AUTO_INCREMENT + COMMA_SEP +
                     ICharacteristicsEntryConstants.COLUMN_NAME_STRENGTH + INTEGER_TYPE + COMMA_SEP +
                     ICharacteristicsEntryConstants.COLUMN_NAME_TOUGHNESS + INTEGER_TYPE + COMMA_SEP +
                     ICharacteristicsEntryConstants.COLUMN_NAME_AGILITY + INTEGER_TYPE + COMMA_SEP +

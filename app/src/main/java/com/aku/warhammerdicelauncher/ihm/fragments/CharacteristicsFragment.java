@@ -1,7 +1,5 @@
 package com.aku.warhammerdicelauncher.ihm.fragments;
 
-import android.app.AlertDialog;
-import android.content.DialogInterface;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
@@ -9,8 +7,6 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.aku.warhammerdicelauncher.R;
-import com.aku.warhammerdicelauncher.database.WarHammerDatabaseHelper;
-import com.aku.warhammerdicelauncher.database.dao.CharacteristicsDao;
 import com.aku.warhammerdicelauncher.model.dto.CharacteristicsDto;
 
 /**
@@ -27,23 +23,6 @@ public class CharacteristicsFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.fragment_characteristics, container, false);
-
-
-        WarHammerDatabaseHelper whdHelper = new WarHammerDatabaseHelper(getActivity());
-        CharacteristicsDao dao = new CharacteristicsDao(whdHelper);
-
-        AlertDialog alertDialog = new AlertDialog.Builder(getActivity()).create();
-        alertDialog.setTitle("Alert");
-        alertDialog.setMessage(dao.findAll().get(0).toString());
-        alertDialog.setButton(AlertDialog.BUTTON_NEUTRAL, "OK",
-                new DialogInterface.OnClickListener() {
-                    public void onClick(DialogInterface dialog, int which) {
-                        dialog.dismiss();
-                    }
-                });
-        alertDialog.show();
-
-
         return rootView;
     }
 

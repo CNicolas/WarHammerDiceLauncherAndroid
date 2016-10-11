@@ -7,8 +7,10 @@ import com.aku.warhammerdicelauncher.utils.enums.Characteristic;
  */
 
 public class SkillDto implements IDto {
+    private int id;
     private String name;
     private Characteristic characteristic;
+    private int
 
     public SkillDto() {
     }
@@ -19,6 +21,14 @@ public class SkillDto implements IDto {
     }
 
     //region Get & Set
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
     public String getName() {
         return name;
     }
@@ -40,7 +50,8 @@ public class SkillDto implements IDto {
     @Override
     public String toString() {
         return "SkillDto{" +
-                "name='" + name + '\'' +
+                "id=" + id +
+                ", name='" + name + '\'' +
                 ", characteristic=" + characteristic +
                 '}';
     }
@@ -52,15 +63,18 @@ public class SkillDto implements IDto {
 
         SkillDto skillDto = (SkillDto) o;
 
-        if (!getName().equals(skillDto.getName())) return false;
+        if (getId() != skillDto.getId()) return false;
+        if (getName() != null ? !getName().equals(skillDto.getName()) : skillDto.getName() != null)
+            return false;
         return getCharacteristic() == skillDto.getCharacteristic();
 
     }
 
     @Override
     public int hashCode() {
-        int result = getName().hashCode();
-        result = 31 * result + getCharacteristic().hashCode();
+        int result = getId();
+        result = 31 * result + (getName() != null ? getName().hashCode() : 0);
+        result = 31 * result + (getCharacteristic() != null ? getCharacteristic().hashCode() : 0);
         return result;
     }
     //endregion

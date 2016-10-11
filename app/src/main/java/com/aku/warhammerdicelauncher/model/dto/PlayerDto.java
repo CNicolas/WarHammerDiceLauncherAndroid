@@ -37,7 +37,7 @@ public class PlayerDto implements IDto, PlayerConstants {
     private List<InventoryItemDto> inventory;
     private List<ArmourDto> armour;
     private List<WeaponDto> weapons;
-    private List<PlayerSkillDto> skills;
+    private List<SkillDto> skills;
     //endregion
 
     //region Constructors
@@ -235,17 +235,10 @@ public class PlayerDto implements IDto, PlayerConstants {
     public void setWeapons(List<WeaponDto> weapons) {
         this.weapons = weapons;
     }
-
-    public List<PlayerSkillDto> getSkills() {
-        return skills;
-    }
-
-    public void setSkills(List<PlayerSkillDto> skills) {
-        this.skills = skills;
-    }
     //endregion
 
     //region Overrides
+
     @Override
     public String toString() {
         return "PlayerDto{" +
@@ -309,7 +302,7 @@ public class PlayerDto implements IDto, PlayerConstants {
             return false;
         if (getWeapons() != null ? !getWeapons().equals(playerDto.getWeapons()) : playerDto.getWeapons() != null)
             return false;
-        return getSkills() != null ? getSkills().equals(playerDto.getSkills()) : playerDto.getSkills() == null;
+        return skills != null ? skills.equals(playerDto.skills) : playerDto.skills == null;
 
     }
 
@@ -339,8 +332,9 @@ public class PlayerDto implements IDto, PlayerConstants {
         result = 31 * result + (getInventory() != null ? getInventory().hashCode() : 0);
         result = 31 * result + (getArmour() != null ? getArmour().hashCode() : 0);
         result = 31 * result + (getWeapons() != null ? getWeapons().hashCode() : 0);
-        result = 31 * result + (getSkills() != null ? getSkills().hashCode() : 0);
+        result = 31 * result + (skills != null ? skills.hashCode() : 0);
         return result;
     }
-    //endregion
+
+//endregion
 }

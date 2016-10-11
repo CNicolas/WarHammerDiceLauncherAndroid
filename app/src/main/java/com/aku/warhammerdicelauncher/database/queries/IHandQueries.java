@@ -6,7 +6,7 @@ import com.aku.warhammerdicelauncher.database.entries.IHandEntryConstants;
  * Created by cnicolas on 05/10/2016.
  */
 
-public interface ISqlHandQueries extends ISqlConstants {
+public interface IHandQueries extends IConstants {
     String SQL_CREATE_ENTRIES =
             "CREATE TABLE " + IHandEntryConstants.TABLE_NAME + " (" +
                     IHandEntryConstants.COLUMN_NAME_TITLE + TEXT_TYPE + COMMA_SEP +
