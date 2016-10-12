@@ -9,7 +9,7 @@ import java.util.Map;
 /**
  * Created by cnicolas on 04/05/2016.
  */
-public abstract class HandConstants implements IConstants {
+public abstract class IHandConstants implements IConstants {
     public static final String HAND_TAG = "hand";
     public static final String TIMES_TAG = "times";
 

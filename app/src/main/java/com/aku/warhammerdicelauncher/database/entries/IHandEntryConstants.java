@@ -1,16 +1,13 @@
 package com.aku.warhammerdicelauncher.database.entries;
 
-import android.provider.BaseColumns;
-
 /**
  * Created by cnicolas on 05/10/2016.
  */
 
-public interface IHandEntryConstants extends BaseColumns {
+public interface IHandEntryConstants extends IEntryConstants {
     String TABLE_NAME = "hand";
 
     String COLUMN_NAME_TITLE = "title";
-
     String COLUMN_NAME_CHARACTERISTIC = "characteristic";
     String COLUMN_NAME_RECKLESS = "reckless";
     String COLUMN_NAME_CONSERVATIVE = "conservative";

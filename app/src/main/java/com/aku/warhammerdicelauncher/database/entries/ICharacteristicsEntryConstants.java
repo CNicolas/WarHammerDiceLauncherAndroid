@@ -1,15 +1,11 @@
 package com.aku.warhammerdicelauncher.database.entries;
 
-import android.provider.BaseColumns;
-
 /**
  * Created by cnicolas on 05/10/2016.
  */
 
-public interface ICharacteristicsEntryConstants extends BaseColumns {
+public interface ICharacteristicsEntryConstants extends IEntryConstants {
     String TABLE_NAME = "characteristics";
-
-    String COLUMN_NAME_ID = "id";
 
     String COLUMN_NAME_STRENGTH = "strength";
     String COLUMN_NAME_TOUGHNESS = "toughness";

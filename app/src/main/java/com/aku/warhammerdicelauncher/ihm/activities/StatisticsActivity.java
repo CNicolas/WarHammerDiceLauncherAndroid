@@ -8,7 +8,7 @@ import android.widget.TextView;
 
 import com.aku.warhammerdicelauncher.R;
 import com.aku.warhammerdicelauncher.model.dto.HandDto;
-import com.aku.warhammerdicelauncher.utils.constants.HandConstants;
+import com.aku.warhammerdicelauncher.utils.constants.IHandConstants;
 import com.aku.warhammerdicelauncher.utils.enums.DiceFaces;
 import com.aku.warhammerdicelauncher.utils.helpers.DicesRollerHelper;
 
@@ -47,15 +47,15 @@ public class StatisticsActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_statistics_layout);
 
-        dto = (HandDto) getIntent().getExtras().getSerializable(HandConstants.HAND_TAG);
-        times = getIntent().getExtras().getInt(HandConstants.TIMES_TAG);
+        dto = (HandDto) getIntent().getExtras().getSerializable(IHandConstants.HAND_TAG);
+        times = getIntent().getExtras().getInt(IHandConstants.TIMES_TAG);
 
         df = new DecimalFormat("#.#");
         df.setRoundingMode(RoundingMode.HALF_UP);
 
         if (savedInstanceState != null) {
-            dto = (HandDto) savedInstanceState.getSerializable(HandConstants.HAND_TAG);
-            times = savedInstanceState.getInt(HandConstants.TIMES_TAG);
+            dto = (HandDto) savedInstanceState.getSerializable(IHandConstants.HAND_TAG);
+            times = savedInstanceState.getInt(IHandConstants.TIMES_TAG);
 
             allThrows = (HashMap) savedInstanceState.getSerializable(ALL_THROWS);
             successfulRolls = savedInstanceState.getInt(SUCCESSFUL_THROWS);
@@ -86,8 +86,8 @@ public class StatisticsActivity extends Activity {
 
     @Override
     public void onSaveInstanceState(Bundle savedInstanceState) {
-        savedInstanceState.putSerializable(HandConstants.HAND_TAG, dto);
-        savedInstanceState.putInt(HandConstants.TIMES_TAG, times);
+        savedInstanceState.putSerializable(IHandConstants.HAND_TAG, dto);
+        savedInstanceState.putInt(IHandConstants.TIMES_TAG, times);
 
         savedInstanceState.putSerializable(ALL_THROWS, (HashMap) allThrows);
         savedInstanceState.putInt(SUCCESSFUL_THROWS, successfulRolls);

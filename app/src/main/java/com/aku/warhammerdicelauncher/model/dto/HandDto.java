@@ -4,6 +4,8 @@ package com.aku.warhammerdicelauncher.model.dto;
  * Created by cnicolas on 11/05/2016.
  */
 public class HandDto implements IDto {
+    private int id;
+
     private String title;
     private int characteristic;
     private int reckless;
@@ -14,6 +16,16 @@ public class HandDto implements IDto {
     private int challenge;
 
     //region Get & Set
+
+    @Override
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
     public String getTitle() {
         return title;
     }
@@ -79,20 +91,19 @@ public class HandDto implements IDto {
     }
     //endregion
 
-    //region Overrides
     @Override
     public String toString() {
-        final StringBuffer sb = new StringBuffer("HandDto{");
-        sb.append("title='").append(title).append('\'');
-        sb.append(", characteristic=").append(characteristic);
-        sb.append(", reckless=").append(reckless);
-        sb.append(", conservative=").append(conservative);
-        sb.append(", expertise=").append(expertise);
-        sb.append(", fortune=").append(fortune);
-        sb.append(", misfortune=").append(misfortune);
-        sb.append(", challenge=").append(challenge);
-        sb.append('}');
-        return sb.toString();
+        return "HandDto{" +
+                "id=" + id +
+                ", title='" + title + '\'' +
+                ", characteristic=" + characteristic +
+                ", reckless=" + reckless +
+                ", conservative=" + conservative +
+                ", expertise=" + expertise +
+                ", fortune=" + fortune +
+                ", misfortune=" + misfortune +
+                ", challenge=" + challenge +
+                '}';
     }
 
     @Override
@@ -102,6 +113,7 @@ public class HandDto implements IDto {
 
         HandDto handDto = (HandDto) o;
 
+        if (getId() != handDto.getId()) return false;
         if (getCharacteristic() != handDto.getCharacteristic()) return false;
         if (getReckless() != handDto.getReckless()) return false;
         if (getConservative() != handDto.getConservative()) return false;
@@ -109,13 +121,14 @@ public class HandDto implements IDto {
         if (getFortune() != handDto.getFortune()) return false;
         if (getMisfortune() != handDto.getMisfortune()) return false;
         if (getChallenge() != handDto.getChallenge()) return false;
-        return getTitle().equals(handDto.getTitle());
+        return getTitle() != null ? getTitle().equals(handDto.getTitle()) : handDto.getTitle() == null;
 
     }
 
     @Override
     public int hashCode() {
-        int result = getTitle().hashCode();
+        int result = getId();
+        result = 31 * result + (getTitle() != null ? getTitle().hashCode() : 0);
         result = 31 * result + getCharacteristic();
         result = 31 * result + getReckless();
         result = 31 * result + getConservative();
@@ -125,5 +138,5 @@ public class HandDto implements IDto {
         result = 31 * result + getChallenge();
         return result;
     }
-    //endregion
+//endregion
 }

@@ -9,7 +9,7 @@ import com.aku.warhammerdicelauncher.model.dices.impl.FortuneDice;
 import com.aku.warhammerdicelauncher.model.dices.impl.MisfortuneDice;
 import com.aku.warhammerdicelauncher.model.dices.impl.RecklessDice;
 import com.aku.warhammerdicelauncher.model.dto.HandDto;
-import com.aku.warhammerdicelauncher.utils.constants.HandConstants;
+import com.aku.warhammerdicelauncher.utils.constants.IHandConstants;
 import com.aku.warhammerdicelauncher.utils.enums.DiceFaces;
 
 import java.util.ArrayList;
@@ -67,7 +67,7 @@ public class DicesRollerHelper {
     private static Map<DiceFaces, Integer> reduce(List<DiceFaces> faces) {
         Map<DiceFaces, Integer> res = new HashMap<>();
         for (DiceFaces element : DiceFaces.values()) {
-            DiceFaces inverse = HandConstants.inversionMap.get(element);
+            DiceFaces inverse = IHandConstants.inversionMap.get(element);
             if (faces.contains(element)) {
                 if (inverse == null) {
                     res.put(element, Collections.frequency(faces, element));

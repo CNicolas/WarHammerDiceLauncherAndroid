@@ -3,7 +3,7 @@ package com.aku.warhammerdicelauncher.model.dto;
 import com.aku.warhammerdicelauncher.model.dto.inventory.ArmourDto;
 import com.aku.warhammerdicelauncher.model.dto.inventory.InventoryItemDto;
 import com.aku.warhammerdicelauncher.model.dto.inventory.WeaponDto;
-import com.aku.warhammerdicelauncher.utils.constants.PlayerConstants;
+import com.aku.warhammerdicelauncher.utils.constants.IPlayerConstants;
 
 import java.util.List;
 
@@ -11,8 +11,10 @@ import java.util.List;
  * Created by cnicolas on 06/10/2016.
  */
 
-public class PlayerDto implements IDto, PlayerConstants {
+public class PlayerDto implements IDto, IPlayerConstants {
     //region Fields
+    private int id;
+
     private String name;
     private String race;
     private int age;
@@ -68,6 +70,15 @@ public class PlayerDto implements IDto, PlayerConstants {
     }
 
     //region Get & Set
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
     public String getName() {
         return name;
     }
@@ -235,6 +246,14 @@ public class PlayerDto implements IDto, PlayerConstants {
     public void setWeapons(List<WeaponDto> weapons) {
         this.weapons = weapons;
     }
+
+    public List<SkillDto> getSkills() {
+        return skills;
+    }
+
+    public void setSkills(List<SkillDto> skills) {
+        this.skills = skills;
+    }
     //endregion
 
     //region Overrides
@@ -242,7 +261,8 @@ public class PlayerDto implements IDto, PlayerConstants {
     @Override
     public String toString() {
         return "PlayerDto{" +
-                "name='" + name + '\'' +
+                "id=" + id +
+                ", name='" + name + '\'' +
                 ", race='" + race + '\'' +
                 ", age=" + age +
                 ", size=" + size +
@@ -274,6 +294,7 @@ public class PlayerDto implements IDto, PlayerConstants {
 
         PlayerDto playerDto = (PlayerDto) o;
 
+        if (getId() != playerDto.getId()) return false;
         if (getAge() != playerDto.getAge()) return false;
         if (Double.compare(playerDto.getSize(), getSize()) != 0) return false;
         if (getRank() != playerDto.getRank()) return false;
@@ -302,7 +323,7 @@ public class PlayerDto implements IDto, PlayerConstants {
             return false;
         if (getWeapons() != null ? !getWeapons().equals(playerDto.getWeapons()) : playerDto.getWeapons() != null)
             return false;
-        return skills != null ? skills.equals(playerDto.skills) : playerDto.skills == null;
+        return getSkills() != null ? getSkills().equals(playerDto.getSkills()) : playerDto.getSkills() == null;
 
     }
 
@@ -310,7 +331,8 @@ public class PlayerDto implements IDto, PlayerConstants {
     public int hashCode() {
         int result;
         long temp;
-        result = getName() != null ? getName().hashCode() : 0;
+        result = getId();
+        result = 31 * result + (getName() != null ? getName().hashCode() : 0);
         result = 31 * result + (getRace() != null ? getRace().hashCode() : 0);
         result = 31 * result + getAge();
         temp = Double.doubleToLongBits(getSize());
@@ -332,9 +354,8 @@ public class PlayerDto implements IDto, PlayerConstants {
         result = 31 * result + (getInventory() != null ? getInventory().hashCode() : 0);
         result = 31 * result + (getArmour() != null ? getArmour().hashCode() : 0);
         result = 31 * result + (getWeapons() != null ? getWeapons().hashCode() : 0);
-        result = 31 * result + (skills != null ? skills.hashCode() : 0);
+        result = 31 * result + (getSkills() != null ? getSkills().hashCode() : 0);
         return result;
     }
-
 //endregion
 }

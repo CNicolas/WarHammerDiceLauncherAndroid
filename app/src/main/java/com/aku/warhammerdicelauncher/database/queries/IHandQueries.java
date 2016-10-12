@@ -9,6 +9,7 @@ import com.aku.warhammerdicelauncher.database.entries.IHandEntryConstants;
 public interface IHandQueries extends IConstants {
     String SQL_CREATE_ENTRIES =
             "CREATE TABLE " + IHandEntryConstants.TABLE_NAME + " (" +
+                    IHandEntryConstants.COLUMN_NAME_ID + INTEGER_TYPE + PRIMARY_KEY + AUTO_INCREMENT + COMMA_SEP +
                     IHandEntryConstants.COLUMN_NAME_TITLE + TEXT_TYPE + COMMA_SEP +
                     IHandEntryConstants.COLUMN_NAME_CHARACTERISTIC + INTEGER_TYPE + COMMA_SEP +
                     IHandEntryConstants.COLUMN_NAME_RECKLESS + INTEGER_TYPE + COMMA_SEP +

@@ -1,15 +1,11 @@
 package com.aku.warhammerdicelauncher.database.entries;
 
-import android.provider.BaseColumns;
-
 /**
  * Created by cnicolas on 05/10/2016.
  */
 
-public interface IPlayerEntryConstants extends BaseColumns {
+public interface IPlayerEntryConstants extends IEntryConstants {
     String TABLE_NAME = "player";
-
-    String COLUMN_NAME_ID = "id";
 
     String COLUMN_NAME_NAME = "name";
     String COLUMN_NAME_RACE = "race";

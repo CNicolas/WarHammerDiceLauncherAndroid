@@ -20,7 +20,7 @@ import android.widget.TextView;
 import com.aku.warhammerdicelauncher.R;
 import com.aku.warhammerdicelauncher.ihm.fragments.LaunchFragment;
 import com.aku.warhammerdicelauncher.model.dto.HandDto;
-import com.aku.warhammerdicelauncher.utils.constants.HandConstants;
+import com.aku.warhammerdicelauncher.utils.constants.IHandConstants;
 import com.aku.warhammerdicelauncher.utils.helpers.FragmentHelper;
 
 public class MainActivity extends AppCompatActivity {
@@ -146,7 +146,7 @@ public class MainActivity extends AppCompatActivity {
 
         if (onLaunchFragment) {
             HandDto dto = currentHandToDto();
-            savedInstanceState.putSerializable(HandConstants.HAND_TAG, dto);
+            savedInstanceState.putSerializable(IHandConstants.HAND_TAG, dto);
         }
         getFragmentManager().putFragment(savedInstanceState, FRAGMENT_TAG, fragmentContent);
     }
@@ -155,7 +155,7 @@ public class MainActivity extends AppCompatActivity {
     public void onRestoreInstanceState(Bundle savedInstanceState) {
         super.onRestoreInstanceState(savedInstanceState);
         if (onLaunchFragment) {
-            HandDto dto = (HandDto) savedInstanceState.getSerializable(HandConstants.HAND_TAG);
+            HandDto dto = (HandDto) savedInstanceState.getSerializable(IHandConstants.HAND_TAG);
             getCurrentLaunchFragment().dtoToCurrentHand(this, dto);
         }
         fragmentContent = getFragmentManager().getFragment(savedInstanceState, FRAGMENT_TAG);
@@ -234,8 +234,8 @@ public class MainActivity extends AppCompatActivity {
 
     private void launchStatisticsActivity(int times) {
         Bundle bundle = new Bundle();
-        bundle.putSerializable(HandConstants.HAND_TAG, currentHandToDto());
-        bundle.putInt(HandConstants.TIMES_TAG, times);
+        bundle.putSerializable(IHandConstants.HAND_TAG, currentHandToDto());
+        bundle.putInt(IHandConstants.TIMES_TAG, times);
 
         Intent statisticsIntent = new Intent(this, StatisticsActivity.class);
         statisticsIntent.putExtras(bundle);

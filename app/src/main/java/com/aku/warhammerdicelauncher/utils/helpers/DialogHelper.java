@@ -7,7 +7,7 @@ import android.widget.Button;
 import android.widget.TextView;
 
 import com.aku.warhammerdicelauncher.R;
-import com.aku.warhammerdicelauncher.utils.constants.HandConstants;
+import com.aku.warhammerdicelauncher.utils.constants.IHandConstants;
 import com.aku.warhammerdicelauncher.utils.enums.DiceFaces;
 
 import java.util.Map;
@@ -23,8 +23,8 @@ public abstract class DialogHelper {
         dialog.setContentView(R.layout.dialog_results);
         dialog.setTitle(R.string.resultsTitle);
 
-        for (DiceFaces face : HandConstants.popupResultsTextViews.keySet()) {
-            TextView textView = (TextView) dialog.findViewById(HandConstants.popupResultsTextViews.get(face));
+        for (DiceFaces face : IHandConstants.popupResultsTextViews.keySet()) {
+            TextView textView = (TextView) dialog.findViewById(IHandConstants.popupResultsTextViews.get(face));
             if (map.containsKey(face)) {
                 textView.setText(map.get(face).toString());
             } else {
