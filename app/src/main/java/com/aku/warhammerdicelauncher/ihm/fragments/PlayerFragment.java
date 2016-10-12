@@ -15,9 +15,9 @@ import com.aku.warhammerdicelauncher.ihm.activities.MainActivity;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class CharacterFragment extends Fragment {
+public class PlayerFragment extends Fragment {
 
-    public CharacterFragment() {
+    public PlayerFragment() {
         // Required empty public constructor
     }
 
@@ -25,7 +25,7 @@ public class CharacterFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         MainActivity context = ((MainActivity) getActivity());
-        View rootView = inflater.inflate(R.layout.fragment_character, container, false);
+        View rootView = inflater.inflate(R.layout.fragment_player, container, false);
         FragmentTabHost tabHost = (FragmentTabHost) rootView.findViewById(android.R.id.tabhost);
 
         tabHost.setup(context, context.getSupportFragmentManager(), android.R.id.tabcontent);

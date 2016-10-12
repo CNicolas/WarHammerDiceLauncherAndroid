@@ -58,6 +58,7 @@
     <string name="page_characteristics">Caractéristiques</string>
     <string name="page_inventory">Inventaire</string>
     <string name="averageSuccessFormat">Nombre moyen de succès  : %1$s</string>
+    <string name="action_update_player">Mettre le joueur à jour</string>
     <!--End of pages-->
 
 </resources>

@@ -3,8 +3,8 @@ package com.aku.warhammerdicelauncher.utils.helpers;
 import android.app.FragmentManager;
 
 import com.aku.warhammerdicelauncher.R;
-import com.aku.warhammerdicelauncher.ihm.fragments.CharacterFragment;
 import com.aku.warhammerdicelauncher.ihm.fragments.LaunchFragment;
+import com.aku.warhammerdicelauncher.ihm.fragments.PlayerFragment;
 
 /**
  * Created by cnicolas on 21/09/2016.
@@ -23,16 +23,16 @@ public abstract class FragmentHelper {
         return fragmentContent;
     }
 
-    public static LaunchFragment getCurrentLaunchFragment(FragmentManager fragmentManager){
-        return (LaunchFragment) fragmentManager.findFragmentByTag(FRAGMENT_TAG);
-    }
-
-    public static CharacterFragment replaceByCharacterFragment(FragmentManager fragmentManager) {
-        CharacterFragment fragmentContent = new CharacterFragment();
+    public static PlayerFragment replaceByPlayerFragment(FragmentManager fragmentManager) {
+        PlayerFragment fragmentContent = new PlayerFragment();
 
         fragmentManager.beginTransaction().replace(R.id.content_frame, fragmentContent, FRAGMENT_TAG).commit();
         fragmentManager.executePendingTransactions();
 
         return fragmentContent;
+    }
+
+    public static LaunchFragment getCurrentLaunchFragment(FragmentManager fragmentManager){
+        return (LaunchFragment) fragmentManager.findFragmentByTag(FRAGMENT_TAG);
     }
 }

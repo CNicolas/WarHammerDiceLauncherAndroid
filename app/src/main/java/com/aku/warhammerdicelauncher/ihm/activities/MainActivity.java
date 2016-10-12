@@ -33,6 +33,7 @@ public class MainActivity extends AppCompatActivity {
     private Fragment fragmentContent;
 
     private boolean onLaunchFragment;
+    private boolean onPlayerFragment;
 
     //region Overrides
     @Override
@@ -76,8 +77,11 @@ public class MainActivity extends AppCompatActivity {
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         MenuInflater inflater = getMenuInflater();
-        inflater.inflate(R.menu.launch_statistics, menu);
-        menu.findItem(R.id.action_home).setVisible(!onLaunchFragment);
+        if (onLaunchFragment) {
+            inflater.inflate(R.menu.launch_statistics, menu);
+        } else if (onPlayerFragment) {
+            inflater.inflate(R.menu.player, menu);
+        }
         return super.onCreateOptionsMenu(menu);
     }
 
@@ -93,7 +97,6 @@ public class MainActivity extends AppCompatActivity {
                 menu.getItem(i).setVisible(false);
             }
         }
-        menu.findItem(R.id.action_home).setVisible(!onLaunchFragment);
         return super.onPrepareOptionsMenu(menu);
     }
 
@@ -103,9 +106,6 @@ public class MainActivity extends AppCompatActivity {
             return true;
         }
         switch (item.getItemId()) {
-            case R.id.action_home:
-                replaceByLaunchFragment();
-                return true;
             case R.id.action_launch10:
                 launchStatisticsActivity(10);
                 return true;
@@ -223,12 +223,14 @@ public class MainActivity extends AppCompatActivity {
     private void replaceByLaunchFragment() {
         fragmentContent = FragmentHelper.replaceByLaunchFragment(getFragmentManager());
         onLaunchFragment = true;
+        onPlayerFragment = false;
         invalidateOptionsMenu();
     }
 
-    private void replaceByCharacterFragment() {
-        fragmentContent = FragmentHelper.replaceByCharacterFragment(getFragmentManager());
+    private void replaceByPlayerFragment() {
+        fragmentContent = FragmentHelper.replaceByPlayerFragment(getFragmentManager());
         onLaunchFragment = false;
+        onPlayerFragment = true;
         invalidateOptionsMenu();
     }
 
@@ -259,7 +261,7 @@ public class MainActivity extends AppCompatActivity {
             if (getString(R.string.page_home).equals(title)) {
                 replaceByLaunchFragment();
             } else if (getString(R.string.page_character).equals(title)) {
-                replaceByCharacterFragment();
+                replaceByPlayerFragment();
             } else {
                 replaceByLaunchFragment();
             }
