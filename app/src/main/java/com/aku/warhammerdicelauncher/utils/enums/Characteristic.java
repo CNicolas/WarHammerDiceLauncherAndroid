@@ -18,6 +18,17 @@ public enum Characteristic {
         this.characteristic = characteristic;
     }
 
+    public static Characteristic fromString(String text) {
+        if (text != null) {
+            for (Characteristic b : Characteristic.values()) {
+                if (text.equalsIgnoreCase(b.characteristic)) {
+                    return b;
+                }
+            }
+        }
+        return null;
+    }
+
     @Override
     public String toString() {
         return characteristic;

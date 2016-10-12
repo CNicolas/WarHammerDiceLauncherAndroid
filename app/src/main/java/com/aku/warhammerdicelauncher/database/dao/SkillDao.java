@@ -29,15 +29,13 @@ public class SkillDao extends AbstractDao<SkillDto> {
     public List<SkillDto> findAllByPlayer(PlayerDto playerDto) {
         String[] selectionArgs = {String.valueOf(playerDto.getId())};
         SQLiteDatabase db = whdHelper.getReadableDatabase();
-        Cursor cursor = db.query(tableName, null, columnNameId + " = ?", selectionArgs, null, null, null);
+        Cursor cursor = db.query(tableName, null, ISkillEntryConstants.COLUMN_NAME_PLAYER_ID + " = ?", selectionArgs, null, null, null);
 
         List<SkillDto> res = new ArrayList<>();
         if (cursor.moveToFirst()) {
             while (!cursor.isAfterLast()) {
                 SkillDto dto = createDtoFromCursor(cursor);
-                if (dto.getPlayer_id() == playerDto.getId()) {
-                    res.add(dto);
-                }
+                res.add(dto);
                 cursor.moveToNext();
             }
         }
@@ -85,7 +83,7 @@ public class SkillDao extends AbstractDao<SkillDto> {
 
         dto.setId(cursor.getInt(cursor.getColumnIndexOrThrow(columnNameId)));
         dto.setName(cursor.getString(cursor.getColumnIndexOrThrow(ISkillEntryConstants.COLUMN_NAME_NAME)));
-        dto.setCharacteristic(Characteristic.valueOf(cursor.getString(cursor.getColumnIndexOrThrow(ISkillEntryConstants.COLUMN_NAME_CHARACTERISTIC))));
+        dto.setCharacteristic(Characteristic.fromString(cursor.getString(cursor.getColumnIndexOrThrow(ISkillEntryConstants.COLUMN_NAME_CHARACTERISTIC))));
         dto.setLevel(cursor.getInt(cursor.getColumnIndexOrThrow(ISkillEntryConstants.COLUMN_NAME_LEVEL)));
         dto.setPlayer_id(cursor.getInt(cursor.getColumnIndexOrThrow(ISkillEntryConstants.COLUMN_NAME_PLAYER_ID)));
 

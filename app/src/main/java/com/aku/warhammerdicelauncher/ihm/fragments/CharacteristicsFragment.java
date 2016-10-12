@@ -1,6 +1,5 @@
 package com.aku.warhammerdicelauncher.ihm.fragments;
 
-import android.content.DialogInterface;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.app.AlertDialog;
@@ -9,6 +8,9 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.aku.warhammerdicelauncher.R;
+import com.aku.warhammerdicelauncher.database.WarHammerDatabaseHelper;
+import com.aku.warhammerdicelauncher.database.dao.CharacteristicsDao;
+import com.aku.warhammerdicelauncher.database.dao.PlayerDao;
 import com.aku.warhammerdicelauncher.model.dto.CharacteristicsDto;
 import com.aku.warhammerdicelauncher.model.dto.PlayerDto;
 import com.aku.warhammerdicelauncher.model.dto.SkillDto;
@@ -32,22 +34,36 @@ public class CharacteristicsFragment extends Fragment {
                              Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.fragment_characteristics, container, false);
 
-        PlayerDto player = createSamplePlayerDto();
-
+        PlayerDto player = saveAndGet();
         new AlertDialog.Builder(getActivity())
                 .setTitle(player.getName())
-                .setMessage(player.toString())
-                .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
-                    public void onClick(DialogInterface dialog, int which) {
-                        // continue with delete
-                    }
-                }).show();
+                .setMessage("Salut ! voici ton agi : " + player.getCharacteristics().getAgility())
+                .show();
 
         return rootView;
     }
 
+    private PlayerDto saveAndGet() {
+        WarHammerDatabaseHelper warHammerDatabaseHelper = new WarHammerDatabaseHelper(getActivity());
+
+        CharacteristicsDao characteristicsDao = new CharacteristicsDao(warHammerDatabaseHelper);
+        characteristicsDao.insert(createSampleCharacteristicsDto());
+
+        PlayerDao playerDao = new PlayerDao(warHammerDatabaseHelper);
+        PlayerDto player = createSamplePlayerDto();
+        playerDao.insert(player);
+
+//        SkillDao skillDao = new SkillDao(warHammerDatabaseHelper);
+//        skillDao.insert(createSampleSkillDto());
+
+        return playerDao.findById(1);
+    }
+
     private CharacteristicsDto createSampleCharacteristicsDto() {
         CharacteristicsDto dto = new CharacteristicsDto();
+
+        dto.setId(1);
+
         dto.setStrength(1);
         dto.setToughness(2);
         dto.setAgility(3);
@@ -99,6 +115,7 @@ public class CharacteristicsFragment extends Fragment {
         dto.setMoney_gold(3);
 
         dto.setCharacteristics(createSampleCharacteristicsDto());
+
         List<SkillDto> skills = new ArrayList<>();
         skills.add(createSampleSkillDto());
         dto.setSkills(skills);

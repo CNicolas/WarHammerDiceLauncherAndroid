@@ -1,10 +1,13 @@
 package com.aku.warhammerdicelauncher.database.dao;
 
 import android.content.ContentValues;
+import android.content.res.Resources;
 import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
 
 import com.aku.warhammerdicelauncher.database.WarHammerDatabaseHelper;
 import com.aku.warhammerdicelauncher.database.entries.IPlayerEntryConstants;
+import com.aku.warhammerdicelauncher.model.dto.CharacteristicsDto;
 import com.aku.warhammerdicelauncher.model.dto.PlayerDto;
 
 /**
@@ -22,6 +25,24 @@ public class PlayerDao extends AbstractDao<PlayerDto> {
 
         characteristicsDao = new CharacteristicsDao(whdHelper);
     }
+
+    //region Find
+    @Override
+    public PlayerDto findById(int id) throws Resources.NotFoundException {
+        String[] selectionArgs = {String.valueOf(id)};
+        SQLiteDatabase db = whdHelper.getReadableDatabase();
+
+        Cursor cursor = db.query(tableName, null, columnNameId + "=?", selectionArgs, null, null, null);
+        if (cursor.moveToFirst()) {
+            PlayerDto dto = createDtoFromCursor(cursor);
+            cursor.close();
+            return dto;
+        } else {
+            cursor.close();
+            throw new Resources.NotFoundException();
+        }
+    }
+    //endregion
 
     //region Private Methods
     protected ContentValues contentValuesFromDto(PlayerDto playerDto) {
@@ -77,7 +98,8 @@ public class PlayerDao extends AbstractDao<PlayerDto> {
         dto.setMoney_silver(cursor.getInt(cursor.getColumnIndexOrThrow(IPlayerEntryConstants.COLUMN_NAME_MONEY_SILVER)));
         dto.setMoney_gold(cursor.getInt(cursor.getColumnIndexOrThrow(IPlayerEntryConstants.COLUMN_NAME_MONEY_GOLD)));
 
-        dto.setCharacteristics(characteristicsDao.findById(cursor.getInt(cursor.getColumnIndexOrThrow(IPlayerEntryConstants.COLUMN_NAME_CHARACTERISTICS_ID))));
+        CharacteristicsDto characteristics = characteristicsDao.findById(cursor.getInt(cursor.getColumnIndexOrThrow(IPlayerEntryConstants.COLUMN_NAME_CHARACTERISTICS_ID)));
+        dto.setCharacteristics(characteristics);
 
         return dto;
     }

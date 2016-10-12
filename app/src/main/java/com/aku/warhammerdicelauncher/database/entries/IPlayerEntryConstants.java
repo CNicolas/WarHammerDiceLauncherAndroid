@@ -11,7 +11,7 @@ public interface IPlayerEntryConstants extends IEntryConstants {
     String COLUMN_NAME_RACE = "race";
     String COLUMN_NAME_AGE = "age";
     String COLUMN_NAME_SIZE = "size";
-    String COLUMN_NAME_DESCRIPTION = "age";
+    String COLUMN_NAME_DESCRIPTION = "description";
 
     String COLUMN_NAME_RANK = "rank";
     String COLUMN_NAME_EXPERIENCE = "experience";

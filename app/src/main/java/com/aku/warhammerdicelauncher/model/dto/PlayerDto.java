@@ -5,6 +5,7 @@ import com.aku.warhammerdicelauncher.model.dto.inventory.InventoryItemDto;
 import com.aku.warhammerdicelauncher.model.dto.inventory.WeaponDto;
 import com.aku.warhammerdicelauncher.utils.constants.IPlayerConstants;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -44,13 +45,22 @@ public class PlayerDto implements IDto, IPlayerConstants {
 
     //region Constructors
     public PlayerDto() {
+        skills = new ArrayList<>();
     }
 
     public PlayerDto(String name, String race) {
+        this();
         this.name = name;
         this.race = race;
     }
     //endregion
+
+    public List<SkillDto> addSkill(SkillDto skillDto) {
+        if (!skills.contains(skillDto)) {
+            skills.add(skillDto);
+        }
+        return skills;
+    }
 
     public void addMoneyBrass(int brass) {
         int newBrass = brass % BRASS_TO_SILVER;
