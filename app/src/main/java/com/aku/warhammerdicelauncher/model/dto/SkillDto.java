@@ -16,10 +16,11 @@ public class SkillDto implements IDto {
     public SkillDto() {
     }
 
-    public SkillDto(String name, Characteristic characteristic, int level) {
+    public SkillDto(String name, Characteristic characteristic, int level, PlayerDto playerDto) {
         this.name = name;
         this.characteristic = characteristic;
         this.level = level;
+        this.player_id = playerDto.getId();
     }
 
     //region Get & Set

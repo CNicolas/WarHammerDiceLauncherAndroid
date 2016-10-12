@@ -60,6 +60,22 @@ public class SkillDao extends AbstractDao<SkillDto> {
         long res = db.insert(tableName, null, values);
         return res;
     }
+
+    @Override
+    public List<Long> insertAll(List<SkillDto> skillDtoList) {
+        throw new NotImplementedException("insertAll(List<SkillDto>)");
+    }
+
+    public List<Long> insertAll(List<SkillDto> skillDtoList, PlayerDto playerDto) {
+        List<Long> res = new ArrayList<>();
+
+        for (SkillDto skillDto : skillDtoList) {
+            res.add(insert(skillDto, playerDto));
+        }
+
+        return res;
+    }
+
     //endregion
 
     //region Private Methods

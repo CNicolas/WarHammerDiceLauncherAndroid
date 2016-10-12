@@ -67,6 +67,16 @@ public abstract class AbstractDao<T extends IDto> implements IDao<T> {
         long res = db.insert(tableName, null, values);
         return res;
     }
+
+    public List<Long> insertAll(List<T> dtos) {
+        List<Long> res = new ArrayList<>();
+
+        for (T dto : dtos) {
+            res.add(insert(dto));
+        }
+
+        return res;
+    }
     //endregion
 
     //region Delete

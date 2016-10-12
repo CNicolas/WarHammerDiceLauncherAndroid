@@ -21,9 +21,9 @@ import java.util.List;
 
 public class DaoTests extends AndroidTestCase {
     private WarHammerDatabaseHelper warhammerDataBaseHelper;
-    private CharacteristicsDao _characteristicsDao;
-    private PlayerDao _playerDao;
-    private SkillDao _skillDao;
+    private CharacteristicsDao characteristicsDao;
+    private PlayerDao playerDao;
+    private SkillDao skillDao;
 
     @Override
     public void setUp() throws Exception {
@@ -31,13 +31,13 @@ public class DaoTests extends AndroidTestCase {
         RenamingDelegatingContext context = new RenamingDelegatingContext(getContext(), "test_");
         warhammerDataBaseHelper = new WarHammerDatabaseHelper(context);
 
-        _characteristicsDao = new CharacteristicsDao(warhammerDataBaseHelper);
-        _playerDao = new PlayerDao(warhammerDataBaseHelper);
-        _skillDao = new SkillDao(warhammerDataBaseHelper);
+        characteristicsDao = new CharacteristicsDao(warhammerDataBaseHelper);
+        playerDao = new PlayerDao(warhammerDataBaseHelper);
+        skillDao = new SkillDao(warhammerDataBaseHelper);
 
         insertCharacteristicDto();
         insertPlayerDto();
-        long[] val = insertSkillDto();
+        insertSkillDto();
     }
 
     @Override
@@ -48,7 +48,7 @@ public class DaoTests extends AndroidTestCase {
 
     @MediumTest
     public void testCharacteristicsDao() throws Exception {
-        List<CharacteristicsDto> res = _characteristicsDao.findAll();
+        List<CharacteristicsDto> res = characteristicsDao.findAll();
 
         assertNotNull(res);
         assertEquals(1, res.size());
@@ -56,7 +56,7 @@ public class DaoTests extends AndroidTestCase {
 
     @MediumTest
     public void testPlayerDao() throws Exception {
-        List<PlayerDto> res = _playerDao.findAll();
+        List<PlayerDto> res = playerDao.findAll();
 
         assertNotNull(res);
         assertEquals(1, res.size());
@@ -64,7 +64,7 @@ public class DaoTests extends AndroidTestCase {
 
     @MediumTest
     public void testSkillDao() throws Exception {
-        List<SkillDto> res = _skillDao.findAllByPlayer(_playerDao.findById(1));
+        List<SkillDto> res = skillDao.findAllByPlayer(playerDao.findById(1));
         assertNotNull(res);
         assertEquals(3, res.size());
     }
@@ -85,7 +85,7 @@ public class DaoTests extends AndroidTestCase {
         dto.setWillpower_fortune(2);
         dto.setFellowship_fortune(1);
 
-        return _characteristicsDao.insert(dto);
+        return characteristicsDao.insert(dto);
     }
 
     private long insertPlayerDto() {
@@ -111,9 +111,9 @@ public class DaoTests extends AndroidTestCase {
         dto.setMoney_silver(13);
         dto.setMoney_gold(3);
 
-        dto.setCharacteristics(_characteristicsDao.findById(1));
+        dto.setCharacteristics(characteristicsDao.findById(1));
 
-        return _playerDao.insert(dto);
+        return playerDao.insert(dto);
     }
 
     private long[] insertSkillDto() {
@@ -132,8 +132,8 @@ public class DaoTests extends AndroidTestCase {
         dto3.setLevel(0);
         dto3.setName("Discipline");
 
-        return new long[]{_skillDao.insert(dto1, _playerDao.findById(1)),
-                _skillDao.insert(dto2, _playerDao.findById(1)),
-                _skillDao.insert(dto3, _playerDao.findById(1))};
+        return new long[]{skillDao.insert(dto1, playerDao.findById(1)),
+                skillDao.insert(dto2, playerDao.findById(1)),
+                skillDao.insert(dto3, playerDao.findById(1))};
     }
 }

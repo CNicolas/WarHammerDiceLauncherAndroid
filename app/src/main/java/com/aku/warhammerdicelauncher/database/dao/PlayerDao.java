@@ -9,13 +9,17 @@ import com.aku.warhammerdicelauncher.database.WarHammerDatabaseHelper;
 import com.aku.warhammerdicelauncher.database.entries.IPlayerEntryConstants;
 import com.aku.warhammerdicelauncher.model.dto.CharacteristicsDto;
 import com.aku.warhammerdicelauncher.model.dto.PlayerDto;
+import com.aku.warhammerdicelauncher.model.dto.SkillDto;
+
+import java.util.List;
 
 /**
  * Created by cnicolas on 12/10/2016.
  */
 
 public class PlayerDao extends AbstractDao<PlayerDto> {
-    private CharacteristicsDao characteristicsDao;
+    private final CharacteristicsDao characteristicsDao;
+    private final SkillDao skillDao;
 
     public PlayerDao(WarHammerDatabaseHelper whdHelper) {
         super(whdHelper);
@@ -24,6 +28,7 @@ public class PlayerDao extends AbstractDao<PlayerDto> {
         columnNameId = IPlayerEntryConstants.COLUMN_NAME_ID;
 
         characteristicsDao = new CharacteristicsDao(whdHelper);
+        skillDao = new SkillDao(whdHelper);
     }
 
     //region Find
@@ -100,6 +105,9 @@ public class PlayerDao extends AbstractDao<PlayerDto> {
 
         CharacteristicsDto characteristics = characteristicsDao.findById(cursor.getInt(cursor.getColumnIndexOrThrow(IPlayerEntryConstants.COLUMN_NAME_CHARACTERISTICS_ID)));
         dto.setCharacteristics(characteristics);
+
+        List<SkillDto> skills = skillDao.findAllByPlayer(dto);
+        dto.setSkills(skills);
 
         return dto;
     }

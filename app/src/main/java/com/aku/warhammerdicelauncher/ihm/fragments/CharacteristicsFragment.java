@@ -11,6 +11,7 @@ import com.aku.warhammerdicelauncher.R;
 import com.aku.warhammerdicelauncher.database.WarHammerDatabaseHelper;
 import com.aku.warhammerdicelauncher.database.dao.CharacteristicsDao;
 import com.aku.warhammerdicelauncher.database.dao.PlayerDao;
+import com.aku.warhammerdicelauncher.database.dao.SkillDao;
 import com.aku.warhammerdicelauncher.model.dto.CharacteristicsDto;
 import com.aku.warhammerdicelauncher.model.dto.PlayerDto;
 import com.aku.warhammerdicelauncher.model.dto.SkillDto;
@@ -37,7 +38,7 @@ public class CharacteristicsFragment extends Fragment {
         PlayerDto player = saveAndGet();
         new AlertDialog.Builder(getActivity())
                 .setTitle(player.getName())
-                .setMessage("Salut ! voici ton agi : " + player.getCharacteristics().getAgility())
+                .setMessage("Salut ! voici tes skills : " + player.getSkills())
                 .show();
 
         return rootView;
@@ -53,8 +54,8 @@ public class CharacteristicsFragment extends Fragment {
         PlayerDto player = createSamplePlayerDto();
         playerDao.insert(player);
 
-//        SkillDao skillDao = new SkillDao(warHammerDatabaseHelper);
-//        skillDao.insert(createSampleSkillDto());
+        SkillDao skillDao = new SkillDao(warHammerDatabaseHelper);
+        skillDao.insertAll(createSamplesSkillDto(), player);
 
         return playerDao.findById(1);
     }
@@ -81,18 +82,34 @@ public class CharacteristicsFragment extends Fragment {
         return dto;
     }
 
-    private SkillDto createSampleSkillDto() {
-        SkillDto dto = new SkillDto();
+    private List<SkillDto> createSamplesSkillDto() {
+        List<SkillDto> skills = new ArrayList<>();
 
-        dto.setCharacteristic(Characteristic.AGILITY);
-        dto.setLevel(1);
-        dto.setName("Capacité de Tir");
+        SkillDto dto1 = new SkillDto();
+        dto1.setCharacteristic(Characteristic.AGILITY);
+        dto1.setLevel(1);
+        dto1.setName("Capacité de Tir");
+        skills.add(dto1);
 
-        return dto;
+        SkillDto dto2 = new SkillDto();
+        dto2.setCharacteristic(Characteristic.INTELLIGENCE);
+        dto2.setLevel(0);
+        dto2.setName("Observation");
+        skills.add(dto2);
+
+        SkillDto dto3 = new SkillDto();
+        dto3.setCharacteristic(Characteristic.WILLPOWER);
+        dto3.setLevel(0);
+        dto3.setName("Discipline");
+        skills.add(dto3);
+
+        return skills;
     }
 
     private PlayerDto createSamplePlayerDto() {
         PlayerDto dto = new PlayerDto();
+
+        dto.setId(1);
 
         dto.setName("Aku");
         dto.setRace("Elfe");
@@ -115,10 +132,7 @@ public class CharacteristicsFragment extends Fragment {
         dto.setMoney_gold(3);
 
         dto.setCharacteristics(createSampleCharacteristicsDto());
-
-        List<SkillDto> skills = new ArrayList<>();
-        skills.add(createSampleSkillDto());
-        dto.setSkills(skills);
+        dto.setSkills(createSamplesSkillDto());
 
         return dto;
     }
