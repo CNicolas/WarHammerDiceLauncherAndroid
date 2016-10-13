@@ -30,11 +30,13 @@ public class PlayerFragment extends Fragment {
 
         tabHost.setup(context, context.getSupportFragmentManager(), android.R.id.tabcontent);
 
-        TabHost.TabSpec tab1 = tabHost.newTabSpec("fragment1").setIndicator(getString(R.string.page_characteristics));
-        TabHost.TabSpec tab2 = tabHost.newTabSpec("fragment2").setIndicator(getString(R.string.page_inventory));
+        TabHost.TabSpec tab1 = tabHost.newTabSpec("characteristicsFragment").setIndicator(getString(R.string.page_characteristics));
+        TabHost.TabSpec tab2 = tabHost.newTabSpec("skillsFragment").setIndicator(getString(R.string.page_skills));
+        TabHost.TabSpec tab3 = tabHost.newTabSpec("inventoryFragment").setIndicator(getString(R.string.page_inventory));
 
         tabHost.addTab(tab1, CharacteristicsFragment.class, null);
-        tabHost.addTab(tab2, InventoryFragment.class, null);
+        tabHost.addTab(tab2, SkillsFragment.class, null);
+        tabHost.addTab(tab3, InventoryFragment.class, null);
 
         tabHost.bringChildToFront(rootView);
 

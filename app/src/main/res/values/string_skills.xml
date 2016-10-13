@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="skill_athletics">Athletics</string>
+    <string name="skill_balistic">Balistic</string>
+    <string name="skill_coordination">Coordination</string>
+    <string name="skill_intimidate">Intimidate</string>
+    <string name="skill_resilience">Resilience</string>
+    <string name="skill_ride">Ride</string>
+    <string name="skill_skulduggery">Skulduggery</string>
+    <string name="skill_stealth">Stealth</string>
+    <string name="skill_weapon">Weapon</string>
+    <string name="skill_charm">Charm</string>
+    <string name="skill_discipline">Discipline</string>
+    <string name="skill_first_aid">First aid</string>
+    <string name="skill_folklore">Folklore</string>
+    <string name="skill_guile">Guile</string>
+    <string name="skill_intuition">Intuition</string>
+    <string name="skill_leadership">Leadership</string>
+    <string name="skill_nature_lore">Nature lore</string>
+    <string name="skill_observation">Observation</string>
+</resources>

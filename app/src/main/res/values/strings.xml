@@ -58,6 +58,7 @@
     <string name="page_inventory">Inventory</string>
     <string name="averageSuccessFormat">Average number of success : %1$s</string>
     <string name="action_update_player">Update player</string>
+    <string name="page_skills">Skills</string>
     <!--End of pages-->
 
 </resources>
