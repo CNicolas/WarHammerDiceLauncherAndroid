@@ -5,6 +5,7 @@ import android.app.Fragment;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.support.v4.app.FragmentTabHost;
+import android.support.v7.app.AlertDialog;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,10 +13,9 @@ import android.widget.TabHost.TabSpec;
 
 import com.aku.warhammerdicelauncher.R;
 import com.aku.warhammerdicelauncher.ihm.activities.MainActivity;
+import com.aku.warhammerdicelauncher.model.dto.PlayerDto;
+import com.aku.warhammerdicelauncher.utils.PlayerRepository;
 
-/**
- * A simple {@link Fragment} subclass.
- */
 public class PlayerFragment extends Fragment {
 
     final static String CHARACTERISTICS_FRAGMENT = "characteristicsFragment";
@@ -42,6 +42,11 @@ public class PlayerFragment extends Fragment {
         tabHost.bringChildToFront(rootView);
 
         return rootView;
+    }
+
+    public void updatePlayer(MainActivity context) {
+        PlayerDto player = PlayerRepository.getPlayerInstance();
+        new AlertDialog.Builder(context).setTitle(player.getName()).setMessage(player.getCharacteristics().getStrength()).show();
     }
 
     //region Fragments to add

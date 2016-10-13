@@ -9,7 +9,6 @@ import com.aku.warhammerdicelauncher.database.WarHammerDatabaseHelper;
 import com.aku.warhammerdicelauncher.database.entries.IHandEntryConstants;
 import com.aku.warhammerdicelauncher.model.dto.HandDto;
 
-import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -24,21 +23,7 @@ public class HandDao extends AbstractDao<HandDto> {
 
     //region Find
     public List<String> findAllTitles() {
-        List<String> res = new ArrayList<>();
-        String[] projection = {IHandEntryConstants.COLUMN_NAME_TITLE};
-        SQLiteDatabase db = whdHelper.getReadableDatabase();
-
-        Cursor cursor = db.query(IHandEntryConstants.TABLE_NAME, projection, null, null, null, null, null);
-        if (cursor.moveToFirst()) {
-            while (!cursor.isAfterLast()) {
-                String name = cursor.getString(cursor.getColumnIndexOrThrow(IHandEntryConstants.COLUMN_NAME_TITLE));
-                res.add(name);
-                cursor.moveToNext();
-            }
-        }
-        cursor.close();
-
-        return res;
+        return findAllByField(IHandEntryConstants.COLUMN_NAME_TITLE);
     }
 
     public HandDto findByTitle(String title) throws Resources.NotFoundException {

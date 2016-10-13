@@ -11,7 +11,7 @@ public interface IPlayerQueries extends IConstants {
     String SQL_CREATE_ENTRIES =
             "CREATE TABLE " + IPlayerEntryConstants.TABLE_NAME + " (" +
                     IPlayerEntryConstants.COLUMN_NAME_ID + INTEGER_TYPE + PRIMARY_KEY + AUTO_INCREMENT + COMMA_SEP +
-                    IPlayerEntryConstants.COLUMN_NAME_NAME + TEXT_TYPE + COMMA_SEP +
+                    IPlayerEntryConstants.COLUMN_NAME_NAME + TEXT_TYPE + UNIQUE + NOT_NULL + COMMA_SEP +
                     IPlayerEntryConstants.COLUMN_NAME_RACE + TEXT_TYPE + COMMA_SEP +
                     IPlayerEntryConstants.COLUMN_NAME_AGE + INTEGER_TYPE + COMMA_SEP +
                     IPlayerEntryConstants.COLUMN_NAME_SIZE + FLOAT_TYPE + COMMA_SEP +

@@ -12,5 +12,7 @@ public interface IConstants {
     String PRIMARY_KEY = " PRIMARY KEY";
 
     String AUTO_INCREMENT = " AUTOINCREMENT";
+    String NOT_NULL = " NOT NULL";
+    String UNIQUE = " UNIQUE";
     String COMMA_SEP = ",";
 }

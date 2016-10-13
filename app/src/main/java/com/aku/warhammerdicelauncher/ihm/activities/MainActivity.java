@@ -18,10 +18,17 @@ import android.widget.ListView;
 import android.widget.TextView;
 
 import com.aku.warhammerdicelauncher.R;
+import com.aku.warhammerdicelauncher.database.WarHammerDatabaseHelper;
+import com.aku.warhammerdicelauncher.database.dao.PlayerDao;
 import com.aku.warhammerdicelauncher.ihm.fragments.LaunchFragment;
+import com.aku.warhammerdicelauncher.ihm.fragments.PlayerFragment;
 import com.aku.warhammerdicelauncher.model.dto.HandDto;
+import com.aku.warhammerdicelauncher.utils.PlayerRepository;
 import com.aku.warhammerdicelauncher.utils.constants.IHandConstants;
 import com.aku.warhammerdicelauncher.utils.helpers.FragmentHelper;
+
+import java.util.Arrays;
+import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -102,6 +109,12 @@ public class MainActivity extends AppCompatActivity {
                 return true;
             case R.id.action_launch10000:
                 launchStatisticsActivity(10000);
+                return true;
+
+            case R.id.action_update_player:
+                if (onPlayerFragment) {
+                    getCurrentPlayerFragment().updatePlayer(this);
+                }
                 return true;
             default:
                 return super.onOptionsItemSelected(item);
@@ -205,6 +218,10 @@ public class MainActivity extends AppCompatActivity {
         return FragmentHelper.getCurrentLaunchFragment(getFragmentManager());
     }
 
+    private PlayerFragment getCurrentPlayerFragment() {
+        return FragmentHelper.getCurrentPlayerFragment(getFragmentManager());
+    }
+
     private void replaceByLaunchFragment() {
         fragmentContent = FragmentHelper.replaceByLaunchFragment(getFragmentManager());
         onLaunchFragment = true;
@@ -213,6 +230,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void replaceByPlayerFragment() {
+        PlayerRepository.getEmptyPlayerInstance();
         fragmentContent = FragmentHelper.replaceByPlayerFragment(getFragmentManager());
         onLaunchFragment = false;
         onPlayerFragment = true;
@@ -234,7 +252,13 @@ public class MainActivity extends AppCompatActivity {
 
     //region Navigation Drawer
     private void setupNavigationDrawer() {
-        ArrayAdapter adapter = ArrayAdapter.createFromResource(this, R.array.pages, R.layout.item_drawer_list);
+        PlayerDao playerDao = new PlayerDao(new WarHammerDatabaseHelper(this));
+        List<String> playersNames = playerDao.findAllNames();
+
+        List<String> drawerListItems = Arrays.asList(getResources().getStringArray(R.array.pages));
+        drawerListItems.addAll(playersNames);
+
+        ArrayAdapter<String> adapter = new ArrayAdapter<>(this, R.layout.item_drawer_list, drawerListItems);
         drawerList.setAdapter(adapter);
     }
 

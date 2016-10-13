@@ -1,9 +1,7 @@
 package com.aku.warhammerdicelauncher.database.dao;
 
 import android.content.ContentValues;
-import android.content.res.Resources;
 import android.database.Cursor;
-import android.database.sqlite.SQLiteDatabase;
 
 import com.aku.warhammerdicelauncher.database.WarHammerDatabaseHelper;
 import com.aku.warhammerdicelauncher.database.entries.IPlayerEntryConstants;
@@ -32,20 +30,8 @@ public class PlayerDao extends AbstractDao<PlayerDto> {
     }
 
     //region Find
-    @Override
-    public PlayerDto findById(int id) throws Resources.NotFoundException {
-        String[] selectionArgs = {String.valueOf(id)};
-        SQLiteDatabase db = whdHelper.getReadableDatabase();
-
-        Cursor cursor = db.query(tableName, null, columnNameId + "=?", selectionArgs, null, null, null);
-        if (cursor.moveToFirst()) {
-            PlayerDto dto = createDtoFromCursor(cursor);
-            cursor.close();
-            return dto;
-        } else {
-            cursor.close();
-            throw new Resources.NotFoundException();
-        }
+    public List<String> findAllNames() {
+        return findAllByField(IPlayerEntryConstants.COLUMN_NAME_NAME);
     }
     //endregion
 

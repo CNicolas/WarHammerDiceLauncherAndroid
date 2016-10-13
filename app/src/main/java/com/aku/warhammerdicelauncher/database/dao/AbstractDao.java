@@ -56,6 +56,24 @@ public abstract class AbstractDao<T extends IDto> implements IDao<T> {
             throw new Resources.NotFoundException();
         }
     }
+
+    public List<String> findAllByField(String column) {
+        List<String> res = new ArrayList<>();
+        String[] projection = {column};
+        SQLiteDatabase db = whdHelper.getReadableDatabase();
+
+        Cursor cursor = db.query(tableName, projection, null, null, null, null, null);
+        if (cursor.moveToFirst()) {
+            while (!cursor.isAfterLast()) {
+                String name = cursor.getString(cursor.getColumnIndexOrThrow(column));
+                res.add(name);
+                cursor.moveToNext();
+            }
+        }
+        cursor.close();
+
+        return res;
+    }
     //endregion
 
     //region Insert

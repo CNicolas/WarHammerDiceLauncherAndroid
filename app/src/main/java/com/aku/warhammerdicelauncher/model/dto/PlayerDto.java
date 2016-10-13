@@ -45,6 +45,7 @@ public class PlayerDto implements IDto, IPlayerConstants {
 
     //region Constructors
     public PlayerDto() {
+        characteristics = new CharacteristicsDto();
         skills = new ArrayList<>();
     }
 

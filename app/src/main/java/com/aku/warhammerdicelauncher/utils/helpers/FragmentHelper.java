@@ -1,5 +1,6 @@
 package com.aku.warhammerdicelauncher.utils.helpers;
 
+import android.app.Fragment;
 import android.app.FragmentManager;
 
 import com.aku.warhammerdicelauncher.R;
@@ -33,6 +34,14 @@ public abstract class FragmentHelper {
     }
 
     public static LaunchFragment getCurrentLaunchFragment(FragmentManager fragmentManager){
-        return (LaunchFragment) fragmentManager.findFragmentByTag(FRAGMENT_TAG);
+        return (LaunchFragment) getCurrentFragment(fragmentManager);
+    }
+
+    public static PlayerFragment getCurrentPlayerFragment(FragmentManager fragmentManager) {
+        return (PlayerFragment) getCurrentFragment(fragmentManager);
+    }
+
+    private static Fragment getCurrentFragment(FragmentManager fragmentManager) {
+        return fragmentManager.findFragmentByTag(FRAGMENT_TAG);
     }
 }
