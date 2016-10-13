@@ -44,6 +44,7 @@ public class PlayerFragment extends Fragment {
         return rootView;
     }
 
+    //region Fragments to add
     private void addCharacteristicsFragmentTab(MainActivity context, FragmentTabHost tabHost) {
         String indicatorTitle = getString(R.string.page_characteristics);
         Drawable indicatorIcon = getIconByIdByAndroidVersion(context, R.drawable.ic_characteristics_black);
@@ -67,6 +68,7 @@ public class PlayerFragment extends Fragment {
         TabSpec inventoryTab = tabHost.newTabSpec(INVENTORY_FRAGMENT).setIndicator("", indicatorIcon);
         tabHost.addTab(inventoryTab, InventoryFragment.class, null);
     }
+    //endregion
 
     private Drawable getIconByIdByAndroidVersion(MainActivity context, int iconId) {
         if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.LOLLIPOP) {

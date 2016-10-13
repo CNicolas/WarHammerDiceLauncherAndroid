@@ -5,6 +5,7 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ListView;
 
 import com.aku.warhammerdicelauncher.R;
 
@@ -14,6 +15,8 @@ import com.aku.warhammerdicelauncher.R;
 
 public class SkillsFragment extends Fragment {
 
+    private ListView skillsList;
+
     public SkillsFragment() {
         // Required empty public constructor
     }
@@ -22,6 +25,11 @@ public class SkillsFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.fragment_skills, container, false);
+
+//        skillsList = (ListView) rootView.findViewById(R.id.skills_list);
+//        ArrayAdapter adapter = ArrayAdapter.createFromResource(getActivity(), R.array.pages, R.layout.item_skills_list);
+//        skillsList.setAdapter(adapter);
+
         return rootView;
     }
 }
