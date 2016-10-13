@@ -40,5 +40,4 @@ public class PlayerFragment extends Fragment {
 
         return rootView;
     }
-
 }

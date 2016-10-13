@@ -85,21 +85,6 @@ public class MainActivity extends AppCompatActivity {
         return super.onCreateOptionsMenu(menu);
     }
 
-    /**
-     * After a invalidateOptionsMenu();
-     *
-     * @param menu
-     */
-    @Override
-    public boolean onPrepareOptionsMenu(Menu menu) {
-        if (!onLaunchFragment) {
-            for (int i = 0; i < menu.size(); i++) {
-                menu.getItem(i).setVisible(false);
-            }
-        }
-        return super.onPrepareOptionsMenu(menu);
-    }
-
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         if (drawerToggle.onOptionsItemSelected(item)) {

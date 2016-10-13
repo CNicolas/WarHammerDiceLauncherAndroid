@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">WarHammerDicesLauncher</string>
+    <string name="app_name">WHFRP3</string>
 
     <!--Image descriptions-->
     <string name="characteristicDice">Dé de caractéristique</string>
