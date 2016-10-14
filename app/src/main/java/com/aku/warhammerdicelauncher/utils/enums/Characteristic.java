@@ -10,7 +10,13 @@ public enum Characteristic {
     AGILITY("agility"),
     INTELLIGENCE("intelligence"),
     WILLPOWER("willpower"),
-    FELLOWSHIP("fellowship");
+    FELLOWSHIP("fellowship"),
+    STRENGTH_FORTUNE("strength_fortune"),
+    TOUGHNESS_FORTUNE("toughness_fortune"),
+    AGILITY_FORTUNE("agility_fortune"),
+    INTELLIGENCE_FORTUNE("intelligence_fortune"),
+    WILLPOWER_FORTUNE("willpower_fortune"),
+    FELLOWSHIP_FORTUNE("fellowship_fortune");
 
     private final String characteristic;
 

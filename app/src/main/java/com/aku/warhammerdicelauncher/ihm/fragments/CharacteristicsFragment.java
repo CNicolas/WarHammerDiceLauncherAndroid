@@ -2,18 +2,19 @@ package com.aku.warhammerdicelauncher.ihm.fragments;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v7.app.AlertDialog;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
 import com.aku.warhammerdicelauncher.R;
 import com.aku.warhammerdicelauncher.model.dto.CharacteristicsDto;
+import com.aku.warhammerdicelauncher.model.dto.PlayerDto;
 import com.aku.warhammerdicelauncher.utils.PlayerRepository;
 import com.aku.warhammerdicelauncher.utils.enums.Characteristic;
 
-import org.adw.library.widgets.discreteseekbar.DiscreteSeekBar;
-
 import antistatic.spinnerwheel.AbstractWheel;
+import antistatic.spinnerwheel.OnWheelScrollListener;
 import antistatic.spinnerwheel.adapters.NumericWheelAdapter;
 
 /**
@@ -21,13 +22,6 @@ import antistatic.spinnerwheel.adapters.NumericWheelAdapter;
  */
 
 public class CharacteristicsFragment extends Fragment {
-
-    private DiscreteSeekBar strengthBar;
-    private DiscreteSeekBar toughnessBar;
-    private DiscreteSeekBar agilityBar;
-    private DiscreteSeekBar intelligenceBar;
-    private DiscreteSeekBar willpowerBar;
-    private DiscreteSeekBar fellowshipBar;
 
     public CharacteristicsFragment() {
         // Required empty public constructor
@@ -43,27 +37,37 @@ public class CharacteristicsFragment extends Fragment {
         return rootView;
     }
 
+    //region Wheels Setup
     private void initWheels(View rootView) {
-        setupWheel(rootView, R.id.strength_wheel, R.layout.characteristic_wheel_blue_item);
-        setupWheel(rootView, R.id.strength_fortune_wheel, R.layout.characteristic_wheel_white_item);
-        setupWheel(rootView, R.id.toughness_wheel, R.layout.characteristic_wheel_blue_item);
-        setupWheel(rootView, R.id.toughness_fortune_wheel, R.layout.characteristic_wheel_white_item);
-        setupWheel(rootView, R.id.agility_wheel, R.layout.characteristic_wheel_blue_item);
-        setupWheel(rootView, R.id.agility_fortune_wheel, R.layout.characteristic_wheel_white_item);
-        setupWheel(rootView, R.id.intelligence_wheel, R.layout.characteristic_wheel_blue_item);
-        setupWheel(rootView, R.id.intelligence_fortune_wheel, R.layout.characteristic_wheel_white_item);
-        setupWheel(rootView, R.id.willpower_wheel, R.layout.characteristic_wheel_blue_item);
-        setupWheel(rootView, R.id.willpower_fortune_wheel, R.layout.characteristic_wheel_white_item);
-        setupWheel(rootView, R.id.fellowship_wheel, R.layout.characteristic_wheel_blue_item);
-        setupWheel(rootView, R.id.fellowship_fortune_wheel, R.layout.characteristic_wheel_white_item);
+        setupCharacteristicWheel(rootView, R.id.strength_wheel, Characteristic.STRENGTH);
+        setupCharacteristicFortuneWheel(rootView, R.id.strength_fortune_wheel, Characteristic.STRENGTH_FORTUNE);
+        setupCharacteristicWheel(rootView, R.id.toughness_wheel, Characteristic.TOUGHNESS);
+        setupCharacteristicFortuneWheel(rootView, R.id.toughness_fortune_wheel, Characteristic.TOUGHNESS_FORTUNE);
+        setupCharacteristicWheel(rootView, R.id.agility_wheel, Characteristic.AGILITY);
+        setupCharacteristicFortuneWheel(rootView, R.id.agility_fortune_wheel, Characteristic.AGILITY_FORTUNE);
+        setupCharacteristicWheel(rootView, R.id.intelligence_wheel, Characteristic.INTELLIGENCE);
+        setupCharacteristicFortuneWheel(rootView, R.id.intelligence_fortune_wheel, Characteristic.INTELLIGENCE_FORTUNE);
+        setupCharacteristicWheel(rootView, R.id.willpower_wheel, Characteristic.WILLPOWER);
+        setupCharacteristicFortuneWheel(rootView, R.id.willpower_fortune_wheel, Characteristic.WILLPOWER_FORTUNE);
+        setupCharacteristicWheel(rootView, R.id.fellowship_wheel, Characteristic.FELLOWSHIP);
+        setupCharacteristicFortuneWheel(rootView, R.id.fellowship_fortune_wheel, Characteristic.FELLOWSHIP_FORTUNE);
     }
 
-    private void setupWheel(View rootView, int id, int idResourceItem) {
+    private void setupCharacteristicWheel(View rootView, int wheelId, Characteristic characteristic) {
+        setupWheel(rootView, wheelId, R.layout.characteristic_wheel_blue_item, characteristic);
+    }
+
+    private void setupCharacteristicFortuneWheel(View rootView, int wheelId, Characteristic characteristic) {
+        setupWheel(rootView, wheelId, R.layout.characteristic_wheel_white_item, characteristic);
+    }
+
+    private void setupWheel(View rootView, int id, int idResourceItem, Characteristic characteristic) {
         final AbstractWheel wheel = (AbstractWheel) rootView.findViewById(id);
-        NumericWheelAdapter minAdapter = new NumericWheelAdapter(getActivity(), 0, 10, "%02d");
+        NumericWheelAdapter minAdapter = new NumericWheelAdapter(getActivity(), 0, 10, "%2d");
         minAdapter.setItemResource(idResourceItem);
         minAdapter.setItemTextResource(R.id.text);
         wheel.setViewAdapter(minAdapter);
+        wheel.addScrollingListener(new CharacteristicWheelScrollListener(characteristic));
     }
 
     private void setPlayerCharacteristic(Characteristic characteristic, int newValue) {
@@ -87,10 +91,53 @@ public class CharacteristicsFragment extends Fragment {
             case FELLOWSHIP:
                 characteristics.setFellowship(newValue);
                 return;
+            case STRENGTH_FORTUNE:
+                characteristics.setStrength_fortune(newValue);
+                return;
+            case TOUGHNESS_FORTUNE:
+                characteristics.setToughness_fortune(newValue);
+                return;
+            case AGILITY_FORTUNE:
+                characteristics.setAgility_fortune(newValue);
+                return;
+            case INTELLIGENCE_FORTUNE:
+                characteristics.setIntelligence_fortune(newValue);
+                return;
+            case WILLPOWER_FORTUNE:
+                characteristics.setWillpower_fortune(newValue);
+                return;
+            case FELLOWSHIP_FORTUNE:
+                characteristics.setFellowship_fortune(newValue);
+                return;
             default:
                 return;
         }
 
+    }
+    //endregion
+
+    private class CharacteristicWheelScrollListener implements OnWheelScrollListener {
+
+        private final Characteristic characteristic;
+
+        public CharacteristicWheelScrollListener(Characteristic characteristic) {
+            this.characteristic = characteristic;
+        }
+
+        @Override
+        public void onScrollingStarted(AbstractWheel abstractWheel) {
+
+        }
+
+        @Override
+        public void onScrollingFinished(AbstractWheel abstractWheel) {
+            setPlayerCharacteristic(characteristic, abstractWheel.getCurrentItem());
+            PlayerDto player = PlayerRepository.getPlayerInstance();
+            new AlertDialog.Builder(getActivity())
+                    .setTitle("Nom = " + player.getName())
+                    .setMessage(String.format("Force = %d + %d blancs", player.getCharacteristics().getStrength(), player.getCharacteristics().getStrength_fortune()))
+                    .show();
+        }
     }
 
 
