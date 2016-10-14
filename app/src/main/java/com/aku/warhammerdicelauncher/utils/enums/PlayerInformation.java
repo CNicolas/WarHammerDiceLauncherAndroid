@@ -12,7 +12,10 @@ public enum PlayerInformation {
     AGE(IPlayerEntryConstants.COLUMN_NAME_AGE),
     SIZE(IPlayerEntryConstants.COLUMN_NAME_SIZE),
     DESCRIPTION(IPlayerEntryConstants.COLUMN_NAME_DESCRIPTION),
-    RANK(IPlayerEntryConstants.COLUMN_NAME_RANK);
+
+    RANK(IPlayerEntryConstants.COLUMN_NAME_RANK),
+    EXPERIENCE(IPlayerEntryConstants.COLUMN_NAME_EXPERIENCE),
+    MAX_EXPERIENCE(IPlayerEntryConstants.COLUMN_NAME_MAX_EXPERIENCE);
 
     private final String information;
 

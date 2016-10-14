@@ -127,6 +127,13 @@ public class CharacteristicsFragment extends Fragment {
         final EditText playerDescriptionView = (EditText) rootView.findViewById(R.id.player_description);
         playerDescriptionView.addTextChangedListener(new EditTextWatcher(PlayerInformation.DESCRIPTION));
 
+
+        final EditText playerExperienceView = (EditText) rootView.findViewById(R.id.player_experience);
+        playerExperienceView.addTextChangedListener(new EditTextWatcher(PlayerInformation.EXPERIENCE));
+
+        final EditText playerMaxExperienceView = (EditText) rootView.findViewById(R.id.player_max_experience);
+        playerMaxExperienceView.addTextChangedListener(new EditTextWatcher(PlayerInformation.MAX_EXPERIENCE));
+
         final EditText playerNameView = (EditText) rootView.findViewById(R.id.player_name);
         playerNameView.addTextChangedListener(new EditTextWatcher(PlayerInformation.NAME));
 
@@ -150,6 +157,12 @@ public class CharacteristicsFragment extends Fragment {
                     return;
                 case DESCRIPTION:
                     playerDto.setDescription(newValue);
+                    return;
+                case EXPERIENCE:
+                    playerDto.setExperience(Integer.parseInt(newValue));
+                    return;
+                case MAX_EXPERIENCE:
+                    playerDto.setMax_experience(Integer.parseInt(newValue));
                     return;
                 case NAME:
                     playerDto.setName(newValue);
