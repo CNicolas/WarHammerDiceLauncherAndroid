@@ -3,15 +3,19 @@ package com.aku.warhammerdicelauncher.ihm.fragments;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.app.AlertDialog;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.EditText;
 
 import com.aku.warhammerdicelauncher.R;
 import com.aku.warhammerdicelauncher.model.dto.CharacteristicsDto;
 import com.aku.warhammerdicelauncher.model.dto.PlayerDto;
 import com.aku.warhammerdicelauncher.utils.PlayerRepository;
 import com.aku.warhammerdicelauncher.utils.enums.Characteristic;
+import com.aku.warhammerdicelauncher.utils.enums.PlayerInformation;
 
 import antistatic.spinnerwheel.AbstractWheel;
 import antistatic.spinnerwheel.OnWheelScrollListener;
@@ -33,11 +37,12 @@ public class CharacteristicsFragment extends Fragment {
         View rootView = inflater.inflate(R.layout.fragment_characteristics, container, false);
 
         initWheels(rootView);
+        initEditTexts(rootView);
 
         return rootView;
     }
 
-    //region Wheels Setup
+    //region Characteristics wheels setup
     private void initWheels(View rootView) {
         setupCharacteristicWheel(rootView, R.id.strength_wheel, Characteristic.STRENGTH);
         setupCharacteristicFortuneWheel(rootView, R.id.strength_fortune_wheel, Characteristic.STRENGTH_FORTUNE);
@@ -112,9 +117,59 @@ public class CharacteristicsFragment extends Fragment {
             default:
                 return;
         }
+    }
 
+    //region Text fields setup
+    private void initEditTexts(View rootView) {
+        final EditText playerAgeView = (EditText) rootView.findViewById(R.id.player_age);
+        playerAgeView.addTextChangedListener(new EditTextWatcher(PlayerInformation.AGE));
+
+        final EditText playerDescriptionView = (EditText) rootView.findViewById(R.id.player_description);
+        playerDescriptionView.addTextChangedListener(new EditTextWatcher(PlayerInformation.DESCRIPTION));
+
+        final EditText playerNameView = (EditText) rootView.findViewById(R.id.player_name);
+        playerNameView.addTextChangedListener(new EditTextWatcher(PlayerInformation.NAME));
+
+        final EditText playerRaceView = (EditText) rootView.findViewById(R.id.player_race);
+        playerRaceView.addTextChangedListener(new EditTextWatcher(PlayerInformation.RACE));
+
+        final EditText playerRankView = (EditText) rootView.findViewById(R.id.player_rank);
+        playerRankView.addTextChangedListener(new EditTextWatcher(PlayerInformation.RANK));
+
+        final EditText playerSizeView = (EditText) rootView.findViewById(R.id.player_size);
+        playerSizeView.addTextChangedListener(new EditTextWatcher(PlayerInformation.SIZE));
     }
     //endregion
+
+    private void setPlayerInformation(PlayerInformation playerInformation, String newValue) {
+        PlayerDto playerDto = PlayerRepository.getPlayerInstance();
+        try {
+            switch (playerInformation) {
+                case AGE:
+                    playerDto.setAge(Integer.parseInt(newValue));
+                    return;
+                case DESCRIPTION:
+                    playerDto.setDescription(newValue);
+                    return;
+                case NAME:
+                    playerDto.setName(newValue);
+                    return;
+                case RACE:
+                    playerDto.setRace(newValue);
+                    return;
+                case RANK:
+                    playerDto.setRank(Integer.parseInt(newValue));
+                    return;
+                case SIZE:
+                    playerDto.setSize(Double.parseDouble(newValue));
+                    return;
+                default:
+                    return;
+            }
+        } catch (NumberFormatException nfe) {
+            return;
+        }
+    }
 
     private class CharacteristicWheelScrollListener implements OnWheelScrollListener {
 
@@ -139,6 +194,31 @@ public class CharacteristicsFragment extends Fragment {
                     .show();
         }
     }
+
+    private class EditTextWatcher implements TextWatcher {
+        private final PlayerInformation playerInformation;
+
+        public EditTextWatcher(PlayerInformation playerInformation) {
+            this.playerInformation = playerInformation;
+        }
+
+        @Override
+        public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+        }
+
+        @Override
+        public void onTextChanged(CharSequence s, int start, int before, int count) {
+
+        }
+
+        @Override
+        public void afterTextChanged(Editable s) {
+            setPlayerInformation(playerInformation, s.toString());
+        }
+    }
+
+    //endregion
 
 
 //    private PlayerDto saveAndGet() {

@@ -1,213 +1,294 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/white"
+    android:fillViewport="true"
     android:orientation="vertical">
-
-    <EditText
-        android:id="@+id/player_name"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:inputType="textPersonName"
-        android:text="@string/ok" />
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="5dp"
+        android:background="@color/white"
+        android:isScrollContainer="true"
         android:orientation="vertical">
 
-        <!--Strength-->
+        <!--Name-->
+        <EditText
+            android:id="@+id/player_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:hint="Name"
+            android:inputType="textPersonName" />
+
+        <!--Characteristics wheels-->
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:orientation="horizontal">
+            android:orientation="vertical">
 
-            <TextView
+            <!--Strength-->
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:gravity="right"
-                android:padding="5dp"
-                android:text="@string/strength" />
+                android:layout_gravity="center"
+                android:orientation="horizontal">
 
-            <antistatic.spinnerwheel.WheelHorizontalView
-                android:id="@+id/strength_wheel"
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="right"
+                    android:padding="5dp"
+                    android:text="@string/strength" />
+
+                <antistatic.spinnerwheel.WheelHorizontalView
+                    android:id="@+id/strength_wheel"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    app:visibleItems="1" />
+
+                <antistatic.spinnerwheel.WheelHorizontalView
+                    android:id="@+id/strength_fortune_wheel"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    app:visibleItems="1" />
+                <!--<org.adw.library.widgets.discreteseekbar.DiscreteSeekBar-->
+                <!--android:id="@+id/strength_bar"-->
+                <!--android:layout_width="match_parent"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:layout_weight="1"-->
+                <!--app:dsb_max="6"-->
+                <!--app:dsb_min="0" />-->
+            </LinearLayout>
+
+            <!--Toughness-->
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
-                app:visibleItems="1" />
+                android:layout_gravity="center"
+                android:orientation="horizontal">
 
-            <antistatic.spinnerwheel.WheelHorizontalView
-                android:id="@+id/strength_fortune_wheel"
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_weight="1"
+                    android:gravity="right"
+                    android:padding="5dp"
+                    android:text="@string/toughness" />
+
+                <antistatic.spinnerwheel.WheelHorizontalView
+                    android:id="@+id/toughness_wheel"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    app:visibleItems="1" />
+
+                <antistatic.spinnerwheel.WheelHorizontalView
+                    android:id="@+id/toughness_fortune_wheel"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    app:visibleItems="1" />
+            </LinearLayout>
+
+            <!--Agility-->
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
-                app:visibleItems="1" />
-            <!--<org.adw.library.widgets.discreteseekbar.DiscreteSeekBar-->
-            <!--android:id="@+id/strength_bar"-->
-            <!--android:layout_width="match_parent"-->
-            <!--android:layout_height="wrap_content"-->
-            <!--android:layout_weight="1"-->
-            <!--app:dsb_max="6"-->
-            <!--app:dsb_min="0" />-->
+                android:layout_gravity="center"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="right"
+                    android:padding="5dp"
+                    android:text="@string/agility" />
+
+                <antistatic.spinnerwheel.WheelHorizontalView
+                    android:id="@+id/agility_wheel"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    app:visibleItems="1" />
+
+                <antistatic.spinnerwheel.WheelHorizontalView
+                    android:id="@+id/agility_fortune_wheel"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    app:visibleItems="1" />
+
+            </LinearLayout>
+
+            <!--Intelligence-->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="right"
+                    android:padding="5dp"
+                    android:text="@string/intelligence" />
+
+                <antistatic.spinnerwheel.WheelHorizontalView
+                    android:id="@+id/intelligence_wheel"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    app:visibleItems="1" />
+
+                <antistatic.spinnerwheel.WheelHorizontalView
+                    android:id="@+id/intelligence_fortune_wheel"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    app:visibleItems="1" />
+            </LinearLayout>
+
+            <!--Will Power-->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="right"
+                    android:padding="5dp"
+                    android:text="@string/willpower" />
+
+                <antistatic.spinnerwheel.WheelHorizontalView
+                    android:id="@+id/willpower_wheel"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    app:visibleItems="1" />
+
+                <antistatic.spinnerwheel.WheelHorizontalView
+                    android:id="@+id/willpower_fortune_wheel"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    app:visibleItems="1" />
+            </LinearLayout>
+
+            <!--Fellowship-->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="right"
+                    android:padding="5dp"
+                    android:text="@string/fellowship" />
+
+                <antistatic.spinnerwheel.WheelHorizontalView
+                    android:id="@+id/fellowship_wheel"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    app:visibleItems="1" />
+
+                <antistatic.spinnerwheel.WheelHorizontalView
+                    android:id="@+id/fellowship_fortune_wheel"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    app:visibleItems="1" />
+            </LinearLayout>
+
         </LinearLayout>
 
-        <!--Toughness-->
+        <!--Race, Age, Size, Rank-->
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_gravity="center"
             android:orientation="horizontal">
 
-            <TextView
+            <!--Race-->
+            <EditText
+                android:id="@+id/player_race"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:layout_weight="1"
-                android:gravity="right"
-                android:padding="5dp"
-                android:text="@string/toughness" />
+                android:gravity="center"
+                android:hint="Race"
+                android:inputType="textPersonName" />
 
-            <antistatic.spinnerwheel.WheelHorizontalView
-                android:id="@+id/toughness_wheel"
+            <!--Age-->
+            <EditText
+                android:id="@+id/player_age"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_gravity="center"
                 android:layout_weight="1"
-                app:visibleItems="1" />
+                android:gravity="center"
+                android:hint="Age"
+                android:inputType="number"
+                android:maxLength="3"
+                android:maxLines="1" />
 
-            <antistatic.spinnerwheel.WheelHorizontalView
-                android:id="@+id/toughness_fortune_wheel"
+
+            <!--Size-->
+            <EditText
+                android:id="@+id/player_size"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_gravity="center"
                 android:layout_weight="1"
-                app:visibleItems="1" />
+                android:gravity="center"
+                android:hint="Size"
+                android:inputType="numberDecimal"
+                android:maxLines="1" />
+
+
+            <!--Rank-->
+            <EditText
+                android:id="@+id/player_rank"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:hint="Rank"
+                android:inputType="number"
+                android:maxLength="2"
+                android:maxLines="1" />
         </LinearLayout>
 
-        <!--Agility-->
-        <LinearLayout
+        <!--Description-->
+        <EditText
+            android:id="@+id/player_description"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:orientation="horizontal">
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:gravity="right"
-                android:padding="5dp"
-                android:text="@string/agility" />
-
-            <antistatic.spinnerwheel.WheelHorizontalView
-                android:id="@+id/agility_wheel"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                app:visibleItems="1" />
-
-            <antistatic.spinnerwheel.WheelHorizontalView
-                android:id="@+id/agility_fortune_wheel"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                app:visibleItems="1" />
-
-        </LinearLayout>
-
-        <!--Intelligence-->
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:orientation="horizontal">
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:gravity="right"
-                android:padding="5dp"
-                android:text="@string/intelligence" />
-
-            <antistatic.spinnerwheel.WheelHorizontalView
-                android:id="@+id/intelligence_wheel"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                app:visibleItems="1" />
-
-            <antistatic.spinnerwheel.WheelHorizontalView
-                android:id="@+id/intelligence_fortune_wheel"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                app:visibleItems="1" />
-        </LinearLayout>
-
-        <!--Will Power-->
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:orientation="horizontal">
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:gravity="right"
-                android:padding="5dp"
-                android:text="@string/willpower" />
-
-            <antistatic.spinnerwheel.WheelHorizontalView
-                android:id="@+id/willpower_wheel"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                app:visibleItems="1" />
-
-            <antistatic.spinnerwheel.WheelHorizontalView
-                android:id="@+id/willpower_fortune_wheel"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                app:visibleItems="1" />
-        </LinearLayout>
-
-        <!--Fellowship-->
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:orientation="horizontal">
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:gravity="right"
-                android:padding="5dp"
-                android:text="@string/fellowship" />
-
-            <antistatic.spinnerwheel.WheelHorizontalView
-                android:id="@+id/fellowship_wheel"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                app:visibleItems="1" />
-
-            <antistatic.spinnerwheel.WheelHorizontalView
-                android:id="@+id/fellowship_fortune_wheel"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                app:visibleItems="1" />
-        </LinearLayout>
+            android:layout_weight="2"
+            android:background="@android:color/transparent"
+            android:gravity="top"
+            android:hint="Description"
+            android:inputType="textShortMessage"
+            android:maxLines="3" />
 
     </LinearLayout>
-
-</LinearLayout>
+</ScrollView>

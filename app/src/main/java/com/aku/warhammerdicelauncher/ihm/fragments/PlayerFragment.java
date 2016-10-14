@@ -46,7 +46,7 @@ public class PlayerFragment extends Fragment {
 
     public void updatePlayer(MainActivity context) {
         PlayerDto player = PlayerRepository.getPlayerInstance();
-        new AlertDialog.Builder(context).setTitle(player.getName()).setMessage(player.getCharacteristics().getStrength()).show();
+        new AlertDialog.Builder(context).setTitle(player.getName()).setMessage(player.toString()).show();
     }
 
     //region Fragments to add
