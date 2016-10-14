@@ -2,7 +2,6 @@ package com.aku.warhammerdicelauncher.ihm.fragments;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
-import android.support.v7.app.AlertDialog;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,6 +12,9 @@ import com.aku.warhammerdicelauncher.utils.PlayerRepository;
 import com.aku.warhammerdicelauncher.utils.enums.Characteristic;
 
 import org.adw.library.widgets.discreteseekbar.DiscreteSeekBar;
+
+import antistatic.spinnerwheel.AbstractWheel;
+import antistatic.spinnerwheel.adapters.NumericWheelAdapter;
 
 /**
  * Created by cnicolas on 23/09/2016.
@@ -36,20 +38,32 @@ public class CharacteristicsFragment extends Fragment {
                              Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.fragment_characteristics, container, false);
 
-        initializeSeekBars(rootView);
+        initWheels(rootView);
 
         return rootView;
     }
 
-    private void initializeSeekBars(View rootView) {
-        strengthBar = (DiscreteSeekBar) rootView.findViewById(R.id.strength_bar);
-        toughnessBar = (DiscreteSeekBar) rootView.findViewById(R.id.toughness_bar);
-        agilityBar = (DiscreteSeekBar) rootView.findViewById(R.id.agility_bar);
-        intelligenceBar = (DiscreteSeekBar) rootView.findViewById(R.id.intelligence_bar);
-        willpowerBar = (DiscreteSeekBar) rootView.findViewById(R.id.willpower_bar);
-        fellowshipBar = (DiscreteSeekBar) rootView.findViewById(R.id.fellowship_bar);
+    private void initWheels(View rootView) {
+        setupWheel(rootView, R.id.strength_wheel, R.layout.characteristic_wheel_blue_item);
+        setupWheel(rootView, R.id.strength_fortune_wheel, R.layout.characteristic_wheel_white_item);
+        setupWheel(rootView, R.id.toughness_wheel, R.layout.characteristic_wheel_blue_item);
+        setupWheel(rootView, R.id.toughness_fortune_wheel, R.layout.characteristic_wheel_white_item);
+        setupWheel(rootView, R.id.agility_wheel, R.layout.characteristic_wheel_blue_item);
+        setupWheel(rootView, R.id.agility_fortune_wheel, R.layout.characteristic_wheel_white_item);
+        setupWheel(rootView, R.id.intelligence_wheel, R.layout.characteristic_wheel_blue_item);
+        setupWheel(rootView, R.id.intelligence_fortune_wheel, R.layout.characteristic_wheel_white_item);
+        setupWheel(rootView, R.id.willpower_wheel, R.layout.characteristic_wheel_blue_item);
+        setupWheel(rootView, R.id.willpower_fortune_wheel, R.layout.characteristic_wheel_white_item);
+        setupWheel(rootView, R.id.fellowship_wheel, R.layout.characteristic_wheel_blue_item);
+        setupWheel(rootView, R.id.fellowship_fortune_wheel, R.layout.characteristic_wheel_white_item);
+    }
 
-        strengthBar.setOnProgressChangeListener(new CharacteristicBarChangeListener(Characteristic.STRENGTH));
+    private void setupWheel(View rootView, int id, int idResourceItem) {
+        final AbstractWheel wheel = (AbstractWheel) rootView.findViewById(id);
+        NumericWheelAdapter minAdapter = new NumericWheelAdapter(getActivity(), 0, 10, "%02d");
+        minAdapter.setItemResource(idResourceItem);
+        minAdapter.setItemTextResource(R.id.text);
+        wheel.setViewAdapter(minAdapter);
     }
 
     private void setPlayerCharacteristic(Characteristic characteristic, int newValue) {
@@ -79,29 +93,6 @@ public class CharacteristicsFragment extends Fragment {
 
     }
 
-    private class CharacteristicBarChangeListener implements DiscreteSeekBar.OnProgressChangeListener {
-
-        private final Characteristic characteristic;
-
-        public CharacteristicBarChangeListener(Characteristic characteristic) {
-            this.characteristic = characteristic;
-        }
-
-        @Override
-        public void onProgressChanged(DiscreteSeekBar seekBar, int value, boolean fromUser) {
-            setPlayerCharacteristic(characteristic, value);
-        }
-
-        @Override
-        public void onStartTrackingTouch(DiscreteSeekBar seekBar) {
-
-        }
-
-        @Override
-        public void onStopTrackingTouch(DiscreteSeekBar seekBar) {
-            new AlertDialog.Builder(getActivity()).setTitle("Lol").setMessage("votre force" + PlayerRepository.getPlayerInstance().getCharacteristics().getStrength()).show();
-        }
-    }
 
 //    private PlayerDto saveAndGet() {
 //        WarHammerDatabaseHelper warHammerDatabaseHelper = new WarHammerDatabaseHelper(getActivity());

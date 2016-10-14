@@ -29,18 +29,31 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_weight="2"
+                android:layout_weight="1"
                 android:gravity="right"
                 android:padding="5dp"
                 android:text="@string/strength" />
 
-            <org.adw.library.widgets.discreteseekbar.DiscreteSeekBar
-                android:id="@+id/strength_bar"
+            <antistatic.spinnerwheel.WheelHorizontalView
+                android:id="@+id/strength_wheel"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                app:dsb_max="6"
-                app:dsb_min="0" />
+                app:visibleItems="1" />
+
+            <antistatic.spinnerwheel.WheelHorizontalView
+                android:id="@+id/strength_fortune_wheel"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                app:visibleItems="1" />
+            <!--<org.adw.library.widgets.discreteseekbar.DiscreteSeekBar-->
+            <!--android:id="@+id/strength_bar"-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:layout_weight="1"-->
+            <!--app:dsb_max="6"-->
+            <!--app:dsb_min="0" />-->
         </LinearLayout>
 
         <!--Toughness-->
@@ -53,18 +66,25 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_weight="2"
+                android:layout_gravity="center"
+                android:layout_weight="1"
                 android:gravity="right"
                 android:padding="5dp"
                 android:text="@string/toughness" />
 
-            <org.adw.library.widgets.discreteseekbar.DiscreteSeekBar
-                android:id="@+id/toughness_bar"
+            <antistatic.spinnerwheel.WheelHorizontalView
+                android:id="@+id/toughness_wheel"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                app:dsb_max="6"
-                app:dsb_min="0" />
+                app:visibleItems="1" />
+
+            <antistatic.spinnerwheel.WheelHorizontalView
+                android:id="@+id/toughness_fortune_wheel"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                app:visibleItems="1" />
         </LinearLayout>
 
         <!--Agility-->
@@ -77,18 +97,25 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_weight="2"
+                android:layout_weight="1"
                 android:gravity="right"
                 android:padding="5dp"
                 android:text="@string/agility" />
 
-            <org.adw.library.widgets.discreteseekbar.DiscreteSeekBar
-                android:id="@+id/agility_bar"
+            <antistatic.spinnerwheel.WheelHorizontalView
+                android:id="@+id/agility_wheel"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                app:dsb_max="6"
-                app:dsb_min="0" />
+                app:visibleItems="1" />
+
+            <antistatic.spinnerwheel.WheelHorizontalView
+                android:id="@+id/agility_fortune_wheel"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                app:visibleItems="1" />
+
         </LinearLayout>
 
         <!--Intelligence-->
@@ -101,18 +128,24 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_weight="2"
+                android:layout_weight="1"
                 android:gravity="right"
                 android:padding="5dp"
                 android:text="@string/intelligence" />
 
-            <org.adw.library.widgets.discreteseekbar.DiscreteSeekBar
-                android:id="@+id/intelligence_bar"
+            <antistatic.spinnerwheel.WheelHorizontalView
+                android:id="@+id/intelligence_wheel"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                app:dsb_max="6"
-                app:dsb_min="0" />
+                app:visibleItems="1" />
+
+            <antistatic.spinnerwheel.WheelHorizontalView
+                android:id="@+id/intelligence_fortune_wheel"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                app:visibleItems="1" />
         </LinearLayout>
 
         <!--Will Power-->
@@ -125,18 +158,24 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_weight="2"
+                android:layout_weight="1"
                 android:gravity="right"
                 android:padding="5dp"
                 android:text="@string/willpower" />
 
-            <org.adw.library.widgets.discreteseekbar.DiscreteSeekBar
-                android:id="@+id/willpower_bar"
+            <antistatic.spinnerwheel.WheelHorizontalView
+                android:id="@+id/willpower_wheel"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                app:dsb_max="6"
-                app:dsb_min="0" />
+                app:visibleItems="1" />
+
+            <antistatic.spinnerwheel.WheelHorizontalView
+                android:id="@+id/willpower_fortune_wheel"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                app:visibleItems="1" />
         </LinearLayout>
 
         <!--Fellowship-->
@@ -149,18 +188,24 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_weight="2"
+                android:layout_weight="1"
                 android:gravity="right"
                 android:padding="5dp"
                 android:text="@string/fellowship" />
 
-            <org.adw.library.widgets.discreteseekbar.DiscreteSeekBar
-                android:id="@+id/fellowship_bar"
+            <antistatic.spinnerwheel.WheelHorizontalView
+                android:id="@+id/fellowship_wheel"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                app:dsb_max="6"
-                app:dsb_min="0" />
+                app:visibleItems="1" />
+
+            <antistatic.spinnerwheel.WheelHorizontalView
+                android:id="@+id/fellowship_fortune_wheel"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                app:visibleItems="1" />
         </LinearLayout>
 
     </LinearLayout>
