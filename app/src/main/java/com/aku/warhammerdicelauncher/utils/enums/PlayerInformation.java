@@ -7,15 +7,15 @@ import com.aku.warhammerdicelauncher.database.entries.IPlayerEntryConstants;
  */
 
 public enum PlayerInformation {
-    NAME(IPlayerEntryConstants.COLUMN_NAME_NAME),
-    RACE(IPlayerEntryConstants.COLUMN_NAME_RACE),
-    AGE(IPlayerEntryConstants.COLUMN_NAME_AGE),
-    SIZE(IPlayerEntryConstants.COLUMN_NAME_SIZE),
-    DESCRIPTION(IPlayerEntryConstants.COLUMN_NAME_DESCRIPTION),
+    NAME(IPlayerEntryConstants.COLUMN_NAME),
+    RACE(IPlayerEntryConstants.COLUMN_RACE),
+    AGE(IPlayerEntryConstants.COLUMN_AGE),
+    SIZE(IPlayerEntryConstants.COLUMN_SIZE),
+    DESCRIPTION(IPlayerEntryConstants.COLUMN_DESCRIPTION),
 
-    RANK(IPlayerEntryConstants.COLUMN_NAME_RANK),
-    EXPERIENCE(IPlayerEntryConstants.COLUMN_NAME_EXPERIENCE),
-    MAX_EXPERIENCE(IPlayerEntryConstants.COLUMN_NAME_MAX_EXPERIENCE);
+    RANK(IPlayerEntryConstants.COLUMN_RANK),
+    EXPERIENCE(IPlayerEntryConstants.COLUMN_EXPERIENCE),
+    MAX_EXPERIENCE(IPlayerEntryConstants.COLUMN_MAX_EXPERIENCE);
 
     private final String information;
 

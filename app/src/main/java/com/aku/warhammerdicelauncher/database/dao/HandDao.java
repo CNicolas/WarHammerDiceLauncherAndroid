@@ -18,19 +18,19 @@ public class HandDao extends AbstractDao<Hand> {
     public HandDao(WarHammerDatabaseHelper whdHelper) {
         super(whdHelper);
         tableName = IHandEntryConstants.TABLE_NAME;
-        columnNameId = IHandEntryConstants.COLUMN_NAME_ID;
+        columnNameId = IHandEntryConstants.COLUMN_ID;
     }
 
     //region Find
     public List<String> findAllTitles() {
-        return findAllByField(IHandEntryConstants.COLUMN_NAME_TITLE);
+        return findAllByField(IHandEntryConstants.COLUMN_TITLE);
     }
 
     public Hand findByTitle(String title) throws Resources.NotFoundException {
         String[] selectionArgs = {title};
         SQLiteDatabase db = whdHelper.getReadableDatabase();
 
-        Cursor cursor = db.query(tableName, null, IHandEntryConstants.COLUMN_NAME_TITLE + "=?", selectionArgs, null, null, null);
+        Cursor cursor = db.query(tableName, null, IHandEntryConstants.COLUMN_TITLE + "=?", selectionArgs, null, null, null);
         if (cursor.moveToFirst()) {
             Hand dto = createDtoFromCursor(cursor);
             cursor.close();
@@ -48,7 +48,7 @@ public class HandDao extends AbstractDao<Hand> {
         ContentValues values = contentValuesFromDto(hand);
         String[] filters = {title};
 
-        long res = db.update(tableName, values, String.format("%s = ?", IHandEntryConstants.COLUMN_NAME_TITLE), filters);
+        long res = db.update(tableName, values, String.format("%s = ?", IHandEntryConstants.COLUMN_TITLE), filters);
         return res;
     }
     //endregion
@@ -57,14 +57,14 @@ public class HandDao extends AbstractDao<Hand> {
     protected ContentValues contentValuesFromDto(Hand hand) {
         ContentValues values = new ContentValues();
 
-        values.put(IHandEntryConstants.COLUMN_NAME_TITLE, hand.getTitle());
-        values.put(IHandEntryConstants.COLUMN_NAME_CHARACTERISTIC, hand.getCharacteristic());
-        values.put(IHandEntryConstants.COLUMN_NAME_RECKLESS, hand.getReckless());
-        values.put(IHandEntryConstants.COLUMN_NAME_CONSERVATIVE, hand.getConservative());
-        values.put(IHandEntryConstants.COLUMN_NAME_EXPERTISE, hand.getExpertise());
-        values.put(IHandEntryConstants.COLUMN_NAME_FORTUNE, hand.getFortune());
-        values.put(IHandEntryConstants.COLUMN_NAME_MISFORTUNE, hand.getMisfortune());
-        values.put(IHandEntryConstants.COLUMN_NAME_CHALLENGE, hand.getChallenge());
+        values.put(IHandEntryConstants.COLUMN_TITLE, hand.getTitle());
+        values.put(IHandEntryConstants.COLUMN_CHARACTERISTIC, hand.getCharacteristic());
+        values.put(IHandEntryConstants.COLUMN_RECKLESS, hand.getReckless());
+        values.put(IHandEntryConstants.COLUMN_CONSERVATIVE, hand.getConservative());
+        values.put(IHandEntryConstants.COLUMN_EXPERTISE, hand.getExpertise());
+        values.put(IHandEntryConstants.COLUMN_FORTUNE, hand.getFortune());
+        values.put(IHandEntryConstants.COLUMN_MISFORTUNE, hand.getMisfortune());
+        values.put(IHandEntryConstants.COLUMN_CHALLENGE, hand.getChallenge());
 
         return values;
     }
@@ -72,16 +72,16 @@ public class HandDao extends AbstractDao<Hand> {
     protected Hand createDtoFromCursor(Cursor cursor) {
         Hand dto = new Hand();
 
-        dto.setId(cursor.getInt(cursor.getColumnIndexOrThrow(IHandEntryConstants.COLUMN_NAME_ID)));
+        dto.setId(cursor.getInt(cursor.getColumnIndexOrThrow(IHandEntryConstants.COLUMN_ID)));
 
-        dto.setTitle(cursor.getString(cursor.getColumnIndexOrThrow(IHandEntryConstants.COLUMN_NAME_TITLE)));
-        dto.setCharacteristic(cursor.getInt(cursor.getColumnIndexOrThrow(IHandEntryConstants.COLUMN_NAME_CHARACTERISTIC)));
-        dto.setReckless(cursor.getInt(cursor.getColumnIndexOrThrow(IHandEntryConstants.COLUMN_NAME_RECKLESS)));
-        dto.setConservative(cursor.getInt(cursor.getColumnIndexOrThrow(IHandEntryConstants.COLUMN_NAME_CONSERVATIVE)));
-        dto.setExpertise(cursor.getInt(cursor.getColumnIndexOrThrow(IHandEntryConstants.COLUMN_NAME_EXPERTISE)));
-        dto.setFortune(cursor.getInt(cursor.getColumnIndexOrThrow(IHandEntryConstants.COLUMN_NAME_FORTUNE)));
-        dto.setMisfortune(cursor.getInt(cursor.getColumnIndexOrThrow(IHandEntryConstants.COLUMN_NAME_MISFORTUNE)));
-        dto.setChallenge(cursor.getInt(cursor.getColumnIndexOrThrow(IHandEntryConstants.COLUMN_NAME_CHALLENGE)));
+        dto.setTitle(cursor.getString(cursor.getColumnIndexOrThrow(IHandEntryConstants.COLUMN_TITLE)));
+        dto.setCharacteristic(cursor.getInt(cursor.getColumnIndexOrThrow(IHandEntryConstants.COLUMN_CHARACTERISTIC)));
+        dto.setReckless(cursor.getInt(cursor.getColumnIndexOrThrow(IHandEntryConstants.COLUMN_RECKLESS)));
+        dto.setConservative(cursor.getInt(cursor.getColumnIndexOrThrow(IHandEntryConstants.COLUMN_CONSERVATIVE)));
+        dto.setExpertise(cursor.getInt(cursor.getColumnIndexOrThrow(IHandEntryConstants.COLUMN_EXPERTISE)));
+        dto.setFortune(cursor.getInt(cursor.getColumnIndexOrThrow(IHandEntryConstants.COLUMN_FORTUNE)));
+        dto.setMisfortune(cursor.getInt(cursor.getColumnIndexOrThrow(IHandEntryConstants.COLUMN_MISFORTUNE)));
+        dto.setChallenge(cursor.getInt(cursor.getColumnIndexOrThrow(IHandEntryConstants.COLUMN_CHALLENGE)));
 
         return dto;
     }

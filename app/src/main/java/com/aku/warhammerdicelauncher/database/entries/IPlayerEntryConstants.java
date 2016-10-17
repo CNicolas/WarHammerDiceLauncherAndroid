@@ -7,27 +7,57 @@ package com.aku.warhammerdicelauncher.database.entries;
 public interface IPlayerEntryConstants extends IEntryConstants {
     String TABLE_NAME = "player";
 
-    String COLUMN_NAME_NAME = "name";
-    String COLUMN_NAME_RACE = "race";
-    String COLUMN_NAME_AGE = "age";
-    String COLUMN_NAME_SIZE = "size";
-    String COLUMN_NAME_DESCRIPTION = "description";
+    String COLUMN_NAME = "name";
+    String COLUMN_RACE = "race";
+    String COLUMN_AGE = "age";
+    String COLUMN_SIZE = "size";
+    String COLUMN_DESCRIPTION = "description";
 
-    String COLUMN_NAME_RANK = "rank";
-    String COLUMN_NAME_EXPERIENCE = "experience";
-    String COLUMN_NAME_MAX_EXPERIENCE = "max_experience";
-    String COLUMN_NAME_WOUNDS = "wounds";
-    String COLUMN_NAME_MAX_WOUNDS = "max_wounds";
-    String COLUMN_NAME_RECKLESS = "reckless";
-    String COLUMN_NAME_MAX_RECKLESS = "max_reckless";
-    String COLUMN_NAME_CONSERVATIVE = "conservative";
-    String COLUMN_NAME_MAX_CONSERVATIVE = "max_conservative";
+    String COLUMN_RANK = "rank";
+    String COLUMN_EXPERIENCE = "experience";
+    String COLUMN_MAX_EXPERIENCE = "max_experience";
+    String COLUMN_WOUNDS = "wounds";
+    String COLUMN_MAX_WOUNDS = "max_wounds";
+    String COLUMN_RECKLESS = "reckless";
+    String COLUMN_MAX_RECKLESS = "max_reckless";
+    String COLUMN_CONSERVATIVE = "conservative";
+    String COLUMN_MAX_CONSERVATIVE = "max_conservative";
 
-    String COLUMN_NAME_MONEY_BRASS = "money_brass";
-    String COLUMN_NAME_MONEY_SILVER = "money_silver";
-    String COLUMN_NAME_MONEY_GOLD = "money_gold";
+    String COLUMN_MONEY_BRASS = "money_brass";
+    String COLUMN_MONEY_SILVER = "money_silver";
+    String COLUMN_MONEY_GOLD = "money_gold";
 
-    String COLUMN_NAME_CHARACTERISTICS_ID = "characteristics_id";
+    String COLUMN_CHARACTERISTICS_ID = "characteristics_id";
+
+    String SQL_CREATE_ENTRIES =
+            "CREATE TABLE " + TABLE_NAME + " (" +
+                    COLUMN_ID + INTEGER_TYPE + PRIMARY_KEY + AUTO_INCREMENT + COMMA_SEP +
+                    COLUMN_NAME + TEXT_TYPE + UNIQUE + NOT_NULL + COMMA_SEP +
+                    COLUMN_RACE + TEXT_TYPE + COMMA_SEP +
+                    COLUMN_AGE + INTEGER_TYPE + COMMA_SEP +
+                    COLUMN_SIZE + FLOAT_TYPE + COMMA_SEP +
+                    COLUMN_DESCRIPTION + TEXT_TYPE + COMMA_SEP +
+
+                    COLUMN_RANK + INTEGER_TYPE + COMMA_SEP +
+                    COLUMN_EXPERIENCE + INTEGER_TYPE + COMMA_SEP +
+                    COLUMN_MAX_EXPERIENCE + INTEGER_TYPE + COMMA_SEP +
+                    COLUMN_WOUNDS + INTEGER_TYPE + COMMA_SEP +
+                    COLUMN_MAX_WOUNDS + INTEGER_TYPE + COMMA_SEP +
+                    COLUMN_RECKLESS + INTEGER_TYPE + COMMA_SEP +
+                    COLUMN_MAX_RECKLESS + INTEGER_TYPE + COMMA_SEP +
+                    COLUMN_CONSERVATIVE + INTEGER_TYPE + COMMA_SEP +
+                    COLUMN_MAX_CONSERVATIVE + INTEGER_TYPE + COMMA_SEP +
+
+                    COLUMN_MONEY_BRASS + INTEGER_TYPE + COMMA_SEP +
+                    COLUMN_MONEY_SILVER + INTEGER_TYPE + COMMA_SEP +
+                    COLUMN_MONEY_GOLD + INTEGER_TYPE + COMMA_SEP +
+
+                    COLUMN_CHARACTERISTICS_ID + INTEGER_TYPE + COMMA_SEP +
+
+                    " FOREIGN KEY (" + COLUMN_CHARACTERISTICS_ID + ") REFERENCES " + ICharacteristicsEntryConstants.TABLE_NAME + "(" + ICharacteristicsEntryConstants.COLUMN_ID + ")" +
+                    " )";
+
+    String SQL_DELETE_ENTRIES = "DROP TABLE IF EXISTS " + TABLE_NAME;
 
 }
 

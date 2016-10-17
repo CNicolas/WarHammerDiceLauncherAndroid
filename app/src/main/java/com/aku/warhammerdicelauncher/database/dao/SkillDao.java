@@ -22,14 +22,14 @@ public class SkillDao extends AbstractDao<Skill> {
     public SkillDao(WarHammerDatabaseHelper whdHelper) {
         super(whdHelper);
         tableName = ISkillEntryConstants.TABLE_NAME;
-        columnNameId = ISkillEntryConstants.COLUMN_NAME_ID;
+        columnNameId = ISkillEntryConstants.COLUMN_ID;
     }
 
     //region Find
     public List<Skill> findAllByPlayer(Player player) {
         String[] selectionArgs = {String.valueOf(player.getId())};
         SQLiteDatabase db = whdHelper.getReadableDatabase();
-        Cursor cursor = db.query(tableName, null, ISkillEntryConstants.COLUMN_NAME_PLAYER_ID + " = ?", selectionArgs, null, null, null);
+        Cursor cursor = db.query(tableName, null, ISkillEntryConstants.COLUMN_PLAYER_ID + " = ?", selectionArgs, null, null, null);
 
         List<Skill> res = new ArrayList<>();
         if (cursor.moveToFirst()) {
@@ -86,10 +86,10 @@ public class SkillDao extends AbstractDao<Skill> {
     protected ContentValues contentValuesFromDto(Skill skill, Player player) {
         ContentValues values = new ContentValues();
 
-        values.put(ISkillEntryConstants.COLUMN_NAME_NAME, skill.getName());
-        values.put(ISkillEntryConstants.COLUMN_NAME_CHARACTERISTIC, skill.getCharacteristic().toString());
-        values.put(ISkillEntryConstants.COLUMN_NAME_LEVEL, skill.getLevel());
-        values.put(ISkillEntryConstants.COLUMN_NAME_PLAYER_ID, player.getId());
+        values.put(ISkillEntryConstants.COLUMN_NAME, skill.getName());
+        values.put(ISkillEntryConstants.COLUMN_CHARACTERISTIC, skill.getCharacteristic().toString());
+        values.put(ISkillEntryConstants.COLUMN_LEVEL, skill.getLevel());
+        values.put(ISkillEntryConstants.COLUMN_PLAYER_ID, player.getId());
 
         return values;
     }
@@ -98,10 +98,10 @@ public class SkillDao extends AbstractDao<Skill> {
         Skill dto = new Skill();
 
         dto.setId(cursor.getInt(cursor.getColumnIndexOrThrow(columnNameId)));
-        dto.setName(cursor.getString(cursor.getColumnIndexOrThrow(ISkillEntryConstants.COLUMN_NAME_NAME)));
-        dto.setCharacteristic(Characteristic.fromString(cursor.getString(cursor.getColumnIndexOrThrow(ISkillEntryConstants.COLUMN_NAME_CHARACTERISTIC))));
-        dto.setLevel(cursor.getInt(cursor.getColumnIndexOrThrow(ISkillEntryConstants.COLUMN_NAME_LEVEL)));
-        dto.setPlayer_id(cursor.getInt(cursor.getColumnIndexOrThrow(ISkillEntryConstants.COLUMN_NAME_PLAYER_ID)));
+        dto.setName(cursor.getString(cursor.getColumnIndexOrThrow(ISkillEntryConstants.COLUMN_NAME)));
+        dto.setCharacteristic(Characteristic.fromString(cursor.getString(cursor.getColumnIndexOrThrow(ISkillEntryConstants.COLUMN_CHARACTERISTIC))));
+        dto.setLevel(cursor.getInt(cursor.getColumnIndexOrThrow(ISkillEntryConstants.COLUMN_LEVEL)));
+        dto.setPlayer_id(cursor.getInt(cursor.getColumnIndexOrThrow(ISkillEntryConstants.COLUMN_PLAYER_ID)));
 
         return dto;
     }

@@ -4,10 +4,10 @@ import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
-import com.aku.warhammerdicelauncher.database.queries.ICharacteristicsQueries;
-import com.aku.warhammerdicelauncher.database.queries.IHandQueries;
-import com.aku.warhammerdicelauncher.database.queries.IPlayerQueries;
-import com.aku.warhammerdicelauncher.database.queries.ISkillQueries;
+import com.aku.warhammerdicelauncher.database.entries.ICharacteristicsEntryConstants;
+import com.aku.warhammerdicelauncher.database.entries.IHandEntryConstants;
+import com.aku.warhammerdicelauncher.database.entries.IPlayerEntryConstants;
+import com.aku.warhammerdicelauncher.database.entries.ISkillEntryConstants;
 
 /**
  * Created by cnicolas on 10/05/2016.
@@ -22,20 +22,20 @@ public class WarHammerDatabaseHelper extends SQLiteOpenHelper {
 
     @Override
     public void onCreate(SQLiteDatabase db) {
-        db.execSQL(IHandQueries.SQL_CREATE_ENTRIES);
+        db.execSQL(IHandEntryConstants.SQL_CREATE_ENTRIES);
 
-        db.execSQL(ICharacteristicsQueries.SQL_CREATE_ENTRIES);
-        db.execSQL(ISkillQueries.SQL_CREATE_ENTRIES);
-        db.execSQL(IPlayerQueries.SQL_CREATE_ENTRIES);
+        db.execSQL(ICharacteristicsEntryConstants.SQL_CREATE_ENTRIES);
+        db.execSQL(ISkillEntryConstants.SQL_CREATE_ENTRIES);
+        db.execSQL(IPlayerEntryConstants.SQL_CREATE_ENTRIES);
     }
 
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
-        db.execSQL(IHandQueries.SQL_DELETE_ENTRIES);
+        db.execSQL(IHandEntryConstants.SQL_DELETE_ENTRIES);
 
-        db.execSQL(ICharacteristicsQueries.SQL_DELETE_ENTRIES);
-        db.execSQL(ISkillQueries.SQL_DELETE_ENTRIES);
-        db.execSQL(IPlayerQueries.SQL_DELETE_ENTRIES);
+        db.execSQL(ICharacteristicsEntryConstants.SQL_DELETE_ENTRIES);
+        db.execSQL(ISkillEntryConstants.SQL_DELETE_ENTRIES);
+        db.execSQL(IPlayerEntryConstants.SQL_DELETE_ENTRIES);
 
         onCreate(db);
     }
