@@ -11,9 +11,9 @@ import android.view.ViewGroup;
 import android.widget.EditText;
 
 import com.aku.warhammerdicelauncher.R;
-import com.aku.warhammerdicelauncher.model.dto.CharacteristicsDto;
-import com.aku.warhammerdicelauncher.model.dto.PlayerDto;
-import com.aku.warhammerdicelauncher.utils.PlayerRepository;
+import com.aku.warhammerdicelauncher.model.player.Characteristics;
+import com.aku.warhammerdicelauncher.model.player.Player;
+import com.aku.warhammerdicelauncher.utils.PlayerContext;
 import com.aku.warhammerdicelauncher.utils.enums.Characteristic;
 import com.aku.warhammerdicelauncher.utils.enums.PlayerInformation;
 
@@ -76,7 +76,7 @@ public class CharacteristicsFragment extends Fragment {
     }
 
     private void setPlayerCharacteristic(Characteristic characteristic, int newValue) {
-        CharacteristicsDto characteristics = PlayerRepository.getPlayerInstance().getCharacteristics();
+        Characteristics characteristics = PlayerContext.getPlayerInstance().getCharacteristics();
         switch (characteristic) {
             case STRENGTH:
                 characteristics.setStrength(newValue);
@@ -149,32 +149,32 @@ public class CharacteristicsFragment extends Fragment {
     //endregion
 
     private void setPlayerInformation(PlayerInformation playerInformation, String newValue) {
-        PlayerDto playerDto = PlayerRepository.getPlayerInstance();
+        Player player = PlayerContext.getPlayerInstance();
         try {
             switch (playerInformation) {
                 case AGE:
-                    playerDto.setAge(Integer.parseInt(newValue));
+                    player.setAge(Integer.parseInt(newValue));
                     return;
                 case DESCRIPTION:
-                    playerDto.setDescription(newValue);
+                    player.setDescription(newValue);
                     return;
                 case EXPERIENCE:
-                    playerDto.setExperience(Integer.parseInt(newValue));
+                    player.setExperience(Integer.parseInt(newValue));
                     return;
                 case MAX_EXPERIENCE:
-                    playerDto.setMax_experience(Integer.parseInt(newValue));
+                    player.setMax_experience(Integer.parseInt(newValue));
                     return;
                 case NAME:
-                    playerDto.setName(newValue);
+                    player.setName(newValue);
                     return;
                 case RACE:
-                    playerDto.setRace(newValue);
+                    player.setRace(newValue);
                     return;
                 case RANK:
-                    playerDto.setRank(Integer.parseInt(newValue));
+                    player.setRank(Integer.parseInt(newValue));
                     return;
                 case SIZE:
-                    playerDto.setSize(Double.parseDouble(newValue));
+                    player.setSize(Double.parseDouble(newValue));
                     return;
                 default:
                     return;
@@ -200,7 +200,7 @@ public class CharacteristicsFragment extends Fragment {
         @Override
         public void onScrollingFinished(AbstractWheel abstractWheel) {
             setPlayerCharacteristic(characteristic, abstractWheel.getCurrentItem());
-            PlayerDto player = PlayerRepository.getPlayerInstance();
+            Player player = PlayerContext.getPlayerInstance();
             new AlertDialog.Builder(getActivity())
                     .setTitle("Nom = " + player.getName())
                     .setMessage(String.format("Force = %d + %d blancs", player.getCharacteristics().getStrength(), player.getCharacteristics().getStrength_fortune()))
@@ -234,14 +234,14 @@ public class CharacteristicsFragment extends Fragment {
     //endregion
 
 
-//    private PlayerDto saveAndGet() {
+//    private Player saveAndGet() {
 //        WarHammerDatabaseHelper warHammerDatabaseHelper = new WarHammerDatabaseHelper(getActivity());
 //
 //        CharacteristicsDao characteristicsDao = new CharacteristicsDao(warHammerDatabaseHelper);
 //        characteristicsDao.insert(createSampleCharacteristicsDto());
 //
 //        PlayerDao playerDao = new PlayerDao(warHammerDatabaseHelper);
-//        PlayerDto player = createSamplePlayerDto();
+//        Player player = createSamplePlayerDto();
 //        playerDao.insert(player);
 //
 //        SkillDao skillDao = new SkillDao(warHammerDatabaseHelper);
@@ -250,8 +250,8 @@ public class CharacteristicsFragment extends Fragment {
 //        return playerDao.findById(1);
 //    }
 //
-//    private CharacteristicsDto createSampleCharacteristicsDto() {
-//        CharacteristicsDto dto = new CharacteristicsDto();
+//    private Characteristics createSampleCharacteristicsDto() {
+//        Characteristics dto = new Characteristics();
 //
 //        dto.setId(1);
 //
@@ -272,22 +272,22 @@ public class CharacteristicsFragment extends Fragment {
 //        return dto;
 //    }
 //
-//    private List<SkillDto> createSamplesSkillDto() {
-//        List<SkillDto> skills = new ArrayList<>();
+//    private List<Skill> createSamplesSkillDto() {
+//        List<Skill> skills = new ArrayList<>();
 //
-//        SkillDto dto1 = new SkillDto();
+//        Skill dto1 = new Skill();
 //        dto1.setCharacteristic(Characteristic.AGILITY);
 //        dto1.setLevel(1);
 //        dto1.setName("Capacité de Tir");
 //        skills.add(dto1);
 //
-//        SkillDto dto2 = new SkillDto();
+//        Skill dto2 = new Skill();
 //        dto2.setCharacteristic(Characteristic.INTELLIGENCE);
 //        dto2.setLevel(0);
 //        dto2.setName("Observation");
 //        skills.add(dto2);
 //
-//        SkillDto dto3 = new SkillDto();
+//        Skill dto3 = new Skill();
 //        dto3.setCharacteristic(Characteristic.WILLPOWER);
 //        dto3.setLevel(0);
 //        dto3.setName("Discipline");
@@ -296,8 +296,8 @@ public class CharacteristicsFragment extends Fragment {
 //        return skills;
 //    }
 //
-//    private PlayerDto createSamplePlayerDto() {
-//        PlayerDto dto = new PlayerDto();
+//    private Player createSamplePlayerDto() {
+//        Player dto = new Player();
 //
 //        dto.setId(1);
 //

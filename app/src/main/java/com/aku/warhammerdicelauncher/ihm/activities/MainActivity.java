@@ -22,8 +22,8 @@ import com.aku.warhammerdicelauncher.database.WarHammerDatabaseHelper;
 import com.aku.warhammerdicelauncher.database.dao.PlayerDao;
 import com.aku.warhammerdicelauncher.ihm.fragments.LaunchFragment;
 import com.aku.warhammerdicelauncher.ihm.fragments.PlayerFragment;
-import com.aku.warhammerdicelauncher.model.dto.HandDto;
-import com.aku.warhammerdicelauncher.utils.PlayerRepository;
+import com.aku.warhammerdicelauncher.model.player.Hand;
+import com.aku.warhammerdicelauncher.utils.PlayerContext;
 import com.aku.warhammerdicelauncher.utils.constants.IHandConstants;
 import com.aku.warhammerdicelauncher.utils.helpers.FragmentHelper;
 
@@ -143,7 +143,7 @@ public class MainActivity extends AppCompatActivity {
         super.onSaveInstanceState(savedInstanceState);
 
         if (onLaunchFragment) {
-            HandDto dto = currentHandToDto();
+            Hand dto = currentHandToDto();
             savedInstanceState.putSerializable(IHandConstants.HAND_TAG, dto);
         }
         getFragmentManager().putFragment(savedInstanceState, FRAGMENT_TAG, fragmentContent);
@@ -153,7 +153,7 @@ public class MainActivity extends AppCompatActivity {
     public void onRestoreInstanceState(Bundle savedInstanceState) {
         super.onRestoreInstanceState(savedInstanceState);
         if (onLaunchFragment) {
-            HandDto dto = (HandDto) savedInstanceState.getSerializable(IHandConstants.HAND_TAG);
+            Hand dto = (Hand) savedInstanceState.getSerializable(IHandConstants.HAND_TAG);
             getCurrentLaunchFragment().dtoToCurrentHand(this, dto);
         }
         fragmentContent = getFragmentManager().getFragment(savedInstanceState, FRAGMENT_TAG);
@@ -208,7 +208,7 @@ public class MainActivity extends AppCompatActivity {
     //endregion
 
     //region Hand and dto helpers
-    private HandDto currentHandToDto() {
+    private Hand currentHandToDto() {
         return getCurrentLaunchFragment().currentHandToDto(this);
     }
     //endregion
@@ -230,7 +230,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void replaceByPlayerFragment() {
-        PlayerRepository.getEmptyPlayerInstance();
+        PlayerContext.getEmptyPlayerInstance();
         fragmentContent = FragmentHelper.replaceByPlayerFragment(getFragmentManager());
         onLaunchFragment = false;
         onPlayerFragment = true;

@@ -1,8 +1,9 @@
-package com.aku.warhammerdicelauncher.model.dto;
+package com.aku.warhammerdicelauncher.model.player;
 
-import com.aku.warhammerdicelauncher.model.dto.inventory.ArmourDto;
-import com.aku.warhammerdicelauncher.model.dto.inventory.InventoryItemDto;
-import com.aku.warhammerdicelauncher.model.dto.inventory.WeaponDto;
+import com.aku.warhammerdicelauncher.model.IModel;
+import com.aku.warhammerdicelauncher.model.player.inventory.Armour;
+import com.aku.warhammerdicelauncher.model.player.inventory.InventoryItem;
+import com.aku.warhammerdicelauncher.model.player.inventory.Weapon;
 import com.aku.warhammerdicelauncher.utils.constants.IPlayerConstants;
 
 import java.util.ArrayList;
@@ -12,7 +13,7 @@ import java.util.List;
  * Created by cnicolas on 06/10/2016.
  */
 
-public class PlayerDto implements IDto, IPlayerConstants {
+public class Player implements IModel, IPlayerConstants {
     //region Fields
     private int id;
 
@@ -36,29 +37,29 @@ public class PlayerDto implements IDto, IPlayerConstants {
     private int money_silver;
     private int money_gold;
 
-    private CharacteristicsDto characteristics;
-    private List<InventoryItemDto> inventory;
-    private List<ArmourDto> armour;
-    private List<WeaponDto> weapons;
-    private List<SkillDto> skills;
+    private Characteristics characteristics;
+    private List<InventoryItem> inventory;
+    private List<Armour> armour;
+    private List<Weapon> weapons;
+    private List<Skill> skills;
     //endregion
 
     //region Constructors
-    public PlayerDto() {
-        characteristics = new CharacteristicsDto();
+    public Player() {
+        characteristics = new Characteristics();
         skills = new ArrayList<>();
     }
 
-    public PlayerDto(String name, String race) {
+    public Player(String name, String race) {
         this();
         this.name = name;
         this.race = race;
     }
     //endregion
 
-    public List<SkillDto> addSkill(SkillDto skillDto) {
-        if (!skills.contains(skillDto)) {
-            skills.add(skillDto);
+    public List<Skill> addSkill(Skill skill) {
+        if (!skills.contains(skill)) {
+            skills.add(skill);
         }
         return skills;
     }
@@ -226,43 +227,43 @@ public class PlayerDto implements IDto, IPlayerConstants {
         this.money_gold = money_gold;
     }
 
-    public CharacteristicsDto getCharacteristics() {
+    public Characteristics getCharacteristics() {
         return characteristics;
     }
 
-    public void setCharacteristics(CharacteristicsDto characteristics) {
+    public void setCharacteristics(Characteristics characteristics) {
         this.characteristics = characteristics;
     }
 
-    public List<InventoryItemDto> getInventory() {
+    public List<InventoryItem> getInventory() {
         return inventory;
     }
 
-    public void setInventory(List<InventoryItemDto> inventory) {
+    public void setInventory(List<InventoryItem> inventory) {
         this.inventory = inventory;
     }
 
-    public List<ArmourDto> getArmour() {
+    public List<Armour> getArmour() {
         return armour;
     }
 
-    public void setArmour(List<ArmourDto> armour) {
+    public void setArmour(List<Armour> armour) {
         this.armour = armour;
     }
 
-    public List<WeaponDto> getWeapons() {
+    public List<Weapon> getWeapons() {
         return weapons;
     }
 
-    public void setWeapons(List<WeaponDto> weapons) {
+    public void setWeapons(List<Weapon> weapons) {
         this.weapons = weapons;
     }
 
-    public List<SkillDto> getSkills() {
+    public List<Skill> getSkills() {
         return skills;
     }
 
-    public void setSkills(List<SkillDto> skills) {
+    public void setSkills(List<Skill> skills) {
         this.skills = skills;
     }
     //endregion
@@ -271,7 +272,7 @@ public class PlayerDto implements IDto, IPlayerConstants {
 
     @Override
     public String toString() {
-        return "PlayerDto{" +
+        return "Player{" +
                 "id=" + id +
                 ", name='" + name + '\'' +
                 ", race='" + race + '\'' +
@@ -303,38 +304,38 @@ public class PlayerDto implements IDto, IPlayerConstants {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
 
-        PlayerDto playerDto = (PlayerDto) o;
+        Player player = (Player) o;
 
-        if (getId() != playerDto.getId()) return false;
-        if (getAge() != playerDto.getAge()) return false;
-        if (Double.compare(playerDto.getSize(), getSize()) != 0) return false;
-        if (getRank() != playerDto.getRank()) return false;
-        if (getExperience() != playerDto.getExperience()) return false;
-        if (getMax_experience() != playerDto.getMax_experience()) return false;
-        if (getWounds() != playerDto.getWounds()) return false;
-        if (getMax_wounds() != playerDto.getMax_wounds()) return false;
-        if (getReckless() != playerDto.getReckless()) return false;
-        if (getMax_reckless() != playerDto.getMax_reckless()) return false;
-        if (getConservative() != playerDto.getConservative()) return false;
-        if (getMax_conservative() != playerDto.getMax_conservative()) return false;
-        if (getMoney_brass() != playerDto.getMoney_brass()) return false;
-        if (getMoney_silver() != playerDto.getMoney_silver()) return false;
-        if (getMoney_gold() != playerDto.getMoney_gold()) return false;
-        if (getName() != null ? !getName().equals(playerDto.getName()) : playerDto.getName() != null)
+        if (getId() != player.getId()) return false;
+        if (getAge() != player.getAge()) return false;
+        if (Double.compare(player.getSize(), getSize()) != 0) return false;
+        if (getRank() != player.getRank()) return false;
+        if (getExperience() != player.getExperience()) return false;
+        if (getMax_experience() != player.getMax_experience()) return false;
+        if (getWounds() != player.getWounds()) return false;
+        if (getMax_wounds() != player.getMax_wounds()) return false;
+        if (getReckless() != player.getReckless()) return false;
+        if (getMax_reckless() != player.getMax_reckless()) return false;
+        if (getConservative() != player.getConservative()) return false;
+        if (getMax_conservative() != player.getMax_conservative()) return false;
+        if (getMoney_brass() != player.getMoney_brass()) return false;
+        if (getMoney_silver() != player.getMoney_silver()) return false;
+        if (getMoney_gold() != player.getMoney_gold()) return false;
+        if (getName() != null ? !getName().equals(player.getName()) : player.getName() != null)
             return false;
-        if (getRace() != null ? !getRace().equals(playerDto.getRace()) : playerDto.getRace() != null)
+        if (getRace() != null ? !getRace().equals(player.getRace()) : player.getRace() != null)
             return false;
-        if (getDescription() != null ? !getDescription().equals(playerDto.getDescription()) : playerDto.getDescription() != null)
+        if (getDescription() != null ? !getDescription().equals(player.getDescription()) : player.getDescription() != null)
             return false;
-        if (getCharacteristics() != null ? !getCharacteristics().equals(playerDto.getCharacteristics()) : playerDto.getCharacteristics() != null)
+        if (getCharacteristics() != null ? !getCharacteristics().equals(player.getCharacteristics()) : player.getCharacteristics() != null)
             return false;
-        if (getInventory() != null ? !getInventory().equals(playerDto.getInventory()) : playerDto.getInventory() != null)
+        if (getInventory() != null ? !getInventory().equals(player.getInventory()) : player.getInventory() != null)
             return false;
-        if (getArmour() != null ? !getArmour().equals(playerDto.getArmour()) : playerDto.getArmour() != null)
+        if (getArmour() != null ? !getArmour().equals(player.getArmour()) : player.getArmour() != null)
             return false;
-        if (getWeapons() != null ? !getWeapons().equals(playerDto.getWeapons()) : playerDto.getWeapons() != null)
+        if (getWeapons() != null ? !getWeapons().equals(player.getWeapons()) : player.getWeapons() != null)
             return false;
-        return getSkills() != null ? getSkills().equals(playerDto.getSkills()) : playerDto.getSkills() == null;
+        return getSkills() != null ? getSkills().equals(player.getSkills()) : player.getSkills() == null;
 
     }
 

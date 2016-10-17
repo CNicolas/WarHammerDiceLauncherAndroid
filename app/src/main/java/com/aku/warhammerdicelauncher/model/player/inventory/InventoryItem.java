@@ -1,22 +1,22 @@
-package com.aku.warhammerdicelauncher.model.dto.inventory;
+package com.aku.warhammerdicelauncher.model.player.inventory;
 
-import com.aku.warhammerdicelauncher.model.dto.IDto;
+import com.aku.warhammerdicelauncher.model.IModel;
 
 /**
  * Created by cnicolas on 06/10/2016.
  */
 
-public class InventoryItemDto implements IDto {
+public class InventoryItem implements IModel {
     private int id;
     private String name;
     private int encumbrance;
     private String notes;
 
     //region Constructors
-    public InventoryItemDto() {
+    public InventoryItem() {
     }
 
-    public InventoryItemDto(int id, String name, int encumbrance) {
+    public InventoryItem(int id, String name, int encumbrance) {
         this.id = id;
         this.name = name;
         this.encumbrance = encumbrance;
@@ -60,7 +60,7 @@ public class InventoryItemDto implements IDto {
     //region Overrides
     @Override
     public String toString() {
-        return "InventoryItemDto{" +
+        return "InventoryItem{" +
                 "id=" + id +
                 ", name='" + name + '\'' +
                 ", encumbrance=" + encumbrance +
@@ -73,7 +73,7 @@ public class InventoryItemDto implements IDto {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
 
-        InventoryItemDto that = (InventoryItemDto) o;
+        InventoryItem that = (InventoryItem) o;
 
         if (getId() != that.getId()) return false;
         if (getEncumbrance() != that.getEncumbrance()) return false;

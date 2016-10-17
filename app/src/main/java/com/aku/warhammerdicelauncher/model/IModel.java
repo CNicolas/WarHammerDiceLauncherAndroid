@@ -1,4 +1,4 @@
-package com.aku.warhammerdicelauncher.model.dto;
+package com.aku.warhammerdicelauncher.model;
 
 import java.io.Serializable;
 
@@ -6,6 +6,6 @@ import java.io.Serializable;
  * Created by cnicolas on 06/10/2016.
  */
 
-public interface IDto extends Serializable {
+public interface IModel extends Serializable {
     int getId();
 }

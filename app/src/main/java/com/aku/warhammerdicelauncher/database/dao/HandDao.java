@@ -7,14 +7,14 @@ import android.database.sqlite.SQLiteDatabase;
 
 import com.aku.warhammerdicelauncher.database.WarHammerDatabaseHelper;
 import com.aku.warhammerdicelauncher.database.entries.IHandEntryConstants;
-import com.aku.warhammerdicelauncher.model.dto.HandDto;
+import com.aku.warhammerdicelauncher.model.player.Hand;
 
 import java.util.List;
 
 /**
  * Created by cnicolas on 11/05/2016.
  */
-public class HandDao extends AbstractDao<HandDto> {
+public class HandDao extends AbstractDao<Hand> {
     public HandDao(WarHammerDatabaseHelper whdHelper) {
         super(whdHelper);
         tableName = IHandEntryConstants.TABLE_NAME;
@@ -26,13 +26,13 @@ public class HandDao extends AbstractDao<HandDto> {
         return findAllByField(IHandEntryConstants.COLUMN_NAME_TITLE);
     }
 
-    public HandDto findByTitle(String title) throws Resources.NotFoundException {
+    public Hand findByTitle(String title) throws Resources.NotFoundException {
         String[] selectionArgs = {title};
         SQLiteDatabase db = whdHelper.getReadableDatabase();
 
         Cursor cursor = db.query(tableName, null, IHandEntryConstants.COLUMN_NAME_TITLE + "=?", selectionArgs, null, null, null);
         if (cursor.moveToFirst()) {
-            HandDto dto = createDtoFromCursor(cursor);
+            Hand dto = createDtoFromCursor(cursor);
             cursor.close();
             return dto;
         } else {
@@ -43,9 +43,9 @@ public class HandDao extends AbstractDao<HandDto> {
     //endregion
 
     //region Update
-    public long update(HandDto handDto, String title) {
+    public long update(Hand hand, String title) {
         SQLiteDatabase db = whdHelper.getWritableDatabase();
-        ContentValues values = contentValuesFromDto(handDto);
+        ContentValues values = contentValuesFromDto(hand);
         String[] filters = {title};
 
         long res = db.update(tableName, values, String.format("%s = ?", IHandEntryConstants.COLUMN_NAME_TITLE), filters);
@@ -54,23 +54,23 @@ public class HandDao extends AbstractDao<HandDto> {
     //endregion
 
     //region Private Methods
-    protected ContentValues contentValuesFromDto(HandDto handDto) {
+    protected ContentValues contentValuesFromDto(Hand hand) {
         ContentValues values = new ContentValues();
 
-        values.put(IHandEntryConstants.COLUMN_NAME_TITLE, handDto.getTitle());
-        values.put(IHandEntryConstants.COLUMN_NAME_CHARACTERISTIC, handDto.getCharacteristic());
-        values.put(IHandEntryConstants.COLUMN_NAME_RECKLESS, handDto.getReckless());
-        values.put(IHandEntryConstants.COLUMN_NAME_CONSERVATIVE, handDto.getConservative());
-        values.put(IHandEntryConstants.COLUMN_NAME_EXPERTISE, handDto.getExpertise());
-        values.put(IHandEntryConstants.COLUMN_NAME_FORTUNE, handDto.getFortune());
-        values.put(IHandEntryConstants.COLUMN_NAME_MISFORTUNE, handDto.getMisfortune());
-        values.put(IHandEntryConstants.COLUMN_NAME_CHALLENGE, handDto.getChallenge());
+        values.put(IHandEntryConstants.COLUMN_NAME_TITLE, hand.getTitle());
+        values.put(IHandEntryConstants.COLUMN_NAME_CHARACTERISTIC, hand.getCharacteristic());
+        values.put(IHandEntryConstants.COLUMN_NAME_RECKLESS, hand.getReckless());
+        values.put(IHandEntryConstants.COLUMN_NAME_CONSERVATIVE, hand.getConservative());
+        values.put(IHandEntryConstants.COLUMN_NAME_EXPERTISE, hand.getExpertise());
+        values.put(IHandEntryConstants.COLUMN_NAME_FORTUNE, hand.getFortune());
+        values.put(IHandEntryConstants.COLUMN_NAME_MISFORTUNE, hand.getMisfortune());
+        values.put(IHandEntryConstants.COLUMN_NAME_CHALLENGE, hand.getChallenge());
 
         return values;
     }
 
-    protected HandDto createDtoFromCursor(Cursor cursor) {
-        HandDto dto = new HandDto();
+    protected Hand createDtoFromCursor(Cursor cursor) {
+        Hand dto = new Hand();
 
         dto.setId(cursor.getInt(cursor.getColumnIndexOrThrow(IHandEntryConstants.COLUMN_NAME_ID)));
 

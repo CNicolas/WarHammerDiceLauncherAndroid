@@ -8,9 +8,9 @@ import com.aku.warhammerdicelauncher.database.WarHammerDatabaseHelper;
 import com.aku.warhammerdicelauncher.database.dao.CharacteristicsDao;
 import com.aku.warhammerdicelauncher.database.dao.PlayerDao;
 import com.aku.warhammerdicelauncher.database.dao.SkillDao;
-import com.aku.warhammerdicelauncher.model.dto.CharacteristicsDto;
-import com.aku.warhammerdicelauncher.model.dto.PlayerDto;
-import com.aku.warhammerdicelauncher.model.dto.SkillDto;
+import com.aku.warhammerdicelauncher.model.player.Characteristics;
+import com.aku.warhammerdicelauncher.model.player.Player;
+import com.aku.warhammerdicelauncher.model.player.Skill;
 import com.aku.warhammerdicelauncher.utils.enums.Characteristic;
 
 import java.util.List;
@@ -48,7 +48,7 @@ public class DaoTests extends AndroidTestCase {
 
     @MediumTest
     public void testCharacteristicsDao() throws Exception {
-        List<CharacteristicsDto> res = characteristicsDao.findAll();
+        List<Characteristics> res = characteristicsDao.findAll();
 
         assertNotNull(res);
         assertEquals(1, res.size());
@@ -56,7 +56,7 @@ public class DaoTests extends AndroidTestCase {
 
     @MediumTest
     public void testPlayerDao() throws Exception {
-        List<PlayerDto> res = playerDao.findAll();
+        List<Player> res = playerDao.findAll();
 
         assertNotNull(res);
         assertEquals(1, res.size());
@@ -64,13 +64,13 @@ public class DaoTests extends AndroidTestCase {
 
     @MediumTest
     public void testSkillDao() throws Exception {
-        List<SkillDto> res = skillDao.findAllByPlayer(playerDao.findById(1));
+        List<Skill> res = skillDao.findAllByPlayer(playerDao.findById(1));
         assertNotNull(res);
         assertEquals(3, res.size());
     }
 
     private long insertCharacteristicDto() {
-        CharacteristicsDto dto = new CharacteristicsDto();
+        Characteristics dto = new Characteristics();
         dto.setStrength(1);
         dto.setToughness(2);
         dto.setAgility(3);
@@ -89,7 +89,7 @@ public class DaoTests extends AndroidTestCase {
     }
 
     private long insertPlayerDto() {
-        PlayerDto dto = new PlayerDto();
+        Player dto = new Player();
 
         dto.setName("Aku");
         dto.setRace("Elfe");
@@ -117,17 +117,17 @@ public class DaoTests extends AndroidTestCase {
     }
 
     private long[] insertSkillDto() {
-        SkillDto dto1 = new SkillDto();
+        Skill dto1 = new Skill();
         dto1.setCharacteristic(Characteristic.AGILITY);
         dto1.setLevel(1);
         dto1.setName("Capacité de Tir");
 
-        SkillDto dto2 = new SkillDto();
+        Skill dto2 = new Skill();
         dto2.setCharacteristic(Characteristic.INTELLIGENCE);
         dto2.setLevel(0);
         dto2.setName("Observation");
 
-        SkillDto dto3 = new SkillDto();
+        Skill dto3 = new Skill();
         dto3.setCharacteristic(Characteristic.WILLPOWER);
         dto3.setLevel(0);
         dto3.setName("Discipline");

@@ -13,8 +13,8 @@ import android.widget.TabHost.TabSpec;
 
 import com.aku.warhammerdicelauncher.R;
 import com.aku.warhammerdicelauncher.ihm.activities.MainActivity;
-import com.aku.warhammerdicelauncher.model.dto.PlayerDto;
-import com.aku.warhammerdicelauncher.utils.PlayerRepository;
+import com.aku.warhammerdicelauncher.model.player.Player;
+import com.aku.warhammerdicelauncher.utils.PlayerContext;
 
 public class PlayerFragment extends Fragment {
 
@@ -45,7 +45,7 @@ public class PlayerFragment extends Fragment {
     }
 
     public void updatePlayer(MainActivity context) {
-        PlayerDto player = PlayerRepository.getPlayerInstance();
+        Player player = PlayerContext.getPlayerInstance();
         new AlertDialog.Builder(context).setTitle(player.getName()).setMessage(player.toString()).show();
     }
 

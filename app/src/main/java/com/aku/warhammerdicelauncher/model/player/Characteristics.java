@@ -1,10 +1,12 @@
-package com.aku.warhammerdicelauncher.model.dto;
+package com.aku.warhammerdicelauncher.model.player;
+
+import com.aku.warhammerdicelauncher.model.IModel;
 
 /**
  * Created by cnicolas on 06/10/2016.
  */
 
-public class CharacteristicsDto implements IDto {
+public class Characteristics implements IModel {
     private int id;
 
     private int strength;
@@ -130,7 +132,7 @@ public class CharacteristicsDto implements IDto {
 
     @Override
     public String toString() {
-        return "CharacteristicsDto{" +
+        return "Characteristics{" +
                 "id=" + id +
                 ", strength=" + strength +
                 ", toughness=" + toughness +
@@ -152,7 +154,7 @@ public class CharacteristicsDto implements IDto {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
 
-        CharacteristicsDto that = (CharacteristicsDto) o;
+        Characteristics that = (Characteristics) o;
 
         if (getId() != that.getId()) return false;
         if (getStrength() != that.getStrength()) return false;

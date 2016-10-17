@@ -1,18 +1,18 @@
-package com.aku.warhammerdicelauncher.model.dto.inventory;
+package com.aku.warhammerdicelauncher.model.player.inventory;
 
 /**
  * Created by cnicolas on 06/10/2016.
  */
 
-public class WeaponDto extends InventoryItemDto {
+public class Weapon extends InventoryItem {
     private int damage;
     private int critical;
 
     //region Constructors
-    public WeaponDto() {
+    public Weapon() {
     }
 
-    public WeaponDto(int id, String name, int encumbrance, int damage, int critical) {
+    public Weapon(int id, String name, int encumbrance, int damage, int critical) {
         super(id, name, encumbrance);
         this.damage = damage;
         this.critical = critical;
@@ -40,7 +40,7 @@ public class WeaponDto extends InventoryItemDto {
     //region Overrides
     @Override
     public String toString() {
-        return "WeaponDto{" +
+        return "Weapon{" +
                 "damage=" + damage +
                 ", critical=" + critical +
                 '}';
@@ -52,7 +52,7 @@ public class WeaponDto extends InventoryItemDto {
         if (o == null || getClass() != o.getClass()) return false;
         if (!super.equals(o)) return false;
 
-        WeaponDto armourDto = (WeaponDto) o;
+        Weapon armourDto = (Weapon) o;
 
         if (getDamage() != armourDto.getDamage()) return false;
         return getCritical() == armourDto.getCritical();

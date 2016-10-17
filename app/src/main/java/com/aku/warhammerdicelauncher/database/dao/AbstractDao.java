@@ -6,7 +6,7 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 
 import com.aku.warhammerdicelauncher.database.WarHammerDatabaseHelper;
-import com.aku.warhammerdicelauncher.model.dto.IDto;
+import com.aku.warhammerdicelauncher.model.IModel;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -15,7 +15,7 @@ import java.util.List;
  * Created by cnicolas on 06/10/2016.
  */
 
-public abstract class AbstractDao<T extends IDto> implements IDao<T> {
+public abstract class AbstractDao<T extends IModel> implements IDao<T> {
     protected WarHammerDatabaseHelper whdHelper;
     protected String tableName;
     protected String columnNameId;

@@ -7,7 +7,7 @@ import android.widget.Button;
 import android.widget.TextView;
 
 import com.aku.warhammerdicelauncher.R;
-import com.aku.warhammerdicelauncher.model.dto.HandDto;
+import com.aku.warhammerdicelauncher.model.player.Hand;
 import com.aku.warhammerdicelauncher.utils.constants.IHandConstants;
 import com.aku.warhammerdicelauncher.utils.enums.DiceFaces;
 import com.aku.warhammerdicelauncher.utils.helpers.DicesRollerHelper;
@@ -31,7 +31,7 @@ public class StatisticsActivity extends Activity {
     public static final String AVERAGE_CHAOS = "averageChaos";
 
 
-    private HandDto dto;
+    private Hand dto;
     private int times;
     private DecimalFormat df;
     private int successfulRolls = 0;
@@ -47,14 +47,14 @@ public class StatisticsActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_statistics_layout);
 
-        dto = (HandDto) getIntent().getExtras().getSerializable(IHandConstants.HAND_TAG);
+        dto = (Hand) getIntent().getExtras().getSerializable(IHandConstants.HAND_TAG);
         times = getIntent().getExtras().getInt(IHandConstants.TIMES_TAG);
 
         df = new DecimalFormat("#.#");
         df.setRoundingMode(RoundingMode.HALF_UP);
 
         if (savedInstanceState != null) {
-            dto = (HandDto) savedInstanceState.getSerializable(IHandConstants.HAND_TAG);
+            dto = (Hand) savedInstanceState.getSerializable(IHandConstants.HAND_TAG);
             times = savedInstanceState.getInt(IHandConstants.TIMES_TAG);
 
             allThrows = (HashMap) savedInstanceState.getSerializable(ALL_THROWS);

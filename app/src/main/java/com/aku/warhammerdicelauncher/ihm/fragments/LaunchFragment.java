@@ -23,7 +23,7 @@ import com.aku.warhammerdicelauncher.R;
 import com.aku.warhammerdicelauncher.database.WarHammerDatabaseHelper;
 import com.aku.warhammerdicelauncher.database.dao.HandDao;
 import com.aku.warhammerdicelauncher.ihm.activities.MainActivity;
-import com.aku.warhammerdicelauncher.model.dto.HandDto;
+import com.aku.warhammerdicelauncher.model.player.Hand;
 import com.aku.warhammerdicelauncher.utils.enums.DiceFaces;
 import com.aku.warhammerdicelauncher.utils.helpers.DialogHelper;
 import com.aku.warhammerdicelauncher.utils.helpers.DicesRollerHelper;
@@ -40,6 +40,7 @@ public class LaunchFragment extends Fragment {
     private Spinner handsSpinner;
     private Button updateButton;
     private boolean initialized;
+    private View rootView;
 
     public LaunchFragment() {
         // Empty constructor required for fragment subclasses
@@ -50,7 +51,7 @@ public class LaunchFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View rootView = inflater.inflate(R.layout.fragment_launch, container, false);
+        rootView = inflater.inflate(R.layout.fragment_launch, container, false);
 
         handsSpinner = (Spinner) rootView.findViewById(R.id.hands_spinner);
         fillHandsSpinner();
@@ -74,7 +75,7 @@ public class LaunchFragment extends Fragment {
     //region Roll Dices
     public void rollDices(MainActivity ctx) {
         try {
-            HandDto dto = currentHandToDto(ctx);
+            Hand dto = currentHandToDto(ctx);
             Map<DiceFaces, Integer> res = DicesRollerHelper.rollDices(dto);
 
             DialogHelper.showLaunchResults(res, ctx);
@@ -111,9 +112,9 @@ public class LaunchFragment extends Fragment {
     }
 
     private void saveHandWithTitle(MainActivity ctx, String title) {
-        HandDto handDto = prepareDto(ctx, title);
+        Hand hand = prepareDto(ctx, title);
 
-        getHandDao(ctx).insert(handDto);
+        getHandDao(ctx).insert(hand);
 
         updateUI(ctx);
     }
@@ -128,9 +129,9 @@ public class LaunchFragment extends Fragment {
     }
 
     private void updateHandWithTitle(MainActivity ctx, String title) {
-        HandDto handDto = prepareDto(ctx, title);
+        Hand hand = prepareDto(ctx, title);
 
-        getHandDao(ctx).update(handDto, title);
+        getHandDao(ctx).update(hand, title);
     }
     //endregion
 
@@ -142,7 +143,7 @@ public class LaunchFragment extends Fragment {
             HandDao dao = getHandDao(ctx);
 
             try {
-                HandDto dto = dao.findByTitle(title);
+                Hand dto = dao.findByTitle(title);
                 dtoToCurrentHand(ctx, dto);
             } catch (Resources.NotFoundException nfe) {
                 Log.e(this.getClass().getName(), "useHand: ", nfe);
@@ -170,10 +171,10 @@ public class LaunchFragment extends Fragment {
 
     //region Number Pickers
     /**
-     * Get current pickers' value and create a HandDto with them
+     * Get current pickers' value and create a Hand with them
      */
-    public HandDto currentHandToDto(MainActivity ctx) {
-        HandDto dto = new HandDto();
+    public Hand currentHandToDto(MainActivity ctx) {
+        Hand dto = new Hand();
 
         dto.setCharacteristic(((NumberPicker) ctx.findViewById(R.id.numberPickerCharacteristic)).getValue());
         dto.setReckless(((NumberPicker) ctx.findViewById(R.id.numberPickerReckless)).getValue());
@@ -192,7 +193,7 @@ public class LaunchFragment extends Fragment {
      * @param dto
      * @param ctx
      */
-    public void dtoToCurrentHand(MainActivity ctx, HandDto dto) {
+    public void dtoToCurrentHand(MainActivity ctx, Hand dto) {
         NumberPicker characteristicPicker = (NumberPicker) ctx.findViewById(R.id.numberPickerCharacteristic);
         NumberPicker recklessPicker = (NumberPicker) ctx.findViewById(R.id.numberPickerReckless);
         NumberPicker conservativePicker = (NumberPicker) ctx.findViewById(R.id.numberPickerConservative);
@@ -242,10 +243,10 @@ public class LaunchFragment extends Fragment {
         return new HandDao(whdHelper);
     }
 
-    private HandDto prepareDto(MainActivity ctx, String title) {
-        HandDto handDto = currentHandToDto(ctx);
-        handDto.setTitle(title);
-        return handDto;
+    private Hand prepareDto(MainActivity ctx, String title) {
+        Hand hand = currentHandToDto(ctx);
+        hand.setTitle(title);
+        return hand;
     }
     //endregion
 

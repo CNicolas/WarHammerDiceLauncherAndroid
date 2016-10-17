@@ -1,18 +1,18 @@
-package com.aku.warhammerdicelauncher.model.dto.inventory;
+package com.aku.warhammerdicelauncher.model.player.inventory;
 
 /**
  * Created by cnicolas on 06/10/2016.
  */
 
-public class ArmourDto extends InventoryItemDto {
+public class Armour extends InventoryItem {
     private int defense;
     private int soak;
 
     //region Constructors
-    public ArmourDto() {
+    public Armour() {
     }
 
-    public ArmourDto(int id, String name, int encumbrance, int defense, int soak) {
+    public Armour(int id, String name, int encumbrance, int defense, int soak) {
         super(id, name, encumbrance);
         this.defense = defense;
         this.soak = soak;
@@ -40,7 +40,7 @@ public class ArmourDto extends InventoryItemDto {
     //region Overrides
     @Override
     public String toString() {
-        return "ArmourDto{" +
+        return "Armour{" +
                 "defense=" + defense +
                 ", soak=" + soak +
                 '}';
@@ -52,7 +52,7 @@ public class ArmourDto extends InventoryItemDto {
         if (o == null || getClass() != o.getClass()) return false;
         if (!super.equals(o)) return false;
 
-        ArmourDto armourDto = (ArmourDto) o;
+        Armour armourDto = (Armour) o;
 
         if (getDefense() != armourDto.getDefense()) return false;
         return getSoak() == armourDto.getSoak();

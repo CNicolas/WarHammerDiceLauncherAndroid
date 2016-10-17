@@ -5,9 +5,9 @@ import android.database.Cursor;
 
 import com.aku.warhammerdicelauncher.database.WarHammerDatabaseHelper;
 import com.aku.warhammerdicelauncher.database.entries.IPlayerEntryConstants;
-import com.aku.warhammerdicelauncher.model.dto.CharacteristicsDto;
-import com.aku.warhammerdicelauncher.model.dto.PlayerDto;
-import com.aku.warhammerdicelauncher.model.dto.SkillDto;
+import com.aku.warhammerdicelauncher.model.player.Characteristics;
+import com.aku.warhammerdicelauncher.model.player.Player;
+import com.aku.warhammerdicelauncher.model.player.Skill;
 
 import java.util.List;
 
@@ -15,7 +15,7 @@ import java.util.List;
  * Created by cnicolas on 12/10/2016.
  */
 
-public class PlayerDao extends AbstractDao<PlayerDto> {
+public class PlayerDao extends AbstractDao<Player> {
     private final CharacteristicsDao characteristicsDao;
     private final SkillDao skillDao;
 
@@ -36,36 +36,36 @@ public class PlayerDao extends AbstractDao<PlayerDto> {
     //endregion
 
     //region Private Methods
-    protected ContentValues contentValuesFromDto(PlayerDto playerDto) {
+    protected ContentValues contentValuesFromDto(Player player) {
         ContentValues values = new ContentValues();
 
-        values.put(IPlayerEntryConstants.COLUMN_NAME_NAME, playerDto.getName());
-        values.put(IPlayerEntryConstants.COLUMN_NAME_RACE, playerDto.getRace());
-        values.put(IPlayerEntryConstants.COLUMN_NAME_AGE, playerDto.getAge());
-        values.put(IPlayerEntryConstants.COLUMN_NAME_SIZE, playerDto.getSize());
-        values.put(IPlayerEntryConstants.COLUMN_NAME_DESCRIPTION, playerDto.getDescription());
+        values.put(IPlayerEntryConstants.COLUMN_NAME_NAME, player.getName());
+        values.put(IPlayerEntryConstants.COLUMN_NAME_RACE, player.getRace());
+        values.put(IPlayerEntryConstants.COLUMN_NAME_AGE, player.getAge());
+        values.put(IPlayerEntryConstants.COLUMN_NAME_SIZE, player.getSize());
+        values.put(IPlayerEntryConstants.COLUMN_NAME_DESCRIPTION, player.getDescription());
 
-        values.put(IPlayerEntryConstants.COLUMN_NAME_RANK, playerDto.getRank());
-        values.put(IPlayerEntryConstants.COLUMN_NAME_EXPERIENCE, playerDto.getExperience());
-        values.put(IPlayerEntryConstants.COLUMN_NAME_MAX_EXPERIENCE, playerDto.getMax_experience());
-        values.put(IPlayerEntryConstants.COLUMN_NAME_WOUNDS, playerDto.getWounds());
-        values.put(IPlayerEntryConstants.COLUMN_NAME_MAX_WOUNDS, playerDto.getMax_wounds());
-        values.put(IPlayerEntryConstants.COLUMN_NAME_RECKLESS, playerDto.getReckless());
-        values.put(IPlayerEntryConstants.COLUMN_NAME_MAX_RECKLESS, playerDto.getMax_reckless());
-        values.put(IPlayerEntryConstants.COLUMN_NAME_CONSERVATIVE, playerDto.getConservative());
-        values.put(IPlayerEntryConstants.COLUMN_NAME_MAX_CONSERVATIVE, playerDto.getMax_conservative());
+        values.put(IPlayerEntryConstants.COLUMN_NAME_RANK, player.getRank());
+        values.put(IPlayerEntryConstants.COLUMN_NAME_EXPERIENCE, player.getExperience());
+        values.put(IPlayerEntryConstants.COLUMN_NAME_MAX_EXPERIENCE, player.getMax_experience());
+        values.put(IPlayerEntryConstants.COLUMN_NAME_WOUNDS, player.getWounds());
+        values.put(IPlayerEntryConstants.COLUMN_NAME_MAX_WOUNDS, player.getMax_wounds());
+        values.put(IPlayerEntryConstants.COLUMN_NAME_RECKLESS, player.getReckless());
+        values.put(IPlayerEntryConstants.COLUMN_NAME_MAX_RECKLESS, player.getMax_reckless());
+        values.put(IPlayerEntryConstants.COLUMN_NAME_CONSERVATIVE, player.getConservative());
+        values.put(IPlayerEntryConstants.COLUMN_NAME_MAX_CONSERVATIVE, player.getMax_conservative());
 
-        values.put(IPlayerEntryConstants.COLUMN_NAME_MONEY_BRASS, playerDto.getMoney_brass());
-        values.put(IPlayerEntryConstants.COLUMN_NAME_MONEY_SILVER, playerDto.getMoney_silver());
-        values.put(IPlayerEntryConstants.COLUMN_NAME_MONEY_GOLD, playerDto.getMoney_gold());
+        values.put(IPlayerEntryConstants.COLUMN_NAME_MONEY_BRASS, player.getMoney_brass());
+        values.put(IPlayerEntryConstants.COLUMN_NAME_MONEY_SILVER, player.getMoney_silver());
+        values.put(IPlayerEntryConstants.COLUMN_NAME_MONEY_GOLD, player.getMoney_gold());
 
-        values.put(IPlayerEntryConstants.COLUMN_NAME_CHARACTERISTICS_ID, playerDto.getCharacteristics().getId());
+        values.put(IPlayerEntryConstants.COLUMN_NAME_CHARACTERISTICS_ID, player.getCharacteristics().getId());
 
         return values;
     }
 
-    protected PlayerDto createDtoFromCursor(Cursor cursor) {
-        PlayerDto dto = new PlayerDto();
+    protected Player createDtoFromCursor(Cursor cursor) {
+        Player dto = new Player();
 
         dto.setId(cursor.getInt(cursor.getColumnIndexOrThrow(columnNameId)));
 
@@ -89,10 +89,10 @@ public class PlayerDao extends AbstractDao<PlayerDto> {
         dto.setMoney_silver(cursor.getInt(cursor.getColumnIndexOrThrow(IPlayerEntryConstants.COLUMN_NAME_MONEY_SILVER)));
         dto.setMoney_gold(cursor.getInt(cursor.getColumnIndexOrThrow(IPlayerEntryConstants.COLUMN_NAME_MONEY_GOLD)));
 
-        CharacteristicsDto characteristics = characteristicsDao.findById(cursor.getInt(cursor.getColumnIndexOrThrow(IPlayerEntryConstants.COLUMN_NAME_CHARACTERISTICS_ID)));
+        Characteristics characteristics = characteristicsDao.findById(cursor.getInt(cursor.getColumnIndexOrThrow(IPlayerEntryConstants.COLUMN_NAME_CHARACTERISTICS_ID)));
         dto.setCharacteristics(characteristics);
 
-        List<SkillDto> skills = skillDao.findAllByPlayer(dto);
+        List<Skill> skills = skillDao.findAllByPlayer(dto);
         dto.setSkills(skills);
 
         return dto;

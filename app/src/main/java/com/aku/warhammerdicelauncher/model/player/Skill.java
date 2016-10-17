@@ -1,26 +1,27 @@
-package com.aku.warhammerdicelauncher.model.dto;
+package com.aku.warhammerdicelauncher.model.player;
 
+import com.aku.warhammerdicelauncher.model.IModel;
 import com.aku.warhammerdicelauncher.utils.enums.Characteristic;
 
 /**
  * Created by cnicolas on 06/10/2016.
  */
 
-public class SkillDto implements IDto {
+public class Skill implements IModel {
     private int id;
     private String name;
     private Characteristic characteristic;
     private int level;
     private int player_id;
 
-    public SkillDto() {
+    public Skill() {
     }
 
-    public SkillDto(String name, Characteristic characteristic, int level, PlayerDto playerDto) {
+    public Skill(String name, Characteristic characteristic, int level, Player player) {
         this.name = name;
         this.characteristic = characteristic;
         this.level = level;
-        this.player_id = playerDto.getId();
+        this.player_id = player.getId();
     }
 
     //region Get & Set
@@ -69,7 +70,7 @@ public class SkillDto implements IDto {
 
     @Override
     public String toString() {
-        return "SkillDto{" +
+        return "Skill{" +
                 "id=" + id +
                 ", name='" + name + '\'' +
                 ", characteristic=" + characteristic +
@@ -83,14 +84,14 @@ public class SkillDto implements IDto {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
 
-        SkillDto skillDto = (SkillDto) o;
+        Skill skill = (Skill) o;
 
-        if (getId() != skillDto.getId()) return false;
-        if (getLevel() != skillDto.getLevel()) return false;
-        if (getPlayer_id() != skillDto.getPlayer_id()) return false;
-        if (getName() != null ? !getName().equals(skillDto.getName()) : skillDto.getName() != null)
+        if (getId() != skill.getId()) return false;
+        if (getLevel() != skill.getLevel()) return false;
+        if (getPlayer_id() != skill.getPlayer_id()) return false;
+        if (getName() != null ? !getName().equals(skill.getName()) : skill.getName() != null)
             return false;
-        return getCharacteristic() == skillDto.getCharacteristic();
+        return getCharacteristic() == skill.getCharacteristic();
 
     }
 

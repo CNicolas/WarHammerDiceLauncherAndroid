@@ -5,12 +5,12 @@ import android.database.Cursor;
 
 import com.aku.warhammerdicelauncher.database.WarHammerDatabaseHelper;
 import com.aku.warhammerdicelauncher.database.entries.ICharacteristicsEntryConstants;
-import com.aku.warhammerdicelauncher.model.dto.CharacteristicsDto;
+import com.aku.warhammerdicelauncher.model.player.Characteristics;
 
 /**
  * Created by cnicolas on 06/10/2016.
  */
-public class CharacteristicsDao extends AbstractDao<CharacteristicsDto> {
+public class CharacteristicsDao extends AbstractDao<Characteristics> {
     public CharacteristicsDao(WarHammerDatabaseHelper whdHelper) {
         super(whdHelper);
         tableName = ICharacteristicsEntryConstants.TABLE_NAME;
@@ -18,7 +18,7 @@ public class CharacteristicsDao extends AbstractDao<CharacteristicsDto> {
     }
 
     //region Private Methods
-    protected ContentValues contentValuesFromDto(CharacteristicsDto dto) {
+    protected ContentValues contentValuesFromDto(Characteristics dto) {
         ContentValues values = new ContentValues();
 
         values.put(ICharacteristicsEntryConstants.COLUMN_NAME_STRENGTH, dto.getStrength());
@@ -38,8 +38,8 @@ public class CharacteristicsDao extends AbstractDao<CharacteristicsDto> {
         return values;
     }
 
-    protected CharacteristicsDto createDtoFromCursor(Cursor cursor) {
-        CharacteristicsDto dto = new CharacteristicsDto();
+    protected Characteristics createDtoFromCursor(Cursor cursor) {
+        Characteristics dto = new Characteristics();
 
         dto.setId(cursor.getInt(cursor.getColumnIndexOrThrow(columnNameId)));
 

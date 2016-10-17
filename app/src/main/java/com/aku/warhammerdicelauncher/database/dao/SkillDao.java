@@ -6,8 +6,8 @@ import android.database.sqlite.SQLiteDatabase;
 
 import com.aku.warhammerdicelauncher.database.WarHammerDatabaseHelper;
 import com.aku.warhammerdicelauncher.database.entries.ISkillEntryConstants;
-import com.aku.warhammerdicelauncher.model.dto.PlayerDto;
-import com.aku.warhammerdicelauncher.model.dto.SkillDto;
+import com.aku.warhammerdicelauncher.model.player.Player;
+import com.aku.warhammerdicelauncher.model.player.Skill;
 import com.aku.warhammerdicelauncher.utils.enums.Characteristic;
 
 import org.apache.commons.lang3.NotImplementedException;
@@ -18,7 +18,7 @@ import java.util.List;
 /**
  * Created by cnicolas on 11/05/2016.
  */
-public class SkillDao extends AbstractDao<SkillDto> {
+public class SkillDao extends AbstractDao<Skill> {
     public SkillDao(WarHammerDatabaseHelper whdHelper) {
         super(whdHelper);
         tableName = ISkillEntryConstants.TABLE_NAME;
@@ -26,15 +26,15 @@ public class SkillDao extends AbstractDao<SkillDto> {
     }
 
     //region Find
-    public List<SkillDto> findAllByPlayer(PlayerDto playerDto) {
-        String[] selectionArgs = {String.valueOf(playerDto.getId())};
+    public List<Skill> findAllByPlayer(Player player) {
+        String[] selectionArgs = {String.valueOf(player.getId())};
         SQLiteDatabase db = whdHelper.getReadableDatabase();
         Cursor cursor = db.query(tableName, null, ISkillEntryConstants.COLUMN_NAME_PLAYER_ID + " = ?", selectionArgs, null, null, null);
 
-        List<SkillDto> res = new ArrayList<>();
+        List<Skill> res = new ArrayList<>();
         if (cursor.moveToFirst()) {
             while (!cursor.isAfterLast()) {
-                SkillDto dto = createDtoFromCursor(cursor);
+                Skill dto = createDtoFromCursor(cursor);
                 res.add(dto);
                 cursor.moveToNext();
             }
@@ -48,29 +48,29 @@ public class SkillDao extends AbstractDao<SkillDto> {
 
     //region Insert
     @Override
-    public long insert(SkillDto skillDto) {
-        throw new NotImplementedException("insert(SkillDto)");
+    public long insert(Skill skill) {
+        throw new NotImplementedException("insert(Skill)");
     }
 
-    public long insert(SkillDto skillDto, PlayerDto playerDto) {
+    public long insert(Skill skill, Player player) {
         SQLiteDatabase db = whdHelper.getWritableDatabase();
 
-        ContentValues values = contentValuesFromDto(skillDto, playerDto);
+        ContentValues values = contentValuesFromDto(skill, player);
 
         long res = db.insert(tableName, null, values);
         return res;
     }
 
     @Override
-    public List<Long> insertAll(List<SkillDto> skillDtoList) {
-        throw new NotImplementedException("insertAll(List<SkillDto>)");
+    public List<Long> insertAll(List<Skill> skillList) {
+        throw new NotImplementedException("insertAll(List<Skill>)");
     }
 
-    public List<Long> insertAll(List<SkillDto> skillDtoList, PlayerDto playerDto) {
+    public List<Long> insertAll(List<Skill> skillList, Player player) {
         List<Long> res = new ArrayList<>();
 
-        for (SkillDto skillDto : skillDtoList) {
-            res.add(insert(skillDto, playerDto));
+        for (Skill skill : skillList) {
+            res.add(insert(skill, player));
         }
 
         return res;
@@ -79,23 +79,23 @@ public class SkillDao extends AbstractDao<SkillDto> {
     //endregion
 
     //region Private Methods
-    protected ContentValues contentValuesFromDto(SkillDto skillDto) {
-        throw new NotImplementedException("contentValuesFromDto(SkillDto)");
+    protected ContentValues contentValuesFromDto(Skill skill) {
+        throw new NotImplementedException("contentValuesFromDto(Skill)");
     }
 
-    protected ContentValues contentValuesFromDto(SkillDto skillDto, PlayerDto playerDto) {
+    protected ContentValues contentValuesFromDto(Skill skill, Player player) {
         ContentValues values = new ContentValues();
 
-        values.put(ISkillEntryConstants.COLUMN_NAME_NAME, skillDto.getName());
-        values.put(ISkillEntryConstants.COLUMN_NAME_CHARACTERISTIC, skillDto.getCharacteristic().toString());
-        values.put(ISkillEntryConstants.COLUMN_NAME_LEVEL, skillDto.getLevel());
-        values.put(ISkillEntryConstants.COLUMN_NAME_PLAYER_ID, playerDto.getId());
+        values.put(ISkillEntryConstants.COLUMN_NAME_NAME, skill.getName());
+        values.put(ISkillEntryConstants.COLUMN_NAME_CHARACTERISTIC, skill.getCharacteristic().toString());
+        values.put(ISkillEntryConstants.COLUMN_NAME_LEVEL, skill.getLevel());
+        values.put(ISkillEntryConstants.COLUMN_NAME_PLAYER_ID, player.getId());
 
         return values;
     }
 
-    protected SkillDto createDtoFromCursor(Cursor cursor) {
-        SkillDto dto = new SkillDto();
+    protected Skill createDtoFromCursor(Cursor cursor) {
+        Skill dto = new Skill();
 
         dto.setId(cursor.getInt(cursor.getColumnIndexOrThrow(columnNameId)));
         dto.setName(cursor.getString(cursor.getColumnIndexOrThrow(ISkillEntryConstants.COLUMN_NAME_NAME)));

@@ -8,7 +8,7 @@ import com.aku.warhammerdicelauncher.model.dices.impl.ExpertiseDice;
 import com.aku.warhammerdicelauncher.model.dices.impl.FortuneDice;
 import com.aku.warhammerdicelauncher.model.dices.impl.MisfortuneDice;
 import com.aku.warhammerdicelauncher.model.dices.impl.RecklessDice;
-import com.aku.warhammerdicelauncher.model.dto.HandDto;
+import com.aku.warhammerdicelauncher.model.player.Hand;
 import com.aku.warhammerdicelauncher.utils.constants.IHandConstants;
 import com.aku.warhammerdicelauncher.utils.enums.DiceFaces;
 
@@ -23,7 +23,7 @@ import java.util.Map;
  */
 public class DicesRollerHelper {
 
-    public static Map<DiceFaces, Integer> rollDices(HandDto dto) {
+    public static Map<DiceFaces, Integer> rollDices(Hand dto) {
         List<IDice> pool = createPool(dto);
         List<DiceFaces> tmp = new ArrayList<>();
         for (IDice dice : pool) {
@@ -36,7 +36,7 @@ public class DicesRollerHelper {
         return handResults.containsKey(DiceFaces.SUCCESS);
     }
 
-    private static List<IDice> createPool(HandDto dto) {
+    private static List<IDice> createPool(Hand dto) {
         List<IDice> pool = new ArrayList<>();
 
         for (int i = 0; i < dto.getCharacteristic(); i++) {
