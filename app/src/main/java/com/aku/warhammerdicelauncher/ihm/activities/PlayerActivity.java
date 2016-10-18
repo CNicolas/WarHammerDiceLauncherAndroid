@@ -21,10 +21,6 @@ import com.aku.warhammerdicelauncher.tools.PlayerContext;
 public class PlayerActivity extends AppCompatActivity {
 
     private PlayerPagerAdapter mPlayerPagerAdapter;
-
-    /**
-     * The {@link ViewPager} that will host the section contents.
-     */
     private ViewPager mViewPager;
 
     @Override
@@ -34,11 +30,8 @@ public class PlayerActivity extends AppCompatActivity {
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-        // Create the adapter that will return a fragment for each of the three
-        // primary sections of the activity.
-        mPlayerPagerAdapter = new PlayerPagerAdapter(this);
 
-        // Set up the ViewPager with the sections adapter.
+        mPlayerPagerAdapter = new PlayerPagerAdapter(this);
         mViewPager = (ViewPager) findViewById(R.id.container);
         mViewPager.setAdapter(mPlayerPagerAdapter);
 
@@ -61,7 +54,6 @@ public class PlayerActivity extends AppCompatActivity {
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.menu_player, menu);
         return super.onCreateOptionsMenu(menu);
     }

@@ -60,6 +60,8 @@
     <string name="averageSuccessFormat">Nombre moyen de succès  : %1$s</string>
     <string name="action_update_player">Mettre le joueur à jour</string>
     <string name="page_skills">Compétences</string>
+    <string name="action_settings">Paramètres</string>
+    <string name="updated">Mis-à-jour avec succès</string>
     <!--End of pages-->
 
 </resources>

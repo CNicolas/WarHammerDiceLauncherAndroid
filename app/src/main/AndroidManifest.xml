@@ -33,7 +33,6 @@
 
         <activity
             android:name=".ihm.activities.PlayerActivity"
-            android:label="@string/title_activity_player"
             android:parentActivityName=".ihm.activities.HomeActivity"
             android:theme="@style/AppTheme.NoActionBar">
             <meta-data
