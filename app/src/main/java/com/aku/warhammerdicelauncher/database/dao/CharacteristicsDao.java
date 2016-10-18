@@ -14,7 +14,7 @@ public class CharacteristicsDao extends AbstractDao<Characteristics> {
     public CharacteristicsDao(WarHammerDatabaseHelper whdHelper) {
         super(whdHelper);
         tableName = ICharacteristicsEntryConstants.TABLE_NAME;
-        columnNameId = ICharacteristicsEntryConstants.COLUMN_ID;
+        columnId = ICharacteristicsEntryConstants.COLUMN_ID;
     }
 
     //region Private Methods
@@ -41,7 +41,7 @@ public class CharacteristicsDao extends AbstractDao<Characteristics> {
     protected Characteristics createDtoFromCursor(Cursor cursor) {
         Characteristics dto = new Characteristics();
 
-        dto.setId(cursor.getInt(cursor.getColumnIndexOrThrow(columnNameId)));
+        dto.setId(cursor.getInt(cursor.getColumnIndexOrThrow(columnId)));
 
         dto.setStrength(cursor.getInt(cursor.getColumnIndexOrThrow(ICharacteristicsEntryConstants.COLUMN_STRENGTH)));
         dto.setToughness(cursor.getInt(cursor.getColumnIndexOrThrow(ICharacteristicsEntryConstants.COLUMN_TOUGHNESS)));

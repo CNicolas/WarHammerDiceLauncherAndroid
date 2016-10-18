@@ -1,9 +1,9 @@
 package com.aku.warhammerdicelauncher.database.dao;
 
 import android.content.ContentValues;
-import android.content.res.Resources;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
+import android.database.sqlite.SQLiteException;
 
 import com.aku.warhammerdicelauncher.database.WarHammerDatabaseHelper;
 import com.aku.warhammerdicelauncher.model.IModel;
@@ -18,7 +18,7 @@ import java.util.List;
 public abstract class AbstractDao<T extends IModel> implements IDao<T> {
     protected WarHammerDatabaseHelper whdHelper;
     protected String tableName;
-    protected String columnNameId;
+    protected String columnId;
 
     public AbstractDao(WarHammerDatabaseHelper whdHelper) {
         this.whdHelper = whdHelper;
@@ -32,8 +32,8 @@ public abstract class AbstractDao<T extends IModel> implements IDao<T> {
         Cursor cursor = db.query(tableName, null, null, null, null, null, null);
         if (cursor.moveToFirst()) {
             while (!cursor.isAfterLast()) {
-                T dto = createDtoFromCursor(cursor);
-                res.add(dto);
+                T model = createDtoFromCursor(cursor);
+                res.add(model);
                 cursor.moveToNext();
             }
         }
@@ -42,22 +42,30 @@ public abstract class AbstractDao<T extends IModel> implements IDao<T> {
         return res;
     }
 
-    public T findById(int id) throws Resources.NotFoundException {
-        String[] selectionArgs = {String.valueOf(id)};
+    public T findById(int id) throws SQLiteException {
+        return findByIntegerInColumn(id, columnId);
+    }
+
+    public T findByIntegerInColumn(int field, String column) throws SQLiteException {
+        return findByStringInColumn(String.valueOf(field), column);
+    }
+
+    public T findByStringInColumn(String field, String column) throws SQLiteException {
+        String[] selectionArgs = {field};
         SQLiteDatabase db = whdHelper.getReadableDatabase();
 
-        Cursor cursor = db.query(tableName, null, columnNameId + "=?", selectionArgs, null, null, null);
+        Cursor cursor = db.query(tableName, null, column + "=?", selectionArgs, null, null, null);
         if (cursor.moveToFirst()) {
-            T dto = createDtoFromCursor(cursor);
+            T model = createDtoFromCursor(cursor);
             cursor.close();
-            return dto;
+            return model;
         } else {
             cursor.close();
-            throw new Resources.NotFoundException();
+            throw new SQLiteException();
         }
     }
 
-    public List<String> findAllByField(String column) {
+    public List<String> findAllValuesOfColumn(String column) {
         List<String> res = new ArrayList<>();
         String[] projection = {column};
         SQLiteDatabase db = whdHelper.getReadableDatabase();
@@ -74,6 +82,7 @@ public abstract class AbstractDao<T extends IModel> implements IDao<T> {
 
         return res;
     }
+
     //endregion
 
     //region Insert
@@ -102,7 +111,7 @@ public abstract class AbstractDao<T extends IModel> implements IDao<T> {
         SQLiteDatabase db = whdHelper.getWritableDatabase();
         String[] filters = {String.valueOf(dto.getId())};
 
-        long res = db.delete(tableName, String.format("%s = ?", columnNameId), filters);
+        long res = db.delete(tableName, String.format("%s = ?", columnId), filters);
         return res;
     }
     //endregion

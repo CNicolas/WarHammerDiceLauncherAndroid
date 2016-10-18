@@ -1,16 +1,14 @@
-package com.aku.warhammerdicelauncher.ihm.fragments;
+package com.aku.warhammerdicelauncher.ihm.activities;
 
 import android.app.Activity;
 import android.app.AlertDialog;
-import android.app.Fragment;
 import android.content.DialogInterface;
 import android.content.res.Resources;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.text.InputType;
 import android.util.Log;
-import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
@@ -23,7 +21,6 @@ import android.widget.Toast;
 import com.aku.warhammerdicelauncher.R;
 import com.aku.warhammerdicelauncher.database.WarHammerDatabaseHelper;
 import com.aku.warhammerdicelauncher.database.dao.HandDao;
-import com.aku.warhammerdicelauncher.ihm.activities.MainActivity;
 import com.aku.warhammerdicelauncher.model.player.Hand;
 import com.aku.warhammerdicelauncher.utils.enums.DiceFaces;
 import com.aku.warhammerdicelauncher.utils.helpers.DialogHelper;
@@ -33,53 +30,31 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
-/**
- * Created by cnicolas on 12/05/2016.
- */
-public class LaunchFragment extends Fragment {
-
+public class LaunchActivity extends AppCompatActivity {
     private Spinner handsSpinner;
     private Button updateButton;
-    private boolean initialized;
-    private View mRootView;
-
-    public LaunchFragment() {
-        // Empty constructor required for fragment subclasses
-    }
-
-    //region Overrides
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
-        mRootView = inflater.inflate(R.layout.fragment_launch, container, false);
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_launch);
 
-        handsSpinner = (Spinner) mRootView.findViewById(R.id.hands_spinner);
+        handsSpinner = (Spinner) findViewById(R.id.hands_spinner);
         fillHandsSpinner();
         handsSpinner.setSelection(0, false);
-        handsSpinner.setOnItemSelectedListener(new SpinnerItemSelectedListener());
+        handsSpinner.setOnItemSelectedListener(new SpinnerItemSelectedListener(getHandDao().findAllTitles().size() > 0));
 
-        updateButton = (Button) mRootView.findViewById(R.id.updateButton);
+        updateButton = (Button) findViewById(R.id.updateButton);
         updateButton.setVisibility(View.GONE);
-
-        return mRootView;
     }
-
-    @Override
-    public void onResume() {
-        super.onResume();
-        fillHandsSpinner();
-    }
-
-    //endregion
 
     //region Roll Dices
-    public void rollDices() {
+    public void rollDices(View v) {
         try {
             Hand dto = currentHandToDto();
             Map<DiceFaces, Integer> res = DicesRollerHelper.rollDices(dto);
 
-            DialogHelper.showLaunchResults(res, getActivity());
+            DialogHelper.showLaunchResults(res, this);
         } catch (Exception e) {
             Log.e(getClass().getName(), "rollDices: ", e);
             throw e;
@@ -88,13 +63,12 @@ public class LaunchFragment extends Fragment {
     //endregion
 
     //region Save Hand
-    public void saveHand() {
+    public void saveHand(View v) {
         try {
-            Activity ctx = getActivity();
-            AlertDialog.Builder builder = new AlertDialog.Builder(ctx);
+            AlertDialog.Builder builder = new AlertDialog.Builder(this);
             builder.setTitle(R.string.insertHandTitleTitle);
 
-            final EditText input = new EditText(ctx);
+            final EditText input = new EditText(this);
             input.setInputType(InputType.TYPE_CLASS_TEXT);
             builder.setView(input);
 
@@ -118,12 +92,12 @@ public class LaunchFragment extends Fragment {
 
         getHandDao().insert(hand);
 
-        updateUI((MainActivity) getActivity());
+        updateUI(this);
     }
     //endregion
 
     //region Update Hand
-    public void updateHand() {
+    public void updateHand(View v) {
         String currentHandName = getCurrentHandName();
         if (!currentHandName.isEmpty()) {
             updateHandWithTitle(currentHandName);
@@ -134,6 +108,12 @@ public class LaunchFragment extends Fragment {
         Hand hand = prepareDto(title);
 
         getHandDao().update(hand, title);
+    }
+    //endregion
+
+    //region Reset Hand
+    public void resetHand(View v) {
+        resetHand();
     }
     //endregion
 
@@ -151,7 +131,7 @@ public class LaunchFragment extends Fragment {
                 Log.e(this.getClass().getName(), "useHand: ", nfe);
             }
 
-            mRootView.findViewById(R.id.updateButton).setVisibility(View.VISIBLE);
+            findViewById(R.id.updateButton).setVisibility(View.VISIBLE);
         }
     }
 
@@ -161,13 +141,12 @@ public class LaunchFragment extends Fragment {
     }
 
     private void fillHandsSpinner() {
-        WarHammerDatabaseHelper whdHelper = new WarHammerDatabaseHelper(getActivity());
-        HandDao dao = new HandDao(whdHelper);
+        HandDao dao = getHandDao();
         List<String> titles = new ArrayList<>();
         titles.add("");
         titles.addAll(dao.findAllTitles());
 
-        handsSpinner.setAdapter(new ArrayAdapter<>(getActivity(), R.layout.item_hand_spinner, titles));
+        handsSpinner.setAdapter(new ArrayAdapter<>(this, R.layout.item_hand_spinner, titles));
     }
     //endregion
 
@@ -179,13 +158,13 @@ public class LaunchFragment extends Fragment {
     public Hand currentHandToDto() {
         Hand dto = new Hand();
 
-        dto.setCharacteristic(((NumberPicker) mRootView.findViewById(R.id.numberPickerCharacteristic)).getValue());
-        dto.setReckless(((NumberPicker) mRootView.findViewById(R.id.numberPickerReckless)).getValue());
-        dto.setConservative(((NumberPicker) mRootView.findViewById(R.id.numberPickerConservative)).getValue());
-        dto.setExpertise(((NumberPicker) mRootView.findViewById(R.id.numberPickerExpertise)).getValue());
-        dto.setFortune(((NumberPicker) mRootView.findViewById(R.id.numberPickerFortune)).getValue());
-        dto.setMisfortune(((NumberPicker) mRootView.findViewById(R.id.numberPickerMisfortune)).getValue());
-        dto.setChallenge(((NumberPicker) mRootView.findViewById(R.id.numberPickerChallenge)).getValue());
+        dto.setCharacteristic(((NumberPicker) findViewById(R.id.numberPickerCharacteristic)).getValue());
+        dto.setReckless(((NumberPicker) findViewById(R.id.numberPickerReckless)).getValue());
+        dto.setConservative(((NumberPicker) findViewById(R.id.numberPickerConservative)).getValue());
+        dto.setExpertise(((NumberPicker) findViewById(R.id.numberPickerExpertise)).getValue());
+        dto.setFortune(((NumberPicker) findViewById(R.id.numberPickerFortune)).getValue());
+        dto.setMisfortune(((NumberPicker) findViewById(R.id.numberPickerMisfortune)).getValue());
+        dto.setChallenge(((NumberPicker) findViewById(R.id.numberPickerChallenge)).getValue());
 
         return dto;
     }
@@ -196,13 +175,13 @@ public class LaunchFragment extends Fragment {
      * @param dto
      */
     public void dtoToCurrentHand(Hand dto) {
-        NumberPicker characteristicPicker = (NumberPicker) mRootView.findViewById(R.id.numberPickerCharacteristic);
-        NumberPicker recklessPicker = (NumberPicker) mRootView.findViewById(R.id.numberPickerReckless);
-        NumberPicker conservativePicker = (NumberPicker) mRootView.findViewById(R.id.numberPickerConservative);
-        NumberPicker expertisePicker = (NumberPicker) mRootView.findViewById(R.id.numberPickerExpertise);
-        NumberPicker fortunePicker = (NumberPicker) mRootView.findViewById(R.id.numberPickerFortune);
-        NumberPicker misfortunePicker = (NumberPicker) mRootView.findViewById(R.id.numberPickerMisfortune);
-        NumberPicker challengePicker = (NumberPicker) mRootView.findViewById(R.id.numberPickerChallenge);
+        NumberPicker characteristicPicker = (NumberPicker) findViewById(R.id.numberPickerCharacteristic);
+        NumberPicker recklessPicker = (NumberPicker) findViewById(R.id.numberPickerReckless);
+        NumberPicker conservativePicker = (NumberPicker) findViewById(R.id.numberPickerConservative);
+        NumberPicker expertisePicker = (NumberPicker) findViewById(R.id.numberPickerExpertise);
+        NumberPicker fortunePicker = (NumberPicker) findViewById(R.id.numberPickerFortune);
+        NumberPicker misfortunePicker = (NumberPicker) findViewById(R.id.numberPickerMisfortune);
+        NumberPicker challengePicker = (NumberPicker) findViewById(R.id.numberPickerChallenge);
 
         characteristicPicker.setValue(dto.getCharacteristic());
         recklessPicker.setValue(dto.getReckless());
@@ -217,13 +196,13 @@ public class LaunchFragment extends Fragment {
      * Reset the number pickers values
      */
     public void resetHand() {
-        NumberPicker characteristicPicker = (NumberPicker) mRootView.findViewById(R.id.numberPickerCharacteristic);
-        NumberPicker recklessPicker = (NumberPicker) mRootView.findViewById(R.id.numberPickerReckless);
-        NumberPicker conservativePicker = (NumberPicker) mRootView.findViewById(R.id.numberPickerConservative);
-        NumberPicker expertisePicker = (NumberPicker) mRootView.findViewById(R.id.numberPickerExpertise);
-        NumberPicker fortunePicker = (NumberPicker) mRootView.findViewById(R.id.numberPickerFortune);
-        NumberPicker misfortunePicker = (NumberPicker) mRootView.findViewById(R.id.numberPickerMisfortune);
-        NumberPicker challengePicker = (NumberPicker) mRootView.findViewById(R.id.numberPickerChallenge);
+        NumberPicker characteristicPicker = (NumberPicker) findViewById(R.id.numberPickerCharacteristic);
+        NumberPicker recklessPicker = (NumberPicker) findViewById(R.id.numberPickerReckless);
+        NumberPicker conservativePicker = (NumberPicker) findViewById(R.id.numberPickerConservative);
+        NumberPicker expertisePicker = (NumberPicker) findViewById(R.id.numberPickerExpertise);
+        NumberPicker fortunePicker = (NumberPicker) findViewById(R.id.numberPickerFortune);
+        NumberPicker misfortunePicker = (NumberPicker) findViewById(R.id.numberPickerMisfortune);
+        NumberPicker challengePicker = (NumberPicker) findViewById(R.id.numberPickerChallenge);
 
         characteristicPicker.setValue(0);
         recklessPicker.setValue(0);
@@ -233,13 +212,13 @@ public class LaunchFragment extends Fragment {
         misfortunePicker.setValue(0);
         challengePicker.setValue(0);
 
-        mRootView.findViewById(R.id.updateButton).setVisibility(View.GONE);
+        findViewById(R.id.updateButton).setVisibility(View.GONE);
     }
     //endregion
 
     //region DTO
     private HandDao getHandDao() {
-        WarHammerDatabaseHelper whdHelper = new WarHammerDatabaseHelper(getActivity());
+        WarHammerDatabaseHelper whdHelper = new WarHammerDatabaseHelper(this);
         return new HandDao(whdHelper);
     }
 
@@ -250,13 +229,19 @@ public class LaunchFragment extends Fragment {
     }
     //endregion
 
-    private void updateUI(MainActivity ctx) {
+    private void updateUI(Activity ctx) {
         fillHandsSpinner();
         ctx.invalidateOptionsMenu();
     }
 
     //region Listeners
     private class SpinnerItemSelectedListener implements AdapterView.OnItemSelectedListener {
+        private boolean initialized;
+
+        public SpinnerItemSelectedListener(boolean initialized) {
+            this.initialized = initialized;
+        }
+
         @Override
         public void onItemSelected(AdapterView<?> parentView, View selectedItemView, int position, long id) {
             if (initialized) {
@@ -286,7 +271,7 @@ public class LaunchFragment extends Fragment {
         @Override
         public void onClick(DialogInterface dialog, int which) {
             if (input.getText().toString().trim().isEmpty()) {
-                Toast.makeText(getActivity(), R.string.empty_hand_name, Toast.LENGTH_SHORT).show();
+                Toast.makeText(LaunchActivity.this, R.string.empty_hand_name, Toast.LENGTH_SHORT).show();
             } else {
                 saveHandWithTitle(input.getText().toString());
             }

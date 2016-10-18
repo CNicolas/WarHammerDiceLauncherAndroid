@@ -3,8 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     package="com.aku.warhammerdicelauncher">
 
-    <!--android:icon="@mipmap/ic_launcher"-->
-
+    <!-- android:icon="@mipmap/ic_launcher" -->
     <application
         android:allowBackup="true"
         android:configChanges="keyboardHidden|orientation|screenSize"
@@ -21,13 +20,14 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".ihm.activities.MainActivity" />
         </activity>
-
-        <activity android:name=".ihm.activities.SplashActivity">
+        <activity android:name=".ihm.activities.HomeActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name=".ihm.activities.LaunchActivity"></activity>
     </application>
 
 </manifest>

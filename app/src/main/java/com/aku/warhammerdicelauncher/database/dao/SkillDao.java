@@ -22,7 +22,7 @@ public class SkillDao extends AbstractDao<Skill> {
     public SkillDao(WarHammerDatabaseHelper whdHelper) {
         super(whdHelper);
         tableName = ISkillEntryConstants.TABLE_NAME;
-        columnNameId = ISkillEntryConstants.COLUMN_ID;
+        columnId = ISkillEntryConstants.COLUMN_ID;
     }
 
     //region Find
@@ -97,7 +97,7 @@ public class SkillDao extends AbstractDao<Skill> {
     protected Skill createDtoFromCursor(Cursor cursor) {
         Skill dto = new Skill();
 
-        dto.setId(cursor.getInt(cursor.getColumnIndexOrThrow(columnNameId)));
+        dto.setId(cursor.getInt(cursor.getColumnIndexOrThrow(columnId)));
         dto.setName(cursor.getString(cursor.getColumnIndexOrThrow(ISkillEntryConstants.COLUMN_NAME)));
         dto.setCharacteristic(Characteristic.fromString(cursor.getString(cursor.getColumnIndexOrThrow(ISkillEntryConstants.COLUMN_CHARACTERISTIC))));
         dto.setLevel(cursor.getInt(cursor.getColumnIndexOrThrow(ISkillEntryConstants.COLUMN_LEVEL)));

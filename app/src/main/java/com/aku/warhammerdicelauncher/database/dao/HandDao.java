@@ -18,12 +18,12 @@ public class HandDao extends AbstractDao<Hand> {
     public HandDao(WarHammerDatabaseHelper whdHelper) {
         super(whdHelper);
         tableName = IHandEntryConstants.TABLE_NAME;
-        columnNameId = IHandEntryConstants.COLUMN_ID;
+        columnId = IHandEntryConstants.COLUMN_ID;
     }
 
     //region Find
     public List<String> findAllTitles() {
-        return findAllByField(IHandEntryConstants.COLUMN_TITLE);
+        return findAllValuesOfColumn(IHandEntryConstants.COLUMN_TITLE);
     }
 
     public Hand findByTitle(String title) throws Resources.NotFoundException {

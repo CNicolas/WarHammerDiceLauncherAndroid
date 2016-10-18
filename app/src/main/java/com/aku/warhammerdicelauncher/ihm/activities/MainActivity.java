@@ -1,9 +1,12 @@
 package com.aku.warhammerdicelauncher.ihm.activities;
 
 import android.app.Fragment;
+import android.app.PendingIntent;
 import android.content.Intent;
 import android.content.res.Configuration;
 import android.os.Bundle;
+import android.support.design.widget.FloatingActionButton;
+import android.support.v4.app.TaskStackBuilder;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
@@ -79,6 +82,23 @@ public class MainActivity extends AppCompatActivity {
             fragmentContent = getFragmentManager().getFragment(savedInstanceState, FRAGMENT_TAG);
         }
         /* LAST */
+
+        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
+        fab.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent launchIntent = new Intent(MainActivity.this, LaunchActivity.class);
+                TaskStackBuilder stackBuilder = TaskStackBuilder.create(MainActivity.this);
+                // Adds the back stack
+                stackBuilder.addParentStack(LaunchActivity.class);
+                // Adds the Intent to the top of the stack
+                stackBuilder.addNextIntent(launchIntent);
+                // Gets a PendingIntent containing the entire back stack
+                PendingIntent resultPendingIntent =
+                        stackBuilder.getPendingIntent(0, PendingIntent.FLAG_UPDATE_CURRENT);
+                startActivity(launchIntent);
+            }
+        });
     }
 
     @Override
@@ -154,7 +174,7 @@ public class MainActivity extends AppCompatActivity {
         super.onRestoreInstanceState(savedInstanceState);
         if (onLaunchFragment) {
             Hand dto = (Hand) savedInstanceState.getSerializable(IHandConstants.HAND_TAG);
-            getCurrentLaunchFragment().dtoToCurrentHand(this, dto);
+            getCurrentLaunchFragment().dtoToCurrentHand(dto);
         }
         fragmentContent = getFragmentManager().getFragment(savedInstanceState, FRAGMENT_TAG);
     }
@@ -169,7 +189,7 @@ public class MainActivity extends AppCompatActivity {
      */
     public void saveHand(View v) {
         if (onLaunchFragment) {
-            getCurrentLaunchFragment().saveHand(this);
+            getCurrentLaunchFragment().saveHand();
         }
     }
 
@@ -180,7 +200,7 @@ public class MainActivity extends AppCompatActivity {
      */
     public void updateHand(View v) {
         if (onLaunchFragment) {
-            getCurrentLaunchFragment().updateHand(this);
+            getCurrentLaunchFragment().updateHand();
         }
     }
 
@@ -191,7 +211,7 @@ public class MainActivity extends AppCompatActivity {
      */
     public void rollDices(View v) {
         if (onLaunchFragment) {
-            getCurrentLaunchFragment().rollDices(this);
+            getCurrentLaunchFragment().rollDices();
         }
     }
 
@@ -202,14 +222,14 @@ public class MainActivity extends AppCompatActivity {
      */
     public void resetHand(View v) {
         if (onLaunchFragment) {
-            getCurrentLaunchFragment().resetHand(this);
+            getCurrentLaunchFragment().resetHand();
         }
     }
     //endregion
 
     //region Hand and dto helpers
     private Hand currentHandToDto() {
-        return getCurrentLaunchFragment().currentHandToDto(this);
+        return getCurrentLaunchFragment().currentHandToDto();
     }
     //endregion
 
