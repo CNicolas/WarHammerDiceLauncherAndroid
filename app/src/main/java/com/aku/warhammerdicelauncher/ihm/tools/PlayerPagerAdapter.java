@@ -18,13 +18,12 @@ import com.aku.warhammerdicelauncher.ihm.fragments.CharacteristicsFragment;
 import com.aku.warhammerdicelauncher.ihm.fragments.InventoryFragment;
 import com.aku.warhammerdicelauncher.ihm.fragments.SkillsFragment;
 
-/**
- * A {@link FragmentPagerAdapter} that returns a fragment corresponding to
- * one of the sections/tabs/pages.
- */
 public class PlayerPagerAdapter extends FragmentPagerAdapter {
 
     private final PlayerActivity mContext;
+    private CharacteristicsFragment mCharacteristicsFragment;
+    private SkillsFragment mSkillsFragment;
+    private InventoryFragment mInventoryFragment;
 
     public PlayerPagerAdapter(PlayerActivity ctx) {
         super(ctx.getSupportFragmentManager());
@@ -35,11 +34,14 @@ public class PlayerPagerAdapter extends FragmentPagerAdapter {
     public Fragment getItem(int position) {
         switch (position) {
             case 0:
-                return new CharacteristicsFragment();
+                mCharacteristicsFragment = new CharacteristicsFragment();
+                return mCharacteristicsFragment;
             case 1:
-                return new SkillsFragment();
+                mSkillsFragment = new SkillsFragment();
+                return mSkillsFragment;
             case 2:
-                return new InventoryFragment();
+                mInventoryFragment = new InventoryFragment();
+                return mInventoryFragment;
             default:
                 return new SkillsFragment();
         }
