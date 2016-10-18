@@ -14,7 +14,7 @@ import android.widget.TabHost.TabSpec;
 import com.aku.warhammerdicelauncher.R;
 import com.aku.warhammerdicelauncher.ihm.activities.MainActivity;
 import com.aku.warhammerdicelauncher.model.player.Player;
-import com.aku.warhammerdicelauncher.utils.PlayerContext;
+import com.aku.warhammerdicelauncher.tools.PlayerContext;
 
 public class PlayerFragment extends Fragment {
 

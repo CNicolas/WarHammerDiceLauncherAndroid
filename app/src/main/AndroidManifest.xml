@@ -12,14 +12,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:replace="android:label">
-        <activity android:name=".ihm.activities.MainActivity" />
-        <activity
-            android:name=".ihm.activities.StatisticsActivity"
-            android:parentActivityName=".ihm.activities.MainActivity">
-            <meta-data
-                android:name="android.support.PARENT_ACTIVITY"
-                android:value=".ihm.activities.MainActivity" />
-        </activity>
+
         <activity android:name=".ihm.activities.HomeActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -27,7 +20,29 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".ihm.activities.LaunchActivity"></activity>
+
+        <activity android:name=".ihm.activities.MainActivity" />
+
+        <activity
+            android:name=".ihm.activities.StatisticsActivity"
+            android:parentActivityName=".ihm.activities.MainActivity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".ihm.activities.MainActivity" />
+        </activity>
+
+        <activity
+            android:name=".ihm.activities.PlayerActivity"
+            android:label="@string/title_activity_player"
+            android:parentActivityName=".ihm.activities.HomeActivity"
+            android:theme="@style/AppTheme.NoActionBar">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".ihm.activities.HomeActivity" />
+        </activity>
+
+        <activity android:name=".ihm.activities.LaunchActivity" />
+
     </application>
 
 </manifest>

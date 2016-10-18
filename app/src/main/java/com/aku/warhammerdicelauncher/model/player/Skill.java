@@ -1,7 +1,7 @@
 package com.aku.warhammerdicelauncher.model.player;
 
 import com.aku.warhammerdicelauncher.model.IModel;
-import com.aku.warhammerdicelauncher.utils.enums.Characteristic;
+import com.aku.warhammerdicelauncher.tools.enums.Characteristic;
 
 /**
  * Created by cnicolas on 06/10/2016.

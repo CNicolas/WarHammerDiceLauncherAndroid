@@ -21,10 +21,10 @@ import android.widget.Toast;
 import com.aku.warhammerdicelauncher.R;
 import com.aku.warhammerdicelauncher.database.WarHammerDatabaseHelper;
 import com.aku.warhammerdicelauncher.database.dao.HandDao;
+import com.aku.warhammerdicelauncher.model.dices.DiceFaces;
 import com.aku.warhammerdicelauncher.model.player.Hand;
-import com.aku.warhammerdicelauncher.utils.enums.DiceFaces;
-import com.aku.warhammerdicelauncher.utils.helpers.DialogHelper;
-import com.aku.warhammerdicelauncher.utils.helpers.DicesRollerHelper;
+import com.aku.warhammerdicelauncher.tools.helpers.DialogHelper;
+import com.aku.warhammerdicelauncher.tools.helpers.DicesRollerHelper;
 
 import java.util.ArrayList;
 import java.util.List;

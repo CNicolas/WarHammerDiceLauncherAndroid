@@ -1,4 +1,4 @@
-package com.aku.warhammerdicelauncher.utils.enums;
+package com.aku.warhammerdicelauncher.model.dices;
 
 /**
  * Created by cnicolas on 04/05/2016.

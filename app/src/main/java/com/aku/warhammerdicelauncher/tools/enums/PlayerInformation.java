@@ -1,4 +1,4 @@
-package com.aku.warhammerdicelauncher.utils.enums;
+package com.aku.warhammerdicelauncher.tools.enums;
 
 import com.aku.warhammerdicelauncher.database.entries.IPlayerEntryConstants;
 

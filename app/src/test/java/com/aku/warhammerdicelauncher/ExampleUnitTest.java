@@ -1,6 +1,6 @@
 package com.aku.warhammerdicelauncher;
 
-import com.aku.warhammerdicelauncher.utils.enums.Characteristic;
+import com.aku.warhammerdicelauncher.tools.enums.Characteristic;
 
 import org.junit.Test;
 

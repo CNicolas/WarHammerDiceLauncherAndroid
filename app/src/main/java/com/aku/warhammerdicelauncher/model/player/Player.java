@@ -4,7 +4,7 @@ import com.aku.warhammerdicelauncher.model.IModel;
 import com.aku.warhammerdicelauncher.model.player.inventory.Armour;
 import com.aku.warhammerdicelauncher.model.player.inventory.InventoryItem;
 import com.aku.warhammerdicelauncher.model.player.inventory.Weapon;
-import com.aku.warhammerdicelauncher.utils.constants.IPlayerConstants;
+import com.aku.warhammerdicelauncher.tools.constants.IPlayerConstants;
 
 import java.util.ArrayList;
 import java.util.List;

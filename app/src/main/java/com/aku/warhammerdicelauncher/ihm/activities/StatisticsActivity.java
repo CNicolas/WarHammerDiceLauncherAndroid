@@ -7,10 +7,10 @@ import android.widget.Button;
 import android.widget.TextView;
 
 import com.aku.warhammerdicelauncher.R;
+import com.aku.warhammerdicelauncher.model.dices.DiceFaces;
 import com.aku.warhammerdicelauncher.model.player.Hand;
-import com.aku.warhammerdicelauncher.utils.constants.IHandConstants;
-import com.aku.warhammerdicelauncher.utils.enums.DiceFaces;
-import com.aku.warhammerdicelauncher.utils.helpers.DicesRollerHelper;
+import com.aku.warhammerdicelauncher.tools.constants.IHandConstants;
+import com.aku.warhammerdicelauncher.tools.helpers.DicesRollerHelper;
 
 import java.math.RoundingMode;
 import java.text.DecimalFormat;

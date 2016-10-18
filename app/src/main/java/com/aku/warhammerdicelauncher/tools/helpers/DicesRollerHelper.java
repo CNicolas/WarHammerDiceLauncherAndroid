@@ -1,5 +1,6 @@
-package com.aku.warhammerdicelauncher.utils.helpers;
+package com.aku.warhammerdicelauncher.tools.helpers;
 
+import com.aku.warhammerdicelauncher.model.dices.DiceFaces;
 import com.aku.warhammerdicelauncher.model.dices.IDice;
 import com.aku.warhammerdicelauncher.model.dices.impl.ChallengeDice;
 import com.aku.warhammerdicelauncher.model.dices.impl.CharacteristicDice;
@@ -9,8 +10,7 @@ import com.aku.warhammerdicelauncher.model.dices.impl.FortuneDice;
 import com.aku.warhammerdicelauncher.model.dices.impl.MisfortuneDice;
 import com.aku.warhammerdicelauncher.model.dices.impl.RecklessDice;
 import com.aku.warhammerdicelauncher.model.player.Hand;
-import com.aku.warhammerdicelauncher.utils.constants.IHandConstants;
-import com.aku.warhammerdicelauncher.utils.enums.DiceFaces;
+import com.aku.warhammerdicelauncher.tools.constants.IHandConstants;
 
 import java.util.ArrayList;
 import java.util.Collections;

@@ -26,9 +26,9 @@ import com.aku.warhammerdicelauncher.database.dao.PlayerDao;
 import com.aku.warhammerdicelauncher.ihm.fragments.LaunchFragment;
 import com.aku.warhammerdicelauncher.ihm.fragments.PlayerFragment;
 import com.aku.warhammerdicelauncher.model.player.Hand;
-import com.aku.warhammerdicelauncher.utils.PlayerContext;
-import com.aku.warhammerdicelauncher.utils.constants.IHandConstants;
-import com.aku.warhammerdicelauncher.utils.helpers.FragmentHelper;
+import com.aku.warhammerdicelauncher.tools.PlayerContext;
+import com.aku.warhammerdicelauncher.tools.constants.IHandConstants;
+import com.aku.warhammerdicelauncher.tools.helpers.FragmentHelper;
 
 import java.util.Arrays;
 import java.util.List;
@@ -107,7 +107,7 @@ public class MainActivity extends AppCompatActivity {
         if (onLaunchFragment) {
             inflater.inflate(R.menu.launch_statistics, menu);
         } else if (onPlayerFragment) {
-            inflater.inflate(R.menu.player, menu);
+            inflater.inflate(R.menu.menu_player, menu);
         }
         return super.onCreateOptionsMenu(menu);
     }

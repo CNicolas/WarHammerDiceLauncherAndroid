@@ -1,4 +1,4 @@
-package com.aku.warhammerdicelauncher.utils.helpers;
+package com.aku.warhammerdicelauncher.tools.helpers;
 
 import android.app.Fragment;
 import android.app.FragmentManager;

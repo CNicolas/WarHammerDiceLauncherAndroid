@@ -1,7 +1,7 @@
-package com.aku.warhammerdicelauncher.utils.constants;
+package com.aku.warhammerdicelauncher.tools.constants;
 
 import com.aku.warhammerdicelauncher.R;
-import com.aku.warhammerdicelauncher.utils.enums.DiceFaces;
+import com.aku.warhammerdicelauncher.model.dices.DiceFaces;
 
 import java.util.HashMap;
 import java.util.Map;

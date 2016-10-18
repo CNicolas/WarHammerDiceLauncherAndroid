@@ -1,7 +1,7 @@
 package com.aku.warhammerdicelauncher.model.dices.impl;
 
+import com.aku.warhammerdicelauncher.model.dices.DiceFaces;
 import com.aku.warhammerdicelauncher.model.dices.IDice;
-import com.aku.warhammerdicelauncher.utils.enums.DiceFaces;
 
 import java.util.ArrayList;
 import java.util.List;

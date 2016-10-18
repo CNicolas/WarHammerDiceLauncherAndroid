@@ -8,7 +8,7 @@ import com.aku.warhammerdicelauncher.database.WarHammerDatabaseHelper;
 import com.aku.warhammerdicelauncher.database.entries.ISkillEntryConstants;
 import com.aku.warhammerdicelauncher.model.player.Player;
 import com.aku.warhammerdicelauncher.model.player.Skill;
-import com.aku.warhammerdicelauncher.utils.enums.Characteristic;
+import com.aku.warhammerdicelauncher.tools.enums.Characteristic;
 
 import org.apache.commons.lang3.NotImplementedException;
 

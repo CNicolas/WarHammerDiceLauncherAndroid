@@ -1,4 +1,4 @@
-package com.aku.warhammerdicelauncher.utils;
+package com.aku.warhammerdicelauncher.tools;
 
 import com.aku.warhammerdicelauncher.database.WarHammerDatabaseHelper;
 import com.aku.warhammerdicelauncher.database.dao.PlayerDao;
