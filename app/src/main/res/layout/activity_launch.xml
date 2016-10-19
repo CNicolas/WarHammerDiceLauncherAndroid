@@ -212,7 +212,7 @@
             android:orientation="horizontal">
 
             <Button
-                android:id="@+id/launchStatistics10"
+                android:id="@+id/launch_statistics_10"
                 style="?android:attr/buttonBarButtonStyle"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -222,7 +222,7 @@
                 android:text="@string/action_launch10" />
 
             <Button
-                android:id="@+id/launchStatistics100"
+                android:id="@+id/launch_statistics_100"
                 style="?android:attr/buttonBarButtonStyle"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -238,7 +238,7 @@
             android:orientation="horizontal">
 
             <Button
-                android:id="@+id/launchStatistics1000"
+                android:id="@+id/launch_statistics_1000"
                 style="?android:attr/buttonBarButtonStyle"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -248,7 +248,7 @@
                 android:text="@string/action_launch1000" />
 
             <Button
-                android:id="@+id/launchStatistics10000"
+                android:id="@+id/launch_statistics_10000"
                 style="?android:attr/buttonBarButtonStyle"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -266,7 +266,7 @@
         android:layout_alignParentBottom="true"
         android:layout_alignParentEnd="true"
         android:layout_alignParentRight="true"
-        android:layout_marginBottom="10dp"
+        android:layout_marginBottom="20dp"
         android:onClick="resetHand"
         app:srcCompat="@drawable/ic_not_interested_white_24dp" />
 
