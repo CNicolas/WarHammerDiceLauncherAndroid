@@ -1,8 +1,9 @@
 package com.aku.warhammerdicelauncher.tools;
 
+import android.content.Context;
+
 import com.aku.warhammerdicelauncher.database.WarHammerDatabaseHelper;
 import com.aku.warhammerdicelauncher.database.dao.PlayerDao;
-import com.aku.warhammerdicelauncher.ihm.activities.MainActivity;
 import com.aku.warhammerdicelauncher.model.player.Player;
 
 /**
@@ -12,7 +13,7 @@ import com.aku.warhammerdicelauncher.model.player.Player;
 public class PlayerContext {
     private static Player player;
 
-    public static Player getPlayerInstance(MainActivity context, int id) {
+    public static Player getPlayerInstance(Context context, int id) {
         if (player == null) {
             PlayerDao playerDao = new PlayerDao(new WarHammerDatabaseHelper(context));
             player = playerDao.findById(id);

@@ -4,6 +4,6 @@
     android:layout_height="match_parent"
     android:layout_gravity="center"
     android:gravity="center"
-    android:minHeight="?android:attr/listPreferredItemHeightSmall"
+    android:minHeight="?android:attr/listPreferredItemHeight"
     android:textAlignment="center"
     android:textAppearance="?android:attr/textAppearanceListItem" />
