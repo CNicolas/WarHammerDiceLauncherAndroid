@@ -64,6 +64,7 @@
     <string name="updated">Mis-à-jour avec succès</string>
     <string name="average_failure_format">Nombre moyen d\'échecs  : %1$s</string>
     <string name="average_bane_format">Nombre moyen de fléaux : %1$s</string>
+    <string name="home_create_player">Créer un nouveau joueur</string>
     <!--End of pages-->
 
 </resources>

@@ -37,7 +37,7 @@ public class HomeActivity extends Activity {
         playerDao = new PlayerDao(new WarHammerDatabaseHelper(this));
         List<String> playersNames = playerDao.findAllNames();
 
-        playersNames.add("PlayerActivity");
+        playersNames.add(getResources().getString(R.string.home_create_player));
 
         ArrayAdapter<String> adapter = new ArrayAdapter<>(this, R.layout.item_players_list, playersNames);
         listPlayers.setAdapter(adapter);

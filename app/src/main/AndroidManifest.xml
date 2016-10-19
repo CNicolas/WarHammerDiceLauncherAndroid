@@ -21,16 +21,6 @@
             </intent-filter>
         </activity>
 
-        <activity android:name=".ihm.activities.MainActivity" />
-
-        <activity
-            android:name=".ihm.activities.StatisticsActivity"
-            android:parentActivityName=".ihm.activities.MainActivity">
-            <meta-data
-                android:name="android.support.PARENT_ACTIVITY"
-                android:value=".ihm.activities.MainActivity" />
-        </activity>
-
         <activity
             android:name=".ihm.activities.PlayerActivity"
             android:parentActivityName=".ihm.activities.HomeActivity"
@@ -40,8 +30,21 @@
                 android:value=".ihm.activities.HomeActivity" />
         </activity>
 
-        <activity android:name=".ihm.activities.LaunchActivity" />
+        <activity
+            android:name=".ihm.activities.LaunchActivity"
+            android:parentActivityName=".ihm.activities.PlayerActivity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".ihm.activities.PlayerActivity" />
+        </activity>
 
+        <activity
+            android:name=".ihm.activities.StatisticsActivity"
+            android:parentActivityName=".ihm.activities.LaunchActivity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".ihm.activities.LaunchActivity" />
+        </activity>
     </application>
 
 </manifest>

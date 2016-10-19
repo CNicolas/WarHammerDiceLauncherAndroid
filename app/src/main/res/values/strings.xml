@@ -47,6 +47,8 @@
     <string name="successful_rolls_number_format">You succeeded on %1$d throws (%2$s%%)</string>
     <string name="average_sigmar_format">Average number of Sigmar comets : %1$s</string>
     <string name="average_chaos_format">Average number of Chaos stars : %1$s</string>
+    <string name="average_failure_format">Average number of failures : %1$s</string>
+    <string name="average_bane_format">Average number of banes : %1$s</string>
     <string name="throwsNumberFormat">On %s throws...</string>
     <string name="empty_hand_name">Empty hand name</string>
     <string name="btn_resetText">Reset</string>
@@ -60,10 +62,8 @@
     <string name="action_update_player">Update player</string>
     <string name="page_skills">Skills</string>
     <string name="action_settings">Settings</string>
-    <string name="section_format">Hello World from section: %1$d</string>
     <string name="updated">Successfullty updated</string>
-    <string name="average_failure_format">Average number of failures : %1$s</string>
-    <string name="average_bane_format">Average number of banes : %1$s</string>
+    <string name="home_create_player">Create a new player</string>
     <!--End of pages-->
 
 </resources>
