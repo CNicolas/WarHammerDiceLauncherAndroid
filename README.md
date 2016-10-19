@@ -1,8 +1,15 @@
-# WarHammerDiceLauncherAndroid
+# WHFRP3
 
-A simple application for playing to **Warhammer Fantasy Roleplay** v.3.
+An Android app which gather all the stats of your character in **Warhammer Fantasy Roleplay V3**.
 
-With this Android app, you can :
-* Set the dices in your hand. For example : 4 blue, 1 white and 2 black dices.
-* Save your hand for future use
-* Launch your hand several times (10, 100 or 1000 times) to see some simple stats
+You can :
+* Add several players
+* Set your characteristics, race and everything
+* Launch all the dices you want, and see somes statistics like the number of Chaos Star per launch ;)
+
+You will be able to :
+* See your basic skills, and launch the corresponding hand of dices in 2-3 taps
+* Manage your gear and your inventory
+
+And maybe later you will : 
+* Manage your available actions and launch the dices !
