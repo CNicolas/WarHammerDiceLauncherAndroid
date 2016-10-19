@@ -49,6 +49,9 @@ public class LaunchActivity extends AppCompatActivity {
         WarHammerDatabaseHelper whdHelper = new WarHammerDatabaseHelper(this);
         mHandDao = new HandDao(whdHelper);
 
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setHomeButtonEnabled(true);
+
         setupHandsSpinner();
     }
 
