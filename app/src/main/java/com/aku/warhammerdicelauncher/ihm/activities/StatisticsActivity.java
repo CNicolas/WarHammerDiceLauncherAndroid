@@ -21,13 +21,6 @@ import java.util.Map;
 
 public class StatisticsActivity extends Activity {
 
-    public static final String ALL_THROWS = "allThrows";
-    public static final String SUCCESSFUL_THROWS = "successfulThrows";
-    public static final String AVERAGE_SUCCESS = "averageBenefit";
-    public static final String AVERAGE_BENEFIT = "averageBenefit";
-    public static final String AVERAGE_SIGMAR = "averageSigmar";
-    public static final String AVERAGE_CHAOS = "averageChaos";
-
     private Hand dto;
     private int times;
     private DecimalFormat df;
@@ -54,93 +47,37 @@ public class StatisticsActivity extends Activity {
         df = new DecimalFormat("#.#");
         df.setRoundingMode(RoundingMode.HALF_UP);
 
-        if (savedInstanceState != null) {
-            dto = (Hand) savedInstanceState.getSerializable(IHandConstants.HAND_TAG);
-            times = savedInstanceState.getInt(IHandConstants.TIMES_TAG);
-
-            allThrows = (Map) savedInstanceState.getSerializable(ALL_THROWS);
-            successfulRolls = savedInstanceState.getInt(SUCCESSFUL_THROWS);
-            averageSuccessNumber = savedInstanceState.getDouble(AVERAGE_BENEFIT);
-            averageBenefitNumber = savedInstanceState.getDouble(AVERAGE_BENEFIT);
-            averageSigmarNumber = savedInstanceState.getDouble(AVERAGE_SIGMAR);
-            averageChaosNumber = savedInstanceState.getDouble(AVERAGE_CHAOS);
-            updateUI();
-        }
-
         mRelaunchFab = (FloatingActionButton) findViewById(R.id.relaunch_fab);
         mScrollView = (ScrollView) findViewById(R.id.statistics_scroll_view);
         mProgressSpinner = (ProgressBar) findViewById(R.id.progress_spinner);
-    }
 
-    @Override
-    public void onResume() {
-        if (allThrows == null) {
-            callRoll();
-        }
-
-        super.onResume();
-    }
-
-    @Override
-    public void onSaveInstanceState(Bundle savedInstanceState) {
-        savedInstanceState.putSerializable(IHandConstants.HAND_TAG, dto);
-        savedInstanceState.putInt(IHandConstants.TIMES_TAG, times);
-
-        savedInstanceState.putSerializable(ALL_THROWS, (HashMap) allThrows);
-        savedInstanceState.putInt(SUCCESSFUL_THROWS, successfulRolls);
-        savedInstanceState.putDouble(AVERAGE_SUCCESS, averageSuccessNumber);
-        savedInstanceState.putDouble(AVERAGE_BENEFIT, averageBenefitNumber);
-        savedInstanceState.putDouble(AVERAGE_SIGMAR, averageSigmarNumber);
-        savedInstanceState.putDouble(AVERAGE_CHAOS, averageChaosNumber);
-
-        super.onSaveInstanceState(savedInstanceState);
+        callRollThread();
     }
 
     public void relaunch(View v) {
-        callRoll();
+        callRollThread();
     }
 
-    private void callRoll() {
+    //region Thread roll
+    private void callRollThread() {
         showProgress(true);
 
         Thread t = new Thread(new Runnable() {
             public void run() {
-                roll();
+                rollThenUpdateUI();
             }
         });
         t.start();
     }
 
-    private void roll() {
+    private void rollThenUpdateUI() {
         Thread t = new Thread(new Runnable() {
             public void run() {
-                successfulRolls = 0;
-                averageSuccessNumber = 0;
-                averageBenefitNumber = 0;
-                averageSigmarNumber = 0;
-                averageChaosNumber = 0;
-
-                allThrows = new HashMap<>();
-                for (int i = 0; i < times; i++) {
-                    Map<DiceFaces, Integer> map = DicesRollerHelper.rollDices(dto);
-
-                    for (DiceFaces face : map.keySet()) {
-                        int old = allThrows.get(face) != null ? allThrows.get(face) : 0;
-                        allThrows.put(face, old + map.get(face));
-                    }
-
-                    successfulRolls += DicesRollerHelper.isSuccessful(map) ? 1 : 0;
-                }
-
-                averageSuccessNumber = allThrows.containsKey(DiceFaces.SUCCESS) ? allThrows.get(DiceFaces.SUCCESS) / ((double) times) : 0;
-                averageBenefitNumber = allThrows.containsKey(DiceFaces.BENEFIT) ? allThrows.get(DiceFaces.BENEFIT) / ((double) times) : 0;
-                averageSigmarNumber = allThrows.containsKey(DiceFaces.SIGMAR) ? allThrows.get(DiceFaces.SIGMAR) / ((double) times) : 0;
-                averageChaosNumber = allThrows.containsKey(DiceFaces.CHAOS) ? allThrows.get(DiceFaces.CHAOS) / ((double) times) : 0;
+                launchDicesAndGetStatistics();
             }
         });
 
         t.start();
-
         try {
             t.join();
         } catch (InterruptedException e) {
@@ -153,9 +90,35 @@ public class StatisticsActivity extends Activity {
                 }
             }));
         }
+    }
+    //endregion
 
+    private void launchDicesAndGetStatistics() {
+        successfulRolls = 0;
+        averageSuccessNumber = 0;
+        averageBenefitNumber = 0;
+        averageSigmarNumber = 0;
+        averageChaosNumber = 0;
+
+        allThrows = new HashMap<>();
+        for (int i = 0; i < times; i++) {
+            Map<DiceFaces, Integer> map = DicesRollerHelper.rollDices(dto);
+
+            for (DiceFaces face : map.keySet()) {
+                int old = allThrows.get(face) != null ? allThrows.get(face) : 0;
+                allThrows.put(face, old + map.get(face));
+            }
+
+            successfulRolls += DicesRollerHelper.isSuccessful(map) ? 1 : 0;
+        }
+
+        averageSuccessNumber = allThrows.containsKey(DiceFaces.SUCCESS) ? allThrows.get(DiceFaces.SUCCESS) / ((double) times) : 0;
+        averageBenefitNumber = allThrows.containsKey(DiceFaces.BENEFIT) ? allThrows.get(DiceFaces.BENEFIT) / ((double) times) : 0;
+        averageSigmarNumber = allThrows.containsKey(DiceFaces.SIGMAR) ? allThrows.get(DiceFaces.SIGMAR) / ((double) times) : 0;
+        averageChaosNumber = allThrows.containsKey(DiceFaces.CHAOS) ? allThrows.get(DiceFaces.CHAOS) / ((double) times) : 0;
     }
 
+    //region UI
     private void updateUI() {
         TextView throwsNumberView = (TextView) findViewById(R.id.throwsNumberView);
         throwsNumberView.setText(String.format(getResources().getString(R.string.throwsNumberFormat), String.valueOf(times)));
@@ -186,7 +149,8 @@ public class StatisticsActivity extends Activity {
             mRelaunchFab.setVisibility(View.VISIBLE);
             mScrollView.setVisibility(View.VISIBLE);
             mProgressSpinner.setVisibility(View.GONE);
+            updateUI();
         }
-        updateUI();
     }
+    //endregion
 }
