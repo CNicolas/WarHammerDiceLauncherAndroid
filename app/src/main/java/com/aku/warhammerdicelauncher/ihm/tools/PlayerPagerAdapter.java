@@ -75,4 +75,16 @@ public class PlayerPagerAdapter extends FragmentPagerAdapter {
         sb.setSpan(imageSpan, 0, 1, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
         return sb;
     }
+
+    public CharacteristicsFragment getCharacteristicsFragment() {
+        return mCharacteristicsFragment;
+    }
+
+    public SkillsFragment getSkillsFragment() {
+        return mSkillsFragment;
+    }
+
+    public InventoryFragment getInventoryFragment() {
+        return mInventoryFragment;
+    }
 }

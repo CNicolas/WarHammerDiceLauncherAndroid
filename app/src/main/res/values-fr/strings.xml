@@ -65,6 +65,8 @@
     <string name="average_failure_format">Nombre moyen d\'échecs  : %1$s</string>
     <string name="average_bane_format">Nombre moyen de fléaux : %1$s</string>
     <string name="home_create_player">Créer un nouveau joueur</string>
+    <string name="action_unlock_edition">Editer</string>
+    <string name="action_lock_edition">Arrêter l\'édition</string>
     <!--End of pages-->
 
 </resources>

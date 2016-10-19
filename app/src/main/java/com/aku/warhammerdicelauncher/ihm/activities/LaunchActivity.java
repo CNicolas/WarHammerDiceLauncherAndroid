@@ -46,11 +46,11 @@ public class LaunchActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_launch);
 
-        WarHammerDatabaseHelper whdHelper = new WarHammerDatabaseHelper(this);
-        mHandDao = new HandDao(whdHelper);
-
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setHomeButtonEnabled(true);
+
+        WarHammerDatabaseHelper whdHelper = new WarHammerDatabaseHelper(this);
+        mHandDao = new HandDao(whdHelper);
 
         setupHandsSpinner();
     }

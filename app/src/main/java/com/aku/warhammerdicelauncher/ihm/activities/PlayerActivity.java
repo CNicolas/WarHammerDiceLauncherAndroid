@@ -2,7 +2,6 @@ package com.aku.warhammerdicelauncher.ihm.activities;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.TaskStackBuilder;
 import android.support.v4.view.ViewPager;
@@ -37,19 +36,6 @@ public class PlayerActivity extends AppCompatActivity {
 
         TabLayout tabLayout = (TabLayout) findViewById(R.id.tabs);
         tabLayout.setupWithViewPager(mViewPager);
-
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent launchIntent = new Intent(PlayerActivity.this, LaunchActivity.class);
-                TaskStackBuilder stackBuilder = TaskStackBuilder.create(PlayerActivity.this);
-                stackBuilder.addParentStack(LaunchActivity.class);
-                stackBuilder.addNextIntent(launchIntent);
-
-                startActivity(launchIntent);
-            }
-        });
     }
 
     @Override
@@ -62,6 +48,10 @@ public class PlayerActivity extends AppCompatActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
         int id = item.getItemId();
 
+        if (id == R.id.action_unlock_edition || id == R.id.action_lock_edition) {
+            mPlayerPagerAdapter.getCharacteristicsFragment().setEdition();
+            return true;
+        }
         if (id == R.id.action_update_player) {
             updatePlayer();
             return true;
@@ -73,5 +63,14 @@ public class PlayerActivity extends AppCompatActivity {
     private void updatePlayer() {
         Player player = PlayerContext.getPlayerInstance();
         new AlertDialog.Builder(this).setTitle(player.getName()).setMessage(player.toString()).show();
+    }
+
+    public void startLaunchActivity(View v) {
+        Intent launchIntent = new Intent(PlayerActivity.this, LaunchActivity.class);
+        TaskStackBuilder stackBuilder = TaskStackBuilder.create(PlayerActivity.this);
+        stackBuilder.addParentStack(LaunchActivity.class);
+        stackBuilder.addNextIntent(launchIntent);
+
+        startActivity(launchIntent);
     }
 }

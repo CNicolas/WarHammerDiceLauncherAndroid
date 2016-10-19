@@ -43,6 +43,9 @@ public class StatisticsActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_statistics);
 
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setHomeButtonEnabled(true);
+
         dto = (Hand) getIntent().getExtras().getSerializable(IHandConstants.HAND_TAG);
         times = getIntent().getExtras().getInt(IHandConstants.TIMES_TAG);
 
@@ -52,9 +55,6 @@ public class StatisticsActivity extends AppCompatActivity {
         mRelaunchFab = (FloatingActionButton) findViewById(R.id.relaunch_fab);
         mScrollView = (ScrollView) findViewById(R.id.statistics_scroll_view);
         mProgressSpinner = (ProgressBar) findViewById(R.id.progress_spinner);
-
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        getSupportActionBar().setHomeButtonEnabled(true);
 
         callRollThread();
     }

@@ -2,29 +2,56 @@ package com.aku.warhammerdicelauncher.ihm.fragments;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
-import android.support.v7.app.AlertDialog;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import com.aku.warhammerdicelauncher.R;
+import com.aku.warhammerdicelauncher.ihm.tools.CharacteristicEditTextWatcher;
 import com.aku.warhammerdicelauncher.ihm.tools.PlayerEditTextWatcher;
-import com.aku.warhammerdicelauncher.model.player.Characteristics;
-import com.aku.warhammerdicelauncher.model.player.Player;
-import com.aku.warhammerdicelauncher.tools.PlayerContext;
 import com.aku.warhammerdicelauncher.tools.enums.Characteristic;
 import com.aku.warhammerdicelauncher.tools.enums.PlayerInformation;
-
-import antistatic.spinnerwheel.AbstractWheel;
-import antistatic.spinnerwheel.OnWheelScrollListener;
-import antistatic.spinnerwheel.adapters.NumericWheelAdapter;
 
 /**
  * Created by cnicolas on 23/09/2016.
  */
 
 public class CharacteristicsFragment extends Fragment {
+
+    //region Characteristic Fields
+    private EditText mPlayerStrengthView;
+    private EditText mPlayerToughnessView;
+    private EditText mPlayerAgilityView;
+    private EditText mPlayerIntelligenceView;
+    private EditText mPlayerWillpowerView;
+    private EditText mPlayerFellowshipView;
+
+    private EditText mPlayerStrengthFortuneView;
+    private EditText mPlayerToughnessFortuneView;
+    private EditText mPlayerAgilityFortuneView;
+    private EditText mPlayerIntelligenceFortuneView;
+    private EditText mPlayerWillpowerFortuneView;
+    private EditText mPlayerFellowshipFortuneView;
+    //endregion
+
+    //region Player Information
+    private EditText mPlayerAgeView;
+    private EditText mPlayerDescriptionView;
+    private EditText mPlayerExperienceView;
+    private EditText mPlayerMaxExperienceView;
+    private EditText mPlayerNameView;
+    private EditText mPlayerRaceView;
+    private EditText mPlayerRankView;
+    private EditText mPlayerSizeView;
+    //endregion
+
+    private Menu mMenuPlayer;
+    private boolean isInEdition;
+    private View mRootView;
 
     public CharacteristicsFragment() {
         // Required empty public constructor
@@ -33,142 +60,113 @@ public class CharacteristicsFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View rootView = inflater.inflate(R.layout.fragment_characteristics, container, false);
+        mRootView = inflater.inflate(R.layout.fragment_characteristics, container, false);
+        setHasOptionsMenu(true);
 
-        initWheels(rootView);
-        initEditTexts(rootView);
+        initPlayerCharacteristicsFields();
+        initPlayerCharacteristicsWatchers();
 
-        return rootView;
+        initPlayerInformationFields();
+        initPlayerInformationWatchers();
+
+        return mRootView;
     }
 
-    //region Characteristics wheels setup
-    private void initWheels(View rootView) {
-        setupCharacteristicWheel(rootView, R.id.strength_wheel, Characteristic.STRENGTH);
-        setupCharacteristicFortuneWheel(rootView, R.id.strength_fortune_wheel, Characteristic.STRENGTH_FORTUNE);
-        setupCharacteristicWheel(rootView, R.id.toughness_wheel, Characteristic.TOUGHNESS);
-        setupCharacteristicFortuneWheel(rootView, R.id.toughness_fortune_wheel, Characteristic.TOUGHNESS_FORTUNE);
-        setupCharacteristicWheel(rootView, R.id.agility_wheel, Characteristic.AGILITY);
-        setupCharacteristicFortuneWheel(rootView, R.id.agility_fortune_wheel, Characteristic.AGILITY_FORTUNE);
-        setupCharacteristicWheel(rootView, R.id.intelligence_wheel, Characteristic.INTELLIGENCE);
-        setupCharacteristicFortuneWheel(rootView, R.id.intelligence_fortune_wheel, Characteristic.INTELLIGENCE_FORTUNE);
-        setupCharacteristicWheel(rootView, R.id.willpower_wheel, Characteristic.WILLPOWER);
-        setupCharacteristicFortuneWheel(rootView, R.id.willpower_fortune_wheel, Characteristic.WILLPOWER_FORTUNE);
-        setupCharacteristicWheel(rootView, R.id.fellowship_wheel, Characteristic.FELLOWSHIP);
-        setupCharacteristicFortuneWheel(rootView, R.id.fellowship_fortune_wheel, Characteristic.FELLOWSHIP_FORTUNE);
+    @Override
+    public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
+        super.onCreateOptionsMenu(menu, inflater);
+        mMenuPlayer = menu;
+        setEdition();
     }
 
-    private void setupCharacteristicWheel(View rootView, int wheelId, Characteristic characteristic) {
-        setupWheel(rootView, wheelId, R.layout.characteristic_wheel_blue_item, characteristic);
+    public void setEdition() {
+        mMenuPlayer.findItem(R.id.action_lock_edition).setVisible(isInEdition);
+        mMenuPlayer.findItem(R.id.action_unlock_edition).setVisible(!isInEdition);
+        isInEdition = !isInEdition;
+
+        updateEditionEditTexts();
+
+        Toast.makeText(getActivity(), String.valueOf(isInEdition), Toast.LENGTH_SHORT).show();
     }
 
-    private void setupCharacteristicFortuneWheel(View rootView, int wheelId, Characteristic characteristic) {
-        setupWheel(rootView, wheelId, R.layout.characteristic_wheel_white_item, characteristic);
+    private void updateEditionEditTexts() {
+        mPlayerStrengthView.setFocusable(isInEdition);
+        mPlayerStrengthView.setFocusableInTouchMode(isInEdition);
+        mPlayerStrengthView.setClickable(isInEdition);
+
+        mPlayerToughnessView.setFocusable(isInEdition);
+        mPlayerToughnessView.setFocusableInTouchMode(isInEdition);
+        mPlayerToughnessView.setClickable(isInEdition);
+
+        mPlayerAgilityView.setFocusable(isInEdition);
+        mPlayerAgilityView.setFocusableInTouchMode(isInEdition);
+        mPlayerAgilityView.setClickable(isInEdition);
+
+        mPlayerIntelligenceView.setFocusable(isInEdition);
+        mPlayerIntelligenceView.setFocusableInTouchMode(isInEdition);
+        mPlayerIntelligenceView.setClickable(isInEdition);
+
+
+        mPlayerNameView.setFocusable(isInEdition);
+        mPlayerNameView.setFocusableInTouchMode(isInEdition);
+        mPlayerNameView.setClickable(isInEdition);
     }
 
-    private void setupWheel(View rootView, int id, int idResourceItem, Characteristic characteristic) {
-        final AbstractWheel wheel = (AbstractWheel) rootView.findViewById(id);
-        NumericWheelAdapter minAdapter = new NumericWheelAdapter(getActivity(), 0, 10, "%2d");
-        minAdapter.setItemResource(idResourceItem);
-        minAdapter.setItemTextResource(R.id.text);
-        wheel.setViewAdapter(minAdapter);
-        wheel.addScrollingListener(new CharacteristicWheelScrollListener(characteristic));
+    //region Characteristics Setup
+    private void initPlayerCharacteristicsFields() {
+        mPlayerStrengthView = (EditText) mRootView.findViewById(R.id.strength_characteristic);
+        mPlayerToughnessView = (EditText) mRootView.findViewById(R.id.toughness_characteristic);
+        mPlayerAgilityView = (EditText) mRootView.findViewById(R.id.agility_characteristic);
+        mPlayerIntelligenceView = (EditText) mRootView.findViewById(R.id.intelligence_characteristic);
+        mPlayerWillpowerView = (EditText) mRootView.findViewById(R.id.willpower_characteristic);
+        mPlayerFellowshipView = (EditText) mRootView.findViewById(R.id.fellowship_characteristic);
+
+        mPlayerStrengthFortuneView = (EditText) mRootView.findViewById(R.id.strength_fortune);
+        mPlayerToughnessFortuneView = (EditText) mRootView.findViewById(R.id.toughness_fortune);
+        mPlayerAgilityFortuneView = (EditText) mRootView.findViewById(R.id.agility_fortune);
+        mPlayerIntelligenceFortuneView = (EditText) mRootView.findViewById(R.id.intelligence_fortune);
+        mPlayerWillpowerFortuneView = (EditText) mRootView.findViewById(R.id.willpower_fortune);
+        mPlayerFellowshipFortuneView = (EditText) mRootView.findViewById(R.id.fellowship_fortune);
     }
 
-    private void setPlayerCharacteristic(Characteristic characteristic, int newValue) {
-        Characteristics characteristics = PlayerContext.getPlayerInstance().getCharacteristics();
-        switch (characteristic) {
-            case STRENGTH:
-                characteristics.setStrength(newValue);
-                return;
-            case TOUGHNESS:
-                characteristics.setToughness(newValue);
-                return;
-            case AGILITY:
-                characteristics.setAgility(newValue);
-                return;
-            case INTELLIGENCE:
-                characteristics.setIntelligence(newValue);
-                return;
-            case WILLPOWER:
-                characteristics.setWillpower(newValue);
-                return;
-            case FELLOWSHIP:
-                characteristics.setFellowship(newValue);
-                return;
-            case STRENGTH_FORTUNE:
-                characteristics.setStrength_fortune(newValue);
-                return;
-            case TOUGHNESS_FORTUNE:
-                characteristics.setToughness_fortune(newValue);
-                return;
-            case AGILITY_FORTUNE:
-                characteristics.setAgility_fortune(newValue);
-                return;
-            case INTELLIGENCE_FORTUNE:
-                characteristics.setIntelligence_fortune(newValue);
-                return;
-            case WILLPOWER_FORTUNE:
-                characteristics.setWillpower_fortune(newValue);
-                return;
-            case FELLOWSHIP_FORTUNE:
-                characteristics.setFellowship_fortune(newValue);
-                return;
-            default:
-                return;
-        }
-    }
+    private void initPlayerCharacteristicsWatchers() {
+        mPlayerStrengthView.addTextChangedListener(new CharacteristicEditTextWatcher(Characteristic.STRENGTH));
+        mPlayerToughnessView.addTextChangedListener(new CharacteristicEditTextWatcher(Characteristic.TOUGHNESS));
+        mPlayerAgilityView.addTextChangedListener(new CharacteristicEditTextWatcher(Characteristic.AGILITY));
+        mPlayerIntelligenceView.addTextChangedListener(new CharacteristicEditTextWatcher(Characteristic.INTELLIGENCE));
+        mPlayerWillpowerView.addTextChangedListener(new CharacteristicEditTextWatcher(Characteristic.WILLPOWER));
+        mPlayerFellowshipView.addTextChangedListener(new CharacteristicEditTextWatcher(Characteristic.FELLOWSHIP));
 
-    //region Text fields setup
-    private void initEditTexts(View rootView) {
-        final EditText playerAgeView = (EditText) rootView.findViewById(R.id.player_age);
-        playerAgeView.addTextChangedListener(new PlayerEditTextWatcher(PlayerInformation.AGE));
-
-        final EditText playerDescriptionView = (EditText) rootView.findViewById(R.id.player_description);
-        playerDescriptionView.addTextChangedListener(new PlayerEditTextWatcher(PlayerInformation.DESCRIPTION));
-
-
-        final EditText playerExperienceView = (EditText) rootView.findViewById(R.id.player_experience);
-        playerExperienceView.addTextChangedListener(new PlayerEditTextWatcher(PlayerInformation.EXPERIENCE));
-
-        final EditText playerMaxExperienceView = (EditText) rootView.findViewById(R.id.player_max_experience);
-        playerMaxExperienceView.addTextChangedListener(new PlayerEditTextWatcher(PlayerInformation.MAX_EXPERIENCE));
-
-        final EditText playerNameView = (EditText) rootView.findViewById(R.id.player_name);
-        playerNameView.addTextChangedListener(new PlayerEditTextWatcher(PlayerInformation.NAME));
-
-        final EditText playerRaceView = (EditText) rootView.findViewById(R.id.player_race);
-        playerRaceView.addTextChangedListener(new PlayerEditTextWatcher(PlayerInformation.RACE));
-
-        final EditText playerRankView = (EditText) rootView.findViewById(R.id.player_rank);
-        playerRankView.addTextChangedListener(new PlayerEditTextWatcher(PlayerInformation.RANK));
-
-        final EditText playerSizeView = (EditText) rootView.findViewById(R.id.player_size);
-        playerSizeView.addTextChangedListener(new PlayerEditTextWatcher(PlayerInformation.SIZE));
+        mPlayerStrengthFortuneView.addTextChangedListener(new CharacteristicEditTextWatcher(Characteristic.STRENGTH_FORTUNE));
+        mPlayerToughnessFortuneView.addTextChangedListener(new CharacteristicEditTextWatcher(Characteristic.TOUGHNESS_FORTUNE));
+        mPlayerAgilityFortuneView.addTextChangedListener(new CharacteristicEditTextWatcher(Characteristic.AGILITY_FORTUNE));
+        mPlayerIntelligenceFortuneView.addTextChangedListener(new CharacteristicEditTextWatcher(Characteristic.INTELLIGENCE_FORTUNE));
+        mPlayerWillpowerFortuneView.addTextChangedListener(new CharacteristicEditTextWatcher(Characteristic.WILLPOWER_FORTUNE));
+        mPlayerFellowshipFortuneView.addTextChangedListener(new CharacteristicEditTextWatcher(Characteristic.FELLOWSHIP_FORTUNE));
     }
     //endregion
 
-    private class CharacteristicWheelScrollListener implements OnWheelScrollListener {
-
-        private final Characteristic characteristic;
-
-        public CharacteristicWheelScrollListener(Characteristic characteristic) {
-            this.characteristic = characteristic;
-        }
-
-        @Override
-        public void onScrollingStarted(AbstractWheel abstractWheel) {
-
-        }
-
-        @Override
-        public void onScrollingFinished(AbstractWheel abstractWheel) {
-            setPlayerCharacteristic(characteristic, abstractWheel.getCurrentItem());
-            Player player = PlayerContext.getPlayerInstance();
-            new AlertDialog.Builder(getActivity())
-                    .setTitle("Nom = " + player.getName())
-                    .setMessage(String.format("Force = %d + %d blancs", player.getCharacteristics().getStrength(), player.getCharacteristics().getStrength_fortune()))
-                    .show();
-        }
+    //region Text fields setup
+    private void initPlayerInformationFields() {
+        mPlayerAgeView = (EditText) mRootView.findViewById(R.id.player_age);
+        mPlayerDescriptionView = (EditText) mRootView.findViewById(R.id.player_description);
+        mPlayerExperienceView = (EditText) mRootView.findViewById(R.id.player_experience);
+        mPlayerMaxExperienceView = (EditText) mRootView.findViewById(R.id.player_max_experience);
+        mPlayerNameView = (EditText) mRootView.findViewById(R.id.player_name);
+        mPlayerRaceView = (EditText) mRootView.findViewById(R.id.player_race);
+        mPlayerRankView = (EditText) mRootView.findViewById(R.id.player_rank);
+        mPlayerSizeView = (EditText) mRootView.findViewById(R.id.player_size);
     }
 
+    private void initPlayerInformationWatchers() {
+        mPlayerAgeView.addTextChangedListener(new PlayerEditTextWatcher(PlayerInformation.AGE));
+        mPlayerDescriptionView.addTextChangedListener(new PlayerEditTextWatcher(PlayerInformation.DESCRIPTION));
+        mPlayerExperienceView.addTextChangedListener(new PlayerEditTextWatcher(PlayerInformation.EXPERIENCE));
+        mPlayerMaxExperienceView.addTextChangedListener(new PlayerEditTextWatcher(PlayerInformation.MAX_EXPERIENCE));
+        mPlayerNameView.addTextChangedListener(new PlayerEditTextWatcher(PlayerInformation.NAME));
+        mPlayerRaceView.addTextChangedListener(new PlayerEditTextWatcher(PlayerInformation.RACE));
+        mPlayerRankView.addTextChangedListener(new PlayerEditTextWatcher(PlayerInformation.RANK));
+        mPlayerSizeView.addTextChangedListener(new PlayerEditTextWatcher(PlayerInformation.SIZE));
+    }
+    //endregion
 }
