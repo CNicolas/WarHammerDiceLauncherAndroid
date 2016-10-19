@@ -4,11 +4,11 @@ package com.aku.warhammerdicelauncher.model.dices;
  * Created by cnicolas on 04/05/2016.
  */
 public enum DiceFaces {
-    BENEFIT,
+    BOON,
     CHAOS,
     DELAY,
     FAILURE,
-    MISCHIEF,
+    BANE,
     SIGMAR,
     TIREDNESS,
     SUCCESS,

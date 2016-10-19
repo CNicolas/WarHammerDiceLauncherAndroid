@@ -13,8 +13,8 @@ public class ChallengeDice extends AbstractDice {
         faces.add(new DiceFaces[]{DiceFaces.FAILURE});
         faces.add(new DiceFaces[]{DiceFaces.FAILURE, DiceFaces.FAILURE});
         faces.add(new DiceFaces[]{DiceFaces.FAILURE, DiceFaces.FAILURE});
-        faces.add(new DiceFaces[]{DiceFaces.MISCHIEF});
-        faces.add(new DiceFaces[]{DiceFaces.MISCHIEF, DiceFaces.MISCHIEF});
+        faces.add(new DiceFaces[]{DiceFaces.BANE});
+        faces.add(new DiceFaces[]{DiceFaces.BANE, DiceFaces.BANE});
         faces.add(new DiceFaces[]{DiceFaces.CHAOS});
         faces.add(new DiceFaces[]{DiceFaces.VOID});
     }

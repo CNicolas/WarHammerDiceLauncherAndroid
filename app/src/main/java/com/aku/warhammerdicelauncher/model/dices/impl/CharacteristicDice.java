@@ -13,8 +13,8 @@ public class CharacteristicDice extends AbstractDice {
         faces.add(new DiceFaces[]{DiceFaces.SUCCESS});
         faces.add(new DiceFaces[]{DiceFaces.SUCCESS});
         faces.add(new DiceFaces[]{DiceFaces.SUCCESS});
-        faces.add(new DiceFaces[]{DiceFaces.BENEFIT});
-        faces.add(new DiceFaces[]{DiceFaces.BENEFIT});
+        faces.add(new DiceFaces[]{DiceFaces.BOON});
+        faces.add(new DiceFaces[]{DiceFaces.BOON});
         faces.add(new DiceFaces[]{DiceFaces.VOID});
         faces.add(new DiceFaces[]{DiceFaces.VOID});
     }

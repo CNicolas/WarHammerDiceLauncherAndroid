@@ -1,8 +1,8 @@
 package com.aku.warhammerdicelauncher.ihm.activities;
 
-import android.app.Activity;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
+import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.ProgressBar;
 import android.widget.ScrollView;
@@ -19,7 +19,7 @@ import java.text.DecimalFormat;
 import java.util.HashMap;
 import java.util.Map;
 
-public class StatisticsActivity extends Activity {
+public class StatisticsActivity extends AppCompatActivity {
 
     private Hand dto;
     private int times;
@@ -28,9 +28,11 @@ public class StatisticsActivity extends Activity {
     private Map<DiceFaces, Integer> allThrows;
 
     private double averageSuccessNumber;
-    private double averageBenefitNumber;
+    private double averageBoonNumber;
     private double averageSigmarNumber;
     private double averageChaosNumber;
+    private double averageFailureNumber;
+    private double averageBaneNumber;
 
     private FloatingActionButton mRelaunchFab;
     private ScrollView mScrollView;
@@ -50,6 +52,9 @@ public class StatisticsActivity extends Activity {
         mRelaunchFab = (FloatingActionButton) findViewById(R.id.relaunch_fab);
         mScrollView = (ScrollView) findViewById(R.id.statistics_scroll_view);
         mProgressSpinner = (ProgressBar) findViewById(R.id.progress_spinner);
+
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setHomeButtonEnabled(true);
 
         callRollThread();
     }
@@ -96,9 +101,11 @@ public class StatisticsActivity extends Activity {
     private void launchDicesAndGetStatistics() {
         successfulRolls = 0;
         averageSuccessNumber = 0;
-        averageBenefitNumber = 0;
+        averageBoonNumber = 0;
         averageSigmarNumber = 0;
         averageChaosNumber = 0;
+        averageFailureNumber = 0;
+        averageBaneNumber = 0;
 
         allThrows = new HashMap<>();
         for (int i = 0; i < times; i++) {
@@ -113,31 +120,47 @@ public class StatisticsActivity extends Activity {
         }
 
         averageSuccessNumber = allThrows.containsKey(DiceFaces.SUCCESS) ? allThrows.get(DiceFaces.SUCCESS) / ((double) times) : 0;
-        averageBenefitNumber = allThrows.containsKey(DiceFaces.BENEFIT) ? allThrows.get(DiceFaces.BENEFIT) / ((double) times) : 0;
+        averageBoonNumber = allThrows.containsKey(DiceFaces.BOON) ? allThrows.get(DiceFaces.BOON) / ((double) times) : 0;
         averageSigmarNumber = allThrows.containsKey(DiceFaces.SIGMAR) ? allThrows.get(DiceFaces.SIGMAR) / ((double) times) : 0;
         averageChaosNumber = allThrows.containsKey(DiceFaces.CHAOS) ? allThrows.get(DiceFaces.CHAOS) / ((double) times) : 0;
+        averageFailureNumber = allThrows.containsKey(DiceFaces.FAILURE) ? allThrows.get(DiceFaces.FAILURE) / ((double) times) : 0;
+        averageBaneNumber = allThrows.containsKey(DiceFaces.BANE) ? allThrows.get(DiceFaces.BANE) / ((double) times) : 0;
     }
 
     //region UI
-    private void updateUI() {
+    private void updateUIStatistics() {
+        String throwsNumberText = String.format(getResources().getString(R.string.throwsNumberFormat), String.valueOf(times));
         TextView throwsNumberView = (TextView) findViewById(R.id.throwsNumberView);
-        throwsNumberView.setText(String.format(getResources().getString(R.string.throwsNumberFormat), String.valueOf(times)));
+        throwsNumberView.setText(throwsNumberText);
 
         double successPercentage = (successfulRolls * 100) / ((double) times);
-        TextView successNumberTextView = (TextView) findViewById(R.id.successRollsView);
-        successNumberTextView.setText(String.format(getResources().getString(R.string.successfulRollsNumberFormat), successfulRolls, df.format(successPercentage)));
+        String successNumberText = String.format(getResources().getString(R.string.successful_rolls_number_format), successfulRolls, df.format(successPercentage));
+        TextView successNumberTextView = (TextView) findViewById(R.id.success_rolls);
+        successNumberTextView.setText(successNumberText);
 
-        TextView averageSuccessTextView = (TextView) findViewById(R.id.averageSuccessView);
-        averageSuccessTextView.setText(String.format(getResources().getString(R.string.averageSuccessFormat), df.format(averageSuccessNumber)));
+        String averageSuccessText = String.format(getResources().getString(R.string.average_success_format), df.format(averageSuccessNumber));
+        TextView averageSuccessTextView = (TextView) findViewById(R.id.average_success);
+        averageSuccessTextView.setText(averageSuccessText);
 
-        TextView averageBenefitTextView = (TextView) findViewById(R.id.averageBenefitView);
-        averageBenefitTextView.setText(String.format(getResources().getString(R.string.averageBenefitFormat), df.format(averageBenefitNumber)));
+        String averageBoonText = String.format(getResources().getString(R.string.average_boon_format), df.format(averageBoonNumber));
+        TextView averageBoonTextView = (TextView) findViewById(R.id.average_boon);
+        averageBoonTextView.setText(averageBoonText);
 
-        TextView averageSigmarTextView = (TextView) findViewById(R.id.averageSigmarView);
-        averageSigmarTextView.setText(String.format(getResources().getString(R.string.averageSigmarFormat), df.format(averageSigmarNumber)));
+        String averageSigmarText = String.format(getResources().getString(R.string.average_sigmar_format), df.format(averageSigmarNumber));
+        TextView averageSigmarTextView = (TextView) findViewById(R.id.average_sigmar);
+        averageSigmarTextView.setText(averageSigmarText);
 
-        TextView averageChaosTextView = (TextView) findViewById(R.id.averageChaosView);
-        averageChaosTextView.setText(String.format(getResources().getString(R.string.averageChaosFormat), df.format(averageChaosNumber)));
+        String averageChaosText = String.format(getResources().getString(R.string.average_chaos_format), df.format(averageChaosNumber));
+        TextView averageChaosTextView = (TextView) findViewById(R.id.average_chaos);
+        averageChaosTextView.setText(averageChaosText);
+
+        String averageFailureText = String.format(getResources().getString(R.string.average_failure_format), df.format(averageFailureNumber));
+        TextView averageFailureTextView = (TextView) findViewById(R.id.average_failure);
+        averageFailureTextView.setText(averageFailureText);
+
+        String averageBaneText = String.format(getResources().getString(R.string.average_bane_format), df.format(averageBaneNumber));
+        TextView averageBaneTextView = (TextView) findViewById(R.id.average_bane);
+        averageBaneTextView.setText(averageBaneText);
     }
 
     private void showProgress(boolean isInProgress) {
@@ -149,7 +172,7 @@ public class StatisticsActivity extends Activity {
             mRelaunchFab.setVisibility(View.VISIBLE);
             mScrollView.setVisibility(View.VISIBLE);
             mProgressSpinner.setVisibility(View.GONE);
-            updateUI();
+            updateUIStatistics();
         }
     }
     //endregion

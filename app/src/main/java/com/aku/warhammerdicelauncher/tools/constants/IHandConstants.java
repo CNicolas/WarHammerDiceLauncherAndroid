@@ -20,16 +20,16 @@ public abstract class IHandConstants implements IConstants {
         Map<DiceFaces, DiceFaces> map = new HashMap<>();
         map.put(DiceFaces.SUCCESS, DiceFaces.FAILURE);
         map.put(DiceFaces.FAILURE, DiceFaces.SUCCESS);
-        map.put(DiceFaces.BENEFIT, DiceFaces.MISCHIEF);
-        map.put(DiceFaces.MISCHIEF, DiceFaces.BENEFIT);
+        map.put(DiceFaces.BOON, DiceFaces.BANE);
+        map.put(DiceFaces.BANE, DiceFaces.BOON);
         inversionMap = map;
     }
 
     static {
         Map<DiceFaces, Integer> map = new HashMap<>();
         map.put(DiceFaces.SUCCESS, R.id.successNumberResults);
-        map.put(DiceFaces.BENEFIT, R.id.benefitNumberResults);
-        map.put(DiceFaces.MISCHIEF, R.id.mischiefNumberResults);
+        map.put(DiceFaces.BOON, R.id.benefitNumberResults);
+        map.put(DiceFaces.BANE, R.id.mischiefNumberResults);
         map.put(DiceFaces.FAILURE, R.id.failureNumberResults);
         map.put(DiceFaces.SIGMAR, R.id.sigmarNumberResults);
         map.put(DiceFaces.TIREDNESS, R.id.tirednessNumberResults);

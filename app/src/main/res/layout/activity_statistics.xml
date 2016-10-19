@@ -14,7 +14,6 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context="com.aku.warhammerdicelauncher.ihm.activities.StatisticsActivity">
 
-
     <ProgressBar
         android:id="@+id/progress_spinner"
         style="?android:progressBarStyleLarge"
@@ -39,17 +38,15 @@
                 android:id="@+id/throwsNumberView"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
                 android:gravity="center"
                 android:padding="10dp"
                 android:text="@string/ok"
                 android:textSize="30sp" />
 
             <TextView
-                android:id="@+id/successRollsView"
+                android:id="@+id/success_rolls"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
                 android:drawableLeft="@drawable/ic_check_black_48dp"
                 android:drawableStart="@drawable/ic_check_black_48dp"
                 android:gravity="center"
@@ -57,10 +54,9 @@
                 android:text="@string/ok" />
 
             <TextView
-                android:id="@+id/averageSuccessView"
+                android:id="@+id/average_success"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
                 android:drawableLeft="@drawable/successblack"
                 android:drawableStart="@drawable/successblack"
                 android:gravity="center"
@@ -68,10 +64,9 @@
                 android:text="@string/ok" />
 
             <TextView
-                android:id="@+id/averageBenefitView"
+                android:id="@+id/average_boon"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
                 android:drawableLeft="@drawable/boonblack"
                 android:drawableStart="@drawable/boonblack"
                 android:gravity="center"
@@ -79,10 +74,9 @@
                 android:text="@string/ok" />
 
             <TextView
-                android:id="@+id/averageSigmarView"
+                android:id="@+id/average_sigmar"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
                 android:drawableLeft="@drawable/cometblack"
                 android:drawableStart="@drawable/cometblack"
                 android:gravity="center"
@@ -90,12 +84,31 @@
                 android:text="@string/ok" />
 
             <TextView
-                android:id="@+id/averageChaosView"
+                android:id="@+id/average_chaos"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
                 android:drawableLeft="@drawable/chaosblack"
                 android:drawableStart="@drawable/chaosblack"
+                android:gravity="center"
+                android:padding="5dp"
+                android:text="@string/ok" />
+
+            <TextView
+                android:id="@+id/average_failure"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:drawableLeft="@drawable/failure_black"
+                android:drawableStart="@drawable/failure_black"
+                android:gravity="center"
+                android:padding="5dp"
+                android:text="@string/ok" />
+
+            <TextView
+                android:id="@+id/average_bane"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:drawableLeft="@drawable/baneblack"
+                android:drawableStart="@drawable/baneblack"
                 android:gravity="center"
                 android:padding="5dp"
                 android:text="@string/ok" />

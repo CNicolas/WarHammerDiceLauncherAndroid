@@ -11,12 +11,12 @@ public class RecklessDice extends AbstractDice {
 
         faces.add(new DiceFaces[]{DiceFaces.SUCCESS, DiceFaces.SUCCESS});
         faces.add(new DiceFaces[]{DiceFaces.SUCCESS, DiceFaces.SUCCESS});
-        faces.add(new DiceFaces[]{DiceFaces.SUCCESS, DiceFaces.BENEFIT});
-        faces.add(new DiceFaces[]{DiceFaces.BENEFIT, DiceFaces.BENEFIT});
+        faces.add(new DiceFaces[]{DiceFaces.SUCCESS, DiceFaces.BOON});
+        faces.add(new DiceFaces[]{DiceFaces.BOON, DiceFaces.BOON});
         faces.add(new DiceFaces[]{DiceFaces.SUCCESS, DiceFaces.TIREDNESS});
         faces.add(new DiceFaces[]{DiceFaces.SUCCESS, DiceFaces.TIREDNESS});
-        faces.add(new DiceFaces[]{DiceFaces.MISCHIEF});
-        faces.add(new DiceFaces[]{DiceFaces.MISCHIEF});
+        faces.add(new DiceFaces[]{DiceFaces.BANE});
+        faces.add(new DiceFaces[]{DiceFaces.BANE});
         faces.add(new DiceFaces[]{DiceFaces.VOID});
         faces.add(new DiceFaces[]{DiceFaces.VOID});
     }

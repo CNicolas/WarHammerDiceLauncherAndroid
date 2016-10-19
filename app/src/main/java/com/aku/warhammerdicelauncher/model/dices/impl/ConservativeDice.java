@@ -13,9 +13,9 @@ public class ConservativeDice extends AbstractDice {
         faces.add(new DiceFaces[]{DiceFaces.SUCCESS});
         faces.add(new DiceFaces[]{DiceFaces.SUCCESS});
         faces.add(new DiceFaces[]{DiceFaces.SUCCESS});
-        faces.add(new DiceFaces[]{DiceFaces.BENEFIT});
-        faces.add(new DiceFaces[]{DiceFaces.BENEFIT});
-        faces.add(new DiceFaces[]{DiceFaces.SUCCESS, DiceFaces.BENEFIT});
+        faces.add(new DiceFaces[]{DiceFaces.BOON});
+        faces.add(new DiceFaces[]{DiceFaces.BOON});
+        faces.add(new DiceFaces[]{DiceFaces.SUCCESS, DiceFaces.BOON});
         faces.add(new DiceFaces[]{DiceFaces.SUCCESS, DiceFaces.DELAY});
         faces.add(new DiceFaces[]{DiceFaces.SUCCESS, DiceFaces.DELAY});
         faces.add(new DiceFaces[]{DiceFaces.VOID});

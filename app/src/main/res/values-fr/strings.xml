@@ -43,10 +43,10 @@
     <string name="action_launch10000">Lancer 10000 fois</string>
     <!--End of Actions-->
 
-    <string name="averageBenefitFormat">Nombre moyen de bienfaits  : %1$s</string>
-    <string name="successfulRollsNumberFormat">Vous avez réussi %1$d lancés  (%2$s%%)</string>
-    <string name="averageSigmarFormat">Nombre moyen de comètes de Sigmar : %1$s</string>
-    <string name="averageChaosFormat">Nombre moyen d\'étoiles du Chaos : %1$s</string>
+    <string name="average_boon_format">Nombre moyen de bienfaits  : %1$s</string>
+    <string name="successful_rolls_number_format">Vous avez réussi %1$d lancés  (%2$s%%)</string>
+    <string name="average_sigmar_format">Nombre moyen de comètes de Sigmar : %1$s</string>
+    <string name="average_chaos_format">Nombre moyen d\'étoiles du Chaos : %1$s</string>
     <string name="throwsNumberFormat">Sur %s lancés...</string>
     <string name="empty_hand_name">Nom invalide</string>
 
@@ -57,11 +57,13 @@
     <string name="page_character">Personnage</string>
     <string name="page_characteristics">Caractéristiques</string>
     <string name="page_inventory">Inventaire</string>
-    <string name="averageSuccessFormat">Nombre moyen de succès  : %1$s</string>
+    <string name="average_success_format">Nombre moyen de succès  : %1$s</string>
     <string name="action_update_player">Mettre le joueur à jour</string>
     <string name="page_skills">Compétences</string>
     <string name="action_settings">Paramètres</string>
     <string name="updated">Mis-à-jour avec succès</string>
+    <string name="average_failure_format">Nombre moyen d\'échecs  : %1$s</string>
+    <string name="average_bane_format">Nombre moyen de fléaux : %1$s</string>
     <!--End of pages-->
 
 </resources>

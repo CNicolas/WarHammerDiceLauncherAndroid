@@ -11,7 +11,7 @@ public class MisfortuneDice extends AbstractDice {
 
         faces.add(new DiceFaces[]{DiceFaces.FAILURE});
         faces.add(new DiceFaces[]{DiceFaces.FAILURE});
-        faces.add(new DiceFaces[]{DiceFaces.MISCHIEF});
+        faces.add(new DiceFaces[]{DiceFaces.BANE});
         faces.add(new DiceFaces[]{DiceFaces.VOID});
         faces.add(new DiceFaces[]{DiceFaces.VOID});
         faces.add(new DiceFaces[]{DiceFaces.VOID});
