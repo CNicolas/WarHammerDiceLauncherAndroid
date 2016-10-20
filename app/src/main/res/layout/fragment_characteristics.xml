@@ -43,7 +43,8 @@
                     android:gravity="end"
                     android:paddingEnd="10dp"
                     android:paddingStart="10dp"
-                    android:text="@string/strength" />
+                    android:text="@string/strength"
+                    android:textSize="@dimen/textSize" />
 
                 <EditText
                     android:id="@+id/strength_characteristic"
@@ -83,7 +84,8 @@
                     android:gravity="end"
                     android:paddingEnd="10dp"
                     android:paddingStart="10dp"
-                    android:text="@string/toughness" />
+                    android:text="@string/toughness"
+                    android:textSize="@dimen/textSize" />
 
                 <EditText
                     android:id="@+id/toughness_characteristic"
@@ -123,7 +125,8 @@
                     android:gravity="end"
                     android:paddingEnd="10dp"
                     android:paddingStart="10dp"
-                    android:text="@string/agility" />
+                    android:text="@string/agility"
+                    android:textSize="@dimen/textSize" />
 
                 <EditText
                     android:id="@+id/agility_characteristic"
@@ -163,7 +166,8 @@
                     android:gravity="end"
                     android:paddingEnd="10dp"
                     android:paddingStart="10dp"
-                    android:text="@string/intelligence" />
+                    android:text="@string/intelligence"
+                    android:textSize="@dimen/textSize" />
 
                 <EditText
                     android:id="@+id/intelligence_characteristic"
@@ -203,7 +207,8 @@
                     android:gravity="end"
                     android:paddingEnd="10dp"
                     android:paddingStart="10dp"
-                    android:text="@string/willpower" />
+                    android:text="@string/willpower"
+                    android:textSize="@dimen/textSize" />
 
                 <EditText
                     android:id="@+id/willpower_characteristic"
@@ -243,7 +248,8 @@
                     android:gravity="end"
                     android:paddingEnd="10dp"
                     android:paddingStart="10dp"
-                    android:text="@string/fellowship" />
+                    android:text="@string/fellowship"
+                    android:textSize="@dimen/textSize" />
 
                 <EditText
                     android:id="@+id/fellowship_characteristic"
@@ -279,22 +285,24 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_weight="0.7">
+                android:layout_weight="0.3">
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:gravity="end"
-                    android:hint="Race :" />
+                    android:layout_gravity="center_vertical"
+                    android:paddingEnd="10dp"
+                    android:paddingStart="10dp"
+                    android:text="@string/race_label"
+                    android:textSize="@dimen/textSize" />
 
                 <EditText
                     android:id="@+id/player_race"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
-                    android:background="@android:color/transparent"
                     android:gravity="center"
+                    android:hint="@string/race_hint"
                     android:inputType="textPersonName" />
             </LinearLayout>
 
@@ -303,22 +311,24 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_weight="1">
+                android:layout_weight="0.35">
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:gravity="end"
-                    android:hint="Age :" />
+                    android:layout_gravity="center_vertical"
+                    android:paddingEnd="10dp"
+                    android:paddingStart="10dp"
+                    android:text="@string/age_label"
+                    android:textSize="@dimen/textSize" />
 
                 <EditText
                     android:id="@+id/player_age"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
-                    android:background="@android:color/transparent"
                     android:gravity="center"
+                    android:hint="0"
                     android:inputType="number"
                     android:maxLength="3" />
             </LinearLayout>
@@ -328,39 +338,28 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_weight="1">
+                android:layout_weight="0.35">
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:gravity="right"
-                    android:hint="Size :" />
+                    android:layout_gravity="center_vertical"
+                    android:paddingEnd="10dp"
+                    android:paddingStart="10dp"
+                    android:text="Size :"
+                    android:textSize="@dimen/textSize" />
 
                 <EditText
                     android:id="@+id/player_size"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
-                    android:background="@android:color/transparent"
                     android:gravity="center"
+                    android:hint="0"
                     android:inputType="numberDecimal"
                     android:maxLength="5" />
             </LinearLayout>
         </LinearLayout>
-
-        <!--Description-->
-        <EditText
-            android:id="@+id/player_description"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:gravity="top"
-            android:hint="Description"
-            android:inputType="textShortMessage"
-            android:maxLines="3"
-            android:minHeight="75dp"
-            android:padding="5dp"
-            android:scrollHorizontally="false" />
 
         <!--Rank, Experience/Max_Experience-->
         <LinearLayout
@@ -369,56 +368,120 @@
             android:orientation="horizontal">
 
             <!--Rank-->
-            <EditText
-                android:id="@+id/player_rank"
+            <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:layout_weight="1"
-                android:background="@android:color/transparent"
-                android:gravity="center"
-                android:hint="Rank"
-                android:inputType="number"
-                android:maxLength="2"
-                android:maxLines="1" />
+                android:layout_height="match_parent"
+                android:layout_weight="0.66">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:paddingEnd="10dp"
+                    android:paddingStart="10dp"
+                    android:text="Rank :"
+                    android:textSize="@dimen/textSize" />
+
+                <EditText
+                    android:id="@+id/player_rank"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="center"
+                    android:background="@android:color/transparent"
+                    android:gravity="center"
+                    android:hint="@string/zero"
+                    android:inputType="number"
+                    android:maxLength="2"
+                    android:maxLines="1"
+                    android:paddingEnd="10dp"
+                    android:paddingStart="10dp" />
+            </LinearLayout>
 
             <!--Experience-->
-            <EditText
-                android:id="@+id/player_experience"
+            <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:layout_weight="1.1"
-                android:background="@android:color/transparent"
-                android:gravity="right"
-                android:hint="Experience"
-                android:inputType="number"
-                android:maxLength="2"
-                android:maxLines="1" />
+                android:layout_weight="0.5">
+
+                <TextView
+                    android:id="@+id/experience_label"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentStart="true"
+                    android:layout_centerVertical="true"
+                    android:layout_gravity="center"
+                    android:gravity="end"
+                    android:paddingEnd="10dp"
+                    android:paddingStart="10dp"
+                    android:text="@string/experience_label" />
+
+                <EditText
+                    android:id="@+id/player_experience"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_toEndOf="@id/experience_label"
+                    android:gravity="end"
+                    android:hint="@string/zero"
+                    android:inputType="number"
+                    android:maxLength="2"
+                    android:maxLines="1"
+                    android:paddingEnd="10dp"
+                    android:paddingStart="10dp" />
+
+                <!--/-->
+                <TextView
+                    android:id="@+id/experience_label_separator"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_toEndOf="@id/player_experience"
+                    android:background="@android:color/transparent"
+                    android:gravity="center"
+                    android:text="@string/slash" />
+
+                <!--Max Experience-->
+                <EditText
+                    android:id="@+id/player_max_experience"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentEnd="true"
+                    android:layout_toEndOf="@id/experience_label_separator"
+                    android:gravity="start"
+                    android:hint="@string/zero"
+                    android:inputType="number"
+                    android:maxLength="2"
+                    android:maxLines="1"
+                    android:paddingEnd="10dp"
+                    android:paddingStart="10dp" />
+            </RelativeLayout>
+
+        </LinearLayout>
+
+        <!--Description-->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:weightSum="1">
 
             <TextView
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_gravity="center"
-                android:layout_weight="1.5"
-                android:background="@android:color/transparent"
-                android:gravity="center"
-                android:text="/"
-                android:textAlignment="center" />
-
-            <!--Experience-->
-            <EditText
-                android:id="@+id/player_max_experience"
-                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:layout_weight="1"
-                android:background="@android:color/transparent"
-                android:gravity="left"
-                android:hint="Total"
-                android:inputType="number"
-                android:maxLength="2"
-                android:maxLines="1" />
+                android:layout_gravity="center_vertical"
+                android:paddingEnd="10dp"
+                android:paddingStart="10dp"
+                android:text="@string/description_label"
+                android:textSize="@dimen/textSize" />
+
+            <EditText
+                android:id="@+id/player_description"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="top"
+                android:inputType="textShortMessage"
+                android:maxLines="3"
+                android:padding="5dp"
+                android:scrollHorizontally="false" />
         </LinearLayout>
 
     </LinearLayout>

@@ -151,6 +151,22 @@ public class CharacteristicsFragment extends Fragment {
         mPlayerSizeView.setFocusable(isInEdition);
         mPlayerSizeView.setFocusableInTouchMode(isInEdition);
         mPlayerSizeView.setClickable(isInEdition);
+
+        mPlayerDescriptionView.setFocusable(isInEdition);
+        mPlayerDescriptionView.setFocusableInTouchMode(isInEdition);
+        mPlayerDescriptionView.setClickable(isInEdition);
+
+        mPlayerRankView.setFocusable(isInEdition);
+        mPlayerRankView.setFocusableInTouchMode(isInEdition);
+        mPlayerRankView.setClickable(isInEdition);
+
+        mPlayerExperienceView.setFocusable(isInEdition);
+        mPlayerExperienceView.setFocusableInTouchMode(isInEdition);
+        mPlayerExperienceView.setClickable(isInEdition);
+
+        mPlayerMaxExperienceView.setFocusable(isInEdition);
+        mPlayerMaxExperienceView.setFocusableInTouchMode(isInEdition);
+        mPlayerMaxExperienceView.setClickable(isInEdition);
     }
 
     //region Characteristics Setup

@@ -66,6 +66,12 @@
     <string name="home_create_player">Create a new player</string>
     <string name="action_unlock_edition">Edit</string>
     <string name="action_lock_edition">Stop editing</string>
+    <string name="race_hint">Human</string>
+    <string name="race_label">Race :</string>
+    <string name="age_label">Age :</string>
+    <string name="slash">/</string>
+    <string name="experience_label">Experience :</string>
+    <string name="description_label">Description :</string>
     <!--End of pages-->
 
 </resources>
