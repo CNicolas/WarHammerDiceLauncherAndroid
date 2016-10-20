@@ -12,6 +12,7 @@ import com.aku.warhammerdicelauncher.model.player.Player;
 
 public class PlayerContext {
     private static Player player;
+    private static boolean isInEdition;
 
     public static Player getPlayerInstance(Context context, int id) {
         if (player == null) {
@@ -31,5 +32,13 @@ public class PlayerContext {
     public static Player getEmptyPlayerInstance() {
         player = new Player();
         return player;
+    }
+
+    public static boolean isInEdition() {
+        return isInEdition;
+    }
+
+    public static void setIsInEdition(boolean isInEdition) {
+        PlayerContext.isInEdition = isInEdition;
     }
 }

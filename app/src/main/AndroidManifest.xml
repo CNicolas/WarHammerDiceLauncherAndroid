@@ -6,6 +6,7 @@
     <!-- android:icon="@mipmap/ic_launcher" -->
     <application
         android:allowBackup="true"
+
         android:configChanges="keyboardHidden|orientation|screenSize"
         android:icon="@drawable/warhammer_v3_logo"
         android:label="@string/app_name"
@@ -13,7 +14,9 @@
         android:theme="@style/AppTheme"
         tools:replace="android:label">
 
-        <activity android:name=".ihm.activities.HomeActivity">
+        <activity
+            android:name=".ihm.activities.HomeActivity"
+            android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -24,6 +27,7 @@
         <activity
             android:name=".ihm.activities.PlayerActivity"
             android:parentActivityName=".ihm.activities.HomeActivity"
+            android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
@@ -32,7 +36,8 @@
 
         <activity
             android:name=".ihm.activities.LaunchActivity"
-            android:parentActivityName=".ihm.activities.PlayerActivity">
+            android:parentActivityName=".ihm.activities.PlayerActivity"
+            android:screenOrientation="portrait">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".ihm.activities.PlayerActivity" />
@@ -40,7 +45,8 @@
 
         <activity
             android:name=".ihm.activities.StatisticsActivity"
-            android:parentActivityName=".ihm.activities.LaunchActivity">
+            android:parentActivityName=".ihm.activities.LaunchActivity"
+            android:screenOrientation="portrait">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".ihm.activities.LaunchActivity" />

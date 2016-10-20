@@ -3,16 +3,15 @@ package com.aku.warhammerdicelauncher.ihm.fragments;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
-import android.view.Menu;
-import android.view.MenuInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
-import android.widget.Toast;
 
 import com.aku.warhammerdicelauncher.R;
 import com.aku.warhammerdicelauncher.ihm.tools.CharacteristicEditTextWatcher;
 import com.aku.warhammerdicelauncher.ihm.tools.PlayerEditTextWatcher;
+import com.aku.warhammerdicelauncher.tools.PlayerContext;
+import com.aku.warhammerdicelauncher.tools.constants.IPlayerConstants;
 import com.aku.warhammerdicelauncher.tools.enums.Characteristic;
 import com.aku.warhammerdicelauncher.tools.enums.PlayerInformation;
 
@@ -21,7 +20,6 @@ import com.aku.warhammerdicelauncher.tools.enums.PlayerInformation;
  */
 
 public class CharacteristicsFragment extends Fragment {
-
     //region Characteristic Fields
     private EditText mPlayerStrengthView;
     private EditText mPlayerToughnessView;
@@ -49,13 +47,8 @@ public class CharacteristicsFragment extends Fragment {
     private EditText mPlayerSizeView;
     //endregion
 
-    private Menu mMenuPlayer;
-    private boolean isInEdition;
     private View mRootView;
-
-    public CharacteristicsFragment() {
-        // Required empty public constructor
-    }
+    private boolean mIsInEdition;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -69,27 +62,28 @@ public class CharacteristicsFragment extends Fragment {
         initPlayerInformationFields();
         initPlayerInformationWatchers();
 
+        Bundle bundle = this.getArguments();
+        if (bundle != null) {
+            mIsInEdition = bundle.getBoolean(IPlayerConstants.IS_IN_EDITION_KEY);
+        }
+
+        changeEdition();
         return mRootView;
     }
 
-    @Override
-    public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
-        super.onCreateOptionsMenu(menu, inflater);
-        mMenuPlayer = menu;
-        setEdition();
+    public void changeEdition() {
+        boolean isInEdition = PlayerContext.isInEdition();
+
+        if (mIsInEdition != isInEdition) {
+            mIsInEdition = isInEdition;
+            updateCharacteristicsEdition(isInEdition);
+            updateCharacteristicsFortuneEdition(isInEdition);
+            updatePlayerInformationEdition(isInEdition);
+
+        }
     }
 
-    public void setEdition() {
-        mMenuPlayer.findItem(R.id.action_lock_edition).setVisible(isInEdition);
-        mMenuPlayer.findItem(R.id.action_unlock_edition).setVisible(!isInEdition);
-        isInEdition = !isInEdition;
-
-        updateEditionEditTexts();
-
-        Toast.makeText(getActivity(), String.valueOf(isInEdition), Toast.LENGTH_SHORT).show();
-    }
-
-    private void updateEditionEditTexts() {
+    private void updateCharacteristicsEdition(boolean isInEdition) {
         mPlayerStrengthView.setFocusable(isInEdition);
         mPlayerStrengthView.setFocusableInTouchMode(isInEdition);
         mPlayerStrengthView.setClickable(isInEdition);
@@ -106,10 +100,57 @@ public class CharacteristicsFragment extends Fragment {
         mPlayerIntelligenceView.setFocusableInTouchMode(isInEdition);
         mPlayerIntelligenceView.setClickable(isInEdition);
 
+        mPlayerWillpowerView.setFocusable(isInEdition);
+        mPlayerWillpowerView.setFocusableInTouchMode(isInEdition);
+        mPlayerWillpowerView.setClickable(isInEdition);
 
+        mPlayerFellowshipView.setFocusable(isInEdition);
+        mPlayerFellowshipView.setFocusableInTouchMode(isInEdition);
+        mPlayerFellowshipView.setClickable(isInEdition);
+    }
+
+    private void updateCharacteristicsFortuneEdition(boolean isInEdition) {
+        mPlayerStrengthFortuneView.setFocusable(isInEdition);
+        mPlayerStrengthFortuneView.setFocusableInTouchMode(isInEdition);
+        mPlayerStrengthFortuneView.setClickable(isInEdition);
+
+        mPlayerToughnessFortuneView.setFocusable(isInEdition);
+        mPlayerToughnessFortuneView.setFocusableInTouchMode(isInEdition);
+        mPlayerToughnessFortuneView.setClickable(isInEdition);
+
+        mPlayerAgilityFortuneView.setFocusable(isInEdition);
+        mPlayerAgilityFortuneView.setFocusableInTouchMode(isInEdition);
+        mPlayerAgilityFortuneView.setClickable(isInEdition);
+
+        mPlayerIntelligenceFortuneView.setFocusable(isInEdition);
+        mPlayerIntelligenceFortuneView.setFocusableInTouchMode(isInEdition);
+        mPlayerIntelligenceFortuneView.setClickable(isInEdition);
+
+        mPlayerWillpowerFortuneView.setFocusable(isInEdition);
+        mPlayerWillpowerFortuneView.setFocusableInTouchMode(isInEdition);
+        mPlayerWillpowerFortuneView.setClickable(isInEdition);
+
+        mPlayerFellowshipFortuneView.setFocusable(isInEdition);
+        mPlayerFellowshipFortuneView.setFocusableInTouchMode(isInEdition);
+        mPlayerFellowshipFortuneView.setClickable(isInEdition);
+    }
+
+    private void updatePlayerInformationEdition(boolean isInEdition) {
         mPlayerNameView.setFocusable(isInEdition);
         mPlayerNameView.setFocusableInTouchMode(isInEdition);
         mPlayerNameView.setClickable(isInEdition);
+
+        mPlayerRaceView.setFocusable(isInEdition);
+        mPlayerRaceView.setFocusableInTouchMode(isInEdition);
+        mPlayerRaceView.setClickable(isInEdition);
+
+        mPlayerAgeView.setFocusable(isInEdition);
+        mPlayerAgeView.setFocusableInTouchMode(isInEdition);
+        mPlayerAgeView.setClickable(isInEdition);
+
+        mPlayerSizeView.setFocusable(isInEdition);
+        mPlayerSizeView.setFocusableInTouchMode(isInEdition);
+        mPlayerSizeView.setClickable(isInEdition);
     }
 
     //region Characteristics Setup

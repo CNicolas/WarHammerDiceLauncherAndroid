@@ -30,7 +30,12 @@ public class CharacteristicEditTextWatcher implements TextWatcher {
 
     @Override
     public void afterTextChanged(Editable s) {
-        setPlayerCharacteristic(mCharacteristic, Integer.parseInt(s.toString()));
+        try {
+            int newValue = Integer.parseInt(s.toString());
+            setPlayerCharacteristic(mCharacteristic, newValue);
+        } catch (NumberFormatException nfe) {
+
+        }
     }
 
     private void setPlayerCharacteristic(Characteristic characteristic, int newValue) {

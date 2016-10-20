@@ -5,6 +5,7 @@ package com.aku.warhammerdicelauncher.ihm.tools;
  */
 
 import android.graphics.drawable.Drawable;
+import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.content.ContextCompat;
@@ -17,31 +18,47 @@ import com.aku.warhammerdicelauncher.ihm.activities.PlayerActivity;
 import com.aku.warhammerdicelauncher.ihm.fragments.CharacteristicsFragment;
 import com.aku.warhammerdicelauncher.ihm.fragments.InventoryFragment;
 import com.aku.warhammerdicelauncher.ihm.fragments.SkillsFragment;
+import com.aku.warhammerdicelauncher.tools.PlayerContext;
+import com.aku.warhammerdicelauncher.tools.constants.IPlayerConstants;
 
 public class PlayerPagerAdapter extends FragmentPagerAdapter {
 
     private final PlayerActivity mContext;
-    private CharacteristicsFragment mCharacteristicsFragment;
-    private SkillsFragment mSkillsFragment;
-    private InventoryFragment mInventoryFragment;
+    //    private CharacteristicsFragment mCharacteristicsFragment;
+//    private SkillsFragment mSkillsFragment;
+//    private InventoryFragment mInventoryFragment;
+    private String mCharacteristicFragmentTag;
+    private String mSkillsFragmentTag;
+    private String mInventoryFragmentTag;
 
     public PlayerPagerAdapter(PlayerActivity ctx) {
         super(ctx.getSupportFragmentManager());
         mContext = ctx;
     }
 
+    private static String makeFragmentTag(int index) {
+        return "android:switcher:" + R.id.player_pager_container + ":" + index;
+    }
+
     @Override
     public Fragment getItem(int position) {
+        Bundle bundle = new Bundle();
+        bundle.putBoolean(IPlayerConstants.IS_IN_EDITION_KEY, PlayerContext.isInEdition());
+
         switch (position) {
             case 0:
-                mCharacteristicsFragment = new CharacteristicsFragment();
+                mCharacteristicFragmentTag = makeFragmentTag(position);
+                CharacteristicsFragment mCharacteristicsFragment = new CharacteristicsFragment();
+                mCharacteristicsFragment.setArguments(bundle);
                 return mCharacteristicsFragment;
             case 1:
-                mSkillsFragment = new SkillsFragment();
-                return mSkillsFragment;
+                mSkillsFragmentTag = makeFragmentTag(position);
+//                mSkillsFragment = new SkillsFragment();
+                return new SkillsFragment();
             case 2:
-                mInventoryFragment = new InventoryFragment();
-                return mInventoryFragment;
+                mInventoryFragmentTag = makeFragmentTag(position);
+//                mInventoryFragment = new InventoryFragment();
+                return new InventoryFragment();
             default:
                 return new SkillsFragment();
         }
@@ -77,14 +94,14 @@ public class PlayerPagerAdapter extends FragmentPagerAdapter {
     }
 
     public CharacteristicsFragment getCharacteristicsFragment() {
-        return mCharacteristicsFragment;
+        return (CharacteristicsFragment) mContext.getSupportFragmentManager().findFragmentByTag(mCharacteristicFragmentTag);
     }
 
     public SkillsFragment getSkillsFragment() {
-        return mSkillsFragment;
+        return (SkillsFragment) mContext.getSupportFragmentManager().findFragmentByTag(mSkillsFragmentTag);
     }
 
     public InventoryFragment getInventoryFragment() {
-        return mInventoryFragment;
+        return (InventoryFragment) mContext.getSupportFragmentManager().findFragmentByTag(mInventoryFragmentTag);
     }
 }

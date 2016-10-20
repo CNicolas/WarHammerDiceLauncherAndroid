@@ -14,7 +14,9 @@ import android.widget.TextView;
 import com.aku.warhammerdicelauncher.R;
 import com.aku.warhammerdicelauncher.database.WarHammerDatabaseHelper;
 import com.aku.warhammerdicelauncher.database.dao.PlayerDao;
+import com.aku.warhammerdicelauncher.tools.constants.IPlayerConstants;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -35,24 +37,33 @@ public class HomeActivity extends Activity {
         listPlayers = (ListView) findViewById(R.id.list_players);
 
         playerDao = new PlayerDao(new WarHammerDatabaseHelper(this));
-        List<String> playersNames = playerDao.findAllNames();
+        List<String> playersNames = new ArrayList<>();
 
         playersNames.add(getResources().getString(R.string.home_create_player));
+        playersNames.addAll(playerDao.findAllNames());
 
         ArrayAdapter<String> adapter = new ArrayAdapter<>(this, R.layout.item_players_list, playersNames);
         listPlayers.setAdapter(adapter);
         listPlayers.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                try {
-                    TextView tv = (TextView) view;
-                    playerDao.findByName(tv.getText().toString());
-                } catch (SQLiteException sqle) {
+                boolean isInEdition = false;
 
+                if (position == 0) {
+                    isInEdition = true;
+                } else {
+                    try {
+                        TextView tv = (TextView) view;
+                        playerDao.findByName(tv.getText().toString());
+                    } catch (SQLiteException sqle) {
+
+                    }
                 }
 
-                Intent mainIntent = new Intent(HomeActivity.this, PlayerActivity.class);
-                startActivity(mainIntent);
+                Intent playerIntent = new Intent(HomeActivity.this, PlayerActivity.class);
+                playerIntent.putExtra(IPlayerConstants.IS_IN_EDITION_KEY, isInEdition);
+
+                startActivity(playerIntent);
                 finish();
             }
         });
