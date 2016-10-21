@@ -4,10 +4,10 @@
     <style name="CharacteristicLabelTextView">
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">match_parent</item>
-        <item name="android:layout_weight">0.30</item>
+        <item name="android:layout_weight">0.3</item>
         <item name="android:gravity">end|center_vertical</item>
-        <item name="android:paddingEnd">5dp</item>
-        <item name="android:paddingStart">5dp</item>
+        <item name="android:paddingEnd">@dimen/small_padding</item>
+        <item name="android:paddingStart">@dimen/small_padding</item>
         <item name="android:textSize">@dimen/textSize</item>
     </style>
 
@@ -26,10 +26,14 @@
     <style name="CharacteristicFortuneEditText" parent="CharacteristicEditText">
         <item name="android:textColor">@android:color/black</item>
         <item name="android:background">@drawable/black_border</item>
+        <item name="android:layout_marginEnd">30dp</item>
+        <item name="android:layout_marginStart">@dimen/very_small_padding</item>
+        <item name="android:layout_marginTop">@dimen/very_small_padding</item>
+        <item name="android:layout_marginBottom">@dimen/very_small_padding</item>
     </style>
 
     <style name="CharacteristicLinearLayout">
-        <item name="android:layout_width">400dp</item>
+        <item name="android:layout_width">350dp</item>
         <item name="android:gravity">center</item>
         <item name="android:layout_height">40dp</item>
         <item name="android:orientation">horizontal</item>
@@ -40,9 +44,9 @@
     <style name="CharacteristicBlueLinearLayout">
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">match_parent</item>
-        <item name="android:layout_weight">0.30</item>
+        <item name="android:layout_weight">0.35</item>
         <item name="android:background">@color/characteristic_blue</item>
-        <item name="android:layout_margin">2dp</item>
+        <item name="android:layout_margin">@dimen/very_small_padding</item>
     </style>
 
     <style name="CharacteristicWhiteLinearLayout" parent="CharacteristicBlueLinearLayout">
