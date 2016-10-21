@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-
     <style name="LabelTextView">
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">match_parent</item>
@@ -10,15 +9,15 @@
         <item name="android:paddingStart">@dimen/small_padding</item>
     </style>
 
-    <style name="CharacteristicLabelTextView">
-        <item name="android:layout_width">match_parent</item>
-        <item name="android:layout_height">match_parent</item>
-        <item name="android:layout_weight">0.3</item>
-        <item name="android:gravity">end|center_vertical</item>
-        <item name="android:paddingEnd">@dimen/small_padding</item>
-        <!--<item name="android:paddingStart">@dimen/small_padding</item>-->
-        <item name="android:textSize">@dimen/textSize</item>
+    <style name="CharacteristicLabelTextView" parent="LabelTextView">
+        <item name="android:layout_weight">30</item>
     </style>
+
+    <style name="RankExperienceLabelTextView" parent="LabelTextView">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">match_parent</item>
+    </style>
+
 
     <style name="CharacteristicEditText" parent="@android:style/Widget.EditText">
         <item name="android:layout_width">match_parent</item>
@@ -41,6 +40,25 @@
         <item name="android:layout_marginBottom">@dimen/very_small_padding</item>
     </style>
 
+    <style name="CharacteristicBigEditText">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">match_parent</item>
+        <item name="android:layout_weight">25</item>
+        <item name="android:gravity">center</item>
+        <item name="android:inputType">textPersonName</item>
+    </style>
+
+    <style name="RankExperienceEditText">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">match_parent</item>
+        <item name="android:layout_weight">20</item>
+        <item name="android:gravity">center</item>
+        <item name="android:hint">@string/zero</item>
+        <item name="android:inputType">number</item>
+        <item name="android:maxLength">3</item>
+    </style>
+
+
     <style name="CharacteristicLinearLayout">
         <item name="android:layout_width">400dp</item>
         <item name="android:gravity">center</item>
@@ -53,7 +71,7 @@
     <style name="CharacteristicBlueLinearLayout">
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">match_parent</item>
-        <item name="android:layout_weight">0.35</item>
+        <item name="android:layout_weight">35</item>
         <item name="android:background">@color/characteristic_blue</item>
         <item name="android:layout_margin">@dimen/very_small_padding</item>
     </style>

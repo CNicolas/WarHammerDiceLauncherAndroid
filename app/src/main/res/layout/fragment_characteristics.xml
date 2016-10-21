@@ -35,12 +35,8 @@
 
                 <EditText
                     android:id="@+id/player_name"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_weight="25"
-                    android:gravity="center"
-                    android:hint="@string/name_hint"
-                    android:inputType="textPersonName" />
+                    style="@style/CharacteristicBigEditText"
+                    android:hint="@string/name_hint" />
             </LinearLayout>
 
             <!--Career-->
@@ -55,12 +51,8 @@
 
                 <EditText
                     android:id="@+id/player_career"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="25"
-                    android:gravity="center"
-                    android:hint="@string/career_hint"
-                    android:inputType="textPersonName" />
+                    style="@style/CharacteristicBigEditText"
+                    android:hint="@string/career_hint" />
             </LinearLayout>
         </LinearLayout>
 
@@ -68,6 +60,7 @@
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/small_padding"
             android:orientation="vertical">
 
             <!--Strength-->
@@ -220,188 +213,83 @@
                 </LinearLayout>
             </LinearLayout>
         </RelativeLayout>
+
         <!--Rank, Experience/Max_Experience-->
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:baselineAligned="false"
+            android:layout_marginEnd="@dimen/big_padding"
             android:orientation="horizontal">
-
             <!--Rank-->
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_weight="0.66">
+            <TextView
+                style="@style/RankExperienceLabelTextView"
+                android:layout_weight="35"
+                android:text="@string/rank_label" />
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center_vertical"
-                    android:paddingEnd="@dimen/medium_padding"
-                    android:paddingStart="@dimen/medium_padding"
-                    android:text="@string/rank_label"
-                    android:textSize="@dimen/textSize" />
-
-                <EditText
-                    android:id="@+id/player_rank"
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:layout_gravity="center"
-                    android:gravity="center"
-                    android:hint="@string/zero"
-                    android:inputType="number"
-                    android:maxLength="2"
-                    android:maxLines="1"
-                    android:paddingEnd="@dimen/medium_padding"
-                    android:paddingStart="@dimen/medium_padding" />
-            </LinearLayout>
+            <EditText
+                android:id="@+id/player_rank"
+                style="@style/RankExperienceEditText" />
 
             <!--Experience-->
-            <RelativeLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_weight="0.5">
+            <TextView
+                style="@style/RankExperienceLabelTextView"
+                android:layout_weight="50"
+                android:text="@string/experience_label" />
 
-                <TextView
-                    android:id="@+id/experience_label"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentStart="true"
-                    android:layout_centerVertical="true"
-                    android:layout_gravity="center"
-                    android:gravity="end"
-                    android:paddingEnd="@dimen/medium_padding"
-                    android:paddingStart="@dimen/medium_padding"
-                    android:text="@string/experience_label" />
+            <EditText
+                android:id="@+id/player_experience"
+                style="@style/RankExperienceEditText"
+                android:gravity="end|center_vertical" />
 
-                <EditText
-                    android:id="@+id/player_experience"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_toEndOf="@id/experience_label"
-                    android:gravity="end"
-                    android:hint="@string/zero"
-                    android:inputType="number"
-                    android:maxLength="2"
-                    android:maxLines="1"
-                    android:paddingEnd="@dimen/medium_padding"
-                    android:paddingStart="@dimen/medium_padding" />
+            <TextView
+                style="@style/RankExperienceLabelTextView"
+                android:layout_weight="1"
+                android:text="@string/slash" />
 
-                <!--/-->
-                <TextView
-                    android:id="@+id/experience_label_separator"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_centerVertical="true"
-                    android:layout_toEndOf="@id/player_experience"
-                    android:background="@android:color/transparent"
-                    android:gravity="center"
-                    android:text="@string/slash" />
-
-                <!--Max Experience-->
-                <EditText
-                    android:id="@+id/player_max_experience"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentEnd="true"
-                    android:layout_toEndOf="@id/experience_label_separator"
-                    android:gravity="start"
-                    android:hint="@string/zero"
-                    android:inputType="number"
-                    android:maxLength="2"
-                    android:maxLines="1"
-                    android:paddingEnd="@dimen/medium_padding"
-                    android:paddingStart="@dimen/medium_padding" />
-            </RelativeLayout>
-
+            <EditText
+                android:id="@+id/player_max_experience"
+                style="@style/RankExperienceEditText"
+                android:gravity="start|center_vertical" />
         </LinearLayout>
 
         <!--Race, Age, Size-->
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:baselineAligned="false"
-            android:orientation="horizontal"
-            android:padding="@dimen/small_padding">
-
+            android:layout_marginEnd="@dimen/big_padding"
+            android:orientation="horizontal">
             <!--Race-->
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_weight="0.3">
+            <TextView
+                style="@style/RankExperienceLabelTextView"
+                android:layout_weight="35"
+                android:text="@string/race_label" />
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center_vertical"
-                    android:paddingEnd="@dimen/medium_padding"
-                    android:paddingStart="@dimen/medium_padding"
-                    android:text="@string/race_label"
-                    android:textSize="@dimen/textSize" />
-
-                <EditText
-                    android:id="@+id/player_race"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:gravity="center"
-                    android:hint="@string/race_hint"
-                    android:inputType="textPersonName" />
-            </LinearLayout>
-
+            <EditText
+                android:id="@+id/player_race"
+                style="@style/RankExperienceEditText"
+                android:layout_weight="80"
+                android:hint="@string/race_hint" />
 
             <!--Age-->
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_weight="0.35">
+            <TextView
+                android:id="@+id/textView2"
+                style="@style/RankExperienceLabelTextView"
+                android:layout_weight="1"
+                android:text="@string/age_label" />
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center_vertical"
-                    android:paddingEnd="@dimen/medium_padding"
-                    android:paddingStart="@dimen/medium_padding"
-                    android:text="@string/age_label"
-                    android:textSize="@dimen/textSize" />
-
-                <EditText
-                    android:id="@+id/player_age"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:gravity="center"
-                    android:hint="@string/zero"
-                    android:inputType="number"
-                    android:maxLength="3" />
-            </LinearLayout>
-
+            <EditText
+                android:id="@+id/player_age"
+                style="@style/RankExperienceEditText" />
 
             <!--Size-->
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_weight="0.35">
+            <TextView
+                style="@style/RankExperienceLabelTextView"
+                android:layout_weight="1"
+                android:text="@string/size_label" />
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center_vertical"
-                    android:paddingEnd="@dimen/medium_padding"
-                    android:paddingStart="@dimen/medium_padding"
-                    android:text="@string/size_label"
-                    android:textSize="@dimen/textSize" />
-
-                <EditText
-                    android:id="@+id/player_size"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:gravity="center"
-                    android:hint="@string/zero"
-                    android:inputType="numberDecimal"
-                    android:maxLength="5" />
-            </LinearLayout>
+            <EditText
+                android:id="@+id/player_size"
+                style="@style/RankExperienceEditText" />
         </LinearLayout>
 
         <!--Description-->
@@ -414,9 +302,7 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_gravity="center_vertical"
-                android:paddingEnd="@dimen/medium_padding"
-                android:paddingStart="@dimen/medium_padding"
+                android:gravity="center"
                 android:text="@string/description_label"
                 android:textSize="@dimen/textSize" />
 
