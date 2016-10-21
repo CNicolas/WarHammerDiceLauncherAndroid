@@ -57,10 +57,10 @@
         </LinearLayout>
 
         <!--Characteristics EditTexts-->
-        <RelativeLayout
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="@dimen/small_padding"
+            android:layout_marginBottom="@dimen/medium_padding"
             android:orientation="vertical">
 
             <!--Strength-->
@@ -90,8 +90,7 @@
             <!--Toughness-->
             <LinearLayout
                 android:id="@+id/toughness_layout"
-                style="@style/CharacteristicLinearLayout"
-                android:layout_below="@id/strength_layout">
+                style="@style/CharacteristicLinearLayout">
 
                 <TextView
                     style="@style/CharacteristicLabelTextView"
@@ -140,8 +139,7 @@
             <!--Intelligence-->
             <LinearLayout
                 android:id="@+id/intelligence_layout"
-                style="@style/CharacteristicLinearLayout"
-                android:layout_below="@id/agility_layout">
+                style="@style/CharacteristicLinearLayout">
 
                 <TextView
                     android:id="@+id/textView"
@@ -166,8 +164,7 @@
             <!--Will Power-->
             <LinearLayout
                 android:id="@+id/willpower_layout"
-                style="@style/CharacteristicLinearLayout"
-                android:layout_below="@id/intelligence_layout">
+                style="@style/CharacteristicLinearLayout">
 
                 <TextView
                     style="@style/CharacteristicLabelTextView"
@@ -191,8 +188,7 @@
             <!--Fellowship-->
             <LinearLayout
                 android:id="@+id/fellowship_layout"
-                style="@style/CharacteristicLinearLayout"
-                android:layout_below="@id/willpower_layout">
+                style="@style/CharacteristicLinearLayout">
 
                 <TextView
                     style="@style/CharacteristicLabelTextView"
@@ -212,7 +208,7 @@
                         style="@style/CharacteristicFortuneEditText" />
                 </LinearLayout>
             </LinearLayout>
-        </RelativeLayout>
+        </LinearLayout>
 
         <!--Rank, Experience/Max_Experience-->
         <LinearLayout
@@ -256,6 +252,7 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/medium_padding"
             android:layout_marginEnd="@dimen/big_padding"
             android:orientation="horizontal">
             <!--Race-->

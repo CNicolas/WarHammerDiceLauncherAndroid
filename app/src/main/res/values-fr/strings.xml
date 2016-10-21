@@ -1,5 +1,4 @@
 <resources>
-    <string name="app_name">WHFRP3</string>
 
     <!--Image descriptions-->
     <string name="characteristicDice">Dé de caractéristique</string>
@@ -12,7 +11,6 @@
     <!--End of images-->
 
     <!--Constant Values-->
-    <string name="zero">0</string>
     <string name="ok">OK</string>
     <string name="close">Fermer</string>
     <string name="cancel">Annuler</string>
@@ -67,6 +65,17 @@
     <string name="home_create_player">Créer un nouveau joueur</string>
     <string name="action_unlock_edition">Editer</string>
     <string name="action_lock_edition">Arrêter l\'édition</string>
+    <string name="age_label">Age :</string>
+    <string name="career_hint">Carrière</string>
+    <string name="career_label">Carrière :</string>
+    <string name="description_label">Description :</string>
+    <string name="experience_label">Experience :</string>
+    <string name="name_hint">Nom</string>
+    <string name="name_label">Nom :</string>
+    <string name="race_hint">Race</string>
+    <string name="race_label">Race :</string>
+    <string name="rank_label">Rang :</string>
+    <string name="size_label">Taille :</string>
     <!--End of pages-->
 
 </resources>

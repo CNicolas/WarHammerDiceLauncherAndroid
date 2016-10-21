@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">WHFRP3</string>
+    <string name="app_name" translatable="false">WHFRP3</string>
 
     <!--Image descriptions-->
     <string name="characteristicDice">Characteristic Dice</string>
@@ -12,7 +12,7 @@
     <!--End of images-->
 
     <!--Constant Values-->
-    <string name="zero">0</string>
+    <string name="zero" translatable="false">0</string>
     <string name="ok">OK</string>
     <string name="close">Close</string>
     <string name="cancel">Cancel</string>
@@ -69,7 +69,7 @@
     <string name="race_hint">Elfe Sylvain</string>
     <string name="race_label">Race :</string>
     <string name="age_label">Age :</string>
-    <string name="slash">/</string>
+    <string name="slash" translatable="false">/</string>
     <string name="experience_label">Experience :</string>
     <string name="description_label">Description :</string>
     <string name="rank_label">Rank :</string>
