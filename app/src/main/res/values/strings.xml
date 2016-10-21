@@ -72,6 +72,9 @@
     <string name="slash">/</string>
     <string name="experience_label">Experience :</string>
     <string name="description_label">Description :</string>
+    <string name="rank_label">Rank :</string>
+    <string name="size_label">Size :</string>
+    <string name="name_hint">Name</string>
     <!--End of pages-->
 
 </resources>
