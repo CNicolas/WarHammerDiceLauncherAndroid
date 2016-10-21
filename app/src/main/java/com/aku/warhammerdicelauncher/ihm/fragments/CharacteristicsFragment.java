@@ -38,6 +38,7 @@ public class CharacteristicsFragment extends Fragment {
 
     //region Player Information
     private EditText mPlayerAgeView;
+    private EditText mPlayerCareerView;
     private EditText mPlayerDescriptionView;
     private EditText mPlayerExperienceView;
     private EditText mPlayerMaxExperienceView;
@@ -79,7 +80,6 @@ public class CharacteristicsFragment extends Fragment {
             updateCharacteristicsEdition(isInEdition);
             updateCharacteristicsFortuneEdition(isInEdition);
             updatePlayerInformationEdition(isInEdition);
-
         }
     }
 
@@ -139,6 +139,10 @@ public class CharacteristicsFragment extends Fragment {
         mPlayerNameView.setFocusable(isInEdition);
         mPlayerNameView.setFocusableInTouchMode(isInEdition);
         mPlayerNameView.setClickable(isInEdition);
+
+        mPlayerCareerView.setFocusable(isInEdition);
+        mPlayerCareerView.setFocusableInTouchMode(isInEdition);
+        mPlayerCareerView.setClickable(isInEdition);
 
         mPlayerRaceView.setFocusable(isInEdition);
         mPlayerRaceView.setFocusableInTouchMode(isInEdition);
@@ -210,6 +214,7 @@ public class CharacteristicsFragment extends Fragment {
         mPlayerExperienceView = (EditText) mRootView.findViewById(R.id.player_experience);
         mPlayerMaxExperienceView = (EditText) mRootView.findViewById(R.id.player_max_experience);
         mPlayerNameView = (EditText) mRootView.findViewById(R.id.player_name);
+        mPlayerCareerView = (EditText) mRootView.findViewById(R.id.player_career);
         mPlayerRaceView = (EditText) mRootView.findViewById(R.id.player_race);
         mPlayerRankView = (EditText) mRootView.findViewById(R.id.player_rank);
         mPlayerSizeView = (EditText) mRootView.findViewById(R.id.player_size);
@@ -221,6 +226,7 @@ public class CharacteristicsFragment extends Fragment {
         mPlayerExperienceView.addTextChangedListener(new PlayerEditTextWatcher(PlayerInformation.EXPERIENCE));
         mPlayerMaxExperienceView.addTextChangedListener(new PlayerEditTextWatcher(PlayerInformation.MAX_EXPERIENCE));
         mPlayerNameView.addTextChangedListener(new PlayerEditTextWatcher(PlayerInformation.NAME));
+        mPlayerCareerView.addTextChangedListener(new PlayerEditTextWatcher(PlayerInformation.CAREER));
         mPlayerRaceView.addTextChangedListener(new PlayerEditTextWatcher(PlayerInformation.RACE));
         mPlayerRankView.addTextChangedListener(new PlayerEditTextWatcher(PlayerInformation.RANK));
         mPlayerSizeView.addTextChangedListener(new PlayerEditTextWatcher(PlayerInformation.SIZE));

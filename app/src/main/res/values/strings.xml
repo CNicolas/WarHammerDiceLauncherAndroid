@@ -75,6 +75,9 @@
     <string name="rank_label">Rank :</string>
     <string name="size_label">Size :</string>
     <string name="name_hint">Name</string>
+    <string name="career_label">Career :</string>
+    <string name="career_hint">Career</string>
+    <string name="name_label">Name :</string>
     <!--End of pages-->
 
 </resources>

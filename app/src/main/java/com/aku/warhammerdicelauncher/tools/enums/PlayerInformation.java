@@ -8,6 +8,7 @@ import com.aku.warhammerdicelauncher.database.entries.IPlayerEntryConstants;
 
 public enum PlayerInformation {
     NAME(IPlayerEntryConstants.COLUMN_NAME),
+    CAREER(IPlayerEntryConstants.COLUMN_CAREER),
     RACE(IPlayerEntryConstants.COLUMN_RACE),
     AGE(IPlayerEntryConstants.COLUMN_AGE),
     SIZE(IPlayerEntryConstants.COLUMN_SIZE),

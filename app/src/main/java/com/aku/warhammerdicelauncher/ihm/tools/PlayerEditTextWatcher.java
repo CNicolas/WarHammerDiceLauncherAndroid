@@ -52,6 +52,9 @@ public class PlayerEditTextWatcher implements TextWatcher {
                 case NAME:
                     player.setName(newValue);
                     return;
+                case CAREER:
+                    player.setCareer(newValue);
+                    return;
                 case RACE:
                     player.setRace(newValue);
                     return;

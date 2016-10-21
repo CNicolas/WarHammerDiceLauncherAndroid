@@ -49,6 +49,7 @@ public class PlayerDao extends AbstractDao<Player> implements IPlayerEntryConsta
         values.put(COLUMN_SIZE, player.getSize());
         values.put(COLUMN_DESCRIPTION, player.getDescription());
 
+        values.put(COLUMN_CAREER, player.getCareer());
         values.put(COLUMN_RANK, player.getRank());
         values.put(COLUMN_EXPERIENCE, player.getExperience());
         values.put(COLUMN_MAX_EXPERIENCE, player.getMax_experience());
@@ -79,6 +80,7 @@ public class PlayerDao extends AbstractDao<Player> implements IPlayerEntryConsta
         dto.setSize(cursor.getInt(cursor.getColumnIndexOrThrow(COLUMN_SIZE)));
         dto.setDescription(cursor.getString(cursor.getColumnIndexOrThrow(COLUMN_DESCRIPTION)));
 
+        dto.setCareer(cursor.getString(cursor.getColumnIndexOrThrow(COLUMN_CAREER)));
         dto.setRank(cursor.getInt(cursor.getColumnIndexOrThrow(COLUMN_RANK)));
         dto.setExperience(cursor.getInt(cursor.getColumnIndexOrThrow(COLUMN_EXPERIENCE)));
         dto.setMax_experience(cursor.getInt(cursor.getColumnIndexOrThrow(COLUMN_MAX_EXPERIENCE)));

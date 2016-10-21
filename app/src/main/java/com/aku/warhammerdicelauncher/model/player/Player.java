@@ -23,6 +23,7 @@ public class Player implements IModel, IPlayerConstants {
     private double size;
     private String description;
 
+    private String career;
     private int rank;
     private int experience;
     private int max_experience;
@@ -129,6 +130,14 @@ public class Player implements IModel, IPlayerConstants {
 
     public void setDescription(String description) {
         this.description = description;
+    }
+
+    public String getCareer() {
+        return career;
+    }
+
+    public void setCareer(String career) {
+        this.career = career;
     }
 
     public int getRank() {
@@ -279,6 +288,7 @@ public class Player implements IModel, IPlayerConstants {
                 ", age=" + age +
                 ", size=" + size +
                 ", description='" + description + '\'' +
+                ", career='" + career + '\'' +
                 ", rank=" + rank +
                 ", experience=" + experience +
                 ", max_experience=" + max_experience +
@@ -327,6 +337,8 @@ public class Player implements IModel, IPlayerConstants {
             return false;
         if (getDescription() != null ? !getDescription().equals(player.getDescription()) : player.getDescription() != null)
             return false;
+        if (getCareer() != null ? !getCareer().equals(player.getCareer()) : player.getCareer() != null)
+            return false;
         if (getCharacteristics() != null ? !getCharacteristics().equals(player.getCharacteristics()) : player.getCharacteristics() != null)
             return false;
         if (getInventory() != null ? !getInventory().equals(player.getInventory()) : player.getInventory() != null)
@@ -350,6 +362,7 @@ public class Player implements IModel, IPlayerConstants {
         temp = Double.doubleToLongBits(getSize());
         result = 31 * result + (int) (temp ^ (temp >>> 32));
         result = 31 * result + (getDescription() != null ? getDescription().hashCode() : 0);
+        result = 31 * result + (getCareer() != null ? getCareer().hashCode() : 0);
         result = 31 * result + getRank();
         result = 31 * result + getExperience();
         result = 31 * result + getMax_experience();
@@ -369,5 +382,5 @@ public class Player implements IModel, IPlayerConstants {
         result = 31 * result + (getSkills() != null ? getSkills().hashCode() : 0);
         return result;
     }
-//endregion
+    //endregion
 }

@@ -14,14 +14,55 @@
         android:isScrollContainer="true"
         android:orientation="vertical">
 
-        <!--Name-->
-        <EditText
-            android:id="@+id/player_name"
-            android:layout_width="wrap_content"
+        <LinearLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:hint="@string/name_hint"
-            android:inputType="textPersonName" />
+            android:layout_marginBottom="@dimen/medium_padding"
+            android:layout_marginEnd="@dimen/big_padding"
+            android:layout_marginStart="@dimen/big_padding"
+            android:layout_marginTop="@dimen/medium_padding"
+            android:orientation="vertical">
+
+            <!--Name-->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    style="@style/LabelTextView"
+                    android:layout_weight="75"
+                    android:text="@string/name_label" />
+
+                <EditText
+                    android:id="@+id/player_name"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="25"
+                    android:gravity="center"
+                    android:hint="@string/name_hint"
+                    android:inputType="textPersonName" />
+            </LinearLayout>
+
+            <!--Career-->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    style="@style/LabelTextView"
+                    android:layout_weight="75"
+                    android:text="@string/career_label" />
+
+                <EditText
+                    android:id="@+id/player_career"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="25"
+                    android:gravity="center"
+                    android:hint="@string/career_hint"
+                    android:inputType="textPersonName" />
+            </LinearLayout>
+        </LinearLayout>
 
         <!--Characteristics EditTexts-->
         <RelativeLayout
@@ -179,95 +220,6 @@
                 </LinearLayout>
             </LinearLayout>
         </RelativeLayout>
-
-        <!--Race, Age, Size-->
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:baselineAligned="false"
-            android:orientation="horizontal"
-            android:padding="@dimen/small_padding">
-
-            <!--Race-->
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_weight="0.3">
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center_vertical"
-                    android:paddingEnd="@dimen/medium_padding"
-                    android:paddingStart="@dimen/medium_padding"
-                    android:text="@string/race_label"
-                    android:textSize="@dimen/textSize" />
-
-                <EditText
-                    android:id="@+id/player_race"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:gravity="center"
-                    android:hint="@string/race_hint"
-                    android:inputType="textPersonName" />
-            </LinearLayout>
-
-
-            <!--Age-->
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_weight="0.35">
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center_vertical"
-                    android:paddingEnd="@dimen/medium_padding"
-                    android:paddingStart="@dimen/medium_padding"
-                    android:text="@string/age_label"
-                    android:textSize="@dimen/textSize" />
-
-                <EditText
-                    android:id="@+id/player_age"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:gravity="center"
-                    android:hint="@string/zero"
-                    android:inputType="number"
-                    android:maxLength="3" />
-            </LinearLayout>
-
-
-            <!--Size-->
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_weight="0.35">
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center_vertical"
-                    android:paddingEnd="@dimen/medium_padding"
-                    android:paddingStart="@dimen/medium_padding"
-                    android:text="@string/size_label"
-                    android:textSize="@dimen/textSize" />
-
-                <EditText
-                    android:id="@+id/player_size"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:gravity="center"
-                    android:hint="@string/zero"
-                    android:inputType="numberDecimal"
-                    android:maxLength="5" />
-            </LinearLayout>
-        </LinearLayout>
-
         <!--Rank, Experience/Max_Experience-->
         <LinearLayout
             android:layout_width="match_parent"
@@ -362,6 +314,94 @@
                     android:paddingStart="@dimen/medium_padding" />
             </RelativeLayout>
 
+        </LinearLayout>
+
+        <!--Race, Age, Size-->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:baselineAligned="false"
+            android:orientation="horizontal"
+            android:padding="@dimen/small_padding">
+
+            <!--Race-->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.3">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:paddingEnd="@dimen/medium_padding"
+                    android:paddingStart="@dimen/medium_padding"
+                    android:text="@string/race_label"
+                    android:textSize="@dimen/textSize" />
+
+                <EditText
+                    android:id="@+id/player_race"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:gravity="center"
+                    android:hint="@string/race_hint"
+                    android:inputType="textPersonName" />
+            </LinearLayout>
+
+
+            <!--Age-->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.35">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:paddingEnd="@dimen/medium_padding"
+                    android:paddingStart="@dimen/medium_padding"
+                    android:text="@string/age_label"
+                    android:textSize="@dimen/textSize" />
+
+                <EditText
+                    android:id="@+id/player_age"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:gravity="center"
+                    android:hint="@string/zero"
+                    android:inputType="number"
+                    android:maxLength="3" />
+            </LinearLayout>
+
+
+            <!--Size-->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.35">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:paddingEnd="@dimen/medium_padding"
+                    android:paddingStart="@dimen/medium_padding"
+                    android:text="@string/size_label"
+                    android:textSize="@dimen/textSize" />
+
+                <EditText
+                    android:id="@+id/player_size"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:gravity="center"
+                    android:hint="@string/zero"
+                    android:inputType="numberDecimal"
+                    android:maxLength="5" />
+            </LinearLayout>
         </LinearLayout>
 
         <!--Description-->

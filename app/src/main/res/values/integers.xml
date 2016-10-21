@@ -2,4 +2,8 @@
 <resources>
     <integer name="sideItems">1</integer>
     <integer name="itemPadding">1</integer>
+
+    <integer name="weight_half">50</integer>
+    <integer name="weight_third">33</integer>
+    <integer name="weight_fourth">25</integer>
 </resources>

@@ -13,6 +13,7 @@ public interface IPlayerEntryConstants extends IEntryConstants {
     String COLUMN_SIZE = "size";
     String COLUMN_DESCRIPTION = "description";
 
+    String COLUMN_CAREER = "rank";
     String COLUMN_RANK = "rank";
     String COLUMN_EXPERIENCE = "experience";
     String COLUMN_MAX_EXPERIENCE = "max_experience";
@@ -38,6 +39,7 @@ public interface IPlayerEntryConstants extends IEntryConstants {
                     COLUMN_SIZE + FLOAT_TYPE + COMMA_SEP +
                     COLUMN_DESCRIPTION + TEXT_TYPE + COMMA_SEP +
 
+                    COLUMN_CAREER + TEXT_TYPE + COMMA_SEP +
                     COLUMN_RANK + INTEGER_TYPE + COMMA_SEP +
                     COLUMN_EXPERIENCE + INTEGER_TYPE + COMMA_SEP +
                     COLUMN_MAX_EXPERIENCE + INTEGER_TYPE + COMMA_SEP +
