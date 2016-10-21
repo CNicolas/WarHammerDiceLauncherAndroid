@@ -10,6 +10,7 @@ import android.widget.EditText;
 import com.aku.warhammerdicelauncher.R;
 import com.aku.warhammerdicelauncher.ihm.tools.CharacteristicEditTextWatcher;
 import com.aku.warhammerdicelauncher.ihm.tools.PlayerEditTextWatcher;
+import com.aku.warhammerdicelauncher.model.player.Player;
 import com.aku.warhammerdicelauncher.tools.PlayerContext;
 import com.aku.warhammerdicelauncher.tools.constants.IPlayerConstants;
 import com.aku.warhammerdicelauncher.tools.enums.Characteristic;
@@ -70,6 +71,13 @@ public class CharacteristicsFragment extends Fragment {
 
         changeEdition();
         return mRootView;
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        fillPlayerCharacteristicsFields();
+        fillPlayerInformationFields();
     }
 
     public void changeEdition() {
@@ -136,33 +144,17 @@ public class CharacteristicsFragment extends Fragment {
     }
 
     private void updatePlayerInformationEdition(boolean isInEdition) {
-        mPlayerNameView.setFocusable(isInEdition);
-        mPlayerNameView.setFocusableInTouchMode(isInEdition);
-        mPlayerNameView.setClickable(isInEdition);
+        mPlayerAgeView.setFocusable(isInEdition);
+        mPlayerAgeView.setFocusableInTouchMode(isInEdition);
+        mPlayerAgeView.setClickable(isInEdition);
 
         mPlayerCareerView.setFocusable(isInEdition);
         mPlayerCareerView.setFocusableInTouchMode(isInEdition);
         mPlayerCareerView.setClickable(isInEdition);
 
-        mPlayerRaceView.setFocusable(isInEdition);
-        mPlayerRaceView.setFocusableInTouchMode(isInEdition);
-        mPlayerRaceView.setClickable(isInEdition);
-
-        mPlayerAgeView.setFocusable(isInEdition);
-        mPlayerAgeView.setFocusableInTouchMode(isInEdition);
-        mPlayerAgeView.setClickable(isInEdition);
-
-        mPlayerSizeView.setFocusable(isInEdition);
-        mPlayerSizeView.setFocusableInTouchMode(isInEdition);
-        mPlayerSizeView.setClickable(isInEdition);
-
         mPlayerDescriptionView.setFocusable(isInEdition);
         mPlayerDescriptionView.setFocusableInTouchMode(isInEdition);
         mPlayerDescriptionView.setClickable(isInEdition);
-
-        mPlayerRankView.setFocusable(isInEdition);
-        mPlayerRankView.setFocusableInTouchMode(isInEdition);
-        mPlayerRankView.setClickable(isInEdition);
 
         mPlayerExperienceView.setFocusable(isInEdition);
         mPlayerExperienceView.setFocusableInTouchMode(isInEdition);
@@ -171,6 +163,22 @@ public class CharacteristicsFragment extends Fragment {
         mPlayerMaxExperienceView.setFocusable(isInEdition);
         mPlayerMaxExperienceView.setFocusableInTouchMode(isInEdition);
         mPlayerMaxExperienceView.setClickable(isInEdition);
+
+        mPlayerNameView.setFocusable(isInEdition);
+        mPlayerNameView.setFocusableInTouchMode(isInEdition);
+        mPlayerNameView.setClickable(isInEdition);
+
+        mPlayerRaceView.setFocusable(isInEdition);
+        mPlayerRaceView.setFocusableInTouchMode(isInEdition);
+        mPlayerRaceView.setClickable(isInEdition);
+
+        mPlayerRankView.setFocusable(isInEdition);
+        mPlayerRankView.setFocusableInTouchMode(isInEdition);
+        mPlayerRankView.setClickable(isInEdition);
+
+        mPlayerSizeView.setFocusable(isInEdition);
+        mPlayerSizeView.setFocusableInTouchMode(isInEdition);
+        mPlayerSizeView.setClickable(isInEdition);
     }
 
     //region Characteristics Setup
@@ -188,6 +196,36 @@ public class CharacteristicsFragment extends Fragment {
         mPlayerIntelligenceFortuneView = (EditText) mRootView.findViewById(R.id.intelligence_fortune);
         mPlayerWillpowerFortuneView = (EditText) mRootView.findViewById(R.id.willpower_fortune);
         mPlayerFellowshipFortuneView = (EditText) mRootView.findViewById(R.id.fellowship_fortune);
+    }
+
+    private void fillPlayerCharacteristicsFields() {
+        Player player = PlayerContext.getPlayerInstance();
+
+        int strength = player.getCharacteristics().getStrength();
+        mPlayerStrengthView.setText(strength == 0 ? "" : String.valueOf(strength));
+        int toughness = player.getCharacteristics().getToughness();
+        mPlayerToughnessView.setText(toughness == 0 ? "" : String.valueOf(toughness));
+        int agility = player.getCharacteristics().getAgility();
+        mPlayerAgilityView.setText(agility == 0 ? "" : String.valueOf(agility));
+        int intelligence = player.getCharacteristics().getIntelligence();
+        mPlayerIntelligenceView.setText(intelligence == 0 ? "" : String.valueOf(intelligence));
+        int willpower = player.getCharacteristics().getWillpower();
+        mPlayerWillpowerView.setText(willpower == 0 ? "" : String.valueOf(willpower));
+        int fellowship = player.getCharacteristics().getFellowship();
+        mPlayerFellowshipView.setText(fellowship == 0 ? "" : String.valueOf(fellowship));
+
+        int strengthFortune = player.getCharacteristics().getStrength_fortune();
+        mPlayerStrengthFortuneView.setText(strengthFortune == 0 ? "" : String.valueOf(strengthFortune));
+        int toughnessFortune = player.getCharacteristics().getToughness_fortune();
+        mPlayerToughnessFortuneView.setText(toughnessFortune == 0 ? "" : String.valueOf(toughnessFortune));
+        int agilityFortune = player.getCharacteristics().getAgility_fortune();
+        mPlayerAgilityFortuneView.setText(agilityFortune == 0 ? "" : String.valueOf(agilityFortune));
+        int intelligenceFortune = player.getCharacteristics().getIntelligence_fortune();
+        mPlayerIntelligenceFortuneView.setText(intelligenceFortune == 0 ? "" : String.valueOf(intelligenceFortune));
+        int willpowerFortune = player.getCharacteristics().getWillpower_fortune();
+        mPlayerWillpowerFortuneView.setText(willpowerFortune == 0 ? "" : String.valueOf(willpowerFortune));
+        int fellowshipFortune = player.getCharacteristics().getFellowship_fortune();
+        mPlayerFellowshipFortuneView.setText(fellowshipFortune == 0 ? "" : String.valueOf(fellowshipFortune));
     }
 
     private void initPlayerCharacteristicsWatchers() {
@@ -210,23 +248,50 @@ public class CharacteristicsFragment extends Fragment {
     //region Text fields setup
     private void initPlayerInformationFields() {
         mPlayerAgeView = (EditText) mRootView.findViewById(R.id.player_age);
+        mPlayerCareerView = (EditText) mRootView.findViewById(R.id.player_career);
         mPlayerDescriptionView = (EditText) mRootView.findViewById(R.id.player_description);
         mPlayerExperienceView = (EditText) mRootView.findViewById(R.id.player_experience);
         mPlayerMaxExperienceView = (EditText) mRootView.findViewById(R.id.player_max_experience);
         mPlayerNameView = (EditText) mRootView.findViewById(R.id.player_name);
-        mPlayerCareerView = (EditText) mRootView.findViewById(R.id.player_career);
         mPlayerRaceView = (EditText) mRootView.findViewById(R.id.player_race);
         mPlayerRankView = (EditText) mRootView.findViewById(R.id.player_rank);
         mPlayerSizeView = (EditText) mRootView.findViewById(R.id.player_size);
     }
 
+    private void fillPlayerInformationFields() {
+        Player player = PlayerContext.getPlayerInstance();
+
+        int age = player.getAge();
+        mPlayerAgeView.setText(age == 0 ? "" : String.valueOf(age));
+
+        mPlayerCareerView.setText(player.getCareer());
+
+        mPlayerDescriptionView.setText(player.getDescription());
+
+        int experience = player.getExperience();
+        mPlayerExperienceView.setText(experience == 0 ? "" : String.valueOf(experience));
+
+        int maxExperience = player.getMax_experience();
+        mPlayerMaxExperienceView.setText(maxExperience == 0 ? "" : String.valueOf(maxExperience));
+
+        mPlayerNameView.setText(player.getName());
+
+        mPlayerRaceView.setText(player.getRace());
+
+        int rank = player.getRank();
+        mPlayerRankView.setText(rank == 0 ? "" : String.valueOf(rank));
+
+        double size = player.getSize();
+        mPlayerSizeView.setText(size == 0 ? "" : String.valueOf(size));
+    }
+
     private void initPlayerInformationWatchers() {
         mPlayerAgeView.addTextChangedListener(new PlayerEditTextWatcher(PlayerInformation.AGE));
+        mPlayerCareerView.addTextChangedListener(new PlayerEditTextWatcher(PlayerInformation.CAREER));
         mPlayerDescriptionView.addTextChangedListener(new PlayerEditTextWatcher(PlayerInformation.DESCRIPTION));
         mPlayerExperienceView.addTextChangedListener(new PlayerEditTextWatcher(PlayerInformation.EXPERIENCE));
         mPlayerMaxExperienceView.addTextChangedListener(new PlayerEditTextWatcher(PlayerInformation.MAX_EXPERIENCE));
         mPlayerNameView.addTextChangedListener(new PlayerEditTextWatcher(PlayerInformation.NAME));
-        mPlayerCareerView.addTextChangedListener(new PlayerEditTextWatcher(PlayerInformation.CAREER));
         mPlayerRaceView.addTextChangedListener(new PlayerEditTextWatcher(PlayerInformation.RACE));
         mPlayerRankView.addTextChangedListener(new PlayerEditTextWatcher(PlayerInformation.RANK));
         mPlayerSizeView.addTextChangedListener(new PlayerEditTextWatcher(PlayerInformation.SIZE));

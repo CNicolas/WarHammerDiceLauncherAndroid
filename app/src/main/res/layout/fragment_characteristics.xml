@@ -3,15 +3,12 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@android:color/white"
-    android:fillViewport="true"
-    android:orientation="vertical">
+    android:fillViewport="true">
 
     <LinearLayout
         android:id="@+id/characteristics_fragment_layout"
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:background="@android:color/white"
-        android:isScrollContainer="true"
         android:orientation="vertical">
 
         <LinearLayout
@@ -265,7 +262,8 @@
                 android:id="@+id/player_race"
                 style="@style/RankExperienceEditText"
                 android:layout_weight="80"
-                android:hint="@string/race_hint" />
+                android:hint="@string/race_hint"
+                android:inputType="textCapSentences" />
 
             <!--Age-->
             <TextView
@@ -293,8 +291,7 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:orientation="vertical"
-            android:weightSum="1">
+            android:orientation="vertical">
 
             <TextView
                 android:layout_width="match_parent"
@@ -306,7 +303,7 @@
             <EditText
                 android:id="@+id/player_description"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
+                android:layout_height="wrap_content"
                 android:gravity="top"
                 android:inputType="textShortMessage"
                 android:maxLines="3"

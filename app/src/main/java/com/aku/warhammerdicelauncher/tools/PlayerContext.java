@@ -1,9 +1,5 @@
 package com.aku.warhammerdicelauncher.tools;
 
-import android.content.Context;
-
-import com.aku.warhammerdicelauncher.database.WarHammerDatabaseHelper;
-import com.aku.warhammerdicelauncher.database.dao.PlayerDao;
 import com.aku.warhammerdicelauncher.model.player.Player;
 
 /**
@@ -11,27 +7,23 @@ import com.aku.warhammerdicelauncher.model.player.Player;
  */
 
 public class PlayerContext {
-    private static Player player;
+    private static Player mPlayer;
     private static boolean isInEdition;
 
-    public static Player getPlayerInstance(Context context, int id) {
-        if (player == null) {
-            PlayerDao playerDao = new PlayerDao(new WarHammerDatabaseHelper(context));
-            player = playerDao.findById(id);
-        }
-        return player;
-    }
-
     public static Player getPlayerInstance() {
-        if (player == null) {
-            player = getEmptyPlayerInstance();
+        if (mPlayer == null) {
+            mPlayer = createEmptyPlayer();
         }
-        return player;
+        return mPlayer;
     }
 
-    public static Player getEmptyPlayerInstance() {
-        player = new Player();
-        return player;
+    public static Player createEmptyPlayer() {
+        mPlayer = new Player();
+        return mPlayer;
+    }
+
+    public static void setPlayer(Player player) {
+        mPlayer = player;
     }
 
     public static boolean isInEdition() {
@@ -40,5 +32,21 @@ public class PlayerContext {
 
     public static void setIsInEdition(boolean isInEdition) {
         PlayerContext.isInEdition = isInEdition;
+    }
+
+    public static Player createTestPlayer() {
+        mPlayer = createEmptyPlayer();
+
+        mPlayer.setCareer("Ratier");
+        mPlayer.setExperience(0);
+        mPlayer.setMax_experience(16);
+        mPlayer.getCharacteristics().setFellowship(3);
+        mPlayer.getCharacteristics().setFellowship_fortune(1);
+        mPlayer.getCharacteristics().setStrength(5);
+        mPlayer.getCharacteristics().setStrength_fortune(1);
+        mPlayer.getCharacteristics().setToughness(4);
+        mPlayer.setDescription("Trop tanky !");
+
+        return mPlayer;
     }
 }

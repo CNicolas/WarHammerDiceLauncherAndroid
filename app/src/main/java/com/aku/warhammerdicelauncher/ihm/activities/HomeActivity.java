@@ -14,6 +14,8 @@ import android.widget.TextView;
 import com.aku.warhammerdicelauncher.R;
 import com.aku.warhammerdicelauncher.database.WarHammerDatabaseHelper;
 import com.aku.warhammerdicelauncher.database.dao.PlayerDao;
+import com.aku.warhammerdicelauncher.model.player.Player;
+import com.aku.warhammerdicelauncher.tools.PlayerContext;
 import com.aku.warhammerdicelauncher.tools.constants.IPlayerConstants;
 
 import java.util.ArrayList;
@@ -23,7 +25,6 @@ import java.util.List;
  * Created by cnicolas on 11/05/2016.
  */
 public class HomeActivity extends Activity {
-    private ListView listPlayers;
     private PlayerDao playerDao;
 
     /**
@@ -34,7 +35,7 @@ public class HomeActivity extends Activity {
         super.onCreate(bundle);
         setContentView(R.layout.activity_home);
 
-        listPlayers = (ListView) findViewById(R.id.list_players);
+        ListView listPlayers = (ListView) findViewById(R.id.list_players);
 
         playerDao = new PlayerDao(new WarHammerDatabaseHelper(this));
         List<String> playersNames = new ArrayList<>();
@@ -51,10 +52,13 @@ public class HomeActivity extends Activity {
 
                 if (position == 0) {
                     isInEdition = true;
+//                    PlayerContext.createEmptyPlayer();
+                    PlayerContext.createTestPlayer();
                 } else {
                     try {
                         TextView tv = (TextView) view;
-                        playerDao.findByName(tv.getText().toString());
+                        Player player = playerDao.findByName(tv.getText().toString());
+                        PlayerContext.setPlayer(player);
                     } catch (SQLiteException sqle) {
 
                     }
