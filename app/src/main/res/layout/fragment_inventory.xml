@@ -4,10 +4,9 @@
     android:layout_height="match_parent"
     android:orientation="vertical">
 
-    <TextView
+    <ExpandableListView
+        android:id="@+id/inventory"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_gravity="center"
-        android:gravity="center"
-        android:text="@string/page_inventory" />
+        android:layout_height="match_parent" />
+
 </LinearLayout>

@@ -1,8 +1,10 @@
 package com.aku.warhammerdicelauncher.model.player;
 
 import com.aku.warhammerdicelauncher.model.IModel;
-import com.aku.warhammerdicelauncher.model.player.inventory.Armour;
-import com.aku.warhammerdicelauncher.model.player.inventory.InventoryItem;
+import com.aku.warhammerdicelauncher.model.player.inventory.Armor;
+import com.aku.warhammerdicelauncher.model.player.inventory.Item;
+import com.aku.warhammerdicelauncher.model.player.inventory.ItemType;
+import com.aku.warhammerdicelauncher.model.player.inventory.UsableItem;
 import com.aku.warhammerdicelauncher.model.player.inventory.Weapon;
 import com.aku.warhammerdicelauncher.tools.constants.IPlayerConstants;
 
@@ -39,9 +41,7 @@ public class Player implements IModel, IPlayerConstants {
     private int money_gold;
 
     private Characteristics characteristics;
-    private List<InventoryItem> inventory;
-    private List<Armour> armour;
-    private List<Weapon> weapons;
+    private List<Item> inventory;
     private List<Skill> skills;
     //endregion
 
@@ -81,6 +81,77 @@ public class Player implements IModel, IPlayerConstants {
     public void addMoneyGold(int gold) {
         setMoney_gold(getMoney_gold() + gold);
     }
+
+    //region Méthodes de gestion de l'inventaire
+
+    /**
+     * Renvoie les armures de l'inventaire du joueur.
+     *
+     * @return Liste des armures du joueur.
+     */
+    public List<Armor> getArmors() {
+        List<Armor> armors = new ArrayList<>();
+
+        for (Item item : inventory) {
+            if (item.getType() == ItemType.ARMOR) {
+                armors.add(item.toArmor());
+            }
+        }
+
+        return armors;
+    }
+
+    /**
+     * Renvoie les armes de l'inventaire du joueur.
+     *
+     * @return Liste des armes du joueur.
+     */
+    public List<Weapon> getWeapons() {
+        List<Weapon> weapons = new ArrayList<>();
+
+        for (Item item : inventory) {
+            if (item.getType() == ItemType.WEAPON) {
+                weapons.add(item.toWeapon());
+            }
+        }
+
+        return weapons;
+    }
+
+    /**
+     * Renvoie les objets utilisables de l'inventaire du joueur.
+     *
+     * @return Liste des objets utilisables du joueur.
+     */
+    public List<UsableItem> getUsableItems() {
+        List<UsableItem> usableItems = new ArrayList<>();
+
+        for (Item item : inventory) {
+            if (item.getType() == ItemType.USABLE_ITEM) {
+                usableItems.add(item.toUsableItem());
+            }
+        }
+
+        return usableItems;
+    }
+
+    /**
+     * Renvoie les objets standards de l'inventaire du joueur.
+     *
+     * @return Liste des objets standards du joueur.
+     */
+    public List<Item> getItems() {
+        List<Item> items = new ArrayList<>();
+
+        for (Item item : inventory) {
+            if (item.getType() == ItemType.ITEM) {
+                items.add(item);
+            }
+        }
+
+        return items;
+    }
+    //endregion
 
     //region Get & Set
 
@@ -244,28 +315,12 @@ public class Player implements IModel, IPlayerConstants {
         this.characteristics = characteristics;
     }
 
-    public List<InventoryItem> getInventory() {
+    public List<Item> getInventory() {
         return inventory;
     }
 
-    public void setInventory(List<InventoryItem> inventory) {
+    public void setInventory(List<Item> inventory) {
         this.inventory = inventory;
-    }
-
-    public List<Armour> getArmour() {
-        return armour;
-    }
-
-    public void setArmour(List<Armour> armour) {
-        this.armour = armour;
-    }
-
-    public List<Weapon> getWeapons() {
-        return weapons;
-    }
-
-    public void setWeapons(List<Weapon> weapons) {
-        this.weapons = weapons;
     }
 
     public List<Skill> getSkills() {
@@ -303,8 +358,6 @@ public class Player implements IModel, IPlayerConstants {
                 ", money_gold=" + money_gold +
                 ", characteristics=" + characteristics +
                 ", inventory=" + inventory +
-                ", armour=" + armour +
-                ", weapons=" + weapons +
                 ", skills=" + skills +
                 '}';
     }
@@ -343,10 +396,6 @@ public class Player implements IModel, IPlayerConstants {
             return false;
         if (getInventory() != null ? !getInventory().equals(player.getInventory()) : player.getInventory() != null)
             return false;
-        if (getArmour() != null ? !getArmour().equals(player.getArmour()) : player.getArmour() != null)
-            return false;
-        if (getWeapons() != null ? !getWeapons().equals(player.getWeapons()) : player.getWeapons() != null)
-            return false;
         return getSkills() != null ? getSkills().equals(player.getSkills()) : player.getSkills() == null;
 
     }
@@ -377,8 +426,6 @@ public class Player implements IModel, IPlayerConstants {
         result = 31 * result + getMoney_gold();
         result = 31 * result + (getCharacteristics() != null ? getCharacteristics().hashCode() : 0);
         result = 31 * result + (getInventory() != null ? getInventory().hashCode() : 0);
-        result = 31 * result + (getArmour() != null ? getArmour().hashCode() : 0);
-        result = 31 * result + (getWeapons() != null ? getWeapons().hashCode() : 0);
         result = 31 * result + (getSkills() != null ? getSkills().hashCode() : 0);
         return result;
     }

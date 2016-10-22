@@ -8,6 +8,7 @@ import com.aku.warhammerdicelauncher.database.entries.IPlayerEntryConstants;
 import com.aku.warhammerdicelauncher.model.player.Characteristics;
 import com.aku.warhammerdicelauncher.model.player.Player;
 import com.aku.warhammerdicelauncher.model.player.Skill;
+import com.aku.warhammerdicelauncher.model.player.inventory.Item;
 
 import java.util.List;
 
@@ -18,6 +19,7 @@ import java.util.List;
 public class PlayerDao extends AbstractDao<Player> implements IPlayerEntryConstants {
     private final CharacteristicsDao characteristicsDao;
     private final SkillDao skillDao;
+    private final ItemDao itemDao;
 
     public PlayerDao(WarHammerDatabaseHelper whdHelper) {
         super(whdHelper);
@@ -27,6 +29,7 @@ public class PlayerDao extends AbstractDao<Player> implements IPlayerEntryConsta
 
         characteristicsDao = new CharacteristicsDao(whdHelper);
         skillDao = new SkillDao(whdHelper);
+        itemDao = new ItemDao(whdHelper);
     }
 
     //region Find
@@ -100,6 +103,10 @@ public class PlayerDao extends AbstractDao<Player> implements IPlayerEntryConsta
 
         List<Skill> skills = skillDao.findAllByPlayer(dto);
         dto.setSkills(skills);
+
+        // Ajout des objets de l'inventaire du joueur
+        List<Item> items = itemDao.findAllByPlayer(dto);
+        dto.setInventory(items);
 
         return dto;
     }

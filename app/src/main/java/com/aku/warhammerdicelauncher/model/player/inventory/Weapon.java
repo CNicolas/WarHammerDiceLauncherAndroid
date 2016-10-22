@@ -1,21 +1,48 @@
 package com.aku.warhammerdicelauncher.model.player.inventory;
 
+import com.aku.warhammerdicelauncher.model.player.Player;
+
 /**
- * Created by cnicolas on 06/10/2016.
+ * Classe représentant une arme.
  */
-
-public class Weapon extends InventoryItem {
+public class Weapon extends Item {
+    //region Propriétés
+    /**
+     * Dégât.
+     */
     private int damage;
-    private int critical;
 
-    //region Constructors
+    /**
+     * Niveau de critique.
+     */
+    private int criticalLevel;
+
+    /**
+     * Portée.
+     */
+    private Range range;
+    //endregion
+
+    //region Constructeurs
+
+    /**
+     * Constructeur par défaut.
+     */
     public Weapon() {
+        super();
+
+        setType(ItemType.WEAPON);
     }
 
-    public Weapon(int id, String name, int encumbrance, int damage, int critical) {
-        super(id, name, encumbrance);
-        this.damage = damage;
-        this.critical = critical;
+    /**
+     * Constructeur avec le joueur associé en paramètre.
+     *
+     * @param player Joueur à associer à l'objet.
+     */
+    public Weapon(Player player) {
+        super(player);
+
+        setType(ItemType.WEAPON);
     }
     //endregion
 
@@ -28,22 +55,37 @@ public class Weapon extends InventoryItem {
         this.damage = damage;
     }
 
-    public int getCritical() {
-        return critical;
+    public int getCriticalLevel() {
+        return criticalLevel;
     }
 
-    public void setCritical(int critical) {
-        this.critical = critical;
+    public void setCriticalLevel(int criticalLevel) {
+        this.criticalLevel = criticalLevel;
+    }
+
+    public Range getRange() {
+        return range;
+    }
+
+    public void setRange(Range range) {
+        this.range = range;
     }
     //endregion
 
     //region Overrides
     @Override
     public String toString() {
-        return "Weapon{" +
-                "damage=" + damage +
-                ", critical=" + critical +
-                '}';
+        StringBuilder sb = new StringBuilder("Weapon [");
+        sb.append(attributesToString());
+        sb.append(", damage=");
+        sb.append(getDamage());
+        sb.append(", criticalLevel=");
+        sb.append(getCriticalLevel());
+        sb.append(", range=");
+        sb.append(getRange());
+        sb.append("]");
+
+        return sb.toString();
     }
 
     @Override
@@ -52,10 +94,11 @@ public class Weapon extends InventoryItem {
         if (o == null || getClass() != o.getClass()) return false;
         if (!super.equals(o)) return false;
 
-        Weapon armourDto = (Weapon) o;
+        Weapon weapon = (Weapon) o;
 
-        if (getDamage() != armourDto.getDamage()) return false;
-        return getCritical() == armourDto.getCritical();
+        if (getDamage() != weapon.getDamage()) return false;
+        if (getCriticalLevel() != weapon.getCriticalLevel()) return false;
+        return getRange() == weapon.getRange();
 
     }
 
@@ -63,7 +106,8 @@ public class Weapon extends InventoryItem {
     public int hashCode() {
         int result = super.hashCode();
         result = 31 * result + getDamage();
-        result = 31 * result + getCritical();
+        result = 31 * result + getCriticalLevel();
+        result = 31 * result + getRange().hashCode();
         return result;
     }
     //endregion

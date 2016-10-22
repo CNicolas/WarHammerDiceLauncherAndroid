@@ -6,6 +6,7 @@ import android.database.sqlite.SQLiteOpenHelper;
 
 import com.aku.warhammerdicelauncher.database.entries.ICharacteristicsEntryConstants;
 import com.aku.warhammerdicelauncher.database.entries.IHandEntryConstants;
+import com.aku.warhammerdicelauncher.database.entries.IItemEntryConstants;
 import com.aku.warhammerdicelauncher.database.entries.IPlayerEntryConstants;
 import com.aku.warhammerdicelauncher.database.entries.ISkillEntryConstants;
 
@@ -27,6 +28,7 @@ public class WarHammerDatabaseHelper extends SQLiteOpenHelper {
         db.execSQL(ICharacteristicsEntryConstants.SQL_CREATE_ENTRIES);
         db.execSQL(ISkillEntryConstants.SQL_CREATE_ENTRIES);
         db.execSQL(IPlayerEntryConstants.SQL_CREATE_ENTRIES);
+        db.execSQL(IItemEntryConstants.SQL_CREATE_ENTRIES);
     }
 
     @Override
@@ -36,6 +38,7 @@ public class WarHammerDatabaseHelper extends SQLiteOpenHelper {
         db.execSQL(ICharacteristicsEntryConstants.SQL_DELETE_ENTRIES);
         db.execSQL(ISkillEntryConstants.SQL_DELETE_ENTRIES);
         db.execSQL(IPlayerEntryConstants.SQL_DELETE_ENTRIES);
+        db.execSQL(IItemEntryConstants.SQL_DELETE_ENTRIES);
 
         onCreate(db);
     }
