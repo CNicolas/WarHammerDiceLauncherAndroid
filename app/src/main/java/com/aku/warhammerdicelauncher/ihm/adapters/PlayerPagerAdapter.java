@@ -1,4 +1,4 @@
-package com.aku.warhammerdicelauncher.ihm.tools;
+package com.aku.warhammerdicelauncher.ihm.adapters;
 
 /**
  * Created by cnicolas on 17/10/2016.
@@ -24,9 +24,6 @@ import com.aku.warhammerdicelauncher.tools.constants.IPlayerConstants;
 public class PlayerPagerAdapter extends FragmentPagerAdapter {
 
     private final PlayerActivity mContext;
-    //    private CharacteristicsFragment mCharacteristicsFragment;
-//    private SkillsFragment mSkillsFragment;
-//    private InventoryFragment mInventoryFragment;
     private String mCharacteristicFragmentTag;
     private String mSkillsFragmentTag;
     private String mInventoryFragmentTag;
@@ -53,11 +50,9 @@ public class PlayerPagerAdapter extends FragmentPagerAdapter {
                 return mCharacteristicsFragment;
             case 1:
                 mSkillsFragmentTag = makeFragmentTag(position);
-//                mSkillsFragment = new SkillsFragment();
                 return new SkillsFragment();
             case 2:
                 mInventoryFragmentTag = makeFragmentTag(position);
-//                mInventoryFragment = new InventoryFragment();
                 return new InventoryFragment();
             default:
                 return new SkillsFragment();

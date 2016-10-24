@@ -1,4 +1,4 @@
-package com.aku.warhammerdicelauncher.ihm.components;
+package com.aku.warhammerdicelauncher.ihm.adapters;
 
 import android.view.LayoutInflater;
 import android.view.View;

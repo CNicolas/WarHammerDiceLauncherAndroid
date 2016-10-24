@@ -48,28 +48,28 @@ public class SkillDao extends AbstractDao<Skill> {
 
     //region Insert
     @Override
-    public long insert(Skill skill) {
+    public long insert(Skill model) {
         throw new NotImplementedException("insert(Skill)");
     }
 
-    public long insert(Skill skill, Player player) {
+    public long insert(Skill model, Player player) {
         SQLiteDatabase db = whdHelper.getWritableDatabase();
 
-        ContentValues values = contentValuesFromDto(skill, player);
+        ContentValues values = contentValuesFromDto(model, player);
 
         long res = db.insert(tableName, null, values);
         return res;
     }
 
     @Override
-    public List<Long> insertAll(List<Skill> skillList) {
+    public List<Long> insertAll(List<Skill> models) {
         throw new NotImplementedException("insertAll(List<Skill>)");
     }
 
-    public List<Long> insertAll(List<Skill> skillList, Player player) {
+    public List<Long> insertAll(List<Skill> models, Player player) {
         List<Long> res = new ArrayList<>();
 
-        for (Skill skill : skillList) {
+        for (Skill skill : models) {
             res.add(insert(skill, player));
         }
 

@@ -16,8 +16,8 @@ import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 
 import com.aku.warhammerdicelauncher.R;
+import com.aku.warhammerdicelauncher.ihm.adapters.PlayerPagerAdapter;
 import com.aku.warhammerdicelauncher.ihm.fragments.CharacteristicsFragment;
-import com.aku.warhammerdicelauncher.ihm.tools.PlayerPagerAdapter;
 import com.aku.warhammerdicelauncher.model.player.Player;
 import com.aku.warhammerdicelauncher.tools.PlayerContext;
 import com.aku.warhammerdicelauncher.tools.constants.IPlayerConstants;
@@ -103,6 +103,7 @@ public class PlayerActivity extends AppCompatActivity {
     }
 
     private void updatePlayer() {
+        PlayerContext.updatePlayerInDatabase(this);
         Player player = PlayerContext.getPlayerInstance();
         new AlertDialog.Builder(this).setTitle(player.getName()).setMessage(player.toString()).show();
     }
@@ -117,6 +118,7 @@ public class PlayerActivity extends AppCompatActivity {
     }
     //endregion
 
+    //region Edition
     public void setEdition(View v) {
         setIsInEdition(!PlayerContext.isInEdition());
     }
@@ -147,6 +149,7 @@ public class PlayerActivity extends AppCompatActivity {
             hideKeyboard();
         }
     }
+    //endregion
 
 
     private void hideKeyboard() {

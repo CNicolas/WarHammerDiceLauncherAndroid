@@ -8,7 +8,7 @@ import android.view.ViewGroup;
 import android.widget.ExpandableListView;
 
 import com.aku.warhammerdicelauncher.R;
-import com.aku.warhammerdicelauncher.ihm.components.ExpandableListAdapter;
+import com.aku.warhammerdicelauncher.ihm.adapters.ExpandableListAdapter;
 import com.aku.warhammerdicelauncher.model.player.Player;
 import com.aku.warhammerdicelauncher.model.player.inventory.Item;
 import com.aku.warhammerdicelauncher.model.player.inventory.ItemType;

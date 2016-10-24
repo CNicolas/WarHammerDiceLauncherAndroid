@@ -1,5 +1,9 @@
 package com.aku.warhammerdicelauncher.tools;
 
+import android.content.Context;
+
+import com.aku.warhammerdicelauncher.database.WarHammerDatabaseHelper;
+import com.aku.warhammerdicelauncher.database.dao.PlayerDao;
 import com.aku.warhammerdicelauncher.model.player.Player;
 import com.aku.warhammerdicelauncher.model.player.inventory.Armor;
 import com.aku.warhammerdicelauncher.model.player.inventory.Item;
@@ -34,6 +38,19 @@ public class PlayerContext {
         mPlayer = player;
     }
 
+    public static void updatePlayerInDatabase(Context context) {
+        if (!mPlayer.getName().isEmpty()) {
+            PlayerDao playerDao = new PlayerDao(new WarHammerDatabaseHelper(context));
+            if (mPlayer.getId() == 0) {
+                mPlayer.setId(playerDao.getNextId());
+                playerDao.insert(mPlayer);
+            } else {
+                playerDao.update(mPlayer);
+            }
+        }
+    }
+
+    //region Edition
     public static boolean isInEdition() {
         return isInEdition;
     }
@@ -41,6 +58,7 @@ public class PlayerContext {
     public static void setIsInEdition(boolean isInEdition) {
         PlayerContext.isInEdition = isInEdition;
     }
+    //endregion
 
     public static Player createTestPlayer() {
         mPlayer = createEmptyPlayer();

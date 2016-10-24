@@ -51,6 +51,7 @@ public class Player implements IModel, IPlayerConstants {
     public Player() {
         characteristics = new Characteristics();
         skills = new ArrayList<>();
+        inventory = new ArrayList<>();
     }
 
     public Player(String name, String race) {

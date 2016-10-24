@@ -86,22 +86,33 @@ public abstract class AbstractDao<T extends IModel> implements IDao<T> {
     //endregion
 
     //region Insert
-    public long insert(T dto) {
+    public long insert(T model) {
         SQLiteDatabase db = whdHelper.getWritableDatabase();
 
-        ContentValues values = contentValuesFromModel(dto);
+        ContentValues values = contentValuesFromModel(model);
 
         long res = db.insert(tableName, null, values);
         return res;
     }
 
-    public List<Long> insertAll(List<T> dtos) {
+    public List<Long> insertAll(List<T> models) {
         List<Long> res = new ArrayList<>();
 
-        for (T dto : dtos) {
+        for (T dto : models) {
             res.add(insert(dto));
         }
 
+        return res;
+    }
+    //endregion
+
+    //region Update
+    public long update(T model) {
+        SQLiteDatabase db = whdHelper.getWritableDatabase();
+        ContentValues values = contentValuesFromModel(model);
+        String[] filters = {String.valueOf(model.getId())};
+
+        long res = db.update(tableName, values, String.format("%s = ?", columnId), filters);
         return res;
     }
     //endregion
@@ -116,6 +127,14 @@ public abstract class AbstractDao<T extends IModel> implements IDao<T> {
     }
     //endregion
 
+    public int getNextId() {
+        List<String> idsList = findAllValuesOfColumn(columnId);
+        if (idsList.size() > 0) {
+            return Integer.parseInt(idsList.get(idsList.size() - 1)) + 1;
+        } else {
+            return 1;
+        }
+    }
 
     protected abstract ContentValues contentValuesFromModel(T model);
 

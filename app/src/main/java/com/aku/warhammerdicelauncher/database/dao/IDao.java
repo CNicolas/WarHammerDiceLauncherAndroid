@@ -1,6 +1,6 @@
 package com.aku.warhammerdicelauncher.database.dao;
 
-import android.content.res.Resources;
+import android.database.sqlite.SQLiteException;
 
 import com.aku.warhammerdicelauncher.model.IModel;
 
@@ -13,9 +13,11 @@ import java.util.List;
 public interface IDao<T extends IModel> {
     List<T> findAll();
 
-    T findById(int id) throws Resources.NotFoundException;
+    T findById(int id) throws SQLiteException;
 
-    long insert(T dto);
+    long insert(T model);
 
-    long delete(T dto);
+    long update(T model);
+
+    long delete(T model);
 }
