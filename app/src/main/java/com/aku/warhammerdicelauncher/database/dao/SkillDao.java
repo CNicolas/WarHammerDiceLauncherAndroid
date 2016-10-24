@@ -49,7 +49,7 @@ public class SkillDao extends AbstractDao<Skill> {
     //region Insert
     @Override
     public long insert(Skill model) {
-        throw new NotImplementedException("insert(Skill)");
+        throw new NotImplementedException("insert(SkillEnum)");
     }
 
     public long insert(Skill model, Player player) {
@@ -63,7 +63,7 @@ public class SkillDao extends AbstractDao<Skill> {
 
     @Override
     public List<Long> insertAll(List<Skill> models) {
-        throw new NotImplementedException("insertAll(List<Skill>)");
+        throw new NotImplementedException("insertAll(List<SkillEnum>)");
     }
 
     public List<Long> insertAll(List<Skill> models, Player player) {
@@ -75,12 +75,11 @@ public class SkillDao extends AbstractDao<Skill> {
 
         return res;
     }
-
     //endregion
 
-    //region Private Methods
+    //region Protected Methods
     protected ContentValues contentValuesFromModel(Skill skill) {
-        throw new NotImplementedException("contentValuesFromModel(Skill)");
+        throw new NotImplementedException("contentValuesFromModel(SkillEnum)");
     }
 
     protected ContentValues contentValuesFromDto(Skill skill, Player player) {

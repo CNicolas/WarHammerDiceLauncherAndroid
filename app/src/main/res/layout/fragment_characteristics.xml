@@ -317,7 +317,8 @@
                     style="@style/RankExperienceEditText"
                     android:layout_weight="80"
                     android:hint="@string/race_hint"
-                    android:inputType="textCapSentences" />
+                    android:inputType="textCapSentences"
+                    android:maxLength="30" />
 
                 <!--Age-->
                 <TextView

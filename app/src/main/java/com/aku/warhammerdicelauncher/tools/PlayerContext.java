@@ -18,7 +18,7 @@ import java.util.ArrayList;
  * Created by cnicolas on 13/10/2016.
  */
 
-public class PlayerContext {
+public abstract class PlayerContext {
     private static Player mPlayer;
     private static boolean isInEdition;
 

@@ -16,18 +16,26 @@ import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 
 import com.aku.warhammerdicelauncher.R;
+import com.aku.warhammerdicelauncher.database.WarHammerDatabaseHelper;
+import com.aku.warhammerdicelauncher.database.dao.PlayerDao;
 import com.aku.warhammerdicelauncher.ihm.adapters.PlayerPagerAdapter;
 import com.aku.warhammerdicelauncher.ihm.fragments.CharacteristicsFragment;
 import com.aku.warhammerdicelauncher.model.player.Player;
+import com.aku.warhammerdicelauncher.model.player.Skill;
 import com.aku.warhammerdicelauncher.tools.PlayerContext;
 import com.aku.warhammerdicelauncher.tools.constants.IPlayerConstants;
+import com.aku.warhammerdicelauncher.tools.helpers.SkillsHelper;
+
+import java.util.List;
 
 public class PlayerActivity extends AppCompatActivity {
 
     private PlayerPagerAdapter mPlayerPagerAdapter;
     private FloatingActionButton mEditionFab;
     private Menu mMenu;
+    private PlayerDao mPlayerDao;
 
+    //region Overrides
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -41,6 +49,8 @@ public class PlayerActivity extends AppCompatActivity {
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+
+        mPlayerDao = new PlayerDao(new WarHammerDatabaseHelper(this));
 
         mEditionFab = (FloatingActionButton) findViewById(R.id.edition_fab);
         mPlayerPagerAdapter = new PlayerPagerAdapter(this);
@@ -101,9 +111,22 @@ public class PlayerActivity extends AppCompatActivity {
 
         return super.onOptionsItemSelected(item);
     }
+    //endregion
+    //endregion
 
     private void updatePlayer() {
-        PlayerContext.updatePlayerInDatabase(this);
+        if (!PlayerContext.getPlayerInstance().getName().isEmpty()) {
+            if (PlayerContext.getPlayerInstance().getId() == 0) {
+                List<Skill> basicSkills = SkillsHelper.createBasicSkills(this);
+
+                PlayerContext.getPlayerInstance().setId(mPlayerDao.getNextId());
+                PlayerContext.getPlayerInstance().setSkills(basicSkills);
+                mPlayerDao.insert(PlayerContext.getPlayerInstance());
+            } else {
+                mPlayerDao.update(PlayerContext.getPlayerInstance());
+            }
+        }
+
         Player player = PlayerContext.getPlayerInstance();
         new AlertDialog.Builder(this).setTitle(player.getName()).setMessage(player.toString()).show();
     }
@@ -151,6 +174,12 @@ public class PlayerActivity extends AppCompatActivity {
     }
     //endregion
 
+    public void checkSkillLevel(View v) {
+        String tagString = v.getTag().toString();
+        int level = Integer.parseInt(tagString);
+//        mPlayerPagerAdapter.getSkillsFragment().setLevel(level);
+//        getSkillByCheckboxId()
+    }
 
     private void hideKeyboard() {
         InputMethodManager imm = (InputMethodManager) getSystemService(INPUT_METHOD_SERVICE);
