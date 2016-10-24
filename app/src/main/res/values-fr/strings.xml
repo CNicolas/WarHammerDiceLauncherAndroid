@@ -76,6 +76,8 @@
     <string name="race_label">Race :</string>
     <string name="rank_label">Rang :</string>
     <string name="size_label">Taille :</string>
+    <string name="wounds_label">Blessures :</string>
+    <string name="corruption_label">Corruption :</string>
     <!--End of pages-->
 
 </resources>

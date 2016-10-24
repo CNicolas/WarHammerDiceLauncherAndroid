@@ -1,316 +1,371 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="@android:color/white"
-    android:fillViewport="true">
+    android:layout_height="wrap_content"
+    android:background="@android:color/white">
 
-    <LinearLayout
-        android:id="@+id/characteristics_fragment_layout"
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:isScrollContainer="true"
-        android:orientation="vertical">
+        android:layout_height="match_parent"
+        android:fillViewport="true">
 
         <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="@dimen/medium_padding"
-            android:layout_marginEnd="@dimen/big_padding"
-            android:layout_marginStart="@dimen/big_padding"
-            android:layout_marginTop="@dimen/medium_padding"
-            android:orientation="vertical">
-
-            <!--Name-->
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
-
-                <TextView
-                    style="@style/LabelTextView"
-                    android:layout_weight="75"
-                    android:text="@string/name_label" />
-
-                <EditText
-                    android:id="@+id/player_name"
-                    style="@style/CharacteristicBigEditText"
-                    android:hint="@string/name_hint" />
-            </LinearLayout>
-
-            <!--Career-->
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
-
-                <TextView
-                    style="@style/LabelTextView"
-                    android:layout_weight="75"
-                    android:text="@string/career_label" />
-
-                <EditText
-                    android:id="@+id/player_career"
-                    style="@style/CharacteristicBigEditText"
-                    android:hint="@string/career_hint" />
-            </LinearLayout>
-        </LinearLayout>
-
-        <!--Characteristics EditTexts-->
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="@dimen/medium_padding"
-            android:orientation="vertical">
-
-            <!--Strength-->
-            <LinearLayout
-                android:id="@+id/strength_layout"
-                style="@style/CharacteristicLinearLayout">
-
-                <TextView
-                    style="@style/CharacteristicLabelTextView"
-                    android:text="@string/strength" />
-
-                <LinearLayout style="@style/CharacteristicBlueLinearLayout">
-
-                    <EditText
-                        android:id="@+id/strength_characteristic"
-                        style="@style/CharacteristicEditText" />
-                </LinearLayout>
-
-                <LinearLayout style="@style/CharacteristicWhiteLinearLayout">
-
-                    <EditText
-                        android:id="@+id/strength_fortune"
-                        style="@style/CharacteristicFortuneEditText" />
-                </LinearLayout>
-            </LinearLayout>
-
-            <!--Toughness-->
-            <LinearLayout
-                android:id="@+id/toughness_layout"
-                style="@style/CharacteristicLinearLayout">
-
-                <TextView
-                    style="@style/CharacteristicLabelTextView"
-                    android:text="@string/toughness" />
-
-                <LinearLayout style="@style/CharacteristicBlueLinearLayout">
-
-                    <EditText
-                        android:id="@+id/toughness_characteristic"
-                        style="@style/CharacteristicEditText" />
-                </LinearLayout>
-
-                <LinearLayout style="@style/CharacteristicWhiteLinearLayout">
-
-                    <EditText
-                        android:id="@+id/toughness_fortune"
-                        style="@style/CharacteristicFortuneEditText" />
-                </LinearLayout>
-            </LinearLayout>
-
-            <!--Agility-->
-            <LinearLayout
-                android:id="@+id/agility_layout"
-                style="@style/CharacteristicLinearLayout"
-                android:layout_below="@id/toughness_layout">
-
-                <TextView
-                    style="@style/CharacteristicLabelTextView"
-                    android:text="@string/agility" />
-
-                <LinearLayout style="@style/CharacteristicBlueLinearLayout">
-
-                    <EditText
-                        android:id="@+id/agility_characteristic"
-                        style="@style/CharacteristicEditText" />
-                </LinearLayout>
-
-                <LinearLayout style="@style/CharacteristicWhiteLinearLayout">
-
-                    <EditText
-                        android:id="@+id/agility_fortune"
-                        style="@style/CharacteristicFortuneEditText" />
-                </LinearLayout>
-            </LinearLayout>
-
-            <!--Intelligence-->
-            <LinearLayout
-                android:id="@+id/intelligence_layout"
-                style="@style/CharacteristicLinearLayout">
-
-                <TextView
-                    android:id="@+id/textView"
-                    style="@style/CharacteristicLabelTextView"
-                    android:text="@string/intelligence" />
-
-                <LinearLayout style="@style/CharacteristicBlueLinearLayout">
-
-                    <EditText
-                        android:id="@+id/intelligence_characteristic"
-                        style="@style/CharacteristicEditText" />
-                </LinearLayout>
-
-                <LinearLayout style="@style/CharacteristicWhiteLinearLayout">
-
-                    <EditText
-                        android:id="@+id/intelligence_fortune"
-                        style="@style/CharacteristicFortuneEditText" />
-                </LinearLayout>
-            </LinearLayout>
-
-            <!--Will Power-->
-            <LinearLayout
-                android:id="@+id/willpower_layout"
-                style="@style/CharacteristicLinearLayout">
-
-                <TextView
-                    style="@style/CharacteristicLabelTextView"
-                    android:text="@string/willpower" />
-
-                <LinearLayout style="@style/CharacteristicBlueLinearLayout">
-
-                    <EditText
-                        android:id="@+id/willpower_characteristic"
-                        style="@style/CharacteristicEditText" />
-                </LinearLayout>
-
-                <LinearLayout style="@style/CharacteristicWhiteLinearLayout">
-
-                    <EditText
-                        android:id="@+id/willpower_fortune"
-                        style="@style/CharacteristicFortuneEditText" />
-                </LinearLayout>
-            </LinearLayout>
-
-            <!--Fellowship-->
-            <LinearLayout
-                android:id="@+id/fellowship_layout"
-                style="@style/CharacteristicLinearLayout">
-
-                <TextView
-                    style="@style/CharacteristicLabelTextView"
-                    android:text="@string/fellowship" />
-
-                <LinearLayout style="@style/CharacteristicBlueLinearLayout">
-
-                    <EditText
-                        android:id="@+id/fellowship_characteristic"
-                        style="@style/CharacteristicEditText" />
-                </LinearLayout>
-
-                <LinearLayout style="@style/CharacteristicWhiteLinearLayout">
-
-                    <EditText
-                        android:id="@+id/fellowship_fortune"
-                        style="@style/CharacteristicFortuneEditText" />
-                </LinearLayout>
-            </LinearLayout>
-        </LinearLayout>
-
-        <!--Rank, Experience/Max_Experience-->
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginEnd="@dimen/big_padding"
-            android:orientation="horizontal">
-            <!--Rank-->
-            <TextView
-                style="@style/RankExperienceLabelTextView"
-                android:layout_weight="35"
-                android:text="@string/rank_label" />
-
-            <EditText
-                android:id="@+id/player_rank"
-                style="@style/RankExperienceEditText" />
-
-            <!--Experience-->
-            <TextView
-                style="@style/RankExperienceLabelTextView"
-                android:layout_weight="50"
-                android:text="@string/experience_label" />
-
-            <EditText
-                android:id="@+id/player_experience"
-                style="@style/RankExperienceEditText"
-                android:gravity="end|center_vertical" />
-
-            <TextView
-                style="@style/RankExperienceLabelTextView"
-                android:layout_weight="1"
-                android:text="@string/slash" />
-
-            <EditText
-                android:id="@+id/player_max_experience"
-                style="@style/RankExperienceEditText"
-                android:gravity="start|center_vertical" />
-        </LinearLayout>
-
-        <!--Race, Age, Size-->
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="@dimen/medium_padding"
-            android:layout_marginEnd="@dimen/big_padding"
-            android:orientation="horizontal">
-            <!--Race-->
-            <TextView
-                style="@style/RankExperienceLabelTextView"
-                android:layout_weight="35"
-                android:text="@string/race_label" />
-
-            <EditText
-                android:id="@+id/player_race"
-                style="@style/RankExperienceEditText"
-                android:layout_weight="80"
-                android:hint="@string/race_hint"
-                android:inputType="textCapSentences" />
-
-            <!--Age-->
-            <TextView
-                android:id="@+id/textView2"
-                style="@style/RankExperienceLabelTextView"
-                android:layout_weight="1"
-                android:text="@string/age_label" />
-
-            <EditText
-                android:id="@+id/player_age"
-                style="@style/RankExperienceEditText" />
-
-            <!--Size-->
-            <TextView
-                style="@style/RankExperienceLabelTextView"
-                android:layout_weight="1"
-                android:text="@string/size_label" />
-
-            <EditText
-                android:id="@+id/player_size"
-                style="@style/RankExperienceEditText" />
-        </LinearLayout>
-
-        <!--Description-->
-        <LinearLayout
+            android:id="@+id/characteristics_fragment_layout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical">
 
-            <TextView
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:gravity="center"
-                android:text="@string/description_label"
-                android:textSize="@dimen/textSize" />
+                android:layout_marginBottom="@dimen/medium_padding"
+                android:layout_marginEnd="@dimen/big_padding"
+                android:layout_marginStart="@dimen/big_padding"
+                android:layout_marginTop="@dimen/medium_padding"
+                android:orientation="vertical">
 
-            <EditText
-                android:id="@+id/player_description"
+                <!--Name-->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        style="@style/LabelTextView"
+                        android:layout_weight="75"
+                        android:text="@string/name_label" />
+
+                    <EditText
+                        android:id="@+id/player_name"
+                        style="@style/CharacteristicBigEditText"
+                        android:hint="@string/name_hint" />
+                </LinearLayout>
+
+                <!--Career-->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        style="@style/LabelTextView"
+                        android:layout_weight="75"
+                        android:text="@string/career_label" />
+
+                    <EditText
+                        android:id="@+id/player_career"
+                        style="@style/CharacteristicBigEditText"
+                        android:hint="@string/career_hint" />
+                </LinearLayout>
+            </LinearLayout>
+
+            <!--Characteristics EditTexts-->
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:gravity="top"
-                android:inputType="textShortMessage"
-                android:maxLines="3"
-                android:padding="@dimen/small_padding"
-                android:scrollHorizontally="false" />
-        </LinearLayout>
+                android:layout_marginBottom="@dimen/medium_padding"
+                android:orientation="vertical">
 
-    </LinearLayout>
-</ScrollView>
+                <!--Strength-->
+                <LinearLayout
+                    android:id="@+id/strength_layout"
+                    style="@style/CharacteristicLinearLayout">
+
+                    <TextView
+                        style="@style/CharacteristicLabelTextView"
+                        android:text="@string/strength" />
+
+                    <LinearLayout style="@style/CharacteristicBlueLinearLayout">
+
+                        <EditText
+                            android:id="@+id/strength_characteristic"
+                            style="@style/CharacteristicEditText" />
+                    </LinearLayout>
+
+                    <LinearLayout style="@style/CharacteristicWhiteLinearLayout">
+
+                        <EditText
+                            android:id="@+id/strength_fortune"
+                            style="@style/CharacteristicFortuneEditText" />
+                    </LinearLayout>
+                </LinearLayout>
+
+                <!--Toughness-->
+                <LinearLayout
+                    android:id="@+id/toughness_layout"
+                    style="@style/CharacteristicLinearLayout">
+
+                    <TextView
+                        style="@style/CharacteristicLabelTextView"
+                        android:text="@string/toughness" />
+
+                    <LinearLayout style="@style/CharacteristicBlueLinearLayout">
+
+                        <EditText
+                            android:id="@+id/toughness_characteristic"
+                            style="@style/CharacteristicEditText" />
+                    </LinearLayout>
+
+                    <LinearLayout style="@style/CharacteristicWhiteLinearLayout">
+
+                        <EditText
+                            android:id="@+id/toughness_fortune"
+                            style="@style/CharacteristicFortuneEditText" />
+                    </LinearLayout>
+                </LinearLayout>
+
+                <!--Agility-->
+                <LinearLayout
+                    android:id="@+id/agility_layout"
+                    style="@style/CharacteristicLinearLayout"
+                    android:layout_below="@id/toughness_layout">
+
+                    <TextView
+                        style="@style/CharacteristicLabelTextView"
+                        android:text="@string/agility" />
+
+                    <LinearLayout style="@style/CharacteristicBlueLinearLayout">
+
+                        <EditText
+                            android:id="@+id/agility_characteristic"
+                            style="@style/CharacteristicEditText" />
+                    </LinearLayout>
+
+                    <LinearLayout style="@style/CharacteristicWhiteLinearLayout">
+
+                        <EditText
+                            android:id="@+id/agility_fortune"
+                            style="@style/CharacteristicFortuneEditText" />
+                    </LinearLayout>
+                </LinearLayout>
+
+                <!--Intelligence-->
+                <LinearLayout
+                    android:id="@+id/intelligence_layout"
+                    style="@style/CharacteristicLinearLayout">
+
+                    <TextView
+                        android:id="@+id/textView"
+                        style="@style/CharacteristicLabelTextView"
+                        android:text="@string/intelligence" />
+
+                    <LinearLayout style="@style/CharacteristicBlueLinearLayout">
+
+                        <EditText
+                            android:id="@+id/intelligence_characteristic"
+                            style="@style/CharacteristicEditText" />
+                    </LinearLayout>
+
+                    <LinearLayout style="@style/CharacteristicWhiteLinearLayout">
+
+                        <EditText
+                            android:id="@+id/intelligence_fortune"
+                            style="@style/CharacteristicFortuneEditText" />
+                    </LinearLayout>
+                </LinearLayout>
+
+                <!--Will Power-->
+                <LinearLayout
+                    android:id="@+id/willpower_layout"
+                    style="@style/CharacteristicLinearLayout">
+
+                    <TextView
+                        style="@style/CharacteristicLabelTextView"
+                        android:text="@string/willpower" />
+
+                    <LinearLayout style="@style/CharacteristicBlueLinearLayout">
+
+                        <EditText
+                            android:id="@+id/willpower_characteristic"
+                            style="@style/CharacteristicEditText" />
+                    </LinearLayout>
+
+                    <LinearLayout style="@style/CharacteristicWhiteLinearLayout">
+
+                        <EditText
+                            android:id="@+id/willpower_fortune"
+                            style="@style/CharacteristicFortuneEditText" />
+                    </LinearLayout>
+                </LinearLayout>
+
+                <!--Fellowship-->
+                <LinearLayout
+                    android:id="@+id/fellowship_layout"
+                    style="@style/CharacteristicLinearLayout">
+
+                    <TextView
+                        style="@style/CharacteristicLabelTextView"
+                        android:text="@string/fellowship" />
+
+                    <LinearLayout style="@style/CharacteristicBlueLinearLayout">
+
+                        <EditText
+                            android:id="@+id/fellowship_characteristic"
+                            style="@style/CharacteristicEditText" />
+                    </LinearLayout>
+
+                    <LinearLayout style="@style/CharacteristicWhiteLinearLayout">
+
+                        <EditText
+                            android:id="@+id/fellowship_fortune"
+                            style="@style/CharacteristicFortuneEditText" />
+                    </LinearLayout>
+                </LinearLayout>
+            </LinearLayout>
+
+            <!--Rank, Experience/Max_Experience-->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="@dimen/big_padding"
+                android:orientation="horizontal">
+                <!--Rank-->
+                <TextView
+                    style="@style/RankExperienceLabelTextView"
+                    android:layout_weight="35"
+                    android:text="@string/rank_label" />
+
+                <EditText
+                    android:id="@+id/player_rank"
+                    style="@style/RankExperienceEditText" />
+
+                <!--Experience-->
+                <TextView
+                    style="@style/RankExperienceLabelTextView"
+                    android:layout_weight="50"
+                    android:text="@string/experience_label" />
+
+                <EditText
+                    android:id="@+id/player_experience"
+                    style="@style/RankExperienceEditText"
+                    android:gravity="end|center_vertical" />
+
+                <TextView
+                    style="@style/RankExperienceLabelTextView"
+                    android:layout_weight="1"
+                    android:text="@string/slash" />
+
+                <EditText
+                    android:id="@+id/player_max_experience"
+                    style="@style/RankExperienceEditText"
+                    android:gravity="start|center_vertical" />
+            </LinearLayout>
+
+            <!--Race, Age, Size-->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/medium_padding"
+                android:layout_marginEnd="@dimen/big_padding"
+                android:orientation="horizontal">
+                <!--Race-->
+                <TextView
+                    style="@style/RankExperienceLabelTextView"
+                    android:layout_weight="35"
+                    android:text="@string/race_label" />
+
+                <EditText
+                    android:id="@+id/player_race"
+                    style="@style/RankExperienceEditText"
+                    android:layout_weight="80"
+                    android:hint="@string/race_hint"
+                    android:inputType="textCapSentences" />
+
+                <!--Age-->
+                <TextView
+                    android:id="@+id/textView2"
+                    style="@style/RankExperienceLabelTextView"
+                    android:layout_weight="1"
+                    android:text="@string/age_label" />
+
+                <EditText
+                    android:id="@+id/player_age"
+                    style="@style/RankExperienceEditText" />
+
+                <!--Size-->
+                <TextView
+                    style="@style/RankExperienceLabelTextView"
+                    android:layout_weight="1"
+                    android:text="@string/size_label" />
+
+                <EditText
+                    android:id="@+id/player_size"
+                    style="@style/RankExperienceEditText" />
+            </LinearLayout>
+
+            <!--Wounds/Max_Wounds, Corruption/-->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="@dimen/big_padding"
+                android:orientation="horizontal">
+                <!--Wounds-->
+                <TextView
+                    style="@style/RankExperienceLabelTextView"
+                    android:layout_weight="50"
+                    android:text="@string/wounds_label" />
+
+                <EditText
+                    android:id="@+id/player_wounds"
+                    style="@style/RankExperienceEditText"
+                    android:gravity="end|center_vertical" />
+
+                <TextView
+                    style="@style/RankExperienceLabelTextView"
+                    android:layout_weight="1"
+                    android:text="@string/slash" />
+
+                <EditText
+                    android:id="@+id/player_max_wounds"
+                    style="@style/RankExperienceEditText"
+                    android:gravity="start|center_vertical" />
+
+                <!--Wounds-->
+                <TextView
+                    style="@style/RankExperienceLabelTextView"
+                    android:layout_weight="50"
+                    android:text="@string/corruption_label" />
+
+                <EditText
+                    android:id="@+id/player_corruption"
+                    style="@style/RankExperienceEditText"
+                    android:gravity="end|center_vertical" />
+
+                <TextView
+                    style="@style/RankExperienceLabelTextView"
+                    android:layout_weight="1"
+                    android:text="@string/slash" />
+
+                <EditText
+                    android:id="@+id/player_max_corruption"
+                    style="@style/RankExperienceEditText"
+                    android:gravity="start|center_vertical" />
+            </LinearLayout>
+
+            <!--Description-->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_marginBottom="70dp"
+                android:layout_weight="1"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:text="@string/description_label"
+                    android:textSize="@dimen/textSize" />
+
+                <EditText
+                    android:id="@+id/player_description"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="top"
+                    android:inputType="textShortMessage"
+                    android:maxLines="3"
+                    android:padding="@dimen/small_padding"
+                    android:scrollHorizontally="false" />
+            </LinearLayout>
+
+        </LinearLayout>
+    </ScrollView>
+</LinearLayout>

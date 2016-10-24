@@ -6,7 +6,6 @@
     <!-- android:icon="@mipmap/ic_launcher" -->
     <application
         android:allowBackup="true"
-
         android:configChanges="keyboardHidden|orientation|screenSize"
         android:icon="@drawable/warhammer_v3_logo"
         android:label="@string/app_name"
@@ -28,7 +27,8 @@
             android:name=".ihm.activities.PlayerActivity"
             android:parentActivityName=".ihm.activities.HomeActivity"
             android:screenOrientation="portrait"
-            android:theme="@style/AppTheme.NoActionBar">
+            android:theme="@style/AppTheme.NoActionBar"
+            android:windowSoftInputMode="stateHidden|adjustResize">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".ihm.activities.HomeActivity" />

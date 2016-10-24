@@ -78,6 +78,8 @@
     <string name="career_label">Career :</string>
     <string name="career_hint">Career</string>
     <string name="name_label">Name :</string>
+    <string name="wounds_label">Wounds :</string>
+    <string name="corruption_label">Corruption :</string>
     <!--End of pages-->
 
 </resources>
