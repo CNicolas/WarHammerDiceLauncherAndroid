@@ -15,6 +15,7 @@
             android:layout_height="wrap_content"
             android:orientation="vertical">
 
+            <!--Name, Career-->
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -143,7 +144,6 @@
                     style="@style/CharacteristicLinearLayout">
 
                     <TextView
-                        android:id="@+id/textView"
                         style="@style/CharacteristicLabelTextView"
                         android:text="@string/intelligence" />
 
@@ -219,7 +219,7 @@
                 android:orientation="horizontal">
                 <!--Rank-->
                 <TextView
-                    style="@style/RankExperienceLabelTextView"
+                    style="@style/PlayerInformationLabelTextView"
                     android:layout_weight="35"
                     android:text="@string/rank_label" />
 
@@ -229,7 +229,7 @@
 
                 <!--Experience-->
                 <TextView
-                    style="@style/RankExperienceLabelTextView"
+                    style="@style/PlayerInformationLabelTextView"
                     android:layout_weight="50"
                     android:text="@string/experience_label" />
 
@@ -239,12 +239,62 @@
                     android:gravity="end|center_vertical" />
 
                 <TextView
-                    style="@style/RankExperienceLabelTextView"
+                    style="@style/PlayerInformationLabelTextView"
                     android:layout_weight="1"
                     android:text="@string/slash" />
 
                 <EditText
                     android:id="@+id/player_max_experience"
+                    style="@style/RankExperienceEditText"
+                    android:gravity="start|center_vertical" />
+            </LinearLayout>
+
+            <!--Wounds/Max_Wounds, Corruption/Max_Corruption-->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/medium_padding"
+                android:layout_marginEnd="@dimen/big_padding"
+                android:orientation="horizontal">
+                <!--Wounds-->
+                <TextView
+                    style="@style/PlayerInformationLabelTextView"
+                    android:layout_weight="50"
+                    android:text="@string/wounds_label" />
+
+                <EditText
+                    android:id="@+id/player_wounds"
+                    style="@style/RankExperienceEditText"
+                    android:gravity="end|center_vertical" />
+
+                <TextView
+                    style="@style/PlayerInformationLabelTextView"
+                    android:layout_weight="1"
+                    android:text="@string/slash" />
+
+                <EditText
+                    android:id="@+id/player_max_wounds"
+                    style="@style/RankExperienceEditText"
+                    android:gravity="start|center_vertical" />
+
+                <!--Corruption-->
+                <TextView
+                    style="@style/PlayerInformationLabelTextView"
+                    android:layout_weight="50"
+                    android:text="@string/corruption_label" />
+
+                <EditText
+                    android:id="@+id/player_corruption"
+                    style="@style/RankExperienceEditText"
+                    android:gravity="end|center_vertical" />
+
+                <TextView
+                    style="@style/PlayerInformationLabelTextView"
+                    android:layout_weight="1"
+                    android:text="@string/slash" />
+
+                <EditText
+                    android:id="@+id/player_max_corruption"
                     style="@style/RankExperienceEditText"
                     android:gravity="start|center_vertical" />
             </LinearLayout>
@@ -258,7 +308,7 @@
                 android:orientation="horizontal">
                 <!--Race-->
                 <TextView
-                    style="@style/RankExperienceLabelTextView"
+                    style="@style/PlayerInformationLabelTextView"
                     android:layout_weight="35"
                     android:text="@string/race_label" />
 
@@ -271,8 +321,7 @@
 
                 <!--Age-->
                 <TextView
-                    android:id="@+id/textView2"
-                    style="@style/RankExperienceLabelTextView"
+                    style="@style/PlayerInformationLabelTextView"
                     android:layout_weight="1"
                     android:text="@string/age_label" />
 
@@ -282,7 +331,7 @@
 
                 <!--Size-->
                 <TextView
-                    style="@style/RankExperienceLabelTextView"
+                    style="@style/PlayerInformationLabelTextView"
                     android:layout_weight="1"
                     android:text="@string/size_label" />
 
@@ -291,53 +340,80 @@
                     style="@style/RankExperienceEditText" />
             </LinearLayout>
 
-            <!--Wounds/Max_Wounds, Corruption/-->
+            <!--Reckless/Max_Reckless, Conservative/Max_Conservative-->
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/medium_padding"
                 android:layout_marginEnd="@dimen/big_padding"
+                android:layout_marginStart="@dimen/big_padding"
                 android:orientation="horizontal">
-                <!--Wounds-->
-                <TextView
-                    style="@style/RankExperienceLabelTextView"
-                    android:layout_weight="50"
-                    android:text="@string/wounds_label" />
 
-                <EditText
-                    android:id="@+id/player_wounds"
-                    style="@style/RankExperienceEditText"
-                    android:gravity="end|center_vertical" />
-
-                <TextView
-                    style="@style/RankExperienceLabelTextView"
+                <!--Conservative-->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="@dimen/medium_padding"
                     android:layout_weight="1"
-                    android:text="@string/slash" />
+                    android:background="#2f8f3f">
 
-                <EditText
-                    android:id="@+id/player_max_wounds"
-                    style="@style/RankExperienceEditText"
-                    android:gravity="start|center_vertical" />
+                    <TextView
+                        style="@style/PlayerInformationLabelTextView"
+                        android:text="@string/conservative_label"
+                        android:textColor="@android:color/white" />
 
-                <!--Wounds-->
-                <TextView
-                    style="@style/RankExperienceLabelTextView"
-                    android:layout_weight="50"
-                    android:text="@string/corruption_label" />
+                    <EditText
+                        android:id="@+id/player_conservative"
+                        style="@style/RankExperienceEditText"
+                        android:gravity="end|center_vertical"
+                        android:maxLength="1"
+                        android:textColor="@android:color/white" />
 
-                <EditText
-                    android:id="@+id/player_corruption"
-                    style="@style/RankExperienceEditText"
-                    android:gravity="end|center_vertical" />
+                    <TextView
+                        style="@style/PlayerInformationLabelTextView"
+                        android:text="@string/slash"
+                        android:textColor="@android:color/white" />
 
-                <TextView
-                    style="@style/RankExperienceLabelTextView"
+                    <EditText
+                        android:id="@+id/player_max_conservative"
+                        style="@style/RankExperienceEditText"
+                        android:gravity="start|center_vertical"
+                        android:maxLength="1"
+                        android:textColor="@android:color/white" />
+                </LinearLayout>
+
+                <!--Reckless-->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/medium_padding"
                     android:layout_weight="1"
-                    android:text="@string/slash" />
+                    android:background="#ff0000">
 
-                <EditText
-                    android:id="@+id/player_max_corruption"
-                    style="@style/RankExperienceEditText"
-                    android:gravity="start|center_vertical" />
+                    <TextView
+                        style="@style/PlayerInformationLabelTextView"
+                        android:text="@string/reckless_label"
+                        android:textColor="@android:color/white" />
+
+                    <EditText
+                        android:id="@+id/player_reckless"
+                        style="@style/RankExperienceEditText"
+                        android:gravity="end|center_vertical"
+                        android:maxLength="1"
+                        android:textColor="@android:color/white" />
+
+                    <TextView
+                        style="@style/PlayerInformationLabelTextView"
+                        android:text="@string/slash"
+                        android:textColor="@android:color/white" />
+
+                    <EditText
+                        android:id="@+id/player_max_reckless"
+                        style="@style/RankExperienceEditText"
+                        android:gravity="start|center_vertical"
+                        android:maxLength="1"
+                        android:textColor="@android:color/white" />
+                </LinearLayout>
             </LinearLayout>
 
             <!--Description-->

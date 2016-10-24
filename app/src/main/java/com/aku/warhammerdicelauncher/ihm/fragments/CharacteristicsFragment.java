@@ -47,6 +47,10 @@ public class CharacteristicsFragment extends Fragment {
     private EditText mPlayerMaxWoundsView;
     private EditText mPlayerCorruptionView;
     private EditText mPlayerMaxCorruptionView;
+    private EditText mPlayerConservativeView;
+    private EditText mPlayerMaxConservativeView;
+    private EditText mPlayerRecklessView;
+    private EditText mPlayerMaxRecklessView;
     private EditText mPlayerNameView;
     private EditText mPlayerRaceView;
     private EditText mPlayerRankView;
@@ -260,6 +264,10 @@ public class CharacteristicsFragment extends Fragment {
         mPlayerMaxWoundsView = (EditText) mRootView.findViewById(R.id.player_max_wounds);
         mPlayerCorruptionView = (EditText) mRootView.findViewById(R.id.player_corruption);
         mPlayerMaxCorruptionView = (EditText) mRootView.findViewById(R.id.player_max_corruption);
+        mPlayerConservativeView = (EditText) mRootView.findViewById(R.id.player_conservative);
+        mPlayerMaxConservativeView = (EditText) mRootView.findViewById(R.id.player_max_conservative);
+        mPlayerRecklessView = (EditText) mRootView.findViewById(R.id.player_reckless);
+        mPlayerMaxRecklessView = (EditText) mRootView.findViewById(R.id.player_max_reckless);
         mPlayerNameView = (EditText) mRootView.findViewById(R.id.player_name);
         mPlayerRaceView = (EditText) mRootView.findViewById(R.id.player_race);
         mPlayerRankView = (EditText) mRootView.findViewById(R.id.player_rank);
@@ -291,6 +299,16 @@ public class CharacteristicsFragment extends Fragment {
         int maxCorruption = player.getMax_corruption();
         mPlayerMaxCorruptionView.setText(maxCorruption == 0 ? "" : String.valueOf(maxCorruption));
 
+        int conservative = player.getConservative();
+        mPlayerConservativeView.setText(conservative == 0 ? "" : String.valueOf(conservative));
+        int maxConservative = player.getMax_conservative();
+        mPlayerMaxConservativeView.setText(maxConservative == 0 ? "" : String.valueOf(maxConservative));
+
+        int reckless = player.getReckless();
+        mPlayerRecklessView.setText(reckless == 0 ? "" : String.valueOf(reckless));
+        int maxReckless = player.getMax_reckless();
+        mPlayerMaxRecklessView.setText(maxReckless == 0 ? "" : String.valueOf(maxReckless));
+
         mPlayerNameView.setText(player.getName());
 
         mPlayerRaceView.setText(player.getRace());
@@ -312,6 +330,10 @@ public class CharacteristicsFragment extends Fragment {
         mPlayerMaxWoundsView.addTextChangedListener(new PlayerEditTextWatcher(PlayerInformation.MAX_WOUNDS));
         mPlayerCorruptionView.addTextChangedListener(new PlayerEditTextWatcher(PlayerInformation.CORRUPTION));
         mPlayerMaxCorruptionView.addTextChangedListener(new PlayerEditTextWatcher(PlayerInformation.MAX_CORRUPTION));
+        mPlayerConservativeView.addTextChangedListener(new PlayerEditTextWatcher(PlayerInformation.CONSERVATIVE));
+        mPlayerMaxConservativeView.addTextChangedListener(new PlayerEditTextWatcher(PlayerInformation.MAX_CONSERVATIVE));
+        mPlayerRecklessView.addTextChangedListener(new PlayerEditTextWatcher(PlayerInformation.RECKLESS));
+        mPlayerMaxRecklessView.addTextChangedListener(new PlayerEditTextWatcher(PlayerInformation.MAX_RECKLESS));
         mPlayerNameView.addTextChangedListener(new PlayerEditTextWatcher(PlayerInformation.NAME));
         mPlayerRaceView.addTextChangedListener(new PlayerEditTextWatcher(PlayerInformation.RACE));
         mPlayerRankView.addTextChangedListener(new PlayerEditTextWatcher(PlayerInformation.RANK));

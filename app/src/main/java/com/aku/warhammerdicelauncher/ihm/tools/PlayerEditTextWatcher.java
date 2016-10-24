@@ -61,6 +61,18 @@ public class PlayerEditTextWatcher implements TextWatcher {
                 case MAX_CORRUPTION:
                     player.setMax_corruption(Integer.parseInt(newValue));
                     return;
+                case CONSERVATIVE:
+                    player.setConservative(Integer.parseInt(newValue));
+                    return;
+                case MAX_CONSERVATIVE:
+                    player.setMax_conservative(Integer.parseInt(newValue));
+                    return;
+                case RECKLESS:
+                    player.setReckless(Integer.parseInt(newValue));
+                    return;
+                case MAX_RECKLESS:
+                    player.setMax_reckless(Integer.parseInt(newValue));
+                    return;
                 case NAME:
                     player.setName(newValue);
                     return;

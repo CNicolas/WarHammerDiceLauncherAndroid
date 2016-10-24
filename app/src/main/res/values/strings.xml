@@ -80,6 +80,9 @@
     <string name="name_label">Name :</string>
     <string name="wounds_label">Wounds :</string>
     <string name="corruption_label">Corruption :</string>
+    <string name="stance_label">Stance</string>
+    <string name="reckless_label">Reckless :</string>
+    <string name="conservative_label">Conservative :</string>
     <!--End of pages-->
 
 </resources>

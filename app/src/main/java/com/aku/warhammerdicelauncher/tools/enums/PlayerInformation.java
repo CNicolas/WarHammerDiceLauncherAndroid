@@ -20,7 +20,11 @@ public enum PlayerInformation {
     WOUNDS(IPlayerEntryConstants.COLUMN_WOUNDS),
     MAX_WOUNDS(IPlayerEntryConstants.COLUMN_MAX_WOUNDS),
     CORRUPTION(IPlayerEntryConstants.COLUMN_CORRUPTION),
-    MAX_CORRUPTION(IPlayerEntryConstants.COLUMN_MAX_CORRUPTION);
+    MAX_CORRUPTION(IPlayerEntryConstants.COLUMN_MAX_CORRUPTION),
+    CONSERVATIVE(IPlayerEntryConstants.COLUMN_CONSERVATIVE),
+    MAX_CONSERVATIVE(IPlayerEntryConstants.COLUMN_MAX_CONSERVATIVE),
+    RECKLESS(IPlayerEntryConstants.COLUMN_RECKLESS),
+    MAX_RECKLESS(IPlayerEntryConstants.COLUMN_MAX_RECKLESS);
 
     private final String information;
 

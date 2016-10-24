@@ -78,6 +78,8 @@
     <string name="size_label">Taille :</string>
     <string name="wounds_label">Blessures :</string>
     <string name="corruption_label">Corruption :</string>
+    <string name="conservative_label">Prudence :</string>
+    <string name="reckless_label">Témérité :</string>
     <!--End of pages-->
 
 </resources>
