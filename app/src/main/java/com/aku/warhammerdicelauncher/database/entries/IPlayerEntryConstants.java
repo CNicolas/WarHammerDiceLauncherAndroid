@@ -19,6 +19,8 @@ public interface IPlayerEntryConstants extends IEntryConstants {
     String COLUMN_MAX_EXPERIENCE = "max_experience";
     String COLUMN_WOUNDS = "wounds";
     String COLUMN_MAX_WOUNDS = "max_wounds";
+    String COLUMN_CORRUPTION = "corruption";
+    String COLUMN_MAX_CORRUPTION = "max_corruption";
     String COLUMN_RECKLESS = "reckless";
     String COLUMN_MAX_RECKLESS = "max_reckless";
     String COLUMN_CONSERVATIVE = "conservative";
@@ -45,6 +47,8 @@ public interface IPlayerEntryConstants extends IEntryConstants {
                     COLUMN_MAX_EXPERIENCE + INTEGER_TYPE + COMMA_SEP +
                     COLUMN_WOUNDS + INTEGER_TYPE + COMMA_SEP +
                     COLUMN_MAX_WOUNDS + INTEGER_TYPE + COMMA_SEP +
+                    COLUMN_CORRUPTION + INTEGER_TYPE + COMMA_SEP +
+                    COLUMN_MAX_CORRUPTION + INTEGER_TYPE + COMMA_SEP +
                     COLUMN_RECKLESS + INTEGER_TYPE + COMMA_SEP +
                     COLUMN_MAX_RECKLESS + INTEGER_TYPE + COMMA_SEP +
                     COLUMN_CONSERVATIVE + INTEGER_TYPE + COMMA_SEP +

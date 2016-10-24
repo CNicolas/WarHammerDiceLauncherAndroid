@@ -43,7 +43,7 @@ public class PlayerDao extends AbstractDao<Player> implements IPlayerEntryConsta
     //endregion
 
     //region Private Methods
-    protected ContentValues contentValuesFromDto(Player player) {
+    protected ContentValues contentValuesFromModel(Player player) {
         ContentValues values = new ContentValues();
 
         values.put(COLUMN_NAME, player.getName());
@@ -58,6 +58,8 @@ public class PlayerDao extends AbstractDao<Player> implements IPlayerEntryConsta
         values.put(COLUMN_MAX_EXPERIENCE, player.getMax_experience());
         values.put(COLUMN_WOUNDS, player.getWounds());
         values.put(COLUMN_MAX_WOUNDS, player.getMax_wounds());
+        values.put(COLUMN_CORRUPTION, player.getCorruption());
+        values.put(COLUMN_MAX_CORRUPTION, player.getMax_corruption());
         values.put(COLUMN_RECKLESS, player.getReckless());
         values.put(COLUMN_MAX_RECKLESS, player.getMax_reckless());
         values.put(COLUMN_CONSERVATIVE, player.getConservative());
@@ -72,43 +74,45 @@ public class PlayerDao extends AbstractDao<Player> implements IPlayerEntryConsta
         return values;
     }
 
-    protected Player createDtoFromCursor(Cursor cursor) {
-        Player dto = new Player();
+    protected Player createModelFromCursor(Cursor cursor) {
+        Player model = new Player();
 
-        dto.setId(cursor.getInt(cursor.getColumnIndexOrThrow(columnId)));
+        model.setId(cursor.getInt(cursor.getColumnIndexOrThrow(columnId)));
 
-        dto.setName(cursor.getString(cursor.getColumnIndexOrThrow(COLUMN_NAME)));
-        dto.setRace(cursor.getString(cursor.getColumnIndexOrThrow(COLUMN_RACE)));
-        dto.setAge(cursor.getInt(cursor.getColumnIndexOrThrow(COLUMN_AGE)));
-        dto.setSize(cursor.getInt(cursor.getColumnIndexOrThrow(COLUMN_SIZE)));
-        dto.setDescription(cursor.getString(cursor.getColumnIndexOrThrow(COLUMN_DESCRIPTION)));
+        model.setName(cursor.getString(cursor.getColumnIndexOrThrow(COLUMN_NAME)));
+        model.setRace(cursor.getString(cursor.getColumnIndexOrThrow(COLUMN_RACE)));
+        model.setAge(cursor.getInt(cursor.getColumnIndexOrThrow(COLUMN_AGE)));
+        model.setSize(cursor.getInt(cursor.getColumnIndexOrThrow(COLUMN_SIZE)));
+        model.setDescription(cursor.getString(cursor.getColumnIndexOrThrow(COLUMN_DESCRIPTION)));
 
-        dto.setCareer(cursor.getString(cursor.getColumnIndexOrThrow(COLUMN_CAREER)));
-        dto.setRank(cursor.getInt(cursor.getColumnIndexOrThrow(COLUMN_RANK)));
-        dto.setExperience(cursor.getInt(cursor.getColumnIndexOrThrow(COLUMN_EXPERIENCE)));
-        dto.setMax_experience(cursor.getInt(cursor.getColumnIndexOrThrow(COLUMN_MAX_EXPERIENCE)));
-        dto.setWounds(cursor.getInt(cursor.getColumnIndexOrThrow(COLUMN_WOUNDS)));
-        dto.setMax_wounds(cursor.getInt(cursor.getColumnIndexOrThrow(COLUMN_MAX_WOUNDS)));
-        dto.setReckless(cursor.getInt(cursor.getColumnIndexOrThrow(COLUMN_RECKLESS)));
-        dto.setMax_reckless(cursor.getInt(cursor.getColumnIndexOrThrow(COLUMN_MAX_RECKLESS)));
-        dto.setConservative(cursor.getInt(cursor.getColumnIndexOrThrow(COLUMN_CONSERVATIVE)));
-        dto.setMax_conservative(cursor.getInt(cursor.getColumnIndexOrThrow(COLUMN_MAX_CONSERVATIVE)));
+        model.setCareer(cursor.getString(cursor.getColumnIndexOrThrow(COLUMN_CAREER)));
+        model.setRank(cursor.getInt(cursor.getColumnIndexOrThrow(COLUMN_RANK)));
+        model.setExperience(cursor.getInt(cursor.getColumnIndexOrThrow(COLUMN_EXPERIENCE)));
+        model.setMax_experience(cursor.getInt(cursor.getColumnIndexOrThrow(COLUMN_MAX_EXPERIENCE)));
+        model.setWounds(cursor.getInt(cursor.getColumnIndexOrThrow(COLUMN_WOUNDS)));
+        model.setMax_wounds(cursor.getInt(cursor.getColumnIndexOrThrow(COLUMN_MAX_WOUNDS)));
+        model.setCorruption(cursor.getInt(cursor.getColumnIndexOrThrow(COLUMN_CORRUPTION)));
+        model.setMax_corruption(cursor.getInt(cursor.getColumnIndexOrThrow(COLUMN_MAX_CORRUPTION)));
+        model.setReckless(cursor.getInt(cursor.getColumnIndexOrThrow(COLUMN_RECKLESS)));
+        model.setMax_reckless(cursor.getInt(cursor.getColumnIndexOrThrow(COLUMN_MAX_RECKLESS)));
+        model.setConservative(cursor.getInt(cursor.getColumnIndexOrThrow(COLUMN_CONSERVATIVE)));
+        model.setMax_conservative(cursor.getInt(cursor.getColumnIndexOrThrow(COLUMN_MAX_CONSERVATIVE)));
 
-        dto.setMoney_brass(cursor.getInt(cursor.getColumnIndexOrThrow(COLUMN_MONEY_BRASS)));
-        dto.setMoney_silver(cursor.getInt(cursor.getColumnIndexOrThrow(COLUMN_MONEY_SILVER)));
-        dto.setMoney_gold(cursor.getInt(cursor.getColumnIndexOrThrow(COLUMN_MONEY_GOLD)));
+        model.setMoney_brass(cursor.getInt(cursor.getColumnIndexOrThrow(COLUMN_MONEY_BRASS)));
+        model.setMoney_silver(cursor.getInt(cursor.getColumnIndexOrThrow(COLUMN_MONEY_SILVER)));
+        model.setMoney_gold(cursor.getInt(cursor.getColumnIndexOrThrow(COLUMN_MONEY_GOLD)));
 
         Characteristics characteristics = characteristicsDao.findById(cursor.getInt(cursor.getColumnIndexOrThrow(COLUMN_CHARACTERISTICS_ID)));
-        dto.setCharacteristics(characteristics);
+        model.setCharacteristics(characteristics);
 
-        List<Skill> skills = skillDao.findAllByPlayer(dto);
-        dto.setSkills(skills);
+        List<Skill> skills = skillDao.findAllByPlayer(model);
+        model.setSkills(skills);
 
         // Ajout des objets de l'inventaire du joueur
-        List<Item> items = itemDao.findAllByPlayer(dto);
-        dto.setInventory(items);
+        List<Item> items = itemDao.findAllByPlayer(model);
+        model.setInventory(items);
 
-        return dto;
+        return model;
     }
     //endregion
 }

@@ -32,7 +32,7 @@ public class HandDao extends AbstractDao<Hand> {
 
         Cursor cursor = db.query(tableName, null, IHandEntryConstants.COLUMN_TITLE + "=?", selectionArgs, null, null, null);
         if (cursor.moveToFirst()) {
-            Hand dto = createDtoFromCursor(cursor);
+            Hand dto = createModelFromCursor(cursor);
             cursor.close();
             return dto;
         } else {
@@ -45,7 +45,7 @@ public class HandDao extends AbstractDao<Hand> {
     //region Update
     public long update(Hand hand, String title) {
         SQLiteDatabase db = whdHelper.getWritableDatabase();
-        ContentValues values = contentValuesFromDto(hand);
+        ContentValues values = contentValuesFromModel(hand);
         String[] filters = {title};
 
         long res = db.update(tableName, values, String.format("%s = ?", IHandEntryConstants.COLUMN_TITLE), filters);
@@ -54,7 +54,7 @@ public class HandDao extends AbstractDao<Hand> {
     //endregion
 
     //region Private Methods
-    protected ContentValues contentValuesFromDto(Hand hand) {
+    protected ContentValues contentValuesFromModel(Hand hand) {
         ContentValues values = new ContentValues();
 
         values.put(IHandEntryConstants.COLUMN_TITLE, hand.getTitle());
@@ -69,7 +69,7 @@ public class HandDao extends AbstractDao<Hand> {
         return values;
     }
 
-    protected Hand createDtoFromCursor(Cursor cursor) {
+    protected Hand createModelFromCursor(Cursor cursor) {
         Hand dto = new Hand();
 
         dto.setId(cursor.getInt(cursor.getColumnIndexOrThrow(IHandEntryConstants.COLUMN_ID)));

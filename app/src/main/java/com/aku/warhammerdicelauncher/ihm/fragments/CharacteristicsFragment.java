@@ -43,6 +43,10 @@ public class CharacteristicsFragment extends Fragment {
     private EditText mPlayerDescriptionView;
     private EditText mPlayerExperienceView;
     private EditText mPlayerMaxExperienceView;
+    private EditText mPlayerWoundsView;
+    private EditText mPlayerMaxWoundsView;
+    private EditText mPlayerCorruptionView;
+    private EditText mPlayerMaxCorruptionView;
     private EditText mPlayerNameView;
     private EditText mPlayerRaceView;
     private EditText mPlayerRankView;
@@ -252,6 +256,10 @@ public class CharacteristicsFragment extends Fragment {
         mPlayerDescriptionView = (EditText) mRootView.findViewById(R.id.player_description);
         mPlayerExperienceView = (EditText) mRootView.findViewById(R.id.player_experience);
         mPlayerMaxExperienceView = (EditText) mRootView.findViewById(R.id.player_max_experience);
+        mPlayerWoundsView = (EditText) mRootView.findViewById(R.id.player_wounds);
+        mPlayerMaxWoundsView = (EditText) mRootView.findViewById(R.id.player_max_wounds);
+        mPlayerCorruptionView = (EditText) mRootView.findViewById(R.id.player_corruption);
+        mPlayerMaxCorruptionView = (EditText) mRootView.findViewById(R.id.player_max_corruption);
         mPlayerNameView = (EditText) mRootView.findViewById(R.id.player_name);
         mPlayerRaceView = (EditText) mRootView.findViewById(R.id.player_race);
         mPlayerRankView = (EditText) mRootView.findViewById(R.id.player_rank);
@@ -270,9 +278,18 @@ public class CharacteristicsFragment extends Fragment {
 
         int experience = player.getExperience();
         mPlayerExperienceView.setText(experience == 0 ? "" : String.valueOf(experience));
-
         int maxExperience = player.getMax_experience();
         mPlayerMaxExperienceView.setText(maxExperience == 0 ? "" : String.valueOf(maxExperience));
+
+        int wounds = player.getWounds();
+        mPlayerWoundsView.setText(wounds == 0 ? "" : String.valueOf(wounds));
+        int maxWounds = player.getMax_wounds();
+        mPlayerMaxWoundsView.setText(maxWounds == 0 ? "" : String.valueOf(maxWounds));
+
+        int corruption = player.getCorruption();
+        mPlayerCorruptionView.setText(corruption == 0 ? "" : String.valueOf(corruption));
+        int maxCorruption = player.getMax_corruption();
+        mPlayerMaxCorruptionView.setText(maxCorruption == 0 ? "" : String.valueOf(maxCorruption));
 
         mPlayerNameView.setText(player.getName());
 
@@ -291,6 +308,10 @@ public class CharacteristicsFragment extends Fragment {
         mPlayerDescriptionView.addTextChangedListener(new PlayerEditTextWatcher(PlayerInformation.DESCRIPTION));
         mPlayerExperienceView.addTextChangedListener(new PlayerEditTextWatcher(PlayerInformation.EXPERIENCE));
         mPlayerMaxExperienceView.addTextChangedListener(new PlayerEditTextWatcher(PlayerInformation.MAX_EXPERIENCE));
+        mPlayerWoundsView.addTextChangedListener(new PlayerEditTextWatcher(PlayerInformation.WOUNDS));
+        mPlayerMaxWoundsView.addTextChangedListener(new PlayerEditTextWatcher(PlayerInformation.MAX_WOUNDS));
+        mPlayerCorruptionView.addTextChangedListener(new PlayerEditTextWatcher(PlayerInformation.CORRUPTION));
+        mPlayerMaxCorruptionView.addTextChangedListener(new PlayerEditTextWatcher(PlayerInformation.MAX_CORRUPTION));
         mPlayerNameView.addTextChangedListener(new PlayerEditTextWatcher(PlayerInformation.NAME));
         mPlayerRaceView.addTextChangedListener(new PlayerEditTextWatcher(PlayerInformation.RACE));
         mPlayerRankView.addTextChangedListener(new PlayerEditTextWatcher(PlayerInformation.RANK));

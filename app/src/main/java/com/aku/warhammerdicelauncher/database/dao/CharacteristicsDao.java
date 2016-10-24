@@ -18,7 +18,7 @@ public class CharacteristicsDao extends AbstractDao<Characteristics> {
     }
 
     //region Private Methods
-    protected ContentValues contentValuesFromDto(Characteristics dto) {
+    protected ContentValues contentValuesFromModel(Characteristics dto) {
         ContentValues values = new ContentValues();
 
         values.put(ICharacteristicsEntryConstants.COLUMN_STRENGTH, dto.getStrength());
@@ -38,7 +38,7 @@ public class CharacteristicsDao extends AbstractDao<Characteristics> {
         return values;
     }
 
-    protected Characteristics createDtoFromCursor(Cursor cursor) {
+    protected Characteristics createModelFromCursor(Cursor cursor) {
         Characteristics dto = new Characteristics();
 
         dto.setId(cursor.getInt(cursor.getColumnIndexOrThrow(columnId)));

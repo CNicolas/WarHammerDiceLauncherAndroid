@@ -16,7 +16,11 @@ public enum PlayerInformation {
 
     RANK(IPlayerEntryConstants.COLUMN_RANK),
     EXPERIENCE(IPlayerEntryConstants.COLUMN_EXPERIENCE),
-    MAX_EXPERIENCE(IPlayerEntryConstants.COLUMN_MAX_EXPERIENCE);
+    MAX_EXPERIENCE(IPlayerEntryConstants.COLUMN_MAX_EXPERIENCE),
+    WOUNDS(IPlayerEntryConstants.COLUMN_WOUNDS),
+    MAX_WOUNDS(IPlayerEntryConstants.COLUMN_MAX_WOUNDS),
+    CORRUPTION(IPlayerEntryConstants.COLUMN_CORRUPTION),
+    MAX_CORRUPTION(IPlayerEntryConstants.COLUMN_MAX_CORRUPTION);
 
     private final String information;
 

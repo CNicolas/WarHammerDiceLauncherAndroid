@@ -49,6 +49,18 @@ public class PlayerEditTextWatcher implements TextWatcher {
                 case MAX_EXPERIENCE:
                     player.setMax_experience(Integer.parseInt(newValue));
                     return;
+                case WOUNDS:
+                    player.setWounds(Integer.parseInt(newValue));
+                    return;
+                case MAX_WOUNDS:
+                    player.setMax_wounds(Integer.parseInt(newValue));
+                    return;
+                case CORRUPTION:
+                    player.setCorruption(Integer.parseInt(newValue));
+                    return;
+                case MAX_CORRUPTION:
+                    player.setMax_corruption(Integer.parseInt(newValue));
+                    return;
                 case NAME:
                     player.setName(newValue);
                     return;

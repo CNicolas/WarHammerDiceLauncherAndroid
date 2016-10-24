@@ -56,7 +56,7 @@ public class ItemDao extends AbstractDao<Item> implements IItemEntryConstants {
         List<Item> res = new ArrayList<>();
         if (cursor.moveToFirst()) {
             while (!cursor.isAfterLast()) {
-                Item dto = createDtoFromCursor(cursor);
+                Item dto = createModelFromCursor(cursor);
                 res.add(dto);
                 cursor.moveToNext();
             }
@@ -68,7 +68,7 @@ public class ItemDao extends AbstractDao<Item> implements IItemEntryConstants {
     //endregion
 
     @Override
-    protected ContentValues contentValuesFromDto(Item item) {
+    protected ContentValues contentValuesFromModel(Item item) {
         ContentValues values = new ContentValues();
 
         // Ajout des données de l'objet standard
@@ -108,7 +108,7 @@ public class ItemDao extends AbstractDao<Item> implements IItemEntryConstants {
     }
 
     @Override
-    protected Item createDtoFromCursor(Cursor cursor) {
+    protected Item createModelFromCursor(Cursor cursor) {
         ItemType type = ItemType.valueOf(cursor.getString(cursor.getColumnIndexOrThrow(COLUMN_TYPE)));
 
         Item dto;

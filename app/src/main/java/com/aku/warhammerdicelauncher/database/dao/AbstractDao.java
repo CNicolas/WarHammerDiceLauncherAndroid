@@ -32,7 +32,7 @@ public abstract class AbstractDao<T extends IModel> implements IDao<T> {
         Cursor cursor = db.query(tableName, null, null, null, null, null, null);
         if (cursor.moveToFirst()) {
             while (!cursor.isAfterLast()) {
-                T model = createDtoFromCursor(cursor);
+                T model = createModelFromCursor(cursor);
                 res.add(model);
                 cursor.moveToNext();
             }
@@ -56,7 +56,7 @@ public abstract class AbstractDao<T extends IModel> implements IDao<T> {
 
         Cursor cursor = db.query(tableName, null, column + "=?", selectionArgs, null, null, null);
         if (cursor.moveToFirst()) {
-            T model = createDtoFromCursor(cursor);
+            T model = createModelFromCursor(cursor);
             cursor.close();
             return model;
         } else {
@@ -89,7 +89,7 @@ public abstract class AbstractDao<T extends IModel> implements IDao<T> {
     public long insert(T dto) {
         SQLiteDatabase db = whdHelper.getWritableDatabase();
 
-        ContentValues values = contentValuesFromDto(dto);
+        ContentValues values = contentValuesFromModel(dto);
 
         long res = db.insert(tableName, null, values);
         return res;
@@ -116,7 +116,8 @@ public abstract class AbstractDao<T extends IModel> implements IDao<T> {
     }
     //endregion
 
-    protected abstract ContentValues contentValuesFromDto(T dto);
 
-    protected abstract T createDtoFromCursor(Cursor cursor);
+    protected abstract ContentValues contentValuesFromModel(T model);
+
+    protected abstract T createModelFromCursor(Cursor cursor);
 }

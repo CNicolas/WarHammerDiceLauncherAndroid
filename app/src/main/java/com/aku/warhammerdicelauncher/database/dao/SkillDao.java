@@ -34,7 +34,7 @@ public class SkillDao extends AbstractDao<Skill> {
         List<Skill> res = new ArrayList<>();
         if (cursor.moveToFirst()) {
             while (!cursor.isAfterLast()) {
-                Skill dto = createDtoFromCursor(cursor);
+                Skill dto = createModelFromCursor(cursor);
                 res.add(dto);
                 cursor.moveToNext();
             }
@@ -79,8 +79,8 @@ public class SkillDao extends AbstractDao<Skill> {
     //endregion
 
     //region Private Methods
-    protected ContentValues contentValuesFromDto(Skill skill) {
-        throw new NotImplementedException("contentValuesFromDto(Skill)");
+    protected ContentValues contentValuesFromModel(Skill skill) {
+        throw new NotImplementedException("contentValuesFromModel(Skill)");
     }
 
     protected ContentValues contentValuesFromDto(Skill skill, Player player) {
@@ -94,7 +94,7 @@ public class SkillDao extends AbstractDao<Skill> {
         return values;
     }
 
-    protected Skill createDtoFromCursor(Cursor cursor) {
+    protected Skill createModelFromCursor(Cursor cursor) {
         Skill dto = new Skill();
 
         dto.setId(cursor.getInt(cursor.getColumnIndexOrThrow(columnId)));

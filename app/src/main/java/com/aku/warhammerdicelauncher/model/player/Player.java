@@ -31,6 +31,8 @@ public class Player implements IModel, IPlayerConstants {
     private int max_experience;
     private int wounds;
     private int max_wounds;
+    private int corruption;
+    private int max_corruption;
     private int reckless;
     private int max_reckless;
     private int conservative;
@@ -251,6 +253,22 @@ public class Player implements IModel, IPlayerConstants {
         this.max_wounds = max_wounds;
     }
 
+    public int getCorruption() {
+        return corruption;
+    }
+
+    public void setCorruption(int corruption) {
+        this.corruption = corruption;
+    }
+
+    public int getMax_corruption() {
+        return max_corruption;
+    }
+
+    public void setMax_corruption(int max_corruption) {
+        this.max_corruption = max_corruption;
+    }
+
     public int getReckless() {
         return reckless;
     }
@@ -349,6 +367,8 @@ public class Player implements IModel, IPlayerConstants {
                 ", max_experience=" + max_experience +
                 ", wounds=" + wounds +
                 ", max_wounds=" + max_wounds +
+                ", corruption=" + corruption +
+                ", max_corruption=" + max_corruption +
                 ", reckless=" + reckless +
                 ", max_reckless=" + max_reckless +
                 ", conservative=" + conservative +
@@ -377,6 +397,8 @@ public class Player implements IModel, IPlayerConstants {
         if (getMax_experience() != player.getMax_experience()) return false;
         if (getWounds() != player.getWounds()) return false;
         if (getMax_wounds() != player.getMax_wounds()) return false;
+        if (getCorruption() != player.getCorruption()) return false;
+        if (getMax_corruption() != player.getMax_corruption()) return false;
         if (getReckless() != player.getReckless()) return false;
         if (getMax_reckless() != player.getMax_reckless()) return false;
         if (getConservative() != player.getConservative()) return false;
@@ -417,6 +439,8 @@ public class Player implements IModel, IPlayerConstants {
         result = 31 * result + getMax_experience();
         result = 31 * result + getWounds();
         result = 31 * result + getMax_wounds();
+        result = 31 * result + getCorruption();
+        result = 31 * result + getMax_corruption();
         result = 31 * result + getReckless();
         result = 31 * result + getMax_reckless();
         result = 31 * result + getConservative();
@@ -429,5 +453,5 @@ public class Player implements IModel, IPlayerConstants {
         result = 31 * result + (getSkills() != null ? getSkills().hashCode() : 0);
         return result;
     }
-    //endregion
+//endregion
 }
