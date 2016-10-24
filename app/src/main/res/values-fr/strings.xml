@@ -80,6 +80,8 @@
     <string name="corruption_label">Corruption :</string>
     <string name="conservative_label">Prudence :</string>
     <string name="reckless_label">Témérité :</string>
+    <string name="stance_label"></string>
+    <string name="btn_editing">Editing</string>
     <!--End of pages-->
 
 </resources>

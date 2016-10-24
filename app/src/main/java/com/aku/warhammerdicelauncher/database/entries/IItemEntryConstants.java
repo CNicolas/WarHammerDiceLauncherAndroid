@@ -50,8 +50,7 @@ public interface IItemEntryConstants extends IEntryConstants {
 
                     COLUMN_DAMAGE + INTEGER_TYPE + COMMA_SEP +
                     COLUMN_CRITICAL_LEVEL + INTEGER_TYPE + COMMA_SEP +
-                    COLUMN_RANGE + TEXT_TYPE + COMMA_SEP +
-
+                    COLUMN_RANGE + TEXT_TYPE +
                     " )";
 
     String SQL_DELETE_ENTRIES = "DROP TABLE IF EXISTS " + TABLE_NAME;

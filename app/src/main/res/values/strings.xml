@@ -59,7 +59,7 @@
     <string name="page_characteristics">Characteristics</string>
     <string name="page_inventory">Inventory</string>
     <string name="average_success_format">Average number of success : %1$s</string>
-    <string name="action_update_player">Update mPlayer</string>
+    <string name="action_update_player">Update Player</string>
     <string name="page_skills">Skills</string>
     <string name="action_settings">Settings</string>
     <string name="updated">Successfullty updated</string>
@@ -80,9 +80,11 @@
     <string name="name_label">Name :</string>
     <string name="wounds_label">Wounds :</string>
     <string name="corruption_label">Corruption :</string>
-    <string name="stance_label">Stance</string>
     <string name="reckless_label">Reckless :</string>
     <string name="conservative_label">Conservative :</string>
+    <string name="stance_label"></string>
+    <string name="btn_editing">Editing</string>
+    <string name="btn_not_editing">Not editing</string>
     <!--End of pages-->
 
 </resources>

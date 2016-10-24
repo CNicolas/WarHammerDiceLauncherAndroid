@@ -26,6 +26,7 @@ public class PlayerActivity extends AppCompatActivity {
 
     private PlayerPagerAdapter mPlayerPagerAdapter;
     private FloatingActionButton mEditionFab;
+    private Menu mMenu;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -77,6 +78,7 @@ public class PlayerActivity extends AppCompatActivity {
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.menu_player, menu);
+        mMenu = menu;
         return super.onCreateOptionsMenu(menu);
     }
 
@@ -84,6 +86,10 @@ public class PlayerActivity extends AppCompatActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
         int id = item.getItemId();
 
+        if (id == R.id.action_in_edition_true || id == R.id.action_in_edition_false) {
+            setIsInEdition(!PlayerContext.isInEdition());
+            return true;
+        }
         if (id == R.id.action_launch) {
             startLaunchActivity();
             return true;
@@ -128,8 +134,16 @@ public class PlayerActivity extends AppCompatActivity {
     private void changeEditionFabDrawable() {
         if (PlayerContext.isInEdition()) {
             mEditionFab.setImageDrawable(ContextCompat.getDrawable(this, R.drawable.ic_lock_open_white_24dp));
+            if (mMenu != null) {
+                mMenu.findItem(R.id.action_in_edition_true).setVisible(true);
+                mMenu.findItem(R.id.action_in_edition_false).setVisible(false);
+            }
         } else {
             mEditionFab.setImageDrawable(ContextCompat.getDrawable(this, R.drawable.ic_lock_outline_white_24dp));
+            if (mMenu != null) {
+                mMenu.findItem(R.id.action_in_edition_true).setVisible(false);
+                mMenu.findItem(R.id.action_in_edition_false).setVisible(true);
+            }
             hideKeyboard();
         }
     }
