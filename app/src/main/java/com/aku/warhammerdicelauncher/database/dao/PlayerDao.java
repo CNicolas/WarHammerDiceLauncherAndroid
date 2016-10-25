@@ -38,8 +38,7 @@ public class PlayerDao extends AbstractDao<Player> implements IPlayerEntryConsta
     }
 
     public Player findByName(String name) {
-        Player player = findByStringInColumn(name, COLUMN_NAME);
-        return player;
+        return findByStringInColumn(name, COLUMN_NAME);
     }
     //endregion
 

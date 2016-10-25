@@ -9,7 +9,7 @@
         android:id="@+id/item_skills_list_name"
         android:layout_width="0dp"
         android:layout_height="match_parent"
-        android:layout_weight="1"
+        android:layout_weight="30"
         android:gravity="start|center_vertical"
         android:paddingEnd="@dimen/medium_padding"
         android:paddingStart="@dimen/medium_padding"
@@ -19,6 +19,7 @@
         android:id="@+id/item_skills_list_level1"
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
+        android:layout_weight="1"
         android:onClick="checkSkillLevel"
         android:tag="1" />
 
@@ -26,6 +27,7 @@
         android:id="@+id/item_skills_list_level2"
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
+        android:layout_weight="1"
         android:onClick="checkSkillLevel"
         android:tag="2" />
 
@@ -33,6 +35,7 @@
         android:id="@+id/item_skills_list_level3"
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
+        android:layout_weight="1"
         android:onClick="checkSkillLevel"
         android:tag="3" />
 

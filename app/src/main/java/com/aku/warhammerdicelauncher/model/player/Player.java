@@ -44,13 +44,13 @@ public class Player implements IModel, IPlayerConstants {
 
     private Characteristics characteristics;
     private List<Item> inventory;
-    private List<Skill> skills;
+    private List<Skill> mSkills;
     //endregion
 
     //region Constructors
     public Player() {
         characteristics = new Characteristics();
-        skills = new ArrayList<>();
+        mSkills = new ArrayList<>();
         inventory = new ArrayList<>();
     }
 
@@ -62,12 +62,21 @@ public class Player implements IModel, IPlayerConstants {
     //endregion
 
     public List<Skill> addSkill(Skill skill) {
-        if (!skills.contains(skill)) {
-            skills.add(skill);
+        if (!mSkills.contains(skill)) {
+            mSkills.add(skill);
         }
-        return skills;
+        return mSkills;
     }
 
+    public void setSkillLevel(Skill skill, int level) {
+        for (Skill sk : mSkills) {
+            if (sk.equals(skill)) {
+                sk.setLevel(level);
+            }
+        }
+    }
+
+    //region Money Management
     public void addMoneyBrass(int brass) {
         int newBrass = brass % BRASS_TO_SILVER;
         setMoney_brass(getMoney_brass() + newBrass);
@@ -84,6 +93,7 @@ public class Player implements IModel, IPlayerConstants {
     public void addMoneyGold(int gold) {
         setMoney_gold(getMoney_gold() + gold);
     }
+    //endregion
 
     //region Méthodes de gestion de l'inventaire
 
@@ -343,11 +353,11 @@ public class Player implements IModel, IPlayerConstants {
     }
 
     public List<Skill> getSkills() {
-        return skills;
+        return mSkills;
     }
 
     public void setSkills(List<Skill> skills) {
-        this.skills = skills;
+        this.mSkills = skills;
     }
     //endregion
 
@@ -379,7 +389,7 @@ public class Player implements IModel, IPlayerConstants {
                 ", money_gold=" + money_gold +
                 ", characteristics=" + characteristics +
                 ", inventory=" + inventory +
-                ", skills=" + skills +
+                ", skills=" + mSkills +
                 '}';
     }
 

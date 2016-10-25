@@ -3,6 +3,7 @@ package com.aku.warhammerdicelauncher.ihm.adapters;
 import android.app.Activity;
 import android.content.Context;
 import android.content.res.Resources;
+import android.support.annotation.NonNull;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,6 +12,7 @@ import android.widget.CheckBox;
 import android.widget.TextView;
 
 import com.aku.warhammerdicelauncher.R;
+import com.aku.warhammerdicelauncher.ihm.tools.SkillLevelClickListener;
 import com.aku.warhammerdicelauncher.model.player.Skill;
 
 import java.util.ArrayList;
@@ -36,7 +38,7 @@ public class SkillsListAdapter extends ArrayAdapter<Skill> {
     }
 
     @Override
-    public View getView(int position, View row, ViewGroup parent) {
+    public View getView(int position, View row, @NonNull ViewGroup parent) {
         SkillHolder holder = null;
 
         if (row == null) {
@@ -58,6 +60,10 @@ public class SkillsListAdapter extends ArrayAdapter<Skill> {
         holder.skillName.setText(skill.getName());
         holder.position = position;
 
+        holder.skillLevel1.setOnClickListener(new SkillLevelClickListener(skill, holder));
+        holder.skillLevel2.setOnClickListener(new SkillLevelClickListener(skill, holder));
+        holder.skillLevel3.setOnClickListener(new SkillLevelClickListener(skill, holder));
+
         mSkillHolders.add(holder);
 
         return row;
@@ -74,11 +80,11 @@ public class SkillsListAdapter extends ArrayAdapter<Skill> {
         throw new Resources.NotFoundException();
     }
 
-    private static class SkillHolder {
-        int position;
-        TextView skillName;
-        CheckBox skillLevel1;
-        CheckBox skillLevel2;
-        CheckBox skillLevel3;
+    public static class SkillHolder {
+        public int position;
+        public TextView skillName;
+        public CheckBox skillLevel1;
+        public CheckBox skillLevel2;
+        public CheckBox skillLevel3;
     }
 }
