@@ -6,7 +6,6 @@ import android.content.Intent;
 import android.database.sqlite.SQLiteException;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-import android.support.design.widget.Snackbar;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -75,7 +74,6 @@ public class HomeActivity extends Activity {
                     PlayerContext.setPlayer(player);
                 } catch (SQLiteException sqle) {
                     Toast.makeText(mContext, "An error occured", Toast.LENGTH_LONG).show();
-                    Snackbar.make(findViewById(R.id.list_players), "An error occured", Snackbar.LENGTH_LONG).show();
                 }
             }
 

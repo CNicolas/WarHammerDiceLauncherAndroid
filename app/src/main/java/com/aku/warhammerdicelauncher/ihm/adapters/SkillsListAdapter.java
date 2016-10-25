@@ -2,7 +2,6 @@ package com.aku.warhammerdicelauncher.ihm.adapters;
 
 import android.app.Activity;
 import android.content.Context;
-import android.content.res.Resources;
 import android.support.annotation.NonNull;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -60,6 +59,8 @@ public class SkillsListAdapter extends ArrayAdapter<Skill> {
         holder.skillName.setText(skill.getName());
         holder.position = position;
 
+        preSelectLevelOfSkill(skill.getLevel(), holder);
+
         holder.skillLevel1.setOnClickListener(new SkillLevelClickListener(skill, holder));
         holder.skillLevel2.setOnClickListener(new SkillLevelClickListener(skill, holder));
         holder.skillLevel3.setOnClickListener(new SkillLevelClickListener(skill, holder));
@@ -69,15 +70,29 @@ public class SkillsListAdapter extends ArrayAdapter<Skill> {
         return row;
     }
 
-    public Skill getSkillByCheckboxId(int checkboxId) {
-        for (SkillHolder holder : mSkillHolders) {
-            if (holder.skillLevel1.getId() == checkboxId
-                    || holder.skillLevel2.getId() == checkboxId
-                    || holder.skillLevel3.getId() == checkboxId) {
-                return mSkills.get(holder.position);
-            }
+    private void preSelectLevelOfSkill(int level, SkillHolder holder) {
+        switch (level) {
+            case 1:
+                holder.skillLevel1.setChecked(true);
+                holder.skillLevel2.setChecked(false);
+                holder.skillLevel3.setChecked(false);
+                break;
+            case 2:
+                holder.skillLevel1.setChecked(true);
+                holder.skillLevel2.setChecked(true);
+                holder.skillLevel3.setChecked(false);
+                break;
+            case 3:
+                holder.skillLevel1.setChecked(true);
+                holder.skillLevel2.setChecked(true);
+                holder.skillLevel3.setChecked(true);
+                break;
+            default:
+                holder.skillLevel1.setChecked(false);
+                holder.skillLevel2.setChecked(false);
+                holder.skillLevel3.setChecked(false);
+                break;
         }
-        throw new Resources.NotFoundException();
     }
 
     public static class SkillHolder {

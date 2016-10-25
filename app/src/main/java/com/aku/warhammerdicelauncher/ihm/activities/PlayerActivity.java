@@ -3,6 +3,7 @@ package com.aku.warhammerdicelauncher.ihm.activities;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
+import android.support.design.widget.Snackbar;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.TaskStackBuilder;
 import android.support.v4.content.ContextCompat;
@@ -13,6 +14,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
+import android.widget.TextView;
 
 import com.aku.warhammerdicelauncher.R;
 import com.aku.warhammerdicelauncher.database.WarHammerDatabaseHelper;
@@ -174,5 +176,10 @@ public class PlayerActivity extends AppCompatActivity {
     private void hideKeyboard() {
         InputMethodManager imm = (InputMethodManager) getSystemService(INPUT_METHOD_SERVICE);
         imm.hideSoftInputFromWindow(findViewById(R.id.player_pager_container).getWindowToken(), 0);
+    }
+
+    public void launchSkill(View view) {
+        TextView tv = (TextView) view;
+        Snackbar.make(findViewById(R.id.player_pager_container), tv.getText(), Snackbar.LENGTH_LONG).show();
     }
 }

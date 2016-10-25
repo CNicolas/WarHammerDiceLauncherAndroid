@@ -64,12 +64,11 @@ public class Player implements IModel, IPlayerConstants {
 
     public void setSkillLevel(Skill skill, int level) {
         for (Skill sk : mSkills) {
-            if (sk.equals(skill)) {
+            if (sk.getName().equals(skill.getName())) {
                 sk.setLevel(level);
                 return;
             }
         }
-        addSkill(skill);
     }
 
     //region Money Management

@@ -11,6 +11,7 @@
         android:layout_height="match_parent"
         android:layout_weight="30"
         android:gravity="start|center_vertical"
+        android:onClick="launchSkill"
         android:paddingEnd="@dimen/medium_padding"
         android:paddingStart="@dimen/medium_padding"
         android:textSize="@dimen/textSize" />

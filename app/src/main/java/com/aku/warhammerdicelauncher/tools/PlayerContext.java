@@ -147,6 +147,9 @@ public abstract class PlayerContext {
     }
 
     private static void notifyListeners() {
+        if (mListeners == null) {
+            mListeners = new ArrayList<>();
+        }
         for (OnPlayerUpdateListener listener : mListeners) {
             listener.onPlayerUpdate();
         }

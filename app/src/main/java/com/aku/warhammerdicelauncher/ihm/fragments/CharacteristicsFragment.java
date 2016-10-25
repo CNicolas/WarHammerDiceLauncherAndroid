@@ -67,9 +67,11 @@ public class CharacteristicsFragment extends Fragment {
         setHasOptionsMenu(true);
 
         initPlayerCharacteristicsFields();
+        fillPlayerCharacteristicsFields();
         initPlayerCharacteristicsWatchers();
 
         initPlayerInformationFields();
+        fillPlayerInformationFields();
         initPlayerInformationWatchers();
 
         Bundle bundle = this.getArguments();
@@ -84,8 +86,6 @@ public class CharacteristicsFragment extends Fragment {
     @Override
     public void onResume() {
         super.onResume();
-        fillPlayerCharacteristicsFields();
-        fillPlayerInformationFields();
     }
 
     public void changeEdition() {

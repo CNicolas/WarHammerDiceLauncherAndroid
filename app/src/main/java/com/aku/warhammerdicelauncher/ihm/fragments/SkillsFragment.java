@@ -1,5 +1,6 @@
 package com.aku.warhammerdicelauncher.ihm.fragments;
 
+import android.content.Context;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
@@ -53,8 +54,11 @@ public class SkillsFragment extends Fragment implements OnPlayerUpdateListener {
     }
 
     public void forceUpdateSkillsList() {
-        mSkills = mSkillDao.findAllByPlayer(PlayerContext.getPlayerInstance());
-        mSkillsListView.setAdapter(new SkillsListAdapter(getActivity(), R.layout.item_skills_list, mSkills));
+        Context context = getActivity();
+        if (context != null) {
+            mSkills = mSkillDao.findAllByPlayer(PlayerContext.getPlayerInstance());
+            mSkillsListView.setAdapter(new SkillsListAdapter(context, R.layout.item_skills_list, mSkills));
+        }
     }
 
     @Override
