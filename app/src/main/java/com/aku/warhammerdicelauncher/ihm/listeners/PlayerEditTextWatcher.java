@@ -1,4 +1,4 @@
-package com.aku.warhammerdicelauncher.ihm.tools;
+package com.aku.warhammerdicelauncher.ihm.listeners;
 
 import android.text.Editable;
 import android.text.TextWatcher;

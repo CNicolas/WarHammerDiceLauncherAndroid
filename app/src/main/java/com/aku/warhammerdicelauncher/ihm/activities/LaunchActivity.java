@@ -26,7 +26,10 @@ import com.aku.warhammerdicelauncher.database.WarHammerDatabaseHelper;
 import com.aku.warhammerdicelauncher.database.dao.HandDao;
 import com.aku.warhammerdicelauncher.model.dices.DiceFaces;
 import com.aku.warhammerdicelauncher.model.player.Hand;
+import com.aku.warhammerdicelauncher.model.player.skill.Skill;
+import com.aku.warhammerdicelauncher.tools.PlayerContext;
 import com.aku.warhammerdicelauncher.tools.constants.IHandConstants;
+import com.aku.warhammerdicelauncher.tools.constants.IPlayerConstants;
 import com.aku.warhammerdicelauncher.tools.helpers.DialogHelper;
 import com.aku.warhammerdicelauncher.tools.helpers.DicesRollerHelper;
 
@@ -41,6 +44,14 @@ public class LaunchActivity extends AppCompatActivity {
     private Menu mMenuLaunch;
     private HandDao mHandDao;
 
+    private NumberPicker mCharacteristicNumberPicker;
+    private NumberPicker mRecklessNumberPicker;
+    private NumberPicker mConservativeNumberPicker;
+    private NumberPicker mExpertiseNumberPicker;
+    private NumberPicker mFortuneNumberPicker;
+    private NumberPicker mMisfortuneNumberPicker;
+    private NumberPicker mChallengeNumberPicker;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -53,6 +64,13 @@ public class LaunchActivity extends AppCompatActivity {
         mHandDao = new HandDao(whdHelper);
 
         setupHandsSpinner();
+        initPickers();
+
+        Bundle extras = getIntent().getExtras();
+        if (extras != null) {
+            Skill skill = (Skill) extras.getSerializable(IPlayerConstants.SKILL_TAG);
+            fillPickersFromSkill(skill);
+        }
     }
 
     //region Options Menu
@@ -84,6 +102,18 @@ public class LaunchActivity extends AppCompatActivity {
     }
     //endregion
 
+    //region Init
+    private void initPickers() {
+        mCharacteristicNumberPicker = (NumberPicker) findViewById(R.id.numberPickerCharacteristic);
+        mRecklessNumberPicker = (NumberPicker) findViewById(R.id.numberPickerReckless);
+        mConservativeNumberPicker = (NumberPicker) findViewById(R.id.numberPickerConservative);
+        mExpertiseNumberPicker = (NumberPicker) findViewById(R.id.numberPickerExpertise);
+        mFortuneNumberPicker = (NumberPicker) findViewById(R.id.numberPickerFortune);
+        mMisfortuneNumberPicker = (NumberPicker) findViewById(R.id.numberPickerMisfortune);
+        mChallengeNumberPicker = (NumberPicker) findViewById(R.id.numberPickerChallenge);
+    }
+    //endregion
+
     //region Roll Dices
     public void rollDices(View v) {
         try {
@@ -104,7 +134,7 @@ public class LaunchActivity extends AppCompatActivity {
                     launchStatisticsActivity(10000);
                     break;
                 default:
-                    Hand model = currentHandToModel();
+                    Hand model = extractHandFromNumberPickers();
                     Map<DiceFaces, Integer> res = DicesRollerHelper.rollDices(model);
 
                     DialogHelper.showLaunchResults(res, this);
@@ -118,7 +148,7 @@ public class LaunchActivity extends AppCompatActivity {
 
     private void launchStatisticsActivity(int times) {
         Bundle bundle = new Bundle();
-        bundle.putSerializable(IHandConstants.HAND_TAG, currentHandToModel());
+        bundle.putSerializable(IHandConstants.HAND_TAG, extractHandFromNumberPickers());
         bundle.putInt(IHandConstants.TIMES_TAG, times);
 
         Intent statisticsIntent = new Intent(this, StatisticsActivity.class);
@@ -185,21 +215,13 @@ public class LaunchActivity extends AppCompatActivity {
     }
 
     private void resetHand() {
-        NumberPicker characteristicPicker = (NumberPicker) findViewById(R.id.numberPickerCharacteristic);
-        NumberPicker recklessPicker = (NumberPicker) findViewById(R.id.numberPickerReckless);
-        NumberPicker conservativePicker = (NumberPicker) findViewById(R.id.numberPickerConservative);
-        NumberPicker expertisePicker = (NumberPicker) findViewById(R.id.numberPickerExpertise);
-        NumberPicker fortunePicker = (NumberPicker) findViewById(R.id.numberPickerFortune);
-        NumberPicker misfortunePicker = (NumberPicker) findViewById(R.id.numberPickerMisfortune);
-        NumberPicker challengePicker = (NumberPicker) findViewById(R.id.numberPickerChallenge);
-
-        characteristicPicker.setValue(0);
-        recklessPicker.setValue(0);
-        conservativePicker.setValue(0);
-        expertisePicker.setValue(0);
-        fortunePicker.setValue(0);
-        misfortunePicker.setValue(0);
-        challengePicker.setValue(0);
+        mCharacteristicNumberPicker.setValue(0);
+        mRecklessNumberPicker.setValue(0);
+        mConservativeNumberPicker.setValue(0);
+        mExpertiseNumberPicker.setValue(0);
+        mFortuneNumberPicker.setValue(0);
+        mMisfortuneNumberPicker.setValue(0);
+        mChallengeNumberPicker.setValue(0);
     }
     //endregion
 
@@ -210,7 +232,7 @@ public class LaunchActivity extends AppCompatActivity {
         } else {
             try {
                 Hand dto = mHandDao.findByTitle(title);
-                dtoToCurrentHand(dto);
+                fillNumberPickersFromHand(dto);
             } catch (Resources.NotFoundException nfe) {
                 Log.e(this.getClass().getName(), "useHand: ", nfe);
             }
@@ -234,50 +256,49 @@ public class LaunchActivity extends AppCompatActivity {
     //endregion
 
     //region Number Pickers
+    private void fillPickersFromSkill(Skill skill) {
+        Hand startingHand = PlayerContext.getPlayerInstance().getCharacteristics().getCharacteristicHand(skill.getCharacteristic());
+        startingHand.setExpertise(skill.getLevel());
+        startingHand.setChallenge(1);
+
+        fillNumberPickersFromHand(startingHand);
+    }
 
     /**
      * Get current pickers' value and create a Hand with them
      */
-    public Hand currentHandToModel() {
+    public Hand extractHandFromNumberPickers() {
         Hand model = new Hand();
 
-        model.setCharacteristic(((NumberPicker) findViewById(R.id.numberPickerCharacteristic)).getValue());
-        model.setReckless(((NumberPicker) findViewById(R.id.numberPickerReckless)).getValue());
-        model.setConservative(((NumberPicker) findViewById(R.id.numberPickerConservative)).getValue());
-        model.setExpertise(((NumberPicker) findViewById(R.id.numberPickerExpertise)).getValue());
-        model.setFortune(((NumberPicker) findViewById(R.id.numberPickerFortune)).getValue());
-        model.setMisfortune(((NumberPicker) findViewById(R.id.numberPickerMisfortune)).getValue());
-        model.setChallenge(((NumberPicker) findViewById(R.id.numberPickerChallenge)).getValue());
+        model.setCharacteristic(mCharacteristicNumberPicker.getValue());
+        model.setReckless(mRecklessNumberPicker.getValue());
+        model.setConservative(mConservativeNumberPicker.getValue());
+        model.setExpertise(mExpertiseNumberPicker.getValue());
+        model.setFortune(mFortuneNumberPicker.getValue());
+        model.setMisfortune(mMisfortuneNumberPicker.getValue());
+        model.setChallenge(mChallengeNumberPicker.getValue());
 
         return model;
     }
 
     /**
-     * Uses the dto's values to set pickers' value
+     * Uses the model's values to set pickers' value
      *
-     * @param dto
+     * @param model
      */
-    public void dtoToCurrentHand(Hand dto) {
-        NumberPicker characteristicPicker = (NumberPicker) findViewById(R.id.numberPickerCharacteristic);
-        NumberPicker recklessPicker = (NumberPicker) findViewById(R.id.numberPickerReckless);
-        NumberPicker conservativePicker = (NumberPicker) findViewById(R.id.numberPickerConservative);
-        NumberPicker expertisePicker = (NumberPicker) findViewById(R.id.numberPickerExpertise);
-        NumberPicker fortunePicker = (NumberPicker) findViewById(R.id.numberPickerFortune);
-        NumberPicker misfortunePicker = (NumberPicker) findViewById(R.id.numberPickerMisfortune);
-        NumberPicker challengePicker = (NumberPicker) findViewById(R.id.numberPickerChallenge);
-
-        characteristicPicker.setValue(dto.getCharacteristic());
-        recklessPicker.setValue(dto.getReckless());
-        conservativePicker.setValue(dto.getConservative());
-        expertisePicker.setValue(dto.getExpertise());
-        fortunePicker.setValue(dto.getFortune());
-        misfortunePicker.setValue(dto.getMisfortune());
-        challengePicker.setValue(dto.getChallenge());
+    public void fillNumberPickersFromHand(Hand model) {
+        mCharacteristicNumberPicker.setValue(model.getCharacteristic());
+        mRecklessNumberPicker.setValue(model.getReckless());
+        mConservativeNumberPicker.setValue(model.getConservative());
+        mExpertiseNumberPicker.setValue(model.getExpertise());
+        mFortuneNumberPicker.setValue(model.getFortune());
+        mMisfortuneNumberPicker.setValue(model.getMisfortune());
+        mChallengeNumberPicker.setValue(model.getChallenge());
     }
     //endregion
 
     private Hand prepareHandModel(String title) {
-        Hand hand = currentHandToModel();
+        Hand hand = extractHandFromNumberPickers();
         hand.setTitle(title);
         return hand;
     }

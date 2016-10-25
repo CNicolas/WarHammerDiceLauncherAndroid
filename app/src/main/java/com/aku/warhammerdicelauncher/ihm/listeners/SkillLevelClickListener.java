@@ -1,4 +1,4 @@
-package com.aku.warhammerdicelauncher.ihm.tools;
+package com.aku.warhammerdicelauncher.ihm.listeners;
 
 import android.view.View;
 import android.widget.CheckBox;

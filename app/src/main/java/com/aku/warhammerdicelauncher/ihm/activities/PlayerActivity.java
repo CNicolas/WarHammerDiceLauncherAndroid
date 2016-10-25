@@ -2,6 +2,7 @@ package com.aku.warhammerdicelauncher.ihm.activities;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.annotation.Nullable;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.design.widget.TabLayout;
@@ -26,7 +27,7 @@ import com.aku.warhammerdicelauncher.model.player.skill.Skill;
 import com.aku.warhammerdicelauncher.tools.PlayerContext;
 import com.aku.warhammerdicelauncher.tools.constants.IPlayerConstants;
 
-public class PlayerActivity extends AppCompatActivity {
+public class PlayerActivity extends AppCompatActivity implements IPlayerConstants {
 
     private PlayerPagerAdapter mPlayerPagerAdapter;
     private FloatingActionButton mEditionFab;
@@ -93,7 +94,7 @@ public class PlayerActivity extends AppCompatActivity {
             return true;
         }
         if (id == R.id.action_launch) {
-            startLaunchActivity();
+            startLaunchActivity(null);
             return true;
         }
         if (id == R.id.action_update_player) {
@@ -104,6 +105,7 @@ public class PlayerActivity extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
     //endregion
+
     //endregion
 
     //region Init
@@ -131,8 +133,10 @@ public class PlayerActivity extends AppCompatActivity {
     }
     //endregion
 
-    private void startLaunchActivity() {
+    private void startLaunchActivity(@Nullable Bundle bundle) {
         Intent launchIntent = new Intent(PlayerActivity.this, LaunchActivity.class);
+        launchIntent.putExtras(bundle);
+
         TaskStackBuilder stackBuilder = TaskStackBuilder.create(PlayerActivity.this);
         stackBuilder.addParentStack(LaunchActivity.class);
         stackBuilder.addNextIntent(launchIntent);
@@ -185,6 +189,10 @@ public class PlayerActivity extends AppCompatActivity {
             Skill skill = PlayerContext.getPlayerInstance().getSkillByName(tv.getText().toString());
             String message = String.format("%s : Lvl %d", skill.getName(), skill.getLevel());
             Snackbar.make(findViewById(R.id.player_pager_container), message, Snackbar.LENGTH_SHORT).show();
+
+            Bundle bundle = new Bundle();
+            bundle.putSerializable(SKILL_TAG, skill);
+            startLaunchActivity(bundle);
         } catch (Exception e) {
 
         }

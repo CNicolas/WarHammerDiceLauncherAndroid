@@ -8,8 +8,8 @@ import android.view.ViewGroup;
 import android.widget.EditText;
 
 import com.aku.warhammerdicelauncher.R;
-import com.aku.warhammerdicelauncher.ihm.tools.CharacteristicEditTextWatcher;
-import com.aku.warhammerdicelauncher.ihm.tools.PlayerEditTextWatcher;
+import com.aku.warhammerdicelauncher.ihm.listeners.CharacteristicEditTextWatcher;
+import com.aku.warhammerdicelauncher.ihm.listeners.PlayerEditTextWatcher;
 import com.aku.warhammerdicelauncher.model.player.Player;
 import com.aku.warhammerdicelauncher.tools.PlayerContext;
 import com.aku.warhammerdicelauncher.tools.constants.IPlayerConstants;

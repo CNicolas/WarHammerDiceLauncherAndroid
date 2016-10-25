@@ -11,7 +11,7 @@ import android.widget.CheckBox;
 import android.widget.TextView;
 
 import com.aku.warhammerdicelauncher.R;
-import com.aku.warhammerdicelauncher.ihm.tools.SkillLevelClickListener;
+import com.aku.warhammerdicelauncher.ihm.listeners.SkillLevelClickListener;
 import com.aku.warhammerdicelauncher.model.player.skill.Skill;
 import com.aku.warhammerdicelauncher.model.player.skill.SkillHolder;
 

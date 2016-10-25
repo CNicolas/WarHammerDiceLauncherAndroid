@@ -1,6 +1,7 @@
 package com.aku.warhammerdicelauncher.model.player;
 
 import com.aku.warhammerdicelauncher.model.IModel;
+import com.aku.warhammerdicelauncher.tools.enums.Characteristic;
 
 /**
  * Created by cnicolas on 06/10/2016.
@@ -26,8 +27,50 @@ public class Characteristics implements IModel {
     public Characteristics() {
     }
 
-    public Characteristics(int id) {
-        this.id = id;
+    public Hand getCharacteristicHand(Characteristic characteristic) {
+        int blue = 0;
+        int white = 0;
+
+        switch (characteristic) {
+            case STRENGTH:
+            case STRENGTH_FORTUNE:
+                blue = getStrength();
+                white = getStrength_fortune();
+                break;
+            case TOUGHNESS:
+            case TOUGHNESS_FORTUNE:
+                blue = getToughness();
+                white = getToughness_fortune();
+                break;
+            case AGILITY:
+            case AGILITY_FORTUNE:
+                blue = getAgility();
+                white = getAgility_fortune();
+                break;
+            case INTELLIGENCE:
+            case INTELLIGENCE_FORTUNE:
+                blue = getIntelligence();
+                white = getIntelligence_fortune();
+                break;
+            case WILLPOWER:
+            case WILLPOWER_FORTUNE:
+                blue = getWillpower();
+                white = getWillpower_fortune();
+                break;
+            case FELLOWSHIP:
+            case FELLOWSHIP_FORTUNE:
+                blue = getFellowship();
+                white = getFellowship_fortune();
+                break;
+            default:
+                break;
+        }
+
+        Hand hand = new Hand();
+        hand.setCharacteristic(blue);
+        hand.setFortune(white);
+
+        return hand;
     }
 
     //region Get & Set

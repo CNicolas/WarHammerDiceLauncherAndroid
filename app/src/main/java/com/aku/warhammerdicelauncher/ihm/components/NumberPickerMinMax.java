@@ -10,17 +10,17 @@ import android.widget.NumberPicker;
  * Created by cnicolas on 04/05/2016.
  */
 @TargetApi(Build.VERSION_CODES.HONEYCOMB)//For backward-compability
-public class NumberScroller extends NumberPicker {
-    public NumberScroller(Context context) {
+public class NumberPickerMinMax extends NumberPicker {
+    public NumberPickerMinMax(Context context) {
         super(context);
     }
 
-    public NumberScroller(Context context, AttributeSet attrs) {
+    public NumberPickerMinMax(Context context, AttributeSet attrs) {
         super(context, attrs);
         processAttributeSet(attrs);
     }
 
-    public NumberScroller(Context context, AttributeSet attrs, int defStyle) {
+    public NumberPickerMinMax(Context context, AttributeSet attrs, int defStyle) {
         super(context, attrs, defStyle);
         processAttributeSet(attrs);
     }
