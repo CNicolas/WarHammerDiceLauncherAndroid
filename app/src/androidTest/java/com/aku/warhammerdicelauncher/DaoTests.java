@@ -10,7 +10,7 @@ import com.aku.warhammerdicelauncher.database.dao.PlayerDao;
 import com.aku.warhammerdicelauncher.database.dao.SkillDao;
 import com.aku.warhammerdicelauncher.model.player.Characteristics;
 import com.aku.warhammerdicelauncher.model.player.Player;
-import com.aku.warhammerdicelauncher.model.player.Skill;
+import com.aku.warhammerdicelauncher.model.player.skill.Skill;
 import com.aku.warhammerdicelauncher.tools.enums.Characteristic;
 
 import java.util.List;

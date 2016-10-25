@@ -12,7 +12,7 @@ import com.aku.warhammerdicelauncher.R;
 import com.aku.warhammerdicelauncher.database.WarHammerDatabaseHelper;
 import com.aku.warhammerdicelauncher.database.dao.SkillDao;
 import com.aku.warhammerdicelauncher.ihm.adapters.SkillsListAdapter;
-import com.aku.warhammerdicelauncher.model.player.Skill;
+import com.aku.warhammerdicelauncher.model.player.skill.Skill;
 import com.aku.warhammerdicelauncher.tools.PlayerContext;
 import com.aku.warhammerdicelauncher.tools.helpers.OnPlayerUpdateListener;
 
@@ -39,11 +39,6 @@ public class SkillsFragment extends Fragment implements OnPlayerUpdateListener {
 
         mSkillDao = new SkillDao(new WarHammerDatabaseHelper(getActivity()));
         mSkills = mSkillDao.findAllByPlayer(PlayerContext.getPlayerInstance());
-//
-//        if (mSkills.size() == 0) {
-//            mSkills = SkillsHelper.createBasicSkills(getActivity());
-////            mSkillDao.insertAll(mSkills, PlayerContext.getPlayerInstance());
-//        }
 
         mSkillsListView = (ListView) rootView.findViewById(R.id.skills_list);
         mSkillsListView.setAdapter(new SkillsListAdapter(getActivity(), R.layout.item_skills_list, mSkills));
@@ -53,16 +48,12 @@ public class SkillsFragment extends Fragment implements OnPlayerUpdateListener {
         return rootView;
     }
 
-    public void forceUpdateSkillsList() {
+    @Override
+    public void onPlayerUpdate() {
         Context context = getActivity();
         if (context != null) {
             mSkills = mSkillDao.findAllByPlayer(PlayerContext.getPlayerInstance());
             mSkillsListView.setAdapter(new SkillsListAdapter(context, R.layout.item_skills_list, mSkills));
         }
-    }
-
-    @Override
-    public void onPlayerUpdate() {
-        forceUpdateSkillsList();
     }
 }

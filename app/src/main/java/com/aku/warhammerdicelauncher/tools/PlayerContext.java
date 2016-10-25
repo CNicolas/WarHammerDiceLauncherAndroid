@@ -6,13 +6,13 @@ import android.util.Log;
 import com.aku.warhammerdicelauncher.database.dao.CharacteristicsDao;
 import com.aku.warhammerdicelauncher.database.dao.PlayerDao;
 import com.aku.warhammerdicelauncher.model.player.Player;
-import com.aku.warhammerdicelauncher.model.player.Skill;
 import com.aku.warhammerdicelauncher.model.player.inventory.Armor;
 import com.aku.warhammerdicelauncher.model.player.inventory.Item;
 import com.aku.warhammerdicelauncher.model.player.inventory.Quality;
 import com.aku.warhammerdicelauncher.model.player.inventory.Range;
 import com.aku.warhammerdicelauncher.model.player.inventory.UsableItem;
 import com.aku.warhammerdicelauncher.model.player.inventory.Weapon;
+import com.aku.warhammerdicelauncher.model.player.skill.Skill;
 import com.aku.warhammerdicelauncher.tools.helpers.OnPlayerUpdateListener;
 import com.aku.warhammerdicelauncher.tools.helpers.SkillsHelper;
 
@@ -44,7 +44,7 @@ public abstract class PlayerContext {
     }
 
     public static void updatePlayer() {
-        if (mPlayer == null || !mPlayer.isUpdateable()) {
+        if (mPlayer == null || !mPlayer.isUpdatable()) {
             return;
         }
 

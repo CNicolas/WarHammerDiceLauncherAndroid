@@ -7,7 +7,7 @@ import android.database.sqlite.SQLiteDatabase;
 import com.aku.warhammerdicelauncher.database.WarHammerDatabaseHelper;
 import com.aku.warhammerdicelauncher.database.entries.ISkillEntryConstants;
 import com.aku.warhammerdicelauncher.model.player.Player;
-import com.aku.warhammerdicelauncher.model.player.Skill;
+import com.aku.warhammerdicelauncher.model.player.skill.Skill;
 import com.aku.warhammerdicelauncher.tools.enums.Characteristic;
 
 import java.util.ArrayList;

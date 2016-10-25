@@ -1,6 +1,7 @@
-package com.aku.warhammerdicelauncher.model.player;
+package com.aku.warhammerdicelauncher.model.player.skill;
 
 import com.aku.warhammerdicelauncher.model.IModel;
+import com.aku.warhammerdicelauncher.model.player.Player;
 import com.aku.warhammerdicelauncher.tools.enums.Characteristic;
 
 /**

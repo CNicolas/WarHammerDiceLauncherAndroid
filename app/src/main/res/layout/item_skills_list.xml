@@ -10,6 +10,7 @@
         android:layout_width="0dp"
         android:layout_height="match_parent"
         android:layout_weight="30"
+        android:clickable="true"
         android:gravity="start|center_vertical"
         android:onClick="launchSkill"
         android:paddingEnd="@dimen/medium_padding"

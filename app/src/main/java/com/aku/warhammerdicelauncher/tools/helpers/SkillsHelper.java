@@ -3,7 +3,7 @@ package com.aku.warhammerdicelauncher.tools.helpers;
 import android.content.Context;
 
 import com.aku.warhammerdicelauncher.model.player.Player;
-import com.aku.warhammerdicelauncher.model.player.Skill;
+import com.aku.warhammerdicelauncher.model.player.skill.Skill;
 import com.aku.warhammerdicelauncher.tools.PlayerContext;
 import com.aku.warhammerdicelauncher.tools.enums.SkillEnum;
 

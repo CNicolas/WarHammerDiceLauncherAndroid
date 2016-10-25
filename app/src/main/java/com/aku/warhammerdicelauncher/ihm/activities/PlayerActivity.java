@@ -22,6 +22,7 @@ import com.aku.warhammerdicelauncher.database.dao.CharacteristicsDao;
 import com.aku.warhammerdicelauncher.database.dao.PlayerDao;
 import com.aku.warhammerdicelauncher.ihm.adapters.PlayerPagerAdapter;
 import com.aku.warhammerdicelauncher.ihm.fragments.CharacteristicsFragment;
+import com.aku.warhammerdicelauncher.model.player.skill.Skill;
 import com.aku.warhammerdicelauncher.tools.PlayerContext;
 import com.aku.warhammerdicelauncher.tools.constants.IPlayerConstants;
 
@@ -179,7 +180,13 @@ public class PlayerActivity extends AppCompatActivity {
     }
 
     public void launchSkill(View view) {
-        TextView tv = (TextView) view;
-        Snackbar.make(findViewById(R.id.player_pager_container), tv.getText(), Snackbar.LENGTH_LONG).show();
+        try {
+            TextView tv = (TextView) view;
+            Skill skill = PlayerContext.getPlayerInstance().getSkillByName(tv.getText().toString());
+            String message = String.format("%s : Lvl %d", skill.getName(), skill.getLevel());
+            Snackbar.make(findViewById(R.id.player_pager_container), message, Snackbar.LENGTH_SHORT).show();
+        } catch (Exception e) {
+
+        }
     }
 }

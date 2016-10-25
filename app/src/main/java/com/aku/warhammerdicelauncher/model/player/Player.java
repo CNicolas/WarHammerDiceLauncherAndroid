@@ -6,6 +6,7 @@ import com.aku.warhammerdicelauncher.model.player.inventory.Item;
 import com.aku.warhammerdicelauncher.model.player.inventory.ItemType;
 import com.aku.warhammerdicelauncher.model.player.inventory.UsableItem;
 import com.aku.warhammerdicelauncher.model.player.inventory.Weapon;
+import com.aku.warhammerdicelauncher.model.player.skill.Skill;
 import com.aku.warhammerdicelauncher.tools.constants.IPlayerConstants;
 
 import java.util.ArrayList;
@@ -55,6 +56,7 @@ public class Player implements IModel, IPlayerConstants {
     }
     //endregion
 
+    //region Skill Management
     public List<Skill> addSkill(Skill skill) {
         if (!mSkills.contains(skill)) {
             mSkills.add(skill);
@@ -63,13 +65,22 @@ public class Player implements IModel, IPlayerConstants {
     }
 
     public void setSkillLevel(Skill skill, int level) {
-        for (Skill sk : mSkills) {
-            if (sk.getName().equals(skill.getName())) {
-                sk.setLevel(level);
-                return;
-            }
+        try {
+            getSkillByName(skill.getName()).setLevel(level);
+        } catch (Exception e) {
+            e.printStackTrace();
         }
     }
+
+    public Skill getSkillByName(String name) throws Exception {
+        for (Skill skill : mSkills) {
+            if (skill.getName().equals(name)) {
+                return skill;
+            }
+        }
+        throw new Exception("Skill not found");
+    }
+    //endregion
 
     //region Money Management
     public void addMoneyBrass(int brass) {
@@ -90,7 +101,7 @@ public class Player implements IModel, IPlayerConstants {
     }
     //endregion
 
-    //region Méthodes de gestion de l'inventaire
+    //region Inventory Management
 
     /**
      * Renvoie les armures de l'inventaire du joueur.
@@ -161,12 +172,11 @@ public class Player implements IModel, IPlayerConstants {
     }
     //endregion
 
-    //region Get & Set
-
-    public boolean isUpdateable() {
+    public boolean isUpdatable() {
         return getName() != null && !getName().isEmpty();
     }
 
+    //region Get & Set
     public int getId() {
         return id;
     }
@@ -463,5 +473,5 @@ public class Player implements IModel, IPlayerConstants {
         result = 31 * result + (getSkills() != null ? getSkills().hashCode() : 0);
         return result;
     }
-//endregion
+    //endregion
 }

@@ -7,8 +7,8 @@ import com.aku.warhammerdicelauncher.database.WarHammerDatabaseHelper;
 import com.aku.warhammerdicelauncher.database.entries.IPlayerEntryConstants;
 import com.aku.warhammerdicelauncher.model.player.Characteristics;
 import com.aku.warhammerdicelauncher.model.player.Player;
-import com.aku.warhammerdicelauncher.model.player.Skill;
 import com.aku.warhammerdicelauncher.model.player.inventory.Item;
+import com.aku.warhammerdicelauncher.model.player.skill.Skill;
 
 import java.util.List;
 
