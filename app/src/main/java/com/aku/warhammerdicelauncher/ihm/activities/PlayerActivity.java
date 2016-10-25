@@ -27,6 +27,10 @@ import com.aku.warhammerdicelauncher.model.player.skill.Skill;
 import com.aku.warhammerdicelauncher.tools.PlayerContext;
 import com.aku.warhammerdicelauncher.tools.constants.IPlayerConstants;
 
+/**
+ * The main activity of WHFRP3 :
+ * It contains a CharacteristicsFragment, a SkillsFragment and an InventoryFragment.
+ */
 public class PlayerActivity extends AppCompatActivity implements IPlayerConstants {
 
     private PlayerPagerAdapter mPlayerPagerAdapter;
@@ -109,6 +113,10 @@ public class PlayerActivity extends AppCompatActivity implements IPlayerConstant
     //endregion
 
     //region Init
+
+    /**
+     * Initialize the Daos for the PlayerActivity and the PlayerContext.
+     */
     private void initDaos() {
         WarHammerDatabaseHelper databaseHelper = new WarHammerDatabaseHelper(this);
         mPlayerDao = new PlayerDao(databaseHelper);
@@ -118,6 +126,9 @@ public class PlayerActivity extends AppCompatActivity implements IPlayerConstant
         PlayerContext.setCharacteristicsDao(mCharacteristicsDao);
     }
 
+    /**
+     * Initialize the various visual elements (Toolbar, ViewPager...).
+     */
     private void initVisualElements() {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -133,9 +144,16 @@ public class PlayerActivity extends AppCompatActivity implements IPlayerConstant
     }
     //endregion
 
+    /**
+     * Start a new LaunchActivity with(out) a bundle and add it to the TaskStack.
+     *
+     * @param bundle
+     */
     private void startLaunchActivity(@Nullable Bundle bundle) {
         Intent launchIntent = new Intent(PlayerActivity.this, LaunchActivity.class);
-        launchIntent.putExtras(bundle);
+        if (bundle != null) {
+            launchIntent.putExtras(bundle);
+        }
 
         TaskStackBuilder stackBuilder = TaskStackBuilder.create(PlayerActivity.this);
         stackBuilder.addParentStack(LaunchActivity.class);
@@ -146,11 +164,22 @@ public class PlayerActivity extends AppCompatActivity implements IPlayerConstant
     //endregion
 
     //region Edition
+
+    /**
+     * Event click which changes the edition mode.
+     *
+     * @param v
+     */
     public void setEdition(View v) {
         setIsInEdition(!PlayerContext.isInEdition());
     }
 
-    public void setIsInEdition(boolean isInEdition) {
+    /**
+     * Effectively changes the edition mode in PlayerContext and update the UI.
+     *
+     * @param isInEdition
+     */
+    private void setIsInEdition(boolean isInEdition) {
         PlayerContext.setIsInEdition(isInEdition);
         changeEditionFabDrawable();
 
@@ -160,6 +189,9 @@ public class PlayerActivity extends AppCompatActivity implements IPlayerConstant
         }
     }
 
+    /**
+     * Replace the icon of the concerned buttons by an open/close lock.
+     */
     private void changeEditionFabDrawable() {
         if (PlayerContext.isInEdition()) {
             mEditionFab.setImageDrawable(ContextCompat.getDrawable(this, R.drawable.ic_lock_open_white_24dp));
@@ -178,11 +210,20 @@ public class PlayerActivity extends AppCompatActivity implements IPlayerConstant
     }
     //endregion
 
+    /**
+     * Hide the soft keyboard.
+     */
     private void hideKeyboard() {
         InputMethodManager imm = (InputMethodManager) getSystemService(INPUT_METHOD_SERVICE);
         imm.hideSoftInputFromWindow(findViewById(R.id.player_pager_container).getWindowToken(), 0);
     }
 
+    /**
+     * Event click on the skillsList which launches the LaunchActivity
+     * with a standard hand for this player and this skill
+     *
+     * @param view
+     */
     public void launchSkill(View view) {
         try {
             TextView tv = (TextView) view;

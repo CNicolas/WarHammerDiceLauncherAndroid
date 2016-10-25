@@ -24,14 +24,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Created by cnicolas on 11/05/2016.
+ * First page of WHFRP3, allowing the user to chose to use an existing Player or create a new one.
  */
 public class HomeActivity extends Activity {
     private PlayerDao mPlayerDao;
 
-    /**
-     * Called when the activity is first created.
-     */
     @Override
     public void onCreate(@Nullable Bundle bundle) {
         super.onCreate(bundle);
@@ -52,6 +49,10 @@ public class HomeActivity extends Activity {
         PlayerContext.setContext(this);
     }
 
+    /**
+     * Listener for the playersList.
+     * Either creating a new player or loading an existing one from database.
+     */
     public class PlayerListItemClickListener implements AdapterView.OnItemClickListener {
         private final Context mContext;
 

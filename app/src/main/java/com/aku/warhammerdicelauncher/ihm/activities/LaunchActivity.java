@@ -1,6 +1,5 @@
 package com.aku.warhammerdicelauncher.ihm.activities;
 
-import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -39,6 +38,9 @@ import java.util.Map;
 
 import static com.aku.warhammerdicelauncher.R.id.action_update_hand;
 
+/**
+ * This activity allows to chose several dices to launch and see the results.
+ */
 public class LaunchActivity extends AppCompatActivity {
     private Spinner mHandsSpinner;
     private Menu mMenuLaunch;
@@ -103,6 +105,10 @@ public class LaunchActivity extends AppCompatActivity {
     //endregion
 
     //region Init
+
+    /**
+     * Init the NumberPickers fields.
+     */
     private void initPickers() {
         mCharacteristicNumberPicker = (NumberPicker) findViewById(R.id.numberPickerCharacteristic);
         mRecklessNumberPicker = (NumberPicker) findViewById(R.id.numberPickerReckless);
@@ -112,9 +118,25 @@ public class LaunchActivity extends AppCompatActivity {
         mMisfortuneNumberPicker = (NumberPicker) findViewById(R.id.numberPickerMisfortune);
         mChallengeNumberPicker = (NumberPicker) findViewById(R.id.numberPickerChallenge);
     }
+
+    /**
+     * Set up the HandsSpinner.
+     */
+    private void setupHandsSpinner() {
+        mHandsSpinner = (Spinner) findViewById(R.id.hands_spinner);
+        fillHandsSpinner();
+        mHandsSpinner.setSelection(0, false);
+        mHandsSpinner.setOnItemSelectedListener(new HandsSpinnerItemSelectedListener(mHandDao.findAllTitles().size() > 0));
+    }
     //endregion
 
     //region Roll Dices
+
+    /**
+     * Event click on the launch buttons : 1 launch or more to see the statistics.
+     *
+     * @param v the calling view
+     */
     public void rollDices(View v) {
         try {
             String tagString = v.getTag().toString();
@@ -122,16 +144,16 @@ public class LaunchActivity extends AppCompatActivity {
 
             switch (times) {
                 case 10:
-                    launchStatisticsActivity(10);
+                    startStatisticsActivity(10);
                     break;
                 case 100:
-                    launchStatisticsActivity(100);
+                    startStatisticsActivity(100);
                     break;
                 case 1000:
-                    launchStatisticsActivity(1000);
+                    startStatisticsActivity(1000);
                     break;
                 case 10000:
-                    launchStatisticsActivity(10000);
+                    startStatisticsActivity(10000);
                     break;
                 default:
                     Hand model = extractHandFromNumberPickers();
@@ -146,7 +168,12 @@ public class LaunchActivity extends AppCompatActivity {
         }
     }
 
-    private void launchStatisticsActivity(int times) {
+    /**
+     * Start a StatisticsActivity with the current hand of dices.
+     *
+     * @param times Number of launches of the hand.
+     */
+    private void startStatisticsActivity(int times) {
         Bundle bundle = new Bundle();
         bundle.putSerializable(IHandConstants.HAND_TAG, extractHandFromNumberPickers());
         bundle.putInt(IHandConstants.TIMES_TAG, times);
@@ -163,6 +190,10 @@ public class LaunchActivity extends AppCompatActivity {
     //endregion
 
     //region Save Hand
+
+    /**
+     * Save the current hand of dices in database for future use.
+     */
     private void saveHand() {
         try {
             AlertDialog.Builder builder = new AlertDialog.Builder(this);
@@ -187,22 +218,36 @@ public class LaunchActivity extends AppCompatActivity {
         }
     }
 
-    private void saveHandWithTitle(String title) {
+    /**
+     * Save the current hand of dices under the given title.
+     *
+     * @param title the title of the new Hand.
+     */
+    private void saveNewHandWithTitle(String title) {
         Hand hand = prepareHandModel(title);
         mHandDao.insert(hand);
-        updateUI(this);
+        updateUI();
     }
     //endregion
 
     //region Update Hand
+
+    /**
+     * Update the selected hand in database.
+     */
     public void updateHand() {
-        String currentHandName = getCurrentHandName();
+        String currentHandName = (String) mHandsSpinner.getSelectedItem();
         if (!currentHandName.isEmpty()) {
             updateHandWithTitle(currentHandName);
-            Toast.makeText(this, R.string.updated, Toast.LENGTH_LONG);
+            Toast.makeText(this, R.string.updated, Toast.LENGTH_LONG).show();
         }
     }
 
+    /**
+     * Update the hand in database, knowing the title.
+     *
+     * @param title the hand's title
+     */
     private void updateHandWithTitle(String title) {
         Hand hand = prepareHandModel(title);
         mHandDao.update(hand, title);
@@ -210,10 +255,19 @@ public class LaunchActivity extends AppCompatActivity {
     //endregion
 
     //region Reset Hand
+
+    /**
+     * Event click which reset the number pickers value.
+     *
+     * @param v the calling view
+     */
     public void resetHand(View v) {
         resetHand();
     }
 
+    /**
+     * Reset the number pickers value.
+     */
     private void resetHand() {
         mCharacteristicNumberPicker.setValue(0);
         mRecklessNumberPicker.setValue(0);
@@ -226,6 +280,12 @@ public class LaunchActivity extends AppCompatActivity {
     //endregion
 
     //region Hand helpers
+
+    /**
+     * Use a hand from the spinner which contains the saved hands name.
+     *
+     * @param title the title of the hand.
+     */
     private void useHand(String title) {
         if (title.trim().isEmpty()) {
             resetHand();
@@ -241,11 +301,9 @@ public class LaunchActivity extends AppCompatActivity {
         }
     }
 
-    private String getCurrentHandName() {
-        String currentHandName = (String) mHandsSpinner.getSelectedItem();
-        return currentHandName;
-    }
-
+    /**
+     * Fill the HandsSpinner (containing the names of the hands from database).
+     */
     private void fillHandsSpinner() {
         List<String> titles = new ArrayList<>();
         titles.add("");
@@ -256,6 +314,12 @@ public class LaunchActivity extends AppCompatActivity {
     //endregion
 
     //region Number Pickers
+
+    /**
+     * Fill the number pickers from a given Skill for the Player.
+     *
+     * @param skill the skill.
+     */
     private void fillPickersFromSkill(Skill skill) {
         Hand startingHand = PlayerContext.getPlayerInstance().getCharacteristics().getCharacteristicHand(skill.getCharacteristic());
         startingHand.setExpertise(skill.getLevel());
@@ -265,7 +329,7 @@ public class LaunchActivity extends AppCompatActivity {
     }
 
     /**
-     * Get current pickers' value and create a Hand with them
+     * Create a Hand from the number pickers' value.
      */
     public Hand extractHandFromNumberPickers() {
         Hand model = new Hand();
@@ -282,9 +346,9 @@ public class LaunchActivity extends AppCompatActivity {
     }
 
     /**
-     * Uses the model's values to set pickers' value
+     * Uses the given Hand values to set pickers' value.
      *
-     * @param model
+     * @param model the Hand.
      */
     public void fillNumberPickersFromHand(Hand model) {
         mCharacteristicNumberPicker.setValue(model.getCharacteristic());
@@ -297,34 +361,45 @@ public class LaunchActivity extends AppCompatActivity {
     }
     //endregion
 
+    /**
+     * Create a hand of dices from number pickers and the given title.
+     *
+     * @param title the title for the Hand.
+     * @return a Hand.
+     */
     private Hand prepareHandModel(String title) {
         Hand hand = extractHandFromNumberPickers();
         hand.setTitle(title);
         return hand;
     }
 
-    private void updateUI(Activity ctx) {
+    /**
+     * Fills the hands spinner and updates the menu.
+     */
+    private void updateUI() {
         fillHandsSpinner();
-        ctx.invalidateOptionsMenu();
+        invalidateOptionsMenu();
     }
 
+    /**
+     * Change the visibility for the "update" menu item when not usable.
+     *
+     * @param isVisible if the updateOptionsMenu is visible.
+     */
     private void changeUpdateOptionsMenuItemVisibility(boolean isVisible) {
         MenuItem item = mMenuLaunch.findItem(action_update_hand);
         item.setVisible(isVisible);
     }
 
-    private void setupHandsSpinner() {
-        mHandsSpinner = (Spinner) findViewById(R.id.hands_spinner);
-        fillHandsSpinner();
-        mHandsSpinner.setSelection(0, false);
-        mHandsSpinner.setOnItemSelectedListener(new HandsSpinnerItemSelectedListener(mHandDao.findAllTitles().size() > 0));
-    }
-
     //region Listeners
+
+    /**
+     * The HandsSpinner listener fills the number pickers when a hand is selected.
+     */
     private class HandsSpinnerItemSelectedListener implements AdapterView.OnItemSelectedListener {
         private boolean initialized;
 
-        public HandsSpinnerItemSelectedListener(boolean initialized) {
+        HandsSpinnerItemSelectedListener(boolean initialized) {
             this.initialized = initialized;
         }
 
@@ -349,10 +424,13 @@ public class LaunchActivity extends AppCompatActivity {
         }
     }
 
+    /**
+     * Handle the result of the dialog when saving a hand.
+     */
     private class SaveHandDialogResultOkClickListener implements DialogInterface.OnClickListener {
         private final EditText input;
 
-        public SaveHandDialogResultOkClickListener(EditText input) {
+        SaveHandDialogResultOkClickListener(EditText input) {
             this.input = input;
         }
 
@@ -361,7 +439,7 @@ public class LaunchActivity extends AppCompatActivity {
             if (input.getText().toString().trim().isEmpty()) {
                 Toast.makeText(LaunchActivity.this, R.string.empty_hand_name, Toast.LENGTH_SHORT).show();
             } else {
-                saveHandWithTitle(input.getText().toString());
+                saveNewHandWithTitle(input.getText().toString());
             }
 
         }
