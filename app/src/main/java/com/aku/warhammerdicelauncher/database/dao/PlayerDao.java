@@ -17,9 +17,9 @@ import java.util.List;
  */
 
 public class PlayerDao extends AbstractDao<Player> implements IPlayerEntryConstants {
-    private final CharacteristicsDao characteristicsDao;
-    private final SkillDao skillDao;
-    private final ItemDao itemDao;
+    private final CharacteristicsDao mCharacteristicsDao;
+    private final SkillDao mSkillDao;
+    private final ItemDao mItemDao;
 
     public PlayerDao(WarHammerDatabaseHelper whdHelper) {
         super(whdHelper);
@@ -27,9 +27,9 @@ public class PlayerDao extends AbstractDao<Player> implements IPlayerEntryConsta
         tableName = TABLE_NAME;
         columnId = COLUMN_ID;
 
-        characteristicsDao = new CharacteristicsDao(whdHelper);
-        skillDao = new SkillDao(whdHelper);
-        itemDao = new ItemDao(whdHelper);
+        mCharacteristicsDao = new CharacteristicsDao(whdHelper);
+        mSkillDao = new SkillDao(whdHelper);
+        mItemDao = new ItemDao(whdHelper);
     }
 
     //region Find
@@ -38,7 +38,31 @@ public class PlayerDao extends AbstractDao<Player> implements IPlayerEntryConsta
     }
 
     public Player findByName(String name) {
-        return findByStringInColumn(name, COLUMN_NAME);
+        Player player = findByStringInColumn(name, COLUMN_NAME);
+        player.setSkills(mSkillDao.findAllByPlayer(player));
+        return player;
+    }
+    //endregion
+
+    //region Insert
+    @Override
+    public long insert(Player player) {
+        for (Skill skill : player.getSkills()) {
+            mSkillDao.insert(skill, player);
+        }
+        mCharacteristicsDao.insert(player.getCharacteristics());
+        return super.insert(player);
+    }
+    //endregion
+
+    //region Update
+    @Override
+    public long update(Player player) {
+        for (Skill skill : player.getSkills()) {
+            mSkillDao.update(skill, player);
+        }
+        mCharacteristicsDao.update(player.getCharacteristics());
+        return super.update(player);
     }
     //endregion
 
@@ -102,14 +126,14 @@ public class PlayerDao extends AbstractDao<Player> implements IPlayerEntryConsta
         model.setMoney_silver(cursor.getInt(cursor.getColumnIndexOrThrow(COLUMN_MONEY_SILVER)));
         model.setMoney_gold(cursor.getInt(cursor.getColumnIndexOrThrow(COLUMN_MONEY_GOLD)));
 
-        Characteristics characteristics = characteristicsDao.findById(cursor.getInt(cursor.getColumnIndexOrThrow(COLUMN_CHARACTERISTICS_ID)));
+        Characteristics characteristics = mCharacteristicsDao.findById(cursor.getInt(cursor.getColumnIndexOrThrow(COLUMN_CHARACTERISTICS_ID)));
         model.setCharacteristics(characteristics);
 
-        List<Skill> skills = skillDao.findAllByPlayer(model);
+        List<Skill> skills = mSkillDao.findAllByPlayer(model);
         model.setSkills(skills);
 
         // Ajout des objets de l'inventaire du joueur
-        List<Item> items = itemDao.findAllByPlayer(model);
+        List<Item> items = mItemDao.findAllByPlayer(model);
         model.setInventory(items);
 
         return model;

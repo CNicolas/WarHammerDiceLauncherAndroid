@@ -31,6 +31,7 @@ public class PlayerEditTextWatcher implements TextWatcher {
     @Override
     public void afterTextChanged(Editable s) {
         setPlayerInformation(playerInformation, s.toString());
+        PlayerContext.updatePlayer();
     }
 
     private void setPlayerInformation(PlayerInformation playerInformation, String newValue) {
@@ -39,60 +40,60 @@ public class PlayerEditTextWatcher implements TextWatcher {
             switch (playerInformation) {
                 case AGE:
                     player.setAge(Integer.parseInt(newValue));
-                    return;
+                    break;
                 case DESCRIPTION:
                     player.setDescription(newValue);
-                    return;
+                    break;
                 case EXPERIENCE:
                     player.setExperience(Integer.parseInt(newValue));
-                    return;
+                    break;
                 case MAX_EXPERIENCE:
                     player.setMax_experience(Integer.parseInt(newValue));
-                    return;
+                    break;
                 case WOUNDS:
                     player.setWounds(Integer.parseInt(newValue));
-                    return;
+                    break;
                 case MAX_WOUNDS:
                     player.setMax_wounds(Integer.parseInt(newValue));
-                    return;
+                    break;
                 case CORRUPTION:
                     player.setCorruption(Integer.parseInt(newValue));
-                    return;
+                    break;
                 case MAX_CORRUPTION:
                     player.setMax_corruption(Integer.parseInt(newValue));
-                    return;
+                    break;
                 case CONSERVATIVE:
                     player.setConservative(Integer.parseInt(newValue));
-                    return;
+                    break;
                 case MAX_CONSERVATIVE:
                     player.setMax_conservative(Integer.parseInt(newValue));
-                    return;
+                    break;
                 case RECKLESS:
                     player.setReckless(Integer.parseInt(newValue));
-                    return;
+                    break;
                 case MAX_RECKLESS:
                     player.setMax_reckless(Integer.parseInt(newValue));
-                    return;
+                    break;
                 case NAME:
                     player.setName(newValue);
-                    return;
+                    break;
                 case CAREER:
                     player.setCareer(newValue);
-                    return;
+                    break;
                 case RACE:
                     player.setRace(newValue);
-                    return;
+                    break;
                 case RANK:
                     player.setRank(Integer.parseInt(newValue));
-                    return;
+                    break;
                 case SIZE:
                     player.setSize(Double.parseDouble(newValue));
-                    return;
+                    break;
                 default:
-                    return;
+                    break;
             }
         } catch (NumberFormatException nfe) {
-            return;
+
         }
     }
 }

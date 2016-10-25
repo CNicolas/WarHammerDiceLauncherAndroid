@@ -7,7 +7,6 @@ import android.support.design.widget.TabLayout;
 import android.support.v4.app.TaskStackBuilder;
 import android.support.v4.content.ContextCompat;
 import android.support.v4.view.ViewPager;
-import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
@@ -17,16 +16,12 @@ import android.view.inputmethod.InputMethodManager;
 
 import com.aku.warhammerdicelauncher.R;
 import com.aku.warhammerdicelauncher.database.WarHammerDatabaseHelper;
+import com.aku.warhammerdicelauncher.database.dao.CharacteristicsDao;
 import com.aku.warhammerdicelauncher.database.dao.PlayerDao;
 import com.aku.warhammerdicelauncher.ihm.adapters.PlayerPagerAdapter;
 import com.aku.warhammerdicelauncher.ihm.fragments.CharacteristicsFragment;
-import com.aku.warhammerdicelauncher.model.player.Player;
-import com.aku.warhammerdicelauncher.model.player.Skill;
 import com.aku.warhammerdicelauncher.tools.PlayerContext;
 import com.aku.warhammerdicelauncher.tools.constants.IPlayerConstants;
-import com.aku.warhammerdicelauncher.tools.helpers.SkillsHelper;
-
-import java.util.List;
 
 public class PlayerActivity extends AppCompatActivity {
 
@@ -34,6 +29,7 @@ public class PlayerActivity extends AppCompatActivity {
     private FloatingActionButton mEditionFab;
     private Menu mMenu;
     private PlayerDao mPlayerDao;
+    private CharacteristicsDao mCharacteristicsDao;
 
     //region Overrides
     @Override
@@ -47,24 +43,16 @@ public class PlayerActivity extends AppCompatActivity {
             PlayerContext.setIsInEdition(inEdition);
         }
 
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
-
-        mPlayerDao = new PlayerDao(new WarHammerDatabaseHelper(this));
-
-        mEditionFab = (FloatingActionButton) findViewById(R.id.edition_fab);
-        mPlayerPagerAdapter = new PlayerPagerAdapter(this);
-
-        ViewPager viewPager = (ViewPager) findViewById(R.id.player_pager_container);
-        viewPager.setAdapter(mPlayerPagerAdapter);
-
-        TabLayout tabLayout = (TabLayout) findViewById(R.id.tabs);
-        tabLayout.setupWithViewPager(viewPager);
+        initDaos();
+        initVisualElements();
 
         changeEditionFabDrawable();
         hideKeyboard();
+
+        PlayerContext.setContext(this);
     }
 
+    //region Instances
     @Override
     protected void onSaveInstanceState(Bundle outState) {
         super.onSaveInstanceState(outState);
@@ -77,6 +65,7 @@ public class PlayerActivity extends AppCompatActivity {
         boolean b = savedInstanceState.getBoolean(IPlayerConstants.IS_IN_EDITION_KEY);
         setIsInEdition(b);
     }
+    //endregion
 
     @Override
     protected void onResume() {
@@ -105,7 +94,7 @@ public class PlayerActivity extends AppCompatActivity {
             return true;
         }
         if (id == R.id.action_update_player) {
-            updatePlayer();
+            PlayerContext.updatePlayer();
             return true;
         }
 
@@ -114,22 +103,30 @@ public class PlayerActivity extends AppCompatActivity {
     //endregion
     //endregion
 
-    private void updatePlayer() {
-        if (!PlayerContext.getPlayerInstance().getName().isEmpty()) {
-            if (PlayerContext.getPlayerInstance().getId() == 0) {
-                List<Skill> basicSkills = SkillsHelper.createBasicSkills(this);
+    //region Init
+    private void initDaos() {
+        WarHammerDatabaseHelper databaseHelper = new WarHammerDatabaseHelper(this);
+        mPlayerDao = new PlayerDao(databaseHelper);
+        mCharacteristicsDao = new CharacteristicsDao(databaseHelper);
 
-                PlayerContext.getPlayerInstance().setId(mPlayerDao.getNextId());
-                PlayerContext.getPlayerInstance().setSkills(basicSkills);
-                mPlayerDao.insert(PlayerContext.getPlayerInstance());
-            } else {
-                mPlayerDao.update(PlayerContext.getPlayerInstance());
-            }
-        }
-
-        Player player = PlayerContext.getPlayerInstance();
-        new AlertDialog.Builder(this).setTitle(player.getName()).setMessage(player.toString()).show();
+        PlayerContext.setPlayerDao(mPlayerDao);
+        PlayerContext.setCharacteristicsDao(mCharacteristicsDao);
     }
+
+    private void initVisualElements() {
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+
+        mEditionFab = (FloatingActionButton) findViewById(R.id.edition_fab);
+        mPlayerPagerAdapter = new PlayerPagerAdapter(this);
+
+        ViewPager viewPager = (ViewPager) findViewById(R.id.player_pager_container);
+        viewPager.setAdapter(mPlayerPagerAdapter);
+
+        TabLayout tabLayout = (TabLayout) findViewById(R.id.tabs);
+        tabLayout.setupWithViewPager(viewPager);
+    }
+    //endregion
 
     private void startLaunchActivity() {
         Intent launchIntent = new Intent(PlayerActivity.this, LaunchActivity.class);
@@ -173,13 +170,6 @@ public class PlayerActivity extends AppCompatActivity {
         }
     }
     //endregion
-
-    public void checkSkillLevel(View v) {
-        String tagString = v.getTag().toString();
-        int level = Integer.parseInt(tagString);
-//        mPlayerPagerAdapter.getSkillsFragment().setLevel(level);
-//        getSkillByCheckboxId()
-    }
 
     private void hideKeyboard() {
         InputMethodManager imm = (InputMethodManager) getSystemService(INPUT_METHOD_SERVICE);

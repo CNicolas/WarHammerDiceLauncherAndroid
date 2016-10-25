@@ -118,11 +118,17 @@ public abstract class AbstractDao<T extends IModel> implements IDao<T> {
     //endregion
 
     //region Delete
-    public long delete(T dto) {
+    public long delete(T model) {
         SQLiteDatabase db = whdHelper.getWritableDatabase();
-        String[] filters = {String.valueOf(dto.getId())};
+        String[] filters = {String.valueOf(model.getId())};
 
         long res = db.delete(tableName, String.format("%s = ?", columnId), filters);
+        return res;
+    }
+
+    public long deleteAll() {
+        SQLiteDatabase db = whdHelper.getWritableDatabase();
+        long res = db.delete(tableName, null, null);
         return res;
     }
     //endregion

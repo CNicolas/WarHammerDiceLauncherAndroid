@@ -30,55 +30,60 @@ public class CharacteristicEditTextWatcher implements TextWatcher {
 
     @Override
     public void afterTextChanged(Editable s) {
-        try {
-            int newValue = Integer.parseInt(s.toString());
-            setPlayerCharacteristic(mCharacteristic, newValue);
-        } catch (NumberFormatException nfe) {
-
-        }
+        setPlayerCharacteristic(mCharacteristic, s.toString());
+        PlayerContext.updatePlayer();
     }
 
-    private void setPlayerCharacteristic(Characteristic characteristic, int newValue) {
+    private void setPlayerCharacteristic(Characteristic characteristic, String s) {
         Characteristics characteristics = PlayerContext.getPlayerInstance().getCharacteristics();
+
+        int newValue;
+        try {
+            newValue = Integer.parseInt(s.toString());
+        } catch (NumberFormatException nfe) {
+            return;
+        }
+
         switch (characteristic) {
             case STRENGTH:
                 characteristics.setStrength(newValue);
-                return;
+                break;
             case TOUGHNESS:
                 characteristics.setToughness(newValue);
-                return;
+                break;
             case AGILITY:
                 characteristics.setAgility(newValue);
-                return;
+                break;
             case INTELLIGENCE:
                 characteristics.setIntelligence(newValue);
-                return;
+                break;
             case WILLPOWER:
                 characteristics.setWillpower(newValue);
-                return;
+                break;
             case FELLOWSHIP:
                 characteristics.setFellowship(newValue);
-                return;
+                break;
             case STRENGTH_FORTUNE:
                 characteristics.setStrength_fortune(newValue);
-                return;
+                break;
             case TOUGHNESS_FORTUNE:
                 characteristics.setToughness_fortune(newValue);
-                return;
+                break;
             case AGILITY_FORTUNE:
                 characteristics.setAgility_fortune(newValue);
-                return;
+                break;
             case INTELLIGENCE_FORTUNE:
                 characteristics.setIntelligence_fortune(newValue);
-                return;
+                break;
             case WILLPOWER_FORTUNE:
                 characteristics.setWillpower_fortune(newValue);
-                return;
+                break;
             case FELLOWSHIP_FORTUNE:
                 characteristics.setFellowship_fortune(newValue);
-                return;
+                break;
             default:
-                return;
+                break;
         }
+
     }
 }

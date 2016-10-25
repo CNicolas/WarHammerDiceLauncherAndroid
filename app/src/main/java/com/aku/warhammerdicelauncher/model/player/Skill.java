@@ -70,7 +70,7 @@ public class Skill implements IModel {
 
     @Override
     public String toString() {
-        return "SkillEnum{" +
+        return "Skill{" +
                 "id=" + id +
                 ", name='" + name + '\'' +
                 ", characteristic=" + characteristic +

@@ -12,7 +12,6 @@ import java.util.List;
 
 public interface IDao<T extends IModel> {
     List<T> findAll();
-
     T findById(int id) throws SQLiteException;
 
     long insert(T model);
@@ -20,4 +19,6 @@ public interface IDao<T extends IModel> {
     long update(T model);
 
     long delete(T model);
+
+    long deleteAll();
 }

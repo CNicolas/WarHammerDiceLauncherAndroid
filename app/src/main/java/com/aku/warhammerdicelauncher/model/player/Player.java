@@ -53,12 +53,6 @@ public class Player implements IModel, IPlayerConstants {
         mSkills = new ArrayList<>();
         inventory = new ArrayList<>();
     }
-
-    public Player(String name, String race) {
-        this();
-        this.name = name;
-        this.race = race;
-    }
     //endregion
 
     public List<Skill> addSkill(Skill skill) {
@@ -72,8 +66,10 @@ public class Player implements IModel, IPlayerConstants {
         for (Skill sk : mSkills) {
             if (sk.equals(skill)) {
                 sk.setLevel(level);
+                return;
             }
         }
+        addSkill(skill);
     }
 
     //region Money Management
@@ -167,6 +163,10 @@ public class Player implements IModel, IPlayerConstants {
     //endregion
 
     //region Get & Set
+
+    public boolean isUpdateable() {
+        return getName() != null && !getName().isEmpty();
+    }
 
     public int getId() {
         return id;

@@ -15,7 +15,7 @@ public interface ISkillEntryConstants extends IEntryConstants {
     String SQL_CREATE_ENTRIES =
             "CREATE TABLE " + TABLE_NAME + " (" +
                     COLUMN_ID + INTEGER_TYPE + PRIMARY_KEY + AUTO_INCREMENT + COMMA_SEP +
-                    COLUMN_NAME + TEXT_TYPE + UNIQUE + COMMA_SEP +
+                    COLUMN_NAME + TEXT_TYPE + COMMA_SEP +
                     COLUMN_CHARACTERISTIC + TEXT_TYPE + COMMA_SEP +
                     COLUMN_LEVEL + TEXT_TYPE + COMMA_SEP +
                     COLUMN_PLAYER_ID + INTEGER_TYPE + COMMA_SEP +

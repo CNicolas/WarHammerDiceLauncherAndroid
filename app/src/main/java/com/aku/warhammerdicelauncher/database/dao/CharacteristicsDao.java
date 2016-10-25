@@ -18,46 +18,48 @@ public class CharacteristicsDao extends AbstractDao<Characteristics> {
     }
 
     //region Private Methods
-    protected ContentValues contentValuesFromModel(Characteristics dto) {
+    protected ContentValues contentValuesFromModel(Characteristics mmodel) {
         ContentValues values = new ContentValues();
 
-        values.put(ICharacteristicsEntryConstants.COLUMN_STRENGTH, dto.getStrength());
-        values.put(ICharacteristicsEntryConstants.COLUMN_TOUGHNESS, dto.getToughness());
-        values.put(ICharacteristicsEntryConstants.COLUMN_AGILITY, dto.getAgility());
-        values.put(ICharacteristicsEntryConstants.COLUMN_INTELLIGENCE, dto.getIntelligence());
-        values.put(ICharacteristicsEntryConstants.COLUMN_WILLPOWER, dto.getWillpower());
-        values.put(ICharacteristicsEntryConstants.COLUMN_FELLOWSHIP, dto.getFellowship());
+        values.put(ICharacteristicsEntryConstants.COLUMN_ID, mmodel.getId());
 
-        values.put(ICharacteristicsEntryConstants.COLUMN_STRENGTH_FORTUNE, dto.getStrength_fortune());
-        values.put(ICharacteristicsEntryConstants.COLUMN_TOUGHNESS_FORTUNE, dto.getToughness_fortune());
-        values.put(ICharacteristicsEntryConstants.COLUMN_AGILITY_FORTUNE, dto.getAgility_fortune());
-        values.put(ICharacteristicsEntryConstants.COLUMN_INTELLIGENCE_FORTUNE, dto.getIntelligence_fortune());
-        values.put(ICharacteristicsEntryConstants.COLUMN_WILLPOWER_FORTUNE, dto.getWillpower_fortune());
-        values.put(ICharacteristicsEntryConstants.COLUMN_FELLOWSHIP_FORTUNE, dto.getFellowship_fortune());
+        values.put(ICharacteristicsEntryConstants.COLUMN_STRENGTH, mmodel.getStrength());
+        values.put(ICharacteristicsEntryConstants.COLUMN_TOUGHNESS, mmodel.getToughness());
+        values.put(ICharacteristicsEntryConstants.COLUMN_AGILITY, mmodel.getAgility());
+        values.put(ICharacteristicsEntryConstants.COLUMN_INTELLIGENCE, mmodel.getIntelligence());
+        values.put(ICharacteristicsEntryConstants.COLUMN_WILLPOWER, mmodel.getWillpower());
+        values.put(ICharacteristicsEntryConstants.COLUMN_FELLOWSHIP, mmodel.getFellowship());
+
+        values.put(ICharacteristicsEntryConstants.COLUMN_STRENGTH_FORTUNE, mmodel.getStrength_fortune());
+        values.put(ICharacteristicsEntryConstants.COLUMN_TOUGHNESS_FORTUNE, mmodel.getToughness_fortune());
+        values.put(ICharacteristicsEntryConstants.COLUMN_AGILITY_FORTUNE, mmodel.getAgility_fortune());
+        values.put(ICharacteristicsEntryConstants.COLUMN_INTELLIGENCE_FORTUNE, mmodel.getIntelligence_fortune());
+        values.put(ICharacteristicsEntryConstants.COLUMN_WILLPOWER_FORTUNE, mmodel.getWillpower_fortune());
+        values.put(ICharacteristicsEntryConstants.COLUMN_FELLOWSHIP_FORTUNE, mmodel.getFellowship_fortune());
 
         return values;
     }
 
     protected Characteristics createModelFromCursor(Cursor cursor) {
-        Characteristics dto = new Characteristics();
+        Characteristics model = new Characteristics();
 
-        dto.setId(cursor.getInt(cursor.getColumnIndexOrThrow(columnId)));
+        model.setId(cursor.getInt(cursor.getColumnIndexOrThrow(columnId)));
 
-        dto.setStrength(cursor.getInt(cursor.getColumnIndexOrThrow(ICharacteristicsEntryConstants.COLUMN_STRENGTH)));
-        dto.setToughness(cursor.getInt(cursor.getColumnIndexOrThrow(ICharacteristicsEntryConstants.COLUMN_TOUGHNESS)));
-        dto.setAgility(cursor.getInt(cursor.getColumnIndexOrThrow(ICharacteristicsEntryConstants.COLUMN_AGILITY)));
-        dto.setIntelligence(cursor.getInt(cursor.getColumnIndexOrThrow(ICharacteristicsEntryConstants.COLUMN_INTELLIGENCE)));
-        dto.setWillpower(cursor.getInt(cursor.getColumnIndexOrThrow(ICharacteristicsEntryConstants.COLUMN_WILLPOWER)));
-        dto.setFellowship(cursor.getInt(cursor.getColumnIndexOrThrow(ICharacteristicsEntryConstants.COLUMN_FELLOWSHIP)));
+        model.setStrength(cursor.getInt(cursor.getColumnIndexOrThrow(ICharacteristicsEntryConstants.COLUMN_STRENGTH)));
+        model.setToughness(cursor.getInt(cursor.getColumnIndexOrThrow(ICharacteristicsEntryConstants.COLUMN_TOUGHNESS)));
+        model.setAgility(cursor.getInt(cursor.getColumnIndexOrThrow(ICharacteristicsEntryConstants.COLUMN_AGILITY)));
+        model.setIntelligence(cursor.getInt(cursor.getColumnIndexOrThrow(ICharacteristicsEntryConstants.COLUMN_INTELLIGENCE)));
+        model.setWillpower(cursor.getInt(cursor.getColumnIndexOrThrow(ICharacteristicsEntryConstants.COLUMN_WILLPOWER)));
+        model.setFellowship(cursor.getInt(cursor.getColumnIndexOrThrow(ICharacteristicsEntryConstants.COLUMN_FELLOWSHIP)));
 
-        dto.setStrength_fortune(cursor.getInt(cursor.getColumnIndexOrThrow(ICharacteristicsEntryConstants.COLUMN_STRENGTH_FORTUNE)));
-        dto.setToughness_fortune(cursor.getInt(cursor.getColumnIndexOrThrow(ICharacteristicsEntryConstants.COLUMN_TOUGHNESS_FORTUNE)));
-        dto.setAgility_fortune(cursor.getInt(cursor.getColumnIndexOrThrow(ICharacteristicsEntryConstants.COLUMN_AGILITY_FORTUNE)));
-        dto.setIntelligence_fortune(cursor.getInt(cursor.getColumnIndexOrThrow(ICharacteristicsEntryConstants.COLUMN_INTELLIGENCE_FORTUNE)));
-        dto.setWillpower_fortune(cursor.getInt(cursor.getColumnIndexOrThrow(ICharacteristicsEntryConstants.COLUMN_WILLPOWER_FORTUNE)));
-        dto.setFellowship_fortune(cursor.getInt(cursor.getColumnIndexOrThrow(ICharacteristicsEntryConstants.COLUMN_FELLOWSHIP_FORTUNE)));
+        model.setStrength_fortune(cursor.getInt(cursor.getColumnIndexOrThrow(ICharacteristicsEntryConstants.COLUMN_STRENGTH_FORTUNE)));
+        model.setToughness_fortune(cursor.getInt(cursor.getColumnIndexOrThrow(ICharacteristicsEntryConstants.COLUMN_TOUGHNESS_FORTUNE)));
+        model.setAgility_fortune(cursor.getInt(cursor.getColumnIndexOrThrow(ICharacteristicsEntryConstants.COLUMN_AGILITY_FORTUNE)));
+        model.setIntelligence_fortune(cursor.getInt(cursor.getColumnIndexOrThrow(ICharacteristicsEntryConstants.COLUMN_INTELLIGENCE_FORTUNE)));
+        model.setWillpower_fortune(cursor.getInt(cursor.getColumnIndexOrThrow(ICharacteristicsEntryConstants.COLUMN_WILLPOWER_FORTUNE)));
+        model.setFellowship_fortune(cursor.getInt(cursor.getColumnIndexOrThrow(ICharacteristicsEntryConstants.COLUMN_FELLOWSHIP_FORTUNE)));
 
-        return dto;
+        return model;
     }
     //endregion
 }

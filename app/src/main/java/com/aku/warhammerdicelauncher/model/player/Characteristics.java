@@ -23,6 +23,13 @@ public class Characteristics implements IModel {
     private int willpower_fortune;
     private int fellowship_fortune;
 
+    public Characteristics() {
+    }
+
+    public Characteristics(int id) {
+        this.id = id;
+    }
+
     //region Get & Set
 
     public int getId() {
@@ -130,6 +137,7 @@ public class Characteristics implements IModel {
     }
     //endregion
 
+    //region Usual Overrides
     @Override
     public String toString() {
         return "Characteristics{" +
@@ -189,6 +197,5 @@ public class Characteristics implements IModel {
         result = 31 * result + getFellowship_fortune();
         return result;
     }
-
     //endregion
 }

@@ -1,18 +1,23 @@
 package com.aku.warhammerdicelauncher.tools;
 
 import android.content.Context;
+import android.util.Log;
 
-import com.aku.warhammerdicelauncher.database.WarHammerDatabaseHelper;
+import com.aku.warhammerdicelauncher.database.dao.CharacteristicsDao;
 import com.aku.warhammerdicelauncher.database.dao.PlayerDao;
 import com.aku.warhammerdicelauncher.model.player.Player;
+import com.aku.warhammerdicelauncher.model.player.Skill;
 import com.aku.warhammerdicelauncher.model.player.inventory.Armor;
 import com.aku.warhammerdicelauncher.model.player.inventory.Item;
 import com.aku.warhammerdicelauncher.model.player.inventory.Quality;
 import com.aku.warhammerdicelauncher.model.player.inventory.Range;
 import com.aku.warhammerdicelauncher.model.player.inventory.UsableItem;
 import com.aku.warhammerdicelauncher.model.player.inventory.Weapon;
+import com.aku.warhammerdicelauncher.tools.helpers.OnPlayerUpdateListener;
+import com.aku.warhammerdicelauncher.tools.helpers.SkillsHelper;
 
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by cnicolas on 13/10/2016.
@@ -22,10 +27,14 @@ public abstract class PlayerContext {
     private static Player mPlayer;
     private static boolean isInEdition;
 
+    private static List<OnPlayerUpdateListener> mListeners;
+
+    private static PlayerDao mPlayerDao;
+    private static CharacteristicsDao mCharacteristicsDao;
+    private static Context mContext;
+
+    //region Player
     public static Player getPlayerInstance() {
-        if (mPlayer == null) {
-            mPlayer = createEmptyPlayer();
-        }
         return mPlayer;
     }
 
@@ -34,31 +43,33 @@ public abstract class PlayerContext {
         return mPlayer;
     }
 
+    public static void updatePlayer() {
+        if (mPlayer == null || !mPlayer.isUpdateable()) {
+            return;
+        }
+
+        if (mPlayer.getId() == 0) {
+            mPlayer.setId(mPlayerDao.getNextId());
+            mPlayer.getCharacteristics().setId(mCharacteristicsDao.getNextId());
+
+            if (mPlayer.getSkills().size() == 0) {
+                List<Skill> basicSkills = SkillsHelper.createBasicSkills(mContext);
+                mPlayer.setSkills(basicSkills);
+            }
+
+            mPlayerDao.insert(mPlayer);
+        } else {
+            mPlayerDao.update(mPlayer);
+        }
+        notifyListeners();
+
+//        new AlertDialog.Builder(mContext).setTitle(player.getName()).setMessage(player.toString()).show();
+        Log.e("Player Context", mPlayer.toString());
+    }
+
     public static void setPlayer(Player player) {
         mPlayer = player;
     }
-
-    public static void updatePlayerInDatabase(Context context) {
-        if (!mPlayer.getName().isEmpty()) {
-            PlayerDao playerDao = new PlayerDao(new WarHammerDatabaseHelper(context));
-            if (mPlayer.getId() == 0) {
-                mPlayer.setId(playerDao.getNextId());
-                playerDao.insert(mPlayer);
-            } else {
-                playerDao.update(mPlayer);
-            }
-        }
-    }
-
-    //region Edition
-    public static boolean isInEdition() {
-        return isInEdition;
-    }
-
-    public static void setIsInEdition(boolean isInEdition) {
-        PlayerContext.isInEdition = isInEdition;
-    }
-    //endregion
 
     public static Player createTestPlayer() {
         mPlayer = createEmptyPlayer();
@@ -114,5 +125,47 @@ public abstract class PlayerContext {
         mPlayer.getInventory().add(item);
 
         return mPlayer;
+    }
+
+    //endregion
+
+    //region Edition
+    public static boolean isInEdition() {
+        return isInEdition;
+    }
+
+    public static void setIsInEdition(boolean isInEdition) {
+        PlayerContext.isInEdition = isInEdition;
+    }
+    //endregion
+
+    public static void registerPlayerUpdateListener(OnPlayerUpdateListener listener) {
+        if (mListeners == null) {
+            mListeners = new ArrayList<>();
+        }
+        mListeners.add(listener);
+    }
+
+    private static void notifyListeners() {
+        for (OnPlayerUpdateListener listener : mListeners) {
+            listener.onPlayerUpdate();
+        }
+    }
+
+    //region Daos
+
+    public static void setPlayerDao(PlayerDao playerDao) {
+        PlayerContext.mPlayerDao = playerDao;
+    }
+
+    public static void setCharacteristicsDao(CharacteristicsDao characteristicsDao) {
+        PlayerContext.mCharacteristicsDao = characteristicsDao;
+    }
+
+    //endregion
+
+
+    public static void setContext(Context context) {
+        PlayerContext.mContext = context;
     }
 }

@@ -63,6 +63,7 @@ public class SkillLevelClickListener implements View.OnClickListener {
                 break;
         }
 
+        mSkill.setLevel(newLevel);
         PlayerContext.getPlayerInstance().setSkillLevel(mSkill, newLevel);
     }
 }
