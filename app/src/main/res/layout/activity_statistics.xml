@@ -8,7 +8,7 @@
     android:background="@android:color/white"
     android:fitsSystemWindows="true"
     android:padding="@dimen/main_layout_padding"
-    tools:context="com.aku.warhammerdicelauncher.ihm.activities.StatisticsActivity">
+    tools:context="com.aku.whfrp3.com.whfrp3.whfrp3.ihm.activities.StatisticsActivity">
 
     <ProgressBar
         android:id="@+id/progress_spinner"

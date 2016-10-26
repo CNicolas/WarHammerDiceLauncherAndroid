@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    package="com.aku.warhammerdicelauncher">
+    package="com.whfrp3">
 
     <!-- android:icon="@mipmap/ic_launcher" -->
     <application
@@ -14,7 +14,7 @@
         tools:replace="android:label">
 
         <activity
-            android:name=".ihm.activities.HomeActivity"
+            android:name="com.whfrp3.ihm.activities.HomeActivity"
             android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -24,32 +24,32 @@
         </activity>
 
         <activity
-            android:name=".ihm.activities.PlayerActivity"
-            android:parentActivityName=".ihm.activities.HomeActivity"
+            android:name="com.whfrp3.ihm.activities.PlayerActivity"
+            android:parentActivityName="com.whfrp3.ihm.activities.HomeActivity"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar"
             android:windowSoftInputMode="stateHidden|adjustResize">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value=".ihm.activities.HomeActivity" />
+                android:value="com.whfrp3.ihm.activities.HomeActivity" />
         </activity>
 
         <activity
-            android:name=".ihm.activities.LaunchActivity"
-            android:parentActivityName=".ihm.activities.PlayerActivity"
+            android:name="com.whfrp3.ihm.activities.LaunchActivity"
+            android:parentActivityName="com.whfrp3.ihm.activities.PlayerActivity"
             android:screenOrientation="portrait">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value=".ihm.activities.PlayerActivity" />
+                android:value="com.whfrp3.ihm.activities.PlayerActivity" />
         </activity>
 
         <activity
-            android:name=".ihm.activities.StatisticsActivity"
-            android:parentActivityName=".ihm.activities.LaunchActivity"
+            android:name="com.whfrp3.ihm.activities.StatisticsActivity"
+            android:parentActivityName="com.whfrp3.ihm.activities.LaunchActivity"
             android:screenOrientation="portrait">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value=".ihm.activities.LaunchActivity" />
+                android:value="com.whfrp3.ihm.activities.LaunchActivity" />
         </activity>
     </application>
 

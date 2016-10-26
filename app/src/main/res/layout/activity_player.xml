@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:fitsSystemWindows="true"
-    tools:context="com.aku.warhammerdicelauncher.ihm.activities.PlayerActivity">
+    tools:context="com.aku.whfrp3.com.whfrp3.whfrp3.ihm.activities.PlayerActivity">
 
     <android.support.design.widget.AppBarLayout
         android:id="@+id/appbar"

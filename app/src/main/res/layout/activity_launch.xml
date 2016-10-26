@@ -8,7 +8,7 @@
     android:background="@android:color/white"
     android:fitsSystemWindows="true"
     android:padding="@dimen/main_layout_padding"
-    tools:context="com.aku.warhammerdicelauncher.ihm.activities.LaunchActivity">
+    tools:context="com.whfrp3.ihm.activities.LaunchActivity">
 
     <!--PICKERS LAYOUT-->
     <LinearLayout
@@ -32,7 +32,7 @@
                 android:contentDescription="@string/characteristicDice"
                 android:src="@drawable/characteristic0" />
 
-            <com.aku.warhammerdicelauncher.ihm.components.NumberPickerMinMax
+            <com.whfrp3.ihm.components.NumberPickerMinMax
                 android:id="@+id/numberPickerCharacteristic"
                 maxValue="99"
                 minValue="0"
@@ -53,7 +53,7 @@
                 android:contentDescription="@string/recklessDice"
                 android:src="@drawable/reckless0" />
 
-            <com.aku.warhammerdicelauncher.ihm.components.NumberPickerMinMax
+            <com.whfrp3.ihm.components.NumberPickerMinMax
                 android:id="@+id/numberPickerReckless"
                 maxValue="99"
                 minValue="0"
@@ -74,7 +74,7 @@
                 android:contentDescription="@string/conservativeDice"
                 android:src="@drawable/conservative1" />
 
-            <com.aku.warhammerdicelauncher.ihm.components.NumberPickerMinMax
+            <com.whfrp3.ihm.components.NumberPickerMinMax
                 android:id="@+id/numberPickerConservative"
                 maxValue="99"
                 minValue="0"
@@ -95,7 +95,7 @@
                 android:contentDescription="@string/expertiseDice"
                 android:src="@drawable/expertise0" />
 
-            <com.aku.warhammerdicelauncher.ihm.components.NumberPickerMinMax
+            <com.whfrp3.ihm.components.NumberPickerMinMax
                 android:id="@+id/numberPickerExpertise"
                 maxValue="99"
                 minValue="0"
@@ -116,7 +116,7 @@
                 android:contentDescription="@string/fortuneDice"
                 android:src="@drawable/fortune0" />
 
-            <com.aku.warhammerdicelauncher.ihm.components.NumberPickerMinMax
+            <com.whfrp3.ihm.components.NumberPickerMinMax
                 android:id="@+id/numberPickerFortune"
                 maxValue="99"
                 minValue="0"
@@ -137,7 +137,7 @@
                 android:contentDescription="@string/misfortuneDice"
                 android:src="@drawable/misfortune0" />
 
-            <com.aku.warhammerdicelauncher.ihm.components.NumberPickerMinMax
+            <com.whfrp3.ihm.components.NumberPickerMinMax
                 android:id="@+id/numberPickerMisfortune"
                 maxValue="99"
                 minValue="0"
@@ -158,7 +158,7 @@
                 android:contentDescription="@string/challengeDice"
                 android:src="@drawable/challenge1" />
 
-            <com.aku.warhammerdicelauncher.ihm.components.NumberPickerMinMax
+            <com.whfrp3.ihm.components.NumberPickerMinMax
                 android:id="@+id/numberPickerChallenge"
                 maxValue="99"
                 minValue="0"
