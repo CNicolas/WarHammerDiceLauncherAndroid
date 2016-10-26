@@ -62,7 +62,6 @@ public abstract class PlayerContext {
         }
         notifyListeners();
 
-//        new AlertDialog.Builder(mContext).setTitle(player.getName()).setMessage(player.toString()).show();
         Log.e("Player Context", mPlayer.toString());
     }
 

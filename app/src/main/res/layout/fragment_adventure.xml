@@ -67,11 +67,13 @@
             android:id="@+id/player_stance"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/small_padding"
+            app:dsb_indicatorElevation="10dp"
             app:dsb_max="6"
             app:dsb_min="-6"
             app:dsb_progressColor="@color/colorPrimaryDark"
-            app:dsb_scrubberHeight="5dp"
-            app:dsb_thumbSize="20dp"
+            app:dsb_scrubberHeight="10dp"
+            app:dsb_thumbSize="30dp"
             app:dsb_value="0" />
 
     </LinearLayout>

@@ -5,13 +5,13 @@
         android:id="@+id/action_in_edition_true"
         android:icon="@drawable/ic_lock_open_white_24dp"
         android:title="@string/btn_editing"
-        android:visible="true"
+        android:visible="false"
         app:showAsAction="ifRoom" />
     <item
         android:id="@+id/action_in_edition_false"
         android:icon="@drawable/ic_lock_outline_white_24dp"
         android:title="@string/btn_not_editing"
-        android:visible="false"
+        android:visible="true"
         app:showAsAction="ifRoom" />
     <item
         android:id="@+id/action_launch"

@@ -31,7 +31,7 @@ public class CharacteristicEditTextWatcher implements TextWatcher {
     @Override
     public void afterTextChanged(Editable s) {
         setPlayerCharacteristic(mCharacteristic, s.toString());
-        PlayerContext.updatePlayer();
+//        PlayerContext.updatePlayer();
     }
 
     private void setPlayerCharacteristic(Characteristic characteristic, String s) {

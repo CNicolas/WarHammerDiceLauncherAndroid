@@ -3,6 +3,7 @@ package com.aku.warhammerdicelauncher.ihm.fragments;
 import android.content.Context;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -30,6 +31,8 @@ public class SkillsFragment extends Fragment implements OnPlayerUpdateListener {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+        long startTime = System.currentTimeMillis();
+
         View rootView = inflater.inflate(R.layout.fragment_skills, container, false);
 
         mSkillDao = new SkillDao(new WarHammerDatabaseHelper(getActivity()));
@@ -40,6 +43,8 @@ public class SkillsFragment extends Fragment implements OnPlayerUpdateListener {
 
         PlayerContext.registerPlayerUpdateListener(this);
 
+        long difference = System.currentTimeMillis() - startTime;
+        Log.d("SkillsFragment", String.format("%d = %d", startTime, difference));
         return rootView;
     }
 

@@ -24,10 +24,17 @@ import com.aku.warhammerdicelauncher.tools.constants.IPlayerConstants;
 public class PlayerPagerAdapter extends FragmentPagerAdapter {
 
     private final PlayerActivity mContext;
+
     private String mCharacteristicFragmentTag;
     private String mSkillsFragmentTag;
     private String mInventoryFragmentTag;
     private String mAdventureFragmentTag;
+
+    private CharacteristicsFragment mCharacteristicsFragment;
+    private SkillsFragment mSkillsFragment;
+    private InventoryFragment mInventoryFragment;
+    private AdventureFragment mAdventureFragment;
+
 
     public PlayerPagerAdapter(PlayerActivity ctx) {
         super(ctx.getSupportFragmentManager());
@@ -52,18 +59,29 @@ public class PlayerPagerAdapter extends FragmentPagerAdapter {
         switch (position) {
             case 0:
                 mCharacteristicFragmentTag = makeFragmentTag(position);
-                CharacteristicsFragment mCharacteristicsFragment = new CharacteristicsFragment();
-                mCharacteristicsFragment.setArguments(bundle);
+                if (mCharacteristicsFragment == null) {
+                    mCharacteristicsFragment = new CharacteristicsFragment();
+                    mCharacteristicsFragment.setArguments(bundle);
+                }
                 return mCharacteristicsFragment;
             case 1:
                 mSkillsFragmentTag = makeFragmentTag(position);
-                return new SkillsFragment();
+                if (mSkillsFragment == null) {
+                    mSkillsFragment = new SkillsFragment();
+                }
+                return mSkillsFragment;
             case 2:
                 mInventoryFragmentTag = makeFragmentTag(position);
-                return new InventoryFragment();
+                if (mInventoryFragment == null) {
+                    mInventoryFragment = new InventoryFragment();
+                }
+                return mInventoryFragment;
             case 3:
                 mAdventureFragmentTag = makeFragmentTag(position);
-                return new AdventureFragment();
+                if (mAdventureFragment == null) {
+                    mAdventureFragment = new AdventureFragment();
+                }
+                return mAdventureFragment;
             default:
                 return null;
         }
@@ -73,6 +91,7 @@ public class PlayerPagerAdapter extends FragmentPagerAdapter {
     public int getCount() {
         return 4;
     }
+
 
     @Override
     public CharSequence getPageTitle(int position) {

@@ -31,7 +31,7 @@ public class PlayerEditTextWatcher implements TextWatcher {
     @Override
     public void afterTextChanged(Editable s) {
         setPlayerInformation(playerInformation, s.toString());
-        PlayerContext.updatePlayer();
+//        PlayerContext.updatePlayer();
     }
 
     private void setPlayerInformation(PlayerInformation playerInformation, String newValue) {

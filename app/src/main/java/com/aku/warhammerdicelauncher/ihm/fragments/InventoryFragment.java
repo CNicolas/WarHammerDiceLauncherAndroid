@@ -2,6 +2,7 @@ package com.aku.warhammerdicelauncher.ihm.fragments;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -28,6 +29,8 @@ public class InventoryFragment extends Fragment {
     @Override
     public View onCreateView(final LayoutInflater inflater, final ViewGroup container,
                              Bundle savedInstanceState) {
+        long startTime = System.currentTimeMillis();
+
         View rootView = inflater.inflate(R.layout.fragment_inventory, container, false);
 
         ExpandableListView expListView = (ExpandableListView) rootView.findViewById(R.id.inventory);
@@ -49,6 +52,8 @@ public class InventoryFragment extends Fragment {
 
         expListView.setAdapter(adapter);
 
+        long difference = System.currentTimeMillis() - startTime;
+        Log.d("InventoryFragment", String.format("%d = %d", startTime, difference));
         return rootView;
     }
 }

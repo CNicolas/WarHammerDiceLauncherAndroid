@@ -133,6 +133,7 @@ public class PlayerActivity extends AppCompatActivity implements IPlayerConstant
 
         ViewPager viewPager = (ViewPager) findViewById(R.id.player_pager_container);
         viewPager.setAdapter(mPlayerPagerAdapter);
+        viewPager.setOffscreenPageLimit(2);
 
         TabLayout tabLayout = (TabLayout) findViewById(R.id.tabs);
         tabLayout.setupWithViewPager(viewPager);
