@@ -356,7 +356,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginEnd="@dimen/medium_padding"
                     android:layout_weight="1"
-                    android:background="#2f8f3f">
+                    android:background="@color/conservative">
 
                     <TextView
                         style="@style/PlayerInformationLabelTextView"
@@ -389,7 +389,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginStart="@dimen/medium_padding"
                     android:layout_weight="1"
-                    android:background="#ff0000">
+                    android:background="@color/reckless">
 
                     <TextView
                         style="@style/PlayerInformationLabelTextView"
