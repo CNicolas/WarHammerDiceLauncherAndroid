@@ -1,9 +1,5 @@
 package com.aku.warhammerdicelauncher.ihm.adapters;
 
-/**
- * Created by cnicolas on 17/10/2016.
- */
-
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -21,6 +17,9 @@ import com.aku.warhammerdicelauncher.ihm.fragments.SkillsFragment;
 import com.aku.warhammerdicelauncher.tools.PlayerContext;
 import com.aku.warhammerdicelauncher.tools.constants.IPlayerConstants;
 
+/**
+ * The PlayerPagerAdapter creates and manages the Fragments from the PlayerActivity.
+ */
 public class PlayerPagerAdapter extends FragmentPagerAdapter {
 
     private final PlayerActivity mContext;
@@ -33,6 +32,12 @@ public class PlayerPagerAdapter extends FragmentPagerAdapter {
         mContext = ctx;
     }
 
+    /**
+     * Get the fragment tag for the fragment at the given index.
+     *
+     * @param index the index of the fragment in the tabbedActivity.
+     * @return the fragment tag.
+     */
     private static String makeFragmentTag(int index) {
         return "android:switcher:" + R.id.player_pager_container + ":" + index;
     }
@@ -80,6 +85,12 @@ public class PlayerPagerAdapter extends FragmentPagerAdapter {
         return null;
     }
 
+    /**
+     * Sets the icon in the tab.
+     *
+     * @param image the image.
+     * @return the page title to show in the tablayout.
+     */
     private CharSequence setTabIcon(Drawable image) {
         image.setBounds(0, 0, image.getIntrinsicWidth(), image.getIntrinsicHeight());
         SpannableString sb = new SpannableString(" ");
@@ -88,14 +99,29 @@ public class PlayerPagerAdapter extends FragmentPagerAdapter {
         return sb;
     }
 
+    /**
+     * Provides the current CharacteristicsFragment.
+     *
+     * @return the CharacteristicsFragment.
+     */
     public CharacteristicsFragment getCharacteristicsFragment() {
         return (CharacteristicsFragment) mContext.getSupportFragmentManager().findFragmentByTag(mCharacteristicFragmentTag);
     }
 
+    /**
+     * Provides the current SkillsFragment.
+     *
+     * @return the SkillsFragment.
+     */
     public SkillsFragment getSkillsFragment() {
         return (SkillsFragment) mContext.getSupportFragmentManager().findFragmentByTag(mSkillsFragmentTag);
     }
 
+    /**
+     * Provides the current InventoryFragment.
+     *
+     * @return the InventoryFragment.
+     */
     public InventoryFragment getInventoryFragment() {
         return (InventoryFragment) mContext.getSupportFragmentManager().findFragmentByTag(mInventoryFragmentTag);
     }

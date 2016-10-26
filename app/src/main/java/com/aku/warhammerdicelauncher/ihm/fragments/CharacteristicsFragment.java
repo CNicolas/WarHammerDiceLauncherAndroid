@@ -17,9 +17,8 @@ import com.aku.warhammerdicelauncher.tools.enums.Characteristic;
 import com.aku.warhammerdicelauncher.tools.enums.PlayerInformation;
 
 /**
- * Created by cnicolas on 23/09/2016.
+ * The CharacteristicsFragment.
  */
-
 public class CharacteristicsFragment extends Fragment {
     //region Characteristic Fields
     private EditText mPlayerStrengthView;
@@ -88,6 +87,9 @@ public class CharacteristicsFragment extends Fragment {
         super.onResume();
     }
 
+    /**
+     * Update the UI according to the edition boolean from context.
+     */
     public void changeEdition() {
         boolean isInEdition = PlayerContext.isInEdition();
 
@@ -99,6 +101,11 @@ public class CharacteristicsFragment extends Fragment {
         }
     }
 
+    /**
+     * Change the editable state of the blue characteristics EditTexts.
+     *
+     * @param isInEdition the edition state.
+     */
     private void updateCharacteristicsEdition(boolean isInEdition) {
         mPlayerStrengthView.setFocusable(isInEdition);
         mPlayerStrengthView.setFocusableInTouchMode(isInEdition);
@@ -125,6 +132,11 @@ public class CharacteristicsFragment extends Fragment {
         mPlayerFellowshipView.setClickable(isInEdition);
     }
 
+    /**
+     * Change the editable state of the white characteristics fortune EditTexts.
+     *
+     * @param isInEdition the edition state.
+     */
     private void updateCharacteristicsFortuneEdition(boolean isInEdition) {
         mPlayerStrengthFortuneView.setFocusable(isInEdition);
         mPlayerStrengthFortuneView.setFocusableInTouchMode(isInEdition);
@@ -151,6 +163,11 @@ public class CharacteristicsFragment extends Fragment {
         mPlayerFellowshipFortuneView.setClickable(isInEdition);
     }
 
+    /**
+     * Change the editable state of the player information EditTexts.
+     *
+     * @param isInEdition the edition state.
+     */
     private void updatePlayerInformationEdition(boolean isInEdition) {
         mPlayerAgeView.setFocusable(isInEdition);
         mPlayerAgeView.setFocusableInTouchMode(isInEdition);
@@ -190,6 +207,10 @@ public class CharacteristicsFragment extends Fragment {
     }
 
     //region Characteristics Setup
+
+    /**
+     * Initialize the player characteristics fields.
+     */
     private void initPlayerCharacteristicsFields() {
         mPlayerStrengthView = (EditText) mRootView.findViewById(R.id.strength_characteristic);
         mPlayerToughnessView = (EditText) mRootView.findViewById(R.id.toughness_characteristic);
@@ -206,6 +227,9 @@ public class CharacteristicsFragment extends Fragment {
         mPlayerFellowshipFortuneView = (EditText) mRootView.findViewById(R.id.fellowship_fortune);
     }
 
+    /**
+     * Fills the player characteristics fields.
+     */
     private void fillPlayerCharacteristicsFields() {
         Player player = PlayerContext.getPlayerInstance();
 
@@ -236,6 +260,9 @@ public class CharacteristicsFragment extends Fragment {
         mPlayerFellowshipFortuneView.setText(fellowshipFortune == 0 ? "" : String.valueOf(fellowshipFortune));
     }
 
+    /**
+     * Initialize the player characteristics text watchers.
+     */
     private void initPlayerCharacteristicsWatchers() {
         mPlayerStrengthView.addTextChangedListener(new CharacteristicEditTextWatcher(Characteristic.STRENGTH));
         mPlayerToughnessView.addTextChangedListener(new CharacteristicEditTextWatcher(Characteristic.TOUGHNESS));
@@ -254,6 +281,10 @@ public class CharacteristicsFragment extends Fragment {
     //endregion
 
     //region Text fields setup
+
+    /**
+     * Initialize the player information fields.
+     */
     private void initPlayerInformationFields() {
         mPlayerAgeView = (EditText) mRootView.findViewById(R.id.player_age);
         mPlayerCareerView = (EditText) mRootView.findViewById(R.id.player_career);
@@ -274,6 +305,9 @@ public class CharacteristicsFragment extends Fragment {
         mPlayerSizeView = (EditText) mRootView.findViewById(R.id.player_size);
     }
 
+    /**
+     * Fill the player information fields.
+     */
     private void fillPlayerInformationFields() {
         Player player = PlayerContext.getPlayerInstance();
 
@@ -320,6 +354,9 @@ public class CharacteristicsFragment extends Fragment {
         mPlayerSizeView.setText(size == 0 ? "" : String.valueOf(size));
     }
 
+    /**
+     * Initialize the player information text watchers.
+     */
     private void initPlayerInformationWatchers() {
         mPlayerAgeView.addTextChangedListener(new PlayerEditTextWatcher(PlayerInformation.AGE));
         mPlayerCareerView.addTextChangedListener(new PlayerEditTextWatcher(PlayerInformation.CAREER));

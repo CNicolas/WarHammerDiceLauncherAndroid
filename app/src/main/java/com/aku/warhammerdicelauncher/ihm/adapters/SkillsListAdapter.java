@@ -18,9 +18,8 @@ import com.aku.warhammerdicelauncher.model.player.skill.SkillHolder;
 import java.util.List;
 
 /**
- * Created by cnicolas on 24/10/2016.
+ * The Adapter for the Skills list.
  */
-
 public class SkillsListAdapter extends ArrayAdapter<Skill> {
 
     private final Context mContext;
@@ -42,11 +41,7 @@ public class SkillsListAdapter extends ArrayAdapter<Skill> {
             LayoutInflater inflater = ((Activity) mContext).getLayoutInflater();
             row = inflater.inflate(mItemLayoutId, parent, false);
 
-            holder = new SkillHolder();
-            holder.setSkillName((TextView) row.findViewById(R.id.item_skills_list_name));
-            holder.setCheckbox1((CheckBox) row.findViewById(R.id.item_skills_list_level1));
-            holder.setCheckbox2((CheckBox) row.findViewById(R.id.item_skills_list_level2));
-            holder.setCheckbox3((CheckBox) row.findViewById(R.id.item_skills_list_level3));
+            holder = createNewSkillHolderFromRow(row);
 
             row.setTag(holder);
         } else {
@@ -66,6 +61,12 @@ public class SkillsListAdapter extends ArrayAdapter<Skill> {
         return row;
     }
 
+    /**
+     * Select the checkbox according to the level of the skill.
+     *
+     * @param level  the level of the skill.
+     * @param holder the holder.
+     */
     private void preSelectLevelOfSkill(int level, SkillHolder holder) {
         switch (level) {
             case 1:
@@ -89,5 +90,21 @@ public class SkillsListAdapter extends ArrayAdapter<Skill> {
                 holder.getCheckbox3().setChecked(false);
                 break;
         }
+    }
+
+    /**
+     * Initialize a SkillHolder from the creating list item.
+     *
+     * @param row the list item.
+     * @return the SkillHolder.
+     */
+    private SkillHolder createNewSkillHolderFromRow(View row) {
+        SkillHolder holder = new SkillHolder();
+        holder.setSkillName((TextView) row.findViewById(R.id.item_skills_list_name));
+        holder.setCheckbox1((CheckBox) row.findViewById(R.id.item_skills_list_level1));
+        holder.setCheckbox2((CheckBox) row.findViewById(R.id.item_skills_list_level2));
+        holder.setCheckbox3((CheckBox) row.findViewById(R.id.item_skills_list_level3));
+
+        return holder;
     }
 }

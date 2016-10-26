@@ -11,11 +11,11 @@ import com.aku.warhammerdicelauncher.database.entries.IPlayerEntryConstants;
 import com.aku.warhammerdicelauncher.database.entries.ISkillEntryConstants;
 
 /**
- * Created by cnicolas on 10/05/2016.
+ * The Database Helper.
  */
 public class WarHammerDatabaseHelper extends SQLiteOpenHelper {
-    public static final int DATABASE_VERSION = 1;
-    public static final String DATABASE_NAME = "WHFRP3.db";
+    private static final int DATABASE_VERSION = 1;
+    private static final String DATABASE_NAME = "WHFRP3.db";
 
     public WarHammerDatabaseHelper(Context context) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);

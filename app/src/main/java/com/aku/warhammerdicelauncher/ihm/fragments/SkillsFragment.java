@@ -19,9 +19,8 @@ import com.aku.warhammerdicelauncher.tools.helpers.OnPlayerUpdateListener;
 import java.util.List;
 
 /**
- * Created by cnicolas on 23/09/2016.
+ * The SkillFragment.
  */
-
 public class SkillsFragment extends Fragment implements OnPlayerUpdateListener {
 
     private ListView mSkillsListView;

@@ -7,9 +7,9 @@ import android.util.AttributeSet;
 import android.widget.NumberPicker;
 
 /**
- * Created by cnicolas on 04/05/2016.
+ * Extension of the standard NumberPicker, providing the xml attributes minValue and maxValue.
  */
-@TargetApi(Build.VERSION_CODES.HONEYCOMB)//For backward-compability
+@TargetApi(Build.VERSION_CODES.HONEYCOMB)
 public class NumberPickerMinMax extends NumberPicker {
     public NumberPickerMinMax(Context context) {
         super(context);
