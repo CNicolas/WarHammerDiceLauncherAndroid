@@ -1,9 +1,8 @@
 package com.aku.warhammerdicelauncher.database.entries;
 
 /**
- * Created by cnicolas on 05/10/2016.
+ * The Player database constants.
  */
-
 public interface IPlayerEntryConstants extends IEntryConstants {
     String TABLE_NAME = "player";
 

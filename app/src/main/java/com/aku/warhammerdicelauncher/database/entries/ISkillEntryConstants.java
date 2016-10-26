@@ -1,9 +1,8 @@
 package com.aku.warhammerdicelauncher.database.entries;
 
 /**
- * Created by cnicolas on 05/10/2016.
+ * The Skill database constants.
  */
-
 public interface ISkillEntryConstants extends IEntryConstants {
     String TABLE_NAME = "skill";
 

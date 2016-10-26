@@ -3,10 +3,9 @@ package com.aku.warhammerdicelauncher.database.entries;
 import android.provider.BaseColumns;
 
 /**
- * Created by cnicolas on 12/10/2016.
+ * The database constants common to every table.
  */
-
-public interface IEntryConstants extends BaseColumns {
+interface IEntryConstants extends BaseColumns {
     String COLUMN_ID = "id";
 
     String TEXT_TYPE = " TEXT";

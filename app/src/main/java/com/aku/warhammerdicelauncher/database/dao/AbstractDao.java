@@ -12,15 +12,16 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Created by cnicolas on 06/10/2016.
+ * Gather the common methods for daos.
+ *
+ * @param <T> the associated IModel.
  */
-
 public abstract class AbstractDao<T extends IModel> implements IDao<T> {
     protected WarHammerDatabaseHelper whdHelper;
     protected String tableName;
     protected String columnId;
 
-    public AbstractDao(WarHammerDatabaseHelper whdHelper) {
+    AbstractDao(WarHammerDatabaseHelper whdHelper) {
         this.whdHelper = whdHelper;
     }
 
@@ -133,6 +134,11 @@ public abstract class AbstractDao<T extends IModel> implements IDao<T> {
     }
     //endregion
 
+    /**
+     * Get the next insertable id for the table.
+     *
+     * @return the next id.
+     */
     public int getNextId() {
         List<String> idsList = findAllValuesOfColumn(columnId);
         if (idsList.size() > 0) {
@@ -142,7 +148,19 @@ public abstract class AbstractDao<T extends IModel> implements IDao<T> {
         }
     }
 
+    /**
+     * Extract the model fields to a ContentValues element (a kind of map), understandable by the Sql helper.
+     *
+     * @param model the model.
+     * @return the ContentValues.
+     */
     protected abstract ContentValues contentValuesFromModel(T model);
 
+    /**
+     * Create a model from the cursor.
+     *
+     * @param cursor the current element of the returning query.
+     * @return the model.
+     */
     protected abstract T createModelFromCursor(Cursor cursor);
 }

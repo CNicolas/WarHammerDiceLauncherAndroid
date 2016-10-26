@@ -1,9 +1,8 @@
 package com.aku.warhammerdicelauncher.database.entries;
 
 /**
- * Created by cnicolas on 05/10/2016.
+ * The Hand database constants.
  */
-
 public interface IHandEntryConstants extends IEntryConstants {
     String TABLE_NAME = "hand";
 

@@ -1,9 +1,8 @@
 package com.aku.warhammerdicelauncher.database.entries;
 
 /**
- * Created by cnicolas on 05/10/2016.
+ * The Characteristics database constants.
  */
-
 public interface ICharacteristicsEntryConstants extends IEntryConstants {
     String TABLE_NAME = "characteristics";
 
