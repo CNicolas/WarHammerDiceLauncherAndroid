@@ -27,10 +27,6 @@ public class SkillsFragment extends Fragment implements OnPlayerUpdateListener {
     private SkillDao mSkillDao;
     private List<Skill> mSkills;
 
-    public SkillsFragment() {
-        // Required empty public constructor
-    }
-
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {

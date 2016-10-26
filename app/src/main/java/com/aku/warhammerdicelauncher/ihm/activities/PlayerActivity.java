@@ -36,8 +36,6 @@ public class PlayerActivity extends AppCompatActivity implements IPlayerConstant
     private PlayerPagerAdapter mPlayerPagerAdapter;
     private FloatingActionButton mEditionFab;
     private Menu mMenu;
-    private PlayerDao mPlayerDao;
-    private CharacteristicsDao mCharacteristicsDao;
 
     //region Overrides
     @Override
@@ -119,11 +117,8 @@ public class PlayerActivity extends AppCompatActivity implements IPlayerConstant
      */
     private void initDaos() {
         WarHammerDatabaseHelper databaseHelper = new WarHammerDatabaseHelper(this);
-        mPlayerDao = new PlayerDao(databaseHelper);
-        mCharacteristicsDao = new CharacteristicsDao(databaseHelper);
-
-        PlayerContext.setPlayerDao(mPlayerDao);
-        PlayerContext.setCharacteristicsDao(mCharacteristicsDao);
+        PlayerContext.setPlayerDao(new PlayerDao(databaseHelper));
+        PlayerContext.setCharacteristicsDao(new CharacteristicsDao(databaseHelper));
     }
 
     /**

@@ -11,6 +11,7 @@ import android.text.style.ImageSpan;
 
 import com.aku.warhammerdicelauncher.R;
 import com.aku.warhammerdicelauncher.ihm.activities.PlayerActivity;
+import com.aku.warhammerdicelauncher.ihm.fragments.AdventureFragment;
 import com.aku.warhammerdicelauncher.ihm.fragments.CharacteristicsFragment;
 import com.aku.warhammerdicelauncher.ihm.fragments.InventoryFragment;
 import com.aku.warhammerdicelauncher.ihm.fragments.SkillsFragment;
@@ -26,6 +27,7 @@ public class PlayerPagerAdapter extends FragmentPagerAdapter {
     private String mCharacteristicFragmentTag;
     private String mSkillsFragmentTag;
     private String mInventoryFragmentTag;
+    private String mAdventureFragmentTag;
 
     public PlayerPagerAdapter(PlayerActivity ctx) {
         super(ctx.getSupportFragmentManager());
@@ -59,14 +61,17 @@ public class PlayerPagerAdapter extends FragmentPagerAdapter {
             case 2:
                 mInventoryFragmentTag = makeFragmentTag(position);
                 return new InventoryFragment();
+            case 3:
+                mAdventureFragmentTag = makeFragmentTag(position);
+                return new AdventureFragment();
             default:
-                return new SkillsFragment();
+                return null;
         }
     }
 
     @Override
     public int getCount() {
-        return 3;
+        return 4;
     }
 
     @Override
@@ -80,6 +85,9 @@ public class PlayerPagerAdapter extends FragmentPagerAdapter {
                 return setTabIcon(image);
             case 2:
                 image = ContextCompat.getDrawable(mContext, R.drawable.ic_rucksack_black);
+                return setTabIcon(image);
+            case 3:
+                image = ContextCompat.getDrawable(mContext, R.drawable.ic_adventure_black);
                 return setTabIcon(image);
         }
         return null;
@@ -124,5 +132,14 @@ public class PlayerPagerAdapter extends FragmentPagerAdapter {
      */
     public InventoryFragment getInventoryFragment() {
         return (InventoryFragment) mContext.getSupportFragmentManager().findFragmentByTag(mInventoryFragmentTag);
+    }
+
+    /**
+     * Provides the current AdventureFragment.
+     *
+     * @return the AdventureFragment.
+     */
+    public AdventureFragment getAdventureFragment() {
+        return (AdventureFragment) mContext.getSupportFragmentManager().findFragmentByTag(mAdventureFragmentTag);
     }
 }

@@ -82,7 +82,7 @@
     <string name="corruption_label">Corruption :</string>
     <string name="reckless_label">Reckless :</string>
     <string name="conservative_label">Conservative :</string>
-    <string name="stance_label"></string>
+    <string name="stance_label">Stance :</string>
     <string name="btn_editing">Editing</string>
     <string name="btn_not_editing">Not editing</string>
     <!--End of pages-->

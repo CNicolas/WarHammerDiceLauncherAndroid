@@ -11,6 +11,8 @@ import android.widget.NumberPicker;
  */
 @TargetApi(Build.VERSION_CODES.HONEYCOMB)
 public class NumberPickerMinMax extends NumberPicker {
+
+    //region Constructors matching super
     public NumberPickerMinMax(Context context) {
         super(context);
     }
@@ -24,6 +26,7 @@ public class NumberPickerMinMax extends NumberPicker {
         super(context, attrs, defStyle);
         processAttributeSet(attrs);
     }
+    //endregion
 
     private void processAttributeSet(AttributeSet attrs) {
         //This method reads the parameters given in the xml file and sets the properties according to it

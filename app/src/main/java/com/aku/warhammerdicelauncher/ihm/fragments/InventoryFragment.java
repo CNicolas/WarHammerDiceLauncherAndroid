@@ -25,10 +25,6 @@ import java.util.Map;
 
 public class InventoryFragment extends Fragment {
 
-    public InventoryFragment() {
-        // Required empty public constructor
-    }
-
     @Override
     public View onCreateView(final LayoutInflater inflater, final ViewGroup container,
                              Bundle savedInstanceState) {
