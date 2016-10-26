@@ -1,22 +1,24 @@
 package com.aku.warhammerdicelauncher.tools.enums;
 
-/**
- * Created by cnicolas on 06/10/2016.
- */
+import com.aku.warhammerdicelauncher.database.entries.ICharacteristicsEntryConstants;
 
+/**
+ * List all the different characteristics.
+ */
 public enum Characteristic {
-    STRENGTH("strength"),
-    TOUGHNESS("toughness"),
-    AGILITY("agility"),
-    INTELLIGENCE("intelligence"),
-    WILLPOWER("willpower"),
-    FELLOWSHIP("fellowship"),
-    STRENGTH_FORTUNE("strength_fortune"),
-    TOUGHNESS_FORTUNE("toughness_fortune"),
-    AGILITY_FORTUNE("agility_fortune"),
-    INTELLIGENCE_FORTUNE("intelligence_fortune"),
-    WILLPOWER_FORTUNE("willpower_fortune"),
-    FELLOWSHIP_FORTUNE("fellowship_fortune");
+    STRENGTH(ICharacteristicsEntryConstants.COLUMN_STRENGTH),
+    TOUGHNESS(ICharacteristicsEntryConstants.COLUMN_TOUGHNESS),
+    AGILITY(ICharacteristicsEntryConstants.COLUMN_AGILITY),
+    INTELLIGENCE(ICharacteristicsEntryConstants.COLUMN_INTELLIGENCE),
+    WILLPOWER(ICharacteristicsEntryConstants.COLUMN_WILLPOWER),
+    FELLOWSHIP(ICharacteristicsEntryConstants.COLUMN_FELLOWSHIP),
+
+    STRENGTH_FORTUNE(ICharacteristicsEntryConstants.COLUMN_STRENGTH_FORTUNE),
+    TOUGHNESS_FORTUNE(ICharacteristicsEntryConstants.COLUMN_TOUGHNESS_FORTUNE),
+    AGILITY_FORTUNE(ICharacteristicsEntryConstants.COLUMN_AGILITY_FORTUNE),
+    INTELLIGENCE_FORTUNE(ICharacteristicsEntryConstants.COLUMN_INTELLIGENCE_FORTUNE),
+    WILLPOWER_FORTUNE(ICharacteristicsEntryConstants.COLUMN_WILLPOWER_FORTUNE),
+    FELLOWSHIP_FORTUNE(ICharacteristicsEntryConstants.COLUMN_FELLOWSHIP_FORTUNE);
 
     private final String characteristic;
 

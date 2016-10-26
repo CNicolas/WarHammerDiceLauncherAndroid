@@ -1,7 +1,7 @@
 package com.aku.warhammerdicelauncher.model.dices;
 
 /**
- * Created by cnicolas on 04/05/2016.
+ * Lists the available dice faces.
  */
 public enum DiceFaces {
     BOON,

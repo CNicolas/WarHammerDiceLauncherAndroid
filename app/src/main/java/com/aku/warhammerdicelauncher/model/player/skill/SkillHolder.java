@@ -4,16 +4,31 @@ import android.widget.CheckBox;
 import android.widget.TextView;
 
 /**
- * Created by cnicolas on 25/10/2016.
+ * An item of the skillsListView.
  */
-
 public class SkillHolder {
+    /**
+     * The position in the ListView.
+     */
     private int position;
+    /**
+     * The Skill name.
+     */
     private TextView mName;
+    /**
+     * The first checkbox representing the level 1.
+     */
     private CheckBox mCheckbox1;
+    /**
+     * The second checkbox representing the level 2.
+     */
     private CheckBox mCheckbox2;
+    /**
+     * The third checkbox representing the level 3.
+     */
     private CheckBox mCheckbox3;
 
+    //region Get & Set
     public int getPosition() {
         return position;
     }
@@ -53,4 +68,5 @@ public class SkillHolder {
     public void setCheckbox3(CheckBox checkbox3) {
         this.mCheckbox3 = checkbox3;
     }
+    //endregion
 }

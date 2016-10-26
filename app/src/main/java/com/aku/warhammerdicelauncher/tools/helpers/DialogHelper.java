@@ -13,11 +13,16 @@ import com.aku.warhammerdicelauncher.tools.constants.IHandConstants;
 import java.util.Map;
 
 /**
- * Created by cnicolas on 21/09/2016.
+ * A dialog helper, creating the dialog you need.
  */
-
 public abstract class DialogHelper {
 
+    /**
+     * Shows the result of a launch.
+     *
+     * @param map the final results.
+     * @param ctx the context, where to open the dialog.
+     */
     public static void showLaunchResults(Map<DiceFaces, Integer> map, Context ctx) {
         final Dialog dialog = new Dialog(ctx);
         dialog.setContentView(R.layout.dialog_results);

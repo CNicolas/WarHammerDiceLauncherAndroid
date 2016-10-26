@@ -3,9 +3,8 @@ package com.aku.warhammerdicelauncher.tools.enums;
 import com.aku.warhammerdicelauncher.R;
 
 /**
- * Created by cnicolas on 24/10/2016.
+ * Lists the 18 basic skills with their associated characteristic.
  */
-
 public enum SkillEnum {
     ATHLETICS(R.string.skill_athletics, Characteristic.STRENGTH),
     BALLISTIC(R.string.skill_ballistic, Characteristic.AGILITY),

@@ -11,11 +11,16 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Created by cnicolas on 24/10/2016.
+ * Helper for skills, if needed.
  */
-
 public abstract class SkillsHelper {
 
+    /**
+     * Create the 18 basic skills, at level 0 of expertise, for the current player.
+     *
+     * @param context to fetch the string resources.
+     * @return the list of new basic skills.
+     */
     public static List<Skill> createBasicSkills(Context context) {
         Player player = PlayerContext.getPlayerInstance();
 

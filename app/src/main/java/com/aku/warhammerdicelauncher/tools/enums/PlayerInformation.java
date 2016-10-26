@@ -3,9 +3,8 @@ package com.aku.warhammerdicelauncher.tools.enums;
 import com.aku.warhammerdicelauncher.database.entries.IPlayerEntryConstants;
 
 /**
- * Created by cnicolas on 14/10/2016.
+ * List the player information and links them to the column in database.
  */
-
 public enum PlayerInformation {
     NAME(IPlayerEntryConstants.COLUMN_NAME),
     CAREER(IPlayerEntryConstants.COLUMN_CAREER),

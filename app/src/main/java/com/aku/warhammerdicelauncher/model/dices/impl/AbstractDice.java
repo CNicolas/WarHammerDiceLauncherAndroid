@@ -8,18 +8,24 @@ import java.util.List;
 import java.util.Random;
 
 /**
- * Created by cnicolas on 04/05/2016.
+ * Gather the methods common to each dice.
  */
-public abstract class AbstractDice implements IDice {
-    protected int facesNumber;
+abstract class AbstractDice implements IDice {
     protected List<DiceFaces[]> faces;
+    private int facesNumber;
 
-    public AbstractDice(int facesNumber) {
+    AbstractDice(int facesNumber) {
         this.facesNumber = facesNumber;
         this.faces = new ArrayList<>(facesNumber);
     }
 
-    protected static List<DiceFaces> toGoodArray(DiceFaces[] faces) {
+    /**
+     * Simplifies the given faces array : removing the blank faces, replacing Success+ by simple success.
+     *
+     * @param faces the faces array to simplify.
+     * @return Simplified List.
+     */
+    private static List<DiceFaces> toGoodArray(DiceFaces[] faces) {
         List<DiceFaces> res = new ArrayList<>();
         for (DiceFaces face : faces) {
             if (face == DiceFaces.SUCCESS_PLUS) {
@@ -31,7 +37,14 @@ public abstract class AbstractDice implements IDice {
         return res;
     }
 
-    protected static boolean containsFace(DiceFaces[] lastFaces, DiceFaces faceToSeek) {
+    /**
+     * Does the given list of dice faces contains given face ?
+     *
+     * @param lastFaces  faces list.
+     * @param faceToSeek face to seek.
+     * @return Yes or no.
+     */
+    private static boolean containsFace(DiceFaces[] lastFaces, DiceFaces faceToSeek) {
         for (DiceFaces face : lastFaces) {
             if (face == faceToSeek) {
                 return true;
@@ -40,6 +53,11 @@ public abstract class AbstractDice implements IDice {
         return false;
     }
 
+    /**
+     * Roll the dice.
+     *
+     * @return the resulting faces.
+     */
     public List<DiceFaces> roll() {
         List<DiceFaces> res = new ArrayList<>();
         DiceFaces[] lastFaces;
@@ -50,7 +68,12 @@ public abstract class AbstractDice implements IDice {
         return res;
     }
 
-    protected int randomNumber() {
+    /**
+     * Get a random number between the facesNumber.
+     *
+     * @return face number.
+     */
+    private int randomNumber() {
         Random rand = new Random();
         return rand.nextInt(facesNumber);
     }

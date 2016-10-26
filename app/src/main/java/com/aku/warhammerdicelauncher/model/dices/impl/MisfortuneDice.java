@@ -3,7 +3,7 @@ package com.aku.warhammerdicelauncher.model.dices.impl;
 import com.aku.warhammerdicelauncher.model.dices.DiceFaces;
 
 /**
- * Created by cnicolas on 04/05/2016.
+ * The MisfortuneDice (Black).
  */
 public class MisfortuneDice extends AbstractDice {
     public MisfortuneDice() {

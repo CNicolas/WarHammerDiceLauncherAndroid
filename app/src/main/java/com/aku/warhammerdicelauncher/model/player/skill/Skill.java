@@ -5,9 +5,8 @@ import com.aku.warhammerdicelauncher.model.player.Player;
 import com.aku.warhammerdicelauncher.tools.enums.Characteristic;
 
 /**
- * Created by cnicolas on 06/10/2016.
+ * The Skill model.
  */
-
 public class Skill implements IModel {
     private int id;
     private String name;
