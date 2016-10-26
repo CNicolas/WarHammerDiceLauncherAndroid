@@ -3,10 +3,10 @@ package com.whfrp3.ihm.adapters;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.BaseExpandableListAdapter;
 import android.widget.TextView;
 
 import com.whfrp3.R;
+import com.whfrp3.ihm.components.AnimatedExpandableListView;
 import com.whfrp3.model.player.inventory.Item;
 import com.whfrp3.model.player.inventory.ItemType;
 
@@ -14,38 +14,32 @@ import java.util.List;
 import java.util.Map;
 
 /**
- * Adapteur utilisé pour les listes extensibles.
+ * Adapter used by the InventoryFragment to show the item list.
  */
-public class ExpandableListAdapter extends BaseExpandableListAdapter {
+public class InventoryListAdapter extends AnimatedExpandableListView.AnimatedExpandableListAdapter {
 
-    //region Propriétés
+    //region Properties
     /**
-     *
+     * Inflater.
      */
     private LayoutInflater inflater;
 
     /**
-     * Liste des entêtes de la liste extensible.
-     */
-    private List<ItemType> headers;
-
-    /**
-     * Map contenant les listes des éléments à afficher en fonction des entêtes.
+     * Map containing inventory items by ItemType.
      */
     private Map<ItemType, List<? extends Item>> children;
     //endregion
 
-    //region Constructeurs
-    public ExpandableListAdapter(LayoutInflater inflater, List<ItemType> headers, Map<ItemType, List<? extends Item>> children) {
+    //region Constructors
+    public InventoryListAdapter(LayoutInflater inflater, Map<ItemType, List<? extends Item>> children) {
         this.inflater = inflater;
-        this.headers = headers;
         this.children = children;
     }
     //endregion
 
     @Override
     public Object getChild(int groupPosition, int childPosition) {
-        return children.get(headers.get(groupPosition)).get(childPosition);
+        return children.get(ItemType.getByOrdinal(groupPosition)).get(childPosition);
     }
 
     @Override
@@ -54,32 +48,32 @@ public class ExpandableListAdapter extends BaseExpandableListAdapter {
     }
 
     @Override
-    public View getChildView(int groupPosition, int childPosition, boolean isLastChild, View convertView, ViewGroup parent) {
+    public View getRealChildView(int groupPosition, int childPosition, boolean isLastChild, View convertView, ViewGroup parent) {
         Item item = (Item) getChild(groupPosition, childPosition);
 
         if (convertView == null) {
-            convertView = inflater.inflate(R.layout.expandable_list_item, null);
+            convertView = inflater.inflate(R.layout.inventory_item, null);
         }
 
-        TextView txtView = (TextView) convertView.findViewById(R.id.expListItem);
+        TextView txtView = (TextView) convertView.findViewById(R.id.inventoryItemName);
         txtView.setText(item.getName());
 
         return convertView;
     }
 
     @Override
-    public int getChildrenCount(int groupPosition) {
-        return children.get(headers.get(groupPosition)).size();
+    public int getRealChildrenCount(int groupPosition) {
+        return children.get(ItemType.getByOrdinal(groupPosition)).size();
     }
 
     @Override
     public Object getGroup(int groupPosition) {
-        return headers.get(groupPosition);
+        return ItemType.getByOrdinal(groupPosition);
     }
 
     @Override
     public int getGroupCount() {
-        return headers.size();
+        return ItemType.values().length;
     }
 
     @Override
@@ -92,11 +86,11 @@ public class ExpandableListAdapter extends BaseExpandableListAdapter {
         ItemType itemType = (ItemType) getGroup(groupPosition);
 
         if (convertView == null) {
-            convertView = inflater.inflate(R.layout.expandable_list_group, null);
+            convertView = inflater.inflate(R.layout.inventory_group_header, null);
         }
 
-        TextView txtView = (TextView) convertView.findViewById(R.id.expListGroupHeader);
-        txtView.setText(itemType.toString());
+        TextView txtView = (TextView) convertView.findViewById(R.id.inventoryGroupName);
+        txtView.setText(itemType.getName());
 
         return convertView;
     }

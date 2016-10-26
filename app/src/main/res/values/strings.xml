@@ -87,4 +87,6 @@
     <string name="btn_not_editing">Not editing</string>
     <!--End of pages-->
 
+    <string name="dummy_string">Dummy String</string>
+
 </resources>

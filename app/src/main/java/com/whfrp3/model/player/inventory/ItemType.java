@@ -1,26 +1,65 @@
 package com.whfrp3.model.player.inventory;
 
 /**
- * Types d'objet.
+ * Item types.
  */
 public enum ItemType {
     /**
-     * Objet standard.
+     * Standard item.
      */
-    ITEM,
+    ITEM("Standard item"),
 
     /**
-     * Objet utilisable.
+     * Usable item.
      */
-    USABLE_ITEM,
+    USABLE_ITEM("Usable item"),
 
     /**
-     * Arme.
+     * Weapon.
      */
-    WEAPON,
+    WEAPON("Weapon"),
 
     /**
-     * Armure.
+     * Armor.
      */
-    ARMOR
+    ARMOR("Armor");
+
+    /**
+     * Item type name.
+     */
+    private String name;
+
+    /**
+     * Private constructor.
+     *
+     * @param name Item type name.
+     */
+    private ItemType(String name) {
+        this.name = name;
+    }
+
+    /**
+     * Return item type name.
+     *
+     * @return Item type name.
+     */
+    public String getName() {
+        return name;
+    }
+
+    /**
+     * Return the ItemType value according to the ordinal.
+     *
+     * @param ordinal Ordinal of the ItemType.
+     * @return ItemType value according to the ordinal.
+     */
+    public static ItemType getByOrdinal(int ordinal) {
+        for (ItemType type : values()) {
+            if (type.ordinal() == ordinal) {
+                return type;
+            }
+        }
+
+        throw new IllegalArgumentException("No ItemType value found for this ordinal [" + ordinal + "]");
+    }
 }

@@ -6,7 +6,7 @@
     <color name="spinner_background">#cfd8dc</color>
     <color name="black">#212121</color>
     <color name="characteristic_blue">#3f51b5</color>
-
     <color name="conservative">#2f8f3f</color>
     <color name="reckless">#dd0000</color>
+    <color name="white">#ffffff</color>
 </resources>
