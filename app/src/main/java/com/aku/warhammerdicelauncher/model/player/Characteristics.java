@@ -24,9 +24,6 @@ public class Characteristics implements IModel {
     private int willpower_fortune;
     private int fellowship_fortune;
 
-    public Characteristics() {
-    }
-
     public Hand getCharacteristicHand(Characteristic characteristic) {
         int blue = 0;
         int white = 0;

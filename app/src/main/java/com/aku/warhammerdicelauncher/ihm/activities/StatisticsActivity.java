@@ -59,11 +59,20 @@ public class StatisticsActivity extends AppCompatActivity {
         callRollThread();
     }
 
+    /**
+     * Event click for the launch button. Simply launch the hand again.
+     *
+     * @param v Calling view.
+     */
     public void relaunch(View v) {
         callRollThread();
     }
 
     //region Thread roll
+
+    /**
+     * Start the thread which call the rollThread
+     */
     private void callRollThread() {
         showProgress(true);
 
@@ -75,6 +84,9 @@ public class StatisticsActivity extends AppCompatActivity {
         t.start();
     }
 
+    /**
+     * The thread which launches the dices.
+     */
     private void rollThenUpdateUI() {
         Thread t = new Thread(new Runnable() {
             public void run() {
@@ -98,6 +110,9 @@ public class StatisticsActivity extends AppCompatActivity {
     }
     //endregion
 
+    /**
+     * Launch the hand "times" and show the statistics.
+     */
     private void launchDicesAndGetStatistics() {
         successfulRolls = 0;
         averageSuccessNumber = 0;
@@ -128,6 +143,10 @@ public class StatisticsActivity extends AppCompatActivity {
     }
 
     //region UI
+
+    /**
+     * Set the values in TextViews.
+     */
     private void updateUIStatistics() {
         String throwsNumberText = String.format(getResources().getString(R.string.throwsNumberFormat), String.valueOf(times));
         TextView throwsNumberView = (TextView) findViewById(R.id.throwsNumberView);
@@ -163,6 +182,11 @@ public class StatisticsActivity extends AppCompatActivity {
         averageBaneTextView.setText(averageBaneText);
     }
 
+    /**
+     * Show or hide the progress spinner.
+     *
+     * @param isInProgress if the thread is not finished.
+     */
     private void showProgress(boolean isInProgress) {
         if (isInProgress) {
             mRelaunchFab.setVisibility(View.GONE);
