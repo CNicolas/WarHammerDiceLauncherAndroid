@@ -3,7 +3,7 @@ package com.aku.warhammerdicelauncher.model.player;
 import com.aku.warhammerdicelauncher.model.IModel;
 
 /**
- * Created by cnicolas on 11/05/2016.
+ * The Hand of dices model.
  */
 public class Hand implements IModel {
     private int id;

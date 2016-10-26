@@ -6,14 +6,21 @@ import com.aku.warhammerdicelauncher.model.dices.DiceFaces;
 import java.util.HashMap;
 import java.util.Map;
 
+
 /**
- * Created by cnicolas on 04/05/2016.
+ * Constants used in the LaunchActivity and StatisticsActivity.
  */
 public abstract class IHandConstants implements IConstants {
     public static final String HAND_TAG = "hand";
     public static final String TIMES_TAG = "times";
 
+    /**
+     * This map provides the different opposites sides.
+     */
     public static final Map<DiceFaces, DiceFaces> inversionMap;
+    /**
+     * Links the dice face with the TextView in the result dialog.
+     */
     public static final Map<DiceFaces, Integer> popupResultsTextViews;
 
     static {

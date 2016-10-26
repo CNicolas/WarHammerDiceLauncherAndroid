@@ -13,9 +13,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Created by cnicolas on 06/10/2016.
+ * The Player model.
  */
-
 public class Player implements IModel, IPlayerConstants {
     //region Fields
     private int id;
@@ -57,13 +56,6 @@ public class Player implements IModel, IPlayerConstants {
     //endregion
 
     //region Skill Management
-    public List<Skill> addSkill(Skill skill) {
-        if (!mSkills.contains(skill)) {
-            mSkills.add(skill);
-        }
-        return mSkills;
-    }
-
     public void setSkillLevel(Skill skill, int level) {
         try {
             getSkillByName(skill.getName()).setLevel(level);
@@ -172,6 +164,11 @@ public class Player implements IModel, IPlayerConstants {
     }
     //endregion
 
+    /**
+     * Can the player be saved in the database ?
+     *
+     * @return yes or no
+     */
     public boolean isUpdatable() {
         return getName() != null && !getName().isEmpty();
     }

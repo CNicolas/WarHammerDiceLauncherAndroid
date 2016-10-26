@@ -4,9 +4,8 @@ import com.aku.warhammerdicelauncher.model.IModel;
 import com.aku.warhammerdicelauncher.tools.enums.Characteristic;
 
 /**
- * Created by cnicolas on 06/10/2016.
+ * The Characteristics model.
  */
-
 public class Characteristics implements IModel {
     private int id;
 

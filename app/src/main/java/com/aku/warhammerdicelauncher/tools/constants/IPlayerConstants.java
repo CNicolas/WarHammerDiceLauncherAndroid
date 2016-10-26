@@ -1,9 +1,8 @@
 package com.aku.warhammerdicelauncher.tools.constants;
 
 /**
- * Created by cnicolas on 06/10/2016.
+ * Constants used mainly in PlayerActivity.
  */
-
 public interface IPlayerConstants extends IConstants {
     int BRASS_TO_SILVER = 100;
     int SILVER_TO_GOLD = 25;

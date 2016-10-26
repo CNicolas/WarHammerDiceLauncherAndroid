@@ -20,9 +20,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Created by cnicolas on 13/10/2016.
+ * Carries the current player, as a Singleton like.
  */
-
 public abstract class PlayerContext {
     private static Player mPlayer;
     private static boolean isInEdition;
