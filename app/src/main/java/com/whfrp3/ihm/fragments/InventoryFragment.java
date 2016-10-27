@@ -1,6 +1,8 @@
 package com.whfrp3.ihm.fragments;
 
+import android.app.Dialog;
 import android.os.Bundle;
+import android.support.v4.app.DialogFragment;
 import android.support.v4.app.Fragment;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -60,6 +62,18 @@ public class InventoryFragment extends Fragment {
                 return true;
             }
 
+        });
+
+        expListView.setOnChildClickListener(new ExpandableListView.OnChildClickListener() {
+            @Override
+            public boolean onChildClick(ExpandableListView expandableListView, View view, int groupPosition, int childPosition, long id) {
+                // TODO : implement inventory item popup detail
+                ItemDialogFragment dialog = new ItemDialogFragment();
+                dialog.show(getActivity().getSupportFragmentManager(), "ItemDialogFragment");
+                dialog.setItem((Item) expListView.getExpandableListAdapter().getChild(groupPosition, childPosition));
+
+                return false;
+            }
         });
 
         Player player = PlayerContext.createTestPlayer();

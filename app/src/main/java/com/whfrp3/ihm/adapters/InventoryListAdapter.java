@@ -55,8 +55,21 @@ public class InventoryListAdapter extends AnimatedExpandableListView.AnimatedExp
             convertView = inflater.inflate(R.layout.inventory_item, null);
         }
 
-        TextView txtView = (TextView) convertView.findViewById(R.id.inventoryItemName);
-        txtView.setText(item.getName());
+        // Set item name
+        TextView nameView = (TextView) convertView.findViewById(R.id.inventoryItemName);
+        nameView.setText(item.getName());
+
+        // Set item quantity
+        TextView quantityView = (TextView) convertView.findViewById(R.id.inventoryItemQuantity);
+        quantityView.setText(String.valueOf(item.getQuantity()));
+
+        // Set item quality
+        TextView qualityView = (TextView) convertView.findViewById(R.id.inventoryItemQuality);
+        qualityView.setText(item.getQuality().toString());
+
+        // Set item encumbrance
+        TextView encumbranceView = (TextView) convertView.findViewById(R.id.inventoryItemEncumbrance);
+        encumbranceView.setText(String.valueOf(item.getEncumbrance()));
 
         return convertView;
     }

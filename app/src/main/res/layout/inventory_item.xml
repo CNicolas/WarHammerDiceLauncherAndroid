@@ -1,41 +1,101 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="32dp"
+    android:layout_height="48dp"
     android:background="@color/white"
-    android:orientation="horizontal"
-    android:paddingTop="4dp"
-    android:paddingBottom="4dp"
+    android:orientation="vertical"
     android:paddingLeft="8dp"
     android:paddingRight="8dp">
 
-    <TextView
-        android:id="@+id/inventoryItemName"
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="24dp"
-        android:layout_weight="0.9"
-        android:textColor="@color/black"
-        android:textSize="16dp"
-        android:text="@string/dummy_string"/>
-
-    <LinearLayout
-        android:layout_width="48dp"
-        android:layout_height="match_parent"
-        android:layout_weight="0.1">
+        android:orientation="horizontal">
 
         <TextView
-            android:layout_width="wrap_content"
+            android:id="@+id/inventoryItemName"
+            android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:text="4"/>
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:text=" - "/>
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:text="7"/>
+            android:layout_weight="0.9"
+            android:text="@string/dummy_string"
+            android:textColor="@color/black"
+            android:textSize="18sp" />
 
+        <LinearLayout
+            android:layout_width="48dp"
+            android:layout_height="match_parent"
+            android:layout_weight="0.1"
+            android:gravity="right"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:gravity="bottom"
+                android:text="(" />
+
+            <TextView
+                android:id="@+id/inventoryItemQuantity"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:gravity="bottom"
+                android:text="@string/dummy_integer" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:gravity="bottom"
+                android:text=")" />
+
+        </LinearLayout>
     </LinearLayout>
 
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="24dp"
+        android:orientation="horizontal"
+        android:paddingBottom="4dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="0.6"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:text="Qualité : "
+                android:textSize="13sp" />
+
+            <TextView
+                android:id="@+id/inventoryItemQuality"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:text="@string/dummy_string"
+                android:textSize="13sp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="0.4"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="16dp"
+                android:text="Encombrement : "
+                android:textSize="13sp" />
+
+            <TextView
+                android:id="@+id/inventoryItemEncumbrance"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:text="@string/dummy_integer"
+                android:textSize="13sp" />
+        </LinearLayout>
+
+    </LinearLayout>
 </LinearLayout>
