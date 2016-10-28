@@ -91,4 +91,23 @@
     <string name="max_wounds_label">Points de blessure :</string>
     <!--End of pages-->
 
+    <!-- Inventory -->
+    <string name="armor">Armure</string>
+    <string name="weapon">Arme</string>
+    <string name="usable_item">Objet utilisable</string>
+    <string name="item">Objet</string>
+    <string name="quality_low">Inférieure</string>
+    <string name="quality_normal">Normale</string>
+    <string name="quality_superior">Supérieure</string>
+    <string name="quality_label">Qualité :</string>
+    <string name="encumbrance_label">Encombrement :</string>
+    <string name="inventory_description">Description</string>
+    <string name="inventory_details">Détails</string>
+    <string name="weapon_damage_label">Dégats :</string>
+    <string name="weapon_critical_level_label">Niveau de critique :</string>
+    <string name="armor_defense_label">Défense :</string>
+    <string name="armor_soak_label">Encaissement :</string>
+    <string name="usable_item_load_label">Charges :</string>
+    <!-- End of inventory -->
+
 </resources>

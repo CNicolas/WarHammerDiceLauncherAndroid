@@ -65,7 +65,7 @@ public class InventoryListAdapter extends AnimatedExpandableListView.AnimatedExp
 
         // Set item quality
         TextView qualityView = (TextView) convertView.findViewById(R.id.inventoryItemQuality);
-        qualityView.setText(item.getQuality().toString());
+        qualityView.setText(item.getQuality().getLabelId());
 
         // Set item encumbrance
         TextView encumbranceView = (TextView) convertView.findViewById(R.id.inventoryItemEncumbrance);
@@ -103,7 +103,7 @@ public class InventoryListAdapter extends AnimatedExpandableListView.AnimatedExp
         }
 
         TextView txtView = (TextView) convertView.findViewById(R.id.inventoryGroupName);
-        txtView.setText(itemType.getName());
+        txtView.setText(itemType.getLabelId());
 
         return convertView;
     }

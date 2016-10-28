@@ -1,21 +1,46 @@
 package com.whfrp3.model.player.inventory;
 
+import com.whfrp3.R;
+
 /**
- * Qualités possibles pour un objet.
+ * Item qualities.
  */
 public enum Quality {
     /**
-     * Faible qualité.
+     * Low.
      */
-    LOW,
+    LOW(R.string.quality_low),
 
     /**
-     * Qualité normale.
+     * Normal.
      */
-    NORMAL,
+    NORMAL(R.string.quality_normal),
 
     /**
-     * Qualité supérieure.
+     * Superior.
      */
-    SUPERIOR
+    SUPERIOR(R.string.quality_superior);
+
+    /**
+     * Quality label id.
+     */
+    private int labelId;
+
+    /**
+     * Private constructor.
+     *
+     * @param labelId Quality label id.
+     */
+    private Quality(int labelId){
+        this.labelId=labelId;
+    }
+
+    /**
+     * Return quality label id.
+     *
+     * @return Quality label id.
+     */
+    public int getLabelId() {
+        return labelId;
+    }
 }

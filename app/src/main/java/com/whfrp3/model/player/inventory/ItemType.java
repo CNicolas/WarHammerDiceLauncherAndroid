@@ -1,5 +1,7 @@
 package com.whfrp3.model.player.inventory;
 
+import com.whfrp3.R;
+
 /**
  * Item types.
  */
@@ -7,35 +9,35 @@ public enum ItemType {
     /**
      * Standard item.
      */
-    ITEM("Standard item"),
+    ITEM(R.string.item),
 
     /**
      * Usable item.
      */
-    USABLE_ITEM("Usable item"),
+    USABLE_ITEM(R.string.usable_item),
 
     /**
      * Weapon.
      */
-    WEAPON("Weapon"),
+    WEAPON(R.string.weapon),
 
     /**
      * Armor.
      */
-    ARMOR("Armor");
+    ARMOR(R.string.armor);
 
     /**
-     * Item type name.
+     * Item label id.
      */
-    private String name;
+    private int labelId;
 
     /**
      * Private constructor.
      *
-     * @param name Item type name.
+     * @param labelId Item label id.
      */
-    ItemType(String name) {
-        this.name = name;
+    private ItemType(int labelId) {
+        this.labelId = labelId;
     }
 
     /**
@@ -55,11 +57,11 @@ public enum ItemType {
     }
 
     /**
-     * Return item type name.
+     * Return item label id.
      *
-     * @return Item type name.
+     * @return Item label id.
      */
-    public String getName() {
-        return name;
+    public int getLabelId() {
+        return labelId;
     }
 }

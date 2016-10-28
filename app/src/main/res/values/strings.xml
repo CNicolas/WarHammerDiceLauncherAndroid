@@ -86,6 +86,13 @@
     <string name="btn_editing">Editing</string>
     <string name="btn_not_editing">Not editing</string>
     <!--End of pages-->
+    
+    <!-- Inventory -->
+    <string name="armor">Armor</string>
+    <string name="weapon">Weapon</string>
+    <string name="usable_item">Usable item</string>
+    <string name="item">Item</string>
+    <!-- End of inventory -->
 
     <string name="dummy_string" translatable="false">Dummy String</string>
     <string name="dummy_integer" translatable="false">42</string>
@@ -97,5 +104,19 @@
     <string name="max_corruption_label">Corruption points :</string>
     <string name="xp_label" translatable="false">XP</string>
     <string name="cm_label" translatable="false">cm</string>
+    <string name="quality_low">Low</string>
+    <string name="quality_normal">Normal</string>
+    <string name="quality_superior">Superior</string>
+    <string name="quality_label">Quality :</string>
+    <string name="encumbrance_label">Encumbrance :</string>
+    <string name="parenthesis_left" translatable="false">(</string>
+    <string name="parenthesis_right" translatable="false">)</string>
+    <string name="inventory_description">Description</string>
+    <string name="inventory_details">Details</string>
+    <string name="weapon_damage_label">Damage :</string>
+    <string name="weapon_critical_level_label">Critical level :</string>
+    <string name="armor_defense_label">Defense :</string>
+    <string name="armor_soak_label">Soak :</string>
+    <string name="usable_item_load_label">Loads :</string>
 
 </resources>
