@@ -25,6 +25,7 @@ import com.whfrp3.database.WarHammerDatabaseHelper;
 import com.whfrp3.database.dao.HandDao;
 import com.whfrp3.model.dices.DiceFaces;
 import com.whfrp3.model.player.Hand;
+import com.whfrp3.model.player.Player;
 import com.whfrp3.model.player.skill.Skill;
 import com.whfrp3.tools.PlayerContext;
 import com.whfrp3.tools.constants.IHandConstants;
@@ -321,9 +322,23 @@ public class LaunchActivity extends AppCompatActivity {
      * @param skill the skill.
      */
     private void fillPickersFromSkill(Skill skill) {
-        Hand startingHand = PlayerContext.getPlayerInstance().getCharacteristics().getCharacteristicHand(skill.getCharacteristic());
+        Player player = PlayerContext.getPlayerInstance();
+
+        Hand startingHand = player.getCharacteristics().getCharacteristicHand(skill.getCharacteristic());
         startingHand.setExpertise(skill.getLevel());
         startingHand.setChallenge(1);
+
+        int playerConservative = player.getConservative();
+        if (playerConservative > 0) {
+            startingHand.setConservative(playerConservative);
+            startingHand.setCharacteristic(startingHand.getCharacteristic() - playerConservative);
+        }
+
+        int playerReckless = player.getReckless();
+        if (playerReckless > 0) {
+            startingHand.setReckless(playerReckless);
+            startingHand.setCharacteristic(startingHand.getCharacteristic() - playerReckless);
+        }
 
         fillNumberPickersFromHand(startingHand);
     }

@@ -6,6 +6,7 @@ import android.support.v4.content.ContextCompat;
 import android.widget.TextView;
 
 import com.whfrp3.R;
+import com.whfrp3.tools.PlayerContext;
 
 import org.adw.library.widgets.discreteseekbar.DiscreteSeekBar;
 
@@ -26,6 +27,7 @@ public class StanceChangeListener implements DiscreteSeekBar.OnProgressChangeLis
     @Override
     public void onProgressChanged(DiscreteSeekBar seekBar, int value, boolean fromUser) {
         changeColor(seekBar, value);
+        updateCurrentStance(value);
     }
 
     @Override
@@ -40,24 +42,37 @@ public class StanceChangeListener implements DiscreteSeekBar.OnProgressChangeLis
         if (value < 0) {
             seekBar.setScrubberColor(mConservativeColor);
             seekBar.setThumbColor(ColorStateList.valueOf(mConservativeColor), mConservativeColor);
-
-            String format = mCurrentStanceTextView.getResources().getString(R.string.stance_conservative_format);
-            mCurrentStanceTextView.setText(String.format(format, value * -1));
-            mCurrentStanceTextView.setTextColor(mConservativeColor);
         } else if (value > 0) {
             seekBar.setScrubberColor(mRecklessColor);
             seekBar.setThumbColor(ColorStateList.valueOf(mRecklessColor), mRecklessColor);
-
-            String format = mCurrentStanceTextView.getResources().getString(R.string.stance_reckless_format);
-            mCurrentStanceTextView.setText(String.format(format, value));
-            mCurrentStanceTextView.setTextColor(mRecklessColor);
         } else {
             seekBar.setScrubberColor(mNeutralColor);
             seekBar.setThumbColor(ColorStateList.valueOf(mNeutralColor), mNeutralColor);
+        }
+    }
 
+    private void updateCurrentStance(int value) {
+        if (value < 0) {
+            String format = mCurrentStanceTextView.getResources().getString(R.string.stance_conservative_format);
+            mCurrentStanceTextView.setText(String.format(format, (-1 * value)));
+            mCurrentStanceTextView.setTextColor(mConservativeColor);
+
+            PlayerContext.getPlayerInstance().setConservative(-1 * value);
+            PlayerContext.getPlayerInstance().setReckless(0);
+        } else if (value > 0) {
+            String format = mCurrentStanceTextView.getResources().getString(R.string.stance_reckless_format);
+            mCurrentStanceTextView.setText(String.format(format, value));
+            mCurrentStanceTextView.setTextColor(mRecklessColor);
+
+            PlayerContext.getPlayerInstance().setConservative(0);
+            PlayerContext.getPlayerInstance().setReckless(value);
+        } else {
             String text = mCurrentStanceTextView.getResources().getString(R.string.neutral);
             mCurrentStanceTextView.setText(text);
             mCurrentStanceTextView.setTextColor(mNeutralColor);
+
+            PlayerContext.getPlayerInstance().setConservative(0);
+            PlayerContext.getPlayerInstance().setReckless(0);
         }
     }
 }

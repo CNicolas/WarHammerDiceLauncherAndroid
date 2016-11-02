@@ -363,22 +363,11 @@
                         android:text="@string/conservative_label"
                         android:textColor="@android:color/white" />
 
-                    <EditText
-                        android:id="@+id/player_conservative"
-                        style="@style/RankExperienceEditText"
-                        android:gravity="end|center_vertical"
-                        android:maxLength="1"
-                        android:textColor="@android:color/white" />
-
-                    <TextView
-                        style="@style/PlayerInformationLabelTextView"
-                        android:text="@string/slash"
-                        android:textColor="@android:color/white" />
 
                     <EditText
                         android:id="@+id/player_max_conservative"
                         style="@style/RankExperienceEditText"
-                        android:gravity="start|center_vertical"
+                        android:gravity="center"
                         android:maxLength="1"
                         android:textColor="@android:color/white" />
                 </LinearLayout>
@@ -397,21 +386,9 @@
                         android:textColor="@android:color/white" />
 
                     <EditText
-                        android:id="@+id/player_reckless"
-                        style="@style/RankExperienceEditText"
-                        android:gravity="end|center_vertical"
-                        android:maxLength="1"
-                        android:textColor="@android:color/white" />
-
-                    <TextView
-                        style="@style/PlayerInformationLabelTextView"
-                        android:text="@string/slash"
-                        android:textColor="@android:color/white" />
-
-                    <EditText
                         android:id="@+id/player_max_reckless"
                         style="@style/RankExperienceEditText"
-                        android:gravity="start|center_vertical"
+                        android:gravity="center"
                         android:maxLength="1"
                         android:textColor="@android:color/white" />
                 </LinearLayout>
