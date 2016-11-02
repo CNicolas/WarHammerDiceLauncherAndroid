@@ -82,6 +82,10 @@
     <string name="reckless_label">Témérité :</string>
     <string name="stance_label">Attitude :</string>
     <string name="btn_editing">Editing</string>
+    <string name="btn_not_editing">Non éditable</string>
+    <string name="stance_conservative_format">%d Prudent</string>
+    <string name="stance_reckless_format">%d Téméraire</string>
+    <string name="neutral">Neutre</string>
     <!--End of pages-->
 
 </resources>

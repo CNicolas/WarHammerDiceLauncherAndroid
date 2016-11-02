@@ -87,7 +87,10 @@
     <string name="btn_not_editing">Not editing</string>
     <!--End of pages-->
 
-    <string name="dummy_string">Dummy String</string>
-    <string name="dummy_integer">42</string>
+    <string name="dummy_string" translatable="false">Dummy String</string>
+    <string name="dummy_integer" translatable="false">42</string>
+    <string name="stance_conservative_format">%d Conservative</string>
+    <string name="stance_reckless_format">%d Reckless</string>
+    <string name="neutral">Neutral</string>
 
 </resources>

@@ -6,6 +6,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
 import com.whfrp3.R;
 import com.whfrp3.ihm.listeners.StanceChangeListener;
@@ -27,17 +28,24 @@ public class AdventureFragment extends Fragment implements OnPlayerUpdateListene
         long startTime = System.currentTimeMillis();
 
         mRootView = inflater.inflate(R.layout.fragment_adventure, container, false);
-
         mPlayerStance = (DiscreteSeekBar) mRootView.findViewById(R.id.player_stance);
+        TextView currentStanceTextView = (TextView) mRootView.findViewById(R.id.currentStance);
+
         onPlayerUpdate();
 
-        mPlayerStance.setOnProgressChangeListener(new StanceChangeListener(getActivity()));
+        mPlayerStance.setOnProgressChangeListener(new StanceChangeListener(getActivity(), currentStanceTextView));
 
         PlayerContext.registerPlayerUpdateListener(this);
 
         long difference = System.currentTimeMillis() - startTime;
         Log.d("AdventureFragment", String.format("%d = %d", startTime, difference));
         return mRootView;
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        onPlayerUpdate();
     }
 
     @Override

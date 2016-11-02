@@ -55,20 +55,35 @@
         android:orientation="vertical"
         android:padding="@dimen/medium_padding">
 
-        <TextView
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginEnd="@dimen/medium_padding"
-            android:layout_marginStart="@dimen/medium_padding"
-            android:gravity="center"
-            android:text="@string/stance_label" />
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="@dimen/medium_padding"
+                android:layout_marginStart="@dimen/medium_padding"
+                android:layout_weight="50"
+                android:gravity="end|center_vertical"
+                android:text="@string/stance_label" />
+
+            <TextView
+                android:id="@+id/currentStance"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="@dimen/medium_padding"
+                android:layout_marginStart="@dimen/medium_padding"
+                android:layout_weight="50"
+                android:gravity="start|center_vertical" />
+        </LinearLayout>
 
         <org.adw.library.widgets.discreteseekbar.DiscreteSeekBar
             android:id="@+id/player_stance"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/small_padding"
-            app:dsb_indicatorElevation="10dp"
+            app:dsb_indicatorPopupEnabled="false"
             app:dsb_max="6"
             app:dsb_min="-6"
             app:dsb_progressColor="@color/colorPrimaryDark"
