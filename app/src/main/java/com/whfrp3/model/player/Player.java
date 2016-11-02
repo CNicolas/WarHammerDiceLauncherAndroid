@@ -1,5 +1,7 @@
 package com.whfrp3.model.player;
 
+import android.util.Log;
+
 import com.whfrp3.model.IModel;
 import com.whfrp3.model.player.inventory.Armor;
 import com.whfrp3.model.player.inventory.Item;
@@ -60,7 +62,7 @@ public class Player implements IModel, IPlayerConstants {
         try {
             getSkillByName(skill.getName()).setLevel(level);
         } catch (Exception e) {
-            e.printStackTrace();
+            Log.e("Player.setSkillLevel", e.getMessage(), e);
         }
     }
 

@@ -1,7 +1,6 @@
 package com.whfrp3.ihm.adapters;
 
 import android.graphics.drawable.Drawable;
-import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.content.ContextCompat;
@@ -15,8 +14,6 @@ import com.whfrp3.ihm.fragments.AdventureFragment;
 import com.whfrp3.ihm.fragments.CharacteristicsFragment;
 import com.whfrp3.ihm.fragments.InventoryFragment;
 import com.whfrp3.ihm.fragments.SkillsFragment;
-import com.whfrp3.tools.PlayerContext;
-import com.whfrp3.tools.constants.IPlayerConstants;
 
 /**
  * The PlayerPagerAdapter creates and manages the Fragments from the PlayerActivity.
@@ -53,15 +50,11 @@ public class PlayerPagerAdapter extends FragmentPagerAdapter {
 
     @Override
     public Fragment getItem(int position) {
-        Bundle bundle = new Bundle();
-        bundle.putBoolean(IPlayerConstants.IS_IN_EDITION_KEY, PlayerContext.isInEdition());
-
         switch (position) {
             case 0:
                 mCharacteristicFragmentTag = makeFragmentTag(position);
                 if (mCharacteristicsFragment == null) {
                     mCharacteristicsFragment = new CharacteristicsFragment();
-                    mCharacteristicsFragment.setArguments(bundle);
                 }
                 return mCharacteristicsFragment;
             case 1:

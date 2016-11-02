@@ -3,11 +3,8 @@ package com.whfrp3.ihm.activities;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.TaskStackBuilder;
-import android.support.v4.content.ContextCompat;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
@@ -34,7 +31,6 @@ import com.whfrp3.tools.constants.IPlayerConstants;
 public class PlayerActivity extends AppCompatActivity implements IPlayerConstants {
 
     private PlayerPagerAdapter mPlayerPagerAdapter;
-    private FloatingActionButton mEditionFab;
     private Menu mMenu;
 
     //region Overrides
@@ -52,7 +48,6 @@ public class PlayerActivity extends AppCompatActivity implements IPlayerConstant
         initDaos();
         initVisualElements();
 
-        changeEditionFabDrawable();
         hideKeyboard();
 
         PlayerContext.setContext(this);
@@ -84,6 +79,8 @@ public class PlayerActivity extends AppCompatActivity implements IPlayerConstant
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.menu_player, menu);
         mMenu = menu;
+        changeEdition();
+
         return super.onCreateOptionsMenu(menu);
     }
 
@@ -128,7 +125,6 @@ public class PlayerActivity extends AppCompatActivity implements IPlayerConstant
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        mEditionFab = (FloatingActionButton) findViewById(R.id.edition_fab);
         mPlayerPagerAdapter = new PlayerPagerAdapter(this);
 
         ViewPager viewPager = (ViewPager) findViewById(R.id.player_pager_container);
@@ -162,46 +158,35 @@ public class PlayerActivity extends AppCompatActivity implements IPlayerConstant
     //region Edition
 
     /**
-     * Event click which changes the edition mode.
-     *
-     * @param v
-     */
-    public void setEdition(View v) {
-        setIsInEdition(!PlayerContext.isInEdition());
-    }
-
-    /**
      * Effectively changes the edition mode in PlayerContext and update the UI.
      *
      * @param isInEdition
      */
     private void setIsInEdition(boolean isInEdition) {
         PlayerContext.setIsInEdition(isInEdition);
-        changeEditionFabDrawable();
-
-        CharacteristicsFragment characteristicsFragment = mPlayerPagerAdapter.getCharacteristicsFragment();
-        if (characteristicsFragment != null && characteristicsFragment.isVisible()) {
-            characteristicsFragment.changeEdition();
-        }
+        changeEdition();
     }
 
     /**
      * Replace the icon of the concerned buttons by an open/close lock.
      */
-    private void changeEditionFabDrawable() {
-        if (PlayerContext.isInEdition()) {
-            mEditionFab.setImageDrawable(ContextCompat.getDrawable(this, R.drawable.ic_lock_open_white_24dp));
-            if (mMenu != null) {
+    private void changeEdition() {
+        if (mMenu != null) {
+            if (PlayerContext.isInEdition()) {
                 mMenu.findItem(R.id.action_in_edition_true).setVisible(true);
                 mMenu.findItem(R.id.action_in_edition_false).setVisible(false);
-            }
-        } else {
-            mEditionFab.setImageDrawable(ContextCompat.getDrawable(this, R.drawable.ic_lock_outline_white_24dp));
-            if (mMenu != null) {
+
+            } else {
                 mMenu.findItem(R.id.action_in_edition_true).setVisible(false);
                 mMenu.findItem(R.id.action_in_edition_false).setVisible(true);
+
+                hideKeyboard();
             }
-            hideKeyboard();
+        }
+
+        CharacteristicsFragment characteristicsFragment = mPlayerPagerAdapter.getCharacteristicsFragment();
+        if (characteristicsFragment != null && characteristicsFragment.isVisible()) {
+            characteristicsFragment.changeEdition();
         }
     }
     //endregion
@@ -224,8 +209,6 @@ public class PlayerActivity extends AppCompatActivity implements IPlayerConstant
         try {
             TextView tv = (TextView) view;
             Skill skill = PlayerContext.getPlayerInstance().getSkillByName(tv.getText().toString());
-            String message = String.format("%s : Lvl %d", skill.getName(), skill.getLevel());
-            Snackbar.make(findViewById(R.id.player_pager_container), message, Snackbar.LENGTH_SHORT).show();
 
             Bundle bundle = new Bundle();
             bundle.putSerializable(SKILL_TAG, skill);

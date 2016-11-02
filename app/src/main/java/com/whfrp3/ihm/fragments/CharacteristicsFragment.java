@@ -13,7 +13,6 @@ import com.whfrp3.ihm.listeners.CharacteristicEditTextWatcher;
 import com.whfrp3.ihm.listeners.PlayerEditTextWatcher;
 import com.whfrp3.model.player.Player;
 import com.whfrp3.tools.PlayerContext;
-import com.whfrp3.tools.constants.IPlayerConstants;
 import com.whfrp3.tools.enums.Characteristic;
 import com.whfrp3.tools.enums.PlayerInformation;
 
@@ -58,7 +57,6 @@ public class CharacteristicsFragment extends Fragment {
     //endregion
 
     private View mRootView;
-    private boolean mIsInEdition;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -75,11 +73,6 @@ public class CharacteristicsFragment extends Fragment {
         initPlayerInformationFields();
         fillPlayerInformationFields();
         initPlayerInformationWatchers();
-
-        Bundle bundle = this.getArguments();
-        if (bundle != null) {
-            mIsInEdition = bundle.getBoolean(IPlayerConstants.IS_IN_EDITION_KEY);
-        }
 
         changeEdition();
 
@@ -99,12 +92,9 @@ public class CharacteristicsFragment extends Fragment {
     public void changeEdition() {
         boolean isInEdition = PlayerContext.isInEdition();
 
-        if (mIsInEdition != isInEdition) {
-            mIsInEdition = isInEdition;
-            updateCharacteristicsEdition(isInEdition);
-            updateCharacteristicsFortuneEdition(isInEdition);
-            updatePlayerInformationEdition(isInEdition);
-        }
+        updateCharacteristicsEdition(isInEdition);
+        updateCharacteristicsFortuneEdition(isInEdition);
+        updatePlayerInformationEdition(isInEdition);
     }
 
     /**
