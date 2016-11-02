@@ -66,8 +66,7 @@ public class HomeActivity extends Activity {
 
             if (position == 0) {
                 isInEdition = true;
-                PlayerContext.createEmptyPlayer();
-//                    PlayerContext.createTestPlayer();
+                PlayerContext.initEmptyPlayer();
             } else {
                 try {
                     TextView tv = (TextView) view;

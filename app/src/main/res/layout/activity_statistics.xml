@@ -70,7 +70,7 @@
                 android:id="@+id/average_sigmar"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:drawableStart="@drawable/cometblack"
+                android:drawableStart="@drawable/sigmar_black"
                 android:gravity="center"
                 android:padding="5dp"
                 android:text="@string/ok" />
@@ -79,7 +79,7 @@
                 android:id="@+id/average_chaos"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:drawableStart="@drawable/chaosblack"
+                android:drawableStart="@drawable/chaos_black"
                 android:gravity="center"
                 android:padding="5dp"
                 android:text="@string/ok" />

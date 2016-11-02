@@ -1,5 +1,6 @@
 package com.whfrp3.ihm.listeners;
 
+import android.util.Log;
 import android.view.View;
 import android.widget.CheckBox;
 
@@ -64,7 +65,11 @@ public class SkillLevelClickListener implements View.OnClickListener {
         }
 
         mSkill.setLevel(newLevel);
-        PlayerContext.getPlayerInstance().setSkillLevel(mSkill, newLevel);
+        try {
+            PlayerContext.getPlayerInstance().setSkillLevel(mSkill, newLevel);
+        } catch (Exception e) {
+            Log.e(getClass().getName(), e.getMessage(), e);
+        }
         PlayerContext.updatePlayer();
     }
 }

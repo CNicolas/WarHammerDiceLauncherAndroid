@@ -1,7 +1,5 @@
 package com.whfrp3.model.player;
 
-import android.util.Log;
-
 import com.whfrp3.model.IModel;
 import com.whfrp3.model.player.inventory.Armor;
 import com.whfrp3.model.player.inventory.Item;
@@ -58,12 +56,8 @@ public class Player implements IModel, IPlayerConstants {
     //endregion
 
     //region Skill Management
-    public void setSkillLevel(Skill skill, int level) {
-        try {
-            getSkillByName(skill.getName()).setLevel(level);
-        } catch (Exception e) {
-            Log.e("Player.setSkillLevel", e.getMessage(), e);
-        }
+    public void setSkillLevel(Skill skill, int level) throws Exception {
+        getSkillByName(skill.getName()).setLevel(level);
     }
 
     public Skill getSkillByName(String name) throws Exception {
@@ -72,7 +66,7 @@ public class Player implements IModel, IPlayerConstants {
                 return skill;
             }
         }
-        throw new Exception("Skill not found");
+        throw new Exception(String.format("'%s' not found in skills %s", name, mSkills.toString()));
     }
     //endregion
 

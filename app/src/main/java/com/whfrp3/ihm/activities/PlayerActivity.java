@@ -8,6 +8,7 @@ import android.support.v4.app.TaskStackBuilder;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -208,13 +209,14 @@ public class PlayerActivity extends AppCompatActivity implements IPlayerConstant
     public void launchSkill(View view) {
         try {
             TextView tv = (TextView) view;
-            Skill skill = PlayerContext.getPlayerInstance().getSkillByName(tv.getText().toString());
+            String skillName = tv.getText().toString();
+            Skill skill = PlayerContext.getPlayerInstance().getSkillByName(skillName);
 
             Bundle bundle = new Bundle();
             bundle.putSerializable(SKILL_TAG, skill);
             startLaunchActivity(bundle);
         } catch (Exception e) {
-
+            Log.e(getClass().getName(), e.getMessage(), e);
         }
     }
 }

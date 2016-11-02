@@ -6,12 +6,6 @@ import android.util.Log;
 import com.whfrp3.database.dao.CharacteristicsDao;
 import com.whfrp3.database.dao.PlayerDao;
 import com.whfrp3.model.player.Player;
-import com.whfrp3.model.player.inventory.Armor;
-import com.whfrp3.model.player.inventory.Item;
-import com.whfrp3.model.player.inventory.Quality;
-import com.whfrp3.model.player.inventory.Range;
-import com.whfrp3.model.player.inventory.UsableItem;
-import com.whfrp3.model.player.inventory.Weapon;
 import com.whfrp3.model.player.skill.Skill;
 import com.whfrp3.tools.helpers.OnPlayerUpdateListener;
 import com.whfrp3.tools.helpers.SkillsHelper;
@@ -37,7 +31,7 @@ public abstract class PlayerContext {
         return mPlayer;
     }
 
-    public static Player createEmptyPlayer() {
+    public static Player initEmptyPlayer() {
         mPlayer = new Player();
         return mPlayer;
     }
@@ -47,14 +41,14 @@ public abstract class PlayerContext {
             return;
         }
 
+        if (mPlayer.getSkills().size() == 0) {
+            List<Skill> basicSkills = SkillsHelper.createBasicSkills(mContext);
+            mPlayer.setSkills(basicSkills);
+        }
+
         if (mPlayer.getId() == 0) {
             mPlayer.setId(mPlayerDao.getNextId());
             mPlayer.getCharacteristics().setId(mCharacteristicsDao.getNextId());
-
-            if (mPlayer.getSkills().size() == 0) {
-                List<Skill> basicSkills = SkillsHelper.createBasicSkills(mContext);
-                mPlayer.setSkills(basicSkills);
-            }
 
             mPlayerDao.insert(mPlayer);
         } else {
@@ -67,62 +61,6 @@ public abstract class PlayerContext {
 
     public static void setPlayer(Player player) {
         mPlayer = player;
-    }
-
-    public static Player createTestPlayer() {
-        mPlayer = createEmptyPlayer();
-
-        mPlayer.setCareer("Ratier");
-        mPlayer.setExperience(0);
-        mPlayer.setMax_experience(16);
-        mPlayer.getCharacteristics().setFellowship(3);
-        mPlayer.getCharacteristics().setFellowship_fortune(1);
-        mPlayer.getCharacteristics().setStrength(5);
-        mPlayer.getCharacteristics().setStrength_fortune(1);
-        mPlayer.getCharacteristics().setToughness(4);
-        mPlayer.setDescription("Trop tanky !");
-
-        // Ajout des objets de test
-        mPlayer.setInventory(new ArrayList<Item>());
-
-        Armor armor = new Armor(mPlayer);
-        armor.setName("Slip de combat");
-        armor.setDescription("Slip en titane renforcé, pour les nains vénères.");
-        armor.setEncumbrance(5);
-        armor.setQuantity(1);
-        armor.setQuality(Quality.SUPERIOR);
-        armor.setSoak(5);
-        armor.setDefense(2);
-        mPlayer.getInventory().add(armor);
-
-        Weapon weapon = new Weapon(mPlayer);
-        weapon.setName("Epée en bois");
-        weapon.setDescription("Parce qu'un nain vénère ça utilise une épée en bois !");
-        weapon.setEncumbrance(3);
-        weapon.setQuantity(1);
-        weapon.setQuality(Quality.LOW);
-        weapon.setDamage(2);
-        weapon.setCriticalLevel(4);
-        weapon.setRange(Range.ENGAGED);
-        mPlayer.getInventory().add(weapon);
-
-        UsableItem usableItem = new UsableItem(mPlayer);
-        usableItem.setName("Potion sent bon");
-        usableItem.setDescription("Parce qu'il faut bien compenser le manque de savon.");
-        usableItem.setEncumbrance(3);
-        usableItem.setQuantity(1);
-        usableItem.setQuality(Quality.NORMAL);
-        usableItem.setLoad(2);
-        mPlayer.getInventory().add(usableItem);
-
-        Item item = new Item(mPlayer);
-        item.setName("Oreille de gobelin");
-        item.setEncumbrance(0);
-        item.setQuantity(1);
-        item.setQuality(Quality.LOW);
-        mPlayer.getInventory().add(item);
-
-        return mPlayer;
     }
 
     //endregion
@@ -160,13 +98,13 @@ public abstract class PlayerContext {
     }
 
     public static void setCharacteristicsDao(CharacteristicsDao characteristicsDao) {
-        PlayerContext.mCharacteristicsDao = characteristicsDao;
+        mCharacteristicsDao = characteristicsDao;
     }
 
     //endregion
 
 
     public static void setContext(Context context) {
-        PlayerContext.mContext = context;
+        mContext = context;
     }
 }
