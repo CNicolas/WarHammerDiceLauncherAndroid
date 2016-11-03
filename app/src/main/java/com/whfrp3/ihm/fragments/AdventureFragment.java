@@ -22,27 +22,26 @@ import org.adw.library.widgets.discreteseekbar.DiscreteSeekBar;
  * The AdventureFragment.
  */
 public class AdventureFragment extends Fragment implements OnPlayerUpdateListener {
-    private View mRootView;
     private DiscreteSeekBar mPlayerStance;
-    private EditText mPlayerWounds;
-    private EditText mPlayerCorruption;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         long startTime = System.currentTimeMillis();
 
-        mRootView = inflater.inflate(R.layout.fragment_adventure, container, false);
+        View mRootView = inflater.inflate(R.layout.fragment_adventure, container, false);
         mPlayerStance = (DiscreteSeekBar) mRootView.findViewById(R.id.player_stance);
-        mPlayerWounds = (EditText) mRootView.findViewById(R.id.player_wounds);
-        mPlayerCorruption = (EditText) mRootView.findViewById(R.id.player_corruption);
+        EditText playerWoundsView = (EditText) mRootView.findViewById(R.id.player_wounds);
+        EditText playerCorruptionView = (EditText) mRootView.findViewById(R.id.player_corruption);
+        EditText playerExperienceView = (EditText) mRootView.findViewById(R.id.player_experience);
         TextView currentStanceTextView = (TextView) mRootView.findViewById(R.id.currentStance);
 
         onPlayerUpdate();
 
         mPlayerStance.setOnProgressChangeListener(new StanceChangeListener(getActivity(), currentStanceTextView));
-        mPlayerWounds.addTextChangedListener(new PlayerEditTextWatcher(PlayerInformation.WOUNDS));
-        mPlayerCorruption.addTextChangedListener(new PlayerEditTextWatcher(PlayerInformation.CORRUPTION));
+        playerWoundsView.addTextChangedListener(new PlayerEditTextWatcher(PlayerInformation.WOUNDS));
+        playerExperienceView.addTextChangedListener(new PlayerEditTextWatcher(PlayerInformation.EXPERIENCE));
+        playerCorruptionView.addTextChangedListener(new PlayerEditTextWatcher(PlayerInformation.CORRUPTION));
 
         PlayerContext.registerPlayerUpdateListener(this);
 
@@ -62,6 +61,4 @@ public class AdventureFragment extends Fragment implements OnPlayerUpdateListene
         mPlayerStance.setMin(-1 * PlayerContext.getPlayerInstance().getMax_conservative());
         mPlayerStance.setMax(PlayerContext.getPlayerInstance().getMax_reckless());
     }
-
-
 }

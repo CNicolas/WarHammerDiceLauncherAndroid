@@ -40,11 +40,8 @@ public class CharacteristicsFragment extends Fragment {
     private EditText mPlayerAgeView;
     private EditText mPlayerCareerView;
     private EditText mPlayerDescriptionView;
-    private EditText mPlayerExperienceView;
     private EditText mPlayerMaxExperienceView;
-    private EditText mPlayerWoundsView;
     private EditText mPlayerMaxWoundsView;
-    private EditText mPlayerCorruptionView;
     private EditText mPlayerMaxCorruptionView;
     private EditText mPlayerMaxConservativeView;
     private EditText mPlayerMaxRecklessView;
@@ -176,10 +173,6 @@ public class CharacteristicsFragment extends Fragment {
         mPlayerDescriptionView.setFocusableInTouchMode(isInEdition);
         mPlayerDescriptionView.setClickable(isInEdition);
 
-        mPlayerExperienceView.setFocusable(isInEdition);
-        mPlayerExperienceView.setFocusableInTouchMode(isInEdition);
-        mPlayerExperienceView.setClickable(isInEdition);
-
         mPlayerMaxExperienceView.setFocusable(isInEdition);
         mPlayerMaxExperienceView.setFocusableInTouchMode(isInEdition);
         mPlayerMaxExperienceView.setClickable(isInEdition);
@@ -292,11 +285,8 @@ public class CharacteristicsFragment extends Fragment {
         mPlayerAgeView = (EditText) mRootView.findViewById(R.id.player_age);
         mPlayerCareerView = (EditText) mRootView.findViewById(R.id.player_career);
         mPlayerDescriptionView = (EditText) mRootView.findViewById(R.id.player_description);
-        mPlayerExperienceView = (EditText) mRootView.findViewById(R.id.player_experience);
         mPlayerMaxExperienceView = (EditText) mRootView.findViewById(R.id.player_max_experience);
-        mPlayerWoundsView = (EditText) mRootView.findViewById(R.id.player_wounds);
         mPlayerMaxWoundsView = (EditText) mRootView.findViewById(R.id.player_max_wounds);
-        mPlayerCorruptionView = (EditText) mRootView.findViewById(R.id.player_corruption);
         mPlayerMaxCorruptionView = (EditText) mRootView.findViewById(R.id.player_max_corruption);
         mPlayerMaxConservativeView = (EditText) mRootView.findViewById(R.id.player_max_conservative);
         mPlayerMaxRecklessView = (EditText) mRootView.findViewById(R.id.player_max_reckless);
@@ -319,18 +309,12 @@ public class CharacteristicsFragment extends Fragment {
 
         mPlayerDescriptionView.setText(player.getDescription());
 
-        int experience = player.getExperience();
-        mPlayerExperienceView.setText(experience == 0 ? "" : String.valueOf(experience));
         int maxExperience = player.getMax_experience();
         mPlayerMaxExperienceView.setText(maxExperience == 0 ? "" : String.valueOf(maxExperience));
 
-        int wounds = player.getWounds();
-        mPlayerWoundsView.setText(wounds == 0 ? "" : String.valueOf(wounds));
         int maxWounds = player.getMax_wounds();
         mPlayerMaxWoundsView.setText(maxWounds == 0 ? "" : String.valueOf(maxWounds));
 
-        int corruption = player.getCorruption();
-        mPlayerCorruptionView.setText(corruption == 0 ? "" : String.valueOf(corruption));
         int maxCorruption = player.getMax_corruption();
         mPlayerMaxCorruptionView.setText(maxCorruption == 0 ? "" : String.valueOf(maxCorruption));
 
@@ -358,11 +342,8 @@ public class CharacteristicsFragment extends Fragment {
         mPlayerAgeView.addTextChangedListener(new PlayerEditTextWatcher(PlayerInformation.AGE));
         mPlayerCareerView.addTextChangedListener(new PlayerEditTextWatcher(PlayerInformation.CAREER));
         mPlayerDescriptionView.addTextChangedListener(new PlayerEditTextWatcher(PlayerInformation.DESCRIPTION));
-        mPlayerExperienceView.addTextChangedListener(new PlayerEditTextWatcher(PlayerInformation.EXPERIENCE));
         mPlayerMaxExperienceView.addTextChangedListener(new PlayerEditTextWatcher(PlayerInformation.MAX_EXPERIENCE));
-        mPlayerWoundsView.addTextChangedListener(new PlayerEditTextWatcher(PlayerInformation.WOUNDS));
         mPlayerMaxWoundsView.addTextChangedListener(new PlayerEditTextWatcher(PlayerInformation.MAX_WOUNDS));
-        mPlayerCorruptionView.addTextChangedListener(new PlayerEditTextWatcher(PlayerInformation.CORRUPTION));
         mPlayerMaxCorruptionView.addTextChangedListener(new PlayerEditTextWatcher(PlayerInformation.MAX_CORRUPTION));
         mPlayerMaxConservativeView.addTextChangedListener(new PlayerEditTextWatcher(PlayerInformation.MAX_CONSERVATIVE));
         mPlayerMaxRecklessView.addTextChangedListener(new PlayerEditTextWatcher(PlayerInformation.MAX_RECKLESS));
