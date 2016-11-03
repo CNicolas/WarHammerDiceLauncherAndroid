@@ -51,13 +51,20 @@ public class PlayerEditTextWatcher implements TextWatcher {
                     player.setMax_experience(Integer.parseInt(newValue));
                     break;
                 case WOUNDS:
-                    player.setWounds(Integer.parseInt(newValue));
+                    int newWounds = Integer.parseInt(newValue);
+                    if (newWounds >= 0 || newWounds <= player.getMax_wounds() + player.getCharacteristics().getToughness()) {
+                        player.setWounds(newWounds);
+                    }
+                    PlayerContext.updatePlayer();
                     break;
                 case MAX_WOUNDS:
                     player.setMax_wounds(Integer.parseInt(newValue));
                     break;
                 case CORRUPTION:
-                    player.setCorruption(Integer.parseInt(newValue));
+                    int newCorruption = Integer.parseInt(newValue);
+                    if (newCorruption >= 0 || newCorruption <= player.getMax_corruption()) {
+                        player.setCorruption(newCorruption);
+                    }
                     break;
                 case MAX_CORRUPTION:
                     player.setMax_corruption(Integer.parseInt(newValue));

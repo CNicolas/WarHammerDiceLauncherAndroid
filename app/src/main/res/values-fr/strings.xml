@@ -86,6 +86,9 @@
     <string name="stance_conservative_format">%d Prudent</string>
     <string name="stance_reckless_format">%d Téméraire</string>
     <string name="neutral">Neutre</string>
+    <string name="max_corruption_label">Points de corruption :</string>
+    <string name="max_experience_label">Total d\'expérience :</string>
+    <string name="max_wounds_label">Points de blessure :</string>
     <!--End of pages-->
 
 </resources>

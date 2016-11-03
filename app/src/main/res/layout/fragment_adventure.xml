@@ -19,12 +19,15 @@
             android:text="@string/wounds_label" />
 
         <EditText
+            android:id="@+id/player_wounds"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_marginEnd="@dimen/medium_padding"
             android:layout_marginStart="@dimen/medium_padding"
             android:layout_weight="50"
-            android:hint="@string/zero" />
+            android:hint="@string/zero"
+            android:inputType="number"
+            android:maxLength="2" />
     </LinearLayout>
 
     <LinearLayout
@@ -41,12 +44,15 @@
             android:text="@string/corruption_label" />
 
         <EditText
+            android:id="@+id/player_corruption"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_marginEnd="@dimen/medium_padding"
             android:layout_marginStart="@dimen/medium_padding"
             android:layout_weight="50"
-            android:hint="@string/zero" />
+            android:hint="@string/zero"
+            android:inputType="number"
+            android:maxLength="2" />
     </LinearLayout>
 
     <LinearLayout

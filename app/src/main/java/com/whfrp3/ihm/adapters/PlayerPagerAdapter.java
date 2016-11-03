@@ -58,11 +58,11 @@ public class PlayerPagerAdapter extends FragmentPagerAdapter {
                 }
                 return mCharacteristicsFragment;
             case 1:
-                mInventoryFragmentTag = makeFragmentTag(position);
-                if (mInventoryFragment == null) {
-                    mInventoryFragment = new InventoryFragment();
+                mAdventureFragmentTag = makeFragmentTag(position);
+                if (mAdventureFragment == null) {
+                    mAdventureFragment = new AdventureFragment();
                 }
-                return mInventoryFragment;
+                return mAdventureFragment;
             case 2:
                 mSkillsFragmentTag = makeFragmentTag(position);
                 if (mSkillsFragment == null) {
@@ -70,11 +70,11 @@ public class PlayerPagerAdapter extends FragmentPagerAdapter {
                 }
                 return mSkillsFragment;
             case 3:
-                mAdventureFragmentTag = makeFragmentTag(position);
-                if (mAdventureFragment == null) {
-                    mAdventureFragment = new AdventureFragment();
+                mInventoryFragmentTag = makeFragmentTag(position);
+                if (mInventoryFragment == null) {
+                    mInventoryFragment = new InventoryFragment();
                 }
-                return mAdventureFragment;
+                return mInventoryFragment;
             default:
                 return null;
         }
@@ -93,13 +93,13 @@ public class PlayerPagerAdapter extends FragmentPagerAdapter {
                 Drawable image = ContextCompat.getDrawable(mContext, R.drawable.ic_characteristics_black);
                 return setTabIcon(image);
             case 1:
-                image = ContextCompat.getDrawable(mContext, R.drawable.ic_rucksack_black);
+                image = ContextCompat.getDrawable(mContext, R.drawable.ic_adventure_black);
                 return setTabIcon(image);
             case 2:
                 image = ContextCompat.getDrawable(mContext, R.drawable.ic_skills_black);
                 return setTabIcon(image);
             case 3:
-                image = ContextCompat.getDrawable(mContext, R.drawable.ic_adventure_black);
+                image = ContextCompat.getDrawable(mContext, R.drawable.ic_rucksack_black);
                 return setTabIcon(image);
         }
         return null;

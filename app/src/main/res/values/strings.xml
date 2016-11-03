@@ -92,5 +92,8 @@
     <string name="stance_conservative_format">%d Conservative</string>
     <string name="stance_reckless_format">%d Reckless</string>
     <string name="neutral">Neutral</string>
+    <string name="max_experience_label">Max Experience :</string>
+    <string name="max_wounds_label">Wounds points :</string>
+    <string name="max_corruption_label">Corruption points :</string>
 
 </resources>

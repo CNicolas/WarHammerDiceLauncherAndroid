@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+
     <style name="LabelTextView">
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">match_parent</item>
@@ -56,6 +57,19 @@
         <item name="android:hint">@string/zero</item>
         <item name="android:inputType">number</item>
         <item name="android:maxLength">3</item>
+    </style>
+
+    <style name="RankMaxEditText">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:gravity">center</item>
+        <item name="android:hint">@string/zero</item>
+    </style>
+
+    <style name="RankMaxLabel">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:gravity">end|center_vertical</item>
     </style>
 
 
