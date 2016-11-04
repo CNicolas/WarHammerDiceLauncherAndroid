@@ -34,17 +34,8 @@ public enum ItemType {
      *
      * @param name Item type name.
      */
-    private ItemType(String name) {
+    ItemType(String name) {
         this.name = name;
-    }
-
-    /**
-     * Return item type name.
-     *
-     * @return Item type name.
-     */
-    public String getName() {
-        return name;
     }
 
     /**
@@ -61,5 +52,14 @@ public enum ItemType {
         }
 
         throw new IllegalArgumentException("No ItemType value found for this ordinal [" + ordinal + "]");
+    }
+
+    /**
+     * Return item type name.
+     *
+     * @return Item type name.
+     */
+    public String getName() {
+        return name;
     }
 }

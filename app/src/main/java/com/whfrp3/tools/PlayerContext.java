@@ -24,7 +24,6 @@ public abstract class PlayerContext {
 
     private static PlayerDao mPlayerDao;
     private static CharacteristicsDao mCharacteristicsDao;
-    private static Context mContext;
 
     //region Player
     public static Player getPlayerInstance() {
@@ -36,13 +35,13 @@ public abstract class PlayerContext {
         return mPlayer;
     }
 
-    public static void updatePlayer() {
+    public static void updatePlayer(Context context) {
         if (mPlayer == null || !mPlayer.isUpdatable()) {
             return;
         }
 
         if (mPlayer.getSkills().size() == 0) {
-            List<Skill> basicSkills = SkillsHelper.createBasicSkills(mContext);
+            List<Skill> basicSkills = SkillsHelper.createBasicSkills(context);
             mPlayer.setSkills(basicSkills);
         }
 
@@ -54,13 +53,16 @@ public abstract class PlayerContext {
         } else {
             mPlayerDao.update(mPlayer);
         }
+
+//        mPlayer = mPlayerDao.findById(mPlayer.getId());
         notifyListeners();
 
-        Log.e("Player Context", mPlayer.toString());
+        Log.e("Player Context UPDATE", mPlayer.toString());
     }
 
     public static void setPlayer(Player player) {
         mPlayer = player;
+        Log.d("Player Context SET", mPlayer.toString());
     }
 
     //endregion
@@ -103,8 +105,4 @@ public abstract class PlayerContext {
 
     //endregion
 
-
-    public static void setContext(Context context) {
-        mContext = context;
-    }
 }

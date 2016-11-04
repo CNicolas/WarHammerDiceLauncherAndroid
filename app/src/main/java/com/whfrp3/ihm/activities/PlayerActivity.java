@@ -50,8 +50,6 @@ public class PlayerActivity extends AppCompatActivity implements IPlayerConstant
         initVisualElements();
 
         hideKeyboard();
-
-        PlayerContext.setContext(this);
     }
 
     //region Instances
@@ -98,7 +96,7 @@ public class PlayerActivity extends AppCompatActivity implements IPlayerConstant
             return true;
         }
         if (id == R.id.action_update_player) {
-            PlayerContext.updatePlayer();
+            PlayerContext.updatePlayer(this);
             return true;
         }
 

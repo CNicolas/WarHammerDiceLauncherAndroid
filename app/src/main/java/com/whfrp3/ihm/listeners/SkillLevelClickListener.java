@@ -70,6 +70,5 @@ public class SkillLevelClickListener implements View.OnClickListener {
         } catch (Exception e) {
             Log.e(getClass().getName(), e.getMessage(), e);
         }
-        PlayerContext.updatePlayer();
     }
 }

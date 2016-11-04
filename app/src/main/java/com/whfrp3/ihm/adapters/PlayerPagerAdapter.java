@@ -11,6 +11,7 @@ import android.text.style.ImageSpan;
 import com.whfrp3.R;
 import com.whfrp3.ihm.activities.PlayerActivity;
 import com.whfrp3.ihm.fragments.AdventureFragment;
+import com.whfrp3.ihm.fragments.BindingTestFragment;
 import com.whfrp3.ihm.fragments.CharacteristicsFragment;
 import com.whfrp3.ihm.fragments.InventoryFragment;
 import com.whfrp3.ihm.fragments.SkillsFragment;
@@ -75,6 +76,8 @@ public class PlayerPagerAdapter extends FragmentPagerAdapter {
                     mInventoryFragment = new InventoryFragment();
                 }
                 return mInventoryFragment;
+            case 4:
+                return new BindingTestFragment();
             default:
                 return null;
         }
@@ -82,7 +85,7 @@ public class PlayerPagerAdapter extends FragmentPagerAdapter {
 
     @Override
     public int getCount() {
-        return 4;
+        return 5;
     }
 
 
@@ -100,6 +103,9 @@ public class PlayerPagerAdapter extends FragmentPagerAdapter {
                 return setTabIcon(image);
             case 3:
                 image = ContextCompat.getDrawable(mContext, R.drawable.ic_rucksack_black);
+                return setTabIcon(image);
+            case 4:
+                image = ContextCompat.getDrawable(mContext, R.drawable.ic_check_black_24dp);
                 return setTabIcon(image);
         }
         return null;

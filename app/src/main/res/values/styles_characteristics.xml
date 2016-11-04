@@ -64,6 +64,7 @@
         <item name="android:layout_height">wrap_content</item>
         <item name="android:gravity">center</item>
         <item name="android:hint">@string/zero</item>
+        <item name="android:inputType">number</item>
     </style>
 
     <style name="RankMaxLabel">

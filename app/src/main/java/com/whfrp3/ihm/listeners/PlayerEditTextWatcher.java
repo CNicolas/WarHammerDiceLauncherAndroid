@@ -55,7 +55,6 @@ public class PlayerEditTextWatcher implements TextWatcher {
                     if (newWounds >= 0 || newWounds <= player.getMax_wounds() + player.getCharacteristics().getToughness()) {
                         player.setWounds(newWounds);
                     }
-                    PlayerContext.updatePlayer();
                     break;
                 case MAX_WOUNDS:
                     player.setMax_wounds(Integer.parseInt(newValue));
