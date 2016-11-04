@@ -5,11 +5,11 @@
 
         <variable
             name="player"
-            type="com.whfrp3.model.player.PlayerV2" />
+            type="com.whfrp3.model.player.Player" />
 
         <variable
             name="handler"
-            type="com.whfrp3.tools.helpers.PlayerHandler" />
+            type="com.whfrp3.ihm.listeners.PlayerHandler" />
     </data>
 
     <LinearLayout
@@ -91,7 +91,7 @@
                         android:id="@+id/player_rank"
                         style="@style/RankMaxEditText"
                         android:layout_column="1"
-                        android:layout_columnWeight="25"
+                        android:layout_columnWeight="50"
                         android:layout_row="0"
                         android:text="@={player.rank}" />
 
@@ -121,7 +121,7 @@
                         android:id="@+id/player_max_wounds"
                         style="@style/RankMaxEditText"
                         android:layout_column="1"
-                        android:layout_columnWeight="25"
+                        android:layout_columnWeight="50"
                         android:layout_row="1"
                         android:text="@={player.max_wounds}" />
 

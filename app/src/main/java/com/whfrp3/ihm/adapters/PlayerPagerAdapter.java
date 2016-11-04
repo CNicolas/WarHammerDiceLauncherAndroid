@@ -11,8 +11,8 @@ import android.text.style.ImageSpan;
 import com.whfrp3.R;
 import com.whfrp3.ihm.activities.PlayerActivity;
 import com.whfrp3.ihm.fragments.AdventureFragment;
-import com.whfrp3.ihm.fragments.BindingTestFragment;
 import com.whfrp3.ihm.fragments.CharacteristicsFragment;
+import com.whfrp3.ihm.fragments.CharacteristicsFragmentV2;
 import com.whfrp3.ihm.fragments.InventoryFragment;
 import com.whfrp3.ihm.fragments.SkillsFragment;
 
@@ -77,7 +77,7 @@ public class PlayerPagerAdapter extends FragmentPagerAdapter {
                 }
                 return mInventoryFragment;
             case 4:
-                return new BindingTestFragment();
+                return new CharacteristicsFragmentV2();
             default:
                 return null;
         }

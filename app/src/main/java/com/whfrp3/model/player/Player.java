@@ -1,5 +1,9 @@
 package com.whfrp3.model.player;
 
+import android.databinding.BindingAdapter;
+import android.databinding.InverseBindingAdapter;
+import android.widget.TextView;
+
 import com.whfrp3.model.IModel;
 import com.whfrp3.model.player.inventory.Armor;
 import com.whfrp3.model.player.inventory.Item;
@@ -55,6 +59,22 @@ public class Player implements IModel, IPlayerConstants {
     }
     //endregion
 
+    @BindingAdapter("android:text")
+    public static void setText(TextView view, double value) {
+        String res = value == 0 ? "" : String.valueOf(value);
+        view.setText(res);
+    }
+
+    @InverseBindingAdapter(attribute = "android:text")
+    public static double getText(TextView view) {
+        String content = view.getText().toString();
+        if (content.isEmpty()) {
+            return 0;
+        }
+        return Double.parseDouble(content);
+    }
+    //endregion
+
     //region Skill Management
     public void setSkillLevel(Skill skill, int level) throws Exception {
         getSkillByName(skill.getName()).setLevel(level);
@@ -68,7 +88,6 @@ public class Player implements IModel, IPlayerConstants {
         }
         throw new Exception(String.format("'%s' not found in skills %s", name, mSkills.toString()));
     }
-    //endregion
 
     //region Money Management
     public void addMoneyBrass(int brass) {
@@ -77,6 +96,9 @@ public class Player implements IModel, IPlayerConstants {
 
         addMoneySilver(brass / BRASS_TO_SILVER);
     }
+    //endregion
+
+    //region Inventory Management
 
     public void addMoneySilver(int silver) {
         int newSilver = silver % SILVER_TO_GOLD;
@@ -87,9 +109,6 @@ public class Player implements IModel, IPlayerConstants {
     public void addMoneyGold(int gold) {
         setMoney_gold(getMoney_gold() + gold);
     }
-    //endregion
-
-    //region Inventory Management
 
     /**
      * Renvoie les armures de l'inventaire du joueur.
@@ -124,6 +143,7 @@ public class Player implements IModel, IPlayerConstants {
 
         return weapons;
     }
+    //endregion
 
     /**
      * Renvoie les objets utilisables de l'inventaire du joueur.
@@ -158,7 +178,6 @@ public class Player implements IModel, IPlayerConstants {
 
         return items;
     }
-    //endregion
 
     /**
      * Can the player be saved in the database ?
@@ -353,6 +372,9 @@ public class Player implements IModel, IPlayerConstants {
     public void setInventory(List<Item> inventory) {
         this.inventory = inventory;
     }
+    //endregion
+
+    //region Overrides
 
     public List<Skill> getSkills() {
         return mSkills;
@@ -361,9 +383,6 @@ public class Player implements IModel, IPlayerConstants {
     public void setSkills(List<Skill> skills) {
         this.mSkills = skills;
     }
-    //endregion
-
-    //region Overrides
 
     @Override
     public String toString() {
@@ -394,6 +413,7 @@ public class Player implements IModel, IPlayerConstants {
                 ", skills=" + mSkills +
                 '}';
     }
+    //endregion
 
     @Override
     public boolean equals(Object o) {
@@ -466,5 +486,4 @@ public class Player implements IModel, IPlayerConstants {
         result = 31 * result + (getSkills() != null ? getSkills().hashCode() : 0);
         return result;
     }
-    //endregion
 }
