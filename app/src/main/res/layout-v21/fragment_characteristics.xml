@@ -1,12 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:background="@android:color/white">
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <data>
+
+        <variable
+            name="player"
+            type="com.whfrp3.model.player.Player" />
+
+        <variable
+            name="handler"
+            type="com.whfrp3.ihm.listeners.PlayerHandler" />
+    </data>
 
     <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@android:color/white"
         android:fillViewport="true">
 
         <LinearLayout
@@ -38,7 +47,8 @@
                     <EditText
                         android:id="@+id/player_name"
                         style="@style/CharacteristicBigEditText"
-                        android:hint="@string/name_hint" />
+                        android:hint="@string/name_hint"
+                        android:text="@={player.name}" />
                 </LinearLayout>
 
                 <!--Career-->
@@ -54,7 +64,8 @@
                     <EditText
                         android:id="@+id/player_career"
                         style="@style/CharacteristicBigEditText"
-                        android:hint="@string/career_hint" />
+                        android:hint="@string/career_hint"
+                        android:text="@={player.career}" />
                 </LinearLayout>
             </LinearLayout>
 
@@ -211,84 +222,76 @@
                 </LinearLayout>
             </LinearLayout>
 
-
-            <!--Rank, Experience/Max_Experience-->
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginEnd="@dimen/big_padding"
-                android:orientation="horizontal">
-                <!--Rank-->
-                <TextView
-                    style="@style/PlayerInformationLabelTextView"
-                    android:layout_weight="35"
-                    android:text="@string/rank_label" />
-
-                <EditText
-                    android:id="@+id/player_rank"
-                    style="@style/RankExperienceEditText" />
-
-                <!--Experience-->
-                <TextView
-                    style="@style/PlayerInformationLabelTextView"
-                    android:layout_weight="50"
-                    android:text="@string/experience_label" />
-
-                <EditText
-                    android:id="@+id/player_experience"
-                    style="@style/RankExperienceEditText"
-                    android:gravity="end|center_vertical" />
-
-                <TextView
-                    style="@style/PlayerInformationLabelTextView"
-                    android:layout_weight="1"
-                    android:text="@string/slash" />
-
-                <EditText
-                    android:id="@+id/player_max_experience"
-                    style="@style/RankExperienceEditText"
-                    android:gravity="start|center_vertical" />
-            </LinearLayout>
-
-            <!--Wounds/Max_Wounds, Corruption/Max_Corruption-->
-            <LinearLayout
+            <GridLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="@dimen/medium_padding"
                 android:layout_marginEnd="@dimen/big_padding"
-                android:orientation="horizontal">
-                <!--Wounds-->
+                android:layout_marginStart="@dimen/big_padding"
+                android:layout_marginTop="@dimen/medium_padding"
+                android:columnCount="4"
+                android:rowCount="2">
+
                 <TextView
-                    style="@style/PlayerInformationLabelTextView"
-                    android:layout_weight="50"
-                    android:text="@string/wounds_label" />
+                    style="@style/RankMaxLabel"
+                    android:layout_column="0"
+                    android:layout_columnWeight="25"
+                    android:layout_row="0"
+                    android:text="@string/rank_label" />
+
+                <EditText
+                    android:id="@+id/player_rank"
+                    style="@style/RankMaxEditText"
+                    android:layout_column="1"
+                    android:layout_columnWeight="50"
+                    android:layout_row="0"
+                    android:text="@={player.rank}" />
+
+                <TextView
+                    style="@style/RankMaxLabel"
+                    android:layout_column="2"
+                    android:layout_columnWeight="1"
+                    android:layout_row="0"
+                    android:text="@string/max_experience_label" />
+
+                <EditText
+                    android:id="@+id/player_max_experience"
+                    style="@style/RankMaxEditText"
+                    android:layout_column="3"
+                    android:layout_columnWeight="50"
+                    android:layout_row="0"
+                    android:text="@={player.max_experience}" />
+
+                <TextView
+                    style="@style/RankMaxLabel"
+                    android:layout_column="0"
+                    android:layout_columnWeight="25"
+                    android:layout_row="1"
+                    android:text="@string/max_wounds_label" />
 
                 <EditText
                     android:id="@+id/player_max_wounds"
-                    style="@style/RankExperienceEditText"
-                    android:gravity="start|center_vertical" />
+                    style="@style/RankMaxEditText"
+                    android:layout_column="1"
+                    android:layout_columnWeight="50"
+                    android:layout_row="1"
+                    android:text="@={player.max_wounds}" />
 
-                <!--Corruption-->
                 <TextView
-                    style="@style/PlayerInformationLabelTextView"
-                    android:layout_weight="50"
-                    android:text="@string/corruption_label" />
-
-                <!--<EditText-->
-                <!--android:id="@+id/player_corruption"-->
-                <!--style="@style/RankExperienceEditText"-->
-                <!--android:gravity="end|center_vertical" />-->
-
-                <!--<TextView-->
-                <!--style="@style/PlayerInformationLabelTextView"-->
-                <!--android:layout_weight="1"-->
-                <!--android:text="@string/slash" />-->
+                    style="@style/RankMaxLabel"
+                    android:layout_column="2"
+                    android:layout_columnWeight="25"
+                    android:layout_row="1"
+                    android:text="@string/max_corruption_label" />
 
                 <EditText
                     android:id="@+id/player_max_corruption"
-                    style="@style/RankExperienceEditText"
-                    android:gravity="start|center_vertical" />
-            </LinearLayout>
+                    style="@style/RankMaxEditText"
+                    android:layout_column="3"
+                    android:layout_columnWeight="50"
+                    android:layout_row="1"
+                    android:text="@={player.max_corruption}" />
+            </GridLayout>
 
             <!--Race, Age, Size-->
             <LinearLayout
@@ -309,7 +312,8 @@
                     android:layout_weight="80"
                     android:hint="@string/race_hint"
                     android:inputType="textCapSentences"
-                    android:maxLength="30" />
+                    android:maxLength="30"
+                    android:text="@={player.race}" />
 
                 <!--Age-->
                 <TextView
@@ -319,7 +323,8 @@
 
                 <EditText
                     android:id="@+id/player_age"
-                    style="@style/RankExperienceEditText" />
+                    style="@style/RankExperienceEditText"
+                    android:text="@={player.age}" />
 
                 <!--Size-->
                 <TextView
@@ -329,7 +334,8 @@
 
                 <EditText
                     android:id="@+id/player_size"
-                    style="@style/RankExperienceEditText" />
+                    style="@style/RankExperienceEditText"
+                    android:text="@={player.size}" />
             </LinearLayout>
 
             <!--Reckless/Max_Reckless, Conservative/Max_Conservative-->
@@ -360,6 +366,7 @@
                         style="@style/RankExperienceEditText"
                         android:gravity="center"
                         android:maxLength="1"
+                        android:text="@={player.max_conservative}"
                         android:textColor="@android:color/white" />
                 </LinearLayout>
 
@@ -381,6 +388,7 @@
                         style="@style/RankExperienceEditText"
                         android:gravity="center"
                         android:maxLength="1"
+                        android:text="@={player.max_reckless}"
                         android:textColor="@android:color/white" />
                 </LinearLayout>
             </LinearLayout>
@@ -408,9 +416,16 @@
                     android:inputType="textShortMessage"
                     android:maxLines="3"
                     android:padding="@dimen/small_padding"
-                    android:scrollHorizontally="false" />
+                    android:scrollHorizontally="false"
+                    android:text="@={player.description}" />
+
+                <Button
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:onClick="@{(v) -> handler.updatePlayer(v, player)}"
+                    android:text="UPDATE" />
             </LinearLayout>
 
         </LinearLayout>
     </ScrollView>
-</LinearLayout>
+</layout>

@@ -1,5 +1,6 @@
 package com.whfrp3.ihm.fragments;
 
+import android.databinding.DataBindingUtil;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.util.Log;
@@ -9,8 +10,10 @@ import android.view.ViewGroup;
 import android.widget.EditText;
 
 import com.whfrp3.R;
+import com.whfrp3.databinding.FragmentCharacteristicsBinding;
 import com.whfrp3.ihm.listeners.CharacteristicEditTextWatcher;
 import com.whfrp3.ihm.listeners.PlayerEditTextWatcher;
+import com.whfrp3.ihm.listeners.PlayerHandler;
 import com.whfrp3.model.player.Player;
 import com.whfrp3.tools.PlayerContext;
 import com.whfrp3.tools.enums.Characteristic;
@@ -63,18 +66,23 @@ public class CharacteristicsFragment extends Fragment {
         setHasOptionsMenu(true);
 
         initPlayerCharacteristicsFields();
-        fillPlayerCharacteristicsFields();
-        initPlayerCharacteristicsWatchers();
-
+//        fillPlayerCharacteristicsFields();
+//        initPlayerCharacteristicsWatchers();
+//
         initPlayerInformationFields();
-        fillPlayerInformationFields();
-        initPlayerInformationWatchers();
+//        fillPlayerInformationFields();
+//        initPlayerInformationWatchers();
+
+        FragmentCharacteristicsBinding binding = DataBindingUtil.inflate(inflater, R.layout.fragment_characteristics, container, false);
+        binding.setPlayer(PlayerContext.getPlayerInstance());
+        binding.setHandler(new PlayerHandler());
 
         changeEdition();
 
         long difference = System.currentTimeMillis() - startTime;
         Log.d("CharacteristicsFragment", String.format("%d = %d", startTime, difference));
-        return mRootView;
+//        return mRootView;
+        return binding.getRoot();
     }
 
     @Override
