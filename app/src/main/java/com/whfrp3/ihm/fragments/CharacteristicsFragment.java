@@ -11,13 +11,7 @@ import android.widget.EditText;
 
 import com.whfrp3.R;
 import com.whfrp3.databinding.FragmentCharacteristicsBinding;
-import com.whfrp3.ihm.listeners.CharacteristicEditTextWatcher;
-import com.whfrp3.ihm.listeners.PlayerEditTextWatcher;
-import com.whfrp3.ihm.listeners.PlayerHandler;
-import com.whfrp3.model.player.Player;
 import com.whfrp3.tools.PlayerContext;
-import com.whfrp3.tools.enums.Characteristic;
-import com.whfrp3.tools.enums.PlayerInformation;
 
 /**
  * The CharacteristicsFragment.
@@ -66,16 +60,11 @@ public class CharacteristicsFragment extends Fragment {
         setHasOptionsMenu(true);
 
         initPlayerCharacteristicsFields();
-//        fillPlayerCharacteristicsFields();
-//        initPlayerCharacteristicsWatchers();
-//
         initPlayerInformationFields();
-//        fillPlayerInformationFields();
-//        initPlayerInformationWatchers();
 
         FragmentCharacteristicsBinding binding = DataBindingUtil.inflate(inflater, R.layout.fragment_characteristics, container, false);
         binding.setPlayer(PlayerContext.getPlayerInstance());
-        binding.setHandler(new PlayerHandler());
+        binding.setCarac(PlayerContext.getPlayerInstance().getCharacteristics());
 
         changeEdition();
 
@@ -83,11 +72,6 @@ public class CharacteristicsFragment extends Fragment {
         Log.d("CharacteristicsFragment", String.format("%d = %d", startTime, difference));
 //        return mRootView;
         return binding.getRoot();
-    }
-
-    @Override
-    public void onResume() {
-        super.onResume();
     }
 
     /**
@@ -230,58 +214,6 @@ public class CharacteristicsFragment extends Fragment {
         mPlayerWillpowerFortuneView = (EditText) mRootView.findViewById(R.id.willpower_fortune);
         mPlayerFellowshipFortuneView = (EditText) mRootView.findViewById(R.id.fellowship_fortune);
     }
-
-    /**
-     * Fills the player characteristics fields.
-     */
-    private void fillPlayerCharacteristicsFields() {
-        Player player = PlayerContext.getPlayerInstance();
-
-        int strength = player.getCharacteristics().getStrength();
-        mPlayerStrengthView.setText(strength == 0 ? "" : String.valueOf(strength));
-        int toughness = player.getCharacteristics().getToughness();
-        mPlayerToughnessView.setText(toughness == 0 ? "" : String.valueOf(toughness));
-        int agility = player.getCharacteristics().getAgility();
-        mPlayerAgilityView.setText(agility == 0 ? "" : String.valueOf(agility));
-        int intelligence = player.getCharacteristics().getIntelligence();
-        mPlayerIntelligenceView.setText(intelligence == 0 ? "" : String.valueOf(intelligence));
-        int willpower = player.getCharacteristics().getWillpower();
-        mPlayerWillpowerView.setText(willpower == 0 ? "" : String.valueOf(willpower));
-        int fellowship = player.getCharacteristics().getFellowship();
-        mPlayerFellowshipView.setText(fellowship == 0 ? "" : String.valueOf(fellowship));
-
-        int strengthFortune = player.getCharacteristics().getStrength_fortune();
-        mPlayerStrengthFortuneView.setText(strengthFortune == 0 ? "" : String.valueOf(strengthFortune));
-        int toughnessFortune = player.getCharacteristics().getToughness_fortune();
-        mPlayerToughnessFortuneView.setText(toughnessFortune == 0 ? "" : String.valueOf(toughnessFortune));
-        int agilityFortune = player.getCharacteristics().getAgility_fortune();
-        mPlayerAgilityFortuneView.setText(agilityFortune == 0 ? "" : String.valueOf(agilityFortune));
-        int intelligenceFortune = player.getCharacteristics().getIntelligence_fortune();
-        mPlayerIntelligenceFortuneView.setText(intelligenceFortune == 0 ? "" : String.valueOf(intelligenceFortune));
-        int willpowerFortune = player.getCharacteristics().getWillpower_fortune();
-        mPlayerWillpowerFortuneView.setText(willpowerFortune == 0 ? "" : String.valueOf(willpowerFortune));
-        int fellowshipFortune = player.getCharacteristics().getFellowship_fortune();
-        mPlayerFellowshipFortuneView.setText(fellowshipFortune == 0 ? "" : String.valueOf(fellowshipFortune));
-    }
-
-    /**
-     * Initialize the player characteristics text watchers.
-     */
-    private void initPlayerCharacteristicsWatchers() {
-        mPlayerStrengthView.addTextChangedListener(new CharacteristicEditTextWatcher(Characteristic.STRENGTH));
-        mPlayerToughnessView.addTextChangedListener(new CharacteristicEditTextWatcher(Characteristic.TOUGHNESS));
-        mPlayerAgilityView.addTextChangedListener(new CharacteristicEditTextWatcher(Characteristic.AGILITY));
-        mPlayerIntelligenceView.addTextChangedListener(new CharacteristicEditTextWatcher(Characteristic.INTELLIGENCE));
-        mPlayerWillpowerView.addTextChangedListener(new CharacteristicEditTextWatcher(Characteristic.WILLPOWER));
-        mPlayerFellowshipView.addTextChangedListener(new CharacteristicEditTextWatcher(Characteristic.FELLOWSHIP));
-
-        mPlayerStrengthFortuneView.addTextChangedListener(new CharacteristicEditTextWatcher(Characteristic.STRENGTH_FORTUNE));
-        mPlayerToughnessFortuneView.addTextChangedListener(new CharacteristicEditTextWatcher(Characteristic.TOUGHNESS_FORTUNE));
-        mPlayerAgilityFortuneView.addTextChangedListener(new CharacteristicEditTextWatcher(Characteristic.AGILITY_FORTUNE));
-        mPlayerIntelligenceFortuneView.addTextChangedListener(new CharacteristicEditTextWatcher(Characteristic.INTELLIGENCE_FORTUNE));
-        mPlayerWillpowerFortuneView.addTextChangedListener(new CharacteristicEditTextWatcher(Characteristic.WILLPOWER_FORTUNE));
-        mPlayerFellowshipFortuneView.addTextChangedListener(new CharacteristicEditTextWatcher(Characteristic.FELLOWSHIP_FORTUNE));
-    }
     //endregion
 
     //region Text fields setup
@@ -304,61 +236,5 @@ public class CharacteristicsFragment extends Fragment {
         mPlayerSizeView = (EditText) mRootView.findViewById(R.id.player_size);
     }
 
-    /**
-     * Fill the player information fields.
-     */
-    private void fillPlayerInformationFields() {
-        Player player = PlayerContext.getPlayerInstance();
-
-        int age = player.getAge();
-        mPlayerAgeView.setText(age == 0 ? "" : String.valueOf(age));
-
-        mPlayerCareerView.setText(player.getCareer());
-
-        mPlayerDescriptionView.setText(player.getDescription());
-
-        int maxExperience = player.getMax_experience();
-        mPlayerMaxExperienceView.setText(maxExperience == 0 ? "" : String.valueOf(maxExperience));
-
-        int maxWounds = player.getMax_wounds();
-        mPlayerMaxWoundsView.setText(maxWounds == 0 ? "" : String.valueOf(maxWounds));
-
-        int maxCorruption = player.getMax_corruption();
-        mPlayerMaxCorruptionView.setText(maxCorruption == 0 ? "" : String.valueOf(maxCorruption));
-
-        int maxConservative = player.getMax_conservative();
-        mPlayerMaxConservativeView.setText(maxConservative == 0 ? "" : String.valueOf(maxConservative));
-
-        int maxReckless = player.getMax_reckless();
-        mPlayerMaxRecklessView.setText(maxReckless == 0 ? "" : String.valueOf(maxReckless));
-
-        mPlayerNameView.setText(player.getName());
-
-        mPlayerRaceView.setText(player.getRace());
-
-        int rank = player.getRank();
-        mPlayerRankView.setText(rank == 0 ? "" : String.valueOf(rank));
-
-        double size = player.getSize();
-        mPlayerSizeView.setText(size == 0 ? "" : String.valueOf(size));
-    }
-
-    /**
-     * Initialize the player information text watchers.
-     */
-    private void initPlayerInformationWatchers() {
-        mPlayerAgeView.addTextChangedListener(new PlayerEditTextWatcher(PlayerInformation.AGE));
-        mPlayerCareerView.addTextChangedListener(new PlayerEditTextWatcher(PlayerInformation.CAREER));
-        mPlayerDescriptionView.addTextChangedListener(new PlayerEditTextWatcher(PlayerInformation.DESCRIPTION));
-        mPlayerMaxExperienceView.addTextChangedListener(new PlayerEditTextWatcher(PlayerInformation.MAX_EXPERIENCE));
-        mPlayerMaxWoundsView.addTextChangedListener(new PlayerEditTextWatcher(PlayerInformation.MAX_WOUNDS));
-        mPlayerMaxCorruptionView.addTextChangedListener(new PlayerEditTextWatcher(PlayerInformation.MAX_CORRUPTION));
-        mPlayerMaxConservativeView.addTextChangedListener(new PlayerEditTextWatcher(PlayerInformation.MAX_CONSERVATIVE));
-        mPlayerMaxRecklessView.addTextChangedListener(new PlayerEditTextWatcher(PlayerInformation.MAX_RECKLESS));
-        mPlayerNameView.addTextChangedListener(new PlayerEditTextWatcher(PlayerInformation.NAME));
-        mPlayerRaceView.addTextChangedListener(new PlayerEditTextWatcher(PlayerInformation.RACE));
-        mPlayerRankView.addTextChangedListener(new PlayerEditTextWatcher(PlayerInformation.RANK));
-        mPlayerSizeView.addTextChangedListener(new PlayerEditTextWatcher(PlayerInformation.SIZE));
-    }
     //endregion
 }

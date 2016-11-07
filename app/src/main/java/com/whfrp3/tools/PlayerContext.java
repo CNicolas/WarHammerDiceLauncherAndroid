@@ -54,7 +54,6 @@ public abstract class PlayerContext {
             mPlayerDao.update(mPlayer);
         }
 
-//        mPlayer = mPlayerDao.findById(mPlayer.getId());
         notifyListeners();
 
         Log.e("Player Context UPDATE", mPlayer.toString());
@@ -69,11 +68,13 @@ public abstract class PlayerContext {
 
     //region Edition
     public static boolean isInEdition() {
+        Log.d("IsInEdition SET", "" + isInEdition);
         return isInEdition;
     }
 
     public static void setIsInEdition(boolean isInEdition) {
         PlayerContext.isInEdition = isInEdition;
+        Log.d("IsInEdition SET", "" + isInEdition());
     }
     //endregion
 

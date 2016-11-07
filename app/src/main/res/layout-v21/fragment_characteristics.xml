@@ -8,8 +8,9 @@
             type="com.whfrp3.model.player.Player" />
 
         <variable
-            name="handler"
-            type="com.whfrp3.ihm.listeners.PlayerHandler" />
+            name="carac"
+            type="com.whfrp3.model.player.Characteristics" />
+
     </data>
 
     <ScrollView
@@ -89,14 +90,16 @@
 
                         <EditText
                             android:id="@+id/strength_characteristic"
-                            style="@style/CharacteristicEditText" />
+                            style="@style/CharacteristicEditText"
+                            android:text="@={carac.strength}" />
                     </LinearLayout>
 
                     <LinearLayout style="@style/CharacteristicWhiteLinearLayout">
 
                         <EditText
                             android:id="@+id/strength_fortune"
-                            style="@style/CharacteristicFortuneEditText" />
+                            style="@style/CharacteristicFortuneEditText"
+                            android:text="@={carac.strength_fortune}" />
                     </LinearLayout>
                 </LinearLayout>
 
@@ -113,22 +116,23 @@
 
                         <EditText
                             android:id="@+id/toughness_characteristic"
-                            style="@style/CharacteristicEditText" />
+                            style="@style/CharacteristicEditText"
+                            android:text="@={carac.toughness}" />
                     </LinearLayout>
 
                     <LinearLayout style="@style/CharacteristicWhiteLinearLayout">
 
                         <EditText
                             android:id="@+id/toughness_fortune"
-                            style="@style/CharacteristicFortuneEditText" />
+                            style="@style/CharacteristicFortuneEditText"
+                            android:text="@={carac.toughness_fortune}" />
                     </LinearLayout>
                 </LinearLayout>
 
                 <!--Agility-->
                 <LinearLayout
                     android:id="@+id/agility_layout"
-                    style="@style/CharacteristicLinearLayout"
-                    android:layout_below="@id/toughness_layout">
+                    style="@style/CharacteristicLinearLayout">
 
                     <TextView
                         style="@style/CharacteristicLabelTextView"
@@ -138,14 +142,16 @@
 
                         <EditText
                             android:id="@+id/agility_characteristic"
-                            style="@style/CharacteristicEditText" />
+                            style="@style/CharacteristicEditText"
+                            android:text="@={carac.agility}" />
                     </LinearLayout>
 
                     <LinearLayout style="@style/CharacteristicWhiteLinearLayout">
 
                         <EditText
                             android:id="@+id/agility_fortune"
-                            style="@style/CharacteristicFortuneEditText" />
+                            style="@style/CharacteristicFortuneEditText"
+                            android:text="@={carac.agility_fortune}" />
                     </LinearLayout>
                 </LinearLayout>
 
@@ -162,14 +168,16 @@
 
                         <EditText
                             android:id="@+id/intelligence_characteristic"
-                            style="@style/CharacteristicEditText" />
+                            style="@style/CharacteristicEditText"
+                            android:text="@={carac.intelligence}" />
                     </LinearLayout>
 
                     <LinearLayout style="@style/CharacteristicWhiteLinearLayout">
 
                         <EditText
                             android:id="@+id/intelligence_fortune"
-                            style="@style/CharacteristicFortuneEditText" />
+                            style="@style/CharacteristicFortuneEditText"
+                            android:text="@={carac.intelligence_fortune}" />
                     </LinearLayout>
                 </LinearLayout>
 
@@ -186,14 +194,16 @@
 
                         <EditText
                             android:id="@+id/willpower_characteristic"
-                            style="@style/CharacteristicEditText" />
+                            style="@style/CharacteristicEditText"
+                            android:text="@={carac.willpower}" />
                     </LinearLayout>
 
                     <LinearLayout style="@style/CharacteristicWhiteLinearLayout">
 
                         <EditText
                             android:id="@+id/willpower_fortune"
-                            style="@style/CharacteristicFortuneEditText" />
+                            style="@style/CharacteristicFortuneEditText"
+                            android:text="@={carac.willpower_fortune}" />
                     </LinearLayout>
                 </LinearLayout>
 
@@ -210,14 +220,16 @@
 
                         <EditText
                             android:id="@+id/fellowship_characteristic"
-                            style="@style/CharacteristicEditText" />
+                            style="@style/CharacteristicEditText"
+                            android:text="@={carac.fellowship}" />
                     </LinearLayout>
 
                     <LinearLayout style="@style/CharacteristicWhiteLinearLayout">
 
                         <EditText
                             android:id="@+id/fellowship_fortune"
-                            style="@style/CharacteristicFortuneEditText" />
+                            style="@style/CharacteristicFortuneEditText"
+                            android:text="@={carac.fellowship_fortune}" />
                     </LinearLayout>
                 </LinearLayout>
             </LinearLayout>
@@ -345,6 +357,7 @@
                 android:layout_marginBottom="@dimen/medium_padding"
                 android:layout_marginEnd="@dimen/big_padding"
                 android:layout_marginStart="@dimen/big_padding"
+                android:baselineAligned="false"
                 android:orientation="horizontal">
 
                 <!--Conservative-->
@@ -418,12 +431,6 @@
                     android:padding="@dimen/small_padding"
                     android:scrollHorizontally="false"
                     android:text="@={player.description}" />
-
-                <Button
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:onClick="@{(v) -> handler.updatePlayer(v, player)}"
-                    android:text="UPDATE" />
             </LinearLayout>
 
         </LinearLayout>
