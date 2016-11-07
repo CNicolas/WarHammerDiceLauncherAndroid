@@ -26,7 +26,7 @@ public class Player implements IModel, IPlayerConstants {
     private String name;
     private String race;
     private int age;
-    private double size;
+    private int size;
     private String description;
 
     private String career;
@@ -60,18 +60,18 @@ public class Player implements IModel, IPlayerConstants {
     //endregion
 
     @BindingAdapter("android:text")
-    public static void setText(TextView view, double value) {
+    public static void setText(TextView view, int value) {
         String res = value == 0 ? "" : String.valueOf(value);
         view.setText(res);
     }
 
     @InverseBindingAdapter(attribute = "android:text")
-    public static double getText(TextView view) {
+    public static int getText(TextView view) {
         String content = view.getText().toString();
         if (content.isEmpty()) {
             return 0;
         }
-        return Double.parseDouble(content);
+        return Integer.parseInt(content);
     }
     //endregion
 
@@ -221,11 +221,11 @@ public class Player implements IModel, IPlayerConstants {
         this.age = age;
     }
 
-    public double getSize() {
+    public int getSize() {
         return size;
     }
 
-    public void setSize(double size) {
+    public void setSize(int size) {
         this.size = size;
     }
 
@@ -374,8 +374,6 @@ public class Player implements IModel, IPlayerConstants {
     }
     //endregion
 
-    //region Overrides
-
     public List<Skill> getSkills() {
         return mSkills;
     }
@@ -384,6 +382,7 @@ public class Player implements IModel, IPlayerConstants {
         this.mSkills = skills;
     }
 
+    //region Overrides
     @Override
     public String toString() {
         return "Player{" +

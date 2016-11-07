@@ -37,7 +37,7 @@ public interface IPlayerEntryConstants extends IEntryConstants {
                     COLUMN_NAME + TEXT_TYPE + UNIQUE + NOT_NULL + COMMA_SEP +
                     COLUMN_RACE + TEXT_TYPE + COMMA_SEP +
                     COLUMN_AGE + INTEGER_TYPE + COMMA_SEP +
-                    COLUMN_SIZE + FLOAT_TYPE + COMMA_SEP +
+                    COLUMN_SIZE + INTEGER_TYPE + COMMA_SEP +
                     COLUMN_DESCRIPTION + TEXT_TYPE + COMMA_SEP +
 
                     COLUMN_CAREER + TEXT_TYPE + COMMA_SEP +

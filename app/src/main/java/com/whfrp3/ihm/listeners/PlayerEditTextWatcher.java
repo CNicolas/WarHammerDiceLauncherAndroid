@@ -7,10 +7,6 @@ import com.whfrp3.model.player.Player;
 import com.whfrp3.tools.PlayerContext;
 import com.whfrp3.tools.enums.PlayerInformation;
 
-/**
- * Created by cnicolas on 18/10/2016.
- */
-
 public class PlayerEditTextWatcher implements TextWatcher {
     private final PlayerInformation playerInformation;
 
@@ -93,7 +89,7 @@ public class PlayerEditTextWatcher implements TextWatcher {
                     player.setRank(Integer.parseInt(newValue));
                     break;
                 case SIZE:
-                    player.setSize(Double.parseDouble(newValue));
+                    player.setSize(Integer.parseInt(newValue));
                     break;
                 default:
                     break;
