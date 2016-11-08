@@ -22,6 +22,7 @@ import com.whfrp3.database.dao.PlayerDao;
 import com.whfrp3.ihm.adapters.PlayerPagerAdapter;
 import com.whfrp3.ihm.fragments.CharacteristicsFragment;
 import com.whfrp3.model.player.skill.Skill;
+import com.whfrp3.tools.BindingContext;
 import com.whfrp3.tools.PlayerContext;
 import com.whfrp3.tools.constants.IPlayerConstants;
 
@@ -33,6 +34,7 @@ public class PlayerActivity extends AppCompatActivity implements IPlayerConstant
 
     private PlayerPagerAdapter mPlayerPagerAdapter;
     private Menu mMenu;
+    private BindingContext mBindingContext;
 
     //region Overrides
     @Override
@@ -40,23 +42,23 @@ public class PlayerActivity extends AppCompatActivity implements IPlayerConstant
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_player);
 
+        mBindingContext = new BindingContext(false);
+
         Bundle extras = getIntent().getExtras();
         if (extras != null) {
             boolean inEdition = extras.getBoolean(IPlayerConstants.IS_IN_EDITION_KEY);
-            PlayerContext.setIsInEdition(inEdition);
+            mBindingContext.setInEdition(inEdition);
         }
 
         initDaos();
         initVisualElements();
-
-        hideKeyboard();
     }
 
     //region Instances
     @Override
     protected void onSaveInstanceState(Bundle outState) {
         super.onSaveInstanceState(outState);
-        outState.putBoolean(IPlayerConstants.IS_IN_EDITION_KEY, PlayerContext.isInEdition());
+        outState.putBoolean(IPlayerConstants.IS_IN_EDITION_KEY, mBindingContext.isInEdition());
     }
 
     @Override
@@ -66,12 +68,6 @@ public class PlayerActivity extends AppCompatActivity implements IPlayerConstant
         setIsInEdition(b);
     }
     //endregion
-
-    @Override
-    protected void onResume() {
-        super.onResume();
-        hideKeyboard();
-    }
 
     //region Menu
     @Override
@@ -88,7 +84,7 @@ public class PlayerActivity extends AppCompatActivity implements IPlayerConstant
         int id = item.getItemId();
 
         if (id == R.id.action_in_edition_true || id == R.id.action_in_edition_false) {
-            setIsInEdition(!PlayerContext.isInEdition());
+            setIsInEdition(!mBindingContext.isInEdition());
             return true;
         }
         if (id == R.id.action_launch) {
@@ -124,7 +120,7 @@ public class PlayerActivity extends AppCompatActivity implements IPlayerConstant
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        mPlayerPagerAdapter = new PlayerPagerAdapter(this);
+        mPlayerPagerAdapter = new PlayerPagerAdapter(this, mBindingContext);
 
         ViewPager viewPager = (ViewPager) findViewById(R.id.player_pager_container);
         viewPager.setAdapter(mPlayerPagerAdapter);
@@ -162,7 +158,7 @@ public class PlayerActivity extends AppCompatActivity implements IPlayerConstant
      * @param isInEdition
      */
     private void setIsInEdition(boolean isInEdition) {
-        PlayerContext.setIsInEdition(isInEdition);
+        mBindingContext.setInEdition(isInEdition);
         changeEdition();
     }
 
@@ -171,7 +167,7 @@ public class PlayerActivity extends AppCompatActivity implements IPlayerConstant
      */
     private void changeEdition() {
         if (mMenu != null) {
-            if (PlayerContext.isInEdition()) {
+            if (mBindingContext.isInEdition()) {
                 mMenu.findItem(R.id.action_in_edition_true).setVisible(true);
                 mMenu.findItem(R.id.action_in_edition_false).setVisible(false);
 

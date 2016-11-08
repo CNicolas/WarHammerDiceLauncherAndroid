@@ -8,6 +8,7 @@ public interface IPlayerConstants extends IConstants {
     int SILVER_TO_GOLD = 25;
 
     String IS_IN_EDITION_KEY = "isInEdition";
+    String BINDING_CONTEXT_KEY = "bindingContext";
 
     String SKILL_TAG = "skill";
 }

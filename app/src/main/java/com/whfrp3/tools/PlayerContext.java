@@ -18,7 +18,6 @@ import java.util.List;
  */
 public abstract class PlayerContext {
     private static Player mPlayer;
-    private static boolean isInEdition;
 
     private static List<OnPlayerUpdateListener> mListeners;
 
@@ -64,18 +63,6 @@ public abstract class PlayerContext {
         Log.d("Player Context SET", mPlayer.toString());
     }
 
-    //endregion
-
-    //region Edition
-    public static boolean isInEdition() {
-        Log.d("IsInEdition SET", "" + isInEdition);
-        return isInEdition;
-    }
-
-    public static void setIsInEdition(boolean isInEdition) {
-        PlayerContext.isInEdition = isInEdition;
-        Log.d("IsInEdition SET", "" + isInEdition());
-    }
     //endregion
 
     public static void registerPlayerUpdateListener(OnPlayerUpdateListener listener) {

@@ -11,7 +11,9 @@ import android.widget.EditText;
 
 import com.whfrp3.R;
 import com.whfrp3.databinding.FragmentCharacteristicsBinding;
+import com.whfrp3.tools.BindingContext;
 import com.whfrp3.tools.PlayerContext;
+import com.whfrp3.tools.constants.IPlayerConstants;
 
 /**
  * The CharacteristicsFragment.
@@ -49,36 +51,44 @@ public class CharacteristicsFragment extends Fragment {
     //endregion
 
     private View mRootView;
-    private Boolean mIsInEdition;
+    private BindingContext mBindingContext;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         long startTime = System.currentTimeMillis();
+//        mRootView = inflater.inflate(R.layout.fragment_characteristics, container, false);
 
-        mRootView = inflater.inflate(R.layout.fragment_characteristics, container, false);
+        Bundle bundle = this.getArguments();
+        if (bundle != null) {
+            mBindingContext = (BindingContext) bundle.getSerializable(IPlayerConstants.BINDING_CONTEXT_KEY);
+        } else {
+            mBindingContext = new BindingContext(false);
+        }
+
+        FragmentCharacteristicsBinding binding = DataBindingUtil.inflate(inflater, R.layout.fragment_characteristics, container, false);
+        binding.setPlayer(PlayerContext.getPlayerInstance());
+        binding.setCarac(PlayerContext.getPlayerInstance().getCharacteristics());
+        binding.setBindingContext(mBindingContext);
+
+        mRootView = binding.getRoot();
         setHasOptionsMenu(true);
 
         initPlayerCharacteristicsFields();
         initPlayerInformationFields();
 
-        FragmentCharacteristicsBinding binding = DataBindingUtil.inflate(inflater, R.layout.fragment_characteristics, container, false);
-        binding.setPlayer(PlayerContext.getPlayerInstance());
-        binding.setCarac(PlayerContext.getPlayerInstance().getCharacteristics());
-
         changeEdition();
 
         long difference = System.currentTimeMillis() - startTime;
         Log.d("CharacteristicsFragment", String.format("%d = %d", startTime, difference));
-//        return mRootView;
-        return binding.getRoot();
+        return mRootView;
     }
 
     /**
      * Update the UI according to the edition boolean from context.
      */
     public void changeEdition() {
-        boolean isInEdition = PlayerContext.isInEdition();
+        boolean isInEdition = mBindingContext.isInEdition();
 
         updateCharacteristicsEdition(isInEdition);
         updateCharacteristicsFortuneEdition(isInEdition);
@@ -237,4 +247,5 @@ public class CharacteristicsFragment extends Fragment {
     }
 
     //endregion
+
 }

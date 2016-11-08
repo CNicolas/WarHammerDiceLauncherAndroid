@@ -1,6 +1,7 @@
 package com.whfrp3.ihm.adapters;
 
 import android.graphics.drawable.Drawable;
+import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.content.ContextCompat;
@@ -15,6 +16,8 @@ import com.whfrp3.ihm.fragments.CharacteristicsFragment;
 import com.whfrp3.ihm.fragments.CharacteristicsFragmentV2;
 import com.whfrp3.ihm.fragments.InventoryFragment;
 import com.whfrp3.ihm.fragments.SkillsFragment;
+import com.whfrp3.tools.BindingContext;
+import com.whfrp3.tools.constants.IPlayerConstants;
 
 /**
  * The PlayerPagerAdapter creates and manages the Fragments from the PlayerActivity.
@@ -22,6 +25,7 @@ import com.whfrp3.ihm.fragments.SkillsFragment;
 public class PlayerPagerAdapter extends FragmentPagerAdapter {
 
     private final PlayerActivity mContext;
+    private final BindingContext mBindingContext;
 
     private String mCharacteristicFragmentTag;
     private String mSkillsFragmentTag;
@@ -34,9 +38,10 @@ public class PlayerPagerAdapter extends FragmentPagerAdapter {
     private AdventureFragment mAdventureFragment;
 
 
-    public PlayerPagerAdapter(PlayerActivity ctx) {
+    public PlayerPagerAdapter(PlayerActivity ctx, BindingContext bindingContext) {
         super(ctx.getSupportFragmentManager());
         mContext = ctx;
+        mBindingContext = bindingContext;
     }
 
     /**
@@ -51,11 +56,15 @@ public class PlayerPagerAdapter extends FragmentPagerAdapter {
 
     @Override
     public Fragment getItem(int position) {
+        Bundle bundle = new Bundle();
+        bundle.putSerializable(IPlayerConstants.BINDING_CONTEXT_KEY, mBindingContext);
+
         switch (position) {
             case 0:
                 mCharacteristicFragmentTag = makeFragmentTag(position);
                 if (mCharacteristicsFragment == null) {
                     mCharacteristicsFragment = new CharacteristicsFragment();
+                    mCharacteristicsFragment.setArguments(bundle);
                 }
                 return mCharacteristicsFragment;
             case 1:
