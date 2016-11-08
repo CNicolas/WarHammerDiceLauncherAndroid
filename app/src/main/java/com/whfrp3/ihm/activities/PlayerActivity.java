@@ -20,7 +20,6 @@ import com.whfrp3.database.WarHammerDatabaseHelper;
 import com.whfrp3.database.dao.CharacteristicsDao;
 import com.whfrp3.database.dao.PlayerDao;
 import com.whfrp3.ihm.adapters.PlayerPagerAdapter;
-import com.whfrp3.ihm.fragments.CharacteristicsFragment;
 import com.whfrp3.model.player.skill.Skill;
 import com.whfrp3.tools.BindingContext;
 import com.whfrp3.tools.PlayerContext;
@@ -177,11 +176,6 @@ public class PlayerActivity extends AppCompatActivity implements IPlayerConstant
 
                 hideKeyboard();
             }
-        }
-
-        CharacteristicsFragment characteristicsFragment = mPlayerPagerAdapter.getCharacteristicsFragment();
-        if (characteristicsFragment != null && characteristicsFragment.isVisible()) {
-            characteristicsFragment.changeEdition();
         }
     }
     //endregion
