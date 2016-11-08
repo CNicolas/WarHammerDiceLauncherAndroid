@@ -1,6 +1,29 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <!--LinearLayout-->
+    <style name="CharacteristicLinearLayout">
+        <item name="android:layout_width">400dp</item>
+        <item name="android:gravity">center</item>
+        <item name="android:layout_height">40dp</item>
+        <item name="android:orientation">horizontal</item>
+        <item name="android:paddingEnd">70dp</item>
+        <item name="android:paddingStart">@dimen/small_padding</item>
+    </style>
 
+    <style name="CharacteristicBlueLinearLayout">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">match_parent</item>
+        <item name="android:layout_weight">35</item>
+        <item name="android:background">@color/characteristic_blue</item>
+        <item name="android:layout_margin">@dimen/very_small_padding</item>
+    </style>
+
+    <style name="CharacteristicWhiteLinearLayout" parent="CharacteristicBlueLinearLayout">
+        <item name="android:background">@android:color/white</item>
+    </style>
+    <!--End LinearLayout-->
+
+    <!--Labels-->
     <style name="LabelTextView">
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">match_parent</item>
@@ -10,16 +33,20 @@
         <item name="android:paddingStart">@dimen/small_padding</item>
     </style>
 
-    <style name="CharacteristicLabelTextView" parent="LabelTextView">
+    <style name="CharacteristicLabel" parent="LabelTextView">
         <item name="android:layout_weight">30</item>
     </style>
 
-    <style name="PlayerInformationLabelTextView" parent="LabelTextView">
+    <style name="PlayerSimpleLabel">
         <item name="android:layout_width">wrap_content</item>
-        <item name="android:layout_height">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:gravity">end|center_vertical</item>
+        <item name="android:paddingEnd">@dimen/small_padding</item>
+        <item name="android:paddingStart">@dimen/small_padding</item>
     </style>
+    <!--End Labels-->
 
-
+    <!--EditTexts-->
     <style name="CharacteristicEditText" parent="@android:style/Widget.EditText">
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">match_parent</item>
@@ -59,7 +86,7 @@
         <item name="android:maxLength">3</item>
     </style>
 
-    <style name="RankMaxEditText">
+    <style name="SimpleCharacteristicNumberEditText">
         <item name="android:layout_width">wrap_content</item>
         <item name="android:layout_height">wrap_content</item>
         <item name="android:gravity">center</item>
@@ -67,32 +94,5 @@
         <item name="android:inputType">number</item>
         <item name="android:maxLength">2</item>
     </style>
-
-    <style name="RankMaxLabel">
-        <item name="android:layout_width">wrap_content</item>
-        <item name="android:layout_height">wrap_content</item>
-        <item name="android:gravity">end|center_vertical</item>
-    </style>
-
-
-    <style name="CharacteristicLinearLayout">
-        <item name="android:layout_width">400dp</item>
-        <item name="android:gravity">center</item>
-        <item name="android:layout_height">40dp</item>
-        <item name="android:orientation">horizontal</item>
-        <item name="android:paddingEnd">70dp</item>
-        <item name="android:paddingStart">@dimen/small_padding</item>
-    </style>
-
-    <style name="CharacteristicBlueLinearLayout">
-        <item name="android:layout_width">match_parent</item>
-        <item name="android:layout_height">match_parent</item>
-        <item name="android:layout_weight">35</item>
-        <item name="android:background">@color/characteristic_blue</item>
-        <item name="android:layout_margin">@dimen/very_small_padding</item>
-    </style>
-
-    <style name="CharacteristicWhiteLinearLayout" parent="CharacteristicBlueLinearLayout">
-        <item name="android:background">@android:color/white</item>
-    </style>
+    <!--End EditTexts-->
 </resources>
