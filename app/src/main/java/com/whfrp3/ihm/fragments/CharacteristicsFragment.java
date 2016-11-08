@@ -68,8 +68,9 @@ public class CharacteristicsFragment extends Fragment {
 
         FragmentCharacteristicsBinding binding = DataBindingUtil.inflate(inflater, R.layout.fragment_characteristics, container, false);
         binding.setPlayer(PlayerContext.getPlayerInstance());
-        binding.setCarac(PlayerContext.getPlayerInstance().getCharacteristics());
         binding.setBindingContext(mBindingContext);
+        binding.characteristicsEdittexts.setCarac(PlayerContext.getPlayerInstance().getCharacteristics());
+        binding.characteristicsEdittexts.setBindingContext(mBindingContext);
 
         mRootView = binding.getRoot();
         setHasOptionsMenu(true);
