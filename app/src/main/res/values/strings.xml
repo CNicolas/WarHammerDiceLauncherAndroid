@@ -95,5 +95,7 @@
     <string name="max_experience_label">Max Experience :</string>
     <string name="max_wounds_label">Wounds points :</string>
     <string name="max_corruption_label">Corruption points :</string>
+    <string name="xp_label" translatable="false">XP</string>
+    <string name="cm_label" translatable="false">cm</string>
 
 </resources>
