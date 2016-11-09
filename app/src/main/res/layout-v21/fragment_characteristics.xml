@@ -4,6 +4,8 @@
 
     <data>
 
+        <import type="android.text.InputType" />
+
         <variable
             name="player"
             type="com.whfrp3.model.player.Player" />
@@ -22,7 +24,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@android:color/white"
-        android:fillViewport="true">
+        android:fillViewport="true"
+        android:padding="@dimen/small_padding">
 
         <!--Only child of ScrollView-->
         <LinearLayout
@@ -64,10 +67,11 @@
                     android:layout_column="1"
                     android:layout_columnWeight="66"
                     android:layout_row="0"
-                    android:enabled="@{bindingContext.inEdition}"
-                    android:gravity="fill_horizontal|center"
+                    android:clickable="@{bindingContext.inEdition}"
+                    android:focusable="@{bindingContext.inEdition}"
+                    android:focusableInTouchMode="@{bindingContext.inEdition}"
+                    android:gravity="center"
                     android:hint="@string/name_hint"
-                    android:inputType="text"
                     android:text="@={player.name}" />
 
                 <TextView
@@ -85,7 +89,9 @@
                     android:layout_column="1"
                     android:layout_columnWeight="66"
                     android:layout_row="1"
-                    android:enabled="@{bindingContext.inEdition}"
+                    android:clickable="@{bindingContext.inEdition}"
+                    android:focusable="@{bindingContext.inEdition}"
+                    android:focusableInTouchMode="@{bindingContext.inEdition}"
                     android:gravity="center"
                     android:hint="@string/career_hint"
                     android:inputType="text"
@@ -94,92 +100,89 @@
 
             <!--Characteristics EditTexts-->
             <include
-                layout="@layout/characteristics_numbers"
-                android:id="@+id/characteristics_edittexts" />
+                android:id="@+id/characteristics_edittexts"
+                layout="@layout/characteristics_numbers" />
 
-            <!--Rank, Max_Experience, Max_Wounds, Max_Corruption-->
-            <GridLayout
+            <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="@dimen/medium_padding"
-                android:layout_marginEnd="@dimen/big_padding"
-                android:layout_marginStart="@dimen/big_padding"
-                android:layout_marginTop="@dimen/medium_padding"
-                android:columnCount="4"
-                android:rowCount="2">
-
+                android:layout_height="wrap_content">
                 <!--Rank-->
                 <TextView
                     style="@style/PlayerSimpleLabel"
-                    android:layout_column="0"
-                    android:layout_columnWeight="10"
-                    android:layout_row="0"
+                    android:layout_width="match_parent"
+                    android:layout_weight="75"
                     android:labelFor="@+id/player_rank"
                     android:text="@string/rank_label" />
 
                 <EditText
                     android:id="@+id/player_rank"
                     style="@style/SimpleCharacteristicNumberEditText"
-                    android:layout_column="1"
-                    android:layout_columnWeight="40"
-                    android:layout_row="0"
-                    android:enabled="@{bindingContext.inEdition}"
+                    android:layout_width="match_parent"
+                    android:layout_weight="115"
+                    android:clickable="@{bindingContext.inEdition}"
+                    android:focusable="@{bindingContext.inEdition}"
+                    android:focusableInTouchMode="@{bindingContext.inEdition}"
                     android:text="@={player.rank}" />
 
                 <!--Max Experience-->
                 <TextView
                     style="@style/PlayerSimpleLabel"
-                    android:layout_column="2"
-                    android:layout_columnWeight="10"
-                    android:layout_row="0"
+                    android:layout_width="match_parent"
+                    android:layout_weight="75"
                     android:labelFor="@+id/player_max_experience"
                     android:text="@string/max_experience_label" />
 
                 <EditText
                     android:id="@+id/player_max_experience"
                     style="@style/SimpleCharacteristicNumberEditText"
-                    android:layout_column="3"
-                    android:layout_columnWeight="40"
-                    android:layout_row="0"
-                    android:enabled="@{bindingContext.inEdition}"
+                    android:layout_width="match_parent"
+                    android:layout_weight="115"
+                    android:clickable="@{bindingContext.inEdition}"
+                    android:focusable="@{bindingContext.inEdition}"
+                    android:focusableInTouchMode="@{bindingContext.inEdition}"
                     android:text="@={player.max_experience}" />
+            </LinearLayout>
 
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/medium_padding">
                 <!--Max Wounds-->
                 <TextView
                     style="@style/PlayerSimpleLabel"
-                    android:layout_column="0"
-                    android:layout_columnWeight="10"
-                    android:layout_row="1"
+                    android:layout_width="match_parent"
+                    android:layout_weight="75"
                     android:labelFor="@+id/player_max_wounds"
                     android:text="@string/max_wounds_label" />
 
                 <EditText
                     android:id="@+id/player_max_wounds"
                     style="@style/SimpleCharacteristicNumberEditText"
-                    android:layout_column="1"
-                    android:layout_columnWeight="40"
-                    android:layout_row="1"
-                    android:enabled="@{bindingContext.inEdition}"
+                    android:layout_width="match_parent"
+                    android:layout_weight="115"
+                    android:clickable="@{bindingContext.inEdition}"
+                    android:focusable="@{bindingContext.inEdition}"
+                    android:focusableInTouchMode="@{bindingContext.inEdition}"
                     android:text="@={player.max_wounds}" />
 
                 <!--Max Corruption-->
                 <TextView
                     style="@style/PlayerSimpleLabel"
-                    android:layout_column="2"
-                    android:layout_columnWeight="10"
-                    android:layout_row="1"
+                    android:layout_width="match_parent"
+                    android:layout_weight="75"
                     android:labelFor="@+id/player_max_corruption"
                     android:text="@string/max_corruption_label" />
 
                 <EditText
                     android:id="@+id/player_max_corruption"
                     style="@style/SimpleCharacteristicNumberEditText"
-                    android:layout_column="3"
-                    android:layout_columnWeight="40"
-                    android:layout_row="1"
-                    android:enabled="@{bindingContext.inEdition}"
+                    android:layout_width="match_parent"
+                    android:layout_weight="115"
+                    android:clickable="@{bindingContext.inEdition}"
+                    android:focusable="@{bindingContext.inEdition}"
+                    android:focusableInTouchMode="@{bindingContext.inEdition}"
                     android:text="@={player.max_corruption}" />
-            </GridLayout>
+            </LinearLayout>
 
             <!--Race, Age, Size-->
             <LinearLayout
@@ -200,7 +203,9 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="80"
-                    android:enabled="@{bindingContext.inEdition}"
+                    android:clickable="@{bindingContext.inEdition}"
+                    android:focusable="@{bindingContext.inEdition}"
+                    android:focusableInTouchMode="@{bindingContext.inEdition}"
                     android:gravity="center"
                     android:hint="@string/race_hint"
                     android:inputType="textCapSentences"
@@ -217,7 +222,9 @@
                     android:id="@+id/player_age"
                     style="@style/SimpleCharacteristicNumberEditText"
                     android:layout_weight="20"
-                    android:enabled="@{bindingContext.inEdition}"
+                    android:clickable="@{bindingContext.inEdition}"
+                    android:focusable="@{bindingContext.inEdition}"
+                    android:focusableInTouchMode="@{bindingContext.inEdition}"
                     android:maxLength="3"
                     android:text="@={player.age}" />
 
@@ -231,7 +238,9 @@
                     android:id="@+id/player_size"
                     style="@style/SimpleCharacteristicNumberEditText"
                     android:layout_weight="20"
-                    android:enabled="@{bindingContext.inEdition}"
+                    android:clickable="@{bindingContext.inEdition}"
+                    android:focusable="@{bindingContext.inEdition}"
+                    android:focusableInTouchMode="@{bindingContext.inEdition}"
                     android:maxLength="3"
                     android:text="@={player.size}" />
             </LinearLayout>
@@ -265,7 +274,9 @@
                     <EditText
                         android:id="@+id/player_max_conservative"
                         style="@style/RankExperienceEditText"
-                        android:enabled="@{bindingContext.inEdition}"
+                        android:clickable="@{bindingContext.inEdition}"
+                        android:focusable="@{bindingContext.inEdition}"
+                        android:focusableInTouchMode="@{bindingContext.inEdition}"
                         android:gravity="center"
                         android:maxLength="1"
                         android:text="@={player.max_conservative}"
@@ -290,7 +301,9 @@
                     <EditText
                         android:id="@+id/player_max_reckless"
                         style="@style/RankExperienceEditText"
-                        android:enabled="@{bindingContext.inEdition}"
+                        android:clickable="@{bindingContext.inEdition}"
+                        android:focusable="@{bindingContext.inEdition}"
+                        android:focusableInTouchMode="@{bindingContext.inEdition}"
                         android:gravity="center"
                         android:maxLength="1"
                         android:text="@={player.max_reckless}"
@@ -317,7 +330,9 @@
                     android:id="@+id/player_description"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:enabled="@{bindingContext.inEdition}"
+                    android:clickable="@{bindingContext.inEdition}"
+                    android:focusable="@{bindingContext.inEdition}"
+                    android:focusableInTouchMode="@{bindingContext.inEdition}"
                     android:gravity="top"
                     android:inputType="textShortMessage"
                     android:maxLines="3"
