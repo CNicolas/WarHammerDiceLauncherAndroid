@@ -1,127 +1,103 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical">
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <variable
+            name="player"
+            type="com.whfrp3.model.player.Player" />
+
+        <variable
+            name="carac"
+            type="com.whfrp3.model.player.Characteristics" />
+
+        <variable
+            name="bindingContext"
+            type="com.whfrp3.tools.BindingContext" />
+
+    </data>
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_marginEnd="@dimen/medium_padding"
-            android:layout_marginStart="@dimen/medium_padding"
-            android:layout_weight="50"
-            android:gravity="end|center_vertical"
-            android:text="@string/wounds_label" />
-
-        <EditText
-            android:id="@+id/player_wounds"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_marginEnd="@dimen/medium_padding"
-            android:layout_marginStart="@dimen/medium_padding"
-            android:layout_weight="50"
-            android:hint="@string/zero"
-            android:inputType="number"
-            android:maxLength="2" />
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_marginEnd="@dimen/medium_padding"
-            android:layout_marginStart="@dimen/medium_padding"
-            android:layout_weight="50"
-            android:gravity="end|center_vertical"
-            android:text="@string/experience_label" />
-
-        <EditText
-            android:id="@+id/player_experience"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_marginEnd="@dimen/medium_padding"
-            android:layout_marginStart="@dimen/medium_padding"
-            android:layout_weight="50"
-            android:hint="@string/zero"
-            android:inputType="number"
-            android:maxLength="2" />
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_marginEnd="@dimen/medium_padding"
-            android:layout_marginStart="@dimen/medium_padding"
-            android:layout_weight="50"
-            android:gravity="end|center_vertical"
-            android:text="@string/corruption_label" />
-
-        <EditText
-            android:id="@+id/player_corruption"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_marginEnd="@dimen/medium_padding"
-            android:layout_marginStart="@dimen/medium_padding"
-            android:layout_weight="50"
-            android:hint="@string/zero"
-            android:inputType="number"
-            android:maxLength="2" />
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:padding="@dimen/medium_padding">
+        android:layout_height="match_parent"
+        android:orientation="vertical">
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:weightSum="90">
 
             <TextView
-                android:layout_width="match_parent"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginEnd="@dimen/medium_padding"
-                android:layout_marginStart="@dimen/medium_padding"
                 android:layout_weight="50"
                 android:gravity="end|center_vertical"
-                android:text="@string/stance_label" />
+                android:text="@string/wounds_label" />
+
+            <EditText
+                android:id="@+id/player_wounds"
+                style="@style/SimpleCharacteristicNumberEditText" />
 
             <TextView
-                android:id="@+id/currentStance"
-                android:layout_width="match_parent"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:text="@string/slash" />
+
+            <TextView
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginEnd="@dimen/medium_padding"
-                android:layout_marginStart="@dimen/medium_padding"
-                android:layout_weight="50"
-                android:gravity="start|center_vertical" />
+                android:layout_gravity="center"
+                android:layout_margin="@dimen/small_padding"
+                android:hint="@string/zero"
+                android:text="@{player.max_experience}" />
         </LinearLayout>
 
-        <org.adw.library.widgets.discreteseekbar.DiscreteSeekBar
-            android:id="@+id/player_stance"
+
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/small_padding"
-            app:dsb_indicatorPopupEnabled="false"
-            app:dsb_max="6"
-            app:dsb_min="-6"
-            app:dsb_progressColor="@color/colorPrimaryDark"
-            app:dsb_scrubberHeight="10dp"
-            app:dsb_thumbSize="30dp"
-            app:dsb_value="0" />
+            android:orientation="vertical"
+            android:padding="@dimen/medium_padding">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="@dimen/medium_padding"
+                    android:layout_marginStart="@dimen/medium_padding"
+                    android:layout_weight="50"
+                    android:gravity="end|center_vertical"
+                    android:text="@string/stance_label" />
+
+                <TextView
+                    android:id="@+id/currentStance"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="@dimen/medium_padding"
+                    android:layout_marginStart="@dimen/medium_padding"
+                    android:layout_weight="50"
+                    android:gravity="start|center_vertical" />
+            </LinearLayout>
+
+            <org.adw.library.widgets.discreteseekbar.DiscreteSeekBar
+                android:id="@+id/player_stance"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/small_padding"
+                app:dsb_indicatorPopupEnabled="false"
+                app:dsb_max="6"
+                app:dsb_min="-6"
+                app:dsb_progressColor="@color/colorPrimaryDark"
+                app:dsb_scrubberHeight="10dp"
+                app:dsb_thumbSize="30dp"
+                app:dsb_value="0" />
+
+        </LinearLayout>
 
     </LinearLayout>
-
-</LinearLayout>
+</layout>
