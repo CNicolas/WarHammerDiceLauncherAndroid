@@ -122,7 +122,6 @@
                 <EditText
                     android:id="@+id/player_max_wounds"
                     style="@style/SimpleCharacteristicNumberEditText"
-                    android:layout_marginEnd="@dimen/big_padding"
                     android:clickable="@{bindingContext.inEdition}"
                     android:focusable="@{bindingContext.inEdition}"
                     android:focusableInTouchMode="@{bindingContext.inEdition}"
@@ -158,7 +157,6 @@
                 <EditText
                     android:id="@+id/player_max_experience"
                     style="@style/SimpleCharacteristicNumberEditText"
-                    android:layout_marginEnd="@dimen/big_padding"
                     android:clickable="@{bindingContext.inEdition}"
                     android:focusable="@{bindingContext.inEdition}"
                     android:focusableInTouchMode="@{bindingContext.inEdition}"
