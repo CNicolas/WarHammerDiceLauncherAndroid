@@ -34,7 +34,7 @@
 
                 <EditText
                     android:id="@+id/strength_characteristic"
-                    style="@style/CharacteristicEditText"
+                    style="@style/CharacteristicNumberEditText"
                     android:enabled="@{bindingContext.inEdition}"
                     android:text="@={carac.strength}" />
             </LinearLayout>
@@ -43,7 +43,7 @@
 
                 <EditText
                     android:id="@+id/strength_fortune"
-                    style="@style/CharacteristicFortuneEditText"
+                    style="@style/CharacteristicFortuneNumberEditText"
                     android:enabled="@{bindingContext.inEdition}"
                     android:text="@={carac.strength_fortune}" />
             </LinearLayout>
@@ -63,7 +63,7 @@
 
                 <EditText
                     android:id="@+id/toughness_characteristic"
-                    style="@style/CharacteristicEditText"
+                    style="@style/CharacteristicNumberEditText"
                     android:enabled="@{bindingContext.inEdition}"
                     android:text="@={carac.toughness}" />
             </LinearLayout>
@@ -72,7 +72,7 @@
 
                 <EditText
                     android:id="@+id/toughness_fortune"
-                    style="@style/CharacteristicFortuneEditText"
+                    style="@style/CharacteristicFortuneNumberEditText"
                     android:enabled="@{bindingContext.inEdition}"
                     android:text="@={carac.toughness_fortune}" />
             </LinearLayout>
@@ -92,7 +92,7 @@
 
                 <EditText
                     android:id="@+id/agility_characteristic"
-                    style="@style/CharacteristicEditText"
+                    style="@style/CharacteristicNumberEditText"
                     android:enabled="@{bindingContext.inEdition}"
                     android:text="@={carac.agility}" />
             </LinearLayout>
@@ -101,7 +101,7 @@
 
                 <EditText
                     android:id="@+id/agility_fortune"
-                    style="@style/CharacteristicFortuneEditText"
+                    style="@style/CharacteristicFortuneNumberEditText"
                     android:enabled="@{bindingContext.inEdition}"
                     android:text="@={carac.agility_fortune}" />
             </LinearLayout>
@@ -121,7 +121,7 @@
 
                 <EditText
                     android:id="@+id/intelligence_characteristic"
-                    style="@style/CharacteristicEditText"
+                    style="@style/CharacteristicNumberEditText"
                     android:enabled="@{bindingContext.inEdition}"
                     android:text="@={carac.intelligence}" />
             </LinearLayout>
@@ -130,7 +130,7 @@
 
                 <EditText
                     android:id="@+id/intelligence_fortune"
-                    style="@style/CharacteristicFortuneEditText"
+                    style="@style/CharacteristicFortuneNumberEditText"
                     android:enabled="@{bindingContext.inEdition}"
                     android:text="@={carac.intelligence_fortune}" />
             </LinearLayout>
@@ -150,7 +150,7 @@
 
                 <EditText
                     android:id="@+id/willpower_characteristic"
-                    style="@style/CharacteristicEditText"
+                    style="@style/CharacteristicNumberEditText"
                     android:enabled="@{bindingContext.inEdition}"
                     android:text="@={carac.willpower}" />
             </LinearLayout>
@@ -159,7 +159,7 @@
 
                 <EditText
                     android:id="@+id/willpower_fortune"
-                    style="@style/CharacteristicFortuneEditText"
+                    style="@style/CharacteristicFortuneNumberEditText"
                     android:enabled="@{bindingContext.inEdition}"
                     android:text="@={carac.willpower_fortune}" />
             </LinearLayout>
@@ -179,7 +179,7 @@
 
                 <EditText
                     android:id="@+id/fellowship_characteristic"
-                    style="@style/CharacteristicEditText"
+                    style="@style/CharacteristicNumberEditText"
                     android:enabled="@{bindingContext.inEdition}"
                     android:text="@={carac.fellowship}" />
             </LinearLayout>
@@ -188,7 +188,7 @@
 
                 <EditText
                     android:id="@+id/fellowship_fortune"
-                    style="@style/CharacteristicFortuneEditText"
+                    style="@style/CharacteristicFortuneNumberEditText"
                     android:enabled="@{bindingContext.inEdition}"
                     android:text="@={carac.fellowship_fortune}" />
             </LinearLayout>
