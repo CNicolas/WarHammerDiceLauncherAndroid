@@ -5,6 +5,7 @@
 
     <!-- android:icon="@mipmap/ic_launcher" -->
     <application
+        android:name="com.whfrp3.tools.MyApplication"
         android:allowBackup="true"
         android:configChanges="keyboardHidden|orientation|screenSize"
         android:icon="@drawable/warhammer_v3_logo"
