@@ -10,6 +10,8 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.whfrp3.R;
+import com.whfrp3.database.WarHammerDatabaseHelper;
+import com.whfrp3.database.dao.ItemDao;
 import com.whfrp3.databinding.FragmentAdventureBinding;
 import com.whfrp3.ihm.listeners.StanceChangeListener;
 import com.whfrp3.model.player.inventory.Armor;
@@ -24,13 +26,14 @@ import org.adw.library.widgets.discreteseekbar.DiscreteSeekBar;
  */
 public class AdventureFragment extends Fragment implements OnPlayerUpdateListener {
     private DiscreteSeekBar mPlayerStance;
+    private ItemDao mItemDao;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         long startTime = System.currentTimeMillis();
 
-        addArmor();
+        mItemDao = new ItemDao(new WarHammerDatabaseHelper(getActivity()));
 
         FragmentAdventureBinding binding = DataBindingUtil.inflate(inflater, R.layout.fragment_adventure, container, false);
         binding.setPlayer(PlayerContext.getPlayerInstance());
@@ -40,7 +43,7 @@ public class AdventureFragment extends Fragment implements OnPlayerUpdateListene
         mPlayerStance.setOnProgressChangeListener(new StanceChangeListener(getActivity(), currentStanceTextView));
 
         onPlayerUpdate();
-//        PlayerContext.registerPlayerUpdateListener(this);
+        PlayerContext.registerPlayerUpdateListener(this);
 
         long difference = System.currentTimeMillis() - startTime;
         Log.d("AdventureFragment", String.format("%d = %d", startTime, difference));
@@ -70,8 +73,10 @@ public class AdventureFragment extends Fragment implements OnPlayerUpdateListene
         armor.setQuality(Quality.NORMAL);
         armor.setDescription("Une simple armure, efficace.");
 
+        mItemDao.insert(armor, PlayerContext.getPlayerInstance());
+
         Log.d("ADVENTURE", PlayerContext.getPlayerInstance().getArmors().toString());
-        PlayerContext.getPlayerInstance().addArmor(armor);
+        PlayerContext.getPlayerInstance().addArmor((Armor) mItemDao.findById(1));
         Log.d("ADVENTURE", PlayerContext.getPlayerInstance().getArmors().toString());
     }
 }

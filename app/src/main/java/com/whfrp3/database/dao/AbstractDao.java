@@ -66,6 +66,24 @@ public abstract class AbstractDao<T extends IModel> implements IDao<T> {
         }
     }
 
+    public List<T> findAllByIntegerInColumn(int field, String column) throws SQLiteException {
+        String[] selectionArgs = {String.valueOf(field)};
+        SQLiteDatabase db = whdHelper.getReadableDatabase();
+        Cursor cursor = db.query(tableName, null, column + " = ?", selectionArgs, null, null, null);
+
+        List<T> res = new ArrayList<>();
+        if (cursor.moveToFirst()) {
+            while (!cursor.isAfterLast()) {
+                T dto = createModelFromCursor(cursor);
+                res.add(dto);
+                cursor.moveToNext();
+            }
+        }
+        cursor.close();
+
+        return res;
+    }
+
     public List<String> findAllValuesOfColumn(String column) {
         List<String> res = new ArrayList<>();
         String[] projection = {column};

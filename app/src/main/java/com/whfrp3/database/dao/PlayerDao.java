@@ -50,6 +50,9 @@ public class PlayerDao extends AbstractDao<Player> implements IPlayerEntryConsta
         for (Skill skill : player.getSkills()) {
             mSkillDao.insert(skill, player);
         }
+        for (Item item : player.getInventory()) {
+            mItemDao.insert(item, player);
+        }
         mCharacteristicsDao.insert(player.getCharacteristics());
         return super.insert(player);
     }
@@ -60,6 +63,9 @@ public class PlayerDao extends AbstractDao<Player> implements IPlayerEntryConsta
     public long update(Player player) {
         for (Skill skill : player.getSkills()) {
             mSkillDao.update(skill, player);
+        }
+        for (Item item : player.getInventory()) {
+            mItemDao.update(item, player);
         }
         mCharacteristicsDao.update(player.getCharacteristics());
         return super.update(player);

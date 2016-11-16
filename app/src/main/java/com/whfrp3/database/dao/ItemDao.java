@@ -2,7 +2,6 @@ package com.whfrp3.database.dao;
 
 import android.content.ContentValues;
 import android.database.Cursor;
-import android.database.sqlite.SQLiteDatabase;
 
 import com.whfrp3.database.WarHammerDatabaseHelper;
 import com.whfrp3.database.entries.IItemEntryConstants;
@@ -22,10 +21,7 @@ import java.util.List;
  * DAO de gestion de la table des objets.
  */
 public class ItemDao extends AbstractDao<Item> implements IItemEntryConstants {
-
-
     //region Constructeurs
-
     /**
      * Constructeur.
      *
@@ -40,33 +36,46 @@ public class ItemDao extends AbstractDao<Item> implements IItemEntryConstants {
     //endregion
 
     //region Find
-    public List<String> findAllNames() {
-        return findAllValuesOfColumn(COLUMN_NAME);
-    }
-
     public Item findByName(String name) {
         return findByStringInColumn(name, COLUMN_NAME);
     }
 
     public List<Item> findAllByPlayer(Player player) {
-        String[] selectionArgs = {String.valueOf(player.getId())};
-        SQLiteDatabase db = whdHelper.getReadableDatabase();
-        Cursor cursor = db.query(tableName, null, COLUMN_PLAYER_ID + " = ?", selectionArgs, null, null, null);
+        return findAllByPlayerId(player.getId());
+    }
 
-        List<Item> res = new ArrayList<>();
-        if (cursor.moveToFirst()) {
-            while (!cursor.isAfterLast()) {
-                Item dto = createModelFromCursor(cursor);
-                res.add(dto);
-                cursor.moveToNext();
-            }
+    public List<Item> findAllByPlayerId(int playerId) {
+        return findAllByIntegerInColumn(playerId, COLUMN_PLAYER_ID);
+    }
+    //endregion
+
+    //region Insert
+    public long insert(Item model, Player player) {
+        model.setPlayerId(player.getId());
+        return insert(model);
+    }
+
+    public List<Long> insertAll(List<Item> models, Player player) {
+        List<Long> res = new ArrayList<>();
+
+        for (Item item : models) {
+            res.add(insert(item, player));
         }
-        cursor.close();
 
         return res;
     }
     //endregion
 
+    //region Update
+    public long update(Item model, Player player) {
+        if (model.getPlayerId() != player.getId()) {
+            model.setPlayerId(player.getId());
+        }
+        return update(model);
+    }
+    //endregion
+
+    //region Protected Methods
     @Override
     protected ContentValues contentValuesFromModel(Item item) {
         ContentValues values = new ContentValues();
@@ -150,4 +159,5 @@ public class ItemDao extends AbstractDao<Item> implements IItemEntryConstants {
 
         return dto;
     }
+    //endregion
 }
