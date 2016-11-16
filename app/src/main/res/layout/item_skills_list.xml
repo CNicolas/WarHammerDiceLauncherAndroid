@@ -1,48 +1,67 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:id="@+id/item_skills_list"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:minHeight="40dp"
-    android:orientation="horizontal">
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
 
-    <TextView
-        android:id="@+id/item_skills_list_name"
-        android:layout_width="0dp"
+    <data>
+
+        <variable
+            name="skill"
+            type="com.whfrp3.model.player.skill.Skill" />
+
+        <variable
+            name="handlers"
+            type="com.whfrp3.ihm.listeners.SkillHandlers" />
+    </data>
+
+    <LinearLayout
+        android:id="@+id/item_skills_list"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:layout_weight="30"
-        android:clickable="true"
-        android:gravity="start|center_vertical"
-        android:hint="@string/skill_weapon"
-        android:onClick="launchSkill"
-        android:paddingEnd="@dimen/medium_padding"
-        android:paddingStart="@dimen/medium_padding"
-        android:textSize="@dimen/textSize" />
+        android:minHeight="40dp"
+        android:orientation="horizontal">
 
-    <CheckBox
-        android:id="@+id/item_skills_list_level1"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:layout_weight="1"
-        android:tag="1" />
+        <TextView
+            android:id="@+id/item_skills_list_name"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_weight="30"
+            android:clickable="true"
+            android:gravity="start|center_vertical"
+            android:hint="@string/skill_weapon"
+            android:onClick="launchSkill"
+            android:paddingEnd="@dimen/medium_padding"
+            android:paddingStart="@dimen/medium_padding"
+            android:text="@{skill.name}"
+            android:textSize="@dimen/textSize" />
 
-    <CheckBox
-        android:id="@+id/item_skills_list_level2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:layout_weight="1"
-        android:tag="2" />
+        <CheckBox
+            android:id="@+id/skill_level1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_weight="1"
+            android:checked="@{skill.level >= 1}"
+            android:onClick="@{() -> handlers.onLevelSelected(skill, 1, skillLevel1, skillLevel2, skillLevel3)}"
+            android:tag="1" />
 
-    <CheckBox
-        android:id="@+id/item_skills_list_level3"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:layout_weight="1"
-        android:tag="3" />
+        <CheckBox
+            android:id="@+id/skill_level2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_weight="1"
+            android:checked="@{skill.level >= 2}"
+            android:onClick="@{() -> handlers.onLevelSelected(skill, 2, skillLevel1, skillLevel2, skillLevel3)}"
+            android:tag="2" />
 
-
-</LinearLayout>
+        <CheckBox
+            android:id="@+id/skill_level3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_weight="1"
+            android:checked="@{skill.level >= 3}"
+            android:onClick="@{() -> handlers.onLevelSelected(skill, 3, skillLevel1, skillLevel2, skillLevel3)}"
+            android:tag="3" />
+    </LinearLayout>
+</layout>
