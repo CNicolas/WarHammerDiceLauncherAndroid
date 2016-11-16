@@ -7,17 +7,14 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.EditText;
 import android.widget.TextView;
 
 import com.whfrp3.R;
 import com.whfrp3.databinding.FragmentAdventureBinding;
-import com.whfrp3.ihm.listeners.PlayerEditTextWatcher;
 import com.whfrp3.ihm.listeners.StanceChangeListener;
-import com.whfrp3.tools.BindingContext;
+import com.whfrp3.model.player.inventory.Armor;
+import com.whfrp3.model.player.inventory.Quality;
 import com.whfrp3.tools.PlayerContext;
-import com.whfrp3.tools.constants.IPlayerConstants;
-import com.whfrp3.tools.enums.PlayerInformation;
 import com.whfrp3.tools.helpers.OnPlayerUpdateListener;
 
 import org.adw.library.widgets.discreteseekbar.DiscreteSeekBar;
@@ -27,43 +24,27 @@ import org.adw.library.widgets.discreteseekbar.DiscreteSeekBar;
  */
 public class AdventureFragment extends Fragment implements OnPlayerUpdateListener {
     private DiscreteSeekBar mPlayerStance;
-    private BindingContext mBindingContext;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         long startTime = System.currentTimeMillis();
 
-        View mRootView = inflater.inflate(R.layout.fragment_adventure, container, false);
-        mPlayerStance = (DiscreteSeekBar) mRootView.findViewById(R.id.player_stance);
-        EditText playerWoundsView = (EditText) mRootView.findViewById(R.id.player_wounds);
-        TextView currentStanceTextView = (TextView) mRootView.findViewById(R.id.currentStance);
-
-        onPlayerUpdate();
-
-        mPlayerStance.setOnProgressChangeListener(new StanceChangeListener(getActivity(), currentStanceTextView));
-        playerWoundsView.addTextChangedListener(new PlayerEditTextWatcher(PlayerInformation.WOUNDS));
-
-        PlayerContext.registerPlayerUpdateListener(this);
-
-
-        //region BINDING
-        Bundle bundle = this.getArguments();
-        if (bundle != null) {
-            mBindingContext = (BindingContext) bundle.getSerializable(IPlayerConstants.BINDING_CONTEXT_KEY);
-        } else {
-            mBindingContext = new BindingContext(false);
-        }
+        addArmor();
 
         FragmentAdventureBinding binding = DataBindingUtil.inflate(inflater, R.layout.fragment_adventure, container, false);
         binding.setPlayer(PlayerContext.getPlayerInstance());
-//        binding.setBindingContext(mBindingContext);
-        //endregion
 
+        mPlayerStance = (DiscreteSeekBar) binding.getRoot().findViewById(R.id.player_stance);
+        TextView currentStanceTextView = (TextView) binding.getRoot().findViewById(R.id.currentStance);
+        mPlayerStance.setOnProgressChangeListener(new StanceChangeListener(getActivity(), currentStanceTextView));
+
+        onPlayerUpdate();
+//        PlayerContext.registerPlayerUpdateListener(this);
 
         long difference = System.currentTimeMillis() - startTime;
         Log.d("AdventureFragment", String.format("%d = %d", startTime, difference));
-        return mRootView;
+        return binding.getRoot();
     }
 
     @Override
@@ -76,5 +57,21 @@ public class AdventureFragment extends Fragment implements OnPlayerUpdateListene
     public void onPlayerUpdate() {
         mPlayerStance.setMin(-1 * PlayerContext.getPlayerInstance().getMax_conservative());
         mPlayerStance.setMax(PlayerContext.getPlayerInstance().getMax_reckless());
+    }
+
+    private void addArmor() {
+        Armor armor = new Armor();
+        armor.setPlayerId(PlayerContext.getPlayerInstance().getId());
+        armor.setDefense(1);
+        armor.setSoak(2);
+        armor.setName("Brigandine");
+        armor.setEncumbrance(5);
+        armor.setQuantity(1);
+        armor.setQuality(Quality.NORMAL);
+        armor.setDescription("Une simple armure, efficace.");
+
+        Log.d("ADVENTURE", PlayerContext.getPlayerInstance().getArmors().toString());
+        PlayerContext.getPlayerInstance().addArmor(armor);
+        Log.d("ADVENTURE", PlayerContext.getPlayerInstance().getArmors().toString());
     }
 }

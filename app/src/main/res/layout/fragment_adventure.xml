@@ -12,15 +12,12 @@
             name="carac"
             type="com.whfrp3.model.player.Characteristics" />
 
-        <variable
-            name="bindingContext"
-            type="com.whfrp3.tools.BindingContext" />
-
     </data>
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:background="@android:color/white"
         android:orientation="vertical">
 
         <LinearLayout
@@ -37,7 +34,8 @@
 
             <EditText
                 android:id="@+id/player_wounds"
-                style="@style/SimpleCharacteristicNumberEditText" />
+                style="@style/SimpleCharacteristicNumberEditText"
+                android:text="@={player.wounds}" />
 
             <TextView
                 android:layout_width="wrap_content"
@@ -51,7 +49,7 @@
                 android:layout_gravity="center"
                 android:layout_margin="@dimen/small_padding"
                 android:hint="@string/zero"
-                android:text="@{player.max_experience}" />
+                android:text="@{player.max_wounds}" />
         </LinearLayout>
 
 
@@ -81,7 +79,9 @@
                     android:layout_marginEnd="@dimen/medium_padding"
                     android:layout_marginStart="@dimen/medium_padding"
                     android:layout_weight="50"
-                    android:gravity="start|center_vertical" />
+                    android:gravity="start|center_vertical"
+                    android:text="@string/neutral"
+                    android:textColor="@color/colorPrimaryDark" />
             </LinearLayout>
 
             <org.adw.library.widgets.discreteseekbar.DiscreteSeekBar
@@ -97,6 +97,34 @@
                 app:dsb_thumbSize="30dp"
                 app:dsb_value="0" />
 
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="100dp"
+            android:layout_marginStart="100dp">
+
+            <TextView
+                android:id="@+id/textView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="@dimen/big_padding"
+                android:layout_weight="1"
+                android:drawableStart="@drawable/ic_shield"
+                android:gravity="center"
+                android:hint="@string/zero"
+                android:text="@{player.fullDefenseAmount}" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/big_padding"
+                android:layout_weight="1"
+                android:drawableStart="@drawable/ic_armor"
+                android:gravity="center"
+                android:hint="@string/zero"
+                android:text="@{player.fullSoakAmount}" />
         </LinearLayout>
 
     </LinearLayout>

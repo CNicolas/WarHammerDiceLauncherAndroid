@@ -1,5 +1,7 @@
 package com.whfrp3.model.player;
 
+import android.databinding.BaseObservable;
+import android.databinding.Bindable;
 import android.databinding.BindingAdapter;
 import android.databinding.InverseBindingAdapter;
 import android.widget.TextView;
@@ -19,7 +21,7 @@ import java.util.List;
 /**
  * The Player model.
  */
-public class Player implements IModel, IPlayerConstants {
+public class Player extends BaseObservable implements IModel, IPlayerConstants {
     //region Fields
     private int id;
 
@@ -94,7 +96,33 @@ public class Player implements IModel, IPlayerConstants {
     //endregion
 
     //region Inventory Management
+    //region Values
+    @Bindable
+    public int getFullDefenseAmount() {
+        int res = 0;
 
+        List<Armor> armors = getArmors();
+        for (Armor armor : armors) {
+            res += armor.getDefense();
+        }
+
+        return res;
+    }
+
+    @Bindable
+    public int getFullSoakAmount() {
+        int res = 0;
+
+        List<Armor> armors = getArmors();
+        for (Armor armor : armors) {
+            res += armor.getSoak();
+        }
+
+        return res;
+    }
+    //endregion
+
+    //region Getters
     /**
      * Renvoie les armures de l'inventaire du joueur.
      *
@@ -162,6 +190,16 @@ public class Player implements IModel, IPlayerConstants {
 
         return items;
     }
+    //endregion
+
+    //region Adders
+    public Armor addArmor(Armor armor) {
+        if (!inventory.contains(armor)) {
+            inventory.add(armor);
+        }
+        return armor;
+    }
+    //endregion
     //endregion
 
     /**
