@@ -1,5 +1,6 @@
 package com.whfrp3.ihm.adapters;
 
+import android.graphics.Typeface;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -7,6 +8,7 @@ import android.widget.TextView;
 
 import com.whfrp3.R;
 import com.whfrp3.ihm.components.AnimatedExpandableListView;
+import com.whfrp3.model.player.inventory.Equipment;
 import com.whfrp3.model.player.inventory.Item;
 import com.whfrp3.model.player.inventory.ItemType;
 
@@ -44,7 +46,7 @@ public class InventoryListAdapter extends AnimatedExpandableListView.AnimatedExp
 
     @Override
     public long getChildId(int groupPosition, int childPosition) {
-        return ((Item) getChild(groupPosition, childPosition)).getId();
+        return childPosition;
     }
 
     @Override
@@ -58,6 +60,10 @@ public class InventoryListAdapter extends AnimatedExpandableListView.AnimatedExp
         // Set item name
         TextView nameView = (TextView) convertView.findViewById(R.id.inventoryItemName);
         nameView.setText(item.getName());
+
+        if (item.isEquipable() && ((Equipment) item).isEquiped()) {
+            nameView.setTypeface(nameView.getTypeface(), Typeface.BOLD);
+        }
 
         // Set item quantity
         TextView quantityView = (TextView) convertView.findViewById(R.id.inventoryItemQuantity);

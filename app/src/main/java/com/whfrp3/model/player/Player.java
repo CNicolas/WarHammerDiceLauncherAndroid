@@ -101,9 +101,13 @@ public class Player extends BaseObservable implements IModel, IPlayerConstants {
     public int getFullDefenseAmount() {
         int res = 0;
 
-        List<Armor> armors = getArmors();
-        for (Armor armor : armors) {
-            res += armor.getDefense();
+        for (Item item : inventory) {
+            if (item.getType() == ItemType.ARMOR) {
+                Armor armor = item.toArmor();
+                if (armor.isEquiped()) {
+                    res += armor.getDefense();
+                }
+            }
         }
 
         return res;
@@ -113,9 +117,13 @@ public class Player extends BaseObservable implements IModel, IPlayerConstants {
     public int getFullSoakAmount() {
         int res = 0;
 
-        List<Armor> armors = getArmors();
-        for (Armor armor : armors) {
-            res += armor.getSoak();
+        for (Item item : inventory) {
+            if (item.getType() == ItemType.ARMOR) {
+                Armor armor = item.toArmor();
+                if (armor.isEquiped()) {
+                    res += armor.getSoak();
+                }
+            }
         }
 
         return res;
@@ -129,6 +137,7 @@ public class Player extends BaseObservable implements IModel, IPlayerConstants {
     }
 
     //region Getters
+
     /**
      * Return player's item with the given id.
      *

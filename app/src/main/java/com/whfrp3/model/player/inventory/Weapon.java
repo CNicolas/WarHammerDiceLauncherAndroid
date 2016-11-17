@@ -5,7 +5,7 @@ import com.whfrp3.model.player.Player;
 /**
  * Weapon's class.
  */
-public class Weapon extends Item {
+public class Weapon extends Equipment {
     //region Properties
     /**
      * Damage.

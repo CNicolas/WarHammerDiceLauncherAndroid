@@ -58,6 +58,25 @@ public abstract class PlayerContext {
         Log.e("Player Context UPDATE", mPlayer.toString());
     }
 
+    public static void savePlayer() {
+        if (mPlayer == null || !mPlayer.isUpdatable()) {
+            return;
+        }
+
+        if (mPlayer.getId() == 0) {
+            mPlayer.setId(mPlayerDao.getNextId());
+            mPlayer.getCharacteristics().setId(mCharacteristicsDao.getNextId());
+
+            mPlayerDao.insert(mPlayer);
+        } else {
+            mPlayerDao.update(mPlayer);
+        }
+
+        notifyListeners();
+
+        Log.e("Player Context UPDATE", mPlayer.toString());
+    }
+
     public static void setPlayer(Player player) {
         mPlayer = player;
         Log.d("Player Context SET", mPlayer.toString());

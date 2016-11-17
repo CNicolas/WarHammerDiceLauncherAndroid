@@ -5,7 +5,7 @@ import com.whfrp3.model.player.Player;
 /**
  * Armor's class.
  */
-public class Armor extends Item {
+public class Armor extends Equipment {
     //region Properties
     /**
      * Soak.

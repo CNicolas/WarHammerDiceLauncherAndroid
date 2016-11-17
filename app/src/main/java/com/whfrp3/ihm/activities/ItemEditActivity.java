@@ -15,6 +15,7 @@ import com.whfrp3.model.player.inventory.Item;
 import com.whfrp3.model.player.inventory.ItemEdit;
 import com.whfrp3.model.player.inventory.ItemType;
 import com.whfrp3.model.player.inventory.Quality;
+import com.whfrp3.model.player.inventory.Range;
 import com.whfrp3.model.player.inventory.UsableItem;
 import com.whfrp3.model.player.inventory.Weapon;
 import com.whfrp3.tools.PlayerContext;
@@ -109,6 +110,22 @@ public class ItemEditActivity extends AppCompatActivity {
                 itemEdit.setQuality(null);
             }
         });
+
+        Spinner rangeSpinner = (Spinner) findViewById(R.id.item_edit_range_spinner);
+        rangeSpinner.setAdapter(new ArrayAdapter<>(this, android.R.layout.simple_dropdown_item_1line, Range.values()));
+        rangeSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> adapterView, View view, int pos, long id) {
+                Range range = (Range) adapterView.getItemAtPosition(pos);
+
+                itemEdit.setRange(range);
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> adapterView) {
+                itemEdit.setRange(null);
+            }
+        });
     }
 
     public void onSave(View view) {
@@ -144,6 +161,7 @@ public class ItemEditActivity extends AppCompatActivity {
 
         if (item.getId() == 0) {
             PlayerContext.getPlayerInstance().addItem(item);
+            PlayerContext.savePlayer();
         }
 
         this.setResult(RESULT_OK);

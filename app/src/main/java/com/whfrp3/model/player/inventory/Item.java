@@ -70,6 +70,15 @@ public class Item implements IModel {
     }
     //endregion
 
+    /**
+     * Indicate if the item can be equipped.
+     *
+     * @return true if the item can be equipped, false otherwise.
+     */
+    public boolean isEquipable() {
+        return false;
+    }
+
     //region Get & Set
     @Override
     public int getId() {

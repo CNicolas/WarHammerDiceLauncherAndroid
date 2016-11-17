@@ -1,5 +1,7 @@
 package com.whfrp3.ihm.fragments;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
@@ -20,6 +22,7 @@ import com.whfrp3.ihm.components.AnimatedExpandableListView;
 import com.whfrp3.ihm.fragments.inventory.ItemShowDialogFragment;
 import com.whfrp3.model.player.Player;
 import com.whfrp3.model.player.inventory.Armor;
+import com.whfrp3.model.player.inventory.Equipment;
 import com.whfrp3.model.player.inventory.Item;
 import com.whfrp3.model.player.inventory.ItemType;
 import com.whfrp3.model.player.inventory.UsableItem;
@@ -94,22 +97,55 @@ public class InventoryFragment extends Fragment implements View.OnClickListener 
             }
         });
 
-        expListView.setOnItemLongClickListener(new ExpandableListView.OnItemLongClickListener() {
+        expListView.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
             @Override
-            public boolean onItemLongClick(AdapterView<?> adapterView, View view, int childPosition, long id) {
-                Bundle bundle = new Bundle();
-                bundle.putInt(ItemEditActivity.ITEM_ID_KEY, (int) id);
+            public boolean onItemLongClick(AdapterView<?> adapterView, View view, int position, long id) {
+                if (ExpandableListView.getPackedPositionType(id) != ExpandableListView.PACKED_POSITION_TYPE_CHILD) {
+                    return false;
+                }
 
-                Intent launchIntent = new Intent(InventoryFragment.this.getActivity(), ItemEditActivity.class);
-                launchIntent.putExtras(bundle);
+                int groupPosition = ExpandableListView.getPackedPositionGroup(id);
+                int childPosition = ExpandableListView.getPackedPositionChild(id);
 
-                TaskStackBuilder stackBuilder = TaskStackBuilder.create(InventoryFragment.this.getContext());
-                stackBuilder.addParentStack(ItemEditActivity.class);
-                stackBuilder.addNextIntent(launchIntent);
+                final Item item = (Item) expListView.getExpandableListAdapter().getChild(groupPosition, childPosition);
 
-                startActivityForResult(launchIntent, EDIT_ITEM_REQUEST);
+                // Select menu dialog content
+                final int menuArrayId;
+                if (item.isEquipable()) {
+                    menuArrayId = (((Equipment) item).isEquiped()) ? R.array.item_menu_actions3 : R.array.item_menu_actions2;
+                } else {
+                    menuArrayId = R.array.item_menu_actions1;
+                }
 
-                return false;
+                // Build and show menu dialog
+                AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
+                builder.setTitle(R.string.item_menu_title)
+                        .setItems(menuArrayId, new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int whichPos) {
+                                if (menuArrayId == R.array.item_menu_actions3 && whichPos == 0) {
+                                    // Unequip the item
+                                    ((Equipment) item).setEquiped(false);
+                                } else if (menuArrayId == R.array.item_menu_actions2 && whichPos == 0) {
+                                    // Equip the item
+                                    ((Equipment) item).setEquiped(true);
+                                } else if ((menuArrayId == R.array.item_menu_actions1 && whichPos == 0)
+                                        || (menuArrayId == R.array.item_menu_actions2 && whichPos == 1)
+                                        || (menuArrayId == R.array.item_menu_actions3 && whichPos == 1)) {
+                                    // Edit item
+                                    openEditActivity(item.getId());
+                                } else {
+                                    // Delete item
+                                    // TODO : Implement delete item option
+                                }
+
+                                refreshInventoryView(item.getType());
+                            }
+                        });
+                AlertDialog dialog = builder.create();
+                dialog.show();
+
+                return true;
             }
         });
 
@@ -148,6 +184,25 @@ public class InventoryFragment extends Fragment implements View.OnClickListener 
                 refreshInventoryView(null);
             }
         }
+    }
+
+    /**
+     * Open an ItemEditActivity to edit the selected item.
+     *
+     * @param itemId Item's id to edit.
+     */
+    private void openEditActivity(int itemId) {
+        Bundle bundle = new Bundle();
+        bundle.putInt(ItemEditActivity.ITEM_ID_KEY, itemId);
+
+        Intent launchIntent = new Intent(InventoryFragment.this.getActivity(), ItemEditActivity.class);
+        launchIntent.putExtras(bundle);
+
+        TaskStackBuilder stackBuilder = TaskStackBuilder.create(InventoryFragment.this.getContext());
+        stackBuilder.addParentStack(ItemEditActivity.class);
+        stackBuilder.addNextIntent(launchIntent);
+
+        startActivityForResult(launchIntent, EDIT_ITEM_REQUEST);
     }
 
     /**

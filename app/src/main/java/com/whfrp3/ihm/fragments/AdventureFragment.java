@@ -61,22 +61,4 @@ public class AdventureFragment extends Fragment implements OnPlayerUpdateListene
         mPlayerStance.setMin(-1 * PlayerContext.getPlayerInstance().getMax_conservative());
         mPlayerStance.setMax(PlayerContext.getPlayerInstance().getMax_reckless());
     }
-
-    private void addArmor() {
-        Armor armor = new Armor();
-        armor.setPlayerId(PlayerContext.getPlayerInstance().getId());
-        armor.setDefense(1);
-        armor.setSoak(2);
-        armor.setName("Brigandine");
-        armor.setEncumbrance(5);
-        armor.setQuantity(1);
-        armor.setQuality(Quality.NORMAL);
-        armor.setDescription("Une simple armure, efficace.");
-
-        mItemDao.insert(armor, PlayerContext.getPlayerInstance());
-
-        Log.d("ADVENTURE", PlayerContext.getPlayerInstance().getArmors().toString());
-        PlayerContext.getPlayerInstance().addItem(mItemDao.findById(1));
-        Log.d("ADVENTURE", PlayerContext.getPlayerInstance().getArmors().toString());
-    }
 }

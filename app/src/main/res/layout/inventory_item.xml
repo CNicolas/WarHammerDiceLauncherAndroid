@@ -19,7 +19,7 @@
             android:layout_weight="0.9"
             android:text="@string/dummy_string"
             android:textColor="@color/black_text"
-            android:textSize="18sp" />
+            android:textSize="18sp"/>
 
         <LinearLayout
             android:layout_width="48dp"

@@ -20,6 +20,10 @@ public interface IItemEntryConstants extends IEntryConstants {
     String COLUMN_LOAD = "load";
     //endregion
 
+    //region Column for equipment
+    String COLUMN_IS_EQUIPPED = "is_equipped";
+    //endregion
+
     //region Colonnes supplémentaires pour les armures
     String COLUMN_SOAK = "soak";
     String COLUMN_DEFENSE = "defense";
@@ -44,6 +48,8 @@ public interface IItemEntryConstants extends IEntryConstants {
                     COLUMN_PLAYER_ID + INTEGER_TYPE + NOT_NULL + COMMA_SEP +
 
                     COLUMN_LOAD + INTEGER_TYPE + COMMA_SEP +
+
+                    COLUMN_IS_EQUIPPED + INTEGER_TYPE + COMMA_SEP +
 
                     COLUMN_SOAK + INTEGER_TYPE + COMMA_SEP +
                     COLUMN_DEFENSE + INTEGER_TYPE + COMMA_SEP +

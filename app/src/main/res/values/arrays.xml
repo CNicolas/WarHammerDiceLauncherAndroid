@@ -4,4 +4,18 @@
         <item>@string/page_home</item>
         <item>@string/page_character</item>
     </string-array>
+    <string-array name="item_menu_actions1">
+        <item>@string/item_menu_edit</item>
+        <item>@string/item_menu_delete</item>
+    </string-array>
+    <string-array name="item_menu_actions2">
+        <item>@string/item_menu_equip</item>
+        <item>@string/item_menu_edit</item>
+        <item>@string/item_menu_delete</item>
+    </string-array>
+    <string-array name="item_menu_actions3">
+        <item>@string/item_menu_unequip</item>
+        <item>@string/item_menu_edit</item>
+        <item>@string/item_menu_delete</item>
+    </string-array>
 </resources>

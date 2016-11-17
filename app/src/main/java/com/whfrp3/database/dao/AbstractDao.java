@@ -181,4 +181,14 @@ public abstract class AbstractDao<T extends IModel> implements IDao<T> {
      * @return the model.
      */
     protected abstract T createModelFromCursor(Cursor cursor);
+
+    //region Data conversion methods
+    protected int convertBooleanToInteger(boolean bool) {
+        return bool ? 1 : 0;
+    }
+
+    protected boolean convertIntegerToBoolean(int i) {
+        return (i == 0) ? false : true;
+    }
+    //endregion
 }
