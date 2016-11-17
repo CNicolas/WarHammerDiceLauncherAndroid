@@ -3,20 +3,20 @@ package com.whfrp3.model.player.inventory;
 import com.whfrp3.model.player.Player;
 
 /**
- * Classe représentant un objet utilisable.
+ * Usable item's class.
  */
 public class UsableItem extends Item {
-    //region Propriétés
+    //region Properties
     /**
-     * Nombre de charge de l'objet.
+     * Item's loads.
      */
     private int load;
     //endregion
 
-    //region Constructeurs
+    //region Constructors
 
     /**
-     * Constructeur par défaut.
+     * Default constructor.
      */
     public UsableItem() {
         super();
@@ -25,33 +25,23 @@ public class UsableItem extends Item {
     }
 
     /**
-     * Constructeur avec le joueur associé en paramètre.
+     * Constructor with linked player.
      *
-     * @param player Joueur à associer à l'objet.
+     * @param player Player to link with the item.
      */
     public UsableItem(Player player) {
         super(player);
 
         setType(ItemType.USABLE_ITEM);
     }
-    //endregions
+    //endregion
 
     //region Get & Set
 
-    /**
-     * Renvoie le nombre de charge de l'objet.
-     *
-     * @return Nombre de charge de l'objet.
-     */
     public int getLoad() {
         return load;
     }
 
-    /**
-     * Modifie le nombre de charge de l'objet.
-     *
-     * @param load Nombre de charge de l'objet.
-     */
     public void setLoad(int load) {
         this.load = load;
     }

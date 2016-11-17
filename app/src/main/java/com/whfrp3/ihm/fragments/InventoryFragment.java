@@ -1,8 +1,10 @@
 package com.whfrp3.ihm.fragments;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.TaskStackBuilder;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -12,6 +14,7 @@ import android.widget.ExpandableListView;
 import android.widget.ImageView;
 
 import com.whfrp3.R;
+import com.whfrp3.ihm.activities.ItemEditActivity;
 import com.whfrp3.ihm.adapters.InventoryListAdapter;
 import com.whfrp3.ihm.components.AnimatedExpandableListView;
 import com.whfrp3.ihm.fragments.inventory.ItemShowDialogFragment;
@@ -19,7 +22,6 @@ import com.whfrp3.model.player.Player;
 import com.whfrp3.model.player.inventory.Armor;
 import com.whfrp3.model.player.inventory.Item;
 import com.whfrp3.model.player.inventory.ItemType;
-import com.whfrp3.model.player.inventory.Quality;
 import com.whfrp3.model.player.inventory.UsableItem;
 import com.whfrp3.model.player.inventory.Weapon;
 import com.whfrp3.tools.PlayerContext;
@@ -29,10 +31,15 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import static android.app.Activity.RESULT_OK;
+
 /**
  * Inventory fragment.
  */
 public class InventoryFragment extends Fragment implements View.OnClickListener {
+
+    private static final int ADD_ITEM_REQUEST = 0;
+    private static final int EDIT_ITEM_REQUEST = 1;
 
     private Map<ItemType, List<? extends Item>> items = new HashMap<>();
     private InventoryListAdapter adapter;
@@ -87,10 +94,20 @@ public class InventoryFragment extends Fragment implements View.OnClickListener 
             }
         });
 
-        expListView.setOnItemLongClickListener(new ExpandableListView.OnItemLongClickListener(){
+        expListView.setOnItemLongClickListener(new ExpandableListView.OnItemLongClickListener() {
             @Override
             public boolean onItemLongClick(AdapterView<?> adapterView, View view, int childPosition, long id) {
-                Log.i("InventoryFragment", "Click long");
+                Bundle bundle = new Bundle();
+                bundle.putInt(ItemEditActivity.ITEM_ID_KEY, (int) id);
+
+                Intent launchIntent = new Intent(InventoryFragment.this.getActivity(), ItemEditActivity.class);
+                launchIntent.putExtras(bundle);
+
+                TaskStackBuilder stackBuilder = TaskStackBuilder.create(InventoryFragment.this.getContext());
+                stackBuilder.addParentStack(ItemEditActivity.class);
+                stackBuilder.addNextIntent(launchIntent);
+
+                startActivityForResult(launchIntent, EDIT_ITEM_REQUEST);
 
                 return false;
             }
@@ -115,19 +132,22 @@ public class InventoryFragment extends Fragment implements View.OnClickListener 
 
     @Override
     public void onClick(View view) {
-        Player player = PlayerContext.getPlayerInstance();
+        Intent launchIntent = new Intent(InventoryFragment.this.getActivity(), ItemEditActivity.class);
 
-        Weapon item = new Weapon(player);
-        item.setName("Objet de test");
-        item.setEncumbrance(2);
-        item.setQuantity(4);
-        item.setQuality(Quality.NORMAL);
-        item.setCriticalLevel(4);
-        item.setDamage(5);
+        TaskStackBuilder stackBuilder = TaskStackBuilder.create(InventoryFragment.this.getContext());
+        stackBuilder.addParentStack(ItemEditActivity.class);
+        stackBuilder.addNextIntent(launchIntent);
 
-        player.getInventory().add(item);
+        startActivityForResult(launchIntent, ADD_ITEM_REQUEST);
+    }
 
-        refreshInventoryView(item.getType());
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        if (resultCode == RESULT_OK) {
+            if (requestCode == ADD_ITEM_REQUEST || requestCode == EDIT_ITEM_REQUEST) {
+                refreshInventoryView(null);
+            }
+        }
     }
 
     /**
@@ -139,23 +159,23 @@ public class InventoryFragment extends Fragment implements View.OnClickListener 
         Player player = PlayerContext.getPlayerInstance();
 
         if (itemType == null) {
-            items.put(itemType, player.getArmors());
-            items.put(itemType, player.getWeapons());
-            items.put(itemType, player.getUsableItems());
-            items.put(itemType, player.getItems());
+            items.put(ItemType.ARMOR, player.getArmors());
+            items.put(ItemType.WEAPON, player.getWeapons());
+            items.put(ItemType.USABLE_ITEM, player.getUsableItems());
+            items.put(ItemType.ITEM, player.getItems());
         } else {
             switch (itemType) {
                 case ARMOR:
-                    items.put(itemType, player.getArmors());
+                    items.put(ItemType.ARMOR, player.getArmors());
                     break;
                 case WEAPON:
-                    items.put(itemType, player.getWeapons());
+                    items.put(ItemType.WEAPON, player.getWeapons());
                     break;
                 case USABLE_ITEM:
-                    items.put(itemType, player.getUsableItems());
+                    items.put(ItemType.USABLE_ITEM, player.getUsableItems());
                     break;
                 case ITEM:
-                    items.put(itemType, player.getItems());
+                    items.put(ItemType.ITEM, player.getItems());
                     break;
             }
         }

@@ -3,25 +3,25 @@ package com.whfrp3.model.player.inventory;
 import com.whfrp3.model.player.Player;
 
 /**
- * Classe représentant une armure.
+ * Armor's class.
  */
 public class Armor extends Item {
-    //region Propriétés
+    //region Properties
     /**
-     * Encaissement.
+     * Soak.
      */
     private int soak;
 
     /**
-     * Défense.
+     * Defense.
      */
     private int defense;
     //endregion
 
-    //region Constructeurs
+    //region Constructors
 
     /**
-     * Constructeur par défaut.
+     * Default constructor.
      */
     public Armor() {
         super();
@@ -30,9 +30,9 @@ public class Armor extends Item {
     }
 
     /**
-     * Constructeur avec le joueur associé en paramètre.
+     * Constructor with linked player.
      *
-     * @param player Joueur à associer à l'objet.
+     * @param player Player to link with the item.
      */
     public Armor(Player player) {
         super(player);

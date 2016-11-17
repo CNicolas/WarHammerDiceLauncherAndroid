@@ -4,64 +4,64 @@ import com.whfrp3.model.IModel;
 import com.whfrp3.model.player.Player;
 
 /**
- * Classe représentant un objet.
+ * Item's class.
  */
 public class Item implements IModel {
-    //region Propriétés
+    //region Properties
     /**
-     * Identifiant technique.
+     * Technical identifier.
      */
     private int id;
 
     /**
-     * Nom de l'objet.
+     * Item's name.
      */
     private String name;
 
     /**
-     * Description.
+     * Item's description.
      */
     private String description;
 
     /**
-     * Encombrement.
+     * Item's encumbrance.
      */
     private int encumbrance;
 
     /**
-     * Quantité de cet objet dans l'inventaire du joueur.
+     * Item's quantity.
      */
     private int quantity;
 
     /**
-     * Qualité.
+     * Item's quality.
      */
     private Quality quality;
 
     /**
-     * Type d'objet.
+     * Item's type.
      */
     private ItemType type;
 
     /**
-     * Identifiant technique du joueur associé.
+     * Player's id linked with the item.
      */
     private int playerId;
     //endregion
 
-    //region Constructeurs
+    //region Constructors
 
     /**
-     * Constructeur par défaut.
+     * Default constructor.
      */
     public Item() {
         setType(ItemType.ITEM);
     }
 
     /**
-     * Constructeur avec le joueur associé en paramètre.
+     * Constructor with linked player.
      *
-     * @param player Joueur à associer à l'objet.
+     * @param player Player to link with the item.
      */
     public Item(Player player) {
         playerId = player.getId();
@@ -137,45 +137,45 @@ public class Item implements IModel {
     }
     //endregion
 
-    //region Méthodes de conversion de l'objet
+    //region Item conversion methods
 
     /**
-     * Convertit l'objet en armure si son type est compatible.
+     * Convert the item into an armor, if possible.
      *
-     * @return Armure.
-     * @throws UnsupportedOperationException Impossible de convertir l'objet en armure.
+     * @return Armor.
+     * @throws UnsupportedOperationException The item cannot be converted into an armor.
      */
     public Armor toArmor() throws UnsupportedOperationException {
         if (getType() != ItemType.ARMOR) {
-            throw new UnsupportedOperationException("Cet objet n'est pas une armure : " + toString());
+            throw new UnsupportedOperationException("This item is not an armor : " + toString());
         }
 
         return (Armor) this;
     }
 
     /**
-     * Convertit l'objet en arme si son type est compatible.
+     * Convert the item into a weapon, if possible.
      *
-     * @return Arme.
-     * @throws UnsupportedOperationException Impossible de convertir l'objet en arme.
+     * @return Weapon.
+     * @throws UnsupportedOperationException The item cannot be converted into a weapon.
      */
     public Weapon toWeapon() throws UnsupportedOperationException {
         if (getType() != ItemType.WEAPON) {
-            throw new UnsupportedOperationException("Cet objet n'est pas une arme : " + toString());
+            throw new UnsupportedOperationException("This item is not a weapon : " + toString());
         }
 
         return (Weapon) this;
     }
 
     /**
-     * Convertit l'objet en objet utisable si son type est compatible.
+     * Convert the item into an usable item, if possible.
      *
-     * @return Objet utilisable.
-     * @throws UnsupportedOperationException Impossible de convertir l'objet en objet utisable.
+     * @return Usable item.
+     * @throws UnsupportedOperationException The item cannot be converted into an usable item.
      */
     public UsableItem toUsableItem() throws UnsupportedOperationException {
         if (getType() != ItemType.USABLE_ITEM) {
-            throw new UnsupportedOperationException("Cet objet n'est pas un objet utilisable : " + toString());
+            throw new UnsupportedOperationException("This item is not an usable item : " + toString());
         }
 
         return (UsableItem) this;
@@ -245,4 +245,18 @@ public class Item implements IModel {
         return result;
     }
     //endregion
+
+    public static Item getItemFromType(ItemType type){
+        switch (type){
+            case ARMOR:
+                return new Armor();
+            case WEAPON:
+                return new Weapon();
+            case USABLE_ITEM:
+                return new UsableItem();
+
+            default:
+                return new Item();
+        }
+    }
 }

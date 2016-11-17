@@ -52,6 +52,15 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.whfrp3.ihm.activities.LaunchActivity" />
         </activity>
+
+        <activity
+            android:name="com.whfrp3.ihm.activities.ItemEditActivity"
+            android:parentActivityName="com.whfrp3.ihm.activities.PlayerActivity"
+            android:screenOrientation="portrait">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.whfrp3.ihm.activities.PlayerActivity" />
+        </activity>
     </application>
 
 </manifest>

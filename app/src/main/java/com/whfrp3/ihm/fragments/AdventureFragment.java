@@ -76,7 +76,7 @@ public class AdventureFragment extends Fragment implements OnPlayerUpdateListene
         mItemDao.insert(armor, PlayerContext.getPlayerInstance());
 
         Log.d("ADVENTURE", PlayerContext.getPlayerInstance().getArmors().toString());
-        PlayerContext.getPlayerInstance().addArmor((Armor) mItemDao.findById(1));
+        PlayerContext.getPlayerInstance().addItem(mItemDao.findById(1));
         Log.d("ADVENTURE", PlayerContext.getPlayerInstance().getArmors().toString());
     }
 }

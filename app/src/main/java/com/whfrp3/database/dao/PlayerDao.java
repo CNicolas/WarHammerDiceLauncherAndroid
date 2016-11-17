@@ -54,6 +54,16 @@ public class PlayerDao extends AbstractDao<Player> implements IPlayerEntryConsta
             mItemDao.insert(item, player);
         }
         mCharacteristicsDao.insert(player.getCharacteristics());
+
+        // Save inventory
+        for (Item item : player.getInventory()) {
+            if (item.getId() == 0) {
+                mItemDao.insert(item);
+            } else {
+                mItemDao.update(item);
+            }
+        }
+
         return super.insert(player);
     }
     //endregion
@@ -68,6 +78,16 @@ public class PlayerDao extends AbstractDao<Player> implements IPlayerEntryConsta
             mItemDao.update(item, player);
         }
         mCharacteristicsDao.update(player.getCharacteristics());
+
+        // Save inventory
+        for (Item item : player.getInventory()) {
+            if (item.getId() == 0) {
+                mItemDao.insert(item);
+            } else {
+                mItemDao.update(item);
+            }
+        }
+        
         return super.update(player);
     }
     //endregion

@@ -122,11 +122,33 @@ public class Player extends BaseObservable implements IModel, IPlayerConstants {
     }
     //endregion
 
+    public void addItem(Item item) {
+        if (item != null) {
+            inventory.add(item);
+        }
+    }
+
     //region Getters
     /**
-     * Renvoie les armures de l'inventaire du joueur.
+     * Return player's item with the given id.
      *
-     * @return Liste des armures du joueur.
+     * @param itemId Item id.
+     * @return Player's item or null if not found.
+     */
+    public Item getItemById(int itemId) {
+        for (Item item : getItems()) {
+            if (item.getId() == itemId) {
+                return item;
+            }
+        }
+
+        return null;
+    }
+
+    /**
+     * Return player's armors.
+     *
+     * @return Player's armors.
      */
     public List<Armor> getArmors() {
         List<Armor> armors = new ArrayList<>();
@@ -141,9 +163,9 @@ public class Player extends BaseObservable implements IModel, IPlayerConstants {
     }
 
     /**
-     * Renvoie les armes de l'inventaire du joueur.
+     * Return player's weapons.
      *
-     * @return Liste des armes du joueur.
+     * @return Player's weapons.
      */
     public List<Weapon> getWeapons() {
         List<Weapon> weapons = new ArrayList<>();
@@ -158,9 +180,9 @@ public class Player extends BaseObservable implements IModel, IPlayerConstants {
     }
 
     /**
-     * Renvoie les objets utilisables de l'inventaire du joueur.
+     * Return player's usable items.
      *
-     * @return Liste des objets utilisables du joueur.
+     * @return Player's usable items.
      */
     public List<UsableItem> getUsableItems() {
         List<UsableItem> usableItems = new ArrayList<>();
@@ -175,9 +197,9 @@ public class Player extends BaseObservable implements IModel, IPlayerConstants {
     }
 
     /**
-     * Renvoie les objets standards de l'inventaire du joueur.
+     * Return player's simple items.
      *
-     * @return Liste des objets standards du joueur.
+     * @return Player's simple items.
      */
     public List<Item> getItems() {
         List<Item> items = new ArrayList<>();
@@ -190,16 +212,6 @@ public class Player extends BaseObservable implements IModel, IPlayerConstants {
 
         return items;
     }
-    //endregion
-
-    //region Adders
-    public Armor addArmor(Armor armor) {
-        if (!inventory.contains(armor)) {
-            inventory.add(armor);
-        }
-        return armor;
-    }
-    //endregion
     //endregion
 
     /**

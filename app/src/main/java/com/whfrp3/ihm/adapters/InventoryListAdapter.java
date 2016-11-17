@@ -44,7 +44,7 @@ public class InventoryListAdapter extends AnimatedExpandableListView.AnimatedExp
 
     @Override
     public long getChildId(int groupPosition, int childPosition) {
-        return childPosition;
+        return ((Item) getChild(groupPosition, childPosition)).getId();
     }
 
     @Override

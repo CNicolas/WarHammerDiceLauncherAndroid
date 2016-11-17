@@ -108,6 +108,7 @@
     <string name="armor_defense_label">Défense :</string>
     <string name="armor_soak_label">Encaissement :</string>
     <string name="usable_item_load_label">Charges :</string>
+    <string name="item_type_label">Type :</string>
     <!-- End of inventory -->
 
 </resources>
