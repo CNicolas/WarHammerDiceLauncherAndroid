@@ -125,5 +125,11 @@
     <string name="item_menu_equip">Equip the item</string>
     <string name="item_menu_unequip">Unequip the item</string>
     <string name="weapon_range_label">Range :</string>
+    <string name="range_engaged">Engaged</string>
+    <string name="range_short">Short</string>
+    <string name="range_medium">Medium</string>
+    <string name="range_long">Long</string>
+    <string name="range_extreme">Extreme</string>
+    <string name="quantity_label">Quantity :</string>
 
 </resources>

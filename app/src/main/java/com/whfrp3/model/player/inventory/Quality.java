@@ -1,11 +1,12 @@
 package com.whfrp3.model.player.inventory;
 
 import com.whfrp3.R;
+import com.whfrp3.ihm.adapters.IEnumSpinner;
 
 /**
  * Item qualities.
  */
-public enum Quality {
+public enum Quality implements IEnumSpinner {
     /**
      * Low.
      */
@@ -31,15 +32,11 @@ public enum Quality {
      *
      * @param labelId Quality label id.
      */
-    private Quality(int labelId){
+    Quality(int labelId){
         this.labelId=labelId;
     }
 
-    /**
-     * Return quality label id.
-     *
-     * @return Quality label id.
-     */
+    @Override
     public int getLabelId() {
         return labelId;
     }

@@ -5,11 +5,11 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
 import android.widget.Spinner;
 
 import com.whfrp3.R;
 import com.whfrp3.databinding.ItemEditActivityBinding;
+import com.whfrp3.ihm.adapters.EnumSpinnerAdapter;
 import com.whfrp3.model.player.Player;
 import com.whfrp3.model.player.inventory.Armor;
 import com.whfrp3.model.player.inventory.Item;
@@ -71,7 +71,6 @@ public class ItemEditActivity extends AppCompatActivity {
         }
 
         itemEdit = new ItemEdit(item);
-        itemEdit.setName("Test");
 
         // Configure binding
         ItemEditActivityBinding binding = DataBindingUtil.inflate(getLayoutInflater(), R.layout.item_edit_activity, null, false);
@@ -82,7 +81,7 @@ public class ItemEditActivity extends AppCompatActivity {
 
         // Configure layout
         Spinner typeSpinner = (Spinner) findViewById(R.id.item_edit_type_spinner);
-        typeSpinner.setAdapter(new ArrayAdapter<>(this, android.R.layout.simple_dropdown_item_1line, ItemType.values()));
+        typeSpinner.setAdapter(new EnumSpinnerAdapter(this.getLayoutInflater(), ItemType.values()));
         typeSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int pos, long id) {
@@ -98,7 +97,7 @@ public class ItemEditActivity extends AppCompatActivity {
         });
 
         Spinner qualitySpinner = (Spinner) findViewById(R.id.item_edit_quality_spinner);
-        qualitySpinner.setAdapter(new ArrayAdapter<>(this, android.R.layout.simple_dropdown_item_1line, Quality.values()));
+        qualitySpinner.setAdapter(new EnumSpinnerAdapter(this.getLayoutInflater(), Quality.values()));
         qualitySpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int pos, long id) {
@@ -114,7 +113,7 @@ public class ItemEditActivity extends AppCompatActivity {
         });
 
         Spinner rangeSpinner = (Spinner) findViewById(R.id.item_edit_range_spinner);
-        rangeSpinner.setAdapter(new ArrayAdapter<>(this, android.R.layout.simple_dropdown_item_1line, Range.values()));
+        rangeSpinner.setAdapter(new EnumSpinnerAdapter(this.getLayoutInflater(), Range.values()));
         rangeSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int pos, long id) {
@@ -128,6 +127,16 @@ public class ItemEditActivity extends AppCompatActivity {
                 itemEdit.setRange(null);
             }
         });
+
+        if (itemEdit.getType() != null) {
+            typeSpinner.setSelection(itemEdit.getType().ordinal());
+        }
+        if (itemEdit.getQuality() != null) {
+            qualitySpinner.setSelection(itemEdit.getQuality().ordinal());
+        }
+        if (itemEdit.getRange() != null) {
+            rangeSpinner.setSelection(itemEdit.getRange().ordinal());
+        }
     }
 
     public void onSave(View view) {

@@ -83,4 +83,27 @@
         <item name="android:maxLength">2</item>
     </style>
     <!--End EditTexts-->
+
+    <!--Inventory-->
+    <style name="InventoryLabelTextView">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">match_parent</item>
+        <item name="android:gravity">center_vertical</item>
+        <item name="android:paddingStart">4dp</item>
+        <item name="android:paddingEnd">4dp</item>
+        <item name="android:textSize">18sp</item>
+        <item name="android:textColor">@color/characteristic_text</item>
+    </style>
+
+    <style name="InventoryNumberEditText">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">match_parent</item>
+        <item name="android:gravity">center</item>
+        <item name="android:hint">@string/zero</item>
+        <item name="android:inputType">number</item>
+        <item name="android:minWidth">48dp</item>
+        <item name="android:maxLength">2</item>
+        <item name="android:textColor">@color/characteristic_text</item>
+    </style>
+    <!--End Inventory-->
 </resources>

@@ -1,35 +1,57 @@
 package com.whfrp3.model.player.inventory;
 
+import com.whfrp3.R;
+import com.whfrp3.ihm.adapters.IEnumSpinner;
+
 /**
- * Portée possibles.
+ * Ranges.
  */
-public enum Range {
+public enum Range implements IEnumSpinner {
     /**
-     * Engagé.
+     * Engaged.
      */
-    ENGAGED,
+    ENGAGED(R.string.range_engaged),
 
     /**
-     * Courte.
+     * Short.
      */
-    SHORT,
+    SHORT(R.string.range_short),
 
     /**
-     * Moyenne.
+     * Medium.
      */
-    MEDIUM,
+    MEDIUM(R.string.range_medium),
 
     /**
-     * Longue.
+     * Long.
      */
-    LONG,
+    LONG(R.string.range_long),
 
     /**
-     * Extrême.
+     * Extreme.
      */
-    EXTREME;
+    EXTREME(R.string.range_extreme);
+
+    /**
+     * Item label id.
+     */
+    private int labelId;
+
+    /**
+     * Private constructor.
+     *
+     * @param labelId Item label id.
+     */
+    Range(int labelId) {
+        this.labelId = labelId;
+    }
 
     public boolean isLessThanOrEqualTo(Range otherRange) {
         return ordinal() <= otherRange.ordinal();
+    }
+
+    @Override
+    public int getLabelId() {
+        return labelId;
     }
 }

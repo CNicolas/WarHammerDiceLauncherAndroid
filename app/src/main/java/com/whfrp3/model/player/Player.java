@@ -162,7 +162,7 @@ public class Player extends AbstractBindingModel implements IPlayerConstants {
      * @return Player's item or null if not found.
      */
     public Item getItemById(int itemId) {
-        for (Item item : getItems()) {
+        for (Item item : inventory) {
             if (item.getId() == itemId) {
                 return item;
             }

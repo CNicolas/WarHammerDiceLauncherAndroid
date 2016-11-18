@@ -1,11 +1,12 @@
 package com.whfrp3.model.player.inventory;
 
 import com.whfrp3.R;
+import com.whfrp3.ihm.adapters.IEnumSpinner;
 
 /**
  * Item types.
  */
-public enum ItemType {
+public enum ItemType implements IEnumSpinner {
     /**
      * Standard item.
      */
@@ -36,7 +37,7 @@ public enum ItemType {
      *
      * @param labelId Item label id.
      */
-    private ItemType(int labelId) {
+    ItemType(int labelId) {
         this.labelId = labelId;
     }
 
@@ -56,11 +57,7 @@ public enum ItemType {
         throw new IllegalArgumentException("No ItemType value found for this ordinal [" + ordinal + "]");
     }
 
-    /**
-     * Return item label id.
-     *
-     * @return Item label id.
-     */
+    @Override
     public int getLabelId() {
         return labelId;
     }
