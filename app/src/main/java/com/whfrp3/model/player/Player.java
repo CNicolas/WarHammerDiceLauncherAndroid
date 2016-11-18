@@ -6,6 +6,7 @@ import android.databinding.BindingAdapter;
 import android.databinding.InverseBindingAdapter;
 import android.widget.TextView;
 
+import com.whfrp3.BR;
 import com.whfrp3.model.IModel;
 import com.whfrp3.model.player.inventory.Armor;
 import com.whfrp3.model.player.inventory.Item;
@@ -44,6 +45,8 @@ public class Player extends BaseObservable implements IModel, IPlayerConstants {
     private int max_reckless;
     private int conservative;
     private int max_conservative;
+    private int stress;
+    private int exertion;
 
     private int money_brass;
     private int money_silver;
@@ -240,6 +243,7 @@ public class Player extends BaseObservable implements IModel, IPlayerConstants {
         return items;
     }
     //endregion
+    //endregion
 
     /**
      * Can the player be saved in the database ?
@@ -331,6 +335,7 @@ public class Player extends BaseObservable implements IModel, IPlayerConstants {
         this.max_experience = max_experience;
     }
 
+    @Bindable
     public int getWounds() {
         return wounds;
     }
@@ -339,12 +344,14 @@ public class Player extends BaseObservable implements IModel, IPlayerConstants {
         this.wounds = wounds;
     }
 
+    @Bindable
     public int getMax_wounds() {
         return max_wounds;
     }
 
     public void setMax_wounds(int max_wounds) {
         this.max_wounds = max_wounds;
+        notifyPropertyChanged(BR.max_wounds);
     }
 
     public int getCorruption() {
@@ -393,6 +400,34 @@ public class Player extends BaseObservable implements IModel, IPlayerConstants {
 
     public void setMax_conservative(int max_conservative) {
         this.max_conservative = max_conservative;
+    }
+
+    @Bindable
+    public int getStress() {
+        return stress;
+    }
+
+    public void setStress(int stress) {
+        this.stress = stress;
+        notifyPropertyChanged(BR.stress);
+    }
+
+    public int getMaxStressBeforeComa() {
+        return getCharacteristics().getWillpower() * 2;
+    }
+
+    @Bindable
+    public int getExertion() {
+        return exertion;
+    }
+
+    public void setExertion(int exertion) {
+        this.exertion = exertion;
+        notifyPropertyChanged(BR.exertion);
+    }
+
+    public int getMaxExertionBeforeComa() {
+        return getCharacteristics().getToughness() * 2;
     }
 
     public int getMoney_brass() {
