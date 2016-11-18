@@ -38,6 +38,10 @@ public class WHFRP3Application extends Application {
     }
     //endregion
 
+    public static String getResourceString(int resId) {
+        return context.getString(resId);
+    }
+
     /**
      * Getter of the application context.
      *

@@ -12,6 +12,6 @@ public class BindingUtils {
      * @return String corresponding to the resource id.
      */
     public static String string(int resourceId) {
-        return WHFRP3Application.getAppContext().getString(resourceId);
+        return WHFRP3Application.getResourceString(resourceId);
     }
 }
