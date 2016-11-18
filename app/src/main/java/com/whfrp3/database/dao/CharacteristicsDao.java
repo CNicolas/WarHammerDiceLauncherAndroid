@@ -8,7 +8,7 @@ import com.whfrp3.database.entries.ICharacteristicsEntryConstants;
 import com.whfrp3.model.player.Characteristics;
 
 /**
- * Created by cnicolas on 06/10/2016.
+ * The CharacteristicsDao.
  */
 public class CharacteristicsDao extends AbstractDao<Characteristics> {
     public CharacteristicsDao(WarHammerDatabaseHelper whdHelper) {

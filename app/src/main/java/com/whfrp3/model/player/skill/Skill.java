@@ -1,13 +1,13 @@
 package com.whfrp3.model.player.skill;
 
-import com.whfrp3.model.IModel;
+import com.whfrp3.model.AbstractBindingModel;
 import com.whfrp3.model.player.Player;
 import com.whfrp3.tools.enums.Characteristic;
 
 /**
  * The Skill model.
  */
-public class Skill implements IModel {
+public class Skill extends AbstractBindingModel {
     private int id;
     private String name;
     private Characteristic characteristic;
@@ -104,5 +104,5 @@ public class Skill implements IModel {
         result = 31 * result + getPlayer_id();
         return result;
     }
-//endregion
+    //endregion
 }

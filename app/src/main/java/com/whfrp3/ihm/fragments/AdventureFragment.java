@@ -10,8 +10,6 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.whfrp3.R;
-import com.whfrp3.database.WarHammerDatabaseHelper;
-import com.whfrp3.database.dao.ItemDao;
 import com.whfrp3.databinding.FragmentAdventureBinding;
 import com.whfrp3.ihm.listeners.AdventureHandlers;
 import com.whfrp3.ihm.listeners.StanceChangeListener;
@@ -26,14 +24,11 @@ import org.adw.library.widgets.discreteseekbar.DiscreteSeekBar;
  */
 public class AdventureFragment extends Fragment implements OnPlayerUpdateListener {
     private DiscreteSeekBar mPlayerStance;
-    private ItemDao mItemDao;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         long startTime = System.currentTimeMillis();
-
-        mItemDao = new ItemDao(new WarHammerDatabaseHelper(getActivity()));
 
         FragmentAdventureBinding binding = DataBindingUtil.inflate(inflater, R.layout.fragment_adventure, container, false);
         binding.setPlayer(WHFRP3Application.getPlayer());
@@ -61,6 +56,5 @@ public class AdventureFragment extends Fragment implements OnPlayerUpdateListene
     public void onPlayerUpdate() {
         mPlayerStance.setMin(-1 * WHFRP3Application.getPlayer().getMax_conservative());
         mPlayerStance.setMax(WHFRP3Application.getPlayer().getMax_reckless());
-
     }
 }

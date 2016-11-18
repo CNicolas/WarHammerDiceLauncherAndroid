@@ -1,16 +1,12 @@
 package com.whfrp3.model.player;
 
-import android.databinding.BindingAdapter;
-import android.databinding.InverseBindingAdapter;
-import android.widget.TextView;
-
-import com.whfrp3.model.IModel;
+import com.whfrp3.model.AbstractBindingModel;
 import com.whfrp3.tools.enums.Characteristic;
 
 /**
  * The Characteristics model.
  */
-public class Characteristics implements IModel {
+public class Characteristics extends AbstractBindingModel {
     private int id;
 
     private int strength;
@@ -241,19 +237,4 @@ public class Characteristics implements IModel {
         return result;
     }
     //endregion
-
-    @BindingAdapter("android:text")
-    public static void setText(TextView view, int value) {
-        String res = value == 0 ? "" : String.valueOf(value);
-        view.setText(res);
-    }
-
-    @InverseBindingAdapter(attribute = "android:text")
-    public static int getText(TextView view) {
-        String content = view.getText().toString();
-        if (content.isEmpty()) {
-            return 0;
-        }
-        return Integer.parseInt(content);
-    }
 }

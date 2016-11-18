@@ -1,13 +1,9 @@
 package com.whfrp3.model.player;
 
-import android.databinding.BaseObservable;
 import android.databinding.Bindable;
-import android.databinding.BindingAdapter;
-import android.databinding.InverseBindingAdapter;
-import android.widget.TextView;
 
 import com.whfrp3.BR;
-import com.whfrp3.model.IModel;
+import com.whfrp3.model.AbstractBindingModel;
 import com.whfrp3.model.player.inventory.Armor;
 import com.whfrp3.model.player.inventory.Item;
 import com.whfrp3.model.player.inventory.ItemType;
@@ -23,7 +19,7 @@ import java.util.List;
 /**
  * The Player model.
  */
-public class Player extends BaseObservable implements IModel, IPlayerConstants {
+public class Player extends AbstractBindingModel implements IPlayerConstants {
     //region Fields
     private int id;
 
@@ -583,19 +579,4 @@ public class Player extends BaseObservable implements IModel, IPlayerConstants {
     }
 
     //endregion
-
-    @BindingAdapter("android:text")
-    public static void setText(TextView view, int value) {
-        String res = value == 0 ? "" : String.valueOf(value);
-        view.setText(res);
-    }
-
-    @InverseBindingAdapter(attribute = "android:text")
-    public static int getText(TextView view) {
-        String content = view.getText().toString();
-        if (content.isEmpty()) {
-            return 0;
-        }
-        return Integer.parseInt(content);
-    }
 }
