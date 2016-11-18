@@ -374,12 +374,14 @@ public class Player extends AbstractBindingModel implements IPlayerConstants {
         this.reckless = reckless;
     }
 
+    @Bindable
     public int getMax_reckless() {
         return max_reckless;
     }
 
     public void setMax_reckless(int max_reckless) {
         this.max_reckless = max_reckless;
+        notifyPropertyChanged(BR.max_reckless);
     }
 
     public int getConservative() {
@@ -390,12 +392,14 @@ public class Player extends AbstractBindingModel implements IPlayerConstants {
         this.conservative = conservative;
     }
 
+    @Bindable
     public int getMax_conservative() {
         return max_conservative;
     }
 
     public void setMax_conservative(int max_conservative) {
         this.max_conservative = max_conservative;
+        notifyPropertyChanged(BR.max_conservative);
     }
 
     @Bindable

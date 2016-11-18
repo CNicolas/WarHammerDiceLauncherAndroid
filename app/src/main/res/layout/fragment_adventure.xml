@@ -165,14 +165,14 @@
                     android:textColor="@color/colorPrimaryDark" />
             </LinearLayout>
 
-            <org.adw.library.widgets.discreteseekbar.DiscreteSeekBar
+            <com.whfrp3.ihm.components.BindableDiscreteSeekBar
                 android:id="@+id/player_stance"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/small_padding"
                 app:dsb_indicatorPopupEnabled="false"
-                app:dsb_max="6"
-                app:dsb_min="-6"
+                app:dsb_max="@{player.max_reckless}"
+                app:dsb_min="@{player.max_conservative * -1}"
                 app:dsb_progressColor="@color/colorPrimaryDark"
                 app:dsb_scrubberHeight="10dp"
                 app:dsb_thumbSize="30dp"
