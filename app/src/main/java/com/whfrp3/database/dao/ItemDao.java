@@ -100,7 +100,7 @@ public class ItemDao extends AbstractDao<Item> implements IItemEntryConstants {
         if (item.getType() == ItemType.ARMOR) {
             Armor armor = (Armor) item;
 
-            values.put(COLUMN_IS_EQUIPPED, convertBooleanToInteger(armor.isEquiped()));
+            values.put(COLUMN_IS_EQUIPPED, convertBooleanToInteger(armor.isEquipped()));
             values.put(COLUMN_SOAK, armor.getSoak());
             values.put(COLUMN_DEFENSE, armor.getDefense());
         }
@@ -109,7 +109,7 @@ public class ItemDao extends AbstractDao<Item> implements IItemEntryConstants {
         if (item.getType() == ItemType.WEAPON) {
             Weapon weapon = (Weapon) item;
 
-            values.put(COLUMN_IS_EQUIPPED, convertBooleanToInteger(weapon.isEquiped()));
+            values.put(COLUMN_IS_EQUIPPED, convertBooleanToInteger(weapon.isEquipped()));
             values.put(COLUMN_DAMAGE, weapon.getDamage());
             values.put(COLUMN_CRITICAL_LEVEL, weapon.getCriticalLevel());
             values.put(COLUMN_RANGE, weapon.getRange().toString());
@@ -128,14 +128,14 @@ public class ItemDao extends AbstractDao<Item> implements IItemEntryConstants {
         switch (type) {
             case ARMOR:
                 Armor armor = new Armor();
-                armor.setEquiped(convertIntegerToBoolean(cursor.getInt(cursor.getColumnIndexOrThrow(COLUMN_IS_EQUIPPED))));
+                armor.setEquipped(convertIntegerToBoolean(cursor.getInt(cursor.getColumnIndexOrThrow(COLUMN_IS_EQUIPPED))));
                 armor.setSoak(cursor.getInt(cursor.getColumnIndexOrThrow(COLUMN_SOAK)));
                 armor.setDefense(cursor.getInt(cursor.getColumnIndexOrThrow(COLUMN_DEFENSE)));
                 dto = armor;
                 break;
             case WEAPON:
                 Weapon weapon = new Weapon();
-                weapon.setEquiped(convertIntegerToBoolean(cursor.getInt(cursor.getColumnIndexOrThrow(COLUMN_IS_EQUIPPED))));
+                weapon.setEquipped(convertIntegerToBoolean(cursor.getInt(cursor.getColumnIndexOrThrow(COLUMN_IS_EQUIPPED))));
                 weapon.setDamage(cursor.getInt(cursor.getColumnIndexOrThrow(COLUMN_DAMAGE)));
                 weapon.setCriticalLevel(cursor.getInt(cursor.getColumnIndexOrThrow(COLUMN_CRITICAL_LEVEL)));
                 weapon.setRange(Range.valueOf(cursor.getString(cursor.getColumnIndexOrThrow(COLUMN_RANGE))));

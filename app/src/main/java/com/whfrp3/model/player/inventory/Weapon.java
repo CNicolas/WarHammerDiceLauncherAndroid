@@ -46,6 +46,10 @@ public class Weapon extends Equipment {
     }
     //endregion
 
+    public boolean canBeUsed(Range range) {
+        return isEquipable() && isEquipped() && getRange().isLessThanOrEqualTo(range);
+    }
+
     //region Get & Set
     public int getDamage() {
         return damage;

@@ -27,5 +27,9 @@ public enum Range {
     /**
      * Extrême.
      */
-    EXTREME
+    EXTREME;
+
+    public boolean isLessThanOrEqualTo(Range otherRange) {
+        return ordinal() <= otherRange.ordinal();
+    }
 }

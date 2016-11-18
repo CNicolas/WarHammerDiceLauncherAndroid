@@ -10,6 +10,7 @@ import com.whfrp3.model.IModel;
 import com.whfrp3.model.player.inventory.Armor;
 import com.whfrp3.model.player.inventory.Item;
 import com.whfrp3.model.player.inventory.ItemType;
+import com.whfrp3.model.player.inventory.Range;
 import com.whfrp3.model.player.inventory.UsableItem;
 import com.whfrp3.model.player.inventory.Weapon;
 import com.whfrp3.model.player.skill.Skill;
@@ -104,7 +105,7 @@ public class Player extends BaseObservable implements IModel, IPlayerConstants {
         for (Item item : inventory) {
             if (item.getType() == ItemType.ARMOR) {
                 Armor armor = item.toArmor();
-                if (armor.isEquiped()) {
+                if (armor.isEquipped()) {
                     res += armor.getDefense();
                 }
             }
@@ -120,7 +121,7 @@ public class Player extends BaseObservable implements IModel, IPlayerConstants {
         for (Item item : inventory) {
             if (item.getType() == ItemType.ARMOR) {
                 Armor armor = item.toArmor();
-                if (armor.isEquiped()) {
+                if (armor.isEquipped()) {
                     res += armor.getSoak();
                 }
             }
@@ -129,6 +130,23 @@ public class Player extends BaseObservable implements IModel, IPlayerConstants {
         return res;
     }
     //endregion
+
+    /**
+     * Returns the first equipped weapon that can be used
+     *
+     * @param range
+     * @return
+     */
+    public Weapon getEquippedWeapon(Range range) {
+        List<Weapon> weapons = getWeapons();
+        for (Weapon weapon : weapons) {
+            if (weapon.canBeUsed(range)) {
+                return weapon;
+            }
+        }
+
+        return null;
+    }
 
     public void addItem(Item item) {
         if (item != null) {

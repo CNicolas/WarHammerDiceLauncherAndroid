@@ -61,7 +61,7 @@ public class InventoryListAdapter extends AnimatedExpandableListView.AnimatedExp
         TextView nameView = (TextView) convertView.findViewById(R.id.inventoryItemName);
         nameView.setText(item.getName());
 
-        if (item.isEquipable() && ((Equipment) item).isEquiped()) {
+        if (item.isEquipable() && ((Equipment) item).isEquipped()) {
             nameView.setTypeface(nameView.getTypeface(), Typeface.BOLD);
         }
 

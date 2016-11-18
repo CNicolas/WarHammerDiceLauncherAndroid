@@ -112,7 +112,7 @@ public class InventoryFragment extends Fragment implements View.OnClickListener 
                 // Select menu dialog content
                 final int menuArrayId;
                 if (item.isEquipable()) {
-                    menuArrayId = (((Equipment) item).isEquiped()) ? R.array.item_menu_actions3 : R.array.item_menu_actions2;
+                    menuArrayId = (((Equipment) item).isEquipped()) ? R.array.item_menu_actions3 : R.array.item_menu_actions2;
                 } else {
                     menuArrayId = R.array.item_menu_actions1;
                 }
@@ -125,10 +125,10 @@ public class InventoryFragment extends Fragment implements View.OnClickListener 
                             public void onClick(DialogInterface dialog, int whichPos) {
                                 if (menuArrayId == R.array.item_menu_actions3 && whichPos == 0) {
                                     // Unequip the item
-                                    ((Equipment) item).setEquiped(false);
+                                    ((Equipment) item).setEquipped(false);
                                 } else if (menuArrayId == R.array.item_menu_actions2 && whichPos == 0) {
                                     // Equip the item
-                                    ((Equipment) item).setEquiped(true);
+                                    ((Equipment) item).setEquipped(true);
                                 } else if ((menuArrayId == R.array.item_menu_actions1 && whichPos == 0)
                                         || (menuArrayId == R.array.item_menu_actions2 && whichPos == 1)
                                         || (menuArrayId == R.array.item_menu_actions3 && whichPos == 1)) {

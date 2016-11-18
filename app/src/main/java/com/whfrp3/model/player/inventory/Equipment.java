@@ -11,7 +11,7 @@ public abstract class Equipment extends Item {
     /**
      * Is equipment equipped ?
      */
-    private boolean isEquiped;
+    private boolean isEquipped;
 
     //endregion
 
@@ -42,12 +42,12 @@ public abstract class Equipment extends Item {
 
     //region Get & Set
 
-    public boolean isEquiped() {
-        return isEquiped;
+    public boolean isEquipped() {
+        return isEquipped;
     }
 
-    public void setEquiped(boolean equiped) {
-        isEquiped = equiped;
+    public void setEquipped(boolean equipped) {
+        isEquipped = equipped;
     }
 
     //endregion
