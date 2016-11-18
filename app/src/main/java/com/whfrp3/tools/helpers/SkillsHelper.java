@@ -4,7 +4,7 @@ import android.content.Context;
 
 import com.whfrp3.model.player.Player;
 import com.whfrp3.model.player.skill.Skill;
-import com.whfrp3.tools.PlayerContext;
+import com.whfrp3.tools.WHFRP3Application;
 import com.whfrp3.tools.enums.SkillEnum;
 
 import java.util.ArrayList;
@@ -18,11 +18,11 @@ public abstract class SkillsHelper {
     /**
      * Create the 18 basic skills, at level 0 of expertise, for the current player.
      *
-     * @param context to fetch the string resources.
      * @return the list of new basic skills.
      */
-    public static List<Skill> createBasicSkills(Context context) {
-        Player player = PlayerContext.getPlayerInstance();
+    public static List<Skill> createBasicSkills() {
+        Context context = WHFRP3Application.getAppContext();
+        Player player = WHFRP3Application.getPlayer();
 
         List<Skill> res = new ArrayList<>();
         res.add(new Skill(context.getResources().getString(SkillEnum.ATHLETICS.getSkillNameId()), SkillEnum.ATHLETICS.getCharacteristic(), 0, player));

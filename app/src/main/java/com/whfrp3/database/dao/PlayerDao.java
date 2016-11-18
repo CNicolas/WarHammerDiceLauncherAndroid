@@ -87,7 +87,7 @@ public class PlayerDao extends AbstractDao<Player> implements IPlayerEntryConsta
                 mItemDao.update(item);
             }
         }
-        
+
         return super.update(player);
     }
     //endregion
@@ -114,6 +114,8 @@ public class PlayerDao extends AbstractDao<Player> implements IPlayerEntryConsta
         values.put(COLUMN_MAX_RECKLESS, player.getMax_reckless());
         values.put(COLUMN_CONSERVATIVE, player.getConservative());
         values.put(COLUMN_MAX_CONSERVATIVE, player.getMax_conservative());
+        values.put(COLUMN_STRESS, player.getStress());
+        values.put(COLUMN_EXERTION, player.getExertion());
 
         values.put(COLUMN_MONEY_BRASS, player.getMoney_brass());
         values.put(COLUMN_MONEY_SILVER, player.getMoney_silver());
@@ -147,6 +149,8 @@ public class PlayerDao extends AbstractDao<Player> implements IPlayerEntryConsta
         model.setMax_reckless(cursor.getInt(cursor.getColumnIndexOrThrow(COLUMN_MAX_RECKLESS)));
         model.setConservative(cursor.getInt(cursor.getColumnIndexOrThrow(COLUMN_CONSERVATIVE)));
         model.setMax_conservative(cursor.getInt(cursor.getColumnIndexOrThrow(COLUMN_MAX_CONSERVATIVE)));
+        model.setStress(cursor.getInt(cursor.getColumnIndexOrThrow(COLUMN_STRESS)));
+        model.setExertion(cursor.getInt(cursor.getColumnIndexOrThrow(COLUMN_EXERTION)));
 
         model.setMoney_brass(cursor.getInt(cursor.getColumnIndexOrThrow(COLUMN_MONEY_BRASS)));
         model.setMoney_silver(cursor.getInt(cursor.getColumnIndexOrThrow(COLUMN_MONEY_SILVER)));

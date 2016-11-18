@@ -6,7 +6,8 @@ import android.support.v4.content.ContextCompat;
 import android.widget.TextView;
 
 import com.whfrp3.R;
-import com.whfrp3.tools.PlayerContext;
+import com.whfrp3.model.player.Player;
+import com.whfrp3.tools.WHFRP3Application;
 
 import org.adw.library.widgets.discreteseekbar.DiscreteSeekBar;
 
@@ -52,27 +53,28 @@ public class StanceChangeListener implements DiscreteSeekBar.OnProgressChangeLis
     }
 
     private void updateCurrentStance(int value) {
+        Player player = WHFRP3Application.getPlayer();
         if (value < 0) {
             String format = mCurrentStanceTextView.getResources().getString(R.string.stance_conservative_format);
             mCurrentStanceTextView.setText(String.format(format, (-1 * value)));
             mCurrentStanceTextView.setTextColor(mConservativeColor);
 
-            PlayerContext.getPlayerInstance().setConservative(-1 * value);
-            PlayerContext.getPlayerInstance().setReckless(0);
+            player.setConservative(-1 * value);
+            player.setReckless(0);
         } else if (value > 0) {
             String format = mCurrentStanceTextView.getResources().getString(R.string.stance_reckless_format);
             mCurrentStanceTextView.setText(String.format(format, value));
             mCurrentStanceTextView.setTextColor(mRecklessColor);
 
-            PlayerContext.getPlayerInstance().setConservative(0);
-            PlayerContext.getPlayerInstance().setReckless(value);
+            player.setConservative(0);
+            player.setReckless(value);
         } else {
             String text = mCurrentStanceTextView.getResources().getString(R.string.neutral);
             mCurrentStanceTextView.setText(text);
             mCurrentStanceTextView.setTextColor(mNeutralColor);
 
-            PlayerContext.getPlayerInstance().setConservative(0);
-            PlayerContext.getPlayerInstance().setReckless(0);
+            player.setConservative(0);
+            player.setReckless(0);
         }
     }
 }

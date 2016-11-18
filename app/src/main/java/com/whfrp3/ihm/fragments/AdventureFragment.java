@@ -13,10 +13,10 @@ import com.whfrp3.R;
 import com.whfrp3.database.WarHammerDatabaseHelper;
 import com.whfrp3.database.dao.ItemDao;
 import com.whfrp3.databinding.FragmentAdventureBinding;
+import com.whfrp3.ihm.listeners.AdventureHandlers;
 import com.whfrp3.ihm.listeners.StanceChangeListener;
-import com.whfrp3.model.player.inventory.Armor;
-import com.whfrp3.model.player.inventory.Quality;
-import com.whfrp3.tools.PlayerContext;
+import com.whfrp3.tools.PlayerHelper;
+import com.whfrp3.tools.WHFRP3Application;
 import com.whfrp3.tools.helpers.OnPlayerUpdateListener;
 
 import org.adw.library.widgets.discreteseekbar.DiscreteSeekBar;
@@ -36,14 +36,15 @@ public class AdventureFragment extends Fragment implements OnPlayerUpdateListene
         mItemDao = new ItemDao(new WarHammerDatabaseHelper(getActivity()));
 
         FragmentAdventureBinding binding = DataBindingUtil.inflate(inflater, R.layout.fragment_adventure, container, false);
-        binding.setPlayer(PlayerContext.getPlayerInstance());
+        binding.setPlayer(WHFRP3Application.getPlayer());
+        binding.setHandlers(new AdventureHandlers());
 
         mPlayerStance = (DiscreteSeekBar) binding.getRoot().findViewById(R.id.player_stance);
         TextView currentStanceTextView = (TextView) binding.getRoot().findViewById(R.id.currentStance);
         mPlayerStance.setOnProgressChangeListener(new StanceChangeListener(getActivity(), currentStanceTextView));
 
         onPlayerUpdate();
-        PlayerContext.registerPlayerUpdateListener(this);
+        PlayerHelper.registerPlayerUpdateListener(this);
 
         long difference = System.currentTimeMillis() - startTime;
         Log.d("AdventureFragment", String.format("%d = %d", startTime, difference));
@@ -58,7 +59,8 @@ public class AdventureFragment extends Fragment implements OnPlayerUpdateListene
 
     @Override
     public void onPlayerUpdate() {
-        mPlayerStance.setMin(-1 * PlayerContext.getPlayerInstance().getMax_conservative());
-        mPlayerStance.setMax(PlayerContext.getPlayerInstance().getMax_reckless());
+        mPlayerStance.setMin(-1 * WHFRP3Application.getPlayer().getMax_conservative());
+        mPlayerStance.setMax(WHFRP3Application.getPlayer().getMax_reckless());
+
     }
 }

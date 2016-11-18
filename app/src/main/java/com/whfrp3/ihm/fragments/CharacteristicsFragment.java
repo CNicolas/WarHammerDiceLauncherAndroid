@@ -11,7 +11,7 @@ import android.view.ViewGroup;
 import com.whfrp3.R;
 import com.whfrp3.databinding.FragmentCharacteristicsBinding;
 import com.whfrp3.tools.BindingContext;
-import com.whfrp3.tools.PlayerContext;
+import com.whfrp3.tools.WHFRP3Application;
 import com.whfrp3.tools.constants.IPlayerConstants;
 
 /**
@@ -33,9 +33,9 @@ public class CharacteristicsFragment extends Fragment {
         }
 
         FragmentCharacteristicsBinding binding = DataBindingUtil.inflate(inflater, R.layout.fragment_characteristics, container, false);
-        binding.setPlayer(PlayerContext.getPlayerInstance());
+        binding.setPlayer(WHFRP3Application.getPlayer());
         binding.setBindingContext(mBindingContext);
-        binding.characteristicsEdittexts.setCarac(PlayerContext.getPlayerInstance().getCharacteristics());
+        binding.characteristicsEdittexts.setCarac(WHFRP3Application.getPlayer().getCharacteristics());
         binding.characteristicsEdittexts.setBindingContext(mBindingContext);
 
         setHasOptionsMenu(true);

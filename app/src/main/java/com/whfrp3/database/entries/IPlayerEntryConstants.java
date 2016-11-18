@@ -24,6 +24,8 @@ public interface IPlayerEntryConstants extends IEntryConstants {
     String COLUMN_MAX_RECKLESS = "max_reckless";
     String COLUMN_CONSERVATIVE = "conservative";
     String COLUMN_MAX_CONSERVATIVE = "max_conservative";
+    String COLUMN_STRESS = "stress";
+    String COLUMN_EXERTION = "exertion";
 
     String COLUMN_MONEY_BRASS = "money_brass";
     String COLUMN_MONEY_SILVER = "money_silver";
@@ -52,6 +54,8 @@ public interface IPlayerEntryConstants extends IEntryConstants {
                     COLUMN_MAX_RECKLESS + INTEGER_TYPE + COMMA_SEP +
                     COLUMN_CONSERVATIVE + INTEGER_TYPE + COMMA_SEP +
                     COLUMN_MAX_CONSERVATIVE + INTEGER_TYPE + COMMA_SEP +
+                    COLUMN_STRESS + INTEGER_TYPE + COMMA_SEP +
+                    COLUMN_EXERTION + INTEGER_TYPE + COMMA_SEP +
 
                     COLUMN_MONEY_BRASS + INTEGER_TYPE + COMMA_SEP +
                     COLUMN_MONEY_SILVER + INTEGER_TYPE + COMMA_SEP +

@@ -13,7 +13,8 @@ import com.whfrp3.R;
 import com.whfrp3.databinding.FragmentSkillsBinding;
 import com.whfrp3.model.player.skill.SkillsList;
 import com.whfrp3.tools.BindingContext;
-import com.whfrp3.tools.PlayerContext;
+import com.whfrp3.tools.PlayerHelper;
+import com.whfrp3.tools.WHFRP3Application;
 import com.whfrp3.tools.constants.IPlayerConstants;
 import com.whfrp3.tools.helpers.OnPlayerUpdateListener;
 
@@ -37,9 +38,9 @@ public class SkillsFragment extends Fragment implements OnPlayerUpdateListener {
         }
 
         mBinding = DataBindingUtil.inflate(inflater, R.layout.fragment_skills, container, false);
-        mBinding.setSkills(new SkillsList(PlayerContext.getPlayerInstance().getSkills()));
+        mBinding.setSkills(new SkillsList(WHFRP3Application.getPlayer().getSkills()));
 
-        PlayerContext.registerPlayerUpdateListener(this);
+        PlayerHelper.registerPlayerUpdateListener(this);
 
         long difference = System.currentTimeMillis() - startTime;
         Log.d("SkillsFragment", String.format("%d = %d", startTime, difference));
@@ -50,9 +51,9 @@ public class SkillsFragment extends Fragment implements OnPlayerUpdateListener {
     public void onPlayerUpdate() {
         Context context = getActivity();
         if (context != null) {
-            mBinding.setSkills(new SkillsList(PlayerContext.getPlayerInstance().getSkills()));
+            mBinding.setSkills(new SkillsList(WHFRP3Application.getPlayer().getSkills()));
 
-            Log.d("SKILL", PlayerContext.getPlayerInstance().toString());
+            Log.d("SKILL", WHFRP3Application.getPlayer().toString());
         }
     }
 }

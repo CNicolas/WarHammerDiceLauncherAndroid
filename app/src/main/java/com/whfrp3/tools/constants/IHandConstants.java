@@ -39,7 +39,7 @@ public abstract class IHandConstants implements IConstants {
         map.put(DiceFaces.BANE, R.id.mischiefNumberResults);
         map.put(DiceFaces.FAILURE, R.id.failureNumberResults);
         map.put(DiceFaces.SIGMAR, R.id.sigmarNumberResults);
-        map.put(DiceFaces.TIREDNESS, R.id.tirednessNumberResults);
+        map.put(DiceFaces.EXERTION, R.id.tirednessNumberResults);
         map.put(DiceFaces.DELAY, R.id.delayNumberResults);
         map.put(DiceFaces.CHAOS, R.id.chaosNumberResults);
         popupResultsTextViews = map;

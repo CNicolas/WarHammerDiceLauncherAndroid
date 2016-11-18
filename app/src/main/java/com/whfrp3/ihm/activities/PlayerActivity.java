@@ -22,7 +22,8 @@ import com.whfrp3.database.dao.PlayerDao;
 import com.whfrp3.ihm.adapters.PlayerPagerAdapter;
 import com.whfrp3.model.player.skill.Skill;
 import com.whfrp3.tools.BindingContext;
-import com.whfrp3.tools.PlayerContext;
+import com.whfrp3.tools.PlayerHelper;
+import com.whfrp3.tools.WHFRP3Application;
 import com.whfrp3.tools.constants.IPlayerConstants;
 
 /**
@@ -91,7 +92,7 @@ public class PlayerActivity extends AppCompatActivity implements IPlayerConstant
             return true;
         }
         if (id == R.id.action_update_player) {
-            PlayerContext.updatePlayer(this);
+            PlayerHelper.savePlayer(WHFRP3Application.getPlayer());
             return true;
         }
 
@@ -104,12 +105,12 @@ public class PlayerActivity extends AppCompatActivity implements IPlayerConstant
     //region Init
 
     /**
-     * Initialize the Daos for the PlayerActivity and the PlayerContext.
+     * Initialize the Daos for the PlayerActivity and the PlayerHelper.
      */
     private void initDaos() {
         WarHammerDatabaseHelper databaseHelper = new WarHammerDatabaseHelper(this);
-        PlayerContext.setPlayerDao(new PlayerDao(databaseHelper));
-        PlayerContext.setCharacteristicsDao(new CharacteristicsDao(databaseHelper));
+        PlayerHelper.setPlayerDao(new PlayerDao(databaseHelper));
+        PlayerHelper.setCharacteristicsDao(new CharacteristicsDao(databaseHelper));
     }
 
     /**
@@ -152,7 +153,7 @@ public class PlayerActivity extends AppCompatActivity implements IPlayerConstant
     //region Edition
 
     /**
-     * Effectively changes the edition mode in PlayerContext and update the UI.
+     * Effectively changes the edition mode in PlayerHelper and update the UI.
      *
      * @param isInEdition
      */
@@ -198,7 +199,7 @@ public class PlayerActivity extends AppCompatActivity implements IPlayerConstant
         try {
             TextView tv = (TextView) view;
             String skillName = tv.getText().toString();
-            Skill skill = PlayerContext.getPlayerInstance().getSkillByName(skillName);
+            Skill skill = WHFRP3Application.getPlayer().getSkillByName(skillName);
 
             Bundle bundle = new Bundle();
             bundle.putSerializable(SKILL_TAG, skill);

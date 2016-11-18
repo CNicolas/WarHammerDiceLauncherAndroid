@@ -10,6 +10,7 @@ import android.widget.Spinner;
 
 import com.whfrp3.R;
 import com.whfrp3.databinding.ItemEditActivityBinding;
+import com.whfrp3.model.player.Player;
 import com.whfrp3.model.player.inventory.Armor;
 import com.whfrp3.model.player.inventory.Item;
 import com.whfrp3.model.player.inventory.ItemEdit;
@@ -18,7 +19,8 @@ import com.whfrp3.model.player.inventory.Quality;
 import com.whfrp3.model.player.inventory.Range;
 import com.whfrp3.model.player.inventory.UsableItem;
 import com.whfrp3.model.player.inventory.Weapon;
-import com.whfrp3.tools.PlayerContext;
+import com.whfrp3.tools.PlayerHelper;
+import com.whfrp3.tools.WHFRP3Application;
 
 /**
  * Activity used to modify an item.
@@ -59,7 +61,7 @@ public class ItemEditActivity extends AppCompatActivity {
                 // TODO : Add error treatment
             }
 
-            item = PlayerContext.getPlayerInstance().getItemById(itemId);
+            item = WHFRP3Application.getPlayer().getItemById(itemId);
             if (item == null) {
                 // TODO : Add error treatment
             }
@@ -160,8 +162,9 @@ public class ItemEditActivity extends AppCompatActivity {
         }
 
         if (item.getId() == 0) {
-            PlayerContext.getPlayerInstance().addItem(item);
-            PlayerContext.savePlayer();
+            Player player = WHFRP3Application.getPlayer();
+            player.addItem(item);
+            PlayerHelper.savePlayer(player);
         }
 
         this.setResult(RESULT_OK);

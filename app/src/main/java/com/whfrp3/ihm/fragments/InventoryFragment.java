@@ -27,7 +27,7 @@ import com.whfrp3.model.player.inventory.Item;
 import com.whfrp3.model.player.inventory.ItemType;
 import com.whfrp3.model.player.inventory.UsableItem;
 import com.whfrp3.model.player.inventory.Weapon;
-import com.whfrp3.tools.PlayerContext;
+import com.whfrp3.tools.WHFRP3Application;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -211,7 +211,7 @@ public class InventoryFragment extends Fragment implements View.OnClickListener 
      * @param itemType Item type of the list to refresh.
      */
     private void refreshInventoryView(ItemType itemType) {
-        Player player = PlayerContext.getPlayerInstance();
+        Player player = WHFRP3Application.getPlayer();
 
         if (itemType == null) {
             items.put(ItemType.ARMOR, player.getArmors());

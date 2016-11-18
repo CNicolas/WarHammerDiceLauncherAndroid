@@ -1,7 +1,7 @@
 package com.whfrp3.tools.helpers;
 
 /**
- * Listen to an update of the player from PlayerContext.
+ * Listen to an update of the player from PlayerHelper.
  */
 public interface OnPlayerUpdateListener {
     /**

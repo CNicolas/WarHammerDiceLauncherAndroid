@@ -17,7 +17,7 @@ import com.whfrp3.R;
 import com.whfrp3.database.WarHammerDatabaseHelper;
 import com.whfrp3.database.dao.PlayerDao;
 import com.whfrp3.model.player.Player;
-import com.whfrp3.tools.PlayerContext;
+import com.whfrp3.tools.WHFRP3Application;
 import com.whfrp3.tools.constants.IPlayerConstants;
 
 import java.util.ArrayList;
@@ -64,12 +64,12 @@ public class HomeActivity extends Activity {
 
             if (position == 0) {
                 isInEdition = true;
-                PlayerContext.initEmptyPlayer();
+                WHFRP3Application.initEmptyPlayer();
             } else {
                 try {
                     TextView tv = (TextView) view;
                     Player player = mPlayerDao.findByName(tv.getText().toString());
-                    PlayerContext.setPlayer(player);
+                    WHFRP3Application.setPlayer(player);
                 } catch (SQLiteException sqle) {
                     Toast.makeText(mContext, "An error occured", Toast.LENGTH_LONG).show();
                 }

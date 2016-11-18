@@ -9,8 +9,8 @@
             type="com.whfrp3.model.player.Player" />
 
         <variable
-            name="carac"
-            type="com.whfrp3.model.player.Characteristics" />
+            name="handlers"
+            type="com.whfrp3.ihm.listeners.AdventureHandlers" />
 
     </data>
 
@@ -52,6 +52,87 @@
                 android:text="@{player.max_wounds}" />
         </LinearLayout>
 
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="@dimen/big_padding"
+            android:layout_marginStart="@dimen/big_padding"
+            android:paddingEnd="@dimen/big_padding"
+            android:paddingStart="@dimen/big_padding">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentStart="true"
+                android:layout_marginStart="@dimen/big_padding"
+                android:text="Stress" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:layout_marginEnd="@dimen/medium_padding"
+                android:text="Exertion" />
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="@dimen/big_padding"
+            android:layout_marginStart="@dimen/big_padding">
+
+            <!--Stress-->
+            <Button
+                android:id="@+id/btn_minus_stress"
+                style="@style/ButtonPlusMinus"
+                android:onClick="@{() -> handlers.changeStress(-1)}"
+                android:text="-" />
+
+            <TextView
+                android:id="@+id/text_stress"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:layout_toEndOf="@+id/btn_minus_stress"
+                android:hint="@string/zero"
+                android:minWidth="50dp"
+                android:text="@{player.stress}"
+                android:textAlignment="center" />
+
+            <Button
+                android:id="@+id/btn_plus_stress"
+                style="@style/ButtonPlusMinus"
+                android:layout_toEndOf="@+id/text_stress"
+                android:onClick="@{() -> handlers.changeStress(1)}"
+                android:text="+" />
+
+            <!--Exertion-->
+            <Button
+                android:id="@+id/btn_plus_exertion"
+                style="@style/ButtonPlusMinus"
+                android:layout_alignParentEnd="true"
+                android:onClick="@{() -> handlers.changeExertion(1)}"
+                android:text="+" />
+
+            <TextView
+                android:id="@+id/text_exertion"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:layout_toStartOf="@id/btn_plus_exertion"
+                android:hint="@string/zero"
+                android:minWidth="50dp"
+                android:text="@{player.exertion}"
+                android:textAlignment="center" />
+
+            <Button
+                android:id="@+id/btn_minus_exertion"
+                style="@style/ButtonPlusMinus"
+                android:layout_toStartOf="@id/text_exertion"
+                android:onClick="@{() -> handlers.changeExertion(-1)}"
+                android:text="-" />
+        </RelativeLayout>
 
         <LinearLayout
             android:layout_width="match_parent"

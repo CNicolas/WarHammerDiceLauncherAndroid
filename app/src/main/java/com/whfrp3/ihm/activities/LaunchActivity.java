@@ -27,7 +27,7 @@ import com.whfrp3.model.dices.DiceFaces;
 import com.whfrp3.model.player.Hand;
 import com.whfrp3.model.player.Player;
 import com.whfrp3.model.player.skill.Skill;
-import com.whfrp3.tools.PlayerContext;
+import com.whfrp3.tools.WHFRP3Application;
 import com.whfrp3.tools.constants.IHandConstants;
 import com.whfrp3.tools.constants.IPlayerConstants;
 import com.whfrp3.tools.helpers.DialogHelper;
@@ -322,7 +322,7 @@ public class LaunchActivity extends AppCompatActivity {
      * @param skill the skill.
      */
     private void fillPickersFromSkill(Skill skill) {
-        Player player = PlayerContext.getPlayerInstance();
+        Player player = WHFRP3Application.getPlayer();
 
         Hand startingHand = player.getCharacteristics().getCharacteristicHand(skill.getCharacteristic());
         startingHand.setExpertise(skill.getLevel());
