@@ -2,64 +2,77 @@ package com.whfrp3.database.dao;
 
 import android.content.ContentValues;
 import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
 
-import com.whfrp3.database.WarHammerDatabaseHelper;
 import com.whfrp3.database.entries.ICharacteristicsEntryConstants;
+import com.whfrp3.database.entries.IEntryConstants;
 import com.whfrp3.model.player.Characteristics;
 
 /**
- * The CharacteristicsDao.
+ * DAO of characteristics.
  */
-public class CharacteristicsDao extends AbstractDao<Characteristics> {
-    public CharacteristicsDao(WarHammerDatabaseHelper whdHelper) {
-        super(whdHelper);
-        tableName = ICharacteristicsEntryConstants.TABLE_NAME;
-        columnId = ICharacteristicsEntryConstants.COLUMN_ID;
+public class CharacteristicsDao extends AbstractDao<Characteristics> implements ICharacteristicsEntryConstants {
+
+    //region Constructor
+
+    /**
+     * Constructor.
+     *
+     * @param database Database connection.
+     */
+    public CharacteristicsDao(SQLiteDatabase database) {
+        super(database, TABLE_NAME);
     }
 
-    //region Private Methods
-    protected ContentValues contentValuesFromModel(Characteristics mmodel) {
+    //endregion
+
+    //region Protected methods
+
+    @Override
+    protected ContentValues contentValuesFromModel(Characteristics model) {
         ContentValues values = new ContentValues();
 
-        values.put(ICharacteristicsEntryConstants.COLUMN_ID, mmodel.getId());
+        values.put(COLUMN_ID, model.getId());
 
-        values.put(ICharacteristicsEntryConstants.COLUMN_STRENGTH, mmodel.getStrength());
-        values.put(ICharacteristicsEntryConstants.COLUMN_TOUGHNESS, mmodel.getToughness());
-        values.put(ICharacteristicsEntryConstants.COLUMN_AGILITY, mmodel.getAgility());
-        values.put(ICharacteristicsEntryConstants.COLUMN_INTELLIGENCE, mmodel.getIntelligence());
-        values.put(ICharacteristicsEntryConstants.COLUMN_WILLPOWER, mmodel.getWillpower());
-        values.put(ICharacteristicsEntryConstants.COLUMN_FELLOWSHIP, mmodel.getFellowship());
+        values.put(COLUMN_STRENGTH, model.getStrength());
+        values.put(COLUMN_TOUGHNESS, model.getToughness());
+        values.put(COLUMN_AGILITY, model.getAgility());
+        values.put(COLUMN_INTELLIGENCE, model.getIntelligence());
+        values.put(COLUMN_WILLPOWER, model.getWillpower());
+        values.put(COLUMN_FELLOWSHIP, model.getFellowship());
 
-        values.put(ICharacteristicsEntryConstants.COLUMN_STRENGTH_FORTUNE, mmodel.getStrength_fortune());
-        values.put(ICharacteristicsEntryConstants.COLUMN_TOUGHNESS_FORTUNE, mmodel.getToughness_fortune());
-        values.put(ICharacteristicsEntryConstants.COLUMN_AGILITY_FORTUNE, mmodel.getAgility_fortune());
-        values.put(ICharacteristicsEntryConstants.COLUMN_INTELLIGENCE_FORTUNE, mmodel.getIntelligence_fortune());
-        values.put(ICharacteristicsEntryConstants.COLUMN_WILLPOWER_FORTUNE, mmodel.getWillpower_fortune());
-        values.put(ICharacteristicsEntryConstants.COLUMN_FELLOWSHIP_FORTUNE, mmodel.getFellowship_fortune());
+        values.put(COLUMN_STRENGTH_FORTUNE, model.getStrength_fortune());
+        values.put(COLUMN_TOUGHNESS_FORTUNE, model.getToughness_fortune());
+        values.put(COLUMN_AGILITY_FORTUNE, model.getAgility_fortune());
+        values.put(COLUMN_INTELLIGENCE_FORTUNE, model.getIntelligence_fortune());
+        values.put(COLUMN_WILLPOWER_FORTUNE, model.getWillpower_fortune());
+        values.put(COLUMN_FELLOWSHIP_FORTUNE, model.getFellowship_fortune());
 
         return values;
     }
 
+    @Override
     protected Characteristics createModelFromCursor(Cursor cursor) {
         Characteristics model = new Characteristics();
 
-        model.setId(cursor.getInt(cursor.getColumnIndexOrThrow(columnId)));
+        model.setId(cursor.getInt(cursor.getColumnIndexOrThrow(IEntryConstants.COLUMN_ID)));
 
-        model.setStrength(cursor.getInt(cursor.getColumnIndexOrThrow(ICharacteristicsEntryConstants.COLUMN_STRENGTH)));
-        model.setToughness(cursor.getInt(cursor.getColumnIndexOrThrow(ICharacteristicsEntryConstants.COLUMN_TOUGHNESS)));
-        model.setAgility(cursor.getInt(cursor.getColumnIndexOrThrow(ICharacteristicsEntryConstants.COLUMN_AGILITY)));
-        model.setIntelligence(cursor.getInt(cursor.getColumnIndexOrThrow(ICharacteristicsEntryConstants.COLUMN_INTELLIGENCE)));
-        model.setWillpower(cursor.getInt(cursor.getColumnIndexOrThrow(ICharacteristicsEntryConstants.COLUMN_WILLPOWER)));
-        model.setFellowship(cursor.getInt(cursor.getColumnIndexOrThrow(ICharacteristicsEntryConstants.COLUMN_FELLOWSHIP)));
+        model.setStrength(cursor.getInt(cursor.getColumnIndexOrThrow(COLUMN_STRENGTH)));
+        model.setToughness(cursor.getInt(cursor.getColumnIndexOrThrow(COLUMN_TOUGHNESS)));
+        model.setAgility(cursor.getInt(cursor.getColumnIndexOrThrow(COLUMN_AGILITY)));
+        model.setIntelligence(cursor.getInt(cursor.getColumnIndexOrThrow(COLUMN_INTELLIGENCE)));
+        model.setWillpower(cursor.getInt(cursor.getColumnIndexOrThrow(COLUMN_WILLPOWER)));
+        model.setFellowship(cursor.getInt(cursor.getColumnIndexOrThrow(COLUMN_FELLOWSHIP)));
 
-        model.setStrength_fortune(cursor.getInt(cursor.getColumnIndexOrThrow(ICharacteristicsEntryConstants.COLUMN_STRENGTH_FORTUNE)));
-        model.setToughness_fortune(cursor.getInt(cursor.getColumnIndexOrThrow(ICharacteristicsEntryConstants.COLUMN_TOUGHNESS_FORTUNE)));
-        model.setAgility_fortune(cursor.getInt(cursor.getColumnIndexOrThrow(ICharacteristicsEntryConstants.COLUMN_AGILITY_FORTUNE)));
-        model.setIntelligence_fortune(cursor.getInt(cursor.getColumnIndexOrThrow(ICharacteristicsEntryConstants.COLUMN_INTELLIGENCE_FORTUNE)));
-        model.setWillpower_fortune(cursor.getInt(cursor.getColumnIndexOrThrow(ICharacteristicsEntryConstants.COLUMN_WILLPOWER_FORTUNE)));
-        model.setFellowship_fortune(cursor.getInt(cursor.getColumnIndexOrThrow(ICharacteristicsEntryConstants.COLUMN_FELLOWSHIP_FORTUNE)));
+        model.setStrength_fortune(cursor.getInt(cursor.getColumnIndexOrThrow(COLUMN_STRENGTH_FORTUNE)));
+        model.setToughness_fortune(cursor.getInt(cursor.getColumnIndexOrThrow(COLUMN_TOUGHNESS_FORTUNE)));
+        model.setAgility_fortune(cursor.getInt(cursor.getColumnIndexOrThrow(COLUMN_AGILITY_FORTUNE)));
+        model.setIntelligence_fortune(cursor.getInt(cursor.getColumnIndexOrThrow(COLUMN_INTELLIGENCE_FORTUNE)));
+        model.setWillpower_fortune(cursor.getInt(cursor.getColumnIndexOrThrow(COLUMN_WILLPOWER_FORTUNE)));
+        model.setFellowship_fortune(cursor.getInt(cursor.getColumnIndexOrThrow(COLUMN_FELLOWSHIP_FORTUNE)));
 
         return model;
     }
+
     //endregion
 }

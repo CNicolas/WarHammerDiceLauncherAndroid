@@ -3,9 +3,9 @@ package com.whfrp3.database.entries;
 import android.provider.BaseColumns;
 
 /**
- * The database constants common to every table.
+ * The mDatabase constants common to every table.
  */
-interface IEntryConstants extends BaseColumns {
+public interface IEntryConstants extends BaseColumns {
     String COLUMN_ID = "id";
 
     String TEXT_TYPE = " TEXT";

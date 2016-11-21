@@ -1,18 +1,13 @@
 package com.whfrp3.model.player.inventory;
 
-import com.whfrp3.model.IModel;
+import com.whfrp3.model.AbstractModel;
 import com.whfrp3.model.player.Player;
 
 /**
  * Item's class.
  */
-public class Item implements IModel {
+public class Item extends AbstractModel {
     //region Properties
-    /**
-     * Technical identifier.
-     */
-    private int id;
-
     /**
      * Item's name.
      */
@@ -46,7 +41,7 @@ public class Item implements IModel {
     /**
      * Player's id linked with the item.
      */
-    private int playerId;
+    private long playerId;
     //endregion
 
     //region Constructors
@@ -80,15 +75,6 @@ public class Item implements IModel {
     }
 
     //region Get & Set
-    @Override
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
-    }
-
     public String getName() {
         return name;
     }
@@ -137,11 +123,11 @@ public class Item implements IModel {
         this.type = type;
     }
 
-    public int getPlayerId() {
+    public long getPlayerId() {
         return playerId;
     }
 
-    public void setPlayerId(int playerId) {
+    public void setPlayerId(long playerId) {
         this.playerId = playerId;
     }
     //endregion
@@ -243,20 +229,18 @@ public class Item implements IModel {
 
     @Override
     public int hashCode() {
-        int result = getId();
-        result = 31 * result + getName().hashCode();
+        int result = getName().hashCode();
         result = 31 * result + (getDescription() != null ? getDescription().hashCode() : 0);
         result = 31 * result + getEncumbrance();
         result = 31 * result + getQuantity();
         result = 31 * result + getQuality().hashCode();
         result = 31 * result + getType().hashCode();
-        result = 31 * result + getPlayerId();
         return result;
     }
     //endregion
 
-    public static Item getItemFromType(ItemType type){
-        switch (type){
+    public static Item getItemFromType(ItemType type) {
+        switch (type) {
             case ARMOR:
                 return new Armor();
             case WEAPON:

@@ -16,7 +16,6 @@ import android.view.inputmethod.InputMethodManager;
 import android.widget.TextView;
 
 import com.whfrp3.R;
-import com.whfrp3.database.WarHammerDatabaseHelper;
 import com.whfrp3.database.dao.CharacteristicsDao;
 import com.whfrp3.database.dao.PlayerDao;
 import com.whfrp3.ihm.adapters.PlayerPagerAdapter;
@@ -50,7 +49,6 @@ public class PlayerActivity extends AppCompatActivity implements IPlayerConstant
             mBindingContext.setInEdition(inEdition);
         }
 
-        initDaos();
         initVisualElements();
     }
 
@@ -103,15 +101,6 @@ public class PlayerActivity extends AppCompatActivity implements IPlayerConstant
     //endregion
 
     //region Init
-
-    /**
-     * Initialize the Daos for the PlayerActivity and the PlayerHelper.
-     */
-    private void initDaos() {
-        WarHammerDatabaseHelper databaseHelper = new WarHammerDatabaseHelper(this);
-        PlayerHelper.setPlayerDao(new PlayerDao(databaseHelper));
-        PlayerHelper.setCharacteristicsDao(new CharacteristicsDao(databaseHelper));
-    }
 
     /**
      * Initialize the various visual elements (Toolbar, ViewPager...).

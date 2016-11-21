@@ -2,97 +2,148 @@ package com.whfrp3.database.dao;
 
 import android.content.ContentValues;
 import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
 
-import com.whfrp3.database.WarHammerDatabaseHelper;
+import com.whfrp3.database.entries.IEntryConstants;
 import com.whfrp3.database.entries.IPlayerEntryConstants;
 import com.whfrp3.model.player.Characteristics;
 import com.whfrp3.model.player.Player;
 import com.whfrp3.model.player.inventory.Item;
 import com.whfrp3.model.player.skill.Skill;
+import com.whfrp3.tools.WHFRP3Application;
 
 import java.util.List;
 
 /**
- * Created by cnicolas on 12/10/2016.
+ * DAO of players.
  */
-
 public class PlayerDao extends AbstractDao<Player> implements IPlayerEntryConstants {
+
+    //region DAOs
+
+    /**
+     * DAO of characteristics.
+     */
     private final CharacteristicsDao mCharacteristicsDao;
+
+    /**
+     * DAO of skills.
+     */
     private final SkillDao mSkillDao;
+
+    /**
+     * DAO of items.
+     */
     private final ItemDao mItemDao;
 
-    public PlayerDao(WarHammerDatabaseHelper whdHelper) {
-        super(whdHelper);
+    //endregion
 
-        tableName = TABLE_NAME;
-        columnId = COLUMN_ID;
+    //region Constructor
 
-        mCharacteristicsDao = new CharacteristicsDao(whdHelper);
-        mSkillDao = new SkillDao(whdHelper);
-        mItemDao = new ItemDao(whdHelper);
+    /**
+     * Constructor.
+     *
+     * @param database Database connection.
+     */
+    public PlayerDao(SQLiteDatabase database) {
+        super(database, TABLE_NAME);
+
+        mCharacteristicsDao = WHFRP3Application.getDatabase().getCharacteristicsDao();
+        mSkillDao = WHFRP3Application.getDatabase().getSkillDao();
+        mItemDao = WHFRP3Application.getDatabase().getItemDao();
     }
 
+    //endregion
+
     //region Find
+
+    /**
+     * Find all players names.
+     *
+     * @return Players names.
+     */
     public List<String> findAllNames() {
         return findAllValuesOfColumn(COLUMN_NAME);
     }
 
+    /**
+     * Find a player by its name.
+     *
+     * @param name Player name.
+     * @return Player found.
+     */
     public Player findByName(String name) {
-        Player player = findByStringInColumn(name, COLUMN_NAME);
-        player.setSkills(mSkillDao.findAllByPlayer(player));
+        Player player = findByColumn(COLUMN_NAME, name);
+        player.setSkills(mSkillDao.findAllByPlayerId(player.getId()));
+
         return player;
     }
+
     //endregion
 
     //region Insert
+
     @Override
-    public long insert(Player player) {
-        for (Skill skill : player.getSkills()) {
-            mSkillDao.insert(skill, player);
-        }
-        for (Item item : player.getInventory()) {
-            mItemDao.insert(item, player);
-        }
+    public void insert(Player player) {
+        // Insert characteristics
         mCharacteristicsDao.insert(player.getCharacteristics());
 
-        // Save inventory
-        for (Item item : player.getInventory()) {
-            if (item.getId() == 0) {
-                mItemDao.insert(item);
-            } else {
-                mItemDao.update(item);
-            }
+        // Insert player
+        super.insert(player);
+
+        // Insert skills
+        for (Skill skill : player.getSkills()) {
+            skill.setPlayerId(player.getId());
+            mSkillDao.insert(skill);
         }
 
-        return super.insert(player);
+        // Insert items
+        for (Item item : player.getInventory()) {
+            item.setPlayerId(player.getId());
+            mItemDao.insert(item);
+        }
     }
+
     //endregion
 
     //region Update
+
     @Override
-    public long update(Player player) {
-        for (Skill skill : player.getSkills()) {
-            mSkillDao.update(skill, player);
-        }
-        for (Item item : player.getInventory()) {
-            mItemDao.update(item, player);
-        }
+    public void update(Player player) {
+        // Update characteristics
         mCharacteristicsDao.update(player.getCharacteristics());
 
-        // Save inventory
+        // Update player
+        super.update(player);
+
+        // Update skills
+        for (Skill skill : player.getSkills()) {
+            skill.setPlayerId(player.getId());
+
+            if (skill.getId() == 0) {
+                mSkillDao.insert(skill);
+            } else {
+                mSkillDao.update(skill);
+            }
+        }
+
+        // Update items
         for (Item item : player.getInventory()) {
+            item.setPlayerId(player.getId());
+
             if (item.getId() == 0) {
                 mItemDao.insert(item);
             } else {
                 mItemDao.update(item);
             }
         }
-
-        return super.update(player);
     }
+
     //endregion
 
-    //region Private Methods
+    //region Private methods
+
+    @Override
     protected ContentValues contentValuesFromModel(Player player) {
         ContentValues values = new ContentValues();
 
@@ -126,10 +177,11 @@ public class PlayerDao extends AbstractDao<Player> implements IPlayerEntryConsta
         return values;
     }
 
+    @Override
     protected Player createModelFromCursor(Cursor cursor) {
         Player model = new Player();
 
-        model.setId(cursor.getInt(cursor.getColumnIndexOrThrow(columnId)));
+        model.setId(cursor.getInt(cursor.getColumnIndexOrThrow(IEntryConstants.COLUMN_ID)));
 
         model.setName(cursor.getString(cursor.getColumnIndexOrThrow(COLUMN_NAME)));
         model.setRace(cursor.getString(cursor.getColumnIndexOrThrow(COLUMN_RACE)));
@@ -156,17 +208,20 @@ public class PlayerDao extends AbstractDao<Player> implements IPlayerEntryConsta
         model.setMoney_silver(cursor.getInt(cursor.getColumnIndexOrThrow(COLUMN_MONEY_SILVER)));
         model.setMoney_gold(cursor.getInt(cursor.getColumnIndexOrThrow(COLUMN_MONEY_GOLD)));
 
+        // Find characteristics
         Characteristics characteristics = mCharacteristicsDao.findById(cursor.getInt(cursor.getColumnIndexOrThrow(COLUMN_CHARACTERISTICS_ID)));
         model.setCharacteristics(characteristics);
 
-        List<Skill> skills = mSkillDao.findAllByPlayer(model);
+        // Find skills
+        List<Skill> skills = mSkillDao.findAllByPlayerId(model.getId());
         model.setSkills(skills);
 
-        // Ajout des objets de l'inventaire du joueur
-        List<Item> items = mItemDao.findAllByPlayer(model);
+        // Find items
+        List<Item> items = mItemDao.findAllByPlayerId(model.getId());
         model.setInventory(items);
 
         return model;
     }
+
     //endregion
 }

@@ -21,8 +21,6 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.whfrp3.R;
-import com.whfrp3.database.WarHammerDatabaseHelper;
-import com.whfrp3.database.dao.HandDao;
 import com.whfrp3.model.dices.DiceFaces;
 import com.whfrp3.model.player.Hand;
 import com.whfrp3.model.player.Player;
@@ -45,7 +43,6 @@ import static com.whfrp3.R.id.action_update_hand;
 public class LaunchActivity extends AppCompatActivity {
     private Spinner mHandsSpinner;
     private Menu mMenuLaunch;
-    private HandDao mHandDao;
 
     private NumberPicker mCharacteristicNumberPicker;
     private NumberPicker mRecklessNumberPicker;
@@ -62,9 +59,6 @@ public class LaunchActivity extends AppCompatActivity {
 
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setHomeButtonEnabled(true);
-
-        WarHammerDatabaseHelper whdHelper = new WarHammerDatabaseHelper(this);
-        mHandDao = new HandDao(whdHelper);
 
         setupHandsSpinner();
         initPickers();
@@ -127,7 +121,7 @@ public class LaunchActivity extends AppCompatActivity {
         mHandsSpinner = (Spinner) findViewById(R.id.hands_spinner);
         fillHandsSpinner();
         mHandsSpinner.setSelection(0, false);
-        mHandsSpinner.setOnItemSelectedListener(new HandsSpinnerItemSelectedListener(mHandDao.findAllTitles().size() > 0));
+        mHandsSpinner.setOnItemSelectedListener(new HandsSpinnerItemSelectedListener(WHFRP3Application.getDatabase().getHandDao().findAllTitles().size() > 0));
     }
     //endregion
 
@@ -193,7 +187,7 @@ public class LaunchActivity extends AppCompatActivity {
     //region Save Hand
 
     /**
-     * Save the current hand of dices in database for future use.
+     * Save the current hand of dices in mDatabase for future use.
      */
     private void saveHand() {
         try {
@@ -226,7 +220,7 @@ public class LaunchActivity extends AppCompatActivity {
      */
     private void saveNewHandWithTitle(String title) {
         Hand hand = prepareHandModel(title);
-        mHandDao.insert(hand);
+        WHFRP3Application.getDatabase().getHandDao().insert(hand);
         updateUI();
     }
     //endregion
@@ -234,7 +228,7 @@ public class LaunchActivity extends AppCompatActivity {
     //region Update Hand
 
     /**
-     * Update the selected hand in database.
+     * Update the selected hand in mDatabase.
      */
     public void updateHand() {
         String currentHandName = (String) mHandsSpinner.getSelectedItem();
@@ -245,13 +239,13 @@ public class LaunchActivity extends AppCompatActivity {
     }
 
     /**
-     * Update the hand in database, knowing the title.
+     * Update the hand in mDatabase, knowing the title.
      *
      * @param title the hand's title
      */
     private void updateHandWithTitle(String title) {
         Hand hand = prepareHandModel(title);
-        mHandDao.update(hand, title);
+        WHFRP3Application.getDatabase().getHandDao().update(hand);
     }
     //endregion
 
@@ -292,7 +286,7 @@ public class LaunchActivity extends AppCompatActivity {
             resetHand();
         } else {
             try {
-                Hand dto = mHandDao.findByTitle(title);
+                Hand dto = WHFRP3Application.getDatabase().getHandDao().findByTitle(title);
                 fillNumberPickersFromHand(dto);
             } catch (Resources.NotFoundException nfe) {
                 Log.e(this.getClass().getName(), "useHand: ", nfe);
@@ -303,12 +297,12 @@ public class LaunchActivity extends AppCompatActivity {
     }
 
     /**
-     * Fill the HandsSpinner (containing the names of the hands from database).
+     * Fill the HandsSpinner (containing the names of the hands from mDatabase).
      */
     private void fillHandsSpinner() {
         List<String> titles = new ArrayList<>();
         titles.add("");
-        titles.addAll(mHandDao.findAllTitles());
+        titles.addAll(WHFRP3Application.getDatabase().getHandDao().findAllTitles());
 
         mHandsSpinner.setAdapter(new ArrayAdapter<>(this, R.layout.item_hand_spinner, titles));
     }

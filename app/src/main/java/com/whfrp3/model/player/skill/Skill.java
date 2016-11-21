@@ -1,18 +1,17 @@
 package com.whfrp3.model.player.skill;
 
-import com.whfrp3.model.AbstractBindingModel;
+import com.whfrp3.model.AbstractModel;
 import com.whfrp3.model.player.Player;
 import com.whfrp3.tools.enums.Characteristic;
 
 /**
  * The Skill model.
  */
-public class Skill extends AbstractBindingModel {
-    private int id;
+public class Skill extends AbstractModel {
     private String name;
     private Characteristic characteristic;
     private int level;
-    private int player_id;
+    private long playerId;
 
     public Skill() {
     }
@@ -21,18 +20,10 @@ public class Skill extends AbstractBindingModel {
         this.name = name;
         this.characteristic = characteristic;
         this.level = level;
-        this.player_id = player.getId();
+        this.playerId = player.getId();
     }
 
     //region Get & Set
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
-    }
-
     public String getName() {
         return name;
     }
@@ -57,12 +48,12 @@ public class Skill extends AbstractBindingModel {
         this.level = level;
     }
 
-    public int getPlayer_id() {
-        return player_id;
+    public long getPlayerId() {
+        return playerId;
     }
 
-    public void setPlayer_id(int player_id) {
-        this.player_id = player_id;
+    public void setPlayerId(long playerId) {
+        this.playerId = playerId;
     }
     //endregion
 
@@ -75,7 +66,7 @@ public class Skill extends AbstractBindingModel {
                 ", name='" + name + '\'' +
                 ", characteristic=" + characteristic +
                 ", level=" + level +
-                ", player_id=" + player_id +
+                ", playerId=" + playerId +
                 '}';
     }
 
@@ -88,7 +79,7 @@ public class Skill extends AbstractBindingModel {
 
         if (getId() != skill.getId()) return false;
         if (getLevel() != skill.getLevel()) return false;
-        if (getPlayer_id() != skill.getPlayer_id()) return false;
+        if (getPlayerId() != skill.getPlayerId()) return false;
         if (getName() != null ? !getName().equals(skill.getName()) : skill.getName() != null)
             return false;
         return getCharacteristic() == skill.getCharacteristic();
@@ -97,11 +88,9 @@ public class Skill extends AbstractBindingModel {
 
     @Override
     public int hashCode() {
-        int result = getId();
-        result = 31 * result + (getName() != null ? getName().hashCode() : 0);
+        int result = (getName() != null ? getName().hashCode() : 0);
         result = 31 * result + (getCharacteristic() != null ? getCharacteristic().hashCode() : 0);
         result = 31 * result + getLevel();
-        result = 31 * result + getPlayer_id();
         return result;
     }
     //endregion

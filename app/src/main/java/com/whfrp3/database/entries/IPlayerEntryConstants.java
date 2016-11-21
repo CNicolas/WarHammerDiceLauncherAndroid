@@ -1,7 +1,7 @@
 package com.whfrp3.database.entries;
 
 /**
- * The Player database constants.
+ * The Player mDatabase constants.
  */
 public interface IPlayerEntryConstants extends IEntryConstants {
     String TABLE_NAME = "player";

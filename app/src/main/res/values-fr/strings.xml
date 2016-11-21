@@ -94,7 +94,7 @@
     <!-- Inventory -->
     <string name="armor">Armure</string>
     <string name="weapon">Arme</string>
-    <string name="usable_item">Objet utilisable</string>
+    <string name="usable_item">Consommable</string>
     <string name="item">Objet</string>
     <string name="quality_low">Inférieure</string>
     <string name="quality_normal">Normale</string>

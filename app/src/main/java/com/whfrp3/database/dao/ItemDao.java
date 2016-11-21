@@ -2,8 +2,9 @@ package com.whfrp3.database.dao;
 
 import android.content.ContentValues;
 import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
 
-import com.whfrp3.database.WarHammerDatabaseHelper;
+import com.whfrp3.database.entries.IEntryConstants;
 import com.whfrp3.database.entries.IItemEntryConstants;
 import com.whfrp3.model.player.Player;
 import com.whfrp3.model.player.inventory.Armor;
@@ -18,69 +19,38 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * DAO de gestion de la table des objets.
+ * DAO of items.
  */
 public class ItemDao extends AbstractDao<Item> implements IItemEntryConstants {
-    //region Constructeurs
-    /**
-     * Constructeur.
-     *
-     * @param whdHelper Helper de la base de données.
-     */
-    public ItemDao(WarHammerDatabaseHelper whdHelper) {
-        super(whdHelper);
 
-        tableName = TABLE_NAME;
-        columnId = COLUMN_ID;
+    //region Constructor
+
+    /**
+     * Constructor.
+     *
+     * @param database Database connection.
+     */
+    public ItemDao(SQLiteDatabase database) {
+        super(database, TABLE_NAME);
     }
+
     //endregion
 
     //region Find
-    public Item findByName(String name) {
-        return findByStringInColumn(name, COLUMN_NAME);
+
+    public List<Item> findAllByPlayerId(long playerId) {
+        return findAllByColumn(COLUMN_PLAYER_ID, String.valueOf(playerId));
     }
 
-    public List<Item> findAllByPlayer(Player player) {
-        return findAllByPlayerId(player.getId());
-    }
-
-    public List<Item> findAllByPlayerId(int playerId) {
-        return findAllByIntegerInColumn(playerId, COLUMN_PLAYER_ID);
-    }
     //endregion
 
-    //region Insert
-    public long insert(Item model, Player player) {
-        model.setPlayerId(player.getId());
-        return insert(model);
-    }
+    //region Protected methods
 
-    public List<Long> insertAll(List<Item> models, Player player) {
-        List<Long> res = new ArrayList<>();
-
-        for (Item item : models) {
-            res.add(insert(item, player));
-        }
-
-        return res;
-    }
-    //endregion
-
-    //region Update
-    public long update(Item model, Player player) {
-        if (model.getPlayerId() != player.getId()) {
-            model.setPlayerId(player.getId());
-        }
-        return update(model);
-    }
-    //endregion
-
-    //region Protected Methods
     @Override
     protected ContentValues contentValuesFromModel(Item item) {
         ContentValues values = new ContentValues();
 
-        // Ajout des données de l'objet standard
+        // Item data
         values.put(COLUMN_NAME, item.getName());
         values.put(COLUMN_DESCRIPTION, item.getDescription());
         values.put(COLUMN_ENCUMBRANCE, item.getEncumbrance());
@@ -89,14 +59,14 @@ public class ItemDao extends AbstractDao<Item> implements IItemEntryConstants {
         values.put(COLUMN_TYPE, item.getType().toString());
         values.put(COLUMN_PLAYER_ID, item.getPlayerId());
 
-        // Ajout des données de l'objet utilisable
+        // Usable item data
         if (item.getType() == ItemType.USABLE_ITEM) {
             UsableItem usableItem = (UsableItem) item;
 
             values.put(COLUMN_LOAD, usableItem.getLoad());
         }
 
-        // Ajout des données de l'armure
+        // Armor data
         if (item.getType() == ItemType.ARMOR) {
             Armor armor = (Armor) item;
 
@@ -105,7 +75,7 @@ public class ItemDao extends AbstractDao<Item> implements IItemEntryConstants {
             values.put(COLUMN_DEFENSE, armor.getDefense());
         }
 
-        // Ajout des données de l'arme
+        // Weapon data
         if (item.getType() == ItemType.WEAPON) {
             Weapon weapon = (Weapon) item;
 
@@ -124,7 +94,7 @@ public class ItemDao extends AbstractDao<Item> implements IItemEntryConstants {
 
         Item dto;
 
-        // Ajout des valeurs des champs spécifiques aux différents types d'objets
+        // Specifics values of each item type
         switch (type) {
             case ARMOR:
                 Armor armor = new Armor();
@@ -150,9 +120,8 @@ public class ItemDao extends AbstractDao<Item> implements IItemEntryConstants {
                 dto = new Item();
         }
 
-        // Ajout des champs communs à tous les types d'objets
-
-        dto.setId(cursor.getInt(cursor.getColumnIndexOrThrow(columnId)));
+        // Item data
+        dto.setId(cursor.getInt(cursor.getColumnIndexOrThrow(IEntryConstants.COLUMN_ID)));
 
         dto.setName(cursor.getString(cursor.getColumnIndexOrThrow(COLUMN_NAME)));
         dto.setDescription(cursor.getString(cursor.getColumnIndexOrThrow(COLUMN_DESCRIPTION)));
@@ -163,5 +132,6 @@ public class ItemDao extends AbstractDao<Item> implements IItemEntryConstants {
 
         return dto;
     }
+
     //endregion
 }

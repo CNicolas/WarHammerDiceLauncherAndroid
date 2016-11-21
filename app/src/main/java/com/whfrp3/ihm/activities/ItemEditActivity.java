@@ -56,7 +56,7 @@ public class ItemEditActivity extends AppCompatActivity {
 
         // Retrieve item by its id
         if (getIntent().getExtras() != null) {
-            int itemId = getIntent().getExtras().getInt(ITEM_ID_KEY, ITEM_ID_DEFAULT);
+            long itemId = getIntent().getExtras().getLong(ITEM_ID_KEY, ITEM_ID_DEFAULT);
             if (itemId == ITEM_ID_DEFAULT) {
                 // TODO : Add error treatment
             }
@@ -140,11 +140,11 @@ public class ItemEditActivity extends AppCompatActivity {
     }
 
     public void onSave(View view) {
-        if (item.getId() == 0) {
-            item = Item.getItemFromType(itemEdit.getType());
-            item.setId(0);
-        }
+        long itemId = item.getId();
 
+        item = Item.getItemFromType(itemEdit.getType());
+
+        item.setId(itemId);
         item.setName(itemEdit.getName());
         item.setDescription(itemEdit.getDescription());
         item.setEncumbrance(itemEdit.getEncumbrance());

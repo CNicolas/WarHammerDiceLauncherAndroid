@@ -64,6 +64,8 @@ public class Armor extends Equipment {
     public String toString() {
         StringBuilder sb = new StringBuilder("Armor [");
         sb.append(attributesToString());
+        sb.append(", equipped=");
+        sb.append(isEquipped());
         sb.append(", soak=");
         sb.append(getSoak());
         sb.append(", defense=");

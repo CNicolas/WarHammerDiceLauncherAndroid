@@ -1,7 +1,7 @@
 package com.whfrp3.database.entries;
 
 /**
- * The Skill database constants.
+ * The Skill mDatabase constants.
  */
 public interface ISkillEntryConstants extends IEntryConstants {
     String TABLE_NAME = "skill";

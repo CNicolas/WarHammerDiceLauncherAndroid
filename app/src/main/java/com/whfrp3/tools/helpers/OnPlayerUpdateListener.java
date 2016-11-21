@@ -5,7 +5,7 @@ package com.whfrp3.tools.helpers;
  */
 public interface OnPlayerUpdateListener {
     /**
-     * Action to do when the Player is updated in database.
+     * Action to do when the Player is updated in mDatabase.
      */
     void onPlayerUpdate();
 }

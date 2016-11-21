@@ -19,9 +19,6 @@ public abstract class PlayerHelper {
 
     private static List<OnPlayerUpdateListener> mListeners;
 
-    private static PlayerDao mPlayerDao;
-    private static CharacteristicsDao mCharacteristicsDao;
-
     public static void savePlayer(Player player) {
         if (player == null || !player.isUpdatable()) {
             return;
@@ -33,12 +30,9 @@ public abstract class PlayerHelper {
         }
 
         if (player.getId() == 0) {
-            player.setId(mPlayerDao.getNextId());
-            player.getCharacteristics().setId(mCharacteristicsDao.getNextId());
-
-            mPlayerDao.insert(player);
+            WHFRP3Application.getDatabase().getPlayerDao().insert(player);
         } else {
-            mPlayerDao.update(player);
+            WHFRP3Application.getDatabase().getPlayerDao().update(player);
         }
 
         notifyListeners();
@@ -76,17 +70,4 @@ public abstract class PlayerHelper {
         }
     }
     //endregion
-
-    //region Daos
-
-    public static void setPlayerDao(PlayerDao playerDao) {
-        PlayerHelper.mPlayerDao = playerDao;
-    }
-
-    public static void setCharacteristicsDao(CharacteristicsDao characteristicsDao) {
-        mCharacteristicsDao = characteristicsDao;
-    }
-
-    //endregion
-
 }

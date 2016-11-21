@@ -2,60 +2,55 @@ package com.whfrp3.database.dao;
 
 import android.database.sqlite.SQLiteException;
 
-import com.whfrp3.model.IModel;
+import com.whfrp3.model.AbstractModel;
 
 import java.util.List;
 
 /**
- * The Dao interface.
+ * The general DAO interface.
  *
- * @param <T> the associated IModel.
+ * @param <T> The associated model class (must extend AbstractModel class).
  */
-interface IDao<T extends IModel> {
+interface IDao<T extends AbstractModel> {
     /**
-     * Finds all the values of the model in database.
+     * Finds all the values of the model in mDatabase.
      *
-     * @return the complete list.
+     * @return All values of the model in mDatabase.
      */
     List<T> findAll();
 
     /**
      * Finds a model by its id.
      *
-     * @param id the id of the model to seek.
-     * @return the model.
+     * @param id Id of the model to seek.
+     * @return The model found.
      * @throws SQLiteException if no model has been found.
      */
-    T findById(int id) throws SQLiteException;
+    T findById(long id);
 
     /**
-     * Insert the model in the database.
+     * Insert the model in the mDatabase.
      *
-     * @param model the model to insert.
-     * @return the result of the sql query.
+     * @param model The model to insert.
      */
-    long insert(T model);
+    void insert(T model);
 
     /**
-     * Update the model in the database.
+     * Update the model in the mDatabase.
      *
-     * @param model the model to update.
-     * @return the result of the sql query.
+     * @param model The model to update.
      */
-    long update(T model);
+    void update(T model);
 
     /**
-     * Delete the model in the database.
+     * Delete the model in the mDatabase.
      *
-     * @param model the model to delete.
-     * @return the result of the sql query.
+     * @param model The model to delete.
      */
-    long delete(T model);
+    void delete(T model);
 
     /**
-     * Delete all the models from table in the database.
-     *
-     * @return the result of the sql query.
+     * Delete all the models from table in the mDatabase.
      */
-    long deleteAll();
+    void deleteAll();
 }

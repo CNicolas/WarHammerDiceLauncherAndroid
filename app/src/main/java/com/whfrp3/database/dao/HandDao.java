@@ -5,55 +5,55 @@ import android.content.res.Resources;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 
-import com.whfrp3.database.WarHammerDatabaseHelper;
 import com.whfrp3.database.entries.IHandEntryConstants;
 import com.whfrp3.model.player.Hand;
 
 import java.util.List;
 
 /**
- * Created by cnicolas on 11/05/2016.
+ * DAO of hands.
  */
-public class HandDao extends AbstractDao<Hand> {
-    public HandDao(WarHammerDatabaseHelper whdHelper) {
-        super(whdHelper);
-        tableName = IHandEntryConstants.TABLE_NAME;
-        columnId = IHandEntryConstants.COLUMN_ID;
+public class HandDao extends AbstractDao<Hand> implements IHandEntryConstants {
+
+    //region Constructor
+
+    /**
+     * Constructor.
+     *
+     * @param database Database connection.
+     */
+    public HandDao(SQLiteDatabase database) {
+        super(database, TABLE_NAME);
     }
 
+    //endregion
+
     //region Find
+
+    /**
+     * Find all hands titles.
+     *
+     * @return Hands titles.
+     */
     public List<String> findAllTitles() {
         return findAllValuesOfColumn(IHandEntryConstants.COLUMN_TITLE);
     }
 
+    /**
+     * Find a hand by its title.
+     *
+     * @param title Hand title.
+     * @return Hand found.
+     */
     public Hand findByTitle(String title) throws Resources.NotFoundException {
-        String[] selectionArgs = {title};
-        SQLiteDatabase db = whdHelper.getReadableDatabase();
-
-        Cursor cursor = db.query(tableName, null, IHandEntryConstants.COLUMN_TITLE + "=?", selectionArgs, null, null, null);
-        if (cursor.moveToFirst()) {
-            Hand dto = createModelFromCursor(cursor);
-            cursor.close();
-            return dto;
-        } else {
-            cursor.close();
-            throw new Resources.NotFoundException();
-        }
+        return findByColumn(IHandEntryConstants.COLUMN_TITLE, title);
     }
+
     //endregion
 
-    //region Update
-    public long update(Hand hand, String title) {
-        SQLiteDatabase db = whdHelper.getWritableDatabase();
-        ContentValues values = contentValuesFromModel(hand);
-        String[] filters = {title};
+    //region Protected methods
 
-        long res = db.update(tableName, values, String.format("%s = ?", IHandEntryConstants.COLUMN_TITLE), filters);
-        return res;
-    }
-    //endregion
-
-    //region Private Methods
+    @Override
     protected ContentValues contentValuesFromModel(Hand hand) {
         ContentValues values = new ContentValues();
 
@@ -69,6 +69,7 @@ public class HandDao extends AbstractDao<Hand> {
         return values;
     }
 
+    @Override
     protected Hand createModelFromCursor(Cursor cursor) {
         Hand dto = new Hand();
 
@@ -85,5 +86,6 @@ public class HandDao extends AbstractDao<Hand> {
 
         return dto;
     }
+
     //endregion
 }

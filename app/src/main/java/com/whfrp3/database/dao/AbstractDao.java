@@ -3,34 +3,50 @@ package com.whfrp3.database.dao;
 import android.content.ContentValues;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
-import android.database.sqlite.SQLiteException;
 
-import com.whfrp3.database.WarHammerDatabaseHelper;
-import com.whfrp3.model.IModel;
+import com.whfrp3.database.entries.IEntryConstants;
+import com.whfrp3.model.AbstractModel;
 
 import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Gather the common methods for daos.
+ * Gather the common methods for DAOs.
  *
- * @param <T> the associated IModel.
+ * @param <T> The associated model class (must extend AbstractModel class).
  */
-public abstract class AbstractDao<T extends IModel> implements IDao<T> {
-    protected WarHammerDatabaseHelper whdHelper;
-    protected String tableName;
-    protected String columnId;
+public abstract class AbstractDao<T extends AbstractModel> implements IDao<T> {
 
-    AbstractDao(WarHammerDatabaseHelper whdHelper) {
-        this.whdHelper = whdHelper;
+    //region Properties
+
+    /**
+     * Database connection.
+     */
+    protected SQLiteDatabase mDatabase;
+
+    /**
+     * Table name.
+     */
+    protected String mTableName;
+
+    //endregion
+
+    //region Constructor
+
+    public AbstractDao(SQLiteDatabase database, String tableName) {
+        this.mDatabase = database;
+        this.mTableName = tableName;
     }
 
+    //endregion
+
     //region Find
+
+    @Override
     public List<T> findAll() {
         List<T> res = new ArrayList<>();
-        SQLiteDatabase db = whdHelper.getReadableDatabase();
 
-        Cursor cursor = db.query(tableName, null, null, null, null, null, null);
+        Cursor cursor = mDatabase.query(mTableName, null, null, null, null, null, null);
         if (cursor.moveToFirst()) {
             while (!cursor.isAfterLast()) {
                 T model = createModelFromCursor(cursor);
@@ -43,61 +59,92 @@ public abstract class AbstractDao<T extends IModel> implements IDao<T> {
         return res;
     }
 
-    public T findById(int id) throws SQLiteException {
-        return findByIntegerInColumn(id, columnId);
+    @Override
+    public T findById(long id) {
+        return findByColumn(IEntryConstants.COLUMN_ID, String.valueOf(id));
     }
 
-    public T findByIntegerInColumn(int field, String column) throws SQLiteException {
-        return findByStringInColumn(String.valueOf(field), column);
-    }
+    /**
+     * Search an entry in the table with the given column equals to the given value.
+     *
+     * @param column Column to use.
+     * @param value  Value to search.
+     * @return Entry found.
+     */
+    protected T findByColumn(String column, String value) {
+        String[] selectionArgs = {value};
 
-    public T findByStringInColumn(String field, String column) throws SQLiteException {
-        String[] selectionArgs = {field};
-        SQLiteDatabase db = whdHelper.getReadableDatabase();
+        Cursor cursor = mDatabase.query(mTableName, null, column + "=?", selectionArgs, null, null, null);
 
-        Cursor cursor = db.query(tableName, null, column + "=?", selectionArgs, null, null, null);
-        if (cursor.moveToFirst()) {
-            T model = createModelFromCursor(cursor);
-            cursor.close();
-            return model;
-        } else {
-            cursor.close();
-            throw new SQLiteException();
-        }
-    }
-
-    public List<T> findAllByIntegerInColumn(int field, String column) throws SQLiteException {
-        String[] selectionArgs = {String.valueOf(field)};
-        SQLiteDatabase db = whdHelper.getReadableDatabase();
-        Cursor cursor = db.query(tableName, null, column + " = ?", selectionArgs, null, null, null);
-
-        List<T> res = new ArrayList<>();
-        if (cursor.moveToFirst()) {
-            while (!cursor.isAfterLast()) {
-                T dto = createModelFromCursor(cursor);
-                res.add(dto);
-                cursor.moveToNext();
+        try {
+            if (cursor.moveToFirst()) {
+                return createModelFromCursor(cursor);
+            }
+        } finally {
+            if (cursor != null) {
+                cursor.close();
             }
         }
-        cursor.close();
+
+        return null;
+    }
+
+    /**
+     * Search entries in the table with the given column equals to the given value.
+     *
+     * @param column Column to use.
+     * @param value  Value to search.
+     * @return Entries found.
+     */
+    protected List<T> findAllByColumn(String column, String value) {
+        List<T> res = new ArrayList<>();
+        String[] selectionArgs = {value};
+
+        Cursor cursor = mDatabase.query(mTableName, null, column + "=?", selectionArgs, null, null, null);
+
+        try {
+            if (cursor.moveToFirst()) {
+                while (!cursor.isAfterLast()) {
+                    T model = createModelFromCursor(cursor);
+                    res.add(model);
+                    cursor.moveToNext();
+                }
+            }
+        } finally {
+            if (cursor != null) {
+                cursor.close();
+            }
+        }
 
         return res;
     }
 
-    public List<String> findAllValuesOfColumn(String column) {
+    /**
+     * Search in the table all the values of the given column.
+     *
+     * @param column Column to use.
+     * @return All the values found.
+     */
+    protected List<String> findAllValuesOfColumn(String column) {
         List<String> res = new ArrayList<>();
         String[] projection = {column};
-        SQLiteDatabase db = whdHelper.getReadableDatabase();
 
-        Cursor cursor = db.query(tableName, projection, null, null, null, null, null);
-        if (cursor.moveToFirst()) {
-            while (!cursor.isAfterLast()) {
-                String name = cursor.getString(cursor.getColumnIndexOrThrow(column));
-                res.add(name);
-                cursor.moveToNext();
+        Cursor cursor = mDatabase.query(mTableName, projection, null, null, null, null, null);
+
+        try {
+            if (cursor.moveToFirst()) {
+                while (!cursor.isAfterLast()) {
+                    String name = cursor.getString(cursor.getColumnIndexOrThrow(column));
+                    res.add(name);
+                    cursor.moveToNext();
+                }
+            }
+        } finally {
+            if (cursor != null) {
+                cursor.close();
             }
         }
-        cursor.close();
+
 
         return res;
     }
@@ -105,66 +152,69 @@ public abstract class AbstractDao<T extends IModel> implements IDao<T> {
     //endregion
 
     //region Insert
-    public long insert(T model) {
-        SQLiteDatabase db = whdHelper.getWritableDatabase();
 
+    @Override
+    public void insert(T model) {
         ContentValues values = contentValuesFromModel(model);
 
-        long res = db.insert(tableName, null, values);
-        return res;
+        long newId = mDatabase.insert(mTableName, null, values);
+
+        model.setId(newId);
     }
 
-    public List<Long> insertAll(List<T> models) {
-        List<Long> res = new ArrayList<>();
-
-        for (T dto : models) {
-            res.add(insert(dto));
-        }
-
-        return res;
-    }
     //endregion
 
     //region Update
-    public long update(T model) {
-        SQLiteDatabase db = whdHelper.getWritableDatabase();
+
+    @Override
+    public void update(T model) {
         ContentValues values = contentValuesFromModel(model);
         String[] filters = {String.valueOf(model.getId())};
 
-        long res = db.update(tableName, values, String.format("%s = ?", columnId), filters);
-        return res;
+        mDatabase.update(mTableName, values, String.format("%s = ?", IEntryConstants.COLUMN_ID), filters);
     }
+
     //endregion
 
     //region Delete
-    public long delete(T model) {
-        SQLiteDatabase db = whdHelper.getWritableDatabase();
+
+    @Override
+    public void delete(T model) {
         String[] filters = {String.valueOf(model.getId())};
 
-        long res = db.delete(tableName, String.format("%s = ?", columnId), filters);
-        return res;
+        mDatabase.delete(mTableName, String.format("%s = ?", IEntryConstants.COLUMN_ID), filters);
     }
 
-    public long deleteAll() {
-        SQLiteDatabase db = whdHelper.getWritableDatabase();
-        long res = db.delete(tableName, null, null);
-        return res;
+    @Override
+    public void deleteAll() {
+        mDatabase.delete(mTableName, null, null);
     }
+
     //endregion
 
+    //region Data conversion methods
+
     /**
-     * Get the next insertable id for the table.
+     * Converts a boolean to an integer.
      *
-     * @return the next id.
+     * @param bool Boolean to convert.
+     * @return Integer corresponding to the boolean.
      */
-    public int getNextId() {
-        List<String> idsList = findAllValuesOfColumn(columnId);
-        if (idsList.size() > 0) {
-            return Integer.parseInt(idsList.get(idsList.size() - 1)) + 1;
-        } else {
-            return 1;
-        }
+    protected int convertBooleanToInteger(boolean bool) {
+        return bool ? 1 : 0;
     }
+
+    /**
+     * Converts an integer to a boolean.
+     *
+     * @param i Integer to convert.
+     * @return Boolean corresponding to the integer.
+     */
+    protected boolean convertIntegerToBoolean(int i) {
+        return i != 0;
+    }
+
+    //endregion
 
     /**
      * Extract the model fields to a ContentValues element (a kind of map), understandable by the Sql helper.
@@ -181,14 +231,4 @@ public abstract class AbstractDao<T extends IModel> implements IDao<T> {
      * @return the model.
      */
     protected abstract T createModelFromCursor(Cursor cursor);
-
-    //region Data conversion methods
-    protected int convertBooleanToInteger(boolean bool) {
-        return bool ? 1 : 0;
-    }
-
-    protected boolean convertIntegerToBoolean(int i) {
-        return (i == 0) ? false : true;
-    }
-    //endregion
 }

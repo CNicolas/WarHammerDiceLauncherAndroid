@@ -1,14 +1,12 @@
 package com.whfrp3.model.player;
 
-import com.whfrp3.model.AbstractBindingModel;
+import com.whfrp3.model.AbstractModel;
 import com.whfrp3.tools.enums.Characteristic;
 
 /**
  * The Characteristics model.
  */
-public class Characteristics extends AbstractBindingModel {
-    private int id;
-
+public class Characteristics extends AbstractModel {
     private int strength;
     private int toughness;
     private int agility;
@@ -70,15 +68,6 @@ public class Characteristics extends AbstractBindingModel {
     }
 
     //region Get & Set
-
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
-    }
-
     public int getStrength() {
         return strength;
     }
@@ -221,8 +210,7 @@ public class Characteristics extends AbstractBindingModel {
 
     @Override
     public int hashCode() {
-        int result = getId();
-        result = 31 * result + getStrength();
+        int result = getStrength();
         result = 31 * result + getToughness();
         result = 31 * result + getAgility();
         result = 31 * result + getIntelligence();

@@ -191,9 +191,9 @@ public class InventoryFragment extends Fragment implements View.OnClickListener 
      *
      * @param itemId Item's id to edit.
      */
-    private void openEditActivity(int itemId) {
+    private void openEditActivity(long itemId) {
         Bundle bundle = new Bundle();
-        bundle.putInt(ItemEditActivity.ITEM_ID_KEY, itemId);
+        bundle.putLong(ItemEditActivity.ITEM_ID_KEY, itemId);
 
         Intent launchIntent = new Intent(InventoryFragment.this.getActivity(), ItemEditActivity.class);
         launchIntent.putExtras(bundle);

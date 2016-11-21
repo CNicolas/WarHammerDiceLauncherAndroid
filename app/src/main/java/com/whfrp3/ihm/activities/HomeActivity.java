@@ -14,8 +14,6 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.whfrp3.R;
-import com.whfrp3.database.WarHammerDatabaseHelper;
-import com.whfrp3.database.dao.PlayerDao;
 import com.whfrp3.model.player.Player;
 import com.whfrp3.tools.WHFRP3Application;
 import com.whfrp3.tools.constants.IPlayerConstants;
@@ -27,7 +25,6 @@ import java.util.List;
  * First page of WHFRP3, allowing the user to chose to use an existing Player or create a new one.
  */
 public class HomeActivity extends Activity {
-    private PlayerDao mPlayerDao;
 
     @Override
     public void onCreate(@Nullable Bundle bundle) {
@@ -36,11 +33,10 @@ public class HomeActivity extends Activity {
 
         ListView listPlayers = (ListView) findViewById(R.id.list_players);
 
-        mPlayerDao = new PlayerDao(new WarHammerDatabaseHelper(this));
         List<String> playersNames = new ArrayList<>();
 
         playersNames.add(getResources().getString(R.string.home_create_player));
-        playersNames.addAll(mPlayerDao.findAllNames());
+        playersNames.addAll(WHFRP3Application.getDatabase().getPlayerDao().findAllNames());
 
         ArrayAdapter<String> adapter = new ArrayAdapter<>(this, R.layout.item_players_list, playersNames);
         listPlayers.setAdapter(adapter);
@@ -49,7 +45,7 @@ public class HomeActivity extends Activity {
 
     /**
      * Listener for the playersList.
-     * Either creating a new player or loading an existing one from database.
+     * Either creating a new player or loading an existing one from mDatabase.
      */
     public class PlayerListItemClickListener implements AdapterView.OnItemClickListener {
         private final Context mContext;
@@ -68,7 +64,7 @@ public class HomeActivity extends Activity {
             } else {
                 try {
                     TextView tv = (TextView) view;
-                    Player player = mPlayerDao.findByName(tv.getText().toString());
+                    Player player = WHFRP3Application.getDatabase().getPlayerDao().findByName(tv.getText().toString());
                     WHFRP3Application.setPlayer(player);
                 } catch (SQLiteException sqle) {
                     Toast.makeText(mContext, "An error occured", Toast.LENGTH_LONG).show();

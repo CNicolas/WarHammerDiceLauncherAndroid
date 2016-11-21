@@ -1,7 +1,7 @@
 package com.whfrp3.database.entries;
 
 /**
- * The Hand database constants.
+ * The Hand mDatabase constants.
  */
 public interface IHandEntryConstants extends IEntryConstants {
     String TABLE_NAME = "hand";

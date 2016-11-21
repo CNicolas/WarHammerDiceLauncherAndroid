@@ -4,7 +4,6 @@ import android.test.AndroidTestCase;
 import android.test.RenamingDelegatingContext;
 import android.test.suitebuilder.annotation.MediumTest;
 
-import com.whfrp3.database.WarHammerDatabaseHelper;
 import com.whfrp3.database.dao.CharacteristicsDao;
 import com.whfrp3.database.dao.PlayerDao;
 import com.whfrp3.database.dao.SkillDao;

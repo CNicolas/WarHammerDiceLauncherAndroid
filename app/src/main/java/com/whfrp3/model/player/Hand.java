@@ -1,13 +1,11 @@
 package com.whfrp3.model.player;
 
-import com.whfrp3.model.IModel;
+import com.whfrp3.model.AbstractModel;
 
 /**
  * The Hand of dices model.
  */
-public class Hand implements IModel {
-    private int id;
-
+public class Hand extends AbstractModel {
     private String title;
     private int characteristic;
     private int reckless;
@@ -18,16 +16,6 @@ public class Hand implements IModel {
     private int challenge;
 
     //region Get & Set
-
-    @Override
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
-    }
-
     public String getTitle() {
         return title;
     }
@@ -129,8 +117,7 @@ public class Hand implements IModel {
 
     @Override
     public int hashCode() {
-        int result = getId();
-        result = 31 * result + (getTitle() != null ? getTitle().hashCode() : 0);
+        int result = (getTitle() != null ? getTitle().hashCode() : 0);
         result = 31 * result + getCharacteristic();
         result = 31 * result + getReckless();
         result = 31 * result + getConservative();

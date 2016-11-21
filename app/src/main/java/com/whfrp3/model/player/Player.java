@@ -3,7 +3,7 @@ package com.whfrp3.model.player;
 import android.databinding.Bindable;
 
 import com.whfrp3.BR;
-import com.whfrp3.model.AbstractBindingModel;
+import com.whfrp3.model.AbstractModel;
 import com.whfrp3.model.player.inventory.Armor;
 import com.whfrp3.model.player.inventory.Item;
 import com.whfrp3.model.player.inventory.ItemType;
@@ -19,10 +19,8 @@ import java.util.List;
 /**
  * The Player model.
  */
-public class Player extends AbstractBindingModel implements IPlayerConstants {
+public class Player extends AbstractModel implements IPlayerConstants {
     //region Fields
-    private int id;
-
     private String name;
     private String race;
     private int age;
@@ -163,7 +161,7 @@ public class Player extends AbstractBindingModel implements IPlayerConstants {
      * @param itemId Item id.
      * @return Player's item or null if not found.
      */
-    public Item getItemById(int itemId) {
+    public Item getItemById(long itemId) {
         for (Item item : inventory) {
             if (item.getId() == itemId) {
                 return item;
@@ -244,7 +242,7 @@ public class Player extends AbstractBindingModel implements IPlayerConstants {
     //endregion
 
     /**
-     * Can the player be saved in the database ?
+     * Can the player be saved in the mDatabase ?
      *
      * @return yes or no
      */
@@ -253,14 +251,6 @@ public class Player extends AbstractBindingModel implements IPlayerConstants {
     }
 
     //region Get & Set
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
-    }
-
     public String getName() {
         return name;
     }
@@ -556,8 +546,7 @@ public class Player extends AbstractBindingModel implements IPlayerConstants {
     public int hashCode() {
         int result;
         long temp;
-        result = getId();
-        result = 31 * result + (getName() != null ? getName().hashCode() : 0);
+        result = (getName() != null ? getName().hashCode() : 0);
         result = 31 * result + (getRace() != null ? getRace().hashCode() : 0);
         result = 31 * result + getAge();
         temp = Double.doubleToLongBits(getSize());

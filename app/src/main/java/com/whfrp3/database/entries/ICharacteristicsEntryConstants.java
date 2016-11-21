@@ -1,7 +1,7 @@
 package com.whfrp3.database.entries;
 
 /**
- * The Characteristics database constants.
+ * The Characteristics mDatabase constants.
  */
 public interface ICharacteristicsEntryConstants extends IEntryConstants {
     String TABLE_NAME = "characteristics";

@@ -81,6 +81,8 @@ public class Weapon extends Equipment {
     public String toString() {
         StringBuilder sb = new StringBuilder("Weapon [");
         sb.append(attributesToString());
+        sb.append(", equipped=");
+        sb.append(isEquipped());
         sb.append(", damage=");
         sb.append(getDamage());
         sb.append(", criticalLevel=");
