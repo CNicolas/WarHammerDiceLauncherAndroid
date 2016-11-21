@@ -10,5 +10,8 @@ public interface IPlayerConstants extends IConstants {
     String IS_IN_EDITION_KEY = "isInEdition";
     String BINDING_CONTEXT_KEY = "bindingContext";
 
+    int REQUEST_CODE_LAUNCH_ACTIVITY = 42;
+
+    String CURRENT_FRAGMENT_POSITION_TAG = "fragmentPosition";
     String SKILL_TAG = "skill";
 }

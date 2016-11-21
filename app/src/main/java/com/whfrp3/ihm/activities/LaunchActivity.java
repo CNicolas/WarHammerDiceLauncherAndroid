@@ -40,7 +40,7 @@ import static com.whfrp3.R.id.action_update_hand;
 /**
  * This activity allows to chose several dices to launch and see the results.
  */
-public class LaunchActivity extends AppCompatActivity {
+public class LaunchActivity extends AppCompatActivity implements IPlayerConstants {
     private Spinner mHandsSpinner;
     private Menu mMenuLaunch;
 
@@ -51,6 +51,7 @@ public class LaunchActivity extends AppCompatActivity {
     private NumberPicker mFortuneNumberPicker;
     private NumberPicker mMisfortuneNumberPicker;
     private NumberPicker mChallengeNumberPicker;
+    private int mBackToPreviousFragment;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -65,9 +66,14 @@ public class LaunchActivity extends AppCompatActivity {
 
         Bundle extras = getIntent().getExtras();
         if (extras != null) {
-            Skill skill = (Skill) extras.getSerializable(IPlayerConstants.SKILL_TAG);
-            fillPickersFromSkill(skill);
+            Skill skill = (Skill) extras.getSerializable(SKILL_TAG);
+            if (skill != null) {
+                fillPickersFromSkill(skill);
+            }
+            mBackToPreviousFragment = extras.getInt(CURRENT_FRAGMENT_POSITION_TAG);
         }
+
+        setResult(mBackToPreviousFragment);
     }
 
     //region Options Menu
@@ -86,16 +92,22 @@ public class LaunchActivity extends AppCompatActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
         int itemId = item.getItemId();
 
-        if (itemId == R.id.action_save_hand) {
-            saveHand();
-            return true;
-        }
-        if (itemId == action_update_hand) {
-            updateHand();
-            return true;
+        switch (itemId) {
+            case android.R.id.home:
+                Intent intent = new Intent();
+                intent.putExtra(CURRENT_FRAGMENT_POSITION_TAG, mBackToPreviousFragment);
+                setResult(RESULT_CANCELED, intent);
+                finish();
+                break;
+            case R.id.action_save_hand:
+                saveHand();
+                break;
+            case R.id.action_update_hand:
+                updateHand();
+                break;
         }
 
-        return super.onOptionsItemSelected(item);
+        return true;
     }
     //endregion
 

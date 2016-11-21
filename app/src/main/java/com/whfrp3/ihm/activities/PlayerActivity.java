@@ -16,8 +16,6 @@ import android.view.inputmethod.InputMethodManager;
 import android.widget.TextView;
 
 import com.whfrp3.R;
-import com.whfrp3.database.dao.CharacteristicsDao;
-import com.whfrp3.database.dao.PlayerDao;
 import com.whfrp3.ihm.adapters.PlayerPagerAdapter;
 import com.whfrp3.model.player.skill.Skill;
 import com.whfrp3.tools.BindingContext;
@@ -64,6 +62,15 @@ public class PlayerActivity extends AppCompatActivity implements IPlayerConstant
         super.onRestoreInstanceState(savedInstanceState);
         boolean b = savedInstanceState.getBoolean(IPlayerConstants.IS_IN_EDITION_KEY);
         setIsInEdition(b);
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent intent) {
+        super.onActivityResult(requestCode, resultCode, intent);
+
+        if (requestCode == REQUEST_CODE_LAUNCH_ACTIVITY && resultCode == RESULT_CANCELED) {
+            mPlayerPagerAdapter.getItem(intent.getIntExtra(CURRENT_FRAGMENT_POSITION_TAG, 0));
+        }
     }
     //endregion
 
@@ -123,19 +130,22 @@ public class PlayerActivity extends AppCompatActivity implements IPlayerConstant
     /**
      * Start a new LaunchActivity with(out) a bundle and add it to the TaskStack.
      *
-     * @param bundle
+     * @param skill
      */
-    private void startLaunchActivity(@Nullable Bundle bundle) {
+    private void startLaunchActivity(@Nullable Skill skill) {
         Intent launchIntent = new Intent(PlayerActivity.this, LaunchActivity.class);
-        if (bundle != null) {
-            launchIntent.putExtras(bundle);
+        Bundle bundle = new Bundle();
+        if (skill != null) {
+            bundle.putSerializable(SKILL_TAG, skill);
         }
+        bundle.putInt(CURRENT_FRAGMENT_POSITION_TAG, mPlayerPagerAdapter.getCurrentPosition());
+        launchIntent.putExtras(bundle);
 
         TaskStackBuilder stackBuilder = TaskStackBuilder.create(PlayerActivity.this);
         stackBuilder.addParentStack(LaunchActivity.class);
         stackBuilder.addNextIntent(launchIntent);
 
-        startActivity(launchIntent);
+        startActivityForResult(launchIntent, REQUEST_CODE_LAUNCH_ACTIVITY);
     }
     //endregion
 
@@ -190,9 +200,7 @@ public class PlayerActivity extends AppCompatActivity implements IPlayerConstant
             String skillName = tv.getText().toString();
             Skill skill = WHFRP3Application.getPlayer().getSkillByName(skillName);
 
-            Bundle bundle = new Bundle();
-            bundle.putSerializable(SKILL_TAG, skill);
-            startLaunchActivity(bundle);
+            startLaunchActivity(skill);
         } catch (Exception e) {
             Log.e(getClass().getName(), e.getMessage(), e);
         }

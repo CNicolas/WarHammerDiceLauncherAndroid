@@ -26,6 +26,8 @@ public class PlayerPagerAdapter extends FragmentPagerAdapter {
     private final PlayerActivity mContext;
     private final BindingContext mBindingContext;
 
+    private int mCurrentPosition;
+
     private String mCharacteristicFragmentTag;
     private String mSkillsFragmentTag;
     private String mInventoryFragmentTag;
@@ -57,6 +59,8 @@ public class PlayerPagerAdapter extends FragmentPagerAdapter {
     public Fragment getItem(int position) {
         Bundle bundle = new Bundle();
         bundle.putSerializable(IPlayerConstants.BINDING_CONTEXT_KEY, mBindingContext);
+
+        setCurrentPosition(position);
 
         switch (position) {
             case 0:
@@ -162,5 +166,13 @@ public class PlayerPagerAdapter extends FragmentPagerAdapter {
      */
     public AdventureFragment getAdventureFragment() {
         return (AdventureFragment) mContext.getSupportFragmentManager().findFragmentByTag(mAdventureFragmentTag);
+    }
+
+    public int getCurrentPosition() {
+        return mCurrentPosition;
+    }
+
+    public void setCurrentPosition(int CurrentPosition) {
+        this.mCurrentPosition = CurrentPosition;
     }
 }
