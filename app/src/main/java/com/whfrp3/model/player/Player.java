@@ -150,6 +150,8 @@ public class Player extends AbstractBindingModel implements IPlayerConstants {
     public void addItem(Item item) {
         if (item != null) {
             inventory.add(item);
+            notifyPropertyChanged(BR.fullDefenseAmount);
+            notifyPropertyChanged(BR.fullSoakAmount);
         }
     }
 

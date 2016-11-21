@@ -69,11 +69,10 @@ public abstract class PlayerHelper {
     }
 
     private static void notifyListeners() {
-        if (mListeners == null) {
-            mListeners = new ArrayList<>();
-        }
-        for (OnPlayerUpdateListener listener : mListeners) {
-            listener.onPlayerUpdate();
+        if (mListeners != null && !mListeners.isEmpty()) {
+            for (OnPlayerUpdateListener listener : mListeners) {
+                listener.onPlayerUpdate();
+            }
         }
     }
     //endregion

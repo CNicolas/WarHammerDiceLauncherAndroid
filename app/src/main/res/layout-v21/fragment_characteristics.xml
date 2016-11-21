@@ -171,73 +171,6 @@
                 android:id="@+id/characteristics_edittexts"
                 layout="@layout/characteristics_numbers" />
 
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginEnd="@dimen/big_padding"
-                android:layout_marginStart="@dimen/big_padding"
-                android:gravity="center_horizontal">
-
-                <TextView
-                    style="@style/PlayerSimpleLabel"
-                    android:labelFor="@+id/player_race"
-                    android:text="@string/race_label" />
-
-                <EditText
-                    android:id="@+id/player_race"
-                    style="@style/DeactivableCharacteristicText"
-                    android:layout_width="match_parent"
-                    android:enabled="@{bindingContext.inEdition}"
-                    android:hint="@string/race_hint"
-                    android:text="@={player.race}" />
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginEnd="@dimen/medium_padding"
-                android:layout_marginStart="@dimen/medium_padding"
-                android:gravity="center_horizontal"
-                android:orientation="horizontal">
-
-
-                <!--Age-->
-                <TextView
-                    style="@style/PlayerSimpleLabel"
-                    android:labelFor="@+id/player_age"
-                    android:text="@string/age_label" />
-
-                <EditText
-                    android:id="@+id/player_age"
-                    style="@style/SimpleCharacteristicNumberEditText"
-                    android:enabled="@{bindingContext.inEdition}"
-                    android:maxLength="4"
-                    android:text="@={player.age}" />
-
-                <!--Size-->
-                <TextView
-                    style="@style/PlayerSimpleLabel"
-                    android:labelFor="@+id/player_size"
-                    android:text="@string/size_label" />
-
-                <EditText
-                    android:id="@+id/player_size"
-                    style="@style/SimpleCharacteristicNumberEditText"
-                    android:enabled="@{bindingContext.inEdition}"
-                    android:maxLength="3"
-                    android:text="@={player.size}" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="start|center_vertical"
-                    android:layout_weight="0"
-                    android:labelFor="@+id/player_size"
-                    android:text="@string/cm_label" />
-            </LinearLayout>
-
-
             <!--Reckless/Max_Reckless, Conservative/Max_Conservative-->
             <LinearLayout
                 android:layout_width="match_parent"
@@ -305,6 +238,71 @@
                         android:text="@={player.max_reckless}"
                         android:textColor="@color/characteristic_text_white" />
                 </LinearLayout>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="@dimen/big_padding"
+                android:layout_marginStart="@dimen/big_padding"
+                android:gravity="center_horizontal">
+
+                <TextView
+                    style="@style/PlayerSimpleLabel"
+                    android:labelFor="@+id/player_race"
+                    android:text="@string/race_label" />
+
+                <EditText
+                    android:id="@+id/player_race"
+                    style="@style/DeactivableCharacteristicText"
+                    android:layout_width="match_parent"
+                    android:enabled="@{bindingContext.inEdition}"
+                    android:hint="@string/race_hint"
+                    android:text="@={player.race}" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="@dimen/medium_padding"
+                android:layout_marginStart="@dimen/medium_padding"
+                android:gravity="center_horizontal"
+                android:orientation="horizontal">
+
+
+                <!--Age-->
+                <TextView
+                    style="@style/PlayerSimpleLabel"
+                    android:labelFor="@+id/player_age"
+                    android:text="@string/age_label" />
+
+                <EditText
+                    android:id="@+id/player_age"
+                    style="@style/SimpleCharacteristicNumberEditText"
+                    android:enabled="@{bindingContext.inEdition}"
+                    android:maxLength="4"
+                    android:text="@={player.age}" />
+
+                <!--Size-->
+                <TextView
+                    style="@style/PlayerSimpleLabel"
+                    android:labelFor="@+id/player_size"
+                    android:text="@string/size_label" />
+
+                <EditText
+                    android:id="@+id/player_size"
+                    style="@style/SimpleCharacteristicNumberEditText"
+                    android:enabled="@{bindingContext.inEdition}"
+                    android:maxLength="3"
+                    android:text="@={player.size}" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="start|center_vertical"
+                    android:layout_weight="0"
+                    android:labelFor="@+id/player_size"
+                    android:text="@string/cm_label" />
             </LinearLayout>
 
             <!--Description-->
