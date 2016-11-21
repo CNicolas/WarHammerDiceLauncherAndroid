@@ -137,6 +137,12 @@ public class PlayerDao extends AbstractDao<Player> implements IPlayerEntryConsta
                 mItemDao.update(item);
             }
         }
+
+        // Remove obsolete items
+        for (long idItem : player.getItemToRemove()) {
+            mItemDao.delete(idItem);
+        }
+        player.getItemToRemove().clear();
     }
 
     //endregion

@@ -45,9 +45,9 @@ interface IDao<T extends AbstractModel> {
     /**
      * Delete the model in the mDatabase.
      *
-     * @param model The model to delete.
+     * @param itemId The id of the model to delete.
      */
-    void delete(T model);
+    void delete(long itemId);
 
     /**
      * Delete all the models from table in the mDatabase.

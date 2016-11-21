@@ -133,7 +133,7 @@ public class InventoryFragment extends Fragment implements IPlayerActivityConsta
                                     openEditActivity(item.getId());
                                 } else {
                                     // Delete item
-                                    // TODO : Implement delete item option
+                                    WHFRP3Application.getPlayer().removeItem(item);
                                 }
 
                                 refreshInventoryView(item.getType());

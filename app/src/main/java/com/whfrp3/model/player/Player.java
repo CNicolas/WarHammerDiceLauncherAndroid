@@ -51,6 +51,12 @@ public class Player extends AbstractModel {
     private Characteristics characteristics;
     private List<Item> inventory;
     private List<Skill> mSkills;
+
+    /**
+     * List of the item to remove of the DB.
+     */
+    private List<Long> mItemToRemove = new ArrayList<>();
+
     //endregion
 
     //region Constructors
@@ -147,11 +153,31 @@ public class Player extends AbstractModel {
         return null;
     }
 
+    /**
+     * Add the given item in the inventory.
+     *
+     * @param item Item to add.
+     */
     public void addItem(Item item) {
         if (item != null) {
             inventory.add(item);
             notifyPropertyChanged(BR.fullDefenseAmount);
             notifyPropertyChanged(BR.fullSoakAmount);
+        }
+    }
+
+    /**
+     * Remove the given item of the inventory.
+     *
+     * @param item Item to remove.
+     */
+    public void removeItem(Item item) {
+        if (item != null) {
+            inventory.remove(item);
+            notifyPropertyChanged(BR.fullDefenseAmount);
+            notifyPropertyChanged(BR.fullSoakAmount);
+
+            mItemToRemove.add(item.getId());
         }
     }
 
@@ -470,6 +496,10 @@ public class Player extends AbstractModel {
 
     public void setSkills(List<Skill> skills) {
         this.mSkills = skills;
+    }
+
+    public List<Long> getItemToRemove() {
+        return mItemToRemove;
     }
     //endregion
 

@@ -179,8 +179,8 @@ public abstract class AbstractDao<T extends AbstractModel> implements IDao<T> {
     //region Delete
 
     @Override
-    public void delete(T model) {
-        String[] filters = {String.valueOf(model.getId())};
+    public void delete(long itemId) {
+        String[] filters = {String.valueOf(itemId)};
 
         mDatabase.delete(mTableName, String.format("%s = ?", IEntryConstants.COLUMN_ID), filters);
     }
