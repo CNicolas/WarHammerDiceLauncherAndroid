@@ -1,5 +1,6 @@
 package com.whfrp3.ihm.fragments;
 
+import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -28,21 +29,17 @@ import com.whfrp3.model.player.inventory.ItemType;
 import com.whfrp3.model.player.inventory.UsableItem;
 import com.whfrp3.model.player.inventory.Weapon;
 import com.whfrp3.tools.WHFRP3Application;
+import com.whfrp3.tools.constants.IPlayerActivityConstants;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import static android.app.Activity.RESULT_OK;
-
 /**
  * Inventory fragment.
  */
-public class InventoryFragment extends Fragment implements View.OnClickListener {
-
-    private static final int ADD_ITEM_REQUEST = 0;
-    private static final int EDIT_ITEM_REQUEST = 1;
+public class InventoryFragment extends Fragment implements IPlayerActivityConstants, View.OnClickListener {
 
     private Map<ItemType, List<? extends Item>> items = new HashMap<>();
     private InventoryListAdapter adapter;
@@ -178,8 +175,9 @@ public class InventoryFragment extends Fragment implements View.OnClickListener 
     }
 
     @Override
-    public void onActivityResult(int requestCode, int resultCode, Intent data) {
-        if (resultCode == RESULT_OK) {
+    public void onActivityResult(int requestCode, int resultCode, Intent intent) {
+        super.onActivityResult(requestCode, resultCode, intent);
+        if (resultCode == Activity.RESULT_CANCELED) {
             if (requestCode == ADD_ITEM_REQUEST || requestCode == EDIT_ITEM_REQUEST) {
                 refreshInventoryView(null);
             }
@@ -194,6 +192,7 @@ public class InventoryFragment extends Fragment implements View.OnClickListener 
     private void openEditActivity(long itemId) {
         Bundle bundle = new Bundle();
         bundle.putLong(ItemEditActivity.ITEM_ID_KEY, itemId);
+        bundle.putInt(IPlayerActivityConstants.CURRENT_FRAGMENT_POSITION_BUNDLE_TAG, IPlayerActivityConstants.INVENTORY_FRAGMENT_POSITION);
 
         Intent launchIntent = new Intent(InventoryFragment.this.getActivity(), ItemEditActivity.class);
         launchIntent.putExtras(bundle);

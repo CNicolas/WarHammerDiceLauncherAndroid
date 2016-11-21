@@ -27,7 +27,7 @@ import com.whfrp3.model.player.Player;
 import com.whfrp3.model.player.skill.Skill;
 import com.whfrp3.tools.WHFRP3Application;
 import com.whfrp3.tools.constants.IHandConstants;
-import com.whfrp3.tools.constants.IPlayerConstants;
+import com.whfrp3.tools.constants.IPlayerActivityConstants;
 import com.whfrp3.tools.helpers.DialogHelper;
 import com.whfrp3.tools.helpers.DicesRollerHelper;
 
@@ -40,7 +40,7 @@ import static com.whfrp3.R.id.action_update_hand;
 /**
  * This activity allows to chose several dices to launch and see the results.
  */
-public class LaunchActivity extends AppCompatActivity implements IPlayerConstants {
+public class LaunchActivity extends AppCompatActivity implements IPlayerActivityConstants {
     private Spinner mHandsSpinner;
     private Menu mMenuLaunch;
 
@@ -66,11 +66,11 @@ public class LaunchActivity extends AppCompatActivity implements IPlayerConstant
 
         Bundle extras = getIntent().getExtras();
         if (extras != null) {
-            Skill skill = (Skill) extras.getSerializable(SKILL_TAG);
+            Skill skill = (Skill) extras.getSerializable(SKILL_BUNDLE_TAG);
             if (skill != null) {
                 fillPickersFromSkill(skill);
             }
-            mBackToPreviousFragment = extras.getInt(CURRENT_FRAGMENT_POSITION_TAG);
+            mBackToPreviousFragment = extras.getInt(CURRENT_FRAGMENT_POSITION_BUNDLE_TAG);
         }
 
         setResult(mBackToPreviousFragment);
@@ -95,7 +95,7 @@ public class LaunchActivity extends AppCompatActivity implements IPlayerConstant
         switch (itemId) {
             case android.R.id.home:
                 Intent intent = new Intent();
-                intent.putExtra(CURRENT_FRAGMENT_POSITION_TAG, mBackToPreviousFragment);
+                intent.putExtra(CURRENT_FRAGMENT_POSITION_BUNDLE_TAG, mBackToPreviousFragment);
                 setResult(RESULT_CANCELED, intent);
                 finish();
                 break;

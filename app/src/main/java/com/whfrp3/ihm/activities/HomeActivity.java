@@ -16,7 +16,7 @@ import android.widget.Toast;
 import com.whfrp3.R;
 import com.whfrp3.model.player.Player;
 import com.whfrp3.tools.WHFRP3Application;
-import com.whfrp3.tools.constants.IPlayerConstants;
+import com.whfrp3.tools.constants.IPlayerActivityConstants;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -72,7 +72,7 @@ public class HomeActivity extends Activity {
             }
 
             Intent playerIntent = new Intent(HomeActivity.this, PlayerActivity.class);
-            playerIntent.putExtra(IPlayerConstants.IS_IN_EDITION_KEY, isInEdition);
+            playerIntent.putExtra(IPlayerActivityConstants.IS_IN_EDITION_BUNDLE_TAG, isInEdition);
 
             startActivity(playerIntent);
             finish();

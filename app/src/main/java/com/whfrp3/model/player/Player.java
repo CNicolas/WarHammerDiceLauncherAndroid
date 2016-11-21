@@ -11,7 +11,6 @@ import com.whfrp3.model.player.inventory.Range;
 import com.whfrp3.model.player.inventory.UsableItem;
 import com.whfrp3.model.player.inventory.Weapon;
 import com.whfrp3.model.player.skill.Skill;
-import com.whfrp3.tools.constants.IPlayerConstants;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -19,7 +18,10 @@ import java.util.List;
 /**
  * The Player model.
  */
-public class Player extends AbstractModel implements IPlayerConstants {
+public class Player extends AbstractModel {
+    private static final int BRASS_TO_SILVER = 100;
+    private static final int SILVER_TO_GOLD = 25;
+
     //region Fields
     private String name;
     private String race;

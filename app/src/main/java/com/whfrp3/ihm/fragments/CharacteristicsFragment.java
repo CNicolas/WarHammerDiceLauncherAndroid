@@ -12,7 +12,7 @@ import com.whfrp3.R;
 import com.whfrp3.databinding.FragmentCharacteristicsBinding;
 import com.whfrp3.tools.BindingContext;
 import com.whfrp3.tools.WHFRP3Application;
-import com.whfrp3.tools.constants.IPlayerConstants;
+import com.whfrp3.tools.constants.IPlayerActivityConstants;
 
 /**
  * The CharacteristicsFragment.
@@ -27,7 +27,7 @@ public class CharacteristicsFragment extends Fragment {
 
         Bundle bundle = this.getArguments();
         if (bundle != null) {
-            mBindingContext = (BindingContext) bundle.getSerializable(IPlayerConstants.BINDING_CONTEXT_KEY);
+            mBindingContext = (BindingContext) bundle.getSerializable(IPlayerActivityConstants.BINDING_CONTEXT_BUNDLE_TAG);
         } else {
             mBindingContext = new BindingContext(false);
         }

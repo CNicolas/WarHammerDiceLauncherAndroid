@@ -1,8 +1,10 @@
 package com.whfrp3.ihm.activities;
 
+import android.content.Intent;
 import android.databinding.DataBindingUtil;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.Spinner;
@@ -21,6 +23,7 @@ import com.whfrp3.model.player.inventory.UsableItem;
 import com.whfrp3.model.player.inventory.Weapon;
 import com.whfrp3.tools.PlayerHelper;
 import com.whfrp3.tools.WHFRP3Application;
+import com.whfrp3.tools.constants.IPlayerActivityConstants;
 
 /**
  * Activity used to modify an item.
@@ -137,6 +140,19 @@ public class ItemEditActivity extends AppCompatActivity {
         if (itemEdit.getRange() != null) {
             rangeSpinner.setSelection(itemEdit.getRange().ordinal());
         }
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        int itemId = item.getItemId();
+
+        if (itemId == android.R.id.home) {
+            Intent intent = new Intent();
+            intent.putExtra(IPlayerActivityConstants.CURRENT_FRAGMENT_POSITION_BUNDLE_TAG, IPlayerActivityConstants.INVENTORY_FRAGMENT_POSITION);
+            setResult(RESULT_CANCELED, intent);
+            finish();
+        }
+        return true;
     }
 
     public void onSave(View view) {

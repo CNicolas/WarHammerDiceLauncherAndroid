@@ -16,7 +16,7 @@ import com.whfrp3.ihm.fragments.CharacteristicsFragment;
 import com.whfrp3.ihm.fragments.InventoryFragment;
 import com.whfrp3.ihm.fragments.SkillsFragment;
 import com.whfrp3.tools.BindingContext;
-import com.whfrp3.tools.constants.IPlayerConstants;
+import com.whfrp3.tools.constants.IPlayerActivityConstants;
 
 /**
  * The PlayerPagerAdapter creates and manages the Fragments from the PlayerActivity.
@@ -58,31 +58,31 @@ public class PlayerPagerAdapter extends FragmentPagerAdapter {
     @Override
     public Fragment getItem(int position) {
         Bundle bundle = new Bundle();
-        bundle.putSerializable(IPlayerConstants.BINDING_CONTEXT_KEY, mBindingContext);
+        bundle.putSerializable(IPlayerActivityConstants.BINDING_CONTEXT_BUNDLE_TAG, mBindingContext);
 
-        setCurrentPosition(position);
+        mCurrentPosition = position;
 
         switch (position) {
-            case 0:
+            case IPlayerActivityConstants.CHARACTERISTICS_FRAGMENT_POSITION:
                 mCharacteristicFragmentTag = makeFragmentTag(position);
                 if (mCharacteristicsFragment == null) {
                     mCharacteristicsFragment = new CharacteristicsFragment();
                     mCharacteristicsFragment.setArguments(bundle);
                 }
                 return mCharacteristicsFragment;
-            case 1:
+            case IPlayerActivityConstants.ADVENTURE_FRAGMENT_POSITION:
                 mAdventureFragmentTag = makeFragmentTag(position);
                 if (mAdventureFragment == null) {
                     mAdventureFragment = new AdventureFragment();
                 }
                 return mAdventureFragment;
-            case 2:
+            case IPlayerActivityConstants.SKILLS_FRAGMENT_POSITION:
                 mSkillsFragmentTag = makeFragmentTag(position);
                 if (mSkillsFragment == null) {
                     mSkillsFragment = new SkillsFragment();
                 }
                 return mSkillsFragment;
-            case 3:
+            case IPlayerActivityConstants.INVENTORY_FRAGMENT_POSITION:
                 mInventoryFragmentTag = makeFragmentTag(position);
                 if (mInventoryFragment == null) {
                     mInventoryFragment = new InventoryFragment();
@@ -102,16 +102,16 @@ public class PlayerPagerAdapter extends FragmentPagerAdapter {
     @Override
     public CharSequence getPageTitle(int position) {
         switch (position) {
-            case 0:
+            case IPlayerActivityConstants.CHARACTERISTICS_FRAGMENT_POSITION:
                 Drawable image = ContextCompat.getDrawable(mContext, R.drawable.ic_characteristics_black);
                 return setTabIcon(image);
-            case 1:
+            case IPlayerActivityConstants.ADVENTURE_FRAGMENT_POSITION:
                 image = ContextCompat.getDrawable(mContext, R.drawable.ic_adventure_black);
                 return setTabIcon(image);
-            case 2:
+            case IPlayerActivityConstants.SKILLS_FRAGMENT_POSITION:
                 image = ContextCompat.getDrawable(mContext, R.drawable.ic_skills_black);
                 return setTabIcon(image);
-            case 3:
+            case IPlayerActivityConstants.INVENTORY_FRAGMENT_POSITION:
                 image = ContextCompat.getDrawable(mContext, R.drawable.ic_rucksack_black);
                 return setTabIcon(image);
         }
@@ -170,9 +170,5 @@ public class PlayerPagerAdapter extends FragmentPagerAdapter {
 
     public int getCurrentPosition() {
         return mCurrentPosition;
-    }
-
-    public void setCurrentPosition(int CurrentPosition) {
-        this.mCurrentPosition = CurrentPosition;
     }
 }

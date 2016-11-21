@@ -17,17 +17,18 @@ import android.widget.TextView;
 
 import com.whfrp3.R;
 import com.whfrp3.ihm.adapters.PlayerPagerAdapter;
+import com.whfrp3.ihm.fragments.InventoryFragment;
 import com.whfrp3.model.player.skill.Skill;
 import com.whfrp3.tools.BindingContext;
 import com.whfrp3.tools.PlayerHelper;
 import com.whfrp3.tools.WHFRP3Application;
-import com.whfrp3.tools.constants.IPlayerConstants;
+import com.whfrp3.tools.constants.IPlayerActivityConstants;
 
 /**
  * The main activity of WHFRP3 :
  * It contains a CharacteristicsFragment, a SkillsFragment and an InventoryFragment.
  */
-public class PlayerActivity extends AppCompatActivity implements IPlayerConstants {
+public class PlayerActivity extends AppCompatActivity implements IPlayerActivityConstants {
 
     private PlayerPagerAdapter mPlayerPagerAdapter;
     private Menu mMenu;
@@ -43,7 +44,7 @@ public class PlayerActivity extends AppCompatActivity implements IPlayerConstant
 
         Bundle extras = getIntent().getExtras();
         if (extras != null) {
-            boolean inEdition = extras.getBoolean(IPlayerConstants.IS_IN_EDITION_KEY);
+            boolean inEdition = extras.getBoolean(IPlayerActivityConstants.IS_IN_EDITION_BUNDLE_TAG);
             mBindingContext.setInEdition(inEdition);
         }
 
@@ -54,13 +55,13 @@ public class PlayerActivity extends AppCompatActivity implements IPlayerConstant
     @Override
     protected void onSaveInstanceState(Bundle outState) {
         super.onSaveInstanceState(outState);
-        outState.putBoolean(IPlayerConstants.IS_IN_EDITION_KEY, mBindingContext.isInEdition());
+        outState.putBoolean(IPlayerActivityConstants.IS_IN_EDITION_BUNDLE_TAG, mBindingContext.isInEdition());
     }
 
     @Override
     protected void onRestoreInstanceState(Bundle savedInstanceState) {
         super.onRestoreInstanceState(savedInstanceState);
-        boolean b = savedInstanceState.getBoolean(IPlayerConstants.IS_IN_EDITION_KEY);
+        boolean b = savedInstanceState.getBoolean(IPlayerActivityConstants.IS_IN_EDITION_BUNDLE_TAG);
         setIsInEdition(b);
     }
 
@@ -68,8 +69,12 @@ public class PlayerActivity extends AppCompatActivity implements IPlayerConstant
     protected void onActivityResult(int requestCode, int resultCode, Intent intent) {
         super.onActivityResult(requestCode, resultCode, intent);
 
-        if (requestCode == REQUEST_CODE_LAUNCH_ACTIVITY && resultCode == RESULT_CANCELED) {
-            mPlayerPagerAdapter.getItem(intent.getIntExtra(CURRENT_FRAGMENT_POSITION_TAG, 0));
+        if (resultCode == RESULT_CANCELED) {
+            if (requestCode == LAUNCH_REQUEST) {
+                mPlayerPagerAdapter.getItem(intent.getIntExtra(CURRENT_FRAGMENT_POSITION_BUNDLE_TAG, CHARACTERISTICS_FRAGMENT_POSITION));
+            } else if (requestCode == InventoryFragment.ADD_ITEM_REQUEST || requestCode == EDIT_ITEM_REQUEST) {
+                mPlayerPagerAdapter.getItem(intent.getIntExtra(CURRENT_FRAGMENT_POSITION_BUNDLE_TAG, INVENTORY_FRAGMENT_POSITION));
+            }
         }
     }
     //endregion
@@ -136,16 +141,16 @@ public class PlayerActivity extends AppCompatActivity implements IPlayerConstant
         Intent launchIntent = new Intent(PlayerActivity.this, LaunchActivity.class);
         Bundle bundle = new Bundle();
         if (skill != null) {
-            bundle.putSerializable(SKILL_TAG, skill);
+            bundle.putSerializable(SKILL_BUNDLE_TAG, skill);
         }
-        bundle.putInt(CURRENT_FRAGMENT_POSITION_TAG, mPlayerPagerAdapter.getCurrentPosition());
+        bundle.putInt(CURRENT_FRAGMENT_POSITION_BUNDLE_TAG, mPlayerPagerAdapter.getCurrentPosition());
         launchIntent.putExtras(bundle);
 
         TaskStackBuilder stackBuilder = TaskStackBuilder.create(PlayerActivity.this);
         stackBuilder.addParentStack(LaunchActivity.class);
         stackBuilder.addNextIntent(launchIntent);
 
-        startActivityForResult(launchIntent, REQUEST_CODE_LAUNCH_ACTIVITY);
+        startActivityForResult(launchIntent, LAUNCH_REQUEST);
     }
     //endregion
 
