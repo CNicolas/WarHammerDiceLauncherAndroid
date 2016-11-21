@@ -1,103 +1,123 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="48dp"
-    android:background="@color/white"
-    android:orientation="vertical"
-    android:paddingLeft="8dp"
-    android:paddingRight="8dp">
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <data>
+
+        <import type="android.view.View" />
+
+        <import type="com.whfrp3.tools.BindingUtils" />
+
+        <import type="com.whfrp3.model.player.inventory.Equipment" />
+
+        <variable
+            name="item"
+            type="com.whfrp3.model.player.inventory.Item" />
+    </data>
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="24dp"
-        android:orientation="horizontal">
-
-        <TextView
-            android:id="@+id/inventoryItemName"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_weight="0.9"
-            android:text="@string/dummy_string"
-            android:textColor="@color/black_text"
-            android:textSize="18sp"/>
+        android:layout_height="48dp"
+        android:background="@color/white"
+        android:orientation="vertical"
+        android:paddingLeft="8dp"
+        android:paddingRight="8dp">
 
         <LinearLayout
-            android:layout_width="48dp"
-            android:layout_height="match_parent"
-            android:layout_weight="0.1"
-            android:gravity="end"
+            android:layout_width="match_parent"
+            android:layout_height="24dp"
             android:orientation="horizontal">
 
-            <TextView
+            <ImageView
                 android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:gravity="bottom"
-                android:text="@string/parenthesis_left" />
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:src="@drawable/ic_check_black_24dp"
+                android:visibility="@{(item.isEquipable() &amp;&amp; ((Equipment)item).isEquipped()) ? View.VISIBLE : View.GONE}" />
 
             <TextView
-                android:id="@+id/inventoryItemQuantity"
-                android:layout_width="wrap_content"
+                android:id="@+id/inventoryItemName"
+                android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:gravity="bottom"
-                android:text="@string/dummy_integer" />
+                android:layout_weight="0.9"
+                android:text="@{item.name}"
+                android:textColor="@color/black_text"
+                android:textSize="18sp" />
 
-            <TextView
-                android:layout_width="wrap_content"
+            <LinearLayout
+                android:layout_width="48dp"
                 android:layout_height="match_parent"
-                android:gravity="bottom"
-                android:text="@string/parenthesis_right" />
+                android:layout_weight="0.1"
+                android:gravity="end"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:gravity="bottom"
+                    android:text="@string/parenthesis_left" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:gravity="bottom"
+                    android:text="@{item.quantity}" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:gravity="bottom"
+                    android:text="@string/parenthesis_right" />
+
+            </LinearLayout>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="24dp"
+            android:baselineAligned="false"
+            android:orientation="horizontal"
+            android:paddingBottom="4dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="0.6"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:text="@string/quality_label"
+                    android:textSize="13sp" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_marginStart="3dp"
+                    android:text="@{BindingUtils.string(item.quality.labelId)}"
+                    android:textSize="13sp" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="0.4"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:text="@string/encumbrance_label"
+                    android:textSize="13sp" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_marginStart="3dp"
+                    android:text="@{item.quantity}"
+                    android:textSize="13sp" />
+            </LinearLayout>
 
         </LinearLayout>
     </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="24dp"
-        android:orientation="horizontal"
-        android:paddingBottom="4dp"
-        android:baselineAligned="false">
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_weight="0.6"
-            android:orientation="horizontal">
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:text="@string/quality_label"
-                android:textSize="13sp" />
-
-            <TextView
-                android:id="@+id/inventoryItemQuality"
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:text="@string/quality_normal"
-                android:textSize="13sp"
-                android:layout_marginStart="3dp"/>
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_weight="0.4"
-            android:orientation="horizontal">
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:text="@string/encumbrance_label"
-                android:textSize="13sp" />
-
-            <TextView
-                android:id="@+id/inventoryItemEncumbrance"
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:text="@string/dummy_integer"
-                android:textSize="13sp"
-                android:layout_marginStart="3dp" />
-        </LinearLayout>
-
-    </LinearLayout>
-</LinearLayout>
+</layout>

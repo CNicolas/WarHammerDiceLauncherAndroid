@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <com.whfrp3.ihm.components.AnimatedExpandableListView
+    <ExpandableListView
         android:id="@+id/inventory"
         android:layout_width="match_parent"
         android:layout_height="match_parent"/>

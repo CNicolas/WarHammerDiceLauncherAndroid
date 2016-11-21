@@ -1,14 +1,14 @@
 package com.whfrp3.ihm.adapters;
 
-import android.graphics.Typeface;
+import android.databinding.DataBindingUtil;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.whfrp3.R;
+import com.whfrp3.databinding.InventoryItemBinding;
 import com.whfrp3.ihm.components.AnimatedExpandableListView;
-import com.whfrp3.model.player.inventory.Equipment;
 import com.whfrp3.model.player.inventory.Item;
 import com.whfrp3.model.player.inventory.ItemType;
 
@@ -53,29 +53,10 @@ public class InventoryListAdapter extends AnimatedExpandableListView.AnimatedExp
     public View getRealChildView(int groupPosition, int childPosition, boolean isLastChild, View convertView, ViewGroup parent) {
         Item item = (Item) getChild(groupPosition, childPosition);
 
-        if (convertView == null) {
-            convertView = inflater.inflate(R.layout.inventory_item, null);
-        }
+        InventoryItemBinding binding = DataBindingUtil.inflate(inflater, R.layout.inventory_item, null, false);
+        binding.setItem(item);
 
-        // Set item name
-        TextView nameView = (TextView) convertView.findViewById(R.id.inventoryItemName);
-        nameView.setText(item.getName());
-
-        if (item.isEquipable() && ((Equipment) item).isEquipped()) {
-            nameView.setTypeface(nameView.getTypeface(), Typeface.BOLD);
-        }
-
-        // Set item quantity
-        TextView quantityView = (TextView) convertView.findViewById(R.id.inventoryItemQuantity);
-        quantityView.setText(String.valueOf(item.getQuantity()));
-
-        // Set item quality
-        TextView qualityView = (TextView) convertView.findViewById(R.id.inventoryItemQuality);
-        qualityView.setText(item.getQuality().getLabelId());
-
-        // Set item encumbrance
-        TextView encumbranceView = (TextView) convertView.findViewById(R.id.inventoryItemEncumbrance);
-        encumbranceView.setText(String.valueOf(item.getEncumbrance()));
+        convertView = binding.getRoot();
 
         return convertView;
     }

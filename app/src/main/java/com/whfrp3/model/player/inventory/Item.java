@@ -1,5 +1,7 @@
 package com.whfrp3.model.player.inventory;
 
+import android.databinding.Bindable;
+
 import com.whfrp3.model.AbstractModel;
 import com.whfrp3.model.player.Player;
 
@@ -70,6 +72,7 @@ public class Item extends AbstractModel {
      *
      * @return true if the item can be equipped, false otherwise.
      */
+    @Bindable
     public boolean isEquipable() {
         return false;
     }

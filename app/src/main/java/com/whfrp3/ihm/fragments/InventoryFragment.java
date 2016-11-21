@@ -58,7 +58,7 @@ public class InventoryFragment extends Fragment implements IPlayerActivityConsta
         FloatingActionButton addButton = (FloatingActionButton) rootView.findViewById(R.id.inventoryAddButton);
         addButton.setOnClickListener(this);
 
-        final AnimatedExpandableListView expListView = (AnimatedExpandableListView) rootView.findViewById(R.id.inventory);
+        final ExpandableListView expListView = (ExpandableListView) rootView.findViewById(R.id.inventory);
 
         // In order to show animations, we need to use a custom click handler
         // for our ExpandableListView.
@@ -72,10 +72,10 @@ public class InventoryFragment extends Fragment implements IPlayerActivityConsta
                 // expandGroupWithAnimation(int) to animate group
                 // expansion/collapse.
                 if (expListView.isGroupExpanded(groupPosition)) {
-                    expListView.collapseGroupWithAnimation(groupPosition);
+                    expListView.collapseGroup(groupPosition);
                     imageView.setRotation(90);
                 } else {
-                    expListView.expandGroupWithAnimation(groupPosition);
+                    expListView.expandGroup(groupPosition);
                     imageView.setRotation(0);
                 }
                 return true;
@@ -136,7 +136,7 @@ public class InventoryFragment extends Fragment implements IPlayerActivityConsta
                                     WHFRP3Application.getPlayer().removeItem(item);
                                 }
 
-                                refreshInventoryView(item.getType());
+                                refreshInventoryView(null);
                             }
                         });
                 AlertDialog dialog = builder.create();
