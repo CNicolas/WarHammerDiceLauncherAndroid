@@ -1,8 +1,10 @@
 package com.whfrp3.ihm.activities;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.ProgressBar;
 import android.widget.ScrollView;
@@ -21,8 +23,8 @@ import java.util.Map;
 
 public class StatisticsActivity extends AppCompatActivity {
 
-    private Hand dto;
-    private int times;
+    private Hand mHand;
+    private int mTimes;
     private DecimalFormat df;
     private int successfulRolls = 0;
     private Map<DiceFaces, Integer> allThrows;
@@ -46,8 +48,8 @@ public class StatisticsActivity extends AppCompatActivity {
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setHomeButtonEnabled(true);
 
-        dto = (Hand) getIntent().getExtras().getSerializable(IHandConstants.HAND_TAG);
-        times = getIntent().getExtras().getInt(IHandConstants.TIMES_TAG);
+        mHand = (Hand) getIntent().getExtras().getSerializable(IHandConstants.HAND_BUNDLE_TAG);
+        mTimes = getIntent().getExtras().getInt(IHandConstants.TIMES_BUNDLE_TAG);
 
         df = new DecimalFormat("#.#");
         df.setRoundingMode(RoundingMode.HALF_UP);
@@ -57,6 +59,16 @@ public class StatisticsActivity extends AppCompatActivity {
         mProgressSpinner = (ProgressBar) findViewById(R.id.progress_spinner);
 
         callRollThread();
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        int itemId = item.getItemId();
+
+        if (itemId == android.R.id.home) {
+            finish();
+        }
+        return true;
     }
 
     /**
@@ -111,7 +123,7 @@ public class StatisticsActivity extends AppCompatActivity {
     //endregion
 
     /**
-     * Launch the hand "times" and show the statistics.
+     * Launch the hand "mTimes" and show the statistics.
      */
     private void launchDicesAndGetStatistics() {
         successfulRolls = 0;
@@ -123,8 +135,8 @@ public class StatisticsActivity extends AppCompatActivity {
         averageBaneNumber = 0;
 
         allThrows = new HashMap<>();
-        for (int i = 0; i < times; i++) {
-            Map<DiceFaces, Integer> map = DicesRollerHelper.rollDices(dto);
+        for (int i = 0; i < mTimes; i++) {
+            Map<DiceFaces, Integer> map = DicesRollerHelper.rollDices(mHand);
 
             for (DiceFaces face : map.keySet()) {
                 int old = allThrows.get(face) != null ? allThrows.get(face) : 0;
@@ -134,12 +146,12 @@ public class StatisticsActivity extends AppCompatActivity {
             successfulRolls += DicesRollerHelper.isSuccessful(map) ? 1 : 0;
         }
 
-        averageSuccessNumber = allThrows.containsKey(DiceFaces.SUCCESS) ? allThrows.get(DiceFaces.SUCCESS) / ((double) times) : 0;
-        averageBoonNumber = allThrows.containsKey(DiceFaces.BOON) ? allThrows.get(DiceFaces.BOON) / ((double) times) : 0;
-        averageSigmarNumber = allThrows.containsKey(DiceFaces.SIGMAR) ? allThrows.get(DiceFaces.SIGMAR) / ((double) times) : 0;
-        averageChaosNumber = allThrows.containsKey(DiceFaces.CHAOS) ? allThrows.get(DiceFaces.CHAOS) / ((double) times) : 0;
-        averageFailureNumber = allThrows.containsKey(DiceFaces.FAILURE) ? allThrows.get(DiceFaces.FAILURE) / ((double) times) : 0;
-        averageBaneNumber = allThrows.containsKey(DiceFaces.BANE) ? allThrows.get(DiceFaces.BANE) / ((double) times) : 0;
+        averageSuccessNumber = allThrows.containsKey(DiceFaces.SUCCESS) ? allThrows.get(DiceFaces.SUCCESS) / ((double) mTimes) : 0;
+        averageBoonNumber = allThrows.containsKey(DiceFaces.BOON) ? allThrows.get(DiceFaces.BOON) / ((double) mTimes) : 0;
+        averageSigmarNumber = allThrows.containsKey(DiceFaces.SIGMAR) ? allThrows.get(DiceFaces.SIGMAR) / ((double) mTimes) : 0;
+        averageChaosNumber = allThrows.containsKey(DiceFaces.CHAOS) ? allThrows.get(DiceFaces.CHAOS) / ((double) mTimes) : 0;
+        averageFailureNumber = allThrows.containsKey(DiceFaces.FAILURE) ? allThrows.get(DiceFaces.FAILURE) / ((double) mTimes) : 0;
+        averageBaneNumber = allThrows.containsKey(DiceFaces.BANE) ? allThrows.get(DiceFaces.BANE) / ((double) mTimes) : 0;
     }
 
     //region UI
@@ -148,11 +160,11 @@ public class StatisticsActivity extends AppCompatActivity {
      * Set the values in TextViews.
      */
     private void updateUIStatistics() {
-        String throwsNumberText = String.format(getResources().getString(R.string.throwsNumberFormat), String.valueOf(times));
+        String throwsNumberText = String.format(getResources().getString(R.string.throwsNumberFormat), String.valueOf(mTimes));
         TextView throwsNumberView = (TextView) findViewById(R.id.throwsNumberView);
         throwsNumberView.setText(throwsNumberText);
 
-        double successPercentage = (successfulRolls * 100) / ((double) times);
+        double successPercentage = (successfulRolls * 100) / ((double) mTimes);
         String successNumberText = String.format(getResources().getString(R.string.successful_rolls_number_format), successfulRolls, df.format(successPercentage));
         TextView successNumberTextView = (TextView) findViewById(R.id.success_rolls);
         successNumberTextView.setText(successNumberText);
@@ -200,4 +212,13 @@ public class StatisticsActivity extends AppCompatActivity {
         }
     }
     //endregion
+
+
+    @Override
+    public void finish() {
+        Intent intent = new Intent();
+        intent.putExtra(IHandConstants.HAND_BUNDLE_TAG, mHand);
+        setResult(RESULT_CANCELED, intent);
+        super.finish();
+    }
 }

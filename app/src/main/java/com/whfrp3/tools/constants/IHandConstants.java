@@ -11,8 +11,8 @@ import java.util.Map;
  * Constants used in the LaunchActivity and StatisticsActivity.
  */
 public abstract class IHandConstants implements IConstants {
-    public static final String HAND_TAG = "hand";
-    public static final String TIMES_TAG = "times";
+    public static final String HAND_BUNDLE_TAG = "hand";
+    public static final String TIMES_BUNDLE_TAG = "times";
 
     /**
      * This map provides the different opposites sides.

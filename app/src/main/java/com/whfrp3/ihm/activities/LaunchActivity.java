@@ -1,5 +1,6 @@
 package com.whfrp3.ihm.activities;
 
+import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -68,12 +69,23 @@ public class LaunchActivity extends AppCompatActivity implements IPlayerActivity
         if (extras != null) {
             Skill skill = (Skill) extras.getSerializable(SKILL_BUNDLE_TAG);
             if (skill != null) {
-                fillPickersFromSkill(skill);
+                fillNumberPickersFromSkill(skill);
             }
             mBackToPreviousFragment = extras.getInt(CURRENT_FRAGMENT_POSITION_BUNDLE_TAG);
         }
 
         setResult(mBackToPreviousFragment);
+    }
+
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent intent) {
+        super.onActivityResult(requestCode, resultCode, intent);
+        if (resultCode == Activity.RESULT_CANCELED) {
+            if (requestCode == STATS_REQUEST) {
+                Hand hand = (Hand) intent.getSerializableExtra(IHandConstants.HAND_BUNDLE_TAG);
+                fillNumberPickersFromHand(hand);
+            }
+        }
     }
 
     //region Options Menu
@@ -182,8 +194,8 @@ public class LaunchActivity extends AppCompatActivity implements IPlayerActivity
      */
     private void startStatisticsActivity(int times) {
         Bundle bundle = new Bundle();
-        bundle.putSerializable(IHandConstants.HAND_TAG, extractHandFromNumberPickers());
-        bundle.putInt(IHandConstants.TIMES_TAG, times);
+        bundle.putSerializable(IHandConstants.HAND_BUNDLE_TAG, extractHandFromNumberPickers());
+        bundle.putInt(IHandConstants.TIMES_BUNDLE_TAG, times);
 
         Intent statisticsIntent = new Intent(this, StatisticsActivity.class);
         statisticsIntent.putExtras(bundle);
@@ -192,7 +204,7 @@ public class LaunchActivity extends AppCompatActivity implements IPlayerActivity
         stackBuilder.addParentStack(StatisticsActivity.class);
         stackBuilder.addNextIntent(statisticsIntent);
 
-        startActivity(statisticsIntent);
+        startActivityForResult(statisticsIntent, STATS_REQUEST);
     }
     //endregion
 
@@ -298,8 +310,8 @@ public class LaunchActivity extends AppCompatActivity implements IPlayerActivity
             resetHand();
         } else {
             try {
-                Hand dto = WHFRP3Application.getDatabase().getHandDao().findByTitle(title);
-                fillNumberPickersFromHand(dto);
+                Hand hand = WHFRP3Application.getDatabase().getHandDao().findByTitle(title);
+                fillNumberPickersFromHand(hand);
             } catch (Resources.NotFoundException nfe) {
                 Log.e(this.getClass().getName(), "useHand: ", nfe);
             }
@@ -327,7 +339,7 @@ public class LaunchActivity extends AppCompatActivity implements IPlayerActivity
      *
      * @param skill the skill.
      */
-    private void fillPickersFromSkill(Skill skill) {
+    private void fillNumberPickersFromSkill(Skill skill) {
         Player player = WHFRP3Application.getPlayer();
 
         Hand startingHand = player.getCharacteristics().getCharacteristicHand(skill.getCharacteristic());

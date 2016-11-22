@@ -17,4 +17,5 @@ public interface IPlayerActivityConstants extends IConstants {
     int LAUNCH_REQUEST = 0;
     int ADD_ITEM_REQUEST = 1;
     int EDIT_ITEM_REQUEST = 2;
+    int STATS_REQUEST = 3;
 }
