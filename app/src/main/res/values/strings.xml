@@ -131,5 +131,10 @@
     <string name="range_long">Long</string>
     <string name="range_extreme">Extreme</string>
     <string name="quantity_label">Quantity :</string>
+    <string name="race_human">Human</string>
+    <string name="race_dwarf">Dwarf</string>
+    <string name="race_high_elf">High Elf</string>
+    <string name="race_wood_elf">Wood Elf</string>
+    <string name="adventure_encumbrance" translatable="false">%s / %s (%s)</string>
 
 </resources>

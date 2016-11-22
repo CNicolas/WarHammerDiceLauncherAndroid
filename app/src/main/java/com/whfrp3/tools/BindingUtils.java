@@ -3,6 +3,8 @@ package com.whfrp3.tools;
 import android.databinding.BindingAdapter;
 import android.databinding.InverseBindingAdapter;
 import android.util.Log;
+import android.view.View;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 /**
@@ -28,6 +30,13 @@ public class BindingUtils {
             Log.e("BindingModel", "Bad content '" + content + "'", nfe);
         }
         return 0;
+    }
+
+    @BindingAdapter("android:layout_weight")
+    public static void setWeight(View view, float value) {
+        LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(view.getLayoutParams().width, view.getLayoutParams().height, value);
+
+        view.setLayoutParams(params);
     }
 
     /**

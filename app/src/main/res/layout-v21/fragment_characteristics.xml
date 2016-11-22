@@ -4,6 +4,8 @@
 
     <data>
 
+        <import type="com.whfrp3.tools.BindingUtils" />
+
         <variable
             name="player"
             type="com.whfrp3.model.player.Player" />
@@ -252,13 +254,11 @@
                     android:labelFor="@+id/player_race"
                     android:text="@string/race_label" />
 
-                <EditText
-                    android:id="@+id/player_race"
-                    style="@style/DeactivableCharacteristicText"
+                <Spinner
+                    android:id="@+id/player_race_spinner"
                     android:layout_width="match_parent"
-                    android:enabled="@{bindingContext.inEdition}"
-                    android:hint="@string/race_hint"
-                    android:text="@={player.race}" />
+                    android:layout_height="wrap_content"
+                    android:enabled="@{bindingContext.inEdition}" />
             </LinearLayout>
 
             <LinearLayout

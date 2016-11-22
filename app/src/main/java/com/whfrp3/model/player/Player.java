@@ -4,6 +4,7 @@ import android.databinding.Bindable;
 
 import com.whfrp3.BR;
 import com.whfrp3.model.AbstractModel;
+import com.whfrp3.model.enums.Race;
 import com.whfrp3.model.player.inventory.Armor;
 import com.whfrp3.model.player.inventory.Item;
 import com.whfrp3.model.player.inventory.ItemType;
@@ -19,12 +20,23 @@ import java.util.List;
  * The Player model.
  */
 public class Player extends AbstractModel {
+
+    //region Constants
+
     private static final int BRASS_TO_SILVER = 100;
     private static final int SILVER_TO_GOLD = 25;
 
+    private static final int ENCUMBRANCE_BASE = 0;
+    private static final int ENCUMBRANCE_BASE_DWARF = 5;
+    private static final int ENCUMBRANCE_BY_STRENGTH = 5;
+    private static final int ENCUMBRANCE_BY_STRENGTH_FORTUNE = 1;
+    private static final int ENCUMBRANCE_OVERLOAD_TO_MAX = 5;
+
+    //endregion
+
     //region Fields
     private String name;
-    private String race;
+    private Race race;
     private int age;
     private int size;
     private String description;
@@ -134,6 +146,41 @@ public class Player extends AbstractModel {
 
         return res;
     }
+
+    @Bindable
+    public int getEncumbranceOverload() {
+        int encumbrance = (race == Race.DWARF) ? ENCUMBRANCE_BASE_DWARF : ENCUMBRANCE_BASE;
+
+        // Add strength
+        encumbrance += characteristics.getStrength() * ENCUMBRANCE_BY_STRENGTH;
+
+        // Add strength fortune
+        encumbrance += characteristics.getStrength_fortune() * ENCUMBRANCE_BY_STRENGTH_FORTUNE;
+
+        return encumbrance;
+    }
+
+    @Bindable
+    public int getEncumbranceMax() {
+        return getEncumbranceOverload() + ENCUMBRANCE_OVERLOAD_TO_MAX;
+    }
+
+    @Bindable
+    public int getCurrentEncumbrance() {
+        int encumbrance = 0;
+
+        for (Item item : inventory) {
+            encumbrance += item.getEncumbrance() * item.getQuantity();
+        }
+
+        return encumbrance;
+    }
+
+    @Bindable
+    public float getEncumbrancePercent() {
+        return (float) getCurrentEncumbrance() / (float) getEncumbranceMax();
+    }
+
     //endregion
 
     /**
@@ -160,6 +207,19 @@ public class Player extends AbstractModel {
      */
     public void addItem(Item item) {
         if (item != null) {
+            inventory.add(item);
+        }
+    }
+
+    /**
+     * Update the given item in the inventory.
+     *
+     * @param item Item to update.
+     */
+    public void updateItem(Item item) {
+        if (item != null) {
+            Item oldItem = getItemById(item.getId());
+            inventory.remove(oldItem);
             inventory.add(item);
         }
     }
@@ -282,11 +342,11 @@ public class Player extends AbstractModel {
         this.name = name;
     }
 
-    public String getRace() {
+    public Race getRace() {
         return race;
     }
 
-    public void setRace(String race) {
+    public void setRace(Race race) {
         this.race = race;
     }
 

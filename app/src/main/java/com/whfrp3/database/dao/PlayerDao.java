@@ -6,6 +6,7 @@ import android.database.sqlite.SQLiteDatabase;
 
 import com.whfrp3.database.entries.IEntryConstants;
 import com.whfrp3.database.entries.IPlayerEntryConstants;
+import com.whfrp3.model.enums.Race;
 import com.whfrp3.model.player.Characteristics;
 import com.whfrp3.model.player.Player;
 import com.whfrp3.model.player.inventory.Item;
@@ -154,7 +155,7 @@ public class PlayerDao extends AbstractDao<Player> implements IPlayerEntryConsta
         ContentValues values = new ContentValues();
 
         values.put(COLUMN_NAME, player.getName());
-        values.put(COLUMN_RACE, player.getRace());
+        values.put(COLUMN_RACE, player.getRace().toString());
         values.put(COLUMN_AGE, player.getAge());
         values.put(COLUMN_SIZE, player.getSize());
         values.put(COLUMN_DESCRIPTION, player.getDescription());
@@ -190,7 +191,7 @@ public class PlayerDao extends AbstractDao<Player> implements IPlayerEntryConsta
         model.setId(cursor.getInt(cursor.getColumnIndexOrThrow(IEntryConstants.COLUMN_ID)));
 
         model.setName(cursor.getString(cursor.getColumnIndexOrThrow(COLUMN_NAME)));
-        model.setRace(cursor.getString(cursor.getColumnIndexOrThrow(COLUMN_RACE)));
+        model.setRace(Race.valueOf(cursor.getString(cursor.getColumnIndexOrThrow(COLUMN_RACE))));
         model.setAge(cursor.getInt(cursor.getColumnIndexOrThrow(COLUMN_AGE)));
         model.setSize(cursor.getInt(cursor.getColumnIndexOrThrow(COLUMN_SIZE)));
         model.setDescription(cursor.getString(cursor.getColumnIndexOrThrow(COLUMN_DESCRIPTION)));

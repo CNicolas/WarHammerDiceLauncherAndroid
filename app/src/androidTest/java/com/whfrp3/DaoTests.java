@@ -5,6 +5,7 @@ import android.test.RenamingDelegatingContext;
 import android.test.suitebuilder.annotation.MediumTest;
 
 import com.whfrp3.database.Database;
+import com.whfrp3.model.enums.Race;
 import com.whfrp3.model.player.Characteristics;
 import com.whfrp3.model.player.Player;
 import com.whfrp3.model.player.skill.Skill;
@@ -84,7 +85,7 @@ public class DaoTests extends AndroidTestCase {
         Player dto = new Player();
 
         dto.setName("Aku");
-        dto.setRace("Elfe");
+        dto.setRace(Race.WOOD_ELF);
         dto.setAge(59);
         dto.setSize(200);
         dto.setDescription("OK LOL");

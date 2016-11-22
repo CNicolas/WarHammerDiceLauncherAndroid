@@ -136,8 +136,6 @@ public class InventoryFragment extends Fragment implements IPlayerActivityConsta
                                 }
 
                                 refreshInventoryView();
-                                WHFRP3Application.getPlayer().notifyPropertyChanged(BR.fullDefenseAmount);
-                                WHFRP3Application.getPlayer().notifyPropertyChanged(BR.fullSoakAmount);
                             }
                         });
                 AlertDialog dialog = builder.create();
@@ -213,5 +211,10 @@ public class InventoryFragment extends Fragment implements IPlayerActivityConsta
         items.put(ItemType.ITEM, player.getItems());
 
         adapter.setChildren(items);
+
+        WHFRP3Application.getPlayer().notifyPropertyChanged(BR.fullDefenseAmount);
+        WHFRP3Application.getPlayer().notifyPropertyChanged(BR.fullSoakAmount);
+        WHFRP3Application.getPlayer().notifyPropertyChanged(BR.currentEncumbrance);
+        WHFRP3Application.getPlayer().notifyPropertyChanged(BR.encumbrancePercent);
     }
 }

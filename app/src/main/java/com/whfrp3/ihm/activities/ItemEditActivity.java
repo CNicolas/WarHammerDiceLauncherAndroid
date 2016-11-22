@@ -186,11 +186,15 @@ public class ItemEditActivity extends AppCompatActivity {
                 break;
         }
 
+        Player player = WHFRP3Application.getPlayer();
+
         if (item.getId() == 0) {
-            Player player = WHFRP3Application.getPlayer();
             player.addItem(item);
-            PlayerHelper.savePlayer(player);
+        } else {
+            player.updateItem(item);
         }
+
+        PlayerHelper.savePlayer(player);
 
         this.setResult(RESULT_OK);
         this.finish();
