@@ -32,12 +32,29 @@ public class InventoryListAdapter extends AnimatedExpandableListView.AnimatedExp
     private Map<ItemType, List<? extends Item>> children;
     //endregion
 
-    //region Constructors
-    public InventoryListAdapter(LayoutInflater inflater, Map<ItemType, List<? extends Item>> children) {
+    //region Constructor
+
+    /**
+     * Constructor.
+     *
+     * @param inflater View inflater.
+     */
+    public InventoryListAdapter(LayoutInflater inflater) {
         this.inflater = inflater;
-        this.children = children;
     }
+
     //endregion
+
+    /**
+     * Set children data.
+     *
+     * @param children New children data.
+     */
+    public void setChildren(Map<ItemType, List<? extends Item>> children) {
+        this.children = children;
+
+        notifyDataSetChanged();
+    }
 
     @Override
     public Object getChild(int groupPosition, int childPosition) {

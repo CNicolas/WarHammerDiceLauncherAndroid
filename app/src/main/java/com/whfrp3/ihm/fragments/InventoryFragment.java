@@ -41,7 +41,6 @@ import java.util.Map;
  */
 public class InventoryFragment extends Fragment implements IPlayerActivityConstants, View.OnClickListener {
 
-    private Map<ItemType, List<? extends Item>> items = new HashMap<>();
     private InventoryListAdapter adapter;
 
     public InventoryFragment() {
@@ -136,7 +135,7 @@ public class InventoryFragment extends Fragment implements IPlayerActivityConsta
                                     WHFRP3Application.getPlayer().removeItem(item);
                                 }
 
-                                refreshInventoryView(null);
+                                refreshInventoryView();
                                 WHFRP3Application.getPlayer().notifyPropertyChanged(BR.fullDefenseAmount);
                                 WHFRP3Application.getPlayer().notifyPropertyChanged(BR.fullSoakAmount);
                             }
@@ -148,16 +147,10 @@ public class InventoryFragment extends Fragment implements IPlayerActivityConsta
             }
         });
 
-        items.put(ItemType.ARMOR, new ArrayList<Armor>());
-        items.put(ItemType.WEAPON, new ArrayList<Weapon>());
-        items.put(ItemType.USABLE_ITEM, new ArrayList<UsableItem>());
-        items.put(ItemType.ITEM, new ArrayList<Item>());
-
-        adapter = new InventoryListAdapter(inflater, items);
+        adapter = new InventoryListAdapter(inflater);
+        refreshInventoryView();
 
         expListView.setAdapter(adapter);
-
-        refreshInventoryView(null);
 
         long difference = System.currentTimeMillis() - startTime;
         Log.d("InventoryFragment", String.format("%d = %d", startTime, difference));
@@ -179,9 +172,9 @@ public class InventoryFragment extends Fragment implements IPlayerActivityConsta
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent intent) {
         super.onActivityResult(requestCode, resultCode, intent);
-        if (resultCode == Activity.RESULT_CANCELED) {
+        if (resultCode == Activity.RESULT_OK) {
             if (requestCode == ADD_ITEM_REQUEST || requestCode == EDIT_ITEM_REQUEST) {
-                refreshInventoryView(null);
+                refreshInventoryView();
             }
         }
     }
@@ -208,34 +201,17 @@ public class InventoryFragment extends Fragment implements IPlayerActivityConsta
 
     /**
      * Refresh inventory expandable list.
-     *
-     * @param itemType Item type of the list to refresh.
      */
-    private void refreshInventoryView(ItemType itemType) {
+    private void refreshInventoryView() {
         Player player = WHFRP3Application.getPlayer();
 
-        if (itemType == null) {
-            items.put(ItemType.ARMOR, player.getArmors());
-            items.put(ItemType.WEAPON, player.getWeapons());
-            items.put(ItemType.USABLE_ITEM, player.getUsableItems());
-            items.put(ItemType.ITEM, player.getItems());
-        } else {
-            switch (itemType) {
-                case ARMOR:
-                    items.put(ItemType.ARMOR, player.getArmors());
-                    break;
-                case WEAPON:
-                    items.put(ItemType.WEAPON, player.getWeapons());
-                    break;
-                case USABLE_ITEM:
-                    items.put(ItemType.USABLE_ITEM, player.getUsableItems());
-                    break;
-                case ITEM:
-                    items.put(ItemType.ITEM, player.getItems());
-                    break;
-            }
-        }
+        Map<ItemType, List<? extends Item>> items = new HashMap<>();
 
-        adapter.notifyDataSetChanged();
+        items.put(ItemType.ARMOR, player.getArmors());
+        items.put(ItemType.WEAPON, player.getWeapons());
+        items.put(ItemType.USABLE_ITEM, player.getUsableItems());
+        items.put(ItemType.ITEM, player.getItems());
+
+        adapter.setChildren(items);
     }
 }
