@@ -5,6 +5,7 @@ import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.res.Resources;
+import android.databinding.DataBindingUtil;
 import android.os.Bundle;
 import android.support.v4.app.TaskStackBuilder;
 import android.support.v7.app.AppCompatActivity;
@@ -22,6 +23,8 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.whfrp3.R;
+import com.whfrp3.databinding.ActivityLaunchBinding;
+import com.whfrp3.ihm.listeners.LaunchActivityHandlers;
 import com.whfrp3.model.dices.DiceFaces;
 import com.whfrp3.model.dices.Hand;
 import com.whfrp3.model.player.Player;
@@ -44,6 +47,7 @@ import static com.whfrp3.R.id.action_update_hand;
 public class LaunchActivity extends AppCompatActivity implements IPlayerActivityConstants {
     private Spinner mHandsSpinner;
     private Menu mMenuLaunch;
+    private Hand mHand;
 
     private NumberPicker mCharacteristicNumberPicker;
     private NumberPicker mRecklessNumberPicker;
@@ -54,10 +58,26 @@ public class LaunchActivity extends AppCompatActivity implements IPlayerActivity
     private NumberPicker mChallengeNumberPicker;
     private int mBackToPreviousFragment;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_launch);
+//        setContentView(R.layout.activity_launch);
+
+        mHand = new Hand();
+
+        Bundle extras = getIntent().getExtras();
+        if (extras != null) {
+            Skill skill = (Skill) extras.getSerializable(SKILL_BUNDLE_TAG);
+            if (skill != null) {
+                mHand = getHandFromSkill(skill);
+            }
+            mBackToPreviousFragment = extras.getInt(CURRENT_FRAGMENT_POSITION_BUNDLE_TAG);
+        }
+
+        ActivityLaunchBinding binding = DataBindingUtil.setContentView(this, R.layout.activity_launch);
+        binding.setHand(mHand);
+        binding.setHandlers(new LaunchActivityHandlers());
 
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setHomeButtonEnabled(true);
@@ -65,14 +85,6 @@ public class LaunchActivity extends AppCompatActivity implements IPlayerActivity
         setupHandsSpinner();
         initPickers();
 
-        Bundle extras = getIntent().getExtras();
-        if (extras != null) {
-            Skill skill = (Skill) extras.getSerializable(SKILL_BUNDLE_TAG);
-            if (skill != null) {
-                fillNumberPickersFromSkill(skill);
-            }
-            mBackToPreviousFragment = extras.getInt(CURRENT_FRAGMENT_POSITION_BUNDLE_TAG);
-        }
 
         setResult(mBackToPreviousFragment);
     }
@@ -130,7 +142,7 @@ public class LaunchActivity extends AppCompatActivity implements IPlayerActivity
      */
     private void initPickers() {
         mCharacteristicNumberPicker = (NumberPicker) findViewById(R.id.numberPickerCharacteristic);
-        mRecklessNumberPicker = (NumberPicker) findViewById(R.id.numberPickerReckless);
+        mRecklessNumberPicker = (NumberPicker) findViewById(R.id.numberPickerRecklesss);
         mConservativeNumberPicker = (NumberPicker) findViewById(R.id.numberPickerConservative);
         mExpertiseNumberPicker = (NumberPicker) findViewById(R.id.numberPickerExpertise);
         mFortuneNumberPicker = (NumberPicker) findViewById(R.id.numberPickerFortune);
@@ -335,30 +347,31 @@ public class LaunchActivity extends AppCompatActivity implements IPlayerActivity
     //region Number Pickers
 
     /**
-     * Fill the number pickers from a given Skill for the Player.
+     * Make a Hand from given Skill
      *
-     * @param skill the skill.
+     * @param skill
+     * @return
      */
-    private void fillNumberPickersFromSkill(Skill skill) {
+    private Hand getHandFromSkill(Skill skill) {
         Player player = WHFRP3Application.getPlayer();
 
-        Hand startingHand = player.getCharacteristics().getCharacteristicHand(skill.getCharacteristic());
-        startingHand.setExpertise(skill.getLevel());
-        startingHand.setChallenge(1);
+        Hand hand = player.getCharacteristics().getCharacteristicHand(skill.getCharacteristic());
+        hand.setExpertise(skill.getLevel());
+        hand.setChallenge(1);
 
         int playerConservative = player.getConservative();
         if (playerConservative > 0) {
-            startingHand.setConservative(playerConservative);
-            startingHand.setCharacteristic(startingHand.getCharacteristic() - playerConservative);
+            hand.setConservative(playerConservative);
+            hand.setCharacteristic(hand.getCharacteristic() - playerConservative);
         }
 
         int playerReckless = player.getReckless();
         if (playerReckless > 0) {
-            startingHand.setReckless(playerReckless);
-            startingHand.setCharacteristic(startingHand.getCharacteristic() - playerReckless);
+            hand.setReckless(playerReckless);
+            hand.setCharacteristic(hand.getCharacteristic() - playerReckless);
         }
 
-        fillNumberPickersFromHand(startingHand);
+        return hand;
     }
 
     /**
