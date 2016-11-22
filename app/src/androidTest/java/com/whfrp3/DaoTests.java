@@ -4,9 +4,7 @@ import android.test.AndroidTestCase;
 import android.test.RenamingDelegatingContext;
 import android.test.suitebuilder.annotation.MediumTest;
 
-import com.whfrp3.database.dao.CharacteristicsDao;
-import com.whfrp3.database.dao.PlayerDao;
-import com.whfrp3.database.dao.SkillDao;
+import com.whfrp3.database.Database;
 import com.whfrp3.model.player.Characteristics;
 import com.whfrp3.model.player.Player;
 import com.whfrp3.model.player.skill.Skill;
@@ -19,20 +17,15 @@ import java.util.List;
  */
 
 public class DaoTests extends AndroidTestCase {
-    private WarHammerDatabaseHelper warhammerDataBaseHelper;
-    private CharacteristicsDao characteristicsDao;
-    private PlayerDao playerDao;
-    private SkillDao skillDao;
+    private Database database;
 
     @Override
     public void setUp() throws Exception {
         super.setUp();
-        RenamingDelegatingContext context = new RenamingDelegatingContext(getContext(), "test_");
-        warhammerDataBaseHelper = new WarHammerDatabaseHelper(context);
 
-        characteristicsDao = new CharacteristicsDao(warhammerDataBaseHelper);
-        playerDao = new PlayerDao(warhammerDataBaseHelper);
-        skillDao = new SkillDao(warhammerDataBaseHelper);
+        RenamingDelegatingContext context = new RenamingDelegatingContext(getContext(), "test_");
+        database = new Database(context);
+        database.open();
 
         insertCharacteristicDto();
         insertPlayerDto();
@@ -41,13 +34,13 @@ public class DaoTests extends AndroidTestCase {
 
     @Override
     public void tearDown() throws Exception {
-        warhammerDataBaseHelper.close();
+        database.close();
         super.tearDown();
     }
 
     @MediumTest
     public void testCharacteristicsDao() throws Exception {
-        List<Characteristics> res = characteristicsDao.findAll();
+        List<Characteristics> res = database.getCharacteristicsDao().findAll();
 
         assertNotNull(res);
         assertEquals(1, res.size());
@@ -55,7 +48,7 @@ public class DaoTests extends AndroidTestCase {
 
     @MediumTest
     public void testPlayerDao() throws Exception {
-        List<Player> res = playerDao.findAll();
+        List<Player> res = database.getPlayerDao().findAll();
 
         assertNotNull(res);
         assertEquals(1, res.size());
@@ -63,12 +56,12 @@ public class DaoTests extends AndroidTestCase {
 
     @MediumTest
     public void testSkillDao() throws Exception {
-        List<Skill> res = skillDao.findAllByPlayer(playerDao.findById(1));
+        List<Skill> res = database.getSkillDao().findAllByPlayerId(database.getPlayerDao().findById(1).getId());
         assertNotNull(res);
         assertEquals(3, res.size());
     }
 
-    private long insertCharacteristicDto() {
+    private void insertCharacteristicDto() {
         Characteristics dto = new Characteristics();
         dto.setStrength(1);
         dto.setToughness(2);
@@ -84,10 +77,10 @@ public class DaoTests extends AndroidTestCase {
         dto.setWillpower_fortune(2);
         dto.setFellowship_fortune(1);
 
-        return characteristicsDao.insert(dto);
+        database.getCharacteristicsDao().insert(dto);
     }
 
-    private long insertPlayerDto() {
+    private void insertPlayerDto() {
         Player dto = new Player();
 
         dto.setName("Aku");
@@ -110,29 +103,34 @@ public class DaoTests extends AndroidTestCase {
         dto.setMoney_silver(13);
         dto.setMoney_gold(3);
 
-        dto.setCharacteristics(characteristicsDao.findById(1));
+        dto.setCharacteristics(database.getCharacteristicsDao().findById(1));
 
-        return playerDao.insert(dto);
+        database.getPlayerDao().insert(dto);
     }
 
-    private long[] insertSkillDto() {
+    private void insertSkillDto() {
+        Player player = database.getPlayerDao().findById(1);
+
         Skill dto1 = new Skill();
         dto1.setCharacteristic(Characteristic.AGILITY);
         dto1.setLevel(1);
         dto1.setName("Capacité de Tir");
+        dto1.setPlayerId(player.getId());
 
         Skill dto2 = new Skill();
         dto2.setCharacteristic(Characteristic.INTELLIGENCE);
         dto2.setLevel(0);
         dto2.setName("Observation");
+        dto2.setPlayerId(player.getId());
 
         Skill dto3 = new Skill();
         dto3.setCharacteristic(Characteristic.WILLPOWER);
         dto3.setLevel(0);
         dto3.setName("Discipline");
+        dto3.setPlayerId(player.getId());
 
-        return new long[]{skillDao.insert(dto1, playerDao.findById(1)),
-                skillDao.insert(dto2, playerDao.findById(1)),
-                skillDao.insert(dto3, playerDao.findById(1))};
+        database.getSkillDao().insert(dto1);
+        database.getSkillDao().insert(dto2);
+        database.getSkillDao().insert(dto3);
     }
 }
