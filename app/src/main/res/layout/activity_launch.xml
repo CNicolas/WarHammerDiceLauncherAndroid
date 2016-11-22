@@ -24,105 +24,9 @@
         tools:context="com.whfrp3.ihm.activities.LaunchActivity">
 
         <!--PICKERS LAYOUT-->
-        <LinearLayout
-            android:id="@+id/pickers_block"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_alignParentTop="true"
-            android:baselineAligned="false"
-            android:orientation="horizontal">
-
-            <LinearLayout style="@style/DicePickerWithImageLayout">
-
-                <ImageView
-                    style="@style/DiceImage"
-                    android:contentDescription="@string/characteristicDice"
-                    android:src="@drawable/characteristic0" />
-
-                <com.whfrp3.ihm.components.NumberPickerMinMax
-                    android:id="@+id/numberPickerCharacteristic"
-                    style="@style/DiceNumberPicker"
-                    android:value="@={hand.characteristic}" />
-            </LinearLayout>
-
-            <LinearLayout style="@style/DicePickerWithImageLayout">
-
-                <ImageView
-                    style="@style/DiceImage"
-                    android:contentDescription="@string/recklessDice"
-                    android:src="@drawable/reckless0" />
-
-                <com.whfrp3.ihm.components.NumberPickerMinMax
-                    android:id="@+id/numberPickerRecklesss"
-                    style="@style/DiceNumberPicker"
-                    android:value="@={hand.reckless}" />
-            </LinearLayout>
-
-            <LinearLayout style="@style/DicePickerWithImageLayout">
-
-                <ImageView
-                    style="@style/DiceImage"
-                    android:contentDescription="@string/conservativeDice"
-                    android:src="@drawable/conservative1" />
-
-                <com.whfrp3.ihm.components.NumberPickerMinMax
-                    android:id="@+id/numberPickerConservative"
-                    style="@style/DiceNumberPicker"
-                    android:value="@={hand.conservative}" />
-            </LinearLayout>
-
-            <LinearLayout style="@style/DicePickerWithImageLayout">
-
-                <ImageView
-                    style="@style/DiceImage"
-                    android:contentDescription="@string/expertiseDice"
-                    android:src="@drawable/expertise0" />
-
-                <com.whfrp3.ihm.components.NumberPickerMinMax
-                    android:id="@+id/numberPickerExpertise"
-                    style="@style/DiceNumberPicker"
-                    android:value="@={hand.expertise}" />
-            </LinearLayout>
-
-            <LinearLayout style="@style/DicePickerWithImageLayout">
-
-                <ImageView
-                    style="@style/DiceImage"
-                    android:contentDescription="@string/fortuneDice"
-                    android:src="@drawable/fortune0" />
-
-                <com.whfrp3.ihm.components.NumberPickerMinMax
-                    android:id="@+id/numberPickerFortune"
-                    style="@style/DiceNumberPicker"
-                    android:value="@={hand.fortune}" />
-            </LinearLayout>
-
-            <LinearLayout style="@style/DicePickerWithImageLayout">
-
-                <ImageView
-                    style="@style/DiceImage"
-                    android:contentDescription="@string/misfortuneDice"
-                    android:src="@drawable/misfortune0" />
-
-                <com.whfrp3.ihm.components.NumberPickerMinMax
-                    android:id="@+id/numberPickerMisfortune"
-                    style="@style/DiceNumberPicker"
-                    android:value="@={hand.misfortune}" />
-            </LinearLayout>
-
-            <LinearLayout style="@style/DicePickerWithImageLayout">
-
-                <ImageView
-                    style="@style/DiceImage"
-                    android:contentDescription="@string/challengeDice"
-                    android:src="@drawable/challenge1" />
-
-                <com.whfrp3.ihm.components.NumberPickerMinMax
-                    android:id="@+id/numberPickerChallenge"
-                    style="@style/DiceNumberPicker"
-                    android:value="@={hand.challenge}" />
-            </LinearLayout>
-        </LinearLayout>
+        <include
+            android:id="@+id/dice_number_pickers"
+            layout="@layout/dice_number_pickers" />
         <!--END OF PICKERS LAYOUT-->
 
         <!--HANDS LAYOUT-->
@@ -130,7 +34,7 @@
             android:id="@+id/hands_spinner_block"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@id/pickers_block"
+            android:layout_below="@id/dice_number_pickers"
             android:layout_marginBottom="10dp"
             android:layout_marginTop="10dp"
             android:background="@color/spinner_background">
@@ -138,8 +42,7 @@
             <Spinner
                 android:id="@+id/hands_spinner"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_below="@id/pickers_block" />
+                android:layout_height="match_parent" />
         </LinearLayout>
 
         <!--END OF HANDS LAYOUT-->

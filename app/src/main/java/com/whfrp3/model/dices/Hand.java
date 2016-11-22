@@ -17,6 +17,16 @@ public class Hand extends AbstractModel {
     private int misfortune;
     private int challenge;
 
+    public void setFromHand(Hand otherHand) {
+        setCharacteristic(otherHand.getCharacteristic());
+        setReckless(otherHand.getReckless());
+        setConservative(otherHand.getConservative());
+        setExpertise(otherHand.getExpertise());
+        setFortune(otherHand.getFortune());
+        setMisfortune(otherHand.getMisfortune());
+        setChallenge(otherHand.getChallenge());
+    }
+
     public void reset() {
         setCharacteristic(0);
         setReckless(0);

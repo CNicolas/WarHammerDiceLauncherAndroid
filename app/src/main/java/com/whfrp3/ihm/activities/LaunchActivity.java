@@ -62,7 +62,6 @@ public class LaunchActivity extends AppCompatActivity implements IPlayerActivity
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-//        setContentView(R.layout.activity_launch);
 
         mHand = new Hand();
 
@@ -78,13 +77,13 @@ public class LaunchActivity extends AppCompatActivity implements IPlayerActivity
         ActivityLaunchBinding binding = DataBindingUtil.setContentView(this, R.layout.activity_launch);
         binding.setHand(mHand);
         binding.setHandlers(new LaunchActivityHandlers());
+        binding.diceNumberPickers.setHand(mHand);
 
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setHomeButtonEnabled(true);
 
         setupHandsSpinner();
         initPickers();
-
 
         setResult(mBackToPreviousFragment);
     }
@@ -94,8 +93,7 @@ public class LaunchActivity extends AppCompatActivity implements IPlayerActivity
         super.onActivityResult(requestCode, resultCode, intent);
         if (resultCode == Activity.RESULT_CANCELED) {
             if (requestCode == STATS_REQUEST) {
-                Hand hand = (Hand) intent.getSerializableExtra(IHandConstants.HAND_BUNDLE_TAG);
-                fillNumberPickersFromHand(hand);
+                mHand.setFromHand((Hand) intent.getSerializableExtra(IHandConstants.HAND_BUNDLE_TAG));
             }
         }
     }
@@ -187,8 +185,7 @@ public class LaunchActivity extends AppCompatActivity implements IPlayerActivity
                     startStatisticsActivity(10000);
                     break;
                 default:
-                    Hand model = extractHandFromNumberPickers();
-                    Map<DiceFaces, Integer> res = DicesRollerHelper.rollDices(model);
+                    Map<DiceFaces, Integer> res = DicesRollerHelper.rollDices(mHand);
 
                     DialogHelper.showLaunchResults(res, this);
             }
@@ -206,7 +203,7 @@ public class LaunchActivity extends AppCompatActivity implements IPlayerActivity
      */
     private void startStatisticsActivity(int times) {
         Bundle bundle = new Bundle();
-        bundle.putSerializable(IHandConstants.HAND_BUNDLE_TAG, extractHandFromNumberPickers());
+        bundle.putSerializable(IHandConstants.HAND_BUNDLE_TAG, mHand);
         bundle.putInt(IHandConstants.TIMES_BUNDLE_TAG, times);
 
         Intent statisticsIntent = new Intent(this, StatisticsActivity.class);
@@ -254,9 +251,9 @@ public class LaunchActivity extends AppCompatActivity implements IPlayerActivity
      *
      * @param title the title of the new Hand.
      */
-    private void saveNewHandWithTitle(String title) {
-        Hand hand = prepareHandModel(title);
-        WHFRP3Application.getDatabase().getHandDao().insert(hand);
+    private void saveHandWithTitle(String title) {
+        mHand.setTitle(title);
+        WHFRP3Application.getDatabase().getHandDao().insert(mHand);
         updateUI();
     }
     //endregion
@@ -269,19 +266,9 @@ public class LaunchActivity extends AppCompatActivity implements IPlayerActivity
     public void updateHand() {
         String currentHandName = (String) mHandsSpinner.getSelectedItem();
         if (!currentHandName.isEmpty()) {
-            updateHandWithTitle(currentHandName);
+            saveHandWithTitle(currentHandName);
             Toast.makeText(this, R.string.updated, Toast.LENGTH_LONG).show();
         }
-    }
-
-    /**
-     * Update the hand in mDatabase, knowing the title.
-     *
-     * @param title the hand's title
-     */
-    private void updateHandWithTitle(String title) {
-        Hand hand = prepareHandModel(title);
-        WHFRP3Application.getDatabase().getHandDao().update(hand);
     }
     //endregion
 
@@ -322,8 +309,7 @@ public class LaunchActivity extends AppCompatActivity implements IPlayerActivity
             resetHand();
         } else {
             try {
-                Hand hand = WHFRP3Application.getDatabase().getHandDao().findByTitle(title);
-                fillNumberPickersFromHand(hand);
+                mHand.setFromHand(WHFRP3Application.getDatabase().getHandDao().findByTitle(title));
             } catch (Resources.NotFoundException nfe) {
                 Log.e(this.getClass().getName(), "useHand: ", nfe);
             }
@@ -375,23 +361,6 @@ public class LaunchActivity extends AppCompatActivity implements IPlayerActivity
     }
 
     /**
-     * Create a Hand from the number pickers' value.
-     */
-    public Hand extractHandFromNumberPickers() {
-        Hand model = new Hand();
-
-        model.setCharacteristic(mCharacteristicNumberPicker.getValue());
-        model.setReckless(mRecklessNumberPicker.getValue());
-        model.setConservative(mConservativeNumberPicker.getValue());
-        model.setExpertise(mExpertiseNumberPicker.getValue());
-        model.setFortune(mFortuneNumberPicker.getValue());
-        model.setMisfortune(mMisfortuneNumberPicker.getValue());
-        model.setChallenge(mChallengeNumberPicker.getValue());
-
-        return model;
-    }
-
-    /**
      * Uses the given Hand values to set pickers' value.
      *
      * @param model the Hand.
@@ -406,18 +375,6 @@ public class LaunchActivity extends AppCompatActivity implements IPlayerActivity
         mChallengeNumberPicker.setValue(model.getChallenge());
     }
     //endregion
-
-    /**
-     * Create a hand of dices from number pickers and the given title.
-     *
-     * @param title the title for the Hand.
-     * @return a Hand.
-     */
-    private Hand prepareHandModel(String title) {
-        Hand hand = extractHandFromNumberPickers();
-        hand.setTitle(title);
-        return hand;
-    }
 
     /**
      * Fills the hands spinner and updates the menu.
@@ -485,7 +442,7 @@ public class LaunchActivity extends AppCompatActivity implements IPlayerActivity
             if (input.getText().toString().trim().isEmpty()) {
                 Toast.makeText(LaunchActivity.this, R.string.empty_hand_name, Toast.LENGTH_SHORT).show();
             } else {
-                saveNewHandWithTitle(input.getText().toString());
+                saveHandWithTitle(input.getText().toString());
             }
 
         }
