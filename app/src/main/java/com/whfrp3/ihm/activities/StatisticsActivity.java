@@ -12,7 +12,7 @@ import android.widget.TextView;
 
 import com.whfrp3.R;
 import com.whfrp3.model.dices.DiceFaces;
-import com.whfrp3.model.player.Hand;
+import com.whfrp3.model.dices.Hand;
 import com.whfrp3.tools.constants.IHandConstants;
 import com.whfrp3.tools.helpers.DicesRollerHelper;
 

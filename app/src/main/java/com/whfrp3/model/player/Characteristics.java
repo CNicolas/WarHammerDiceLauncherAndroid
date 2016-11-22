@@ -1,6 +1,7 @@
 package com.whfrp3.model.player;
 
 import com.whfrp3.model.AbstractModel;
+import com.whfrp3.model.dices.Hand;
 import com.whfrp3.tools.enums.Characteristic;
 
 /**

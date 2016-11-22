@@ -6,7 +6,7 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 
 import com.whfrp3.database.entries.IHandEntryConstants;
-import com.whfrp3.model.player.Hand;
+import com.whfrp3.model.dices.Hand;
 
 import java.util.List;
 
@@ -71,20 +71,20 @@ public class HandDao extends AbstractDao<Hand> implements IHandEntryConstants {
 
     @Override
     protected Hand createModelFromCursor(Cursor cursor) {
-        Hand dto = new Hand();
+        Hand hand = new Hand();
 
-        dto.setId(cursor.getInt(cursor.getColumnIndexOrThrow(IHandEntryConstants.COLUMN_ID)));
+        hand.setId(cursor.getInt(cursor.getColumnIndexOrThrow(IHandEntryConstants.COLUMN_ID)));
 
-        dto.setTitle(cursor.getString(cursor.getColumnIndexOrThrow(IHandEntryConstants.COLUMN_TITLE)));
-        dto.setCharacteristic(cursor.getInt(cursor.getColumnIndexOrThrow(IHandEntryConstants.COLUMN_CHARACTERISTIC)));
-        dto.setReckless(cursor.getInt(cursor.getColumnIndexOrThrow(IHandEntryConstants.COLUMN_RECKLESS)));
-        dto.setConservative(cursor.getInt(cursor.getColumnIndexOrThrow(IHandEntryConstants.COLUMN_CONSERVATIVE)));
-        dto.setExpertise(cursor.getInt(cursor.getColumnIndexOrThrow(IHandEntryConstants.COLUMN_EXPERTISE)));
-        dto.setFortune(cursor.getInt(cursor.getColumnIndexOrThrow(IHandEntryConstants.COLUMN_FORTUNE)));
-        dto.setMisfortune(cursor.getInt(cursor.getColumnIndexOrThrow(IHandEntryConstants.COLUMN_MISFORTUNE)));
-        dto.setChallenge(cursor.getInt(cursor.getColumnIndexOrThrow(IHandEntryConstants.COLUMN_CHALLENGE)));
+        hand.setTitle(cursor.getString(cursor.getColumnIndexOrThrow(IHandEntryConstants.COLUMN_TITLE)));
+        hand.setCharacteristic(cursor.getInt(cursor.getColumnIndexOrThrow(IHandEntryConstants.COLUMN_CHARACTERISTIC)));
+        hand.setReckless(cursor.getInt(cursor.getColumnIndexOrThrow(IHandEntryConstants.COLUMN_RECKLESS)));
+        hand.setConservative(cursor.getInt(cursor.getColumnIndexOrThrow(IHandEntryConstants.COLUMN_CONSERVATIVE)));
+        hand.setExpertise(cursor.getInt(cursor.getColumnIndexOrThrow(IHandEntryConstants.COLUMN_EXPERTISE)));
+        hand.setFortune(cursor.getInt(cursor.getColumnIndexOrThrow(IHandEntryConstants.COLUMN_FORTUNE)));
+        hand.setMisfortune(cursor.getInt(cursor.getColumnIndexOrThrow(IHandEntryConstants.COLUMN_MISFORTUNE)));
+        hand.setChallenge(cursor.getInt(cursor.getColumnIndexOrThrow(IHandEntryConstants.COLUMN_CHALLENGE)));
 
-        return dto;
+        return hand;
     }
 
     //endregion

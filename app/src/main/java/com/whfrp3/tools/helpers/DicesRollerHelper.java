@@ -1,6 +1,7 @@
 package com.whfrp3.tools.helpers;
 
 import com.whfrp3.model.dices.DiceFaces;
+import com.whfrp3.model.dices.Hand;
 import com.whfrp3.model.dices.IDice;
 import com.whfrp3.model.dices.impl.ChallengeDice;
 import com.whfrp3.model.dices.impl.CharacteristicDice;
@@ -9,7 +10,6 @@ import com.whfrp3.model.dices.impl.ExpertiseDice;
 import com.whfrp3.model.dices.impl.FortuneDice;
 import com.whfrp3.model.dices.impl.MisfortuneDice;
 import com.whfrp3.model.dices.impl.RecklessDice;
-import com.whfrp3.model.player.Hand;
 import com.whfrp3.tools.constants.IHandConstants;
 
 import java.util.ArrayList;

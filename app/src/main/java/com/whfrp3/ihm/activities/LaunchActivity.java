@@ -23,7 +23,7 @@ import android.widget.Toast;
 
 import com.whfrp3.R;
 import com.whfrp3.model.dices.DiceFaces;
-import com.whfrp3.model.player.Hand;
+import com.whfrp3.model.dices.Hand;
 import com.whfrp3.model.player.Player;
 import com.whfrp3.model.player.skill.Skill;
 import com.whfrp3.tools.WHFRP3Application;

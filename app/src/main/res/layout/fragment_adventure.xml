@@ -10,7 +10,7 @@
 
         <variable
             name="handlers"
-            type="com.whfrp3.ihm.listeners.AdventureHandlers" />
+            type="com.whfrp3.ihm.listeners.AdventureActivityHandlers" />
 
     </data>
 

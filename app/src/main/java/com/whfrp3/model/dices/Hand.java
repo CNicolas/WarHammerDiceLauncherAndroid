@@ -1,4 +1,6 @@
-package com.whfrp3.model.player;
+package com.whfrp3.model.dices;
+
+import android.databinding.Bindable;
 
 import com.whfrp3.model.AbstractModel;
 
@@ -15,7 +17,18 @@ public class Hand extends AbstractModel {
     private int misfortune;
     private int challenge;
 
+    public void reset() {
+        setCharacteristic(0);
+        setReckless(0);
+        setConservative(0);
+        setExpertise(0);
+        setFortune(0);
+        setMisfortune(0);
+        setChallenge(0);
+    }
+
     //region Get & Set
+    @Bindable
     public String getTitle() {
         return title;
     }
@@ -24,6 +37,7 @@ public class Hand extends AbstractModel {
         this.title = title;
     }
 
+    @Bindable
     public int getCharacteristic() {
         return characteristic;
     }
@@ -32,6 +46,7 @@ public class Hand extends AbstractModel {
         this.characteristic = characteristic;
     }
 
+    @Bindable
     public int getReckless() {
         return reckless;
     }
@@ -40,6 +55,7 @@ public class Hand extends AbstractModel {
         this.reckless = reckless;
     }
 
+    @Bindable
     public int getConservative() {
         return conservative;
     }
@@ -48,6 +64,7 @@ public class Hand extends AbstractModel {
         this.conservative = conservative;
     }
 
+    @Bindable
     public int getExpertise() {
         return expertise;
     }
@@ -56,6 +73,7 @@ public class Hand extends AbstractModel {
         this.expertise = expertise;
     }
 
+    @Bindable
     public int getFortune() {
         return fortune;
     }
@@ -64,6 +82,7 @@ public class Hand extends AbstractModel {
         this.fortune = fortune;
     }
 
+    @Bindable
     public int getMisfortune() {
         return misfortune;
     }
@@ -72,6 +91,7 @@ public class Hand extends AbstractModel {
         this.misfortune = misfortune;
     }
 
+    @Bindable
     public int getChallenge() {
         return challenge;
     }
@@ -81,6 +101,7 @@ public class Hand extends AbstractModel {
     }
     //endregion
 
+    //region Overrides
     @Override
     public String toString() {
         return "Hand{" +
@@ -127,5 +148,5 @@ public class Hand extends AbstractModel {
         result = 31 * result + getChallenge();
         return result;
     }
-//endregion
+    //endregion
 }
