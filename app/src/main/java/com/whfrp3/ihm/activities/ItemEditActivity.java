@@ -21,9 +21,9 @@ import com.whfrp3.model.player.inventory.Quality;
 import com.whfrp3.model.player.inventory.Range;
 import com.whfrp3.model.player.inventory.UsableItem;
 import com.whfrp3.model.player.inventory.Weapon;
-import com.whfrp3.tools.PlayerHelper;
 import com.whfrp3.tools.WHFRP3Application;
 import com.whfrp3.tools.constants.IPlayerActivityConstants;
+import com.whfrp3.tools.helpers.PlayerHelper;
 
 /**
  * Activity used to modify an item.

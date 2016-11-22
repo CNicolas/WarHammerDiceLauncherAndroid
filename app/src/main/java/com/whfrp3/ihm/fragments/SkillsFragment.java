@@ -13,10 +13,10 @@ import com.whfrp3.R;
 import com.whfrp3.databinding.FragmentSkillsBinding;
 import com.whfrp3.model.player.skill.SkillsList;
 import com.whfrp3.tools.BindingContext;
-import com.whfrp3.tools.PlayerHelper;
 import com.whfrp3.tools.WHFRP3Application;
 import com.whfrp3.tools.constants.IPlayerActivityConstants;
 import com.whfrp3.tools.helpers.OnPlayerUpdateListener;
+import com.whfrp3.tools.helpers.PlayerHelper;
 
 /**
  * The SkillFragment.

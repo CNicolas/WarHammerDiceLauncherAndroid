@@ -1,13 +1,10 @@
-package com.whfrp3.tools;
+package com.whfrp3.tools.helpers;
 
 import android.util.Log;
 
-import com.whfrp3.database.dao.CharacteristicsDao;
-import com.whfrp3.database.dao.PlayerDao;
 import com.whfrp3.model.player.Player;
 import com.whfrp3.model.player.skill.Skill;
-import com.whfrp3.tools.helpers.OnPlayerUpdateListener;
-import com.whfrp3.tools.helpers.SkillsHelper;
+import com.whfrp3.tools.WHFRP3Application;
 
 import java.util.ArrayList;
 import java.util.List;

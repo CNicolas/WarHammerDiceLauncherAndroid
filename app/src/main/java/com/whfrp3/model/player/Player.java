@@ -161,8 +161,6 @@ public class Player extends AbstractModel {
     public void addItem(Item item) {
         if (item != null) {
             inventory.add(item);
-            notifyPropertyChanged(BR.fullDefenseAmount);
-            notifyPropertyChanged(BR.fullSoakAmount);
         }
     }
 
@@ -174,9 +172,6 @@ public class Player extends AbstractModel {
     public void removeItem(Item item) {
         if (item != null) {
             inventory.remove(item);
-            notifyPropertyChanged(BR.fullDefenseAmount);
-            notifyPropertyChanged(BR.fullSoakAmount);
-
             mItemToRemove.add(item.getId());
         }
     }

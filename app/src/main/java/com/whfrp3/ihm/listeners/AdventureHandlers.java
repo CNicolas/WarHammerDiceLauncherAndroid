@@ -1,7 +1,7 @@
 package com.whfrp3.ihm.listeners;
 
-import com.whfrp3.tools.PlayerHelper;
 import com.whfrp3.tools.WHFRP3Application;
+import com.whfrp3.tools.helpers.PlayerHelper;
 
 public class AdventureHandlers {
     public void changeStress(int change) {

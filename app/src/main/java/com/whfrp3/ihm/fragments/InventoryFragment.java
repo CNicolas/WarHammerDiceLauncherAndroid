@@ -16,10 +16,10 @@ import android.widget.AdapterView;
 import android.widget.ExpandableListView;
 import android.widget.ImageView;
 
+import com.whfrp3.BR;
 import com.whfrp3.R;
 import com.whfrp3.ihm.activities.ItemEditActivity;
 import com.whfrp3.ihm.adapters.InventoryListAdapter;
-import com.whfrp3.ihm.components.AnimatedExpandableListView;
 import com.whfrp3.ihm.fragments.inventory.ItemShowDialogFragment;
 import com.whfrp3.model.player.Player;
 import com.whfrp3.model.player.inventory.Armor;
@@ -137,6 +137,8 @@ public class InventoryFragment extends Fragment implements IPlayerActivityConsta
                                 }
 
                                 refreshInventoryView(null);
+                                WHFRP3Application.getPlayer().notifyPropertyChanged(BR.fullDefenseAmount);
+                                WHFRP3Application.getPlayer().notifyPropertyChanged(BR.fullSoakAmount);
                             }
                         });
                 AlertDialog dialog = builder.create();
