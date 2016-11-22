@@ -28,9 +28,7 @@
 
             <com.whfrp3.ihm.components.NumberPickerMinMax
                 android:id="@+id/numberPickerCharacteristic"
-                style="@style/DiceNumberPicker"
-                maxValue="99"
-                minValue="0" />
+                style="@style/DiceNumberPicker" />
         </LinearLayout>
 
         <LinearLayout style="@style/DicePickerWithImageLayout">
@@ -42,9 +40,7 @@
 
             <com.whfrp3.ihm.components.NumberPickerMinMax
                 android:id="@+id/numberPickerReckless"
-                style="@style/DiceNumberPicker"
-                maxValue="99"
-                minValue="0" />
+                style="@style/DiceNumberPicker" />
         </LinearLayout>
 
         <LinearLayout style="@style/DicePickerWithImageLayout">
@@ -56,9 +52,7 @@
 
             <com.whfrp3.ihm.components.NumberPickerMinMax
                 android:id="@+id/numberPickerConservative"
-                style="@style/DiceNumberPicker"
-                maxValue="99"
-                minValue="0" />
+                style="@style/DiceNumberPicker" />
         </LinearLayout>
 
         <LinearLayout style="@style/DicePickerWithImageLayout">
@@ -70,9 +64,7 @@
 
             <com.whfrp3.ihm.components.NumberPickerMinMax
                 android:id="@+id/numberPickerExpertise"
-                style="@style/DiceNumberPicker"
-                maxValue="99"
-                minValue="0" />
+                style="@style/DiceNumberPicker" />
         </LinearLayout>
 
         <LinearLayout style="@style/DicePickerWithImageLayout">
@@ -84,9 +76,7 @@
 
             <com.whfrp3.ihm.components.NumberPickerMinMax
                 android:id="@+id/numberPickerFortune"
-                style="@style/DiceNumberPicker"
-                maxValue="99"
-                minValue="0" />
+                style="@style/DiceNumberPicker" />
         </LinearLayout>
 
         <LinearLayout style="@style/DicePickerWithImageLayout">
@@ -98,9 +88,7 @@
 
             <com.whfrp3.ihm.components.NumberPickerMinMax
                 android:id="@+id/numberPickerMisfortune"
-                style="@style/DiceNumberPicker"
-                maxValue="99"
-                minValue="0" />
+                style="@style/DiceNumberPicker" />
         </LinearLayout>
 
         <LinearLayout style="@style/DicePickerWithImageLayout">
@@ -112,9 +100,7 @@
 
             <com.whfrp3.ihm.components.NumberPickerMinMax
                 android:id="@+id/numberPickerChallenge"
-                style="@style/DiceNumberPicker"
-                maxValue="99"
-                minValue="0" />
+                style="@style/DiceNumberPicker" />
         </LinearLayout>
     </LinearLayout>
     <!--END OF PICKERS LAYOUT-->
