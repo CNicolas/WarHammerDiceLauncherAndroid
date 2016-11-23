@@ -202,7 +202,7 @@ public class LaunchActivity extends AppCompatActivity implements IPlayerActivity
             builder.setTitle(R.string.insertHandTitleTitle);
 
             final EditText input = new EditText(this);
-            input.setInputType(InputType.TYPE_CLASS_TEXT);
+            input.setInputType(InputType.TYPE_TEXT_FLAG_CAP_SENTENCES);
             builder.setView(input);
 
             builder.setPositiveButton(R.string.ok, new DialogInterface.OnClickListener() {
@@ -213,7 +213,6 @@ public class LaunchActivity extends AppCompatActivity implements IPlayerActivity
                     } else {
                         saveHandWithTitle(input.getText().toString());
                     }
-
                 }
             });
             builder.setNegativeButton(R.string.cancel, new DialogInterface.OnClickListener() {

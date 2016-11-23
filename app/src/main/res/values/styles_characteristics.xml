@@ -68,7 +68,7 @@
 
     <style name="CharacteristicFortuneNumberEditText" parent="CharacteristicNumberEditText">
         <item name="android:textColor">@android:color/black</item>
-        <item name="android:background">@drawable/black_border</item>
+        <item name="android:background">@drawable/characteristics_fortune_border</item>
         <item name="android:layout_marginEnd">30dp</item>
         <item name="android:layout_marginStart">@dimen/very_small_padding</item>
         <item name="android:layout_marginTop">@dimen/very_small_padding</item>
