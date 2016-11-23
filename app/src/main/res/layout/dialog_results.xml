@@ -12,12 +12,12 @@
         <TextView
             android:id="@+id/successNumberResults"
             style="@style/ResultDialogImagedTextView"
-            android:drawableTop="@drawable/successblack" />
+            android:drawableTop="@drawable/success_black" />
 
         <TextView
             android:id="@+id/benefitNumberResults"
             style="@style/ResultDialogImagedTextView"
-            android:drawableTop="@drawable/boonblack" />
+            android:drawableTop="@drawable/boon_black" />
 
         <TextView
             android:id="@+id/mischiefNumberResults"

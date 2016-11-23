@@ -21,7 +21,7 @@
             <ImageView
                 style="@style/DiceImage"
                 android:contentDescription="@string/characteristicDice"
-                android:src="@drawable/characteristic0" />
+                android:src="@drawable/dice_characteristic" />
 
             <com.whfrp3.ihm.components.NumberPickerMinMax
                 android:id="@+id/numberPickerCharacteristic"
@@ -34,7 +34,7 @@
             <ImageView
                 style="@style/DiceImage"
                 android:contentDescription="@string/recklessDice"
-                android:src="@drawable/reckless0" />
+                android:src="@drawable/dice_reckless" />
 
             <com.whfrp3.ihm.components.NumberPickerMinMax
                 android:id="@+id/numberPickerRecklesss"
@@ -47,7 +47,7 @@
             <ImageView
                 style="@style/DiceImage"
                 android:contentDescription="@string/conservativeDice"
-                android:src="@drawable/conservative1" />
+                android:src="@drawable/dice_conservative" />
 
             <com.whfrp3.ihm.components.NumberPickerMinMax
                 android:id="@+id/numberPickerConservative"
@@ -60,7 +60,7 @@
             <ImageView
                 style="@style/DiceImage"
                 android:contentDescription="@string/expertiseDice"
-                android:src="@drawable/expertise0" />
+                android:src="@drawable/dice_expertise" />
 
             <com.whfrp3.ihm.components.NumberPickerMinMax
                 android:id="@+id/numberPickerExpertise"
@@ -73,7 +73,7 @@
             <ImageView
                 style="@style/DiceImage"
                 android:contentDescription="@string/fortuneDice"
-                android:src="@drawable/fortune0" />
+                android:src="@drawable/dice_fortune" />
 
             <com.whfrp3.ihm.components.NumberPickerMinMax
                 android:id="@+id/numberPickerFortune"
@@ -86,7 +86,7 @@
             <ImageView
                 style="@style/DiceImage"
                 android:contentDescription="@string/misfortuneDice"
-                android:src="@drawable/misfortune0" />
+                android:src="@drawable/dice_misfortune" />
 
             <com.whfrp3.ihm.components.NumberPickerMinMax
                 android:id="@+id/numberPickerMisfortune"
@@ -99,7 +99,7 @@
             <ImageView
                 style="@style/DiceImage"
                 android:contentDescription="@string/challengeDice"
-                android:src="@drawable/challenge1" />
+                android:src="@drawable/dice_challenge" />
 
             <com.whfrp3.ihm.components.NumberPickerMinMax
                 android:id="@+id/numberPickerChallenge"

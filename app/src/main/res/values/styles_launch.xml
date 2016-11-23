@@ -12,6 +12,7 @@
     <style name="DiceImage">
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">50dp</item>
+        <item name="android:layout_marginBottom">@dimen/small_padding</item>
     </style>
 
     <declare-styleable name="NumberPickerMinMax">

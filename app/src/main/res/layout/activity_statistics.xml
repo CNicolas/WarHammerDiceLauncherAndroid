@@ -53,7 +53,7 @@
                 android:id="@+id/average_success"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:drawableStart="@drawable/successblack"
+                android:drawableStart="@drawable/success_black"
                 android:gravity="center"
                 android:padding="5dp"
                 android:text="@string/ok" />
@@ -62,7 +62,7 @@
                 android:id="@+id/average_boon"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:drawableStart="@drawable/boonblack"
+                android:drawableStart="@drawable/boon_black"
                 android:gravity="center"
                 android:padding="5dp"
                 android:text="@string/ok" />
