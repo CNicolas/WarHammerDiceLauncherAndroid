@@ -51,6 +51,18 @@ public class PlayerActivity extends AppCompatActivity implements IPlayerActivity
         initVisualElements();
     }
 
+    @Override
+    protected void onPause() {
+        PlayerHelper.savePlayer(WHFRP3Application.getPlayer());
+        super.onPause();
+    }
+
+    @Override
+    protected void onStop() {
+        PlayerHelper.savePlayer(WHFRP3Application.getPlayer());
+        super.onStop();
+    }
+
     //region Instances
     @Override
     protected void onSaveInstanceState(Bundle outState) {

@@ -20,7 +20,7 @@
         app:showAsAction="ifRoom" />
     <item
         android:id="@+id/action_update_player"
-        android:icon="@drawable/ic_sync_white_24dp"
+        android:icon="@drawable/ic_save_white"
         android:title="@string/action_update_player"
         app:showAsAction="ifRoom" />
 </menu>
