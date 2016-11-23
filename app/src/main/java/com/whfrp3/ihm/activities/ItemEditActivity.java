@@ -10,7 +10,7 @@ import android.widget.AdapterView;
 import android.widget.Spinner;
 
 import com.whfrp3.R;
-import com.whfrp3.databinding.ItemEditActivityBinding;
+import com.whfrp3.databinding.ActivityItemEditBinding;
 import com.whfrp3.ihm.adapters.EnumSpinnerAdapter;
 import com.whfrp3.model.player.Player;
 import com.whfrp3.model.player.inventory.Armor;
@@ -76,9 +76,13 @@ public class ItemEditActivity extends AppCompatActivity {
         itemEdit = new ItemEdit(item);
 
         // Configure binding
-        ItemEditActivityBinding binding = DataBindingUtil.inflate(getLayoutInflater(), R.layout.item_edit_activity, null, false);
+        ActivityItemEditBinding binding = DataBindingUtil.inflate(getLayoutInflater(), R.layout.activity_item_edit, null, false);
         binding.setItem(itemEdit);
         binding.setViewModel(this);
+        binding.itemEditCommonFields.setItem(itemEdit);
+        binding.itemEditWeaponFields.setItem(itemEdit);
+        binding.itemEditArmorFields.setItem(itemEdit);
+        binding.itemEditUsableFields.setItem(itemEdit);
 
         setContentView(binding.getRoot());
 

@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <data>
+
+        <variable
+            name="item"
+            type="com.whfrp3.model.player.inventory.ItemEdit" />
+    </data>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="32dp"
+            android:background="@color/colorPrimary"
+            android:gravity="center_vertical"
+            android:paddingEnd="8dp"
+            android:paddingStart="8dp"
+            android:text="@string/inventory_description"
+            android:textColor="@color/white"
+            android:textSize="20sp"
+            android:textStyle="bold" />
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="top|left"
+            android:hint="@string/inventory_description"
+            android:inputType="textMultiLine"
+            android:lines="4"
+            android:minLines="2"
+            android:padding="4dp"
+            android:scrollbars="vertical"
+            android:text="@={item.description}"
+            android:textColor="@color/black"
+            android:textSize="18sp" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="32dp"
+            android:background="@color/colorPrimary"
+            android:gravity="center_vertical"
+            android:paddingEnd="8dp"
+            android:paddingStart="8dp"
+            android:text="@string/inventory_details"
+            android:textColor="@color/white"
+            android:textSize="20sp"
+            android:textStyle="bold" />
+
+        <LinearLayout style="@style/ItemEditFieldLinearLayout">
+
+            <TextView
+                style="@style/InventoryLabelTextView"
+                android:text="@string/item_type_label" />
+
+            <Spinner
+                android:id="@+id/item_edit_type_spinner"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" />
+
+        </LinearLayout>
+
+        <LinearLayout style="@style/ItemEditFieldLinearLayout">
+
+            <TextView
+                style="@style/InventoryLabelTextView"
+                android:text="@string/quality_label" />
+
+            <Spinner
+                android:id="@+id/item_edit_quality_spinner"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" />
+
+        </LinearLayout>
+
+        <LinearLayout style="@style/ItemEditFieldLinearLayout">
+
+            <TextView
+                style="@style/InventoryLabelTextView"
+                android:text="@string/quantity_label" />
+
+            <EditText
+                style="@style/InventoryNumberEditText"
+                android:text="@={item.quantity}" />
+
+        </LinearLayout>
+
+        <LinearLayout style="@style/ItemEditFieldLinearLayout">
+
+            <TextView
+                style="@style/InventoryLabelTextView"
+                android:text="@string/encumbrance_label" />
+
+            <EditText
+                style="@style/InventoryNumberEditText"
+                android:text="@={item.encumbrance}" />
+
+        </LinearLayout>
+    </LinearLayout>
+</layout>

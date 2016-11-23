@@ -7,7 +7,7 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 
 import com.whfrp3.R;
-import com.whfrp3.databinding.SpinLayoutBinding;
+import com.whfrp3.databinding.ItemEnumSpinnerBinding;
 
 import java.util.Arrays;
 
@@ -28,7 +28,7 @@ public class EnumSpinnerAdapter extends ArrayAdapter {
 
 
     public EnumSpinnerAdapter(LayoutInflater inflater, IEnumSpinner[] values) {
-        super(inflater.getContext(), R.layout.spin_layout, Arrays.asList(values));
+        super(inflater.getContext(), R.layout.item_enum_spinner, Arrays.asList(values));
 
         this.inflater = inflater;
         this.values = values;
@@ -56,7 +56,7 @@ public class EnumSpinnerAdapter extends ArrayAdapter {
 
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
-        SpinLayoutBinding binding = DataBindingUtil.inflate(inflater, R.layout.spin_layout, null, false);
+        ItemEnumSpinnerBinding binding = DataBindingUtil.inflate(inflater, R.layout.item_enum_spinner, null, false);
         binding.setSpin(values[position]);
 
         return binding.getRoot();

@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <style name="ItemEditFieldLinearLayout">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:minHeight">50dp</item>
+    </style>
+
+    <style name="InventoryLabelTextView">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">match_parent</item>
+        <item name="android:gravity">center_vertical</item>
+        <item name="android:paddingStart">4dp</item>
+        <item name="android:paddingEnd">4dp</item>
+        <item name="android:textSize">18sp</item>
+        <item name="android:textColor">@color/characteristic_text</item>
+    </style>
+
+    <style name="InventoryNumberEditText">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">match_parent</item>
+        <item name="android:gravity">center</item>
+        <item name="android:hint">@string/zero</item>
+        <item name="android:inputType">number</item>
+        <item name="android:minWidth">48dp</item>
+        <item name="android:maxLength">2</item>
+        <item name="android:textColor">@color/characteristic_text</item>
+    </style>
+</resources>

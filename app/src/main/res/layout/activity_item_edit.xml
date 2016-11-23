@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <data>
+
+        <variable
+            name="viewModel"
+            type="com.whfrp3.ihm.activities.ItemEditActivity" />
+
+        <variable
+            name="item"
+            type="com.whfrp3.model.player.inventory.ItemEdit" />
+    </data>
+
+    <android.support.design.widget.CoordinatorLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <android.support.design.widget.FloatingActionButton
+            android:id="@+id/inventorySaveButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom|right"
+            android:layout_margin="16dp"
+            android:onClick="@{viewModel::onSave}"
+            android:src="@drawable/ic_check_white" />
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fillViewport="true">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <EditText
+                    android:layout_width="match_parent"
+                    android:layout_height="48dp"
+                    android:background="@color/colorPrimaryDark"
+                    android:hint="@string/name_hint"
+                    android:paddingTop="8dp"
+                    android:text="@={item.name}"
+                    android:textAlignment="center"
+                    android:textColor="@color/white"
+                    android:textSize="24sp" />
+
+                <include
+                    android:id="@+id/item_edit_common_fields"
+                    layout="@layout/item_edit_common_fields" />
+
+                <include
+                    android:id="@+id/item_edit_weapon_fields"
+                    layout="@layout/item_edit_weapon_fields" />
+
+                <include
+                    android:id="@+id/item_edit_armor_fields"
+                    layout="@layout/item_edit_armor_fields" />
+
+                <include
+                    android:id="@+id/item_edit_usable_fields"
+                    layout="@layout/item_edit_usable_fields" />
+
+            </LinearLayout>
+        </ScrollView>
+    </android.support.design.widget.CoordinatorLayout>
+</layout>
