@@ -43,7 +43,8 @@
                 android:id="@+id/success_rolls"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:drawableStart="@drawable/ic_check_black_48dp"
+                android:layout_marginBottom="@dimen/big_padding"
+                android:drawableStart="@drawable/ic_check_black_big"
                 android:gravity="center"
                 android:padding="5dp"
                 android:text="@string/ok" />

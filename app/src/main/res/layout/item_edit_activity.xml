@@ -29,7 +29,7 @@
             android:layout_gravity="bottom|right"
             android:layout_margin="16dp"
             android:onClick="@{viewModel::onSave}"
-            android:src="@drawable/ic_check_white_48dp" />
+            android:src="@drawable/ic_check_white" />
 
         <ScrollView
             android:layout_width="match_parent"

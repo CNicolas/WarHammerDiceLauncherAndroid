@@ -3,12 +3,12 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
     <item
         android:id="@+id/action_update_hand"
-        android:icon="@drawable/ic_file_upload_white_24dp"
+        android:icon="@drawable/ic_file_upload_white"
         android:title="@string/btn_updateHand"
         app:showAsAction="ifRoom" />
     <item
         android:id="@+id/action_save_hand"
-        android:icon="@drawable/ic_file_download_white_24dp"
+        android:icon="@drawable/ic_file_download_white"
         android:title="@string/btn_saveHand"
         app:showAsAction="ifRoom" />
 </menu>

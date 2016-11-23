@@ -103,7 +103,7 @@ public class PlayerPagerAdapter extends FragmentPagerAdapter {
     public CharSequence getPageTitle(int position) {
         switch (position) {
             case IPlayerActivityConstants.CHARACTERISTICS_FRAGMENT_POSITION:
-                Drawable image = ContextCompat.getDrawable(mContext, R.drawable.ic_characteristics_black);
+                Drawable image = ContextCompat.getDrawable(mContext, R.drawable.ic_person_black);
                 return setTabIcon(image);
             case IPlayerActivityConstants.ADVENTURE_FRAGMENT_POSITION:
                 image = ContextCompat.getDrawable(mContext, R.drawable.ic_adventure_black);
