@@ -18,7 +18,7 @@ public interface IHandEntryConstants extends IEntryConstants {
     String SQL_CREATE_ENTRIES =
             "CREATE TABLE " + TABLE_NAME + " (" +
                     COLUMN_ID + INTEGER_TYPE + PRIMARY_KEY + AUTO_INCREMENT + COMMA_SEP +
-                    COLUMN_TITLE + TEXT_TYPE + COMMA_SEP +
+                    COLUMN_TITLE + TEXT_TYPE + UNIQUE + COMMA_SEP +
                     COLUMN_CHARACTERISTIC + INTEGER_TYPE + COMMA_SEP +
                     COLUMN_RECKLESS + INTEGER_TYPE + COMMA_SEP +
                     COLUMN_CONSERVATIVE + INTEGER_TYPE + COMMA_SEP +

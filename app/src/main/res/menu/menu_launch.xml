@@ -5,10 +5,10 @@
         android:id="@+id/action_update_hand"
         android:icon="@drawable/ic_file_upload_white_24dp"
         android:title="@string/btn_updateHand"
-        app:showAsAction="always" />
+        app:showAsAction="ifRoom" />
     <item
         android:id="@+id/action_save_hand"
         android:icon="@drawable/ic_file_download_white_24dp"
         android:title="@string/btn_saveHand"
-        app:showAsAction="always" />
+        app:showAsAction="ifRoom" />
 </menu>

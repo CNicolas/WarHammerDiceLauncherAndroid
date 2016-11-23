@@ -33,7 +33,7 @@
         <item name="android:gravity">center</item>
         <item name="android:padding">@dimen/very_small_padding</item>
         <item name="android:hint">@string/ok</item>
-        <item name="android:textSize">50sp</item>
+        <item name="android:textSize">35sp</item>
     </style>
 
     <style name="ButtonPlusMinus" parent="Base.Widget.AppCompat.Button">

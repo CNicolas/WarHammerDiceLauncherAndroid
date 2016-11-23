@@ -19,6 +19,8 @@ public class Hand extends AbstractModel {
     private int challenge;
 
     public void setFromHand(Hand otherHand) {
+        setTitle(otherHand.getTitle());
+
         setCharacteristic(otherHand.getCharacteristic());
         setReckless(otherHand.getReckless());
         setConservative(otherHand.getConservative());
@@ -36,6 +38,19 @@ public class Hand extends AbstractModel {
         setFortune(0);
         setMisfortune(0);
         setChallenge(0);
+    }
+
+    public int getDicesNumber() {
+        return getCharacteristic() + getConservative() + getReckless() + getExpertise() + getFortune() + getMisfortune() + getChallenge();
+    }
+
+    @Bindable
+    public boolean isNotEmpty() {
+        return getDicesNumber() > 0;
+    }
+
+    private void updateNotEmpty() {
+        notifyPropertyChanged(BR.notEmpty);
     }
 
     //region Get & Set
@@ -56,6 +71,7 @@ public class Hand extends AbstractModel {
     public void setCharacteristic(int characteristic) {
         this.characteristic = characteristic;
         notifyPropertyChanged(BR.characteristic);
+        updateNotEmpty();
     }
 
     @Bindable
@@ -66,6 +82,7 @@ public class Hand extends AbstractModel {
     public void setReckless(int reckless) {
         this.reckless = reckless;
         notifyPropertyChanged(BR.reckless);
+        updateNotEmpty();
     }
 
     @Bindable
@@ -76,6 +93,7 @@ public class Hand extends AbstractModel {
     public void setConservative(int conservative) {
         this.conservative = conservative;
         notifyPropertyChanged(BR.conservative);
+        updateNotEmpty();
     }
 
     @Bindable
@@ -86,6 +104,7 @@ public class Hand extends AbstractModel {
     public void setExpertise(int expertise) {
         this.expertise = expertise;
         notifyPropertyChanged(BR.expertise);
+        updateNotEmpty();
     }
 
     @Bindable
@@ -96,6 +115,7 @@ public class Hand extends AbstractModel {
     public void setFortune(int fortune) {
         this.fortune = fortune;
         notifyPropertyChanged(BR.fortune);
+        updateNotEmpty();
     }
 
     @Bindable
@@ -106,6 +126,7 @@ public class Hand extends AbstractModel {
     public void setMisfortune(int misfortune) {
         this.misfortune = misfortune;
         notifyPropertyChanged(BR.misfortune);
+        updateNotEmpty();
     }
 
     @Bindable
@@ -116,6 +137,7 @@ public class Hand extends AbstractModel {
     public void setChallenge(int challenge) {
         this.challenge = challenge;
         notifyPropertyChanged(BR.challenge);
+        updateNotEmpty();
     }
     //endregion
 

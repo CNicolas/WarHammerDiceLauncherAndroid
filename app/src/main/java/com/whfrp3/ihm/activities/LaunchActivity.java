@@ -17,7 +17,6 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
-import android.widget.NumberPicker;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -49,15 +48,7 @@ public class LaunchActivity extends AppCompatActivity implements IPlayerActivity
     private Menu mMenuLaunch;
     private Hand mHand;
 
-    private NumberPicker mCharacteristicNumberPicker;
-    private NumberPicker mRecklessNumberPicker;
-    private NumberPicker mConservativeNumberPicker;
-    private NumberPicker mExpertiseNumberPicker;
-    private NumberPicker mFortuneNumberPicker;
-    private NumberPicker mMisfortuneNumberPicker;
-    private NumberPicker mChallengeNumberPicker;
     private int mBackToPreviousFragment;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -83,7 +74,6 @@ public class LaunchActivity extends AppCompatActivity implements IPlayerActivity
         getSupportActionBar().setHomeButtonEnabled(true);
 
         setupHandsSpinner();
-        initPickers();
 
         setResult(mBackToPreviousFragment);
     }
@@ -131,31 +121,15 @@ public class LaunchActivity extends AppCompatActivity implements IPlayerActivity
 
         return true;
     }
-    //endregion
-
-    //region Init
 
     /**
-     * Init the NumberPickers fields.
+     * Change the visibility for the "update" menu item when not usable.
+     *
+     * @param isVisible if the updateOptionsMenu is visible.
      */
-    private void initPickers() {
-        mCharacteristicNumberPicker = (NumberPicker) findViewById(R.id.numberPickerCharacteristic);
-        mRecklessNumberPicker = (NumberPicker) findViewById(R.id.numberPickerRecklesss);
-        mConservativeNumberPicker = (NumberPicker) findViewById(R.id.numberPickerConservative);
-        mExpertiseNumberPicker = (NumberPicker) findViewById(R.id.numberPickerExpertise);
-        mFortuneNumberPicker = (NumberPicker) findViewById(R.id.numberPickerFortune);
-        mMisfortuneNumberPicker = (NumberPicker) findViewById(R.id.numberPickerMisfortune);
-        mChallengeNumberPicker = (NumberPicker) findViewById(R.id.numberPickerChallenge);
-    }
-
-    /**
-     * Set up the HandsSpinner.
-     */
-    private void setupHandsSpinner() {
-        mHandsSpinner = (Spinner) findViewById(R.id.hands_spinner);
-        fillHandsSpinner();
-        mHandsSpinner.setSelection(0, false);
-        mHandsSpinner.setOnItemSelectedListener(new HandsSpinnerItemSelectedListener(WHFRP3Application.getDatabase().getHandDao().findAllTitles().size() > 0));
+    private void changeUpdateOptionsMenuItemVisibility(boolean isVisible) {
+        MenuItem item = mMenuLaunch.findItem(action_update_hand);
+        item.setVisible(isVisible);
     }
     //endregion
 
@@ -217,7 +191,7 @@ public class LaunchActivity extends AppCompatActivity implements IPlayerActivity
     }
     //endregion
 
-    //region Save Hand
+    //region Hand
 
     /**
      * Save the current hand of dices in mDatabase for future use.
@@ -231,7 +205,17 @@ public class LaunchActivity extends AppCompatActivity implements IPlayerActivity
             input.setInputType(InputType.TYPE_CLASS_TEXT);
             builder.setView(input);
 
-            builder.setPositiveButton(R.string.ok, new SaveHandDialogResultOkClickListener(input));
+            builder.setPositiveButton(R.string.ok, new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialog, int which) {
+                    if (input.getText().toString().trim().isEmpty()) {
+                        Toast.makeText(LaunchActivity.this, R.string.empty_hand_name, Toast.LENGTH_SHORT).show();
+                    } else {
+                        saveHandWithTitle(input.getText().toString());
+                    }
+
+                }
+            });
             builder.setNegativeButton(R.string.cancel, new DialogInterface.OnClickListener() {
                 @Override
                 public void onClick(DialogInterface dialog, int which) {
@@ -256,9 +240,6 @@ public class LaunchActivity extends AppCompatActivity implements IPlayerActivity
         WHFRP3Application.getDatabase().getHandDao().insert(mHand);
         updateUI();
     }
-    //endregion
-
-    //region Update Hand
 
     /**
      * Update the selected hand in mDatabase.
@@ -266,38 +247,14 @@ public class LaunchActivity extends AppCompatActivity implements IPlayerActivity
     public void updateHand() {
         String currentHandName = (String) mHandsSpinner.getSelectedItem();
         if (!currentHandName.isEmpty()) {
-            saveHandWithTitle(currentHandName);
-            Toast.makeText(this, R.string.updated, Toast.LENGTH_LONG).show();
+            try {
+                WHFRP3Application.getDatabase().getHandDao().update(mHand);
+                Toast.makeText(this, R.string.updated, Toast.LENGTH_LONG).show();
+            } catch (Exception e) {
+                Log.e(this.getClass().getName(), "updateHand: ", e);
+            }
         }
     }
-    //endregion
-
-    //region Reset Hand
-
-    /**
-     * Event click which reset the number pickers value.
-     *
-     * @param v the calling view
-     */
-    public void resetHand(View v) {
-        resetHand();
-    }
-
-    /**
-     * Reset the number pickers value.
-     */
-    private void resetHand() {
-        mCharacteristicNumberPicker.setValue(0);
-        mRecklessNumberPicker.setValue(0);
-        mConservativeNumberPicker.setValue(0);
-        mExpertiseNumberPicker.setValue(0);
-        mFortuneNumberPicker.setValue(0);
-        mMisfortuneNumberPicker.setValue(0);
-        mChallengeNumberPicker.setValue(0);
-    }
-    //endregion
-
-    //region Hand helpers
 
     /**
      * Use a hand from the spinner which contains the saved hands name.
@@ -306,7 +263,7 @@ public class LaunchActivity extends AppCompatActivity implements IPlayerActivity
      */
     private void useHand(String title) {
         if (title.trim().isEmpty()) {
-            resetHand();
+            mHand.reset();
         } else {
             try {
                 mHand.setFromHand(WHFRP3Application.getDatabase().getHandDao().findByTitle(title));
@@ -317,20 +274,6 @@ public class LaunchActivity extends AppCompatActivity implements IPlayerActivity
             changeUpdateOptionsMenuItemVisibility(true);
         }
     }
-
-    /**
-     * Fill the HandsSpinner (containing the names of the hands from mDatabase).
-     */
-    private void fillHandsSpinner() {
-        List<String> titles = new ArrayList<>();
-        titles.add("");
-        titles.addAll(WHFRP3Application.getDatabase().getHandDao().findAllTitles());
-
-        mHandsSpinner.setAdapter(new ArrayAdapter<>(this, R.layout.item_hand_spinner, titles));
-    }
-    //endregion
-
-    //region Number Pickers
 
     /**
      * Make a Hand from given Skill
@@ -359,42 +302,34 @@ public class LaunchActivity extends AppCompatActivity implements IPlayerActivity
 
         return hand;
     }
-
-    /**
-     * Uses the given Hand values to set pickers' value.
-     *
-     * @param model the Hand.
-     */
-    public void fillNumberPickersFromHand(Hand model) {
-        mCharacteristicNumberPicker.setValue(model.getCharacteristic());
-        mRecklessNumberPicker.setValue(model.getReckless());
-        mConservativeNumberPicker.setValue(model.getConservative());
-        mExpertiseNumberPicker.setValue(model.getExpertise());
-        mFortuneNumberPicker.setValue(model.getFortune());
-        mMisfortuneNumberPicker.setValue(model.getMisfortune());
-        mChallengeNumberPicker.setValue(model.getChallenge());
-    }
     //endregion
 
+    //region Hands Spinner
+
     /**
-     * Fills the hands spinner and updates the menu.
+     * Set up the HandsSpinner.
      */
-    private void updateUI() {
+    private void setupHandsSpinner() {
+        mHandsSpinner = (Spinner) findViewById(R.id.hands_spinner);
         fillHandsSpinner();
-        invalidateOptionsMenu();
+        mHandsSpinner.setSelection(0, false);
+
+        boolean initialized = WHFRP3Application.getDatabase().getHandDao().findAllTitles().size() > 0;
+        mHandsSpinner.setOnItemSelectedListener(new HandsSpinnerItemSelectedListener(initialized));
     }
 
     /**
-     * Change the visibility for the "update" menu item when not usable.
-     *
-     * @param isVisible if the updateOptionsMenu is visible.
+     * Fill the HandsSpinner (containing the names of the hands from mDatabase).
      */
-    private void changeUpdateOptionsMenuItemVisibility(boolean isVisible) {
-        MenuItem item = mMenuLaunch.findItem(action_update_hand);
-        item.setVisible(isVisible);
-    }
+    private void fillHandsSpinner() {
+        List<String> databaseTitles = WHFRP3Application.getDatabase().getHandDao().findAllTitles();
 
-    //region Listeners
+        List<String> titles = new ArrayList<>();
+        titles.add("");
+        titles.addAll(databaseTitles);
+
+        mHandsSpinner.setAdapter(new ArrayAdapter<>(this, R.layout.item_hand_spinner, titles));
+    }
 
     /**
      * The HandsSpinner listener fills the number pickers when a hand is selected.
@@ -410,7 +345,7 @@ public class LaunchActivity extends AppCompatActivity implements IPlayerActivity
         public void onItemSelected(AdapterView<?> parentView, View selectedItemView, int position, long id) {
             if (initialized) {
                 if (position == 0) {
-                    resetHand();
+                    mHand.reset();
                     changeUpdateOptionsMenuItemVisibility(false);
                 } else {
                     TextView selectedTextView = ((TextView) selectedItemView);
@@ -426,26 +361,13 @@ public class LaunchActivity extends AppCompatActivity implements IPlayerActivity
             changeUpdateOptionsMenuItemVisibility(false);
         }
     }
+    //endregion
 
     /**
-     * Handle the result of the dialog when saving a hand.
+     * Fills the hands spinner and updates the menu.
      */
-    private class SaveHandDialogResultOkClickListener implements DialogInterface.OnClickListener {
-        private final EditText input;
-
-        SaveHandDialogResultOkClickListener(EditText input) {
-            this.input = input;
-        }
-
-        @Override
-        public void onClick(DialogInterface dialog, int which) {
-            if (input.getText().toString().trim().isEmpty()) {
-                Toast.makeText(LaunchActivity.this, R.string.empty_hand_name, Toast.LENGTH_SHORT).show();
-            } else {
-                saveHandWithTitle(input.getText().toString());
-            }
-
-        }
+    private void updateUI() {
+        fillHandsSpinner();
+        invalidateOptionsMenu();
     }
-    //endregion
 }

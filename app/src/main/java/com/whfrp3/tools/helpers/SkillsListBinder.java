@@ -8,11 +8,10 @@ import com.whfrp3.ihm.adapters.SkillsListAdapter;
 import com.whfrp3.model.player.skill.Skill;
 
 /**
- * Created by cnicolas on 14/11/2016.
+ * Provide an item attribute on ListView to bind the skills.
  */
-
 public class SkillsListBinder {
-    @BindingAdapter("app:items")
+    @BindingAdapter("skills")
     public static void bindList(ListView view, ObservableArrayList<Skill> list) {
         SkillsListAdapter adapter = new SkillsListAdapter(list);
         view.setAdapter(adapter);

@@ -42,8 +42,24 @@ public class CharacteristicsFragment extends Fragment {
         binding.characteristicsEdittexts.setCarac(WHFRP3Application.getPlayer().getCharacteristics());
         binding.characteristicsEdittexts.setBindingContext(mBindingContext);
 
-        // Configure race spinner
-        Spinner raceSpinner = (Spinner) binding.getRoot().findViewById(R.id.player_race_spinner);
+        setupRaceSpinner(inflater, binding.getRoot());
+
+        setHasOptionsMenu(true);
+
+        long difference = System.currentTimeMillis() - startTime;
+        Log.d("CharacteristicsFragment", String.format("%d = %d", startTime, difference));
+        return binding.getRoot();
+    }
+
+    /**
+     * Configure Race Spinner
+     *
+     * @param inflater
+     * @param rootView
+     */
+    private void setupRaceSpinner(LayoutInflater inflater, View rootView) {
+        Spinner raceSpinner = (Spinner) rootView.findViewById(R.id.player_race_spinner);
+
         raceSpinner.setAdapter(new EnumSpinnerAdapter(inflater, Race.values()));
         raceSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
@@ -58,11 +74,5 @@ public class CharacteristicsFragment extends Fragment {
                 WHFRP3Application.getPlayer().setRace(null);
             }
         });
-
-        setHasOptionsMenu(true);
-
-        long difference = System.currentTimeMillis() - startTime;
-        Log.d("CharacteristicsFragment", String.format("%d = %d", startTime, difference));
-        return binding.getRoot();
     }
 }
