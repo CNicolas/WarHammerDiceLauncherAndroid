@@ -14,7 +14,6 @@ import com.whfrp3.R;
 import com.whfrp3.databinding.FragmentCharacteristicsBinding;
 import com.whfrp3.ihm.adapters.EnumSpinnerAdapter;
 import com.whfrp3.model.enums.Race;
-import com.whfrp3.model.player.inventory.ItemType;
 import com.whfrp3.tools.BindingContext;
 import com.whfrp3.tools.WHFRP3Application;
 import com.whfrp3.tools.constants.IPlayerActivityConstants;

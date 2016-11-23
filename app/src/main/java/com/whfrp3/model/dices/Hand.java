@@ -2,6 +2,7 @@ package com.whfrp3.model.dices;
 
 import android.databinding.Bindable;
 
+import com.whfrp3.BR;
 import com.whfrp3.model.AbstractModel;
 
 /**
@@ -54,6 +55,7 @@ public class Hand extends AbstractModel {
 
     public void setCharacteristic(int characteristic) {
         this.characteristic = characteristic;
+        notifyPropertyChanged(BR.characteristic);
     }
 
     @Bindable
@@ -63,6 +65,7 @@ public class Hand extends AbstractModel {
 
     public void setReckless(int reckless) {
         this.reckless = reckless;
+        notifyPropertyChanged(BR.reckless);
     }
 
     @Bindable
@@ -72,6 +75,7 @@ public class Hand extends AbstractModel {
 
     public void setConservative(int conservative) {
         this.conservative = conservative;
+        notifyPropertyChanged(BR.conservative);
     }
 
     @Bindable
@@ -81,6 +85,7 @@ public class Hand extends AbstractModel {
 
     public void setExpertise(int expertise) {
         this.expertise = expertise;
+        notifyPropertyChanged(BR.expertise);
     }
 
     @Bindable
@@ -90,6 +95,7 @@ public class Hand extends AbstractModel {
 
     public void setFortune(int fortune) {
         this.fortune = fortune;
+        notifyPropertyChanged(BR.fortune);
     }
 
     @Bindable
@@ -99,6 +105,7 @@ public class Hand extends AbstractModel {
 
     public void setMisfortune(int misfortune) {
         this.misfortune = misfortune;
+        notifyPropertyChanged(BR.misfortune);
     }
 
     @Bindable
@@ -108,6 +115,7 @@ public class Hand extends AbstractModel {
 
     public void setChallenge(int challenge) {
         this.challenge = challenge;
+        notifyPropertyChanged(BR.challenge);
     }
     //endregion
 
