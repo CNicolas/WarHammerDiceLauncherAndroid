@@ -19,20 +19,13 @@
         android:visibility="@{item.type == ItemType.ARMOR ? View.VISIBLE : View.GONE}">
 
         <TextView
-            android:layout_width="match_parent"
-            android:layout_height="32dp"
-            android:background="@color/colorPrimary"
-            android:gravity="center_vertical"
-            android:paddingEnd="8dp"
-            android:paddingStart="8dp"
-            android:text="@string/armor"
-            android:textColor="@color/white"
-            android:textSize="18sp" />
+            style="@style/ItemEditFieldsHeader"
+            android:text="@string/armor" />
 
         <LinearLayout style="@style/ItemEditFieldLinearLayout">
 
             <TextView
-                style="@style/InventoryLabelTextView"
+                style="@style/ItemEditFieldLabel"
                 android:text="@string/armor_defense_label" />
 
             <EditText
@@ -44,7 +37,7 @@
         <LinearLayout style="@style/ItemEditFieldLinearLayout">
 
             <TextView
-                style="@style/InventoryLabelTextView"
+                style="@style/ItemEditFieldLabel"
                 android:text="@string/armor_soak_label" />
 
             <EditText

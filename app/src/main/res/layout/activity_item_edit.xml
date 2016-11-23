@@ -35,20 +35,96 @@
                 android:layout_height="wrap_content"
                 android:orientation="vertical">
 
-                <EditText
+                <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="48dp"
-                    android:background="@color/colorPrimaryDark"
-                    android:hint="@string/name_hint"
-                    android:paddingTop="8dp"
-                    android:text="@={item.name}"
-                    android:textAlignment="center"
-                    android:textColor="@color/white"
-                    android:textSize="24sp" />
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
 
-                <include
-                    android:id="@+id/item_edit_common_fields"
-                    layout="@layout/item_edit_common_fields" />
+                    <EditText
+                        android:layout_width="match_parent"
+                        android:layout_height="48dp"
+                        android:background="@color/colorPrimaryDark"
+                        android:hint="@string/name_hint"
+                        android:paddingTop="8dp"
+                        android:text="@={item.name}"
+                        android:textAlignment="center"
+                        android:textColor="@color/white"
+                        android:textSize="24sp" />
+
+                    <TextView
+                        style="@style/ItemEditFieldsHeader"
+                        android:text="@string/inventory_description"
+                        android:textStyle="bold" />
+
+                    <EditText
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="top|left"
+                        android:hint="@string/inventory_description"
+                        android:inputType="textMultiLine"
+                        android:lines="4"
+                        android:minLines="2"
+                        android:padding="4dp"
+                        android:scrollbars="vertical"
+                        android:text="@={item.description}"
+                        android:textColor="@color/black"
+                        android:textSize="18sp" />
+
+                    <TextView
+                        style="@style/ItemEditFieldsHeader"
+                        android:text="@string/inventory_details"
+                        android:textStyle="bold" />
+
+                    <LinearLayout style="@style/ItemEditFieldLinearLayout">
+
+                        <TextView
+                            style="@style/ItemEditFieldLabel"
+                            android:text="@string/item_type_label" />
+
+                        <Spinner
+                            android:id="@+id/item_edit_type_spinner"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent" />
+
+                    </LinearLayout>
+
+                    <LinearLayout style="@style/ItemEditFieldLinearLayout">
+
+                        <TextView
+                            style="@style/ItemEditFieldLabel"
+                            android:text="@string/quality_label" />
+
+                        <Spinner
+                            android:id="@+id/item_edit_quality_spinner"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent" />
+
+                    </LinearLayout>
+
+                    <LinearLayout style="@style/ItemEditFieldLinearLayout">
+
+                        <TextView
+                            style="@style/ItemEditFieldLabel"
+                            android:text="@string/quantity_label" />
+
+                        <EditText
+                            style="@style/InventoryNumberEditText"
+                            android:text="@={item.quantity}" />
+
+                    </LinearLayout>
+
+                    <LinearLayout style="@style/ItemEditFieldLinearLayout">
+
+                        <TextView
+                            style="@style/ItemEditFieldLabel"
+                            android:text="@string/encumbrance_label" />
+
+                        <EditText
+                            style="@style/InventoryNumberEditText"
+                            android:text="@={item.encumbrance}" />
+
+                    </LinearLayout>
+                </LinearLayout>
 
                 <include
                     android:id="@+id/item_edit_weapon_fields"

@@ -19,20 +19,13 @@
         android:visibility="@{item.type == ItemType.USABLE_ITEM ? View.VISIBLE : View.GONE}">
 
         <TextView
-            android:layout_width="match_parent"
-            android:layout_height="32dp"
-            android:background="@color/colorPrimary"
-            android:gravity="center_vertical"
-            android:paddingEnd="8dp"
-            android:paddingStart="8dp"
-            android:text="@string/usable_item"
-            android:textColor="@color/white"
-            android:textSize="18sp" />
+            style="@style/ItemEditFieldsHeader"
+            android:text="@string/usable_item" />
 
         <LinearLayout style="@style/ItemEditFieldLinearLayout">
 
             <TextView
-                style="@style/InventoryLabelTextView"
+                style="@style/ItemEditFieldLabel"
                 android:text="@string/usable_item_load_label" />
 
             <EditText

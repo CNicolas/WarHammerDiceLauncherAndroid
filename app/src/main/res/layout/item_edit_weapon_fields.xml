@@ -19,20 +19,13 @@
         android:visibility="@{item.type == ItemType.WEAPON ? View.VISIBLE : View.GONE}">
 
         <TextView
-            android:layout_width="match_parent"
-            android:layout_height="32dp"
-            android:background="@color/colorPrimary"
-            android:gravity="center_vertical"
-            android:paddingEnd="8dp"
-            android:paddingStart="8dp"
-            android:text="@string/weapon"
-            android:textColor="@color/white"
-            android:textSize="18sp" />
+            style="@style/ItemEditFieldsHeader"
+            android:text="@string/weapon" />
 
         <LinearLayout style="@style/ItemEditFieldLinearLayout">
 
             <TextView
-                style="@style/InventoryLabelTextView"
+                style="@style/ItemEditFieldLabel"
                 android:text="@string/weapon_damage_label" />
 
             <EditText
@@ -44,7 +37,7 @@
         <LinearLayout style="@style/ItemEditFieldLinearLayout">
 
             <TextView
-                style="@style/InventoryLabelTextView"
+                style="@style/ItemEditFieldLabel"
                 android:text="@string/weapon_critical_level_label" />
 
             <EditText
@@ -56,7 +49,7 @@
         <LinearLayout style="@style/ItemEditFieldLinearLayout">
 
             <TextView
-                style="@style/InventoryLabelTextView"
+                style="@style/ItemEditFieldLabel"
                 android:text="@string/weapon_range_label" />
 
             <Spinner

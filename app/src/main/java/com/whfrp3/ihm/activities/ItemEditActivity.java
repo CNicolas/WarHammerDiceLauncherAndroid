@@ -79,7 +79,6 @@ public class ItemEditActivity extends AppCompatActivity {
         ActivityItemEditBinding binding = DataBindingUtil.inflate(getLayoutInflater(), R.layout.activity_item_edit, null, false);
         binding.setItem(itemEdit);
         binding.setViewModel(this);
-        binding.itemEditCommonFields.setItem(itemEdit);
         binding.itemEditWeaponFields.setItem(itemEdit);
         binding.itemEditArmorFields.setItem(itemEdit);
         binding.itemEditUsableFields.setItem(itemEdit);

@@ -5,14 +5,24 @@
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">wrap_content</item>
         <item name="android:minHeight">50dp</item>
+        <item name="android:weightSum">100</item>
     </style>
 
-    <style name="InventoryLabelTextView">
+    <style name="ItemEditFieldsHeader">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:background">@color/colorPrimary</item>
+        <item name="android:gravity">center_vertical</item>
+        <item name="android:padding">@dimen/medium_padding</item>
+        <item name="android:textColor">@android:color/white</item>
+        <item name="android:textSize">20sp</item>
+    </style>
+
+    <style name="ItemEditFieldLabel">
         <item name="android:layout_width">wrap_content</item>
         <item name="android:layout_height">match_parent</item>
         <item name="android:gravity">center_vertical</item>
-        <item name="android:paddingStart">4dp</item>
-        <item name="android:paddingEnd">4dp</item>
+        <item name="android:padding">@dimen/medium_padding</item>
         <item name="android:textSize">18sp</item>
         <item name="android:textColor">@color/characteristic_text</item>
     </style>
