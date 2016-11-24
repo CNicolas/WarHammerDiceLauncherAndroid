@@ -125,6 +125,11 @@
     <string name="race_wood_elf">Elfe Sylvain</string>
     <string name="race_human">Humain</string>
     <string name="race_dwarf">Nain</string>
+    <string name="btn_add">Ajouter</string>
+    <string name="btn_remove">Enlever</string>
+    <string name="dialog_money_title">Argent</string>
+    <string name="error_title">Erreur</string>
+    <string name="btn_ok">OK</string>
     <!-- End of inventory -->
 
 </resources>

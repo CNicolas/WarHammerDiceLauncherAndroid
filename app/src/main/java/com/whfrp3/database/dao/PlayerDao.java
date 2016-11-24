@@ -6,8 +6,10 @@ import android.database.sqlite.SQLiteDatabase;
 
 import com.whfrp3.database.entries.IEntryConstants;
 import com.whfrp3.database.entries.IPlayerEntryConstants;
+import com.whfrp3.model.enums.MoneyType;
 import com.whfrp3.model.enums.Race;
 import com.whfrp3.model.player.Characteristics;
+import com.whfrp3.model.player.Money;
 import com.whfrp3.model.player.Player;
 import com.whfrp3.model.player.inventory.Item;
 import com.whfrp3.model.player.skill.Skill;
@@ -175,9 +177,9 @@ public class PlayerDao extends AbstractDao<Player> implements IPlayerEntryConsta
         values.put(COLUMN_STRESS, player.getStress());
         values.put(COLUMN_EXERTION, player.getExertion());
 
-        values.put(COLUMN_MONEY_BRASS, player.getMoney_brass());
-        values.put(COLUMN_MONEY_SILVER, player.getMoney_silver());
-        values.put(COLUMN_MONEY_GOLD, player.getMoney_gold());
+        values.put(COLUMN_MONEY_BRASS, player.getMoney().getAmount(MoneyType.BRASS));
+        values.put(COLUMN_MONEY_SILVER, player.getMoney().getAmount(MoneyType.SILVER));
+        values.put(COLUMN_MONEY_GOLD, player.getMoney().getAmount(MoneyType.GOLD));
 
         values.put(COLUMN_CHARACTERISTICS_ID, player.getCharacteristics().getId());
 
@@ -211,9 +213,12 @@ public class PlayerDao extends AbstractDao<Player> implements IPlayerEntryConsta
         model.setStress(cursor.getInt(cursor.getColumnIndexOrThrow(COLUMN_STRESS)));
         model.setExertion(cursor.getInt(cursor.getColumnIndexOrThrow(COLUMN_EXERTION)));
 
-        model.setMoney_brass(cursor.getInt(cursor.getColumnIndexOrThrow(COLUMN_MONEY_BRASS)));
-        model.setMoney_silver(cursor.getInt(cursor.getColumnIndexOrThrow(COLUMN_MONEY_SILVER)));
-        model.setMoney_gold(cursor.getInt(cursor.getColumnIndexOrThrow(COLUMN_MONEY_GOLD)));
+        // Set player's money
+        int brassAmount = cursor.getInt(cursor.getColumnIndexOrThrow(COLUMN_MONEY_BRASS));
+        int silverAmount = cursor.getInt(cursor.getColumnIndexOrThrow(COLUMN_MONEY_SILVER));
+        int goldAmount = cursor.getInt(cursor.getColumnIndexOrThrow(COLUMN_MONEY_GOLD));
+
+        model.setMoney(new Money(goldAmount, silverAmount, brassAmount));
 
         // Find characteristics
         Characteristics characteristics = mCharacteristicsDao.findById(cursor.getInt(cursor.getColumnIndexOrThrow(COLUMN_CHARACTERISTICS_ID)));

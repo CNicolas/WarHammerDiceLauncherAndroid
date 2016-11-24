@@ -7,6 +7,7 @@ import android.test.suitebuilder.annotation.MediumTest;
 import com.whfrp3.database.Database;
 import com.whfrp3.model.enums.Race;
 import com.whfrp3.model.player.Characteristics;
+import com.whfrp3.model.player.Money;
 import com.whfrp3.model.player.Player;
 import com.whfrp3.model.player.skill.Skill;
 import com.whfrp3.tools.enums.Characteristic;
@@ -100,9 +101,7 @@ public class DaoTests extends AndroidTestCase {
         dto.setConservative(0);
         dto.setMax_conservative(2);
 
-        dto.setMoney_brass(48);
-        dto.setMoney_silver(13);
-        dto.setMoney_gold(3);
+        dto.setMoney(new Money(3, 13, 48));
 
         dto.setCharacteristics(database.getCharacteristicsDao().findById(1));
 

@@ -136,5 +136,10 @@
     <string name="race_high_elf">High Elf</string>
     <string name="race_wood_elf">Wood Elf</string>
     <string name="adventure_encumbrance" translatable="false">%s / %s (%s)</string>
+    <string name="btn_add">Add</string>
+    <string name="btn_remove">Remove</string>
+    <string name="dialog_money_title">Money</string>
+    <string name="error_title">Error</string>
+    <string name="btn_ok">OK</string>
 
 </resources>

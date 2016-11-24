@@ -56,11 +56,8 @@ public class Player extends AbstractModel {
     private int stress;
     private int exertion;
 
-    private int money_brass;
-    private int money_silver;
-    private int money_gold;
-
     private Characteristics characteristics;
+    private Money money;
     private List<Item> inventory;
     private List<Skill> mSkills;
 
@@ -91,25 +88,6 @@ public class Player extends AbstractModel {
             }
         }
         throw new Exception(String.format("'%s' not found in skills %s", name, mSkills.toString()));
-    }
-    //endregion
-
-    //region Money Management
-    public void addMoneyBrass(int brass) {
-        int newBrass = brass % BRASS_TO_SILVER;
-        setMoney_brass(getMoney_brass() + newBrass);
-
-        addMoneySilver(brass / BRASS_TO_SILVER);
-    }
-
-    public void addMoneySilver(int silver) {
-        int newSilver = silver % SILVER_TO_GOLD;
-        setMoney_silver(getMoney_silver() + newSilver);
-        addMoneyGold(silver / SILVER_TO_GOLD);
-    }
-
-    public void addMoneyGold(int gold) {
-        setMoney_gold(getMoney_gold() + gold);
     }
     //endregion
 
@@ -505,28 +483,13 @@ public class Player extends AbstractModel {
         return getCharacteristics().getToughness() * 2;
     }
 
-    public int getMoney_brass() {
-        return money_brass;
+    @Bindable
+    public Money getMoney() {
+        return money;
     }
 
-    public void setMoney_brass(int money_brass) {
-        this.money_brass = money_brass;
-    }
-
-    public int getMoney_silver() {
-        return money_silver;
-    }
-
-    public void setMoney_silver(int money_silver) {
-        this.money_silver = money_silver;
-    }
-
-    public int getMoney_gold() {
-        return money_gold;
-    }
-
-    public void setMoney_gold(int money_gold) {
-        this.money_gold = money_gold;
+    public void setMoney(Money money) {
+        this.money = money;
     }
 
     public Characteristics getCharacteristics() {
@@ -580,9 +543,7 @@ public class Player extends AbstractModel {
                 ", max_reckless=" + max_reckless +
                 ", conservative=" + conservative +
                 ", max_conservative=" + max_conservative +
-                ", money_brass=" + money_brass +
-                ", money_silver=" + money_silver +
-                ", money_gold=" + money_gold +
+                ", money=" + money.toString() +
                 ", characteristics=" + characteristics +
                 ", inventory=" + inventory +
                 ", skills=" + mSkills +
@@ -610,9 +571,6 @@ public class Player extends AbstractModel {
         if (getMax_reckless() != player.getMax_reckless()) return false;
         if (getConservative() != player.getConservative()) return false;
         if (getMax_conservative() != player.getMax_conservative()) return false;
-        if (getMoney_brass() != player.getMoney_brass()) return false;
-        if (getMoney_silver() != player.getMoney_silver()) return false;
-        if (getMoney_gold() != player.getMoney_gold()) return false;
         if (getName() != null ? !getName().equals(player.getName()) : player.getName() != null)
             return false;
         if (getRace() != null ? !getRace().equals(player.getRace()) : player.getRace() != null)
@@ -651,9 +609,6 @@ public class Player extends AbstractModel {
         result = 31 * result + getMax_reckless();
         result = 31 * result + getConservative();
         result = 31 * result + getMax_conservative();
-        result = 31 * result + getMoney_brass();
-        result = 31 * result + getMoney_silver();
-        result = 31 * result + getMoney_gold();
         result = 31 * result + (getCharacteristics() != null ? getCharacteristics().hashCode() : 0);
         result = 31 * result + (getInventory() != null ? getInventory().hashCode() : 0);
         result = 31 * result + (getSkills() != null ? getSkills().hashCode() : 0);

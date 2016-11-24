@@ -4,6 +4,8 @@
 
     <data>
 
+        <import type="com.whfrp3.model.enums.MoneyType" />
+
         <variable
             name="player"
             type="com.whfrp3.model.player.Player" />
@@ -11,6 +13,10 @@
         <variable
             name="handlers"
             type="com.whfrp3.ihm.listeners.AdventureActivityHandlers" />
+
+        <variable
+            name="viewModel"
+            type="com.whfrp3.ihm.fragments.AdventureFragment" />
 
     </data>
 
@@ -210,12 +216,12 @@
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="48dp"
             android:orientation="horizontal">
 
             <ImageView
                 android:layout_width="wrap_content"
-                android:layout_height="48dp"
+                android:layout_height="match_parent"
                 android:paddingEnd="8dp"
                 android:paddingStart="8dp"
                 android:src="@drawable/ic_rucksack_black" />
@@ -258,10 +264,75 @@
 
             <TextView
                 android:layout_width="96dp"
-                android:layout_height="48dp"
+                android:layout_height="match_parent"
                 android:gravity="center"
                 android:text="@{String.format(@string/adventure_encumbrance, player.currentEncumbrance, player.encumbranceOverload, player.encumbranceMax)}" />
 
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:paddingEnd="8dp"
+                android:paddingStart="8dp"
+                android:src="@drawable/ic_coins" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:drawableEnd="@drawable/coins_gold"
+                android:drawablePadding="8dp"
+                android:gravity="center_vertical|end"
+                android:hint="@string/zero"
+                android:text="@{player.money.getAmount(MoneyType.GOLD)}" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:drawableEnd="@drawable/coins_silver"
+                android:drawablePadding="8dp"
+                android:gravity="center_vertical|end"
+                android:hint="@string/zero"
+                android:text="@{player.money.getAmount(MoneyType.SILVER)}" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:drawableEnd="@drawable/coins_brass"
+                android:drawablePadding="8dp"
+                android:gravity="center_vertical|end"
+                android:hint="@string/zero"
+                android:text="@{player.money.getAmount(MoneyType.BRASS)}" />
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:paddingEnd="12dp"
+                android:paddingStart="12dp">
+
+                <Button
+                    android:id="@+id/btn_add_money"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:padding="0dp"
+                    android:text="+" />
+
+                <Button
+                    android:id="@+id/btn_remove_money"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:padding="0dp"
+                    android:text="-" />
+            </LinearLayout>
         </LinearLayout>
 
     </LinearLayout>

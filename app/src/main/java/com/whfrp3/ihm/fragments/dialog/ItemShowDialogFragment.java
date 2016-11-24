@@ -1,4 +1,4 @@
-package com.whfrp3.ihm.fragments.inventory;
+package com.whfrp3.ihm.fragments.dialog;
 
 import android.app.AlertDialog;
 import android.app.Dialog;

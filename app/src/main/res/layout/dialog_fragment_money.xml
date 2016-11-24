@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <data>
+
+        <variable
+            name="viewModel"
+            type="com.whfrp3.ihm.fragments.dialog.ChangeMoneyDialogFragment" />
+
+    </data>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        android:orientation="horizontal"
+        android:paddingEnd="32dp"
+        android:paddingStart="32dp">
+
+        <EditText
+            style="@style/AdventureEditNumberFieldStyle"
+            android:drawableEnd="@drawable/coins_gold"
+            android:text="@={viewModel.goldAmount}" />
+
+        <EditText
+            style="@style/AdventureEditNumberFieldStyle"
+            android:drawableEnd="@drawable/coins_silver"
+            android:text="@={viewModel.silverAmount}" />
+
+        <EditText
+            style="@style/AdventureEditNumberFieldStyle"
+            android:drawableEnd="@drawable/coins_brass"
+            android:text="@={viewModel.brassAmount}" />
+
+    </LinearLayout>
+</layout>
