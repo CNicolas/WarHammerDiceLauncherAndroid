@@ -83,9 +83,11 @@ public class Money {
         int maxAmount = type.getMaxAmount();
         int newAmount = amounts.get(type) - amount;
         if (maxAmount != 0 && newAmount < 0) {
-            removeMoney((-newAmount / maxAmount) + 1, type.getSuperiorMoneyType());
+            int tmp = (int) Math.floor(-newAmount / (double) maxAmount);
 
-            newAmount = newAmount + ((-newAmount / maxAmount) + 1) * type.getMaxAmount();
+            removeMoney(tmp, type.getSuperiorMoneyType());
+
+            newAmount = newAmount + tmp * type.getMaxAmount();
         }
 
         if (newAmount < 0) {
