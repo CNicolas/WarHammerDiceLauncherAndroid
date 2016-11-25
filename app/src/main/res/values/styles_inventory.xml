@@ -5,7 +5,7 @@
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">wrap_content</item>
         <item name="android:minHeight">50dp</item>
-        <item name="android:weightSum">100</item>
+        <item name="android:weightSum">4</item>
     </style>
 
     <style name="ItemEditFieldsHeader">
@@ -19,16 +19,17 @@
     </style>
 
     <style name="ItemEditFieldLabel">
-        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_width">0dp</item>
         <item name="android:layout_height">match_parent</item>
-        <item name="android:gravity">center_vertical</item>
+        <item name="android:gravity">center_vertical|end</item>
         <item name="android:padding">@dimen/medium_padding</item>
         <item name="android:textSize">18sp</item>
         <item name="android:textColor">@color/characteristic_text</item>
+        <item name="android:layout_weight">2</item>
     </style>
 
     <style name="InventoryNumberEditText">
-        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_width">0dp</item>
         <item name="android:layout_height">match_parent</item>
         <item name="android:gravity">center</item>
         <item name="android:hint">@string/zero</item>
@@ -36,5 +37,12 @@
         <item name="android:minWidth">48dp</item>
         <item name="android:maxLength">2</item>
         <item name="android:textColor">@color/characteristic_text</item>
+        <item name="android:layout_weight">1</item>
+    </style>
+
+    <style name="ItemEditSpinner">
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_height">match_parent</item>
+        <item name="android:layout_weight">2</item>
     </style>
 </resources>

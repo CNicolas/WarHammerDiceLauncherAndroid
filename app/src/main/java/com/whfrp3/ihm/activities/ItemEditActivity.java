@@ -86,6 +86,26 @@ public class ItemEditActivity extends AppCompatActivity {
         setContentView(binding.getRoot());
 
         // Configure layout
+        initTypeSpinner();
+        initQualitySpinner();
+        initRangeSpinner();
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        int itemId = item.getItemId();
+
+        if (itemId == android.R.id.home) {
+            Intent intent = new Intent();
+            intent.putExtra(IPlayerActivityConstants.CURRENT_FRAGMENT_POSITION_BUNDLE_TAG, IPlayerActivityConstants.INVENTORY_FRAGMENT_POSITION);
+            setResult(RESULT_CANCELED, intent);
+            finish();
+        }
+        return true;
+    }
+
+    //region Initialisation
+    private void initTypeSpinner() {
         Spinner typeSpinner = (Spinner) findViewById(R.id.item_edit_type_spinner);
         typeSpinner.setAdapter(new EnumSpinnerAdapter(this.getLayoutInflater(), ItemType.values()));
         typeSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
@@ -102,6 +122,12 @@ public class ItemEditActivity extends AppCompatActivity {
             }
         });
 
+        if (itemEdit.getType() != null) {
+            typeSpinner.setSelection(itemEdit.getType().ordinal());
+        }
+    }
+
+    private void initQualitySpinner() {
         Spinner qualitySpinner = (Spinner) findViewById(R.id.item_edit_quality_spinner);
         qualitySpinner.setAdapter(new EnumSpinnerAdapter(this.getLayoutInflater(), Quality.values()));
         qualitySpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
@@ -118,6 +144,12 @@ public class ItemEditActivity extends AppCompatActivity {
             }
         });
 
+        if (itemEdit.getQuality() != null) {
+            qualitySpinner.setSelection(itemEdit.getQuality().ordinal());
+        }
+    }
+
+    private void initRangeSpinner() {
         Spinner rangeSpinner = (Spinner) findViewById(R.id.item_edit_range_spinner);
         rangeSpinner.setAdapter(new EnumSpinnerAdapter(this.getLayoutInflater(), Range.values()));
         rangeSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
@@ -134,29 +166,11 @@ public class ItemEditActivity extends AppCompatActivity {
             }
         });
 
-        if (itemEdit.getType() != null) {
-            typeSpinner.setSelection(itemEdit.getType().ordinal());
-        }
-        if (itemEdit.getQuality() != null) {
-            qualitySpinner.setSelection(itemEdit.getQuality().ordinal());
-        }
         if (itemEdit.getRange() != null) {
             rangeSpinner.setSelection(itemEdit.getRange().ordinal());
         }
     }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        int itemId = item.getItemId();
-
-        if (itemId == android.R.id.home) {
-            Intent intent = new Intent();
-            intent.putExtra(IPlayerActivityConstants.CURRENT_FRAGMENT_POSITION_BUNDLE_TAG, IPlayerActivityConstants.INVENTORY_FRAGMENT_POSITION);
-            setResult(RESULT_CANCELED, intent);
-            finish();
-        }
-        return true;
-    }
+    //endregion
 
     public void onSave(View view) {
         long itemId = item.getId();
