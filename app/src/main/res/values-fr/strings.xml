@@ -101,7 +101,7 @@
     <string name="quality_superior">Supérieure</string>
     <string name="quality_label">Qualité :</string>
     <string name="encumbrance_label">Encombrement :</string>
-    <string name="inventory_description">Description</string>
+    <string name="description_hint">Description</string>
     <string name="inventory_details">Détails</string>
     <string name="weapon_damage_label">Dégats :</string>
     <string name="weapon_critical_level_label">Niveau de critique :</string>

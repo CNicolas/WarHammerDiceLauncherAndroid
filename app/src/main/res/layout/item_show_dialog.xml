@@ -42,7 +42,7 @@
             android:gravity="center_vertical"
             android:paddingEnd="8dp"
             android:paddingStart="8dp"
-            android:text="@string/inventory_description"
+            android:text="@string/description_hint"
             android:textColor="@color/white"
             android:textSize="20sp"
             android:textStyle="bold" />

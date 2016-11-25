@@ -111,7 +111,7 @@
     <string name="encumbrance_label">Encumbrance :</string>
     <string name="parenthesis_left" translatable="false">(</string>
     <string name="parenthesis_right" translatable="false">)</string>
-    <string name="inventory_description">Description</string>
+    <string name="description_hint">Description</string>
     <string name="inventory_details">Details</string>
     <string name="weapon_damage_label">Damage :</string>
     <string name="weapon_critical_level_label">Critical level :</string>

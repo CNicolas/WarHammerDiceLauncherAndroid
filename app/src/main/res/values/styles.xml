@@ -52,4 +52,15 @@
         <item name="android:textColor">@color/characteristic_text</item>
     </style>
 
+    <style name="DescriptionField">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:inputType">textMultiLine</item>
+        <item name="android:maxLines">4</item>
+        <item name="android:minLines">2</item>
+        <item name="android:padding">@dimen/small_padding</item>
+        <item name="android:scrollbars">vertical</item>
+        <item name="android:textColor">@android:color/black</item>
+    </style>
+
 </resources>

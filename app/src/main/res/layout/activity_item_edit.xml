@@ -10,6 +10,10 @@
         <variable
             name="item"
             type="com.whfrp3.model.player.inventory.ItemEdit" />
+
+        <import type="android.view.View" />
+
+        <import type="com.whfrp3.model.player.inventory.ItemType" />
     </data>
 
     <android.support.design.widget.CoordinatorLayout
@@ -53,22 +57,13 @@
 
                     <TextView
                         style="@style/ItemEditFieldsHeader"
-                        android:text="@string/inventory_description"
+                        android:text="@string/description_hint"
                         android:textStyle="bold" />
 
                     <EditText
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:gravity="top|left"
-                        android:hint="@string/inventory_description"
-                        android:inputType="textMultiLine"
-                        android:lines="4"
-                        android:minLines="2"
-                        android:padding="4dp"
-                        android:scrollbars="vertical"
-                        android:text="@={item.description}"
-                        android:textColor="@color/black"
-                        android:textSize="18sp" />
+                        style="@style/DescriptionField"
+                        android:hint="@string/description_hint"
+                        android:text="@={item.description}" />
 
                     <TextView
                         style="@style/ItemEditFieldsHeader"
@@ -124,17 +119,110 @@
                     </LinearLayout>
                 </LinearLayout>
 
-                <include
-                    android:id="@+id/item_edit_weapon_fields"
-                    layout="@layout/item_edit_weapon_fields" />
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:visibility="@{item.type == ItemType.WEAPON ? View.VISIBLE : View.GONE}">
 
-                <include
-                    android:id="@+id/item_edit_armor_fields"
-                    layout="@layout/item_edit_armor_fields" />
+                    <TextView
+                        style="@style/ItemEditFieldsHeader"
+                        android:text="@string/weapon" />
 
-                <include
-                    android:id="@+id/item_edit_usable_fields"
-                    layout="@layout/item_edit_usable_fields" />
+                    <LinearLayout style="@style/ItemEditFieldLinearLayout">
+
+                        <TextView
+                            style="@style/ItemEditFieldLabel"
+                            android:text="@string/weapon_damage_label" />
+
+                        <EditText
+                            style="@style/InventoryNumberEditText"
+                            android:text="@={item.damage}" />
+
+                    </LinearLayout>
+
+                    <LinearLayout style="@style/ItemEditFieldLinearLayout">
+
+                        <TextView
+                            style="@style/ItemEditFieldLabel"
+                            android:text="@string/weapon_critical_level_label" />
+
+                        <EditText
+                            style="@style/InventoryNumberEditText"
+                            android:text="@={item.criticalLevel}" />
+
+                    </LinearLayout>
+
+                    <LinearLayout style="@style/ItemEditFieldLinearLayout">
+
+                        <TextView
+                            style="@style/ItemEditFieldLabel"
+                            android:text="@string/weapon_range_label" />
+
+                        <Spinner
+                            android:id="@+id/item_edit_range_spinner"
+                            style="@style/ItemEditSpinner" />
+
+                    </LinearLayout>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:visibility="@{item.type == ItemType.ARMOR ? View.VISIBLE : View.GONE}">
+
+                    <TextView
+                        style="@style/ItemEditFieldsHeader"
+                        android:text="@string/armor" />
+
+                    <LinearLayout style="@style/ItemEditFieldLinearLayout">
+
+                        <TextView
+                            style="@style/ItemEditFieldLabel"
+                            android:text="@string/armor_defense_label" />
+
+                        <EditText
+                            style="@style/InventoryNumberEditText"
+                            android:text="@={item.defense}" />
+
+                    </LinearLayout>
+
+                    <LinearLayout style="@style/ItemEditFieldLinearLayout">
+
+                        <TextView
+                            style="@style/ItemEditFieldLabel"
+                            android:text="@string/armor_soak_label" />
+
+                        <EditText
+                            style="@style/InventoryNumberEditText"
+                            android:text="@={item.soak}" />
+
+                    </LinearLayout>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:visibility="@{item.type == ItemType.USABLE_ITEM ? View.VISIBLE : View.GONE}">
+
+                    <TextView
+                        style="@style/ItemEditFieldsHeader"
+                        android:text="@string/usable_item" />
+
+                    <LinearLayout style="@style/ItemEditFieldLinearLayout">
+
+                        <TextView
+                            style="@style/ItemEditFieldLabel"
+                            android:text="@string/usable_item_load_label" />
+
+                        <EditText
+                            style="@style/InventoryNumberEditText"
+                            android:text="@={item.load}" />
+
+                    </LinearLayout>
+                </LinearLayout>
 
             </LinearLayout>
         </ScrollView>
