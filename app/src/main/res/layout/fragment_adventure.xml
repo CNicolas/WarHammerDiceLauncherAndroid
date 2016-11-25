@@ -71,14 +71,14 @@
                 android:layout_height="wrap_content"
                 android:layout_alignParentStart="true"
                 android:layout_marginStart="@dimen/big_padding"
-                android:text="Stress" />
+                android:text="@string/stress" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentEnd="true"
                 android:layout_marginEnd="@dimen/medium_padding"
-                android:text="Exertion" />
+                android:text="@string/exertion" />
 
         </RelativeLayout>
 
@@ -93,7 +93,7 @@
                 android:id="@+id/btn_minus_stress"
                 style="@style/ButtonPlusMinus"
                 android:onClick="@{() -> handlers.changeStress(-1)}"
-                android:text="-" />
+                android:text="@string/minus" />
 
             <TextView
                 android:id="@+id/text_stress"
@@ -111,7 +111,7 @@
                 style="@style/ButtonPlusMinus"
                 android:layout_toEndOf="@+id/text_stress"
                 android:onClick="@{() -> handlers.changeStress(1)}"
-                android:text="+" />
+                android:text="@string/plus" />
 
             <!--Exertion-->
             <Button
@@ -119,7 +119,7 @@
                 style="@style/ButtonPlusMinus"
                 android:layout_alignParentEnd="true"
                 android:onClick="@{() -> handlers.changeExertion(1)}"
-                android:text="+" />
+                android:text="@string/plus" />
 
             <TextView
                 android:id="@+id/text_exertion"
@@ -137,7 +137,7 @@
                 style="@style/ButtonPlusMinus"
                 android:layout_toStartOf="@id/text_exertion"
                 android:onClick="@{() -> handlers.changeExertion(-1)}"
-                android:text="-" />
+                android:text="@string/minus" />
         </RelativeLayout>
 
         <LinearLayout
@@ -324,14 +324,14 @@
                     android:layout_width="40dp"
                     android:layout_height="40dp"
                     android:padding="0dp"
-                    android:text="+" />
+                    android:text="@string/plus" />
 
                 <Button
                     android:id="@+id/btn_remove_money"
                     android:layout_width="40dp"
                     android:layout_height="40dp"
                     android:padding="0dp"
-                    android:text="-" />
+                    android:text="@string/minus" />
             </LinearLayout>
         </LinearLayout>
 

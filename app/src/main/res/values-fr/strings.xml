@@ -130,6 +130,8 @@
     <string name="dialog_money_title">Argent</string>
     <string name="error_title">Erreur</string>
     <string name="btn_ok">OK</string>
+    <string name="exertion">Fatigue</string>
+    <string name="stress">Stress</string>
     <!-- End of inventory -->
 
 </resources>

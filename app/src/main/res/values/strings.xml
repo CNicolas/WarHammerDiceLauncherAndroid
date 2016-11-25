@@ -141,5 +141,9 @@
     <string name="dialog_money_title">Money</string>
     <string name="error_title">Error</string>
     <string name="btn_ok">OK</string>
+    <string name="minus" translatable="false">-</string>
+    <string name="plus" translatable="false">+</string>
+    <string name="stress">Stress</string>
+    <string name="exertion">Exertion</string>
 
 </resources>
