@@ -10,7 +10,7 @@ import android.view.LayoutInflater;
 
 import com.whfrp3.BR;
 import com.whfrp3.R;
-import com.whfrp3.databinding.DialogFragmentMoneyBinding;
+import com.whfrp3.databinding.DialogMoneyBinding;
 import com.whfrp3.ihm.fragments.AdventureFragment;
 import com.whfrp3.model.enums.MoneyType;
 import com.whfrp3.model.player.Money;
@@ -49,13 +49,13 @@ public class ChangeMoneyDialogFragment extends DialogFragment {
         LayoutInflater inflater = getActivity().getLayoutInflater();
 
         // Configure binding
-        DialogFragmentMoneyBinding binding = DataBindingUtil.inflate(inflater, R.layout.dialog_fragment_money, null, false);
+        DialogMoneyBinding binding = DataBindingUtil.inflate(inflater, R.layout.dialog_money, null, false);
         binding.setViewModel(this);
 
         int okBtnLabelId = (operationCode == AdventureFragment.ADD_MONEY) ? R.string.btn_add : R.string.btn_remove;
 
         builder.setView(binding.getRoot());
-        builder.setTitle(R.string.dialog_money_title);
+        builder.setTitle(okBtnLabelId);
         builder.setPositiveButton(okBtnLabelId, new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int id) {
