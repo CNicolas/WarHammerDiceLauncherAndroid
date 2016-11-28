@@ -40,10 +40,6 @@ public class Hand extends AbstractModel {
         setChallenge(0);
     }
 
-    public int getDicesNumber() {
-        return getCharacteristic() + getConservative() + getReckless() + getExpertise() + getFortune() + getMisfortune() + getChallenge();
-    }
-
     @Bindable
     public boolean isNotEmpty() {
         return getDicesNumber() > 0;
@@ -51,6 +47,10 @@ public class Hand extends AbstractModel {
 
     private void updateNotEmpty() {
         notifyPropertyChanged(BR.notEmpty);
+    }
+
+    private int getDicesNumber() {
+        return getCharacteristic() + getConservative() + getReckless() + getExpertise() + getFortune() + getMisfortune() + getChallenge();
     }
 
     //region Get & Set

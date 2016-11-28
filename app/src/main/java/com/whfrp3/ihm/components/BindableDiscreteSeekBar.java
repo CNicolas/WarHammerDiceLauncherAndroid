@@ -28,4 +28,8 @@ public class BindableDiscreteSeekBar extends DiscreteSeekBar {
     public void setDsb_min(int min) {
         setMin(min);
     }
+
+    public void setDsb_value(int value) {
+        setProgress(value);
+    }
 }

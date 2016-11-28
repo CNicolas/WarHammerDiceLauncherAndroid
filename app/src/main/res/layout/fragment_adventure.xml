@@ -20,15 +20,17 @@
 
     </data>
 
-    <LinearLayout
+    <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="@android:color/white"
         android:orientation="vertical">
 
         <LinearLayout
+            android:id="@+id/wounds_layout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
             android:weightSum="90">
 
             <TextView
@@ -59,8 +61,10 @@
         </LinearLayout>
 
         <RelativeLayout
+            android:id="@+id/stress_exertion_label_layout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_below="@+id/wounds_layout"
             android:layout_marginEnd="@dimen/big_padding"
             android:layout_marginStart="@dimen/big_padding"
             android:paddingEnd="@dimen/big_padding"
@@ -87,8 +91,10 @@
         </RelativeLayout>
 
         <RelativeLayout
+            android:id="@+id/stress_exertion_layout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_below="@+id/stress_exertion_label_layout"
             android:layout_marginEnd="@dimen/big_padding"
             android:layout_marginStart="@dimen/big_padding">
 
@@ -145,8 +151,10 @@
         </RelativeLayout>
 
         <LinearLayout
+            android:id="@+id/stance_layout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_below="@+id/stress_exertion_layout"
             android:orientation="vertical"
             android:padding="@dimen/medium_padding">
 
@@ -191,8 +199,10 @@
         </LinearLayout>
 
         <LinearLayout
+            android:id="@+id/defense_soak_layout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_below="@+id/stance_layout"
             android:layout_marginEnd="100dp"
             android:layout_marginStart="100dp"
             android:layout_marginTop="@dimen/medium_padding">
@@ -219,16 +229,21 @@
                 android:text="@{player.fullSoakAmount}" />
         </LinearLayout>
 
+        <!--android:layout_above="@+id/money_layout"-->
+
         <LinearLayout
+            android:id="@+id/encumbrance_layout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_below="@id/defense_soak_layout"
             android:layout_marginTop="@dimen/medium_padding"
+            android:gravity="center"
             android:orientation="horizontal"
             android:padding="@dimen/small_padding">
 
             <ImageView
                 android:layout_width="wrap_content"
-                android:layout_height="match_parent"
+                android:layout_height="35dp"
                 android:paddingEnd="@dimen/medium_padding"
                 android:paddingStart="@dimen/medium_padding"
                 android:src="@drawable/ic_rucksack_black" />
@@ -271,7 +286,7 @@
 
             <TextView
                 android:layout_width="100dp"
-                android:layout_height="wrap_content"
+                android:layout_height="match_parent"
                 android:gravity="center"
                 android:hint="@string/dummy_string"
                 android:paddingEnd="@dimen/very_small_padding"
@@ -281,8 +296,11 @@
         </LinearLayout>
 
         <LinearLayout
+            android:id="@+id/money_layout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_marginBottom="@dimen/big_padding"
             android:layout_marginEnd="@dimen/big_padding"
             android:layout_marginStart="@dimen/big_padding"
             android:layout_marginTop="@dimen/medium_padding"
@@ -313,5 +331,5 @@
                 style="@style/ButtonPlusMinus"
                 android:text="@string/minus" />
         </LinearLayout>
-    </LinearLayout>
+    </RelativeLayout>
 </layout>
