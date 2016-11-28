@@ -235,41 +235,23 @@
                 android:paddingStart="@dimen/very_small_padding"
                 android:src="@drawable/ic_rucksack_black" />
 
-            <RelativeLayout
+
+            <com.whfrp3.ihm.components.EncumbranceBar
                 android:layout_width="0dp"
-                android:layout_height="12dp"
-                android:layout_gravity="center"
-                android:layout_weight="1">
-
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:background="@drawable/green_to_red_gradient" />
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:orientation="horizontal">
-
-                    <View
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:layout_weight="@{1f - player.encumbrancePercent}" />
-
-                    <View
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:layout_weight="@{player.encumbrancePercent}"
-                        android:background="@color/white" />
-
-                </LinearLayout>
-
-                <View
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:background="@drawable/encumbrance_border" />
-
-            </RelativeLayout>
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:background="@drawable/encumbrance_border"
+                android:minHeight="10dp"
+                app:dsb_allowTrackClickToDrag="false"
+                app:dsb_indicatorPopupEnabled="false"
+                app:dsb_max="@{player.encumbranceMax}"
+                app:dsb_min="0"
+                app:dsb_rippleColor="@android:color/transparent"
+                app:dsb_scrubberHeight="10dp"
+                app:dsb_thumbSize="0dp"
+                app:dsb_trackColor="@color/spinner_background"
+                app:dsb_trackHeight="10dp"
+                app:dsb_value="@{player.currentEncumbrance}" />
 
             <TextView
                 android:layout_width="100dp"

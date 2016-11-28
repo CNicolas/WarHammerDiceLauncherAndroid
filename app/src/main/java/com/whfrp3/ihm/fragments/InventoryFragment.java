@@ -118,9 +118,11 @@ public class InventoryFragment extends Fragment implements IPlayerActivityConsta
                                 if (menuArrayId == R.array.item_menu_actions3 && whichPos == 0) {
                                     // Unequip the item
                                     ((Equipment) item).setEquipped(false);
+                                    refreshInventoryView();
                                 } else if (menuArrayId == R.array.item_menu_actions2 && whichPos == 0) {
                                     // Equip the item
                                     ((Equipment) item).setEquipped(true);
+                                    refreshInventoryView();
                                 } else if ((menuArrayId == R.array.item_menu_actions1 && whichPos == 0)
                                         || (menuArrayId == R.array.item_menu_actions2 && whichPos == 1)
                                         || (menuArrayId == R.array.item_menu_actions3 && whichPos == 1)) {
@@ -129,9 +131,8 @@ public class InventoryFragment extends Fragment implements IPlayerActivityConsta
                                 } else {
                                     // Delete item
                                     WHFRP3Application.getPlayer().removeItem(item);
+                                    refreshInventoryView();
                                 }
-
-                                refreshInventoryView();
                             }
                         });
                 AlertDialog dialog = builder.create();
@@ -211,6 +212,5 @@ public class InventoryFragment extends Fragment implements IPlayerActivityConsta
         WHFRP3Application.getPlayer().notifyPropertyChanged(BR.fullDefenseAmount);
         WHFRP3Application.getPlayer().notifyPropertyChanged(BR.fullSoakAmount);
         WHFRP3Application.getPlayer().notifyPropertyChanged(BR.currentEncumbrance);
-        WHFRP3Application.getPlayer().notifyPropertyChanged(BR.encumbrancePercent);
     }
 }

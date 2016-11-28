@@ -76,11 +76,9 @@ public class ItemEditActivity extends AppCompatActivity {
         itemEdit = new ItemEdit(item);
 
         // Configure binding
-        ActivityItemEditBinding binding = DataBindingUtil.inflate(getLayoutInflater(), R.layout.activity_item_edit, null, false);
+        ActivityItemEditBinding binding = DataBindingUtil.setContentView(this, R.layout.activity_item_edit);
         binding.setItem(itemEdit);
         binding.setViewModel(this);
-
-        setContentView(binding.getRoot());
 
         // Configure layout
         initTypeSpinner();
@@ -115,7 +113,7 @@ public class ItemEditActivity extends AppCompatActivity {
 
             @Override
             public void onNothingSelected(AdapterView<?> adapterView) {
-                itemEdit.setType(null);
+                itemEdit.setType(ItemType.ITEM);
             }
         });
 
@@ -137,7 +135,7 @@ public class ItemEditActivity extends AppCompatActivity {
 
             @Override
             public void onNothingSelected(AdapterView<?> adapterView) {
-                itemEdit.setQuality(null);
+                itemEdit.setQuality(Quality.NORMAL);
             }
         });
 
@@ -159,7 +157,7 @@ public class ItemEditActivity extends AppCompatActivity {
 
             @Override
             public void onNothingSelected(AdapterView<?> adapterView) {
-                itemEdit.setRange(null);
+                itemEdit.setRange(Range.ENGAGED);
             }
         });
 
