@@ -7,7 +7,6 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.TextView;
 
 import com.whfrp3.R;
@@ -42,9 +41,9 @@ public class AdventureFragment extends Fragment {
         FragmentAdventureBinding binding = DataBindingUtil.inflate(inflater, R.layout.fragment_adventure, container, false);
         binding.setPlayer(WHFRP3Application.getPlayer());
         binding.setHandlers(new AdventureActivityHandlers());
+        binding.setViewModel(this);
 
         setupStance(binding.getRoot());
-        setupMoneyButtons(binding.getRoot());
 
         long difference = System.currentTimeMillis() - startTime;
         Log.d("AdventureFragment", String.format("%d = %d", startTime, difference));
@@ -62,27 +61,8 @@ public class AdventureFragment extends Fragment {
         TextView currentStanceTextView = (TextView) rootView.findViewById(R.id.currentStance);
         BindableDiscreteSeekBar playerStance = (BindableDiscreteSeekBar) rootView.findViewById(R.id.player_stance);
 
-        playerStance.setOnProgressChangeListener(new StanceChangeListener(getActivity(), currentStanceTextView));
+        playerStance.setOnProgressChangeListener(new StanceChangeListener(currentStanceTextView));
         playerStance.setMin(-1 * WHFRP3Application.getPlayer().getMax_conservative());
         playerStance.setMax(WHFRP3Application.getPlayer().getMax_reckless());
     }
-
-    private void setupMoneyButtons(View rootView) {
-        Button btnAdd = (Button) rootView.findViewById(R.id.btn_add_money);
-        btnAdd.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                changeMoney(ADD_MONEY);
-            }
-        });
-
-        Button btnRemove = (Button) rootView.findViewById(R.id.btn_remove_money);
-        btnRemove.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                changeMoney(REMOVE_MONEY);
-            }
-        });
-    }
-
 }

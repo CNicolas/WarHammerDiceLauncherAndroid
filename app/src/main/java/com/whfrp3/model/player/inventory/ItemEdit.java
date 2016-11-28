@@ -130,7 +130,11 @@ public class ItemEdit extends BaseObservable {
     }
 
     public void setQuantity(int quantity) {
-        this.quantity = quantity;
+        if (quantity > 0) {
+            this.quantity = quantity;
+        } else {
+            this.quantity = 1;
+        }
     }
 
     public Quality getQuality() {

@@ -3,7 +3,6 @@
     xmlns:tools="http://schemas.android.com/tools"
     package="com.whfrp3">
 
-    <!-- android:icon="@mipmap/ic_launcher" -->
     <application
         android:name="com.whfrp3.tools.WHFRP3Application"
         android:allowBackup="true"

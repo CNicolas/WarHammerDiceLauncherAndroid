@@ -17,7 +17,8 @@ public class StanceChangeListener implements DiscreteSeekBar.OnProgressChangeLis
     private final int mNeutralColor;
     private final TextView mCurrentStanceTextView;
 
-    public StanceChangeListener(Context context, TextView currentStanceTextView) {
+    public StanceChangeListener(TextView currentStanceTextView) {
+        Context context = WHFRP3Application.getAppContext();
         mConservativeColor = ContextCompat.getColor(context, R.color.conservative);
         mRecklessColor = ContextCompat.getColor(context, R.color.reckless);
         mNeutralColor = ContextCompat.getColor(context, R.color.colorPrimaryDark);

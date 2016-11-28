@@ -62,7 +62,7 @@
     <style name="DeactivableCharacteristicText" parent="@android:style/Widget.EditText">
         <item name="android:layout_height">wrap_content</item>
         <item name="android:gravity">center</item>
-        <item name="android:inputType">text</item>
+        <item name="android:inputType">textCapWords</item>
         <item name="android:textColor">@color/characteristic_text</item>
     </style>
 
