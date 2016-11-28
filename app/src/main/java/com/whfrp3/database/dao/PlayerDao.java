@@ -222,7 +222,9 @@ public class PlayerDao extends AbstractDao<Player> implements IPlayerEntryConsta
 
         // Find characteristics
         Characteristics characteristics = mCharacteristicsDao.findById(cursor.getInt(cursor.getColumnIndexOrThrow(COLUMN_CHARACTERISTICS_ID)));
-        model.setCharacteristics(characteristics);
+        if (characteristics != null) {
+            model.setCharacteristics(characteristics);
+        }
 
         // Find skills
         List<Skill> skills = mSkillDao.findAllByPlayerId(model.getId());
