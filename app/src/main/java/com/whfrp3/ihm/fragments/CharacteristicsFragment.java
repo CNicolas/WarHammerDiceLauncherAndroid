@@ -14,33 +14,20 @@ import com.whfrp3.R;
 import com.whfrp3.databinding.FragmentCharacteristicsBinding;
 import com.whfrp3.ihm.adapters.EnumSpinnerAdapter;
 import com.whfrp3.model.enums.Race;
-import com.whfrp3.tools.BindingContext;
 import com.whfrp3.tools.WHFRP3Application;
-import com.whfrp3.tools.constants.IPlayerActivityConstants;
 
 /**
  * The CharacteristicsFragment.
  */
 public class CharacteristicsFragment extends Fragment {
-    private BindingContext mBindingContext;
-
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         long startTime = System.currentTimeMillis();
 
-        Bundle bundle = this.getArguments();
-        if (bundle != null) {
-            mBindingContext = (BindingContext) bundle.getSerializable(IPlayerActivityConstants.BINDING_CONTEXT_BUNDLE_TAG);
-        } else {
-            mBindingContext = new BindingContext(false);
-        }
-
         FragmentCharacteristicsBinding binding = DataBindingUtil.inflate(inflater, R.layout.fragment_characteristics, container, false);
         binding.setPlayer(WHFRP3Application.getPlayer());
-        binding.setBindingContext(mBindingContext);
-        binding.characteristicsEdittexts.setCarac(WHFRP3Application.getPlayer().getCharacteristics());
-        binding.characteristicsEdittexts.setBindingContext(mBindingContext);
+        binding.setCarac(WHFRP3Application.getPlayer().getCharacteristics());
 
         setupRaceSpinner(inflater, binding.getRoot());
 

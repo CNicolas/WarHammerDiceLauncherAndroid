@@ -64,6 +64,8 @@ public class Player extends AbstractModel {
      */
     private List<Long> mItemToRemove = new ArrayList<>();
 
+    private boolean mInEdition;
+
     //endregion
 
     //region Constructors
@@ -313,6 +315,18 @@ public class Player extends AbstractModel {
         }
 
         return items;
+    }
+    //endregion
+
+    //region Edition
+    @Bindable
+    public boolean isInEdition() {
+        return mInEdition;
+    }
+
+    public void setInEdition(boolean inEdition) {
+        mInEdition = inEdition;
+        notifyPropertyChanged(BR.inEdition);
     }
     //endregion
 

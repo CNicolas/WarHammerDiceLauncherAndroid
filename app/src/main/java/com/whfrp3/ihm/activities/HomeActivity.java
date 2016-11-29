@@ -1,11 +1,11 @@
 package com.whfrp3.ihm.activities;
 
 import android.app.Activity;
-import android.content.Context;
 import android.content.Intent;
 import android.database.sqlite.SQLiteException;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.v4.app.TaskStackBuilder;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -40,7 +40,7 @@ public class HomeActivity extends Activity {
 
         ArrayAdapter<String> adapter = new ArrayAdapter<>(this, R.layout.players_list_element, playersNames);
         listPlayers.setAdapter(adapter);
-        listPlayers.setOnItemClickListener(new PlayerListItemClickListener(this));
+        listPlayers.setOnItemClickListener(new PlayerListItemClickListener());
     }
 
     /**
@@ -48,11 +48,6 @@ public class HomeActivity extends Activity {
      * Either creating a new player or loading an existing one from mDatabase.
      */
     public class PlayerListItemClickListener implements AdapterView.OnItemClickListener {
-        private final Context mContext;
-
-        public PlayerListItemClickListener(Context context) {
-            mContext = context;
-        }
 
         @Override
         public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
@@ -67,15 +62,19 @@ public class HomeActivity extends Activity {
                     Player player = WHFRP3Application.getDatabase().getPlayerDao().findByName(tv.getText().toString());
                     WHFRP3Application.setPlayer(player);
                 } catch (SQLiteException sqle) {
-                    Toast.makeText(mContext, "An error occured", Toast.LENGTH_LONG).show();
+                    Toast.makeText(WHFRP3Application.getAppContext(), "An error occured", Toast.LENGTH_LONG).show();
                 }
             }
 
             Intent playerIntent = new Intent(HomeActivity.this, PlayerActivity.class);
             playerIntent.putExtra(IPlayerActivityConstants.IS_IN_EDITION_BUNDLE_TAG, isInEdition);
 
+            TaskStackBuilder stackBuilder = TaskStackBuilder.create(HomeActivity.this);
+            stackBuilder.addParentStack(PlayerActivity.class);
+            stackBuilder.addNextIntent(playerIntent);
+
             startActivity(playerIntent);
-            finish();
+//            finish();
         }
     }
 }

@@ -19,7 +19,6 @@ import com.whfrp3.R;
 import com.whfrp3.ihm.adapters.PlayerPagerAdapter;
 import com.whfrp3.ihm.fragments.InventoryFragment;
 import com.whfrp3.model.player.skill.Skill;
-import com.whfrp3.tools.BindingContext;
 import com.whfrp3.tools.WHFRP3Application;
 import com.whfrp3.tools.constants.IPlayerActivityConstants;
 import com.whfrp3.tools.helpers.PlayerHelper;
@@ -32,7 +31,6 @@ public class PlayerActivity extends AppCompatActivity implements IPlayerActivity
 
     private PlayerPagerAdapter mPlayerPagerAdapter;
     private Menu mMenu;
-    private BindingContext mBindingContext;
 
     //region Overrides
     @Override
@@ -40,15 +38,16 @@ public class PlayerActivity extends AppCompatActivity implements IPlayerActivity
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_player);
 
-        mBindingContext = new BindingContext(false);
-
         Bundle extras = getIntent().getExtras();
         if (extras != null) {
             boolean inEdition = extras.getBoolean(IPlayerActivityConstants.IS_IN_EDITION_BUNDLE_TAG);
-            mBindingContext.setInEdition(inEdition);
+            WHFRP3Application.getPlayer().setInEdition(inEdition);
         }
 
         initVisualElements();
+
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setHomeButtonEnabled(true);
     }
 
     @Override
@@ -63,20 +62,13 @@ public class PlayerActivity extends AppCompatActivity implements IPlayerActivity
         super.onStop();
     }
 
+    @Override
+    public void onBackPressed() {
+        PlayerHelper.savePlayer(WHFRP3Application.getPlayer());
+        super.onBackPressed();
+    }
+
     //region Instances
-    @Override
-    protected void onSaveInstanceState(Bundle outState) {
-        super.onSaveInstanceState(outState);
-        outState.putBoolean(IPlayerActivityConstants.IS_IN_EDITION_BUNDLE_TAG, mBindingContext.isInEdition());
-    }
-
-    @Override
-    protected void onRestoreInstanceState(Bundle savedInstanceState) {
-        super.onRestoreInstanceState(savedInstanceState);
-        boolean b = savedInstanceState.getBoolean(IPlayerActivityConstants.IS_IN_EDITION_BUNDLE_TAG);
-        setIsInEdition(b);
-    }
-
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent intent) {
         super.onActivityResult(requestCode, resultCode, intent);
@@ -106,7 +98,7 @@ public class PlayerActivity extends AppCompatActivity implements IPlayerActivity
         int id = item.getItemId();
 
         if (id == R.id.action_in_edition_true || id == R.id.action_in_edition_false) {
-            setIsInEdition(!mBindingContext.isInEdition());
+            setIsInEdition(!WHFRP3Application.getPlayer().isInEdition());
             return true;
         }
         if (id == R.id.action_launch) {
@@ -133,7 +125,7 @@ public class PlayerActivity extends AppCompatActivity implements IPlayerActivity
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        mPlayerPagerAdapter = new PlayerPagerAdapter(this, mBindingContext);
+        mPlayerPagerAdapter = new PlayerPagerAdapter(getSupportFragmentManager());
 
         ViewPager viewPager = (ViewPager) findViewById(R.id.player_pager_container);
         viewPager.setAdapter(mPlayerPagerAdapter);
@@ -164,7 +156,6 @@ public class PlayerActivity extends AppCompatActivity implements IPlayerActivity
 
         startActivityForResult(launchIntent, LAUNCH_REQUEST);
     }
-    //endregion
 
     //region Edition
 
@@ -174,7 +165,7 @@ public class PlayerActivity extends AppCompatActivity implements IPlayerActivity
      * @param isInEdition
      */
     private void setIsInEdition(boolean isInEdition) {
-        mBindingContext.setInEdition(isInEdition);
+        WHFRP3Application.getPlayer().setInEdition(isInEdition);
         changeEdition();
     }
 
@@ -183,7 +174,7 @@ public class PlayerActivity extends AppCompatActivity implements IPlayerActivity
      */
     private void changeEdition() {
         if (mMenu != null) {
-            if (mBindingContext.isInEdition()) {
+            if (WHFRP3Application.getPlayer().isInEdition()) {
                 mMenu.findItem(R.id.action_in_edition_true).setVisible(true);
                 mMenu.findItem(R.id.action_in_edition_false).setVisible(false);
 

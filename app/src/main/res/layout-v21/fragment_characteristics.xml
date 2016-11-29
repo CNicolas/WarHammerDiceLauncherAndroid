@@ -4,8 +4,6 @@
 
     <data>
 
-        <import type="com.whfrp3.tools.BindingUtils" />
-
         <variable
             name="player"
             type="com.whfrp3.model.player.Player" />
@@ -13,11 +11,6 @@
         <variable
             name="carac"
             type="com.whfrp3.model.player.Characteristics" />
-
-        <variable
-            name="bindingContext"
-            type="com.whfrp3.tools.BindingContext" />
-
     </data>
 
     <ScrollView
@@ -42,6 +35,7 @@
                 android:focusableInTouchMode="true"
                 tools:ignore="UselessLeaf" />
 
+            <!--Name/Rank-->
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -60,7 +54,7 @@
                     style="@style/DeactivableCharacteristicText"
                     android:layout_width="wrap_content"
                     android:layout_weight="100"
-                    android:enabled="@{bindingContext.inEdition}"
+                    android:enabled="@{player.inEdition}"
                     android:hint="@string/name_hint"
                     android:text="@={player.name}" />
 
@@ -74,10 +68,11 @@
                     android:id="@+id/player_rank"
                     style="@style/SimpleCharacteristicNumberEditText"
                     android:layout_weight="1"
-                    android:enabled="@{bindingContext.inEdition}"
+                    android:enabled="@{player.inEdition}"
                     android:text="@={player.rank}" />
             </LinearLayout>
 
+            <!--Career-->
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -94,11 +89,12 @@
                     android:id="@+id/player_career"
                     style="@style/DeactivableCharacteristicText"
                     android:layout_width="match_parent"
-                    android:enabled="@{bindingContext.inEdition}"
+                    android:enabled="@{player.inEdition}"
                     android:hint="@string/career_hint"
                     android:text="@={player.career}" />
             </LinearLayout>
 
+            <!--Wounds/XP/Corruption-->
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -115,7 +111,7 @@
                 <EditText
                     android:id="@+id/player_max_wounds"
                     style="@style/SimpleCharacteristicNumberEditText"
-                    android:enabled="@{bindingContext.inEdition}"
+                    android:enabled="@{player.inEdition}"
                     android:maxLength="3"
                     android:text="@={player.max_wounds}" />
 
@@ -133,7 +129,7 @@
                 <EditText
                     android:id="@+id/player_experience"
                     style="@style/SimpleCharacteristicNumberEditText"
-                    android:enabled="@{bindingContext.inEdition}"
+                    android:enabled="@{player.inEdition}"
                     android:maxLength="3"
                     android:text="@={player.max_experience}" />
 
@@ -147,7 +143,7 @@
                 <EditText
                     android:id="@+id/player_max_experience"
                     style="@style/SimpleCharacteristicNumberEditText"
-                    android:enabled="@{bindingContext.inEdition}"
+                    android:enabled="@{player.inEdition}"
                     android:maxLength="3"
                     android:text="@={player.max_experience}" />
 
@@ -162,22 +158,198 @@
                 <EditText
                     android:id="@+id/player_max_corruption"
                     style="@style/SimpleCharacteristicNumberEditText"
-                    android:enabled="@{bindingContext.inEdition}"
+                    android:enabled="@{player.inEdition}"
                     android:text="@={player.max_corruption}" />
-
-
             </LinearLayout>
 
             <!--Characteristics EditTexts-->
-            <include
-                android:id="@+id/characteristics_edittexts"
-                layout="@layout/characteristics_numbers" />
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/medium_padding"
+                android:orientation="vertical"
+                android:paddingEnd="80dp"
+                android:paddingStart="0dp">
+
+                <!--Strength-->
+                <LinearLayout
+                    android:id="@+id/strength_layout"
+                    style="@style/CharacteristicLinearLayout">
+
+                    <TextView
+                        style="@style/CharacteristicLabel"
+                        android:labelFor="@+id/strength_characteristic"
+                        android:text="@string/strength" />
+
+                    <LinearLayout style="@style/CharacteristicBlueLinearLayout">
+
+                        <EditText
+                            android:id="@+id/strength_characteristic"
+                            style="@style/CharacteristicNumberEditText"
+                            android:enabled="@{player.inEdition}"
+                            android:text="@={carac.strength}" />
+                    </LinearLayout>
+
+                    <LinearLayout style="@style/CharacteristicWhiteLinearLayout">
+
+                        <EditText
+                            android:id="@+id/strength_fortune"
+                            style="@style/CharacteristicFortuneNumberEditText"
+                            android:enabled="@{player.inEdition}"
+                            android:text="@={carac.strength_fortune}" />
+                    </LinearLayout>
+                </LinearLayout>
+
+                <!--Toughness-->
+                <LinearLayout
+                    android:id="@+id/toughness_layout"
+                    style="@style/CharacteristicLinearLayout">
+
+                    <TextView
+                        style="@style/CharacteristicLabel"
+                        android:labelFor="@+id/toughness_characteristic"
+                        android:text="@string/toughness" />
+
+                    <LinearLayout style="@style/CharacteristicBlueLinearLayout">
+
+                        <EditText
+                            android:id="@+id/toughness_characteristic"
+                            style="@style/CharacteristicNumberEditText"
+                            android:enabled="@{player.inEdition}"
+                            android:text="@={carac.toughness}" />
+                    </LinearLayout>
+
+                    <LinearLayout style="@style/CharacteristicWhiteLinearLayout">
+
+                        <EditText
+                            android:id="@+id/toughness_fortune"
+                            style="@style/CharacteristicFortuneNumberEditText"
+                            android:enabled="@{player.inEdition}"
+                            android:text="@={carac.toughness_fortune}" />
+                    </LinearLayout>
+                </LinearLayout>
+
+                <!--Agility-->
+                <LinearLayout
+                    android:id="@+id/agility_layout"
+                    style="@style/CharacteristicLinearLayout">
+
+                    <TextView
+                        style="@style/CharacteristicLabel"
+                        android:labelFor="@+id/agility_characteristic"
+                        android:text="@string/agility" />
+
+                    <LinearLayout style="@style/CharacteristicBlueLinearLayout">
+
+                        <EditText
+                            android:id="@+id/agility_characteristic"
+                            style="@style/CharacteristicNumberEditText"
+                            android:enabled="@{player.inEdition}"
+                            android:text="@={carac.agility}" />
+                    </LinearLayout>
+
+                    <LinearLayout style="@style/CharacteristicWhiteLinearLayout">
+
+                        <EditText
+                            android:id="@+id/agility_fortune"
+                            style="@style/CharacteristicFortuneNumberEditText"
+                            android:enabled="@{player.inEdition}"
+                            android:text="@={carac.agility_fortune}" />
+                    </LinearLayout>
+                </LinearLayout>
+
+                <!--Intelligence-->
+                <LinearLayout
+                    android:id="@+id/intelligence_layout"
+                    style="@style/CharacteristicLinearLayout">
+
+                    <TextView
+                        style="@style/CharacteristicLabel"
+                        android:labelFor="@+id/intelligence_characteristic"
+                        android:text="@string/intelligence" />
+
+                    <LinearLayout style="@style/CharacteristicBlueLinearLayout">
+
+                        <EditText
+                            android:id="@+id/intelligence_characteristic"
+                            style="@style/CharacteristicNumberEditText"
+                            android:enabled="@{player.inEdition}"
+                            android:text="@={carac.intelligence}" />
+                    </LinearLayout>
+
+                    <LinearLayout style="@style/CharacteristicWhiteLinearLayout">
+
+                        <EditText
+                            android:id="@+id/intelligence_fortune"
+                            style="@style/CharacteristicFortuneNumberEditText"
+                            android:enabled="@{player.inEdition}"
+                            android:text="@={carac.intelligence_fortune}" />
+                    </LinearLayout>
+                </LinearLayout>
+
+                <!--Will Power-->
+                <LinearLayout
+                    android:id="@+id/willpower_layout"
+                    style="@style/CharacteristicLinearLayout">
+
+                    <TextView
+                        style="@style/CharacteristicLabel"
+                        android:labelFor="@+id/willpower_characteristic"
+                        android:text="@string/willpower" />
+
+                    <LinearLayout style="@style/CharacteristicBlueLinearLayout">
+
+                        <EditText
+                            android:id="@+id/willpower_characteristic"
+                            style="@style/CharacteristicNumberEditText"
+                            android:enabled="@{player.inEdition}"
+                            android:text="@={carac.willpower}" />
+                    </LinearLayout>
+
+                    <LinearLayout style="@style/CharacteristicWhiteLinearLayout">
+
+                        <EditText
+                            android:id="@+id/willpower_fortune"
+                            style="@style/CharacteristicFortuneNumberEditText"
+                            android:enabled="@{player.inEdition}"
+                            android:text="@={carac.willpower_fortune}" />
+                    </LinearLayout>
+                </LinearLayout>
+
+                <!--Fellowship-->
+                <LinearLayout
+                    android:id="@+id/fellowship_layout"
+                    style="@style/CharacteristicLinearLayout">
+
+                    <TextView
+                        style="@style/CharacteristicLabel"
+                        android:labelFor="@+id/fellowship_characteristic"
+                        android:text="@string/fellowship" />
+
+                    <LinearLayout style="@style/CharacteristicBlueLinearLayout">
+
+                        <EditText
+                            android:id="@+id/fellowship_characteristic"
+                            style="@style/CharacteristicNumberEditText"
+                            android:enabled="@{player.inEdition}"
+                            android:text="@={carac.fellowship}" />
+                    </LinearLayout>
+
+                    <LinearLayout style="@style/CharacteristicWhiteLinearLayout">
+
+                        <EditText
+                            android:id="@+id/fellowship_fortune"
+                            style="@style/CharacteristicFortuneNumberEditText"
+                            android:enabled="@{player.inEdition}"
+                            android:text="@={carac.fellowship_fortune}" />
+                    </LinearLayout>
+                </LinearLayout>
+            </LinearLayout>
 
             <!--Reckless/Max_Reckless, Conservative/Max_Conservative-->
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="@dimen/medium_padding"
                 android:layout_marginEnd="@dimen/big_padding"
                 android:layout_marginStart="@dimen/big_padding"
                 android:layout_marginTop="@dimen/medium_padding"
@@ -205,7 +377,7 @@
                         android:id="@+id/player_max_conservative"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:enabled="@{bindingContext.inEdition}"
+                        android:enabled="@{player.inEdition}"
                         android:gravity="center"
                         android:hint="@string/zero"
                         android:inputType="number"
@@ -233,7 +405,7 @@
                         android:id="@+id/player_max_reckless"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:enabled="@{bindingContext.inEdition}"
+                        android:enabled="@{player.inEdition}"
                         android:gravity="center"
                         android:hint="@string/zero"
                         android:inputType="number"
@@ -243,11 +415,13 @@
                 </LinearLayout>
             </LinearLayout>
 
+            <!--Race-->
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="36dp"
                 android:layout_marginEnd="@dimen/big_padding"
                 android:layout_marginStart="@dimen/big_padding"
+                android:layout_marginTop="@dimen/medium_padding"
                 android:gravity="center">
 
                 <TextView
@@ -259,14 +433,16 @@
                     android:id="@+id/player_race_spinner"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:enabled="@{bindingContext.inEdition}" />
+                    android:enabled="@{player.inEdition}" />
             </LinearLayout>
 
+            <!--Age/Size-->
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="@dimen/medium_padding"
                 android:layout_marginStart="@dimen/medium_padding"
+                android:layout_marginTop="@dimen/medium_padding"
                 android:gravity="center_horizontal"
                 android:orientation="horizontal">
 
@@ -280,7 +456,7 @@
                 <EditText
                     android:id="@+id/player_age"
                     style="@style/SimpleCharacteristicNumberEditText"
-                    android:enabled="@{bindingContext.inEdition}"
+                    android:enabled="@{player.inEdition}"
                     android:maxLength="4"
                     android:text="@={player.age}" />
 
@@ -293,7 +469,7 @@
                 <EditText
                     android:id="@+id/player_size"
                     style="@style/SimpleCharacteristicNumberEditText"
-                    android:enabled="@{bindingContext.inEdition}"
+                    android:enabled="@{player.inEdition}"
                     android:maxLength="3"
                     android:text="@={player.size}" />
 
@@ -311,7 +487,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
                 android:layout_marginBottom="70dp"
-                android:layout_marginTop="@dimen/small_padding"
+                android:layout_marginTop="@dimen/medium_padding"
                 android:layout_weight="1"
                 android:orientation="vertical">
 
@@ -325,7 +501,7 @@
                 <EditText
                     android:id="@+id/player_description"
                     style="@style/DescriptionField"
-                    android:enabled="@{bindingContext.inEdition}"
+                    android:enabled="@{player.inEdition}"
                     android:hint="@string/description_hint"
                     android:text="@={player.description}"
                     android:textColor="@color/characteristic_text" />
