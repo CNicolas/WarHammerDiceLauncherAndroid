@@ -84,6 +84,8 @@ public class ItemEditActivity extends AppCompatActivity {
         initTypeSpinner();
         initQualitySpinner();
         initRangeSpinner();
+
+        WHFRP3Application.setActivity(this);
     }
 
     //region Options Menu

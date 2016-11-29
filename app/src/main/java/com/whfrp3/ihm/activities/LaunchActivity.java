@@ -76,6 +76,8 @@ public class LaunchActivity extends AppCompatActivity implements IPlayerActivity
         setupHandsSpinner();
 
         setResult(mBackToPreviousFragment);
+
+        WHFRP3Application.setActivity(this);
     }
 
     @Override

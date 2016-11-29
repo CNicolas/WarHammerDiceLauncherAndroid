@@ -13,6 +13,7 @@ import android.widget.TextView;
 import com.whfrp3.R;
 import com.whfrp3.model.dices.DiceFaces;
 import com.whfrp3.model.dices.Hand;
+import com.whfrp3.tools.WHFRP3Application;
 import com.whfrp3.tools.constants.IHandConstants;
 import com.whfrp3.tools.helpers.DicesRollerHelper;
 
@@ -59,6 +60,8 @@ public class StatisticsActivity extends AppCompatActivity {
         mProgressSpinner = (ProgressBar) findViewById(R.id.progress_spinner);
 
         callRollThread();
+
+        WHFRP3Application.setActivity(this);
     }
 
     @Override

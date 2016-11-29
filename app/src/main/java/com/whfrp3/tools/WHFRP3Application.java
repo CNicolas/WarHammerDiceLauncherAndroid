@@ -1,5 +1,6 @@
 package com.whfrp3.tools;
 
+import android.app.Activity;
 import android.app.Application;
 import android.content.Context;
 import android.util.Log;
@@ -18,6 +19,11 @@ public class WHFRP3Application extends Application {
      * Application context.
      */
     private static Context mContext;
+
+    /**
+     * Current Activity
+     */
+    private static Activity mActivity;
 
     /**
      * Database manager.
@@ -87,5 +93,19 @@ public class WHFRP3Application extends Application {
      */
     public static Database getDatabase() {
         return mDatabase;
+    }
+
+    /**
+     * Getter of the current activity.
+     *
+     * @return Current activity.
+     */
+    public static Activity getActivity() {
+        return WHFRP3Application.mActivity;
+    }
+
+    public static void setActivity(Activity activity) {
+        mActivity = activity;
+        Log.d("WHFRP3Application", "New Activity : " + activity.getClass().getName());
     }
 }

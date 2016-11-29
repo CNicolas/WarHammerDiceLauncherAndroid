@@ -28,7 +28,7 @@
             android:clickable="true"
             android:gravity="start|center_vertical"
             android:hint="@string/skill_weapon"
-            android:onClick="launchSkill"
+            android:onClick="@{() -> handlers.startLaunchActivity(skill)}"
             android:paddingEnd="@dimen/medium_padding"
             android:paddingStart="@dimen/medium_padding"
             android:text="@{skill.name}"

@@ -2,23 +2,18 @@ package com.whfrp3.ihm.activities;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.annotation.Nullable;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.TaskStackBuilder;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.View;
 import android.view.inputmethod.InputMethodManager;
-import android.widget.TextView;
 
 import com.whfrp3.R;
 import com.whfrp3.ihm.adapters.PlayerPagerAdapter;
 import com.whfrp3.ihm.fragments.InventoryFragment;
-import com.whfrp3.model.player.skill.Skill;
 import com.whfrp3.tools.WHFRP3Application;
 import com.whfrp3.tools.constants.IPlayerActivityConstants;
 import com.whfrp3.tools.helpers.PlayerHelper;
@@ -48,6 +43,8 @@ public class PlayerActivity extends AppCompatActivity implements IPlayerActivity
 
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setHomeButtonEnabled(true);
+
+        WHFRP3Application.setActivity(this);
     }
 
     @Override
@@ -102,7 +99,7 @@ public class PlayerActivity extends AppCompatActivity implements IPlayerActivity
             return true;
         }
         if (id == R.id.action_launch) {
-            startLaunchActivity(null);
+            startLaunchActivity();
             return true;
         }
         if (id == R.id.action_update_player) {
@@ -138,16 +135,12 @@ public class PlayerActivity extends AppCompatActivity implements IPlayerActivity
 
     /**
      * Start a new LaunchActivity with(out) a bundle and add it to the TaskStack.
-     *
-     * @param skill
      */
-    private void startLaunchActivity(@Nullable Skill skill) {
-        Intent launchIntent = new Intent(PlayerActivity.this, LaunchActivity.class);
+    private void startLaunchActivity() {
         Bundle bundle = new Bundle();
-        if (skill != null) {
-            bundle.putSerializable(SKILL_BUNDLE_TAG, skill);
-        }
         bundle.putInt(CURRENT_FRAGMENT_POSITION_BUNDLE_TAG, mPlayerPagerAdapter.getCurrentPosition());
+
+        Intent launchIntent = new Intent(PlayerActivity.this, LaunchActivity.class);
         launchIntent.putExtras(bundle);
 
         TaskStackBuilder stackBuilder = TaskStackBuilder.create(PlayerActivity.this);
@@ -194,23 +187,5 @@ public class PlayerActivity extends AppCompatActivity implements IPlayerActivity
     private void hideKeyboard() {
         InputMethodManager imm = (InputMethodManager) getSystemService(INPUT_METHOD_SERVICE);
         imm.hideSoftInputFromWindow(findViewById(R.id.player_pager_container).getWindowToken(), 0);
-    }
-
-    /**
-     * Event click on the skillsList which launches the LaunchActivity
-     * with a standard hand for this player and this skill
-     *
-     * @param view
-     */
-    public void launchSkill(View view) {
-        try {
-            TextView tv = (TextView) view;
-            String skillName = tv.getText().toString();
-            Skill skill = WHFRP3Application.getPlayer().getSkillByName(skillName);
-
-            startLaunchActivity(skill);
-        } catch (Exception e) {
-            Log.e(getClass().getName(), e.getMessage(), e);
-        }
     }
 }

@@ -41,6 +41,8 @@ public class HomeActivity extends Activity {
         ArrayAdapter<String> adapter = new ArrayAdapter<>(this, R.layout.players_list_element, playersNames);
         listPlayers.setAdapter(adapter);
         listPlayers.setOnItemClickListener(new PlayerListItemClickListener());
+
+        WHFRP3Application.setActivity(this);
     }
 
     /**
