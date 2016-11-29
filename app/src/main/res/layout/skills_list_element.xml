@@ -32,24 +32,21 @@
             android:id="@+id/skill_level1"
             style="@style/SkillCheckbox"
             android:checked="@{skill.level >= 1}"
-            android:enabled="@{player.inEdition}"
-            android:onClick="@{() -> handlers.onLevelSelected(skill, 1, skillLevel1, skillLevel2, skillLevel3)}"
-            android:tag="1" />
+            android:enabled="@{player.rank >= 1 ? player.inEdition : false}"
+            android:onClick="@{() -> handlers.onLevelSelected(skill, 1, skillLevel1, skillLevel2, skillLevel3)}" />
 
         <CheckBox
             android:id="@+id/skill_level2"
             style="@style/SkillCheckbox"
             android:checked="@{skill.level >= 2}"
-            android:enabled="@{player.inEdition}"
-            android:onClick="@{() -> handlers.onLevelSelected(skill, 2, skillLevel1, skillLevel2, skillLevel3)}"
-            android:tag="2" />
+            android:enabled="@{player.rank >= 2 ? player.inEdition : false}"
+            android:onClick="@{() -> handlers.onLevelSelected(skill, 2, skillLevel1, skillLevel2, skillLevel3)}" />
 
         <CheckBox
             android:id="@+id/skill_level3"
             style="@style/SkillCheckbox"
             android:checked="@{skill.level >= 3}"
-            android:enabled="@{player.inEdition}"
-            android:onClick="@{() -> handlers.onLevelSelected(skill, 3, skillLevel1, skillLevel2, skillLevel3)}"
-            android:tag="3" />
+            android:enabled="@{player.rank >= 3 ? player.inEdition : false}"
+            android:onClick="@{() -> handlers.onLevelSelected(skill, 3, skillLevel1, skillLevel2, skillLevel3)}" />
     </LinearLayout>
 </layout>

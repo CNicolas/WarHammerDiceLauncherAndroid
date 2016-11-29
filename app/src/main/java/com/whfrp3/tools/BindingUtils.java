@@ -20,6 +20,7 @@ import java.util.List;
  */
 public class BindingUtils {
 
+    //region Conversion
     @BindingAdapter("android:text")
     public static void setText(TextView view, int value) {
         String res = value == 0 ? "" : String.valueOf(value);
@@ -39,7 +40,9 @@ public class BindingUtils {
         }
         return 0;
     }
+    //endregion
 
+    //region Custom binding attributes
     @BindingAdapter("skills")
     public static void bindSkills(ListView view, List<Skill> list) {
         LayoutInflater inflater = (LayoutInflater) WHFRP3Application.getAppContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
@@ -53,6 +56,7 @@ public class BindingUtils {
         WeaponsListAdapter adapter = new WeaponsListAdapter(inflater, list);
         view.setAdapter(adapter);
     }
+    //endregion
 
     /**
      * Return the string corresponding to the given resource id.
