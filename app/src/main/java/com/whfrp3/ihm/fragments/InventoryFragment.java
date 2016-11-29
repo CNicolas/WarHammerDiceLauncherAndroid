@@ -212,5 +212,6 @@ public class InventoryFragment extends Fragment implements IPlayerActivityConsta
         WHFRP3Application.getPlayer().notifyPropertyChanged(BR.fullDefenseAmount);
         WHFRP3Application.getPlayer().notifyPropertyChanged(BR.fullSoakAmount);
         WHFRP3Application.getPlayer().notifyPropertyChanged(BR.currentEncumbrance);
+        WHFRP3Application.getPlayer().notifyPropertyChanged(BR.equippedWeapons);
     }
 }

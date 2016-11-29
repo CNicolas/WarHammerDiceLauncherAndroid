@@ -110,7 +110,7 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
                     android:layout_marginStart="@dimen/big_padding"
-                    android:src="@drawable/ic_bandages" />
+                    android:src="@drawable/ic_bandages_black" />
 
                 <EditText
                     android:id="@+id/player_max_wounds"
@@ -157,7 +157,7 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
                     android:layout_marginStart="@dimen/big_padding"
-                    android:src="@drawable/chaos_black" />
+                    android:src="@drawable/ic_chaos_black" />
 
                 <EditText
                     android:id="@+id/player_max_corruption"

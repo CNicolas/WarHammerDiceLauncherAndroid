@@ -112,7 +112,7 @@ public class PlayerPagerAdapter extends FragmentPagerAdapter {
                 image = ContextCompat.getDrawable(mContext, R.drawable.ic_skills_black);
                 return setTabIcon(image);
             case IPlayerActivityConstants.INVENTORY_FRAGMENT_POSITION:
-                image = ContextCompat.getDrawable(mContext, R.drawable.ic_rucksack_black);
+                image = ContextCompat.getDrawable(mContext, R.drawable.ic_bag_black);
                 return setTabIcon(image);
         }
         return null;

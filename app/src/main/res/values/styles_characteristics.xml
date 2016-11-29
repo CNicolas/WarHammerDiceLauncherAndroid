@@ -2,24 +2,26 @@
 <resources>
     <!--LinearLayout-->
     <style name="CharacteristicLinearLayout">
-        <item name="android:layout_width">400dp</item>
+        <item name="android:layout_width">match_parent</item>
         <item name="android:gravity">center</item>
         <item name="android:layout_height">40dp</item>
         <item name="android:orientation">horizontal</item>
-        <item name="android:paddingEnd">70dp</item>
         <item name="android:paddingStart">@dimen/small_padding</item>
+        <item name="android:weightSum">6</item>
     </style>
 
     <style name="CharacteristicBlueLinearLayout">
-        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_width">0dp</item>
         <item name="android:layout_height">match_parent</item>
-        <item name="android:layout_weight">35</item>
+        <item name="android:layout_weight">2</item>
         <item name="android:background">@color/characteristic_blue</item>
         <item name="android:layout_margin">@dimen/very_small_padding</item>
     </style>
 
     <style name="CharacteristicWhiteLinearLayout" parent="CharacteristicBlueLinearLayout">
+        <item name="android:layout_width">0dp</item>
         <item name="android:background">@android:color/white</item>
+        <item name="android:layout_weight">1.1</item>
     </style>
     <!--End LinearLayout-->
 
@@ -34,7 +36,8 @@
     </style>
 
     <style name="CharacteristicLabel" parent="LabelTextView">
-        <item name="android:layout_weight">30</item>
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_weight">3</item>
     </style>
 
     <style name="PlayerSimpleLabel">
@@ -69,7 +72,6 @@
     <style name="CharacteristicFortuneNumberEditText" parent="CharacteristicNumberEditText">
         <item name="android:textColor">@android:color/black</item>
         <item name="android:background">@drawable/characteristics_fortune_border</item>
-        <item name="android:layout_marginEnd">30dp</item>
         <item name="android:layout_marginStart">@dimen/very_small_padding</item>
         <item name="android:layout_marginTop">@dimen/very_small_padding</item>
         <item name="android:layout_marginBottom">@dimen/very_small_padding</item>

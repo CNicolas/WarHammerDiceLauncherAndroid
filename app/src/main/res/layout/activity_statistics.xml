@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/activity_launch"
     android:layout_width="match_parent"
@@ -53,7 +52,7 @@
                 android:id="@+id/average_success"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:drawableStart="@drawable/success_black"
+                android:drawableStart="@drawable/ic_success_black"
                 android:gravity="center"
                 android:padding="5dp"
                 android:text="@string/ok" />
@@ -62,7 +61,7 @@
                 android:id="@+id/average_boon"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:drawableStart="@drawable/boon_black"
+                android:drawableStart="@drawable/ic_boon_black"
                 android:gravity="center"
                 android:padding="5dp"
                 android:text="@string/ok" />
@@ -71,7 +70,7 @@
                 android:id="@+id/average_sigmar"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:drawableStart="@drawable/sigmar_black"
+                android:drawableStart="@drawable/ic_sigmar_black"
                 android:gravity="center"
                 android:padding="5dp"
                 android:text="@string/ok" />
@@ -80,7 +79,7 @@
                 android:id="@+id/average_chaos"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:drawableStart="@drawable/chaos_black"
+                android:drawableStart="@drawable/ic_chaos_black"
                 android:gravity="center"
                 android:padding="5dp"
                 android:text="@string/ok" />
@@ -89,7 +88,7 @@
                 android:id="@+id/average_failure"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:drawableStart="@drawable/failure_black"
+                android:drawableStart="@drawable/ic_failure_black"
                 android:gravity="center"
                 android:padding="5dp"
                 android:text="@string/ok" />
@@ -98,7 +97,7 @@
                 android:id="@+id/average_bane"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:drawableStart="@drawable/baneblack"
+                android:drawableStart="@drawable/ic_bane_black"
                 android:gravity="center"
                 android:padding="5dp"
                 android:text="@string/ok" />
@@ -113,6 +112,6 @@
         android:layout_alignParentEnd="true"
         android:layout_margin="@dimen/fab_margin_padding"
         android:onClick="relaunch"
-        app:srcCompat="@drawable/ic_dice_white" />
+        android:src="@drawable/ic_dice_white" />
 </RelativeLayout>
 

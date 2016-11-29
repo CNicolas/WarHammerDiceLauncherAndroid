@@ -12,43 +12,43 @@
         <TextView
             android:id="@+id/successNumberResults"
             style="@style/ResultDialogImagedTextView"
-            android:drawableTop="@drawable/success_black" />
+            android:drawableTop="@drawable/ic_success_black" />
 
         <TextView
             android:id="@+id/benefitNumberResults"
             style="@style/ResultDialogImagedTextView"
-            android:drawableTop="@drawable/boon_black" />
+            android:drawableTop="@drawable/ic_boon_black" />
 
         <TextView
             android:id="@+id/mischiefNumberResults"
             style="@style/ResultDialogImagedTextView"
-            android:drawableTop="@drawable/baneblack" />
+            android:drawableTop="@drawable/ic_bane_black" />
 
         <TextView
             android:id="@+id/failureNumberResults"
             style="@style/ResultDialogImagedTextView"
-            android:drawableTop="@drawable/failure_black" />
+            android:drawableTop="@drawable/ic_failure_black" />
 
         <TextView
             android:id="@+id/sigmarNumberResults"
             style="@style/ResultDialogImagedTextView"
-            android:drawableTop="@drawable/sigmar_black" />
+            android:drawableTop="@drawable/ic_sigmar_black" />
 
         <TextView
             android:id="@+id/tirednessNumberResults"
             style="@style/ResultDialogImagedTextView"
-            android:drawableTop="@drawable/exertion_black" />
+            android:drawableTop="@drawable/ic_exertion_black" />
 
         <TextView
             android:id="@+id/delayNumberResults"
             style="@style/ResultDialogImagedTextView"
-            android:drawableTop="@drawable/delay_black" />
+            android:drawableTop="@drawable/ic_delay_black" />
 
 
         <TextView
             android:id="@+id/chaosNumberResults"
             style="@style/ResultDialogImagedTextView"
-            android:drawableTop="@drawable/chaos_black" />
+            android:drawableTop="@drawable/ic_chaos_black" />
     </LinearLayout>
 
     <Button

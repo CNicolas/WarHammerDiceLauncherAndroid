@@ -38,7 +38,7 @@ public class HomeActivity extends Activity {
         playersNames.add(getResources().getString(R.string.home_create_player));
         playersNames.addAll(WHFRP3Application.getDatabase().getPlayerDao().findAllNames());
 
-        ArrayAdapter<String> adapter = new ArrayAdapter<>(this, R.layout.item_players_list, playersNames);
+        ArrayAdapter<String> adapter = new ArrayAdapter<>(this, R.layout.players_list_element, playersNames);
         listPlayers.setAdapter(adapter);
         listPlayers.setOnItemClickListener(new PlayerListItemClickListener(this));
     }

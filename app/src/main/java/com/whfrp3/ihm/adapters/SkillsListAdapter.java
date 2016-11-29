@@ -9,7 +9,7 @@ import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 
 import com.whfrp3.R;
-import com.whfrp3.databinding.ItemSkillsListBinding;
+import com.whfrp3.databinding.SkillsListElementBinding;
 import com.whfrp3.ihm.listeners.SkillHandlers;
 import com.whfrp3.model.player.skill.Skill;
 
@@ -20,8 +20,8 @@ public class SkillsListAdapter extends BaseAdapter {
     private ObservableArrayList<Skill> skills;
     private LayoutInflater inflater;
 
-    public SkillsListAdapter(ObservableArrayList<Skill> l) {
-        skills = l;
+    public SkillsListAdapter(ObservableArrayList<Skill> list) {
+        skills = list;
     }
 
     @Override
@@ -46,7 +46,7 @@ public class SkillsListAdapter extends BaseAdapter {
                     .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         }
 
-        ItemSkillsListBinding binding = DataBindingUtil.inflate(inflater, R.layout.item_skills_list, parent, false);
+        SkillsListElementBinding binding = DataBindingUtil.inflate(inflater, R.layout.skills_list_element, parent, false);
         binding.setSkill(skills.get(position));
         binding.setHandlers(new SkillHandlers());
 

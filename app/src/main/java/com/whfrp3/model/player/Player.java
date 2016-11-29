@@ -1,6 +1,8 @@
 package com.whfrp3.model.player;
 
 import android.databinding.Bindable;
+import android.databinding.ObservableArrayList;
+import android.databinding.ObservableList;
 
 import com.whfrp3.BR;
 import com.whfrp3.model.AbstractModel;
@@ -89,7 +91,25 @@ public class Player extends AbstractModel {
     //endregion
 
     //region Inventory Management
-    //region Values
+    //region Armor
+
+    /**
+     * Return player's armors.
+     *
+     * @return Player's armors.
+     */
+    public List<Armor> getArmors() {
+        List<Armor> armors = new ArrayList<>();
+
+        for (Item item : inventory) {
+            if (item.getType() == ItemType.ARMOR) {
+                armors.add(item.toArmor());
+            }
+        }
+
+        return armors;
+    }
+
     @Bindable
     public int getFullDefenseAmount() {
         int res = 0;
@@ -121,7 +141,9 @@ public class Player extends AbstractModel {
 
         return res;
     }
+    //endregion
 
+    //region Encumbrance
     @Bindable
     public int getEncumbranceOverload() {
         int encumbrance = (race == Race.DWARF) ? ENCUMBRANCE_BASE_DWARF : ENCUMBRANCE_BASE;
@@ -155,8 +177,39 @@ public class Player extends AbstractModel {
     public float getEncumbrancePercent() {
         return (float) getCurrentEncumbrance() / (float) getEncumbranceMax();
     }
-
     //endregion
+
+    //region Weapons
+
+    /**
+     * Return player's weapons.
+     *
+     * @return Player's weapons.
+     */
+    public ObservableList<Weapon> getWeapons() {
+        ObservableList<Weapon> weapons = new ObservableArrayList<>();
+
+        for (Item item : inventory) {
+            if (item.getType() == ItemType.WEAPON) {
+                weapons.add(item.toWeapon());
+            }
+        }
+
+        return weapons;
+    }
+
+    @Bindable
+    public List<Weapon> getEquippedWeapons() {
+        List<Weapon> allWeapons = getWeapons();
+        List<Weapon> res = new ArrayList<>();
+        for (Weapon weapon : allWeapons) {
+            if (weapon.isEquipable() && weapon.isEquipped()) {
+                res.add(weapon);
+            }
+        }
+
+        return res;
+    }
 
     /**
      * Returns the first equipped weapon that can be used
@@ -164,7 +217,7 @@ public class Player extends AbstractModel {
      * @param range
      * @return
      */
-    public Weapon getEquippedWeapon(Range range) {
+    public Weapon getUsableWeapon(Range range) {
         List<Weapon> weapons = getWeapons();
         for (Weapon weapon : weapons) {
             if (weapon.canBeUsed(range)) {
@@ -174,6 +227,7 @@ public class Player extends AbstractModel {
 
         return null;
     }
+    //endregion
 
     /**
      * Add the given item in the inventory.
@@ -211,8 +265,6 @@ public class Player extends AbstractModel {
         }
     }
 
-    //region Getters
-
     /**
      * Return player's item with the given id.
      *
@@ -227,40 +279,6 @@ public class Player extends AbstractModel {
         }
 
         return null;
-    }
-
-    /**
-     * Return player's armors.
-     *
-     * @return Player's armors.
-     */
-    public List<Armor> getArmors() {
-        List<Armor> armors = new ArrayList<>();
-
-        for (Item item : inventory) {
-            if (item.getType() == ItemType.ARMOR) {
-                armors.add(item.toArmor());
-            }
-        }
-
-        return armors;
-    }
-
-    /**
-     * Return player's weapons.
-     *
-     * @return Player's weapons.
-     */
-    public List<Weapon> getWeapons() {
-        List<Weapon> weapons = new ArrayList<>();
-
-        for (Item item : inventory) {
-            if (item.getType() == ItemType.WEAPON) {
-                weapons.add(item.toWeapon());
-            }
-        }
-
-        return weapons;
     }
 
     /**
@@ -296,7 +314,6 @@ public class Player extends AbstractModel {
 
         return items;
     }
-    //endregion
     //endregion
 
     /**

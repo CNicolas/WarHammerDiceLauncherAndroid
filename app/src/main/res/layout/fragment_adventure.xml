@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
 
     <data>
 
@@ -26,6 +27,7 @@
         android:background="@android:color/white"
         android:orientation="vertical">
 
+        <!--Wounds-->
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -58,6 +60,7 @@
                 android:text="@{player.max_wounds}" />
         </LinearLayout>
 
+        <!--Stress/Exertion Labels-->
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -86,6 +89,7 @@
 
         </RelativeLayout>
 
+        <!--Stress/Exertion-->
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -144,6 +148,7 @@
                 android:text="@string/minus" />
         </RelativeLayout>
 
+        <!--Stance-->
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -190,6 +195,7 @@
 
         </LinearLayout>
 
+        <!--Defense/Soak-->
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -203,7 +209,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="@dimen/big_padding"
                 android:layout_weight="1"
-                android:drawableStart="@drawable/ic_shield"
+                android:drawableStart="@drawable/ic_shield_black"
                 android:gravity="center"
                 android:hint="@string/zero"
                 android:text="@{player.fullDefenseAmount}" />
@@ -213,12 +219,22 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="@dimen/big_padding"
                 android:layout_weight="1"
-                android:drawableStart="@drawable/ic_armor"
+                android:drawableStart="@drawable/ic_armor_black"
                 android:gravity="center"
                 android:hint="@string/zero"
                 android:text="@{player.fullSoakAmount}" />
         </LinearLayout>
 
+        <!--Equipped Weapons-->
+        <ListView
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_marginTop="@dimen/big_padding"
+            android:layout_weight="1"
+            app:weapons="@{player.equippedWeapons}"
+            tools:listitem="@layout/weapons_list_element" />
+
+        <!--Encumbrance-->
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -233,7 +249,7 @@
                 android:layout_height="35dp"
                 android:paddingEnd="@dimen/very_small_padding"
                 android:paddingStart="@dimen/very_small_padding"
-                android:src="@drawable/ic_rucksack_black" />
+                android:src="@drawable/ic_bag_black" />
 
             <com.whfrp3.ihm.components.EncumbranceBar
                 android:id="@+id/encumbrance_bar"
@@ -264,6 +280,7 @@
 
         </LinearLayout>
 
+        <!--Money-->
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
