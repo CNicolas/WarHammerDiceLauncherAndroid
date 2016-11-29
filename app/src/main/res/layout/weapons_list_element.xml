@@ -15,23 +15,23 @@
         android:layout_height="wrap_content"
         android:layout_marginBottom="@dimen/small_padding"
         android:gravity="center"
+        android:minHeight="35dp"
         android:padding="@dimen/small_padding"
         android:weightSum="7">
 
         <TextView
             style="@style/WeaponName"
+            android:hint="@string/dummy_string"
             android:text="@{weapon.name}" />
 
         <TextView
             style="@style/WeaponTextView"
             android:drawableStart="@drawable/ic_damage_black"
-            android:hint="@string/zero"
             android:text="@{weapon.damage}" />
 
         <TextView
             style="@style/WeaponTextView"
             android:drawableStart="@drawable/ic_small_boon_black"
-            android:hint="@string/zero"
             android:text="@{weapon.criticalLevel}" />
 
         <TextView
