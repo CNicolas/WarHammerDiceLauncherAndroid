@@ -132,6 +132,7 @@
     <string name="btn_ok">OK</string>
     <string name="exertion">Fatigue</string>
     <string name="stress">Stress</string>
+    <string name="save">Sauvegarder</string>
     <!-- End of inventory -->
 
 </resources>

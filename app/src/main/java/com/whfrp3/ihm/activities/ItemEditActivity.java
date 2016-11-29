@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.databinding.DataBindingUtil;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
@@ -80,10 +81,16 @@ public class ItemEditActivity extends AppCompatActivity {
         binding.setItem(itemEdit);
         binding.setViewModel(this);
 
-        // Configure layout
         initTypeSpinner();
         initQualitySpinner();
         initRangeSpinner();
+    }
+
+    //region Options Menu
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.menu_item_edit, menu);
+        return super.onCreateOptionsMenu(menu);
     }
 
     @Override
@@ -95,9 +102,12 @@ public class ItemEditActivity extends AppCompatActivity {
             intent.putExtra(IPlayerActivityConstants.CURRENT_FRAGMENT_POSITION_BUNDLE_TAG, IPlayerActivityConstants.INVENTORY_FRAGMENT_POSITION);
             setResult(RESULT_CANCELED, intent);
             finish();
+        } else if (itemId == R.id.action_save_item) {
+            onSave();
         }
         return true;
     }
+    //endregion
 
     //region Initialisation
     private void initTypeSpinner() {
@@ -118,7 +128,7 @@ public class ItemEditActivity extends AppCompatActivity {
         });
 
         if (itemEdit.getType() != null) {
-            typeSpinner.setSelection(itemEdit.getType().ordinal());
+            typeSpinner.setSelection(itemEdit.getType().ordinal(), false);
         }
     }
 
@@ -140,7 +150,7 @@ public class ItemEditActivity extends AppCompatActivity {
         });
 
         if (itemEdit.getQuality() != null) {
-            qualitySpinner.setSelection(itemEdit.getQuality().ordinal());
+            qualitySpinner.setSelection(itemEdit.getQuality().ordinal(), false);
         }
     }
 
@@ -162,12 +172,12 @@ public class ItemEditActivity extends AppCompatActivity {
         });
 
         if (itemEdit.getRange() != null) {
-            rangeSpinner.setSelection(itemEdit.getRange().ordinal());
+            rangeSpinner.setSelection(itemEdit.getRange().ordinal(), false);
         }
     }
     //endregion
 
-    public void onSave(View view) {
+    public void onSave() {
         long itemId = item.getId();
 
         item = Item.getItemFromType(itemEdit.getType());

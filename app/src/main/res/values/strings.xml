@@ -145,5 +145,6 @@
     <string name="plus" translatable="false">+</string>
     <string name="stress">Stress</string>
     <string name="exertion">Exertion</string>
+    <string name="save">Save</string>
 
 </resources>
