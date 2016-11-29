@@ -3,7 +3,6 @@ package com.whfrp3.tools;
 import android.content.Context;
 import android.databinding.BindingAdapter;
 import android.databinding.InverseBindingAdapter;
-import android.databinding.ObservableArrayList;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.widget.ListView;
@@ -11,8 +10,8 @@ import android.widget.TextView;
 
 import com.whfrp3.ihm.adapters.SkillsListAdapter;
 import com.whfrp3.ihm.adapters.WeaponsListAdapter;
+import com.whfrp3.model.player.Skill;
 import com.whfrp3.model.player.inventory.Weapon;
-import com.whfrp3.model.player.skill.Skill;
 
 import java.util.List;
 
@@ -42,8 +41,9 @@ public class BindingUtils {
     }
 
     @BindingAdapter("skills")
-    public static void bindSkills(ListView view, ObservableArrayList<Skill> list) {
-        SkillsListAdapter adapter = new SkillsListAdapter(list);
+    public static void bindSkills(ListView view, List<Skill> list) {
+        LayoutInflater inflater = (LayoutInflater) WHFRP3Application.getAppContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+        SkillsListAdapter adapter = new SkillsListAdapter(inflater, list);
         view.setAdapter(adapter);
     }
 

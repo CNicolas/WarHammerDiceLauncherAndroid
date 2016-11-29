@@ -8,7 +8,7 @@ import android.util.Log;
 import android.widget.CheckBox;
 
 import com.whfrp3.ihm.activities.LaunchActivity;
-import com.whfrp3.model.player.skill.Skill;
+import com.whfrp3.model.player.Skill;
 import com.whfrp3.tools.WHFRP3Application;
 import com.whfrp3.tools.constants.IPlayerActivityConstants;
 

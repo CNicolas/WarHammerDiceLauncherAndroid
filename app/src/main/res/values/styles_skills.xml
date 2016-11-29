@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <style name="SkillName">
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_height">match_parent</item>
+        <item name="android:layout_gravity">center</item>
+        <item name="android:layout_weight">7</item>
+        <item name="android:clickable">true</item>
+        <item name="android:gravity">center|start</item>
+        <item name="android:hint">@string/skill_weapon</item>
+        <item name="android:paddingEnd">@dimen/medium_padding</item>
+        <item name="android:paddingStart">@dimen/medium_padding</item>
+        <item name="android:textColor">@android:color/black</item>
+        <item name="android:textSize">@dimen/textSize</item>
+    </style>
+
+    <style name="SkillCheckbox">
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_gravity">center</item>
+        <item name="android:layout_weight">1</item>
+    </style>
+</resources>

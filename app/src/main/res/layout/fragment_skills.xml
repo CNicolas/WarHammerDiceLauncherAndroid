@@ -6,8 +6,8 @@
     <data>
 
         <variable
-            name="skills"
-            type="com.whfrp3.model.player.skill.SkillsList" />
+            name="player"
+            type="com.whfrp3.model.player.Player" />
     </data>
 
     <LinearLayout
@@ -20,7 +20,8 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_margin="@dimen/small_padding"
-            app:skills="@{skills.list}"
+            android:clickable="true"
+            app:skills="@{player.skills}"
             tools:listitem="@layout/skills_list_element" />
     </LinearLayout>
 </layout>

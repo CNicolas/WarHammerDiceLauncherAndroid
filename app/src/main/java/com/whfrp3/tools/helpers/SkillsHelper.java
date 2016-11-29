@@ -1,7 +1,7 @@
 package com.whfrp3.tools.helpers;
 
 import com.whfrp3.model.player.Player;
-import com.whfrp3.model.player.skill.Skill;
+import com.whfrp3.model.player.Skill;
 import com.whfrp3.tools.WHFRP3Application;
 import com.whfrp3.tools.enums.SkillEnum;
 

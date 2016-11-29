@@ -13,7 +13,6 @@ import com.whfrp3.model.player.inventory.ItemType;
 import com.whfrp3.model.player.inventory.Range;
 import com.whfrp3.model.player.inventory.UsableItem;
 import com.whfrp3.model.player.inventory.Weapon;
-import com.whfrp3.model.player.skill.Skill;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -536,6 +535,7 @@ public class Player extends AbstractModel {
         this.inventory = inventory;
     }
 
+    @Bindable
     public List<Skill> getSkills() {
         return mSkills;
     }

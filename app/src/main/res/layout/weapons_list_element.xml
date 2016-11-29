@@ -8,6 +8,10 @@
         <variable
             name="weapon"
             type="com.whfrp3.model.player.inventory.Weapon" />
+
+        <variable
+            name="handlers"
+            type="com.whfrp3.ihm.listeners.AdventureActivityHandlers" />
     </data>
 
     <LinearLayout
@@ -16,6 +20,7 @@
         android:layout_marginBottom="@dimen/small_padding"
         android:gravity="center"
         android:minHeight="35dp"
+        android:onClick="@{(v) -> handlers.showToast(v, weapon)}"
         android:padding="@dimen/small_padding"
         android:weightSum="7">
 

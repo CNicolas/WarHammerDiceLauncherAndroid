@@ -4,8 +4,12 @@
     <data>
 
         <variable
+            name="player"
+            type="com.whfrp3.model.player.Player" />
+
+        <variable
             name="skill"
-            type="com.whfrp3.model.player.skill.Skill" />
+            type="com.whfrp3.model.player.Skill" />
 
         <variable
             name="handlers"
@@ -13,54 +17,38 @@
     </data>
 
     <LinearLayout
-        android:id="@+id/item_skills_list"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:minHeight="40dp"
-        android:orientation="horizontal">
+        android:orientation="horizontal"
+        android:weightSum="10">
 
         <TextView
-            android:id="@+id/item_skills_list_name"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_gravity="center"
-            android:layout_weight="30"
-            android:clickable="true"
-            android:gravity="start|center_vertical"
-            android:hint="@string/skill_weapon"
+            style="@style/SkillName"
             android:onClick="@{() -> handlers.startLaunchActivity(skill)}"
-            android:paddingEnd="@dimen/medium_padding"
-            android:paddingStart="@dimen/medium_padding"
-            android:text="@{skill.name}"
-            android:textSize="@dimen/textSize" />
+            android:text="@{skill.name}" />
 
         <CheckBox
             android:id="@+id/skill_level1"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:layout_weight="1"
+            style="@style/SkillCheckbox"
             android:checked="@{skill.level >= 1}"
+            android:enabled="@{player.inEdition}"
             android:onClick="@{() -> handlers.onLevelSelected(skill, 1, skillLevel1, skillLevel2, skillLevel3)}"
             android:tag="1" />
 
         <CheckBox
             android:id="@+id/skill_level2"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:layout_weight="1"
+            style="@style/SkillCheckbox"
             android:checked="@{skill.level >= 2}"
+            android:enabled="@{player.inEdition}"
             android:onClick="@{() -> handlers.onLevelSelected(skill, 2, skillLevel1, skillLevel2, skillLevel3)}"
             android:tag="2" />
 
         <CheckBox
             android:id="@+id/skill_level3"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:layout_weight="1"
+            style="@style/SkillCheckbox"
             android:checked="@{skill.level >= 3}"
+            android:enabled="@{player.inEdition}"
             android:onClick="@{() -> handlers.onLevelSelected(skill, 3, skillLevel1, skillLevel2, skillLevel3)}"
             android:tag="3" />
     </LinearLayout>

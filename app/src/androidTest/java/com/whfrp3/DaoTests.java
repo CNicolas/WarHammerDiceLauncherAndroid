@@ -9,7 +9,7 @@ import com.whfrp3.model.enums.Race;
 import com.whfrp3.model.player.Characteristics;
 import com.whfrp3.model.player.Money;
 import com.whfrp3.model.player.Player;
-import com.whfrp3.model.player.skill.Skill;
+import com.whfrp3.model.player.Skill;
 import com.whfrp3.tools.enums.Characteristic;
 
 import java.util.List;

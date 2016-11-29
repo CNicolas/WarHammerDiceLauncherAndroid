@@ -16,6 +16,7 @@ import com.whfrp3.ihm.fragments.dialog.ChangeMoneyDialogFragment;
 import com.whfrp3.ihm.listeners.AdventureActivityHandlers;
 import com.whfrp3.ihm.listeners.StanceChangeListener;
 import com.whfrp3.tools.WHFRP3Application;
+import com.whfrp3.tools.helpers.PlayerHelper;
 
 /**
  * The AdventureFragment.
@@ -66,5 +67,8 @@ public class AdventureFragment extends Fragment {
         playerStance.setOnProgressChangeListener(new StanceChangeListener(currentStanceTextView));
         playerStance.setMin(-1 * WHFRP3Application.getPlayer().getMax_conservative());
         playerStance.setMax(WHFRP3Application.getPlayer().getMax_reckless());
+
+        playerStance.setProgress(0);
+        PlayerHelper.savePlayer(WHFRP3Application.getPlayer());
     }
 }
