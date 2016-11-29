@@ -45,6 +45,8 @@ public class AdventureFragment extends Fragment {
 
         setupStance(binding.getRoot());
 
+        binding.getRoot().findViewById(R.id.encumbrance_bar).setEnabled(false);
+
         long difference = System.currentTimeMillis() - startTime;
         Log.d("AdventureFragment", String.format("%d = %d", startTime, difference));
         return binding.getRoot();

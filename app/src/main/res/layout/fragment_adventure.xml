@@ -235,8 +235,8 @@
                 android:paddingStart="@dimen/very_small_padding"
                 android:src="@drawable/ic_rucksack_black" />
 
-
             <com.whfrp3.ihm.components.EncumbranceBar
+                android:id="@+id/encumbrance_bar"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
