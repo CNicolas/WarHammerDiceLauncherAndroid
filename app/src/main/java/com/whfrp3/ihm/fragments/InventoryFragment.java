@@ -5,6 +5,7 @@ import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.annotation.Nullable;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.TaskStackBuilder;
@@ -14,13 +15,12 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ExpandableListView;
-import android.widget.ImageView;
 
 import com.whfrp3.BR;
 import com.whfrp3.R;
 import com.whfrp3.ihm.activities.ItemEditActivity;
 import com.whfrp3.ihm.adapters.InventoryListAdapter;
-import com.whfrp3.ihm.fragments.dialog.ItemShowDialogFragment;
+import com.whfrp3.ihm.listeners.InventoryListeners;
 import com.whfrp3.model.player.Player;
 import com.whfrp3.model.player.inventory.Equipment;
 import com.whfrp3.model.player.inventory.Item;
@@ -35,9 +35,11 @@ import java.util.Map;
 /**
  * Inventory fragment.
  */
-public class InventoryFragment extends Fragment implements IPlayerActivityConstants, View.OnClickListener {
+public class InventoryFragment extends Fragment
+        implements IPlayerActivityConstants, View.OnClickListener, AdapterView.OnItemLongClickListener {
 
     private InventoryListAdapter adapter;
+    private ExpandableListView mExpListView;
 
     public InventoryFragment() {
         // Required empty public constructor
@@ -53,99 +55,15 @@ public class InventoryFragment extends Fragment implements IPlayerActivityConsta
         FloatingActionButton addButton = (FloatingActionButton) rootView.findViewById(R.id.inventoryAddButton);
         addButton.setOnClickListener(this);
 
-        final ExpandableListView expListView = (ExpandableListView) rootView.findViewById(R.id.inventory);
-
-        // In order to show animations, we need to use a custom click handler
-        // for our ExpandableListView.
-        expListView.setOnGroupClickListener(new ExpandableListView.OnGroupClickListener() {
-
-            @Override
-            public boolean onGroupClick(ExpandableListView parent, View v, int groupPosition, long id) {
-                ImageView imageView = (ImageView) v.findViewById(R.id.inventoryGroupArrow);
-
-                // We call collapseGroupWithAnimation(int) and
-                // expandGroupWithAnimation(int) to animate group
-                // expansion/collapse.
-                if (expListView.isGroupExpanded(groupPosition)) {
-                    expListView.collapseGroup(groupPosition);
-                    imageView.setRotation(90);
-                } else {
-                    expListView.expandGroup(groupPosition);
-                    imageView.setRotation(0);
-                }
-                return true;
-            }
-
-        });
-
-        expListView.setOnChildClickListener(new ExpandableListView.OnChildClickListener() {
-            @Override
-            public boolean onChildClick(ExpandableListView expandableListView, View view, int groupPosition, int childPosition, long id) {
-                ItemShowDialogFragment dialog = new ItemShowDialogFragment();
-                dialog.show(getActivity().getSupportFragmentManager(), "ItemShowDialogFragment");
-                dialog.setItem((Item) expListView.getExpandableListAdapter().getChild(groupPosition, childPosition));
-
-                return false;
-            }
-        });
-
-        expListView.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
-            @Override
-            public boolean onItemLongClick(AdapterView<?> adapterView, View view, int position, long id) {
-                if (ExpandableListView.getPackedPositionType(id) != ExpandableListView.PACKED_POSITION_TYPE_CHILD) {
-                    return false;
-                }
-
-                int groupPosition = ExpandableListView.getPackedPositionGroup(id);
-                int childPosition = ExpandableListView.getPackedPositionChild(id);
-
-                final Item item = (Item) expListView.getExpandableListAdapter().getChild(groupPosition, childPosition);
-
-                // Select menu dialog content
-                final int menuArrayId;
-                if (item.isEquipable()) {
-                    menuArrayId = (((Equipment) item).isEquipped()) ? R.array.item_menu_actions3 : R.array.item_menu_actions2;
-                } else {
-                    menuArrayId = R.array.item_menu_actions1;
-                }
-
-                // Build and show menu dialog
-                AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
-                builder.setTitle(R.string.item_menu_title)
-                        .setItems(menuArrayId, new DialogInterface.OnClickListener() {
-                            @Override
-                            public void onClick(DialogInterface dialog, int whichPos) {
-                                if (menuArrayId == R.array.item_menu_actions3 && whichPos == 0) {
-                                    // Unequip the item
-                                    ((Equipment) item).setEquipped(false);
-                                    refreshInventoryView();
-                                } else if (menuArrayId == R.array.item_menu_actions2 && whichPos == 0) {
-                                    // Equip the item
-                                    ((Equipment) item).setEquipped(true);
-                                    refreshInventoryView();
-                                } else if ((menuArrayId == R.array.item_menu_actions1 && whichPos == 0)
-                                        || (menuArrayId == R.array.item_menu_actions2 && whichPos == 1)
-                                        || (menuArrayId == R.array.item_menu_actions3 && whichPos == 1)) {
-                                    // Edit item
-                                    openEditActivity(item.getId());
-                                } else {
-                                    // Delete item
-                                    WHFRP3Application.getPlayer().removeItem(item);
-                                    refreshInventoryView();
-                                }
-                            }
-                        });
-                AlertDialog dialog = builder.create();
-                dialog.show();
-
-                return true;
-            }
-        });
+        mExpListView = (ExpandableListView) rootView.findViewById(R.id.inventory_list);
+        mExpListView.setOnGroupClickListener(new InventoryListeners.InventoryHeaderClickListener());
+        mExpListView.setOnChildClickListener(new InventoryListeners.InventoryItemClickListener(getFragmentManager()));
+        mExpListView.setOnItemLongClickListener(this);
 
         adapter = new InventoryListAdapter(inflater);
         refreshInventoryView();
 
-        expListView.setAdapter(adapter);
+        mExpListView.setAdapter(adapter);
 
         long difference = System.currentTimeMillis() - startTime;
         Log.d("InventoryFragment", String.format("%d = %d", startTime, difference));
@@ -155,13 +73,7 @@ public class InventoryFragment extends Fragment implements IPlayerActivityConsta
 
     @Override
     public void onClick(View view) {
-        Intent launchIntent = new Intent(InventoryFragment.this.getActivity(), ItemEditActivity.class);
-
-        TaskStackBuilder stackBuilder = TaskStackBuilder.create(InventoryFragment.this.getContext());
-        stackBuilder.addParentStack(ItemEditActivity.class);
-        stackBuilder.addNextIntent(launchIntent);
-
-        startActivityForResult(launchIntent, ADD_ITEM_REQUEST);
+        startItemEditActivity(null);
     }
 
     @Override
@@ -179,19 +91,25 @@ public class InventoryFragment extends Fragment implements IPlayerActivityConsta
      *
      * @param itemId Item's id to edit.
      */
-    private void openEditActivity(long itemId) {
+    private void startItemEditActivity(@Nullable Long itemId) {
+        int request = ADD_ITEM_REQUEST;
+
         Bundle bundle = new Bundle();
-        bundle.putLong(ItemEditActivity.ITEM_ID_KEY, itemId);
         bundle.putInt(IPlayerActivityConstants.CURRENT_FRAGMENT_POSITION_BUNDLE_TAG, IPlayerActivityConstants.INVENTORY_FRAGMENT_POSITION);
 
-        Intent launchIntent = new Intent(InventoryFragment.this.getActivity(), ItemEditActivity.class);
+        if (itemId != null) {
+            bundle.putLong(ItemEditActivity.ITEM_ID_KEY, itemId);
+            request = EDIT_ITEM_REQUEST;
+        }
+
+        Intent launchIntent = new Intent(getActivity(), ItemEditActivity.class);
         launchIntent.putExtras(bundle);
 
-        TaskStackBuilder stackBuilder = TaskStackBuilder.create(InventoryFragment.this.getContext());
+        TaskStackBuilder stackBuilder = TaskStackBuilder.create(getContext());
         stackBuilder.addParentStack(ItemEditActivity.class);
         stackBuilder.addNextIntent(launchIntent);
 
-        startActivityForResult(launchIntent, EDIT_ITEM_REQUEST);
+        startActivityForResult(launchIntent, request);
     }
 
     /**
@@ -212,6 +130,60 @@ public class InventoryFragment extends Fragment implements IPlayerActivityConsta
         WHFRP3Application.getPlayer().notifyPropertyChanged(BR.fullDefenseAmount);
         WHFRP3Application.getPlayer().notifyPropertyChanged(BR.fullSoakAmount);
         WHFRP3Application.getPlayer().notifyPropertyChanged(BR.currentEncumbrance);
+        WHFRP3Application.getPlayer().notifyPropertyChanged(BR.encumbranceColor);
         WHFRP3Application.getPlayer().notifyPropertyChanged(BR.equippedWeapons);
+    }
+
+    private void showDialogOnLongClick(final Item item, final int menuArrayId) {
+        // Build and show menu dialog
+        AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
+        builder.setTitle(R.string.item_menu_title).setItems(menuArrayId, new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int whichPos) {
+                if (menuArrayId == R.array.item_menu_actions3 && whichPos == 0) {
+                    // Unequip the item
+                    ((Equipment) item).setEquipped(false);
+                    refreshInventoryView();
+                } else if (menuArrayId == R.array.item_menu_actions2 && whichPos == 0) {
+                    // Equip the item
+                    ((Equipment) item).setEquipped(true);
+                    refreshInventoryView();
+                } else if ((menuArrayId == R.array.item_menu_actions1 && whichPos == 0)
+                        || (menuArrayId == R.array.item_menu_actions2 && whichPos == 1)
+                        || (menuArrayId == R.array.item_menu_actions3 && whichPos == 1)) {
+                    // Edit item
+                    startItemEditActivity(item.getId());
+                } else {
+                    // Delete item
+                    WHFRP3Application.getPlayer().removeItem(item);
+                    refreshInventoryView();
+                }
+            }
+        });
+        builder.create().show();
+    }
+
+    @Override
+    public boolean onItemLongClick(AdapterView<?> adapterView, View view, int position, long id) {
+        if (ExpandableListView.getPackedPositionType(id) != ExpandableListView.PACKED_POSITION_TYPE_CHILD) {
+            return false;
+        }
+
+        int groupPosition = ExpandableListView.getPackedPositionGroup(id);
+        int childPosition = ExpandableListView.getPackedPositionChild(id);
+
+        final Item item = (Item) mExpListView.getExpandableListAdapter().getChild(groupPosition, childPosition);
+
+        // Select menu dialog content
+        final int menuArrayId;
+        if (item.isEquipable()) {
+            menuArrayId = (((Equipment) item).isEquipped()) ? R.array.item_menu_actions3 : R.array.item_menu_actions2;
+        } else {
+            menuArrayId = R.array.item_menu_actions1;
+        }
+
+        showDialogOnLongClick(item, menuArrayId);
+
+        return true;
     }
 }

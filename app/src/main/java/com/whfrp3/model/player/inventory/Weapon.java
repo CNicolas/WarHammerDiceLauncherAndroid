@@ -44,6 +44,17 @@ public class Weapon extends Equipment {
 
         setType(ItemType.WEAPON);
     }
+
+    /**
+     * Constructor from another Item.
+     *
+     * @param item the given item.
+     */
+    public Weapon(Item item) {
+        super(item);
+
+        setType(ItemType.WEAPON);
+    }
     //endregion
 
     public boolean canBeUsed(Range range) {

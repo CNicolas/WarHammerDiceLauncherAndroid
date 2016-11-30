@@ -65,6 +65,21 @@ public class Item extends AbstractModel {
 
         setType(ItemType.ITEM);
     }
+
+    /**
+     * Constructor from another Item.
+     *
+     * @param item the given item.
+     */
+    public Item(Item item) {
+        setId(item.getId());
+        setName(item.getName());
+        setDescription(item.getDescription());
+        setEncumbrance(item.getEncumbrance());
+        setQuantity(item.getQuantity());
+        setQuality(item.getQuality());
+        setType(item.getType());
+    }
     //endregion
 
     /**
@@ -241,18 +256,4 @@ public class Item extends AbstractModel {
         return result;
     }
     //endregion
-
-    public static Item getItemFromType(ItemType type) {
-        switch (type) {
-            case ARMOR:
-                return new Armor();
-            case WEAPON:
-                return new Weapon();
-            case USABLE_ITEM:
-                return new UsableItem();
-
-            default:
-                return new Item();
-        }
-    }
 }

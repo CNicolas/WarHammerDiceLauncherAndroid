@@ -36,6 +36,15 @@ public abstract class Equipment extends Item {
         super(player);
     }
 
+    /**
+     * Constructor from another Item.
+     *
+     * @param item the given item.
+     */
+    public Equipment(Item item) {
+        super(item);
+    }
+
     //endregion
 
     @Override

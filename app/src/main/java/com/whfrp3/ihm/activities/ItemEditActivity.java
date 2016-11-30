@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.databinding.DataBindingUtil;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -62,16 +63,15 @@ public class ItemEditActivity extends AppCompatActivity {
         if (getIntent().getExtras() != null) {
             long itemId = getIntent().getExtras().getLong(ITEM_ID_KEY, ITEM_ID_DEFAULT);
             if (itemId == ITEM_ID_DEFAULT) {
-                // TODO : Add error treatment
+                item = new Item();
+                item.setId(0);
+            } else {
+                item = WHFRP3Application.getPlayer().getItemById(itemId);
+                if (item == null) {
+                    // TODO : Add error treatment
+                    Log.e(getLocalClassName(), "item_id_key given but not present in db");
+                }
             }
-
-            item = WHFRP3Application.getPlayer().getItemById(itemId);
-            if (item == null) {
-                // TODO : Add error treatment
-            }
-        } else {
-            item = new Item();
-            item.setId(0);
         }
 
         itemEdit = new ItemEdit(item);
@@ -180,11 +180,6 @@ public class ItemEditActivity extends AppCompatActivity {
     //endregion
 
     public void onSave() {
-        long itemId = item.getId();
-
-        item = Item.getItemFromType(itemEdit.getType());
-
-        item.setId(itemId);
         item.setName(itemEdit.getName());
         item.setDescription(itemEdit.getDescription());
         item.setEncumbrance(itemEdit.getEncumbrance());
@@ -194,19 +189,22 @@ public class ItemEditActivity extends AppCompatActivity {
 
         switch (item.getType()) {
             case ARMOR:
-                Armor armor = item.toArmor();
+                Armor armor = new Armor(item);
                 armor.setSoak(itemEdit.getSoak());
                 armor.setDefense(itemEdit.getDefense());
+                item = armor;
                 break;
             case USABLE_ITEM:
-                UsableItem usableItem = item.toUsableItem();
+                UsableItem usableItem = new UsableItem(item);
                 usableItem.setLoad(itemEdit.getLoad());
+                item = usableItem;
                 break;
             case WEAPON:
-                Weapon weapon = item.toWeapon();
+                Weapon weapon = new Weapon(item);
                 weapon.setDamage(itemEdit.getDamage());
                 weapon.setCriticalLevel(itemEdit.getCriticalLevel());
                 weapon.setRange(itemEdit.getRange());
+                item = weapon;
                 break;
         }
 

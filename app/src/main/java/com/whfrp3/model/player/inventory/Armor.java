@@ -39,6 +39,17 @@ public class Armor extends Equipment {
 
         setType(ItemType.ARMOR);
     }
+
+    /**
+     * Constructor from another Item.
+     *
+     * @param item the given item.
+     */
+    public Armor(Item item) {
+        super(item);
+
+        setType(ItemType.ARMOR);
+    }
     //endregion
 
     //region Get & Set

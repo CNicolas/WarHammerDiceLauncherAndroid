@@ -34,6 +34,17 @@ public class UsableItem extends Item {
 
         setType(ItemType.USABLE_ITEM);
     }
+
+    /**
+     * Constructor from another Item.
+     *
+     * @param item the given item.
+     */
+    public UsableItem(Item item) {
+        super(item);
+
+        setType(ItemType.USABLE_ITEM);
+    }
     //endregion
 
     //region Get & Set
