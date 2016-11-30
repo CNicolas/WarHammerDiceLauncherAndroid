@@ -44,12 +44,12 @@
     <!--End of Actions-->
 
     <string name="average_boon_format">Average number of boons : %1$s</string>
-    <string name="successful_rolls_number_format">You succeeded on %1$d throws (%2$s%%)</string>
+    <string name="successful_launches_number_format">You succeeded on %1$d throws (%2$s%%)</string>
     <string name="average_sigmar_format">Average number of Sigmar comets : %1$s</string>
     <string name="average_chaos_format">Average number of Chaos stars : %1$s</string>
     <string name="average_failure_format">Average number of failures : %1$s</string>
     <string name="average_bane_format">Average number of banes : %1$s</string>
-    <string name="throwsNumberFormat">On %s throws...</string>
+    <string name="launches_number_format">On %d throws…</string>
     <string name="empty_hand_name">Empty hand name</string>
     <string name="btn_resetText">Reset</string>
 

@@ -1,117 +1,98 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/activity_launch"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="@android:color/white"
-    android:fitsSystemWindows="true"
-    android:padding="@dimen/main_layout_padding"
-    tools:context="com.whfrp3.ihm.activities.StatisticsActivity">
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
 
-    <ProgressBar
-        android:id="@+id/progress_spinner"
-        style="?android:progressBarStyleLarge"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_centerInParent="true" />
+    <data>
 
-    <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
-        android:id="@+id/statistics_scroll_view"
+        <import type="android.view.View" />
+
+        <variable
+            name="stats"
+            type="com.whfrp3.model.dices.LaunchStatistics" />
+
+    </data>
+
+    <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:fillViewport="true"
-        android:orientation="vertical">
+        android:background="@android:color/white"
+        android:padding="@dimen/main_layout_padding">
 
-        <LinearLayout
-            android:layout_width="match_parent"
+        <ProgressBar
+            style="?android:progressBarStyleLarge"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:visibility="@{stats.inProgress ? View.VISIBLE : View.GONE}" />
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:fillViewport="true"
             android:orientation="vertical"
-            android:paddingBottom="50dp">
+            android:visibility="@{stats.inProgress ? View.GONE : View.VISIBLE}">
 
-            <TextView
-                android:id="@+id/throwsNumberView"
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:gravity="center"
-                android:padding="10dp"
-                android:text="@string/ok"
-                android:textSize="30sp" />
+                android:orientation="vertical"
+                android:paddingBottom="50dp">
 
-            <TextView
-                android:id="@+id/success_rolls"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="@dimen/big_padding"
-                android:drawableStart="@drawable/ic_check_black_big"
-                android:gravity="center"
-                android:padding="5dp"
-                android:text="@string/ok" />
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:padding="10dp"
+                    android:text="@{stats.launchesNumberString}"
+                    android:textSize="30sp" />
 
-            <TextView
-                android:id="@+id/average_success"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:drawableStart="@drawable/ic_success_black"
-                android:gravity="center"
-                android:padding="5dp"
-                android:text="@string/ok" />
+                <TextView
+                    style="@style/StatisticTextView"
+                    android:layout_margin="@dimen/medium_padding"
+                    android:drawableStart="@drawable/ic_check_black_big"
+                    android:text="@{stats.successfulLaunchesString}"
+                    android:textSize="@dimen/medium_text_size" />
 
-            <TextView
-                android:id="@+id/average_boon"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:drawableStart="@drawable/ic_boon_black"
-                android:gravity="center"
-                android:padding="5dp"
-                android:text="@string/ok" />
+                <TextView
+                    style="@style/StatisticTextView"
+                    android:drawableStart="@drawable/ic_success_black"
+                    android:text="@{stats.averageSuccessString}" />
 
-            <TextView
-                android:id="@+id/average_sigmar"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:drawableStart="@drawable/ic_sigmar_black"
-                android:gravity="center"
-                android:padding="5dp"
-                android:text="@string/ok" />
+                <TextView
+                    style="@style/StatisticTextView"
+                    android:drawableStart="@drawable/ic_boon_black"
+                    android:text="@{stats.averageBoonString}" />
 
-            <TextView
-                android:id="@+id/average_chaos"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:drawableStart="@drawable/ic_chaos_black"
-                android:gravity="center"
-                android:padding="5dp"
-                android:text="@string/ok" />
+                <TextView
+                    style="@style/StatisticTextView"
+                    android:drawableStart="@drawable/ic_sigmar_black"
+                    android:text="@{stats.averageSigmarString}" />
 
-            <TextView
-                android:id="@+id/average_failure"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:drawableStart="@drawable/ic_failure_black"
-                android:gravity="center"
-                android:padding="5dp"
-                android:text="@string/ok" />
+                <TextView
+                    style="@style/StatisticTextView"
+                    android:drawableStart="@drawable/ic_chaos_black"
+                    android:text="@{stats.averageChaosString}" />
 
-            <TextView
-                android:id="@+id/average_bane"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:drawableStart="@drawable/ic_bane_black"
-                android:gravity="center"
-                android:padding="5dp"
-                android:text="@string/ok" />
-        </LinearLayout>
-    </ScrollView>
+                <TextView
+                    style="@style/StatisticTextView"
+                    android:drawableStart="@drawable/ic_failure_black"
+                    android:text="@{stats.averageFailureString}" />
 
-    <android.support.design.widget.FloatingActionButton
-        android:id="@+id/relaunch_fab"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentEnd="true"
-        android:layout_margin="@dimen/fab_margin_padding"
-        android:onClick="relaunch"
-        android:src="@drawable/ic_dice_white" />
-</RelativeLayout>
+                <TextView
+                    style="@style/StatisticTextView"
+                    android:drawableStart="@drawable/ic_bane_black"
+                    android:text="@{stats.averageBaneString}" />
+            </LinearLayout>
+        </ScrollView>
 
+        <android.support.design.widget.FloatingActionButton
+            android:id="@+id/relaunch_fab"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentEnd="true"
+            android:layout_margin="@dimen/fab_margin_padding"
+            android:onClick="relaunch"
+            android:src="@drawable/ic_dice_white"
+            android:visibility="@{stats.inProgress ? View.GONE : View.VISIBLE}" />
+    </RelativeLayout>
+</layout>
