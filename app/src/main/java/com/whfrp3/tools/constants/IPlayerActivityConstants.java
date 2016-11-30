@@ -5,7 +5,6 @@ package com.whfrp3.tools.constants;
  */
 public interface IPlayerActivityConstants extends IConstants {
     String IS_IN_EDITION_BUNDLE_TAG = "isInEdition";
-    String BINDING_CONTEXT_BUNDLE_TAG = "bindingContext";
     String CURRENT_FRAGMENT_POSITION_BUNDLE_TAG = "fragmentPosition";
     String SKILL_BUNDLE_TAG = "skill";
 

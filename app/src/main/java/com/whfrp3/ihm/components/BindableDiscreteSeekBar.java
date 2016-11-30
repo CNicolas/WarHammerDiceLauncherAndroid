@@ -32,4 +32,8 @@ public class BindableDiscreteSeekBar extends DiscreteSeekBar {
     public void setDsb_value(int value) {
         setProgress(value);
     }
+
+    public void setDsb_progressColor(int color) {
+        setScrubberColor(color);
+    }
 }

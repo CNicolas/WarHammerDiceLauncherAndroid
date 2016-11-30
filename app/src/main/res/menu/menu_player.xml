@@ -2,6 +2,11 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
     <item
+        android:id="@+id/action_launch"
+        android:icon="@drawable/ic_dice_white"
+        android:title="@string/btn_launchText"
+        app:showAsAction="ifRoom" />
+    <item
         android:id="@+id/action_in_edition_true"
         android:icon="@drawable/ic_lock_open_white"
         android:title="@string/btn_editing"
@@ -12,15 +17,5 @@
         android:icon="@drawable/ic_lock_outline_white"
         android:title="@string/btn_not_editing"
         android:visible="false"
-        app:showAsAction="ifRoom" />
-    <item
-        android:id="@+id/action_launch"
-        android:icon="@drawable/ic_dice_white"
-        android:title="@string/btn_launchText"
-        app:showAsAction="ifRoom" />
-    <item
-        android:id="@+id/action_update_player"
-        android:icon="@drawable/ic_save_white"
-        android:title="@string/action_update_player"
         app:showAsAction="ifRoom" />
 </menu>

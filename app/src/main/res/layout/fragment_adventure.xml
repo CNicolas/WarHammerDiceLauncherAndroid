@@ -251,7 +251,7 @@
                 android:paddingStart="@dimen/very_small_padding"
                 android:src="@drawable/ic_bag_black" />
 
-            <com.whfrp3.ihm.components.EncumbranceBar
+            <com.whfrp3.ihm.components.BindableDiscreteSeekBar
                 android:id="@+id/encumbrance_bar"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
@@ -262,7 +262,7 @@
                 app:dsb_indicatorPopupEnabled="false"
                 app:dsb_max="@{player.encumbranceMax}"
                 app:dsb_min="0"
-                app:dsb_rippleColor="@android:color/transparent"
+                app:dsb_progressColor="@{player.encumbranceColor}"
                 app:dsb_scrubberHeight="10dp"
                 app:dsb_thumbSize="0dp"
                 app:dsb_trackColor="@color/spinner_background"

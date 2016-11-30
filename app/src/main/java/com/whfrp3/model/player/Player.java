@@ -1,10 +1,13 @@
 package com.whfrp3.model.player;
 
+import android.content.Context;
 import android.databinding.Bindable;
 import android.databinding.ObservableArrayList;
 import android.databinding.ObservableList;
+import android.support.v4.content.ContextCompat;
 
 import com.whfrp3.BR;
+import com.whfrp3.R;
 import com.whfrp3.model.AbstractModel;
 import com.whfrp3.model.enums.Race;
 import com.whfrp3.model.player.inventory.Armor;
@@ -13,6 +16,7 @@ import com.whfrp3.model.player.inventory.ItemType;
 import com.whfrp3.model.player.inventory.Range;
 import com.whfrp3.model.player.inventory.UsableItem;
 import com.whfrp3.model.player.inventory.Weapon;
+import com.whfrp3.tools.WHFRP3Application;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -175,8 +179,20 @@ public class Player extends AbstractModel {
     }
 
     @Bindable
-    public float getEncumbrancePercent() {
-        return (float) getCurrentEncumbrance() / (float) getEncumbranceMax();
+    public int getEncumbranceColor() {
+        Context context = WHFRP3Application.getAppContext();
+        int value = getCurrentEncumbrance();
+
+        int color;
+        if (value < getEncumbranceOverload()) {
+            color = ContextCompat.getColor(context, R.color.conservative);
+        } else if (value < getEncumbranceMax()) {
+            color = ContextCompat.getColor(context, R.color.orange);
+        } else {
+            color = ContextCompat.getColor(context, R.color.reckless);
+        }
+
+        return color;
     }
     //endregion
 

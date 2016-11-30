@@ -102,10 +102,6 @@ public class PlayerActivity extends AppCompatActivity implements IPlayerActivity
             startLaunchActivity();
             return true;
         }
-        if (id == R.id.action_update_player) {
-            PlayerHelper.savePlayer(WHFRP3Application.getPlayer());
-            return true;
-        }
 
         return super.onOptionsItemSelected(item);
     }
