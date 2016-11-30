@@ -24,65 +24,56 @@
             android:layout_centerInParent="true"
             android:visibility="@{stats.inProgress ? View.VISIBLE : View.GONE}" />
 
-        <ScrollView
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:fillViewport="true"
             android:orientation="vertical"
             android:visibility="@{stats.inProgress ? View.GONE : View.VISIBLE}">
 
-            <LinearLayout
+            <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:paddingBottom="50dp">
+                android:gravity="center"
+                android:padding="10dp"
+                android:text="@{stats.launchesNumberString}"
+                android:textSize="30sp" />
 
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:gravity="center"
-                    android:padding="10dp"
-                    android:text="@{stats.launchesNumberString}"
-                    android:textSize="30sp" />
+            <TextView
+                style="@style/StatisticTextView"
+                android:layout_margin="@dimen/medium_padding"
+                android:text="@{stats.successfulLaunchesString}"
+                android:textSize="@dimen/medium_text_size" />
 
-                <TextView
-                    style="@style/StatisticTextView"
-                    android:layout_margin="@dimen/medium_padding"
-                    android:drawableStart="@drawable/ic_check_black_big"
-                    android:text="@{stats.successfulLaunchesString}"
-                    android:textSize="@dimen/medium_text_size" />
+            <TextView
+                style="@style/StatisticTextView"
+                android:drawableStart="@drawable/ic_success_black"
+                android:text="@{stats.averageSuccessString}" />
 
-                <TextView
-                    style="@style/StatisticTextView"
-                    android:drawableStart="@drawable/ic_success_black"
-                    android:text="@{stats.averageSuccessString}" />
+            <TextView
+                style="@style/StatisticTextView"
+                android:drawableStart="@drawable/ic_boon_black"
+                android:text="@{stats.averageBoonString}" />
 
-                <TextView
-                    style="@style/StatisticTextView"
-                    android:drawableStart="@drawable/ic_boon_black"
-                    android:text="@{stats.averageBoonString}" />
+            <TextView
+                style="@style/StatisticTextView"
+                android:drawableStart="@drawable/ic_sigmar_black"
+                android:text="@{stats.averageSigmarString}" />
 
-                <TextView
-                    style="@style/StatisticTextView"
-                    android:drawableStart="@drawable/ic_sigmar_black"
-                    android:text="@{stats.averageSigmarString}" />
+            <TextView
+                style="@style/StatisticTextView"
+                android:drawableStart="@drawable/ic_chaos_black"
+                android:text="@{stats.averageChaosString}" />
 
-                <TextView
-                    style="@style/StatisticTextView"
-                    android:drawableStart="@drawable/ic_chaos_black"
-                    android:text="@{stats.averageChaosString}" />
+            <TextView
+                style="@style/StatisticTextView"
+                android:drawableStart="@drawable/ic_failure_black"
+                android:text="@{stats.averageFailureString}" />
 
-                <TextView
-                    style="@style/StatisticTextView"
-                    android:drawableStart="@drawable/ic_failure_black"
-                    android:text="@{stats.averageFailureString}" />
-
-                <TextView
-                    style="@style/StatisticTextView"
-                    android:drawableStart="@drawable/ic_bane_black"
-                    android:text="@{stats.averageBaneString}" />
-            </LinearLayout>
-        </ScrollView>
+            <TextView
+                style="@style/StatisticTextView"
+                android:drawableStart="@drawable/ic_bane_black"
+                android:text="@{stats.averageBaneString}" />
+        </LinearLayout>
 
         <android.support.design.widget.FloatingActionButton
             android:id="@+id/relaunch_fab"
