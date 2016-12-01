@@ -3,6 +3,7 @@ package com.whfrp3.tools;
 import android.content.Context;
 import android.databinding.BindingAdapter;
 import android.databinding.InverseBindingAdapter;
+import android.graphics.drawable.Drawable;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.widget.ListView;
@@ -66,5 +67,25 @@ public class BindingUtils {
      */
     public static String string(int resourceId) {
         return WHFRP3Application.getResourceString(resourceId);
+    }
+
+    /**
+     * Return the drawable corresponding to the given resource id.
+     *
+     * @param resourceId String id.
+     * @return Drawable corresponding to the resource id.
+     */
+    public static Drawable drawable(int resourceId) {
+        return WHFRP3Application.getResourceDrawable(resourceId);
+    }
+
+    /**
+     * Return the drawable corresponding to the given resource id.
+     *
+     * @param resourceId String id.
+     * @return Drawable corresponding to the resource id.
+     */
+    public static int color(int resourceId) {
+        return WHFRP3Application.getResourceColor(resourceId);
     }
 }

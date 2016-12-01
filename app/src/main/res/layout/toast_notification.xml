@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <data>
+
+        <import type="com.whfrp3.tools.BindingUtils" />
+
+        <variable
+            name="toast"
+            type="com.whfrp3.notification.ToastNotification" />
+    </data>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@{BindingUtils.color(toast.type.colorId)}"
+        android:gravity="center"
+        android:orientation="horizontal"
+        android:padding="@dimen/medium_padding">
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="@dimen/small_padding"
+            android:src="@{BindingUtils.drawable(toast.type.drawableId)}" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="@dimen/small_padding"
+            android:hint="@string/dummy_string"
+            android:text="@{toast.message}"
+            android:textColor="#FFF" />
+    </LinearLayout>
+</layout>

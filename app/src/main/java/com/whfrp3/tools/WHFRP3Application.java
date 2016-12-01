@@ -3,6 +3,8 @@ package com.whfrp3.tools;
 import android.app.Activity;
 import android.app.Application;
 import android.content.Context;
+import android.graphics.drawable.Drawable;
+import android.support.v4.content.ContextCompat;
 import android.util.Log;
 
 import com.whfrp3.database.Database;
@@ -75,6 +77,14 @@ public class WHFRP3Application extends Application {
 
     public static String getResourceString(int resId) {
         return mContext.getString(resId);
+    }
+
+    public static Drawable getResourceDrawable(int resId) {
+        return ContextCompat.getDrawable(mContext, resId);
+    }
+
+    public static int getResourceColor(int resId) {
+        return ContextCompat.getColor(mContext, resId);
     }
 
     /**
