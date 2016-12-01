@@ -43,6 +43,11 @@ public abstract class Equipment extends Item {
      */
     public Equipment(Item item) {
         super(item);
+
+        if (item instanceof Equipment) {
+            Equipment equipment = (Equipment) item;
+            setEquipped(equipment.isEquipable() && equipment.isEquipped());
+        }
     }
 
     //endregion
