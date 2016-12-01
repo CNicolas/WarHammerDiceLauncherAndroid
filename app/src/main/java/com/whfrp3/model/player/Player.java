@@ -33,7 +33,6 @@ public class Player extends AbstractModel {
     private static final int ENCUMBRANCE_BY_STRENGTH = 5;
     private static final int ENCUMBRANCE_BY_STRENGTH_FORTUNE = 1;
     private static final int ENCUMBRANCE_OVERLOAD_TO_MAX = 5;
-
     //endregion
 
     //region Fields
@@ -80,21 +79,6 @@ public class Player extends AbstractModel {
         mSkills = new ArrayList<>();
         inventory = new ArrayList<>();
         talents = new ArrayList<>();
-    }
-    //endregion
-
-    //region Skill Management
-    public void setSkillLevel(Skill skill, int level) throws Exception {
-        getSkillByName(skill.getName()).setLevel(level);
-    }
-
-    public Skill getSkillByName(String name) throws Exception {
-        for (Skill skill : mSkills) {
-            if (skill.getName().equals(name)) {
-                return skill;
-            }
-        }
-        throw new Exception(String.format("'%s' not found in skills %s", name, mSkills.toString()));
     }
     //endregion
 

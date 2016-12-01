@@ -16,7 +16,6 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ExpandableListView;
 
-import com.whfrp3.BR;
 import com.whfrp3.R;
 import com.whfrp3.ihm.activities.ItemEditActivity;
 import com.whfrp3.ihm.adapters.InventoryListAdapter;
@@ -27,6 +26,7 @@ import com.whfrp3.model.player.inventory.Item;
 import com.whfrp3.model.player.inventory.ItemType;
 import com.whfrp3.tools.WHFRP3Application;
 import com.whfrp3.tools.constants.IPlayerActivityConstants;
+import com.whfrp3.tools.helpers.PlayerHelper;
 
 import java.util.HashMap;
 import java.util.List;
@@ -127,15 +127,10 @@ public class InventoryFragment extends Fragment
 
         adapter.setChildren(items);
 
-        WHFRP3Application.getPlayer().notifyPropertyChanged(BR.fullDefenseAmount);
-        WHFRP3Application.getPlayer().notifyPropertyChanged(BR.fullSoakAmount);
-        WHFRP3Application.getPlayer().notifyPropertyChanged(BR.currentEncumbrance);
-        WHFRP3Application.getPlayer().notifyPropertyChanged(BR.encumbranceColor);
-        WHFRP3Application.getPlayer().notifyPropertyChanged(BR.equippedWeapons);
+        PlayerHelper.notifyBinding();
     }
 
     private void showDialogOnLongClick(final Item item, final int menuArrayId) {
-        // Build and show menu dialog
         AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
         builder.setTitle(R.string.item_menu_title).setItems(menuArrayId, new DialogInterface.OnClickListener() {
             @Override
@@ -143,11 +138,11 @@ public class InventoryFragment extends Fragment
                 if (menuArrayId == R.array.item_menu_actions3 && whichPos == 0) {
                     // Unequip the item
                     ((Equipment) item).setEquipped(false);
-                    refreshInventoryView();
+                    PlayerHelper.notifyEquipmentBinding();
                 } else if (menuArrayId == R.array.item_menu_actions2 && whichPos == 0) {
                     // Equip the item
                     ((Equipment) item).setEquipped(true);
-                    refreshInventoryView();
+                    PlayerHelper.notifyEquipmentBinding();
                 } else if ((menuArrayId == R.array.item_menu_actions1 && whichPos == 0)
                         || (menuArrayId == R.array.item_menu_actions2 && whichPos == 1)
                         || (menuArrayId == R.array.item_menu_actions3 && whichPos == 1)) {

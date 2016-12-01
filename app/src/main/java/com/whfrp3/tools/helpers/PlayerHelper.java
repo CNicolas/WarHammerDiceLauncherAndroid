@@ -2,19 +2,17 @@ package com.whfrp3.tools.helpers;
 
 import android.util.Log;
 
+import com.whfrp3.BR;
 import com.whfrp3.model.player.Player;
 import com.whfrp3.model.player.Skill;
 import com.whfrp3.tools.WHFRP3Application;
 
-import java.util.ArrayList;
 import java.util.List;
 
 /**
  * Carries the current player, as a Singleton like.
  */
 public abstract class PlayerHelper {
-
-    private static List<OnPlayerUpdateListener> mListeners;
 
     public static void savePlayer(Player player) {
         if (player == null || !player.isUpdatable()) {
@@ -31,8 +29,6 @@ public abstract class PlayerHelper {
         } else {
             WHFRP3Application.getDatabase().getPlayerDao().update(player);
         }
-
-        notifyListeners();
 
         Log.e("Player Context UPDATE", player.toString());
     }
@@ -51,20 +47,19 @@ public abstract class PlayerHelper {
         }
     }
 
-    //region Listeners
-    public static void registerPlayerUpdateListener(OnPlayerUpdateListener listener) {
-        if (mListeners == null) {
-            mListeners = new ArrayList<>();
-        }
-        mListeners.add(listener);
+    public static void notifyBinding() {
+        Player player = WHFRP3Application.getPlayer();
+
+        player.notifyPropertyChanged(BR.currentEncumbrance);
+        player.notifyPropertyChanged(BR.encumbranceColor);
+        notifyEquipmentBinding();
     }
 
-    private static void notifyListeners() {
-        if (mListeners != null && !mListeners.isEmpty()) {
-            for (OnPlayerUpdateListener listener : mListeners) {
-                listener.onPlayerUpdate();
-            }
-        }
+    public static void notifyEquipmentBinding() {
+        Player player = WHFRP3Application.getPlayer();
+
+        player.notifyPropertyChanged(BR.equippedWeapons);
+        player.notifyPropertyChanged(BR.fullDefenseAmount);
+        player.notifyPropertyChanged(BR.fullSoakAmount);
     }
-    //endregion
 }

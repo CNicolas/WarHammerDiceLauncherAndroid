@@ -27,7 +27,7 @@
             android:layout_gravity="center"
             android:padding="@dimen/small_padding"
             android:src="@drawable/ic_check_black"
-            android:visibility="@{(item.isEquipable() &amp;&amp; ((Equipment)item).isEquipped()) ? View.VISIBLE : View.GONE}" />
+            android:visibility="@{(item.isEquipable &amp;&amp; ((Equipment)item).isEquipped) ? View.VISIBLE : View.GONE}" />
 
         <!--Content-->
         <LinearLayout

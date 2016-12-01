@@ -29,7 +29,7 @@ public class InventoryListAdapter extends AnimatedExpandableListView.AnimatedExp
     /**
      * Map containing inventory items by ItemType.
      */
-    private Map<ItemType, List<? extends Item>> children;
+    private Map<ItemType, List<? extends Item>> mChildren;
     //endregion
 
     //region Constructor
@@ -46,26 +46,29 @@ public class InventoryListAdapter extends AnimatedExpandableListView.AnimatedExp
     //endregion
 
     /**
-     * Set children data.
+     * Set mChildren data.
      *
-     * @param children New children data.
+     * @param children New mChildren data.
      */
     public void setChildren(Map<ItemType, List<? extends Item>> children) {
-        this.children = children;
+        mChildren = children;
 
         notifyDataSetChanged();
     }
 
+    //region Child
     @Override
     public Object getChild(int groupPosition, int childPosition) {
-        return children.get(ItemType.getByOrdinal(groupPosition)).get(childPosition);
+        return mChildren.get(ItemType.getByOrdinal(groupPosition)).get(childPosition);
     }
 
     @Override
     public long getChildId(int groupPosition, int childPosition) {
         return childPosition;
     }
+    //endregion
 
+    //region Real child
     @Override
     public View getRealChildView(int groupPosition, int childPosition, boolean isLastChild, View convertView, ViewGroup parent) {
         Item item = (Item) getChild(groupPosition, childPosition);
@@ -73,16 +76,16 @@ public class InventoryListAdapter extends AnimatedExpandableListView.AnimatedExp
         InventoryItemBinding binding = DataBindingUtil.inflate(inflater, R.layout.inventory_item, null, false);
         binding.setItem(item);
 
-        convertView = binding.getRoot();
-
-        return convertView;
+        return binding.getRoot();
     }
 
     @Override
     public int getRealChildrenCount(int groupPosition) {
-        return children.get(ItemType.getByOrdinal(groupPosition)).size();
+        return mChildren.get(ItemType.getByOrdinal(groupPosition)).size();
     }
+    //endregion
 
+    //region Group
     @Override
     public Object getGroup(int groupPosition) {
         return ItemType.getByOrdinal(groupPosition);
@@ -111,6 +114,7 @@ public class InventoryListAdapter extends AnimatedExpandableListView.AnimatedExp
 
         return convertView;
     }
+    //endregion
 
     @Override
     public boolean hasStableIds() {
