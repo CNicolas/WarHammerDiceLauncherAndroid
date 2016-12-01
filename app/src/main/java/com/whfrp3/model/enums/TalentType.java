@@ -4,41 +4,41 @@ import com.whfrp3.R;
 import com.whfrp3.ihm.adapters.IEnumSpinner;
 
 /**
- * Player races.
+ * Talent types.
  */
-public enum Race implements IEnumSpinner {
+public enum TalentType implements IEnumSpinner {
 
     /**
-     * Human race.
+     * Focus.
      */
-    HUMAN(R.string.race_human),
+    FOCUS(R.string.talent_focus),
 
     /**
-     * Dwarf race.
+     * Reputation.
      */
-    DWARF(R.string.race_dwarf),
+    REPUTATION(R.string.talent_reputation),
 
     /**
-     * High elf race.
+     * Tactics.
      */
-    HIGH_ELF(R.string.race_high_elf),
+    TACTICS(R.string.talent_tactics),
 
     /**
-     * Wood elf race.
+     * Career.
      */
-    WOOD_ELF(R.string.race_wood_elf);
+    CAREER(R.string.talent_career);
 
     /**
-     * Race label id.
+     * Talent label id.
      */
     private int labelId;
 
     /**
      * Private constructor.
      *
-     * @param labelId Race label id.
+     * @param labelId Talent type label id.
      */
-    Race(int labelId) {
+    TalentType(int labelId) {
         this.labelId = labelId;
     }
 

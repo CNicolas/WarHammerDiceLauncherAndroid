@@ -145,6 +145,10 @@
     <string name="plus" translatable="false">+</string>
     <string name="stress">Stress</string>
     <string name="exertion">Exertion</string>
+    <string name="talent_focus">Focus</string>
+    <string name="talent_tactics">Tactics</string>
+    <string name="talent_reputation">Reputation</string>
     <string name="save">Save</string>
+    <string name="talent_career">Career</string>
 
 </resources>

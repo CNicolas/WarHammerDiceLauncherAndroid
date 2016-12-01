@@ -27,7 +27,7 @@ import java.util.List;
 public class Player extends AbstractModel {
 
     //region Constants
-    
+
     private static final int ENCUMBRANCE_BASE = 0;
     private static final int ENCUMBRANCE_BASE_DWARF = 5;
     private static final int ENCUMBRANCE_BY_STRENGTH = 5;
@@ -59,9 +59,10 @@ public class Player extends AbstractModel {
     private int exertion;
 
     private Characteristics characteristics;
+    private Money money;
     private List<Item> inventory;
     private List<Skill> mSkills;
-    private Money money;
+    private List<Talent> talents;
 
     /**
      * List of the item to remove of the DB.
@@ -75,9 +76,10 @@ public class Player extends AbstractModel {
     //region Constructors
     public Player() {
         characteristics = new Characteristics();
+        money = new Money(0, 0, 0);
         mSkills = new ArrayList<>();
         inventory = new ArrayList<>();
-        money = new Money(0, 0, 0);
+        talents = new ArrayList<>();
     }
     //endregion
 
@@ -529,10 +531,6 @@ public class Player extends AbstractModel {
 
     @Bindable
     public Money getMoney() {
-        if (money == null) {
-            money = new Money(0, 0, 0);
-        }
-
         return money;
     }
 

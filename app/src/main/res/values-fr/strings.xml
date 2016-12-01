@@ -132,7 +132,11 @@
     <string name="btn_ok">OK</string>
     <string name="exertion">Fatigue</string>
     <string name="stress">Stress</string>
+    <string name="talent_focus">Focus</string>
+    <string name="talent_reputation">Réputation</string>
+    <string name="talent_tactics">Tactique</string>
     <string name="save">Sauvegarder</string>
+    <string name="talent_career">Carrière</string>
     <!-- End of inventory -->
 
 </resources>
