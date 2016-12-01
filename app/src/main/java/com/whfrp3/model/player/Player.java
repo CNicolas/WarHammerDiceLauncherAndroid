@@ -157,7 +157,7 @@ public class Player extends AbstractModel {
         encumbrance += characteristics.getStrength() * ENCUMBRANCE_BY_STRENGTH;
 
         // Add strength fortune
-        encumbrance += characteristics.getStrength_fortune() * ENCUMBRANCE_BY_STRENGTH_FORTUNE;
+        encumbrance += characteristics.getStrengthFortune() * ENCUMBRANCE_BY_STRENGTH_FORTUNE;
 
         return encumbrance;
     }

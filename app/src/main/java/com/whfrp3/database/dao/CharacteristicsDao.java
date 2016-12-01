@@ -41,12 +41,12 @@ public class CharacteristicsDao extends AbstractDao<Characteristics> implements 
         values.put(COLUMN_WILLPOWER, model.getWillpower());
         values.put(COLUMN_FELLOWSHIP, model.getFellowship());
 
-        values.put(COLUMN_STRENGTH_FORTUNE, model.getStrength_fortune());
-        values.put(COLUMN_TOUGHNESS_FORTUNE, model.getToughness_fortune());
-        values.put(COLUMN_AGILITY_FORTUNE, model.getAgility_fortune());
-        values.put(COLUMN_INTELLIGENCE_FORTUNE, model.getIntelligence_fortune());
-        values.put(COLUMN_WILLPOWER_FORTUNE, model.getWillpower_fortune());
-        values.put(COLUMN_FELLOWSHIP_FORTUNE, model.getFellowship_fortune());
+        values.put(COLUMN_STRENGTH_FORTUNE, model.getStrengthFortune());
+        values.put(COLUMN_TOUGHNESS_FORTUNE, model.getToughnessFortune());
+        values.put(COLUMN_AGILITY_FORTUNE, model.getAgilityFortune());
+        values.put(COLUMN_INTELLIGENCE_FORTUNE, model.getIntelligenceFortune());
+        values.put(COLUMN_WILLPOWER_FORTUNE, model.getWillpowerFortune());
+        values.put(COLUMN_FELLOWSHIP_FORTUNE, model.getFellowshipFortune());
 
         return values;
     }
@@ -64,12 +64,12 @@ public class CharacteristicsDao extends AbstractDao<Characteristics> implements 
         model.setWillpower(cursor.getInt(cursor.getColumnIndexOrThrow(COLUMN_WILLPOWER)));
         model.setFellowship(cursor.getInt(cursor.getColumnIndexOrThrow(COLUMN_FELLOWSHIP)));
 
-        model.setStrength_fortune(cursor.getInt(cursor.getColumnIndexOrThrow(COLUMN_STRENGTH_FORTUNE)));
-        model.setToughness_fortune(cursor.getInt(cursor.getColumnIndexOrThrow(COLUMN_TOUGHNESS_FORTUNE)));
-        model.setAgility_fortune(cursor.getInt(cursor.getColumnIndexOrThrow(COLUMN_AGILITY_FORTUNE)));
-        model.setIntelligence_fortune(cursor.getInt(cursor.getColumnIndexOrThrow(COLUMN_INTELLIGENCE_FORTUNE)));
-        model.setWillpower_fortune(cursor.getInt(cursor.getColumnIndexOrThrow(COLUMN_WILLPOWER_FORTUNE)));
-        model.setFellowship_fortune(cursor.getInt(cursor.getColumnIndexOrThrow(COLUMN_FELLOWSHIP_FORTUNE)));
+        model.setStrengthFortune(cursor.getInt(cursor.getColumnIndexOrThrow(COLUMN_STRENGTH_FORTUNE)));
+        model.setToughnessFortune(cursor.getInt(cursor.getColumnIndexOrThrow(COLUMN_TOUGHNESS_FORTUNE)));
+        model.setAgilityFortune(cursor.getInt(cursor.getColumnIndexOrThrow(COLUMN_AGILITY_FORTUNE)));
+        model.setIntelligenceFortune(cursor.getInt(cursor.getColumnIndexOrThrow(COLUMN_INTELLIGENCE_FORTUNE)));
+        model.setWillpowerFortune(cursor.getInt(cursor.getColumnIndexOrThrow(COLUMN_WILLPOWER_FORTUNE)));
+        model.setFellowshipFortune(cursor.getInt(cursor.getColumnIndexOrThrow(COLUMN_FELLOWSHIP_FORTUNE)));
 
         return model;
     }

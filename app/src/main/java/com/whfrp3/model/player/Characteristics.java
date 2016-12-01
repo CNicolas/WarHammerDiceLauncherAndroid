@@ -15,12 +15,12 @@ public class Characteristics extends AbstractModel {
     private int willpower;
     private int fellowship;
 
-    private int strength_fortune;
-    private int toughness_fortune;
-    private int agility_fortune;
-    private int intelligence_fortune;
-    private int willpower_fortune;
-    private int fellowship_fortune;
+    private int strengthFortune;
+    private int toughnessFortune;
+    private int agilityFortune;
+    private int intelligenceFortune;
+    private int willpowerFortune;
+    private int fellowshipFortune;
 
     public Hand getCharacteristicHand(Characteristic characteristic) {
         int blue = 0;
@@ -30,32 +30,32 @@ public class Characteristics extends AbstractModel {
             case STRENGTH:
             case STRENGTH_FORTUNE:
                 blue = getStrength();
-                white = getStrength_fortune();
+                white = getStrengthFortune();
                 break;
             case TOUGHNESS:
             case TOUGHNESS_FORTUNE:
                 blue = getToughness();
-                white = getToughness_fortune();
+                white = getToughnessFortune();
                 break;
             case AGILITY:
             case AGILITY_FORTUNE:
                 blue = getAgility();
-                white = getAgility_fortune();
+                white = getAgilityFortune();
                 break;
             case INTELLIGENCE:
             case INTELLIGENCE_FORTUNE:
                 blue = getIntelligence();
-                white = getIntelligence_fortune();
+                white = getIntelligenceFortune();
                 break;
             case WILLPOWER:
             case WILLPOWER_FORTUNE:
                 blue = getWillpower();
-                white = getWillpower_fortune();
+                white = getWillpowerFortune();
                 break;
             case FELLOWSHIP:
             case FELLOWSHIP_FORTUNE:
                 blue = getFellowship();
-                white = getFellowship_fortune();
+                white = getFellowshipFortune();
                 break;
             default:
                 break;
@@ -117,52 +117,52 @@ public class Characteristics extends AbstractModel {
         this.fellowship = fellowship;
     }
 
-    public int getStrength_fortune() {
-        return strength_fortune;
+    public int getStrengthFortune() {
+        return strengthFortune;
     }
 
-    public void setStrength_fortune(int strength_fortune) {
-        this.strength_fortune = strength_fortune;
+    public void setStrengthFortune(int strengthFortune) {
+        this.strengthFortune = strengthFortune;
     }
 
-    public int getToughness_fortune() {
-        return toughness_fortune;
+    public int getToughnessFortune() {
+        return toughnessFortune;
     }
 
-    public void setToughness_fortune(int toughness_fortune) {
-        this.toughness_fortune = toughness_fortune;
+    public void setToughnessFortune(int toughnessFortune) {
+        this.toughnessFortune = toughnessFortune;
     }
 
-    public int getAgility_fortune() {
-        return agility_fortune;
+    public int getAgilityFortune() {
+        return agilityFortune;
     }
 
-    public void setAgility_fortune(int agility_fortune) {
-        this.agility_fortune = agility_fortune;
+    public void setAgilityFortune(int agilityFortune) {
+        this.agilityFortune = agilityFortune;
     }
 
-    public int getIntelligence_fortune() {
-        return intelligence_fortune;
+    public int getIntelligenceFortune() {
+        return intelligenceFortune;
     }
 
-    public void setIntelligence_fortune(int intelligence_fortune) {
-        this.intelligence_fortune = intelligence_fortune;
+    public void setIntelligenceFortune(int intelligenceFortune) {
+        this.intelligenceFortune = intelligenceFortune;
     }
 
-    public int getWillpower_fortune() {
-        return willpower_fortune;
+    public int getWillpowerFortune() {
+        return willpowerFortune;
     }
 
-    public void setWillpower_fortune(int willpower_fortune) {
-        this.willpower_fortune = willpower_fortune;
+    public void setWillpowerFortune(int willpowerFortune) {
+        this.willpowerFortune = willpowerFortune;
     }
 
-    public int getFellowship_fortune() {
-        return fellowship_fortune;
+    public int getFellowshipFortune() {
+        return fellowshipFortune;
     }
 
-    public void setFellowship_fortune(int fellowship_fortune) {
-        this.fellowship_fortune = fellowship_fortune;
+    public void setFellowshipFortune(int fellowshipFortune) {
+        this.fellowshipFortune = fellowshipFortune;
     }
     //endregion
 
@@ -177,12 +177,12 @@ public class Characteristics extends AbstractModel {
                 ", intelligence=" + intelligence +
                 ", willpower=" + willpower +
                 ", fellowship=" + fellowship +
-                ", strength_fortune=" + strength_fortune +
-                ", toughness_fortune=" + toughness_fortune +
-                ", agility_fortune=" + agility_fortune +
-                ", intelligence_fortune=" + intelligence_fortune +
-                ", willpower_fortune=" + willpower_fortune +
-                ", fellowship_fortune=" + fellowship_fortune +
+                ", strengthFortune=" + strengthFortune +
+                ", toughnessFortune=" + toughnessFortune +
+                ", agilityFortune=" + agilityFortune +
+                ", intelligenceFortune=" + intelligenceFortune +
+                ", willpowerFortune=" + willpowerFortune +
+                ", fellowshipFortune=" + fellowshipFortune +
                 '}';
     }
 
@@ -200,12 +200,12 @@ public class Characteristics extends AbstractModel {
         if (getIntelligence() != that.getIntelligence()) return false;
         if (getWillpower() != that.getWillpower()) return false;
         if (getFellowship() != that.getFellowship()) return false;
-        if (getStrength_fortune() != that.getStrength_fortune()) return false;
-        if (getToughness_fortune() != that.getToughness_fortune()) return false;
-        if (getAgility_fortune() != that.getAgility_fortune()) return false;
-        if (getIntelligence_fortune() != that.getIntelligence_fortune()) return false;
-        if (getWillpower_fortune() != that.getWillpower_fortune()) return false;
-        return getFellowship_fortune() == that.getFellowship_fortune();
+        if (getStrengthFortune() != that.getStrengthFortune()) return false;
+        if (getToughnessFortune() != that.getToughnessFortune()) return false;
+        if (getAgilityFortune() != that.getAgilityFortune()) return false;
+        if (getIntelligenceFortune() != that.getIntelligenceFortune()) return false;
+        if (getWillpowerFortune() != that.getWillpowerFortune()) return false;
+        return getFellowshipFortune() == that.getFellowshipFortune();
 
     }
 
@@ -217,12 +217,12 @@ public class Characteristics extends AbstractModel {
         result = 31 * result + getIntelligence();
         result = 31 * result + getWillpower();
         result = 31 * result + getFellowship();
-        result = 31 * result + getStrength_fortune();
-        result = 31 * result + getToughness_fortune();
-        result = 31 * result + getAgility_fortune();
-        result = 31 * result + getIntelligence_fortune();
-        result = 31 * result + getWillpower_fortune();
-        result = 31 * result + getFellowship_fortune();
+        result = 31 * result + getStrengthFortune();
+        result = 31 * result + getToughnessFortune();
+        result = 31 * result + getAgilityFortune();
+        result = 31 * result + getIntelligenceFortune();
+        result = 31 * result + getWillpowerFortune();
+        result = 31 * result + getFellowshipFortune();
         return result;
     }
     //endregion

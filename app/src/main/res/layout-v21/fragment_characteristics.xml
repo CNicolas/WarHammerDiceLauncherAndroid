@@ -193,10 +193,10 @@
                     <LinearLayout style="@style/CharacteristicWhiteLinearLayout">
 
                         <EditText
-                            android:id="@+id/strength_fortune"
+                            android:id="@+id/strengthFortune"
                             style="@style/CharacteristicFortuneNumberEditText"
                             android:enabled="@{player.inEdition}"
-                            android:text="@={carac.strength_fortune}" />
+                            android:text="@={carac.strengthFortune}" />
                     </LinearLayout>
                 </LinearLayout>
 
@@ -222,10 +222,10 @@
                     <LinearLayout style="@style/CharacteristicWhiteLinearLayout">
 
                         <EditText
-                            android:id="@+id/toughness_fortune"
+                            android:id="@+id/toughnessFortune"
                             style="@style/CharacteristicFortuneNumberEditText"
                             android:enabled="@{player.inEdition}"
-                            android:text="@={carac.toughness_fortune}" />
+                            android:text="@={carac.toughnessFortune}" />
                     </LinearLayout>
                 </LinearLayout>
 
@@ -251,10 +251,10 @@
                     <LinearLayout style="@style/CharacteristicWhiteLinearLayout">
 
                         <EditText
-                            android:id="@+id/agility_fortune"
+                            android:id="@+id/agilityFortune"
                             style="@style/CharacteristicFortuneNumberEditText"
                             android:enabled="@{player.inEdition}"
-                            android:text="@={carac.agility_fortune}" />
+                            android:text="@={carac.agilityFortune}" />
                     </LinearLayout>
                 </LinearLayout>
 
@@ -280,10 +280,10 @@
                     <LinearLayout style="@style/CharacteristicWhiteLinearLayout">
 
                         <EditText
-                            android:id="@+id/intelligence_fortune"
+                            android:id="@+id/intelligenceFortune"
                             style="@style/CharacteristicFortuneNumberEditText"
                             android:enabled="@{player.inEdition}"
-                            android:text="@={carac.intelligence_fortune}" />
+                            android:text="@={carac.intelligenceFortune}" />
                     </LinearLayout>
                 </LinearLayout>
 
@@ -309,10 +309,10 @@
                     <LinearLayout style="@style/CharacteristicWhiteLinearLayout">
 
                         <EditText
-                            android:id="@+id/willpower_fortune"
+                            android:id="@+id/willpowerFortune"
                             style="@style/CharacteristicFortuneNumberEditText"
                             android:enabled="@{player.inEdition}"
-                            android:text="@={carac.willpower_fortune}" />
+                            android:text="@={carac.willpowerFortune}" />
                     </LinearLayout>
                 </LinearLayout>
 
@@ -338,10 +338,10 @@
                     <LinearLayout style="@style/CharacteristicWhiteLinearLayout">
 
                         <EditText
-                            android:id="@+id/fellowship_fortune"
+                            android:id="@+id/fellowshipFortune"
                             style="@style/CharacteristicFortuneNumberEditText"
                             android:enabled="@{player.inEdition}"
-                            android:text="@={carac.fellowship_fortune}" />
+                            android:text="@={carac.fellowshipFortune}" />
                     </LinearLayout>
                 </LinearLayout>
             </LinearLayout>

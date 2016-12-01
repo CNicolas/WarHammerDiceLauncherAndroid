@@ -18,133 +18,101 @@ public class LaunchStatistics extends BaseObservable {
 
     private boolean mInProgress;
 
-    private int times;
-    private int successfulLaunches;
-    private double averageSuccess;
-    private double averageBoon;
-    private double averageSigmar;
-    private double averageChaos;
-    private double averageFailure;
-    private double averageBane;
+    private int mTimes;
+    private int mSuccessfulLaunches;
+    private double mAverageSuccess;
+    private double mAverageBoon;
+    private double mAverageSigmar;
+    private double mAverageChaos;
+    private double mAverageFailure;
+    private double mAverageBane;
 
     public LaunchStatistics() {
         df = new DecimalFormat("#.#");
         df.setRoundingMode(RoundingMode.HALF_UP);
-
     }
 
     @Bindable
     public String getLaunchesNumberString() {
-        return String.format(BindingUtils.string(R.string.launches_number_format), getTimes());
+        return String.format(BindingUtils.string(R.string.launches_number_format), mTimes);
     }
 
     @Bindable
     public String getSuccessfulLaunchesString() {
-        double successPercentage = (getSuccessfulLaunches() * 100) / ((double) getTimes());
-        return String.format(BindingUtils.string(R.string.successful_launches_number_format), getSuccessfulLaunches(), df.format(successPercentage));
+        double successPercentage = (mSuccessfulLaunches * 100) / ((double) mTimes);
+        return String.format(BindingUtils.string(R.string.successful_launches_number_format), mSuccessfulLaunches, df.format(successPercentage));
     }
 
     @Bindable
     public String getAverageSuccessString() {
-        return String.format(BindingUtils.string(R.string.average_success_format), df.format(getAverageSuccess()));
+        return String.format(BindingUtils.string(R.string.average_success_format), df.format(mAverageSuccess));
     }
 
     @Bindable
     public String getAverageBoonString() {
-        return String.format(BindingUtils.string(R.string.average_boon_format), df.format(getAverageBoon()));
+        return String.format(BindingUtils.string(R.string.average_boon_format), df.format(mAverageBoon));
     }
 
     @Bindable
     public String getAverageSigmarString() {
-        return String.format(BindingUtils.string(R.string.average_sigmar_format), df.format(getAverageSigmar()));
+        return String.format(BindingUtils.string(R.string.average_sigmar_format), df.format(mAverageSigmar));
     }
 
     @Bindable
     public String getAverageChaosString() {
-        return String.format(BindingUtils.string(R.string.average_chaos_format), df.format(getAverageChaos()));
+        return String.format(BindingUtils.string(R.string.average_chaos_format), df.format(mAverageChaos));
     }
 
     @Bindable
     public String getAverageFailureString() {
-        return String.format(BindingUtils.string(R.string.average_failure_format), df.format(getAverageFailure()));
+        return String.format(BindingUtils.string(R.string.average_failure_format), df.format(mAverageFailure));
     }
 
     @Bindable
     public String getAverageBaneString() {
-        return String.format(BindingUtils.string(R.string.average_bane_format), df.format(getAverageBane()));
+        return String.format(BindingUtils.string(R.string.average_bane_format), df.format(mAverageBane));
     }
 
 
     //region Getters and Setters
-    public int getTimes() {
-        return times;
-    }
 
     public void setTimes(int times) {
-        this.times = times;
+        this.mTimes = times;
         notifyPropertyChanged(BR.launchesNumberString);
     }
 
-    public int getSuccessfulLaunches() {
-        return successfulLaunches;
-    }
-
     public void setSuccessfulLaunches(int successfulLaunches) {
-        this.successfulLaunches = successfulLaunches;
+        this.mSuccessfulLaunches = successfulLaunches;
         notifyPropertyChanged(BR.successfulLaunchesString);
     }
 
-    public double getAverageSuccess() {
-        return averageSuccess;
-    }
-
     public void setAverageSuccess(double averageSuccess) {
-        this.averageSuccess = averageSuccess;
+        this.mAverageSuccess = averageSuccess;
         notifyPropertyChanged(BR.averageSuccessString);
     }
 
-    public double getAverageBoon() {
-        return averageBoon;
-    }
-
     public void setAverageBoon(double averageBoon) {
-        this.averageBoon = averageBoon;
+        this.mAverageBoon = averageBoon;
         notifyPropertyChanged(BR.averageBoonString);
     }
 
-    public double getAverageSigmar() {
-        return averageSigmar;
-    }
-
     public void setAverageSigmar(double averageSigmar) {
-        this.averageSigmar = averageSigmar;
+        this.mAverageSigmar = averageSigmar;
         notifyPropertyChanged(BR.averageSigmarString);
     }
 
-    public double getAverageChaos() {
-        return averageChaos;
-    }
-
     public void setAverageChaos(double averageChaos) {
-        this.averageChaos = averageChaos;
+        this.mAverageChaos = averageChaos;
         notifyPropertyChanged(BR.averageChaosString);
     }
 
-    public double getAverageFailure() {
-        return averageFailure;
-    }
-
     public void setAverageFailure(double averageFailure) {
-        this.averageFailure = averageFailure;
+        this.mAverageFailure = averageFailure;
         notifyPropertyChanged(BR.averageFailureString);
     }
 
-    public double getAverageBane() {
-        return averageBane;
-    }
-
     public void setAverageBane(double averageBane) {
-        this.averageBane = averageBane;
+        this.mAverageBane = averageBane;
         notifyPropertyChanged(BR.averageBaneString);
     }
 

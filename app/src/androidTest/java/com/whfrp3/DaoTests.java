@@ -72,12 +72,12 @@ public class DaoTests extends AndroidTestCase {
         dto.setWillpower(5);
         dto.setFellowship(6);
 
-        dto.setStrength_fortune(6);
-        dto.setToughness_fortune(5);
-        dto.setAgility_fortune(4);
-        dto.setIntelligence_fortune(3);
-        dto.setWillpower_fortune(2);
-        dto.setFellowship_fortune(1);
+        dto.setStrengthFortune(6);
+        dto.setToughnessFortune(5);
+        dto.setAgilityFortune(4);
+        dto.setIntelligenceFortune(3);
+        dto.setWillpowerFortune(2);
+        dto.setFellowshipFortune(1);
 
         database.getCharacteristicsDao().insert(dto);
     }
