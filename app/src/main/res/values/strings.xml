@@ -150,5 +150,7 @@
     <string name="talent_reputation">Reputation</string>
     <string name="save">Save</string>
     <string name="talent_career">Career</string>
+    <string name="talent_affinity">Affinity</string>
+    <string name="talent_tour">Tour</string>
 
 </resources>

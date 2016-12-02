@@ -9,6 +9,16 @@ import com.whfrp3.ihm.adapters.IEnumSpinner;
 public enum TalentType implements IEnumSpinner {
 
     /**
+     * Affinity.
+     */
+    AFFINITY(R.string.talent_affinity),
+
+    /**
+     * Tour.
+     */
+    TOUR(R.string.talent_tour),
+
+    /**
      * Focus.
      */
     FOCUS(R.string.talent_focus),
