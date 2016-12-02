@@ -39,8 +39,17 @@ public class PlayerActivity extends AppCompatActivity implements IPlayerActivity
             WHFRP3Application.getPlayer().setInEdition(inEdition);
         }
 
-        initVisualElements();
+        mPlayerPagerAdapter = new PlayerPagerAdapter(getSupportFragmentManager());
 
+        ViewPager viewPager = (ViewPager) findViewById(R.id.player_pager_container);
+        viewPager.setAdapter(mPlayerPagerAdapter);
+        viewPager.setOffscreenPageLimit(2);
+
+        TabLayout tabLayout = (TabLayout) findViewById(R.id.tabs);
+        tabLayout.setupWithViewPager(viewPager);
+
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setHomeButtonEnabled(true);
 
@@ -83,7 +92,7 @@ public class PlayerActivity extends AppCompatActivity implements IPlayerActivity
     //region Menu
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.menu_player, menu);
+        getMenuInflater().inflate(R.menu.player, menu);
         mMenu = menu;
         changeEdition();
 
@@ -107,26 +116,6 @@ public class PlayerActivity extends AppCompatActivity implements IPlayerActivity
     }
     //endregion
 
-    //endregion
-
-    //region Init
-
-    /**
-     * Initialize the various visual elements (Toolbar, ViewPager...).
-     */
-    private void initVisualElements() {
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
-
-        mPlayerPagerAdapter = new PlayerPagerAdapter(getSupportFragmentManager());
-
-        ViewPager viewPager = (ViewPager) findViewById(R.id.player_pager_container);
-        viewPager.setAdapter(mPlayerPagerAdapter);
-        viewPager.setOffscreenPageLimit(2);
-
-        TabLayout tabLayout = (TabLayout) findViewById(R.id.tabs);
-        tabLayout.setupWithViewPager(viewPager);
-    }
     //endregion
 
     /**
