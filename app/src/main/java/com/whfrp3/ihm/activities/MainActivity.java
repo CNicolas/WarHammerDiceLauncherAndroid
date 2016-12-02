@@ -12,6 +12,7 @@ import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 
 import com.whfrp3.R;
+import com.whfrp3.ihm.fragments.CareersFragment;
 import com.whfrp3.ihm.fragments.PlayersListFragment;
 import com.whfrp3.ihm.fragments.TalentsFragment;
 import com.whfrp3.tools.WHFRP3Application;
@@ -30,7 +31,7 @@ public class MainActivity extends AppCompatActivity
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
                 this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
-        drawer.setDrawerListener(toggle);
+        drawer.addDrawerListener(toggle);
         toggle.syncState();
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
@@ -71,6 +72,8 @@ public class MainActivity extends AppCompatActivity
             fragment = new PlayersListFragment();
         } else if (id == R.id.nav_talents) {
             fragment = new TalentsFragment();
+        } else if (id == R.id.nav_careers) {
+            fragment = new CareersFragment();
         }
 
         if (fragment != null) {

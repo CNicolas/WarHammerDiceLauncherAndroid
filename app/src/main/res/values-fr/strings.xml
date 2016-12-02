@@ -140,6 +140,9 @@
     <string name="talent_affinity">Affinité</string>
     <string name="talent_tour">Tour</string>
     <string name="talents">Talents</string>
+    <string name="careers">Carrières</string>
+    <string name="navigation_drawer_close">Fermer le panneau de navigation</string>
+    <string name="navigation_drawer_open">Ouvrir le panneau de navigation</string>
     <!-- End of inventory -->
 
 </resources>
