@@ -14,7 +14,7 @@
         tools:replace="android:label">
 
         <activity
-            android:name="com.whfrp3.ihm.activities.HomeActivity"
+            android:name="com.whfrp3.ihm.activities.MainActivity"
             android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -25,13 +25,13 @@
 
         <activity
             android:name="com.whfrp3.ihm.activities.PlayerActivity"
-            android:parentActivityName="com.whfrp3.ihm.activities.HomeActivity"
+            android:parentActivityName="com.whfrp3.ihm.activities.MainActivity"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar"
             android:windowSoftInputMode="stateHidden|adjustResize">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.whfrp3.ihm.activities.HomeActivity" />
+                android:value="com.whfrp3.ihm.activities.MainActivity" />
         </activity>
 
         <activity

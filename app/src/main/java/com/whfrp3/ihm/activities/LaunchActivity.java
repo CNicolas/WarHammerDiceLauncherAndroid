@@ -93,7 +93,7 @@ public class LaunchActivity extends AppCompatActivity implements IPlayerActivity
     //region Options Menu
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.menu_launch, menu);
+        getMenuInflater().inflate(R.menu.launch, menu);
 
         this.mMenuLaunch = menu;
 

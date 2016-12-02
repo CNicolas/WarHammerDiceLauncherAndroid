@@ -91,7 +91,7 @@ public class ItemEditActivity extends AppCompatActivity {
     //region Options Menu
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.menu_item_edit, menu);
+        getMenuInflater().inflate(R.menu.item_edit, menu);
         return super.onCreateOptionsMenu(menu);
     }
 

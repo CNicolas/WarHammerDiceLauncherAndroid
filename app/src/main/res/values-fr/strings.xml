@@ -139,6 +139,7 @@
     <string name="talent_career">Carrière</string>
     <string name="talent_affinity">Affinité</string>
     <string name="talent_tour">Tour</string>
+    <string name="talents">Talents</string>
     <!-- End of inventory -->
 
 </resources>

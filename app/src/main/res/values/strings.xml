@@ -152,5 +152,8 @@
     <string name="talent_career">Career</string>
     <string name="talent_affinity">Affinity</string>
     <string name="talent_tour">Tour</string>
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+    <string name="talents">Talents</string>
 
 </resources>

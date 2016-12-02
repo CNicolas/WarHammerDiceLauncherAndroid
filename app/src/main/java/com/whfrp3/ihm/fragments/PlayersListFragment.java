@@ -1,12 +1,14 @@
-package com.whfrp3.ihm.activities;
+package com.whfrp3.ihm.fragments;
 
-import android.app.Activity;
 import android.content.Intent;
 import android.database.sqlite.SQLiteException;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.v4.app.Fragment;
 import android.support.v4.app.TaskStackBuilder;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
@@ -14,6 +16,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.whfrp3.R;
+import com.whfrp3.ihm.activities.PlayerActivity;
 import com.whfrp3.model.player.Player;
 import com.whfrp3.tools.WHFRP3Application;
 import com.whfrp3.tools.constants.IPlayerActivityConstants;
@@ -22,43 +25,51 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * First page of WHFRP3, allowing the user to chose to use an existing Player or create a new one.
+ * Created by cnicolas on 02/12/2016.
  */
-public class HomeActivity extends Activity {
 
+public class PlayersListFragment extends Fragment {
+    @Nullable
     @Override
-    public void onCreate(@Nullable Bundle bundle) {
-        super.onCreate(bundle);
-        setContentView(R.layout.activity_home);
+    public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+        View rootView = inflater.inflate(R.layout.fragment_players_list, container, false);
 
-        ListView listPlayers = (ListView) findViewById(R.id.list_players);
+        ListView listPlayers = (ListView) rootView.findViewById(R.id.list_players);
 
         List<String> playersNames = new ArrayList<>();
 
         playersNames.add(getResources().getString(R.string.home_create_player));
         playersNames.addAll(WHFRP3Application.getDatabase().getPlayerDao().findAllNames());
 
-        ArrayAdapter<String> adapter = new ArrayAdapter<>(this, R.layout.players_list_element, playersNames);
+        ArrayAdapter<String> adapter = new ArrayAdapter<>(getActivity(), R.layout.players_list_element, playersNames);
         listPlayers.setAdapter(adapter);
         listPlayers.setOnItemClickListener(new PlayerListItemClickListener());
 
-        WHFRP3Application.setActivity(this);
+        return rootView;
     }
 
-    /**
-     * Listener for the playersList.
-     * Either creating a new player or loading an existing one from mDatabase.
-     */
-    public class PlayerListItemClickListener implements AdapterView.OnItemClickListener {
+
+    @Override
+    public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+        //you can set the title for your toolbar here for different fragments different titles
+        getActivity().setTitle("Home");
+    }
+
+    private class PlayerListItemClickListener implements AdapterView.OnItemClickListener {
 
         @Override
         public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
             boolean isInEdition = false;
 
-            if (position == 0) {
+            if (position == 0)
+
+            {
                 isInEdition = true;
                 WHFRP3Application.initEmptyPlayer();
-            } else {
+            } else
+
+            {
                 try {
                     TextView tv = (TextView) view;
                     Player player = WHFRP3Application.getDatabase().getPlayerDao().findByName(tv.getText().toString());
@@ -68,15 +79,14 @@ public class HomeActivity extends Activity {
                 }
             }
 
-            Intent playerIntent = new Intent(HomeActivity.this, PlayerActivity.class);
+            Intent playerIntent = new Intent(getActivity(), PlayerActivity.class);
             playerIntent.putExtra(IPlayerActivityConstants.IS_IN_EDITION_BUNDLE_TAG, isInEdition);
 
-            TaskStackBuilder stackBuilder = TaskStackBuilder.create(HomeActivity.this);
+            TaskStackBuilder stackBuilder = TaskStackBuilder.create(getActivity());
             stackBuilder.addParentStack(PlayerActivity.class);
             stackBuilder.addNextIntent(playerIntent);
 
-            startActivity(playerIntent);
-//            finish();
+            getActivity().startActivity(playerIntent);
         }
     }
 }
