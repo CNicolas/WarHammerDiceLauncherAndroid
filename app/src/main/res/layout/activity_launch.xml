@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
 
     <data>
 
@@ -14,115 +15,226 @@
 
     </data>
 
-    <RelativeLayout
+    <android.support.design.widget.CoordinatorLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@android:color/white"
         android:fitsSystemWindows="true"
-        android:padding="@dimen/main_layout_padding">
+        tools:context="com.whfrp3.ihm.activities.LaunchActivity">
 
-        <!--PICKERS LAYOUT-->
-        <include
-            android:id="@+id/dice_number_pickers"
-            layout="@layout/dice_number_pickers" />
-        <!--END OF PICKERS LAYOUT-->
-
-        <!--HANDS LAYOUT-->
-        <Spinner
-            android:id="@+id/hands_spinner"
+        <android.support.design.widget.AppBarLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@id/dice_number_pickers"
-            android:layout_marginBottom="10dp"
-            android:layout_marginTop="10dp"
-            android:minHeight="30dp" />
+            android:theme="@style/AppTheme.AppBarOverlay">
 
-        <!--END OF HANDS LAYOUT-->
+            <include layout="@layout/toolbar" />
+        </android.support.design.widget.AppBarLayout>
 
-        <!--BUTTONS-->
-        <Button
-            android:id="@+id/launchButton"
+        <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/hands_spinner"
-            android:enabled="@{hand.notEmpty}"
-            android:onClick="rollDices"
-            android:tag="0"
-            android:text="@string/btn_launchText" />
+            android:layout_height="match_parent"
+            android:background="@android:color/white"
+            android:fitsSystemWindows="true"
+            android:padding="@dimen/medium_padding"
+            app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/launchButton"
-            android:layout_marginTop="10dp"
-            android:orientation="vertical">
+            <!--PICKERS LAYOUT-->
+            <LinearLayout
+                android:id="@+id/dice_number_pickers"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:baselineAligned="false"
+                android:orientation="horizontal">
+
+                <LinearLayout style="@style/DicePickerWithImageLayout">
+
+                    <ImageView
+                        style="@style/DiceImage"
+                        android:contentDescription="@string/characteristicDice"
+                        android:src="@drawable/dice_characteristic" />
+
+                    <com.whfrp3.ihm.components.NumberPickerMinMax
+                        android:id="@+id/numberPickerCharacteristic"
+                        style="@style/DiceNumberPicker"
+                        android:value="@={hand.characteristic}" />
+                </LinearLayout>
+
+                <LinearLayout style="@style/DicePickerWithImageLayout">
+
+                    <ImageView
+                        style="@style/DiceImage"
+                        android:contentDescription="@string/recklessDice"
+                        android:src="@drawable/dice_reckless" />
+
+                    <com.whfrp3.ihm.components.NumberPickerMinMax
+                        android:id="@+id/numberPickerRecklesss"
+                        style="@style/DiceNumberPicker"
+                        android:value="@={hand.reckless}" />
+                </LinearLayout>
+
+                <LinearLayout style="@style/DicePickerWithImageLayout">
+
+                    <ImageView
+                        style="@style/DiceImage"
+                        android:contentDescription="@string/conservativeDice"
+                        android:src="@drawable/dice_conservative" />
+
+                    <com.whfrp3.ihm.components.NumberPickerMinMax
+                        android:id="@+id/numberPickerConservative"
+                        style="@style/DiceNumberPicker"
+                        android:value="@={hand.conservative}" />
+                </LinearLayout>
+
+                <LinearLayout style="@style/DicePickerWithImageLayout">
+
+                    <ImageView
+                        style="@style/DiceImage"
+                        android:contentDescription="@string/expertiseDice"
+                        android:src="@drawable/dice_expertise" />
+
+                    <com.whfrp3.ihm.components.NumberPickerMinMax
+                        android:id="@+id/numberPickerExpertise"
+                        style="@style/DiceNumberPicker"
+                        android:value="@={hand.expertise}" />
+                </LinearLayout>
+
+                <LinearLayout style="@style/DicePickerWithImageLayout">
+
+                    <ImageView
+                        style="@style/DiceImage"
+                        android:contentDescription="@string/fortuneDice"
+                        android:src="@drawable/dice_fortune" />
+
+                    <com.whfrp3.ihm.components.NumberPickerMinMax
+                        android:id="@+id/numberPickerFortune"
+                        style="@style/DiceNumberPicker"
+                        android:value="@={hand.fortune}" />
+                </LinearLayout>
+
+                <LinearLayout style="@style/DicePickerWithImageLayout">
+
+                    <ImageView
+                        style="@style/DiceImage"
+                        android:contentDescription="@string/misfortuneDice"
+                        android:src="@drawable/dice_misfortune" />
+
+                    <com.whfrp3.ihm.components.NumberPickerMinMax
+                        android:id="@+id/numberPickerMisfortune"
+                        style="@style/DiceNumberPicker"
+                        android:value="@={hand.misfortune}" />
+                </LinearLayout>
+
+                <LinearLayout style="@style/DicePickerWithImageLayout">
+
+                    <ImageView
+                        style="@style/DiceImage"
+                        android:contentDescription="@string/challengeDice"
+                        android:src="@drawable/dice_challenge" />
+
+                    <com.whfrp3.ihm.components.NumberPickerMinMax
+                        android:id="@+id/numberPickerChallenge"
+                        style="@style/DiceNumberPicker"
+                        android:value="@={hand.challenge}" />
+                </LinearLayout>
+            </LinearLayout>
+            <!--END OF PICKERS LAYOUT-->
+
+            <!--HANDS LAYOUT-->
+            <Spinner
+                android:id="@+id/hands_spinner"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/dice_number_pickers"
+                android:layout_marginBottom="10dp"
+                android:layout_marginTop="10dp"
+                android:minHeight="30dp" />
+
+            <!--END OF HANDS LAYOUT-->
+
+            <!--BUTTONS-->
+            <Button
+                android:id="@+id/launchButton"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/hands_spinner"
+                android:enabled="@{hand.notEmpty}"
+                android:onClick="rollDices"
+                android:tag="0"
+                android:text="@string/btn_launchText" />
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal">
+                android:layout_below="@+id/launchButton"
+                android:layout_marginTop="10dp"
+                android:orientation="vertical">
 
-                <Button
-                    android:id="@+id/launch_statistics_10"
-                    style="?android:attr/buttonBarButtonStyle"
+                <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:enabled="@{hand.notEmpty}"
-                    android:onClick="rollDices"
-                    android:tag="10"
-                    android:text="@string/action_launch10" />
+                    android:orientation="horizontal">
 
-                <Button
-                    android:id="@+id/launch_statistics_100"
-                    style="?android:attr/buttonBarButtonStyle"
+                    <Button
+                        android:id="@+id/launch_statistics_10"
+                        style="?android:attr/buttonBarButtonStyle"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:enabled="@{hand.notEmpty}"
+                        android:onClick="rollDices"
+                        android:tag="10"
+                        android:text="@string/action_launch10" />
+
+                    <Button
+                        android:id="@+id/launch_statistics_100"
+                        style="?android:attr/buttonBarButtonStyle"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:enabled="@{hand.notEmpty}"
+                        android:onClick="rollDices"
+                        android:tag="100"
+                        android:text="@string/action_launch100" />
+                </LinearLayout>
+
+                <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:enabled="@{hand.notEmpty}"
-                    android:onClick="rollDices"
-                    android:tag="100"
-                    android:text="@string/action_launch100" />
+                    android:orientation="horizontal">
+
+                    <Button
+                        android:id="@+id/launch_statistics_1000"
+                        style="?android:attr/buttonBarButtonStyle"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:enabled="@{hand.notEmpty}"
+                        android:onClick="rollDices"
+                        android:tag="1000"
+                        android:text="@string/action_launch1000" />
+
+                    <Button
+                        android:id="@+id/launch_statistics_10000"
+                        style="?android:attr/buttonBarButtonStyle"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:enabled="@{hand.notEmpty}"
+                        android:onClick="rollDices"
+                        android:tag="10000"
+                        android:text="@string/action_launch10000" />
+                </LinearLayout>
             </LinearLayout>
 
-            <LinearLayout
-                android:layout_width="match_parent"
+
+            <android.support.design.widget.FloatingActionButton
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal">
+                android:layout_alignParentBottom="true"
+                android:layout_alignParentEnd="true"
+                android:layout_margin="@dimen/fab_margin_padding"
+                android:onClick="@{() -> handlers.resetHand(hand)}"
+                app:srcCompat="@drawable/ic_not_interested_white" />
 
-                <Button
-                    android:id="@+id/launch_statistics_1000"
-                    style="?android:attr/buttonBarButtonStyle"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:enabled="@{hand.notEmpty}"
-                    android:onClick="rollDices"
-                    android:tag="1000"
-                    android:text="@string/action_launch1000" />
-
-                <Button
-                    android:id="@+id/launch_statistics_10000"
-                    style="?android:attr/buttonBarButtonStyle"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:enabled="@{hand.notEmpty}"
-                    android:onClick="rollDices"
-                    android:tag="10000"
-                    android:text="@string/action_launch10000" />
-            </LinearLayout>
-        </LinearLayout>
-
-
-        <android.support.design.widget.FloatingActionButton
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentBottom="true"
-            android:layout_alignParentEnd="true"
-            android:layout_margin="@dimen/fab_margin_padding"
-            android:onClick="@{() -> handlers.resetHand(hand)}"
-            app:srcCompat="@drawable/ic_not_interested_white" />
-
-    </RelativeLayout>
+        </RelativeLayout>
+    </android.support.design.widget.CoordinatorLayout>
 </layout>

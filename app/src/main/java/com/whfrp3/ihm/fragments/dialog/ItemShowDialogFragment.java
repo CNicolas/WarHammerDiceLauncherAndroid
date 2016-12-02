@@ -8,7 +8,7 @@ import android.support.v4.app.DialogFragment;
 import android.view.LayoutInflater;
 
 import com.whfrp3.R;
-import com.whfrp3.databinding.ItemShowDialogBinding;
+import com.whfrp3.databinding.DialogItemBinding;
 import com.whfrp3.model.player.inventory.Item;
 
 /**
@@ -29,7 +29,7 @@ public class ItemShowDialogFragment extends DialogFragment {
         LayoutInflater inflater = getActivity().getLayoutInflater();
 
         // Configure binding
-        ItemShowDialogBinding binding = DataBindingUtil.inflate(inflater, R.layout.item_show_dialog, null, false);
+        DialogItemBinding binding = DataBindingUtil.inflate(inflater, R.layout.dialog_item, null, false);
         binding.setItem(item);
 
         builder.setView(binding.getRoot());

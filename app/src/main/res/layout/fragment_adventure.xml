@@ -232,7 +232,7 @@
             android:layout_marginTop="@dimen/big_padding"
             android:layout_weight="1"
             app:weapons="@{player.equippedWeapons}"
-            tools:listitem="@layout/weapons_list_element" />
+            tools:listitem="@layout/element_list_weapon" />
 
         <!--Encumbrance-->
         <LinearLayout

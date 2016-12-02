@@ -22,6 +22,6 @@
             android:layout_margin="@dimen/small_padding"
             android:clickable="true"
             app:skills="@{player.skills}"
-            tools:listitem="@layout/skills_list_element" />
+            tools:listitem="@layout/element_list_skill" />
     </LinearLayout>
 </layout>

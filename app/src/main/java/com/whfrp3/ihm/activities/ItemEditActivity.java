@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.databinding.DataBindingUtil;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -56,9 +57,6 @@ public class ItemEditActivity extends AppCompatActivity {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        getSupportActionBar().setHomeButtonEnabled(true);
-
         // Retrieve item by its id
         if (getIntent().getExtras() != null) {
             long itemId = getIntent().getExtras().getLong(ITEM_ID_KEY, ITEM_ID_DEFAULT);
@@ -84,6 +82,11 @@ public class ItemEditActivity extends AppCompatActivity {
         initTypeSpinner();
         initQualitySpinner();
         initRangeSpinner();
+
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setHomeButtonEnabled(true);
 
         WHFRP3Application.setActivity(this);
     }

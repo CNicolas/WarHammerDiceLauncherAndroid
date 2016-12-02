@@ -7,7 +7,7 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.whfrp3.R;
-import com.whfrp3.databinding.InventoryItemBinding;
+import com.whfrp3.databinding.ElementInventoryChildBinding;
 import com.whfrp3.ihm.components.AnimatedExpandableListView;
 import com.whfrp3.model.player.inventory.Item;
 import com.whfrp3.model.player.inventory.ItemType;
@@ -73,7 +73,7 @@ public class InventoryListAdapter extends AnimatedExpandableListView.AnimatedExp
     public View getRealChildView(int groupPosition, int childPosition, boolean isLastChild, View convertView, ViewGroup parent) {
         Item item = (Item) getChild(groupPosition, childPosition);
 
-        InventoryItemBinding binding = DataBindingUtil.inflate(inflater, R.layout.inventory_item, null, false);
+        ElementInventoryChildBinding binding = DataBindingUtil.inflate(inflater, R.layout.element_inventory_child, null, false);
         binding.setItem(item);
 
         return binding.getRoot();
@@ -106,7 +106,7 @@ public class InventoryListAdapter extends AnimatedExpandableListView.AnimatedExp
         ItemType itemType = (ItemType) getGroup(groupPosition);
 
         if (convertView == null) {
-            convertView = inflater.inflate(R.layout.inventory_group_header, null);
+            convertView = inflater.inflate(R.layout.element_inventory_header, null);
         }
 
         TextView txtView = (TextView) convertView.findViewById(R.id.inventoryGroupName);

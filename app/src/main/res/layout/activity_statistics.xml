@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout xmlns:android="http://schemas.android.com/apk/res/android">
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
 
     <data>
 
@@ -11,79 +13,95 @@
 
     </data>
 
-    <RelativeLayout
+    <android.support.design.widget.CoordinatorLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@android:color/white"
-        android:padding="@dimen/main_layout_padding">
+        android:fitsSystemWindows="true"
+        tools:context="com.whfrp3.ihm.activities.ItemEditActivity">
 
-        <ProgressBar
-            style="?android:progressBarStyleLarge"
-            android:layout_width="wrap_content"
+        <android.support.design.widget.AppBarLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_centerInParent="true"
-            android:visibility="@{stats.inProgress ? View.VISIBLE : View.GONE}" />
+            android:theme="@style/AppTheme.AppBarOverlay">
 
-        <LinearLayout
+            <include layout="@layout/toolbar" />
+        </android.support.design.widget.AppBarLayout>
+
+        <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:orientation="vertical"
-            android:visibility="@{stats.inProgress ? View.GONE : View.VISIBLE}">
+            android:background="@android:color/white"
+            android:padding="@dimen/medium_padding"
+            app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
-            <TextView
-                android:layout_width="match_parent"
+            <ProgressBar
+                style="?android:progressBarStyleLarge"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:gravity="center"
-                android:padding="10dp"
-                android:text="@{stats.launchesNumberString}"
-                android:textSize="30sp" />
+                android:layout_centerInParent="true"
+                android:visibility="@{stats.inProgress ? View.VISIBLE : View.GONE}" />
 
-            <TextView
-                style="@style/StatisticTextView"
-                android:layout_margin="@dimen/medium_padding"
-                android:text="@{stats.successfulLaunchesString}"
-                android:textSize="@dimen/medium_text_size" />
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                android:visibility="@{stats.inProgress ? View.GONE : View.VISIBLE}">
 
-            <TextView
-                style="@style/StatisticTextView"
-                android:drawableStart="@drawable/ic_success_black"
-                android:text="@{stats.averageSuccessString}" />
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:padding="10dp"
+                    android:text="@{stats.launchesNumberString}"
+                    android:textSize="30sp" />
 
-            <TextView
-                style="@style/StatisticTextView"
-                android:drawableStart="@drawable/ic_boon_black"
-                android:text="@{stats.averageBoonString}" />
+                <TextView
+                    style="@style/StatisticTextView"
+                    android:layout_margin="@dimen/medium_padding"
+                    android:text="@{stats.successfulLaunchesString}"
+                    android:textSize="@dimen/medium_text_size" />
 
-            <TextView
-                style="@style/StatisticTextView"
-                android:drawableStart="@drawable/ic_sigmar_black"
-                android:text="@{stats.averageSigmarString}" />
+                <TextView
+                    style="@style/StatisticTextView"
+                    android:drawableStart="@drawable/ic_success_black"
+                    android:text="@{stats.averageSuccessString}" />
 
-            <TextView
-                style="@style/StatisticTextView"
-                android:drawableStart="@drawable/ic_chaos_black"
-                android:text="@{stats.averageChaosString}" />
+                <TextView
+                    style="@style/StatisticTextView"
+                    android:drawableStart="@drawable/ic_boon_black"
+                    android:text="@{stats.averageBoonString}" />
 
-            <TextView
-                style="@style/StatisticTextView"
-                android:drawableStart="@drawable/ic_failure_black"
-                android:text="@{stats.averageFailureString}" />
+                <TextView
+                    style="@style/StatisticTextView"
+                    android:drawableStart="@drawable/ic_sigmar_black"
+                    android:text="@{stats.averageSigmarString}" />
 
-            <TextView
-                style="@style/StatisticTextView"
-                android:drawableStart="@drawable/ic_bane_black"
-                android:text="@{stats.averageBaneString}" />
-        </LinearLayout>
+                <TextView
+                    style="@style/StatisticTextView"
+                    android:drawableStart="@drawable/ic_chaos_black"
+                    android:text="@{stats.averageChaosString}" />
 
-        <android.support.design.widget.FloatingActionButton
-            android:id="@+id/relaunch_fab"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentBottom="true"
-            android:layout_alignParentEnd="true"
-            android:layout_margin="@dimen/fab_margin_padding"
-            android:onClick="relaunch"
-            android:src="@drawable/ic_dice_white"
-            android:visibility="@{stats.inProgress ? View.GONE : View.VISIBLE}" />
-    </RelativeLayout>
+                <TextView
+                    style="@style/StatisticTextView"
+                    android:drawableStart="@drawable/ic_failure_black"
+                    android:text="@{stats.averageFailureString}" />
+
+                <TextView
+                    style="@style/StatisticTextView"
+                    android:drawableStart="@drawable/ic_bane_black"
+                    android:text="@{stats.averageBaneString}" />
+            </LinearLayout>
+
+            <android.support.design.widget.FloatingActionButton
+                android:id="@+id/relaunch_fab"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"
+                android:layout_alignParentEnd="true"
+                android:layout_margin="@dimen/fab_margin_padding"
+                android:onClick="relaunch"
+                android:src="@drawable/ic_dice_white"
+                android:visibility="@{stats.inProgress ? View.GONE : View.VISIBLE}" />
+        </RelativeLayout>
+    </android.support.design.widget.CoordinatorLayout>
 </layout>

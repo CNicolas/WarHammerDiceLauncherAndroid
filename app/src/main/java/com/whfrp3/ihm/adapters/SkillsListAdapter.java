@@ -8,7 +8,7 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 
 import com.whfrp3.R;
-import com.whfrp3.databinding.SkillsListElementBinding;
+import com.whfrp3.databinding.ElementListSkillBinding;
 import com.whfrp3.ihm.listeners.SkillHandlers;
 import com.whfrp3.model.player.Skill;
 import com.whfrp3.tools.WHFRP3Application;
@@ -23,7 +23,7 @@ public class SkillsListAdapter extends ArrayAdapter {
     private final LayoutInflater inflater;
 
     public SkillsListAdapter(@NonNull LayoutInflater inflater, List<Skill> skills) {
-        super(inflater.getContext(), R.layout.weapons_list_element, skills);
+        super(inflater.getContext(), R.layout.element_list_weapon, skills);
 
         this.inflater = inflater;
         this.skills = skills;
@@ -52,7 +52,7 @@ public class SkillsListAdapter extends ArrayAdapter {
     @NonNull
     @Override
     public View getView(int position, View convertView, @NonNull ViewGroup parent) {
-        SkillsListElementBinding binding = DataBindingUtil.inflate(inflater, R.layout.skills_list_element, parent, false);
+        ElementListSkillBinding binding = DataBindingUtil.inflate(inflater, R.layout.element_list_skill, parent, false);
         binding.setPlayer(WHFRP3Application.getPlayer());
         binding.setSkill(skills.get(position));
         binding.setHandlers(new SkillHandlers());

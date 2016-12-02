@@ -9,6 +9,7 @@ import android.databinding.DataBindingUtil;
 import android.os.Bundle;
 import android.support.v4.app.TaskStackBuilder;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
 import android.text.InputType;
 import android.util.Log;
 import android.view.Menu;
@@ -68,14 +69,15 @@ public class LaunchActivity extends AppCompatActivity implements IPlayerActivity
         ActivityLaunchBinding binding = DataBindingUtil.setContentView(this, R.layout.activity_launch);
         binding.setHand(mHand);
         binding.setHandlers(new LaunchActivityHandlers());
-        binding.diceNumberPickers.setHand(mHand);
-
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        getSupportActionBar().setHomeButtonEnabled(true);
 
         setupHandsSpinner();
 
         setResult(mBackToPreviousFragment);
+
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setHomeButtonEnabled(true);
 
         WHFRP3Application.setActivity(this);
     }
@@ -329,7 +331,7 @@ public class LaunchActivity extends AppCompatActivity implements IPlayerActivity
         titles.add("");
         titles.addAll(databaseTitles);
 
-        mHandsSpinner.setAdapter(new ArrayAdapter<>(this, R.layout.hands_spinner_element, titles));
+        mHandsSpinner.setAdapter(new ArrayAdapter<>(this, R.layout.element_spinner_hand, titles));
     }
 
     /**

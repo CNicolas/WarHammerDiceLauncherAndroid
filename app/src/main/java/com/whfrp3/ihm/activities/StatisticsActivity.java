@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.databinding.DataBindingUtil;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 import android.view.View;
 
@@ -31,9 +32,6 @@ public class StatisticsActivity extends AppCompatActivity {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        getSupportActionBar().setHomeButtonEnabled(true);
-
         if (getIntent().getExtras() != null) {
             mHand = (Hand) getIntent().getExtras().getSerializable(IHandConstants.HAND_BUNDLE_TAG);
             mTimes = getIntent().getExtras().getInt(IHandConstants.TIMES_BUNDLE_TAG);
@@ -48,6 +46,11 @@ public class StatisticsActivity extends AppCompatActivity {
         binding.setStats(mStats);
 
         callRollThread();
+
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setHomeButtonEnabled(true);
 
         WHFRP3Application.setActivity(this);
     }
