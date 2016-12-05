@@ -7,6 +7,18 @@
 
         <import type="com.whfrp3.tools.BindingUtils" />
 
+        <import type="com.whfrp3.model.player.inventory.ItemType" />
+
+        <import type="com.whfrp3.model.player.inventory.Quality" />
+
+        <import type="com.whfrp3.model.player.inventory.Range" />
+
+        <import type="com.whfrp3.model.player.inventory.Weapon" />
+
+        <import type="com.whfrp3.model.player.inventory.Armor" />
+
+        <import type="com.whfrp3.model.player.inventory.UsableItem" />
+
         <import type="com.whfrp3.model.player.inventory.Equipment" />
 
         <variable
@@ -18,56 +30,100 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@android:color/white"
-        android:orientation="horizontal"
-        android:paddingBottom="@dimen/small_padding">
+        android:orientation="horizontal">
 
         <ImageView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:padding="@dimen/small_padding"
+            android:paddingEnd="@dimen/small_padding"
+            android:paddingStart="@dimen/small_padding"
             android:src="@drawable/ic_check_black"
-            android:visibility="@{(item.isEquipable &amp;&amp; ((Equipment)item).isEquipped) ? View.VISIBLE : View.GONE}" />
-
+            android:visibility="@{(item.isEquipable &amp;&amp; ((Equipment)item).isEquipped) ? View.VISIBLE : View.INVISIBLE}" />
         <!--Content-->
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:paddingStart="@dimen/small_padding">
+            android:orientation="vertical">
 
-            <!--Name-->
-            <TextView
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="@dimen/small_padding"
-                android:hint="@string/dummy_string"
-                android:text="@{item.name}"
-                android:textSize="@dimen/medium_text_size" />
+                android:orientation="horizontal"
+                android:weightSum="15">
+                <!--Name-->
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="14"
+                    android:hint="@string/dummy_string"
+                    android:paddingEnd="@dimen/small_padding"
+                    android:paddingStart="@dimen/small_padding"
+                    android:text="@{item.name}"
+                    android:textColor="@{BindingUtils.color(item.quality.colorId)}"
+                    android:textSize="@dimen/medium_text_size"
+                    android:typeface="@{item.quality == Quality.SUPERIOR || item.quality == Quality.MAGIC ? &quot;bold&quot; : &quot;normal&quot;}" />
+
+                <!--Quantity-->
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="center_horizontal"
+                    android:hint="@string/zero"
+                    android:text="@{item.quantity}" />
+            </LinearLayout>
+
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:baselineAligned="false"
-                android:orientation="horizontal">
+                android:orientation="horizontal"
+                android:weightSum="5">
 
                 <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/quantity_label" />
-
-                <TextView
-                    style="@style/InventoryItemQualityOrEncumbrance"
-                    android:text="@{item.quantity}" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/encumbrance_label" />
-
-                <TextView
-                    style="@style/InventoryItemQualityOrEncumbrance"
+                    style="@style/ItemChildValueWithImage"
+                    android:layout_marginStart="@dimen/small_padding"
+                    android:drawableStart="@drawable/ic_weight_black_18"
                     android:text="@{item.encumbrance}" />
+
+                <TextView
+                    style="@style/ItemChildValueWithImage"
+                    android:drawableStart="@drawable/ic_damage_black_18"
+                    android:text="@{item.type == ItemType.WEAPON ? ((Weapon) item).damage : 0}"
+                    android:visibility="@{item.type == ItemType.WEAPON ? View.VISIBLE : View.GONE}" />
+
+                <TextView
+                    style="@style/ItemChildValueWithImage"
+                    android:drawableStart="@drawable/ic_boon_black_18"
+                    android:text="@{item.type == ItemType.WEAPON ? ((Weapon) item).criticalLevel : 0}"
+                    android:visibility="@{item.type == ItemType.WEAPON ? View.VISIBLE : View.GONE}" />
+
+                <TextView
+                    style="@style/ItemChildValueWithImage"
+                    android:layout_weight="2"
+                    android:drawableStart="@drawable/ic_target_black_18"
+                    android:text="@{item.type == ItemType.WEAPON ? BindingUtils.string(((Weapon) item).range.labelId) : &quot;&quot;}"
+                    android:visibility="@{item.type == ItemType.WEAPON ? View.VISIBLE : View.GONE}" />
+
+                <TextView
+                    style="@style/ItemChildValueWithImage"
+                    android:drawableStart="@drawable/ic_shield_black_18"
+                    android:text="@{item.type == ItemType.ARMOR ? ((Armor) item).defense : 0}"
+                    android:visibility="@{item.type == ItemType.ARMOR ? View.VISIBLE : View.GONE}" />
+
+                <TextView
+                    style="@style/ItemChildValueWithImage"
+                    android:drawableStart="@drawable/ic_armor_black_18"
+                    android:text="@{item.type == ItemType.ARMOR ? ((Armor) item).soak : 0}"
+                    android:visibility="@{item.type == ItemType.ARMOR ? View.VISIBLE : View.GONE}" />
+
+                <TextView
+                    style="@style/ItemChildValueWithImage"
+                    android:drawableStart="@drawable/ic_opacity_black_18"
+                    android:text="@{item.type == ItemType.USABLE_ITEM ? ((UsableItem) item).load : 0}"
+                    android:visibility="@{item.type == ItemType.USABLE_ITEM ? View.VISIBLE : View.GONE}" />
             </LinearLayout>
         </LinearLayout>
     </LinearLayout>

@@ -209,7 +209,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="@dimen/big_padding"
                 android:layout_weight="1"
-                android:drawableStart="@drawable/ic_shield_black"
+                android:drawableStart="@drawable/ic_shield_black_36"
                 android:gravity="center"
                 android:hint="@string/zero"
                 android:text="@{player.fullDefenseAmount}" />
@@ -219,7 +219,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="@dimen/big_padding"
                 android:layout_weight="1"
-                android:drawableStart="@drawable/ic_armor_black"
+                android:drawableStart="@drawable/ic_armor_black_36"
                 android:gravity="center"
                 android:hint="@string/zero"
                 android:text="@{player.fullSoakAmount}" />
@@ -249,7 +249,7 @@
                 android:layout_height="35dp"
                 android:paddingEnd="@dimen/very_small_padding"
                 android:paddingStart="@dimen/very_small_padding"
-                android:src="@drawable/ic_bag_black" />
+                android:src="@drawable/ic_weight_black_36" />
 
             <com.whfrp3.ihm.components.BindableDiscreteSeekBar
                 android:id="@+id/encumbrance_bar"

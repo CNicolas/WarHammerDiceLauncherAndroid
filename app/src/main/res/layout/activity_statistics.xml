@@ -68,7 +68,7 @@
 
                 <TextView
                     style="@style/StatisticTextView"
-                    android:drawableStart="@drawable/ic_boon_black"
+                    android:drawableStart="@drawable/ic_boon_black_36"
                     android:text="@{stats.averageBoonString}" />
 
                 <TextView

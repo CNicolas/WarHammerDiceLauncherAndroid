@@ -17,7 +17,7 @@
         <TextView
             android:id="@+id/benefitNumberResults"
             style="@style/ResultDialogImagedTextView"
-            android:drawableTop="@drawable/ic_boon_black" />
+            android:drawableTop="@drawable/ic_boon_black_36" />
 
         <TextView
             android:id="@+id/mischiefNumberResults"

@@ -3,6 +3,7 @@ package com.whfrp3.tools;
 import android.content.Context;
 import android.databinding.BindingAdapter;
 import android.databinding.InverseBindingAdapter;
+import android.graphics.Typeface;
 import android.graphics.drawable.Drawable;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -56,6 +57,18 @@ public class BindingUtils {
         LayoutInflater inflater = (LayoutInflater) WHFRP3Application.getAppContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         WeaponsListAdapter adapter = new WeaponsListAdapter(inflater, list);
         view.setAdapter(adapter);
+    }
+
+    @BindingAdapter("android:typeface")
+    public static void setTypeface(TextView v, String style) {
+        switch (style) {
+            case "bold":
+                v.setTypeface(null, Typeface.BOLD);
+                break;
+            default:
+                v.setTypeface(null, Typeface.NORMAL);
+                break;
+        }
     }
     //endregion
 

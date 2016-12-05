@@ -31,18 +31,18 @@
 
         <TextView
             style="@style/WeaponTextView"
-            android:drawableStart="@drawable/ic_damage_black"
+            android:drawableStart="@drawable/ic_damage_black_18"
             android:text="@{weapon.damage}" />
 
         <TextView
             style="@style/WeaponTextView"
-            android:drawableStart="@drawable/ic_small_boon_black"
+            android:drawableStart="@drawable/ic_boon_black_18"
             android:text="@{weapon.criticalLevel}" />
 
         <TextView
             style="@style/WeaponRange"
             android:layout_weight="2"
-            android:drawableStart="@drawable/ic_target_black"
+            android:drawableStart="@drawable/ic_target_black_18"
             android:hint="@string/range_engaged"
             android:text="@{BindingUtils.string(weapon.range.labelId)}" />
     </LinearLayout>
