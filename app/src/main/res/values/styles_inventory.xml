@@ -57,4 +57,28 @@
         <item name="android:textSize">@dimen/textSize</item>
         <item name="android:drawablePadding">@dimen/small_padding</item>
     </style>
+
+    <style name="ItemDialogLine">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:weightSum">2</item>
+    </style>
+
+    <style name="ItemDialogTextView">
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_weight">1</item>
+        <item name="android:padding">@dimen/small_padding</item>
+    </style>
+
+    <style name="ItemDialogTextView.Label" parent="ItemDialogTextView">
+        <item name="android:gravity">center|end</item>
+        <item name="android:paddingStart">@dimen/medium_padding</item>
+        <item name="android:layout_marginStart">@dimen/big_padding</item>
+    </style>
+
+    <style name="ItemDialogTextView.Field" parent="ItemDialogTextView">
+        <item name="android:gravity">center|start</item>
+        <item name="android:hint">@string/zero</item>
+    </style>
 </resources>

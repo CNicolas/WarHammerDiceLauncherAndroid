@@ -2,6 +2,7 @@ package com.whfrp3.ihm.fragments.dialog;
 
 import android.app.AlertDialog;
 import android.app.Dialog;
+import android.content.DialogInterface;
 import android.databinding.DataBindingUtil;
 import android.os.Bundle;
 import android.support.v4.app.DialogFragment;
@@ -33,6 +34,14 @@ public class ItemShowDialogFragment extends DialogFragment {
         binding.setItem(item);
 
         builder.setView(binding.getRoot());
+        builder.setTitle(item.getName());
+        builder.setPositiveButton(R.string.ok, new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int id) {
+                        ItemShowDialogFragment.this.dismiss();
+                    }
+                }
+        );
 
         return builder.create();
     }
@@ -42,6 +51,7 @@ public class ItemShowDialogFragment extends DialogFragment {
      *
      * @param item Item used by the dialog.
      */
+
     public void setItem(Item item) {
         this.item = item;
     }

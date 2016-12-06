@@ -86,7 +86,7 @@
     <string name="btn_editing">Editing</string>
     <string name="btn_not_editing">Not editing</string>
     <!--End of pages-->
-    
+
     <!-- Inventory -->
     <string name="armor">Armor</string>
     <string name="weapon">Weapon</string>
@@ -140,7 +140,6 @@
     <string name="btn_remove">Remove</string>
     <string name="dialog_money_title">Money</string>
     <string name="error_title">Error</string>
-    <string name="btn_ok">OK</string>
     <string name="minus" translatable="false">-</string>
     <string name="plus" translatable="false">+</string>
     <string name="stress">Stress</string>

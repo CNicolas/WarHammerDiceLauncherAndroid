@@ -9,6 +9,8 @@
 
         <import type="com.whfrp3.model.player.inventory.ItemType" />
 
+        <import type="com.whfrp3.model.player.inventory.Quality" />
+
         <import type="com.whfrp3.model.player.inventory.Weapon" />
 
         <import type="com.whfrp3.model.player.inventory.Armor" />
@@ -23,323 +25,155 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical">
-
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="48dp"
-            android:background="@color/colorPrimaryDark"
-            android:paddingTop="8dp"
-            android:text="@{item.name}"
-            android:textAlignment="center"
-            android:textColor="@color/white"
-            android:textSize="24sp" />
-
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="32dp"
-            android:background="@color/colorPrimary"
-            android:gravity="center_vertical"
-            android:paddingEnd="8dp"
-            android:paddingStart="8dp"
-            android:text="@string/description_hint"
-            android:textColor="@color/white"
-            android:textSize="20sp"
-            android:textStyle="bold" />
-
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:padding="4dp"
-            android:text="@{item.description}"
-            android:textColor="@color/black"
-            android:textSize="18sp" />
-
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="32dp"
-            android:background="@color/colorPrimary"
-            android:gravity="center_vertical"
-            android:paddingEnd="8dp"
-            android:paddingStart="8dp"
-            android:text="@string/inventory_details"
-            android:textColor="@color/white"
-            android:textSize="20sp"
-            android:textStyle="bold" />
+        android:orientation="vertical"
+        android:paddingTop="@dimen/medium_padding">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:baselineAligned="false"
-            android:orientation="horizontal">
+            android:layout_marginBottom="@dimen/medium_padding"
+            android:padding="@dimen/very_small_padding">
 
-            <LinearLayout
-                android:layout_width="0dp"
-                android:layout_height="32dp"
-                android:layout_weight="0.1"
-                android:paddingEnd="4dp"
-                android:paddingStart="4dp">
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="@{item.description}"
+                android:textSize="@dimen/medium_text_size" />
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:gravity="center_vertical"
-                    android:text="@string/quality_label"
-                    android:textColor="@color/black"
-                    android:textSize="18sp" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:gravity="center_vertical"
-                    android:paddingEnd="3dp"
-                    android:paddingStart="3dp"
-                    android:text="@{BindingUtils.string(item.quality.labelId)}"
-                    android:textColor="@color/black"
-                    android:textSize="18sp" />
-
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="48dp"
-                android:layout_height="match_parent"
-                android:gravity="end"
-                android:orientation="horizontal"
-                android:paddingEnd="8dp"
-                android:paddingStart="8dp">
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:gravity="center"
-                    android:text="@string/parenthesis_left"
-                    android:textSize="18sp" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:gravity="center"
-                    android:text="@{item.quantity}"
-                    android:textSize="18sp" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:gravity="center"
-                    android:text="@string/parenthesis_right"
-                    android:textSize="18sp" />
-
-            </LinearLayout>
         </LinearLayout>
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="32dp"
-            android:paddingEnd="4dp"
-            android:paddingStart="4dp">
+        <LinearLayout style="@style/ItemDialogLine">
 
             <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:gravity="center_vertical"
-                android:text="@string/encumbrance_label"
-                android:textColor="@color/black"
-                android:textSize="18sp" />
+                style="@style/ItemDialogTextView.Label"
+                android:text="@string/quantity_label" />
 
             <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:gravity="center_vertical"
-                android:paddingEnd="3dp"
-                android:paddingStart="3dp"
-                android:text="@{item.encumbrance}"
-                android:textColor="@color/black"
-                android:textSize="18sp" />
+                style="@style/ItemDialogTextView.Field"
+                android:text="@{item.quantity}" />
+
+        </LinearLayout>
+
+        <LinearLayout style="@style/ItemDialogLine">
+
+            <TextView
+                style="@style/ItemDialogTextView.Label"
+                android:text="@string/quality_label" />
+
+            <TextView
+                style="@style/ItemDialogTextView.Field"
+                android:hint="@string/dummy_string"
+                android:text="@{BindingUtils.string(item.quality.labelId)}"
+                android:textColor="@{BindingUtils.color(item.quality.colorId)}"
+                android:typeface="@{item.quality == Quality.SUPERIOR || item.quality == Quality.MAGIC ? &quot;bold&quot; : &quot;normal&quot;}" />
+
+        </LinearLayout>
+
+        <LinearLayout style="@style/ItemDialogLine">
+
+            <TextView
+                style="@style/ItemDialogTextView.Label"
+                android:drawableStart="@drawable/ic_weight_black_18"
+                android:text="@string/encumbrance_label" />
+
+            <TextView
+                style="@style/ItemDialogTextView.Field"
+                android:text="@{item.encumbrance}" />
 
         </LinearLayout>
 
         <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
+            style="@style/ItemDialogLine"
+            android:layout_marginTop="@dimen/medium_padding"
             android:visibility="@{item.type == ItemType.WEAPON ? View.VISIBLE : View.GONE}">
 
             <TextView
-                android:layout_width="match_parent"
-                android:layout_height="24dp"
-                android:background="@color/colorPrimary"
-                android:gravity="center_vertical"
-                android:paddingEnd="8dp"
-                android:paddingStart="8dp"
-                android:text="@string/weapon"
-                android:textColor="@color/white"
-                android:textSize="18sp" />
+                style="@style/ItemDialogTextView.Label"
+                android:drawableStart="@drawable/ic_damage_black_18"
+                android:text="@string/weapon_damage_label" />
 
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="32dp"
-                android:paddingEnd="4dp"
-                android:paddingStart="4dp">
+            <TextView
+                style="@style/ItemDialogTextView.Field"
+                android:text="@{item.type == ItemType.WEAPON ? ((Weapon) item).damage : 0}" />
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:gravity="center_vertical"
-                    android:text="@string/weapon_damage_label"
-                    android:textColor="@color/black"
-                    android:textSize="18sp" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:gravity="center_vertical"
-                    android:paddingEnd="3dp"
-                    android:paddingStart="3dp"
-                    android:text="@{item.type == ItemType.WEAPON ? ((Weapon) item).damage : 0}"
-                    android:textColor="@color/black"
-                    android:textSize="18sp" />
-
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="32dp"
-                android:paddingEnd="4dp"
-                android:paddingStart="4dp">
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:gravity="center_vertical"
-                    android:text="@string/weapon_critical_level_label"
-                    android:textColor="@color/black"
-                    android:textSize="18sp" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:gravity="center_vertical"
-                    android:paddingEnd="3dp"
-                    android:paddingStart="3dp"
-                    android:text="@{item.type == ItemType.WEAPON ? ((Weapon) item).criticalLevel : 0}"
-                    android:textColor="@color/black"
-                    android:textSize="18sp" />
-
-            </LinearLayout>
         </LinearLayout>
 
         <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
+            style="@style/ItemDialogLine"
+            android:visibility="@{item.type == ItemType.WEAPON ? View.VISIBLE : View.GONE}">
+
+            <TextView
+                style="@style/ItemDialogTextView.Label"
+                android:drawableStart="@drawable/ic_boon_black_18"
+                android:text="@string/weapon_critical_level_label" />
+
+            <TextView
+                style="@style/ItemDialogTextView.Field"
+                android:text="@{item.type == ItemType.WEAPON ? ((Weapon) item).criticalLevel : 0}" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            style="@style/ItemDialogLine"
+            android:visibility="@{item.type == ItemType.WEAPON ? View.VISIBLE : View.GONE}">
+
+            <TextView
+                style="@style/ItemDialogTextView.Label"
+                android:drawableStart="@drawable/ic_target_black_18"
+                android:text="@string/weapon_range_label" />
+
+            <TextView
+                style="@style/ItemDialogTextView.Field"
+                android:text="@{item.type == ItemType.WEAPON ? BindingUtils.string(((Weapon) item).range.labelId) : &quot;&quot;}" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            style="@style/ItemDialogLine"
+            android:layout_marginTop="@dimen/big_padding"
             android:visibility="@{item.type == ItemType.ARMOR ? View.VISIBLE : View.GONE}">
 
             <TextView
-                android:layout_width="match_parent"
-                android:layout_height="24dp"
-                android:background="@color/colorPrimary"
-                android:gravity="center_vertical"
-                android:paddingEnd="8dp"
-                android:paddingStart="8dp"
-                android:text="@string/armor"
-                android:textColor="@color/white"
-                android:textSize="18sp" />
+                style="@style/ItemDialogTextView.Label"
+                android:drawableStart="@drawable/ic_shield_black_18"
+                android:text="@string/armor_defense_label" />
 
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="32dp"
-                android:paddingEnd="4dp"
-                android:paddingStart="4dp">
+            <TextView
+                style="@style/ItemDialogTextView.Field"
+                android:text="@{item.type == ItemType.ARMOR ? ((Armor) item).defense : 0}" />
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:gravity="center_vertical"
-                    android:text="@string/armor_defense_label"
-                    android:textColor="@color/black"
-                    android:textSize="18sp" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:gravity="center_vertical"
-                    android:paddingEnd="3dp"
-                    android:paddingStart="3dp"
-                    android:text="@{item.type == ItemType.ARMOR ? ((Armor) item).defense : 0}"
-                    android:textColor="@color/black"
-                    android:textSize="18sp" />
-
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="32dp"
-                android:paddingEnd="4dp"
-                android:paddingStart="4dp">
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:gravity="center_vertical"
-                    android:text="@string/armor_soak_label"
-                    android:textColor="@color/black"
-                    android:textSize="18sp" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:gravity="center_vertical"
-                    android:paddingEnd="3dp"
-                    android:paddingStart="3dp"
-                    android:text="@{item.type == ItemType.ARMOR ? ((Armor) item).soak : 0}"
-                    android:textColor="@color/black"
-                    android:textSize="18sp" />
-
-            </LinearLayout>
         </LinearLayout>
 
         <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
+            style="@style/ItemDialogLine"
+            android:visibility="@{item.type == ItemType.ARMOR ? View.VISIBLE : View.GONE}">
+
+            <TextView
+                style="@style/ItemDialogTextView.Label"
+                android:drawableStart="@drawable/ic_armor_black_18"
+                android:text="@string/armor_soak_label" />
+
+            <TextView
+                style="@style/ItemDialogTextView.Field"
+                android:text="@{item.type == ItemType.ARMOR ? ((Armor) item).soak : 0}" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            style="@style/ItemDialogLine"
+            android:layout_marginTop="@dimen/big_padding"
             android:visibility="@{item.type == ItemType.USABLE_ITEM ? View.VISIBLE : View.GONE}">
 
             <TextView
-                android:layout_width="match_parent"
-                android:layout_height="24dp"
-                android:background="@color/colorPrimary"
-                android:gravity="center_vertical"
-                android:paddingEnd="8dp"
-                android:paddingStart="8dp"
-                android:text="@string/usable_item"
-                android:textColor="@color/white"
-                android:textSize="18sp" />
+                style="@style/ItemDialogTextView.Label"
+                android:drawableStart="@drawable/ic_loads_black_18"
+                android:text="@string/usable_item_load_label" />
 
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="32dp"
-                android:paddingEnd="4dp"
-                android:paddingStart="4dp">
+            <TextView
+                style="@style/ItemDialogTextView.Field"
+                android:text="@{item.type == ItemType.USABLE_ITEM ? ((UsableItem) item).load : 0}" />
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:gravity="center_vertical"
-                    android:text="@string/usable_item_load_label"
-                    android:textColor="@color/black"
-                    android:textSize="18sp" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:gravity="center_vertical"
-                    android:paddingEnd="3dp"
-                    android:paddingStart="3dp"
-                    android:text="@{item.type == ItemType.USABLE_ITEM ? ((UsableItem) item).load : 0}"
-                    android:textColor="@color/black"
-                    android:textSize="18sp" />
-
-            </LinearLayout>
         </LinearLayout>
     </LinearLayout>
 </layout>
