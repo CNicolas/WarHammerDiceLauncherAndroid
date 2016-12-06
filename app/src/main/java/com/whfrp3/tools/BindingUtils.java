@@ -5,6 +5,9 @@ import android.databinding.BindingAdapter;
 import android.databinding.InverseBindingAdapter;
 import android.graphics.Typeface;
 import android.graphics.drawable.Drawable;
+import android.text.Spannable;
+import android.text.SpannableString;
+import android.text.style.ImageSpan;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.widget.ListView;
@@ -100,5 +103,21 @@ public class BindingUtils {
      */
     public static int color(int resourceId) {
         return WHFRP3Application.getResourceColor(resourceId);
+    }
+
+    public static SpannableString labelDrawable(int drawableId, int labelId) {
+        Drawable drawable = BindingUtils.drawable(drawableId);
+        drawable.setBounds(0, 0, drawable.getIntrinsicWidth(), drawable.getIntrinsicHeight());
+
+        SpannableString res = new SpannableString(BindingUtils.string(labelId) + "  ");
+        ImageSpan imageSpan = new ImageSpan(drawable, ImageSpan.ALIGN_BASELINE);
+
+        res.setSpan(imageSpan, res.length() - 1, res.length(), Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
+
+        return res;
+    }
+
+    public static String labelWithColon(String label) {
+        return label + " :";
     }
 }

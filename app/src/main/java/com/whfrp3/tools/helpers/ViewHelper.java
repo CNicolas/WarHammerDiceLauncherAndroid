@@ -3,8 +3,6 @@ package com.whfrp3.tools.helpers;
 import android.view.View;
 import android.widget.TextView;
 
-import com.whfrp3.R;
-
 /**
  * This helper provide some convenient functions for view management.
  */

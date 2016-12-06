@@ -5,6 +5,8 @@
 
     <data>
 
+        <import type="com.whfrp3.tools.BindingUtils" />
+
         <variable
             name="viewModel"
             type="com.whfrp3.ihm.activities.ItemEditActivity" />
@@ -79,7 +81,7 @@
 
                         <TextView
                             style="@style/ItemEditFieldLabel"
-                            android:text="@string/item_type_label" />
+                            android:text="@{BindingUtils.labelWithColon(@string/item_type_label)}" />
 
                         <Spinner
                             android:id="@+id/item_edit_type_spinner"
@@ -91,7 +93,8 @@
 
                         <TextView
                             style="@style/ItemEditFieldLabel"
-                            android:text="@string/quality_label" />
+                            android:text="@{BindingUtils.labelWithColon(@string/quality_label)}"
+                            android:id="@+id/textView2" />
 
                         <Spinner
                             android:id="@+id/item_edit_quality_spinner"
@@ -103,7 +106,7 @@
 
                         <TextView
                             style="@style/ItemEditFieldLabel"
-                            android:text="@string/quantity_label" />
+                            android:text="@{BindingUtils.labelWithColon(@string/quantity_label)}" />
 
                         <EditText
                             style="@style/InventoryNumberEditText"
@@ -115,7 +118,7 @@
 
                         <TextView
                             style="@style/ItemEditFieldLabel"
-                            android:text="@string/encumbrance_label" />
+                            android:text="@{BindingUtils.labelWithColon(@string/encumbrance_label)}" />
 
                         <EditText
                             style="@style/InventoryNumberEditText"
@@ -138,7 +141,7 @@
 
                         <TextView
                             style="@style/ItemEditFieldLabel"
-                            android:text="@string/weapon_damage_label" />
+                            android:text="@{BindingUtils.labelWithColon(@string/weapon_damage_label)}" />
 
                         <EditText
                             style="@style/InventoryNumberEditText"
@@ -150,7 +153,7 @@
 
                         <TextView
                             style="@style/ItemEditFieldLabel"
-                            android:text="@string/weapon_critical_level_label" />
+                            android:text="@{BindingUtils.labelWithColon(@string/weapon_critical_level_label)}" />
 
                         <EditText
                             style="@style/InventoryNumberEditText"
@@ -162,7 +165,7 @@
 
                         <TextView
                             style="@style/ItemEditFieldLabel"
-                            android:text="@string/weapon_range_label" />
+                            android:text="@{BindingUtils.labelWithColon(@string/weapon_range_label)}" />
 
                         <Spinner
                             android:id="@+id/item_edit_range_spinner"
@@ -185,7 +188,7 @@
 
                         <TextView
                             style="@style/ItemEditFieldLabel"
-                            android:text="@string/armor_defense_label" />
+                            android:text="@{BindingUtils.labelWithColon(@string/armor_defense_label)}" />
 
                         <EditText
                             style="@style/InventoryNumberEditText"
@@ -197,7 +200,7 @@
 
                         <TextView
                             style="@style/ItemEditFieldLabel"
-                            android:text="@string/armor_soak_label" />
+                            android:text="@{BindingUtils.labelWithColon(@string/armor_soak_label)}" />
 
                         <EditText
                             style="@style/InventoryNumberEditText"
@@ -220,7 +223,7 @@
 
                         <TextView
                             style="@style/ItemEditFieldLabel"
-                            android:text="@string/usable_item_load_label" />
+                            android:text="@{BindingUtils.labelWithColon(@string/usable_item_load_label)}" />
 
                         <EditText
                             style="@style/InventoryNumberEditText"
