@@ -47,7 +47,7 @@
 
             <TextView
                 style="@style/ItemDialogTextView.Label"
-                android:text="@string/quantity_label" />
+                android:text="@{BindingUtils.labelWithColon(@string/quantity_label)}" />
 
             <TextView
                 style="@style/ItemDialogTextView.Field"
@@ -59,7 +59,7 @@
 
             <TextView
                 style="@style/ItemDialogTextView.Label"
-                android:text="@string/quality_label" />
+                android:text="@{BindingUtils.labelWithColon(@string/quality_label)}" />
 
             <TextView
                 style="@style/ItemDialogTextView.Field"
@@ -74,8 +74,7 @@
 
             <TextView
                 style="@style/ItemDialogTextView.Label"
-                android:drawableStart="@drawable/ic_weight_black_18"
-                android:text="@string/encumbrance_label" />
+                android:text="@{BindingUtils.labelDrawableWithColon(@string/encumbrance_label, @drawable/ic_weight_black_18)}" />
 
             <TextView
                 style="@style/ItemDialogTextView.Field"
@@ -90,8 +89,7 @@
 
             <TextView
                 style="@style/ItemDialogTextView.Label"
-                android:drawableStart="@drawable/ic_damage_black_18"
-                android:text="@string/weapon_damage_label" />
+                android:text="@{BindingUtils.labelDrawableWithColon(@string/weapon_damage_label, @drawable/ic_damage_black_18)}" />
 
             <TextView
                 style="@style/ItemDialogTextView.Field"
@@ -105,8 +103,7 @@
 
             <TextView
                 style="@style/ItemDialogTextView.Label"
-                android:drawableStart="@drawable/ic_boon_black_18"
-                android:text="@string/weapon_critical_level_label" />
+                android:text="@{BindingUtils.labelDrawableWithColon(@string/weapon_critical_level_label, @drawable/ic_boon_black_18)}" />
 
             <TextView
                 style="@style/ItemDialogTextView.Field"
@@ -120,8 +117,7 @@
 
             <TextView
                 style="@style/ItemDialogTextView.Label"
-                android:drawableStart="@drawable/ic_target_black_18"
-                android:text="@string/weapon_range_label" />
+                android:text="@{BindingUtils.labelDrawableWithColon(@string/weapon_range_label, @drawable/ic_target_black_18)}" />
 
             <TextView
                 style="@style/ItemDialogTextView.Field"
@@ -136,8 +132,7 @@
 
             <TextView
                 style="@style/ItemDialogTextView.Label"
-                android:drawableStart="@drawable/ic_shield_black_18"
-                android:text="@string/armor_defense_label" />
+                android:text="@{BindingUtils.labelDrawableWithColon(@string/armor_defense_label, @drawable/ic_shield_black_18)}" />
 
             <TextView
                 style="@style/ItemDialogTextView.Field"
@@ -151,8 +146,7 @@
 
             <TextView
                 style="@style/ItemDialogTextView.Label"
-                android:drawableStart="@drawable/ic_armor_black_18"
-                android:text="@string/armor_soak_label" />
+                android:text="@{BindingUtils.labelDrawableWithColon(@string/armor_soak_label, @drawable/ic_armor_black_18)}" />
 
             <TextView
                 style="@style/ItemDialogTextView.Field"
@@ -167,8 +161,7 @@
 
             <TextView
                 style="@style/ItemDialogTextView.Label"
-                android:drawableStart="@drawable/ic_loads_black_18"
-                android:text="@string/usable_item_load_label" />
+                android:text="@{BindingUtils.labelDrawableWithColon(@string/usable_item_load_label, @drawable/ic_loads_black_18)}" />
 
             <TextView
                 style="@style/ItemDialogTextView.Field"

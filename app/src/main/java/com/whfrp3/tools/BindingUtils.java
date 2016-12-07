@@ -105,16 +105,18 @@ public class BindingUtils {
         return WHFRP3Application.getResourceColor(resourceId);
     }
 
-    public static SpannableString labelDrawable(int drawableId, int labelId) {
-        Drawable drawable = BindingUtils.drawable(drawableId);
+    public static SpannableString labelDrawableWithColon(String label, Drawable drawable) {
+        SpannableString res = new SpannableString(label + "   :");
+        putImageInStringAtPosition(res, drawable, res.length() - 2);
+        return res;
+    }
+
+    private static void putImageInStringAtPosition(SpannableString spannableString, Drawable drawable, int position) {
         drawable.setBounds(0, 0, drawable.getIntrinsicWidth(), drawable.getIntrinsicHeight());
 
-        SpannableString res = new SpannableString(BindingUtils.string(labelId) + "  ");
-        ImageSpan imageSpan = new ImageSpan(drawable, ImageSpan.ALIGN_BASELINE);
+        ImageSpan imageSpan = new ImageSpan(drawable, ImageSpan.ALIGN_BOTTOM);
 
-        res.setSpan(imageSpan, res.length() - 1, res.length(), Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
-
-        return res;
+        spannableString.setSpan(imageSpan, position - 1, position, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
     }
 
     public static String labelWithColon(String label) {
