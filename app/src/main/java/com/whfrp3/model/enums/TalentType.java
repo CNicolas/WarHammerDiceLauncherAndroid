@@ -11,32 +11,31 @@ public enum TalentType implements IEnumSpinner {
     /**
      * Affinity.
      */
-    AFFINITY(R.string.talent_affinity, R.color.characteristic_blue),
-
+    AFFINITY(R.string.talent_affinity, R.color.blue),
     /**
-     * Tour.
+     * Career.
      */
-    TOUR(R.string.talent_tour, R.color.conservative),
-
+    CAREER(R.string.talent_career, R.color.black),
     /**
-     * Focus.
+     * Faith.
      */
-    FOCUS(R.string.talent_focus, R.color.colorPrimary),
-
+    FAITH(R.string.talent_faith, R.color.colorPrimary),
+    /**
+     * Order.
+     */
+    ORDER(R.string.talent_order, R.color.violet),
     /**
      * Reputation.
      */
     REPUTATION(R.string.talent_reputation, R.color.orange),
-
     /**
      * Tactics.
      */
     TACTICS(R.string.talent_tactics, R.color.reckless),
-
     /**
-     * Career.
+     * Tour.
      */
-    CAREER(R.string.talent_career, R.color.black);
+    TOUR(R.string.talent_tour, R.color.conservative);
 
     /**
      * Talent label id.

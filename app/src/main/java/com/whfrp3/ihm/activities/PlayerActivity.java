@@ -53,6 +53,8 @@ public class PlayerActivity extends AppCompatActivity implements IPlayerActivity
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setHomeButtonEnabled(true);
 
+        setTitle(WHFRP3Application.getPlayer().getName());
+
         WHFRP3Application.setActivity(this);
     }
 

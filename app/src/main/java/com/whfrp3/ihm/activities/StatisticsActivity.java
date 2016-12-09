@@ -52,6 +52,8 @@ public class StatisticsActivity extends AppCompatActivity {
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setHomeButtonEnabled(true);
 
+        setTitle(getString(R.string.page_statistics));
+
         WHFRP3Application.setActivity(this);
     }
 

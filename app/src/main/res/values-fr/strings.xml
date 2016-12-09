@@ -52,7 +52,6 @@
 
     <!--Pages-->
     <string name="page_home">Accueil</string>
-    <string name="page_character">Personnage</string>
     <string name="page_characteristics">Caractéristiques</string>
     <string name="page_inventory">Inventaire</string>
     <string name="average_success_format">Nombre moyen de succès  : %1$s</string>
@@ -131,18 +130,24 @@
     <string name="error_title">Erreur</string>
     <string name="exertion">Fatigue</string>
     <string name="stress">Stress</string>
-    <string name="talent_focus">Focus</string>
+    <string name="talent_faith">Foi</string>
     <string name="talent_reputation">Réputation</string>
     <string name="talent_tactics">Tactique</string>
     <string name="save">Sauvegarder</string>
     <string name="talent_career">Carrière</string>
     <string name="talent_affinity">Affinité</string>
     <string name="talent_tour">Tour</string>
-    <string name="talents">Talents</string>
-    <string name="careers">Carrières</string>
+    <string name="page_talents">Talents</string>
+    <string name="page_careers">Carrières</string>
     <string name="navigation_drawer_close">Fermer le panneau de navigation</string>
     <string name="navigation_drawer_open">Ouvrir le panneau de navigation</string>
     <string name="quality_magic">Magique</string>
+    <string name="page_adventure">Aventure</string>
+    <string name="page_players">Joueurs</string>
+    <string name="page_statistics">Statistiques</string>
+    <string name="page_launch">Lanceur de dés</string>
+    <string name="page_item_edit">Création d\'objet</string>
+    <string name="talent_order">Ordre</string>
     <!-- End of inventory -->
 
 </resources>

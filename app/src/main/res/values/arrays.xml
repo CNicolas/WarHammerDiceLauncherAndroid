@@ -1,9 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string-array name="pages">
-        <item>@string/page_home</item>
-        <item>@string/page_character</item>
-    </string-array>
     <string-array name="item_menu_actions1">
         <item>@string/item_menu_edit</item>
         <item>@string/item_menu_delete</item>

@@ -8,6 +8,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.whfrp3.R;
+import com.whfrp3.tools.BindingUtils;
 
 public class CareersFragment extends Fragment {
     @Nullable
@@ -20,6 +21,6 @@ public class CareersFragment extends Fragment {
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        getActivity().setTitle("Talents");
+        getActivity().setTitle(BindingUtils.string(R.string.page_careers));
     }
 }

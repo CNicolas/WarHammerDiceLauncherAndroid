@@ -1,5 +1,6 @@
 package com.whfrp3.ihm.activities;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.NavigationView;
 import android.support.v4.app.Fragment;
@@ -16,6 +17,7 @@ import com.whfrp3.ihm.fragments.CareersFragment;
 import com.whfrp3.ihm.fragments.PlayersListFragment;
 import com.whfrp3.ihm.fragments.TalentsFragment;
 import com.whfrp3.tools.WHFRP3Application;
+import com.whfrp3.tools.constants.ITalentsConstants;
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
@@ -59,6 +61,17 @@ public class MainActivity extends AppCompatActivity
         }
     }
     //endregion
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent intent) {
+        super.onActivityResult(requestCode, resultCode, intent);
+
+        if (resultCode == RESULT_CANCELED) {
+            if (requestCode == ITalentsConstants.TALENTS_REQUEST) {
+                displaySelectedFragment(R.id.nav_talents);
+            }
+        }
+    }
 
     @Override
     public boolean onNavigationItemSelected(MenuItem item) {

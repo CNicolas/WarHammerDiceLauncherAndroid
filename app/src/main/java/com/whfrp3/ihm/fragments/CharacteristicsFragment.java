@@ -3,7 +3,6 @@ package com.whfrp3.ihm.fragments;
 import android.databinding.DataBindingUtil;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -23,8 +22,6 @@ public class CharacteristicsFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        long startTime = System.currentTimeMillis();
-
         FragmentCharacteristicsBinding binding = DataBindingUtil.inflate(inflater, R.layout.fragment_characteristics, container, false);
         binding.setPlayer(WHFRP3Application.getPlayer());
         binding.setCarac(WHFRP3Application.getPlayer().getCharacteristics());
@@ -33,8 +30,6 @@ public class CharacteristicsFragment extends Fragment {
 
         setHasOptionsMenu(true);
 
-        long difference = System.currentTimeMillis() - startTime;
-        Log.d("CharacteristicsFragment", String.format("%d = %d", startTime, difference));
         return binding.getRoot();
     }
 

@@ -63,12 +63,14 @@ public class ItemEditActivity extends AppCompatActivity {
             if (itemId == ITEM_ID_DEFAULT) {
                 item = new Item();
                 item.setId(0);
+                setTitle(getString(R.string.page_item_edit));
             } else {
                 item = WHFRP3Application.getPlayer().getItemById(itemId);
                 if (item == null) {
                     // TODO : Add error treatment
                     Log.e(getLocalClassName(), "item_id_key given but not present in db");
                 }
+                setTitle(item.getName());
             }
         }
 
@@ -87,6 +89,8 @@ public class ItemEditActivity extends AppCompatActivity {
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setHomeButtonEnabled(true);
+
+        setTitle(getString(R.string.page_item_edit));
 
         WHFRP3Application.setActivity(this);
     }

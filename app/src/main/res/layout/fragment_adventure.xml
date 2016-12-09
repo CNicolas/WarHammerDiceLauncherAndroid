@@ -256,7 +256,7 @@
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
-                android:background="@drawable/encumbrance_border"
+                android:background="@drawable/black_border"
                 android:minHeight="10dp"
                 app:dsb_allowTrackClickToDrag="false"
                 app:dsb_indicatorPopupEnabled="false"

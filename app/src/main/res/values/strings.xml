@@ -55,7 +55,6 @@
 
     <!--Pages-->
     <string name="page_home">Home</string>
-    <string name="page_character">Character</string>
     <string name="page_characteristics">Characteristics</string>
     <string name="page_inventory">Inventory</string>
     <string name="average_success_format">Average number of success : %1$s</string>
@@ -144,7 +143,7 @@
     <string name="plus" translatable="false">+</string>
     <string name="stress">Stress</string>
     <string name="exertion">Exertion</string>
-    <string name="talent_focus">Focus</string>
+    <string name="talent_faith">Faith</string>
     <string name="talent_tactics">Tactics</string>
     <string name="talent_reputation">Reputation</string>
     <string name="save">Save</string>
@@ -153,8 +152,14 @@
     <string name="talent_tour">Tour</string>
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
-    <string name="talents">Talents</string>
-    <string name="careers">Careers</string>
+    <string name="page_talents">Talents</string>
+    <string name="page_careers">Careers</string>
     <string name="quality_magic">Magical</string>
+    <string name="page_adventure">Adventure</string>
+    <string name="page_players">Players</string>
+    <string name="page_statistics">Statistics</string>
+    <string name="page_launch">Launch dices</string>
+    <string name="page_item_edit">Item creation</string>
+    <string name="talent_order">Order</string>
 
 </resources>

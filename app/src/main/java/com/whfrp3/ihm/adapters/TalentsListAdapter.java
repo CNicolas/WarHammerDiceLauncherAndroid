@@ -9,11 +9,8 @@ import android.widget.ArrayAdapter;
 
 import com.whfrp3.R;
 import com.whfrp3.databinding.ElementListTalentBinding;
-import com.whfrp3.model.enums.CooldownType;
-import com.whfrp3.model.enums.TalentType;
 import com.whfrp3.model.player.Talent;
 
-import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -28,17 +25,6 @@ public class TalentsListAdapter extends ArrayAdapter {
 
         this.inflater = inflater;
         mTalents = talents;
-
-        if (mTalents == null) {
-            mTalents = new ArrayList<>();
-        }
-
-        Talent test = new Talent();
-        test.setName("UntalentNomméTalent");
-        test.setDescription("UneDescription !!! Ext^remement longue et tout\n c'est ouf nanpeche");
-        test.setType(TalentType.REPUTATION);
-        test.setCooldown(CooldownType.NO_COOLDOWN);
-        mTalents.add(test);
     }
 
     @Override

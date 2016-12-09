@@ -9,7 +9,6 @@ import android.support.annotation.Nullable;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.TaskStackBuilder;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -48,8 +47,6 @@ public class InventoryFragment extends Fragment
     @Override
     public View onCreateView(final LayoutInflater inflater, final ViewGroup container,
                              Bundle savedInstanceState) {
-        long startTime = System.currentTimeMillis();
-
         View rootView = inflater.inflate(R.layout.fragment_inventory, container, false);
 
         FloatingActionButton addButton = (FloatingActionButton) rootView.findViewById(R.id.inventoryAddButton);
@@ -64,9 +61,6 @@ public class InventoryFragment extends Fragment
         refreshInventoryView();
 
         mExpListView.setAdapter(adapter);
-
-        long difference = System.currentTimeMillis() - startTime;
-        Log.d("InventoryFragment", String.format("%d = %d", startTime, difference));
 
         return rootView;
     }

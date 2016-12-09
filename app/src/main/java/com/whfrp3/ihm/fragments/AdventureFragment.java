@@ -3,7 +3,6 @@ package com.whfrp3.ihm.fragments;
 import android.databinding.DataBindingUtil;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -37,8 +36,6 @@ public class AdventureFragment extends Fragment {
                              Bundle savedInstanceState) {
         super.onCreateView(inflater, container, savedInstanceState);
 
-        long startTime = System.currentTimeMillis();
-
         FragmentAdventureBinding binding = DataBindingUtil.inflate(inflater, R.layout.fragment_adventure, container, false);
         binding.setPlayer(WHFRP3Application.getPlayer());
         binding.setHandlers(new AdventureActivityHandlers());
@@ -48,8 +45,6 @@ public class AdventureFragment extends Fragment {
 
         binding.getRoot().findViewById(R.id.encumbrance_bar).setEnabled(false);
 
-        long difference = System.currentTimeMillis() - startTime;
-        Log.d("AdventureFragment", String.format("%d = %d", startTime, difference));
         return binding.getRoot();
     }
 

@@ -38,12 +38,14 @@ public class PlayersListFragment extends Fragment {
 
         List<String> playersNames = new ArrayList<>();
 
-        playersNames.add(getResources().getString(R.string.home_create_player));
+        playersNames.add(getString(R.string.home_create_player));
         playersNames.addAll(WHFRP3Application.getDatabase().getPlayerDao().findAllNames());
 
         ArrayAdapter<String> adapter = new ArrayAdapter<>(getActivity(), R.layout.element_list_player, playersNames);
         listPlayers.setAdapter(adapter);
         listPlayers.setOnItemClickListener(new PlayerListItemClickListener());
+
+        getActivity().setTitle(getString(R.string.page_players));
 
         return rootView;
     }

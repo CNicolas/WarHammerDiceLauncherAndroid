@@ -57,11 +57,14 @@ public class LaunchActivity extends AppCompatActivity implements IPlayerActivity
 
         mHand = new Hand();
 
+        setTitle(getString(R.string.page_launch));
+
         Bundle extras = getIntent().getExtras();
         if (extras != null) {
             Skill skill = (Skill) extras.getSerializable(SKILL_BUNDLE_TAG);
             if (skill != null) {
                 mHand = getHandFromSkill(skill);
+                setTitle(skill.getName());
             }
             mBackToPreviousFragment = extras.getInt(CURRENT_FRAGMENT_POSITION_BUNDLE_TAG);
         }

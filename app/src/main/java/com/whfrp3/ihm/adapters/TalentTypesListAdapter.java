@@ -10,9 +10,6 @@ import android.widget.ArrayAdapter;
 import com.whfrp3.R;
 import com.whfrp3.databinding.ElementListTalentTypeBinding;
 import com.whfrp3.model.enums.TalentType;
-import com.whfrp3.notification.ToastNotification;
-import com.whfrp3.notification.ToastType;
-import com.whfrp3.tools.BindingUtils;
 
 import java.util.List;
 
@@ -50,12 +47,7 @@ public class TalentTypesListAdapter extends ArrayAdapter {
     public View getView(int position, View convertView, @NonNull ViewGroup parent) {
         ElementListTalentTypeBinding binding = DataBindingUtil.inflate(inflater, R.layout.element_list_talent_type, null, false);
         binding.setTalentType(mTalentTypes.get(position));
-        binding.setViewModel(this);
 
         return binding.getRoot();
-    }
-
-    public void startTalentActivity(TalentType talentType) {
-        new ToastNotification(BindingUtils.string(talentType.getLabelId()), ToastType.INFO).show();
     }
 }
