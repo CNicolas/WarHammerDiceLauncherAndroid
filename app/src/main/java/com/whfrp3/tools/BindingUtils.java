@@ -5,6 +5,7 @@ import android.databinding.BindingAdapter;
 import android.databinding.InverseBindingAdapter;
 import android.graphics.Typeface;
 import android.graphics.drawable.Drawable;
+import android.graphics.drawable.Icon;
 import android.text.Spannable;
 import android.text.SpannableString;
 import android.text.style.ImageSpan;
@@ -13,12 +14,16 @@ import android.view.LayoutInflater;
 import android.widget.ListView;
 import android.widget.TextView;
 
+import com.whfrp3.R;
 import com.whfrp3.ihm.adapters.SkillsListAdapter;
 import com.whfrp3.ihm.adapters.WeaponsListAdapter;
 import com.whfrp3.model.player.Skill;
 import com.whfrp3.model.player.inventory.Weapon;
+import com.whfrp3.tools.enums.TextIcon;
 
 import java.util.List;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 /**
  * Binding utils.
@@ -73,6 +78,21 @@ public abstract class BindingUtils {
                 break;
         }
     }
+
+    @BindingAdapter("textWithIcons")
+    public static void bindTextIcons(TextView view, String text) {
+        SpannableString spanStr = new SpannableString(text);
+
+        Pattern pattern = Pattern.compile("\\{([A-Z_]+)\\}");
+        Matcher matcher = pattern.matcher(text);
+        while (matcher.find()) {
+            TextIcon icon = TextIcon.valueOf(matcher.group(1));
+
+            putImageInStringAtPosition(spanStr, drawable(icon.getDrawable()), matcher.start(), matcher.end());
+        }
+
+        view.setText(spanStr);
+    }
     //endregion
 
     /**
@@ -107,16 +127,16 @@ public abstract class BindingUtils {
 
     public static SpannableString labelDrawableWithColon(String label, Drawable drawable) {
         SpannableString res = new SpannableString(label + "   :");
-        putImageInStringAtPosition(res, drawable, res.length() - 2);
+        putImageInStringAtPosition(res, drawable, res.length() - 3, res.length() - 2);
         return res;
     }
 
-    private static void putImageInStringAtPosition(SpannableString spannableString, Drawable drawable, int position) {
+    private static void putImageInStringAtPosition(SpannableString spannableString, Drawable drawable, int startPosition, int endPosition) {
         drawable.setBounds(0, 0, drawable.getIntrinsicWidth(), drawable.getIntrinsicHeight());
 
         ImageSpan imageSpan = new ImageSpan(drawable, ImageSpan.ALIGN_BOTTOM);
 
-        spannableString.setSpan(imageSpan, position - 1, position, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
+        spannableString.setSpan(imageSpan, startPosition, endPosition, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
     }
 
     public static String labelWithColon(String label) {
