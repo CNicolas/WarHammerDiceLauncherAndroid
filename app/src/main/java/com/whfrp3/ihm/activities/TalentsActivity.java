@@ -83,7 +83,7 @@ public class TalentsActivity extends AppCompatActivity {
         Talent test1 = new Talent();
         test1.setName("Talent 1");
         test1.setDescription("Vous pouvez apprendre et employer des Sorts de Magie Noire et des Sorts du Chaos. Lorsque vous focalisez l'énergie ou que vous lancez un sort, vous bénéficiez d'un {EXPERTISE_DICE} à l'occasion de votre test. Si vous générez un ou plusieurs {EXERTION_FACE} ou {DELAY_FACE} à l'occasion de ces tests, ajoutez {CHAOS_FACE} aux résultats.\n" +
-                "À l'occasion de vos tests de Focalisation et l'Art de la magie, {BANE_DICE} {BANE_DICE} Ajoutez {CHAOS_FACE} aux résultats.\n");
+                "À l'occasion de vos tests de Focalisation et l'Art de la magie, {BANE_FACE} {BANE_FACE} Ajoutez {CHAOS_FACE} aux résultats.\n");
         test1.setType(TalentType.REPUTATION);
         test1.setCooldown(CooldownType.NO_COOLDOWN);
         res.add(test1);
@@ -91,7 +91,7 @@ public class TalentsActivity extends AppCompatActivity {
         Talent test2 = new Talent();
         test2.setName("Shallya, Déesse de la Guérison et de la Compassion");
         test2.setDescription("Vous pouvez apprendre et employer des Sorts de Magie Noire et des Sorts du Chaos. Lorsque vous focalisez l'énergie ou que vous lancez un sort, vous bénéficiez d'un {EXPERTISE_DICE} à l'occasion de votre test. Si vous générez un ou plusieurs {EXERTION_FACE} ou {DELAY_FACE} à l'occasion de ces tests, ajoutez {CHAOS_FACE} aux résultats.\n" +
-                "À l'occasion de vos tests de Focalisation et l'Art de la magie, {BANE_DICE} {BANE_DICE} Ajoutez {CHAOS_FACE} aux résultats.");
+                "À l'occasion de vos tests de Focalisation et l'Art de la magie, {BANE_FACE} {BANE_FACE} Ajoutez {CHAOS_FACE} aux résultats.");
         test2.setType(TalentType.AFFINITY);
         test2.setCooldown(CooldownType.NO_COOLDOWN);
         res.add(test2);
