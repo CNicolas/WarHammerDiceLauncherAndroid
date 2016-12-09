@@ -3,7 +3,7 @@ package com.whfrp3.tools.constants;
 /**
  * Constants used mainly in PlayerActivity.
  */
-public interface IPlayerActivityConstants extends IConstants {
+public interface IPlayerActivityConstants {
     String IS_IN_EDITION_BUNDLE_TAG = "isInEdition";
     String CURRENT_FRAGMENT_POSITION_BUNDLE_TAG = "fragmentPosition";
     String SKILL_BUNDLE_TAG = "skill";

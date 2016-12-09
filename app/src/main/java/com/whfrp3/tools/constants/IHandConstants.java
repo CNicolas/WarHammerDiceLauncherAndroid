@@ -10,7 +10,7 @@ import java.util.Map;
 /**
  * Constants used in the LaunchActivity and StatisticsActivity.
  */
-public abstract class IHandConstants implements IConstants {
+public abstract class IHandConstants {
     public static final String HAND_BUNDLE_TAG = "hand";
     public static final String TIMES_BUNDLE_TAG = "times";
 
