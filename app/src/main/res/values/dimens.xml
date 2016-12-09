@@ -3,8 +3,9 @@
     <dimen name="activity_horizontal_margin">16dp</dimen>
     <dimen name="activity_vertical_margin">16dp</dimen>
 
-    <dimen name="textSize">15sp</dimen>
+    <dimen name="normal_text_size">15sp</dimen>
     <dimen name="medium_text_size">18sp</dimen>
+    <dimen name="big_text_size">22sp</dimen>
 
     <dimen name="fab_margin">16dp</dimen>
     <dimen name="fab_margin_padding">6dp</dimen>

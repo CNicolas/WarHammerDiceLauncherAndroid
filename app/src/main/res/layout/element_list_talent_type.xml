@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <data>
+
+        <import type="com.whfrp3.tools.BindingUtils" />
+
+        <variable
+            name="talentType"
+            type="com.whfrp3.model.enums.TalentType" />
+
+        <variable
+            name="viewModel"
+            type="com.whfrp3.ihm.adapters.TalentTypesListAdapter" />
+    </data>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="?android:attr/selectableItemBackground"
+        android:clickable="true"
+        android:gravity="center"
+        android:minHeight="60dp"
+        android:onClick="@{() -> viewModel.startTalentActivity(talentType)}"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:hint="@string/dummy_string"
+            android:text="@{BindingUtils.string(talentType.labelId)}"
+            android:textColor="@{BindingUtils.color(talentType.colorId)}"
+            android:textSize="@dimen/big_text_size"
+            android:textStyle="bold" />
+
+    </LinearLayout>
+</layout>

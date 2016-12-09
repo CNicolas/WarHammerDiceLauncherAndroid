@@ -18,6 +18,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginBottom="@dimen/small_padding"
+        android:background="?android:attr/selectableItemBackground"
+        android:clickable="true"
         android:gravity="center"
         android:minHeight="35dp"
         android:onClick="@{(v) -> handlers.showToast(v, weapon)}"

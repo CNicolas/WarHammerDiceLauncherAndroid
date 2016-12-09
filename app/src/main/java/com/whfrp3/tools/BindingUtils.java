@@ -23,7 +23,7 @@ import java.util.List;
 /**
  * Binding utils.
  */
-public class BindingUtils {
+public abstract class BindingUtils {
 
     //region Conversion
     @BindingAdapter("android:text")

@@ -11,49 +11,56 @@ public enum TalentType implements IEnumSpinner {
     /**
      * Affinity.
      */
-    AFFINITY(R.string.talent_affinity),
+    AFFINITY(R.string.talent_affinity, R.color.characteristic_blue),
 
     /**
      * Tour.
      */
-    TOUR(R.string.talent_tour),
+    TOUR(R.string.talent_tour, R.color.conservative),
 
     /**
      * Focus.
      */
-    FOCUS(R.string.talent_focus),
+    FOCUS(R.string.talent_focus, R.color.colorPrimary),
 
     /**
      * Reputation.
      */
-    REPUTATION(R.string.talent_reputation),
+    REPUTATION(R.string.talent_reputation, R.color.orange),
 
     /**
      * Tactics.
      */
-    TACTICS(R.string.talent_tactics),
+    TACTICS(R.string.talent_tactics, R.color.reckless),
 
     /**
      * Career.
      */
-    CAREER(R.string.talent_career);
+    CAREER(R.string.talent_career, R.color.black);
 
     /**
      * Talent label id.
      */
     private int labelId;
 
+    private int colorId;
+
     /**
      * Private constructor.
      *
      * @param labelId Talent type label id.
      */
-    TalentType(int labelId) {
+    TalentType(int labelId, int colorId) {
         this.labelId = labelId;
+        this.colorId = colorId;
     }
 
     @Override
     public int getLabelId() {
         return labelId;
+    }
+
+    public int getColorId() {
+        return colorId;
     }
 }
