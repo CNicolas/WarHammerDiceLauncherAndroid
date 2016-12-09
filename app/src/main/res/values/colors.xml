@@ -1,5 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <!-- Dices colors -->
+    <color name="fortune_dice">#FFFFFF</color>
+    <color name="misfortune_dice">#000000</color>
+    <color name="expertise_dice">#F4EA4A</color>
+    <color name="characteristic_dice">#4471B5</color>
+    <color name="conservative_dice">#6ABE45</color>
+    <color name="reckless_dice">#D42424</color>
+    <color name="challenge_dice">#8D5FAA</color>
+    <!-- end -->
+
     <color name="colorPrimary">#607d8b</color>
     <color name="colorPrimaryDark">#455a64</color>
     <color name="colorAccent">#4caf50</color>

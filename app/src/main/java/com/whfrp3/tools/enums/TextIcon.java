@@ -10,7 +10,7 @@ public enum TextIcon {
     /**
      * Misfortune dice.
      */
-    MISFORTUNE_DICE(R.drawable.ic_fortune_dice),
+    MISFORTUNE_DICE(R.drawable.ic_misfortune_dice),
 
     /**
      * Fortune dice.
@@ -20,22 +20,27 @@ public enum TextIcon {
     /**
      * Expertise dice.
      */
-    EXPERTISE_DICE(R.drawable.ic_fortune_dice),
+    EXPERTISE_DICE(R.drawable.ic_expertise_dice),
 
     /**
      * Characteristic dice.
      */
-    CHARACTERISTIC_DICE(R.drawable.ic_fortune_dice),
+    CHARACTERISTIC_DICE(R.drawable.ic_characteristic_dice),
 
     /**
      * Conservative dice.
      */
-    CONSERVATIVE_DICE(R.drawable.ic_fortune_dice),
+    CONSERVATIVE_DICE(R.drawable.ic_conservative_dice),
+
+    /**
+     * Reckless dice.
+     */
+    RECKLESS_DICE(R.drawable.ic_reckless_dice),
 
     /**
      * Challenge dice.
      */
-    CHALLENGE_DICE(R.drawable.ic_fortune_dice),
+    CHALLENGE_DICE(R.drawable.ic_challenge_dice),
 
     /**
      * Boon face.
