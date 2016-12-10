@@ -14,7 +14,7 @@ import com.whfrp3.model.player.Talent;
 import java.util.List;
 
 /**
- * The Adapter for the Talents list.
+ * The Adapter for the talents list.
  */
 public class TalentsListAdapter extends ArrayAdapter {
     private List<Talent> mTalents;

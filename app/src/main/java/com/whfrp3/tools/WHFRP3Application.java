@@ -9,6 +9,7 @@ import android.util.Log;
 
 import com.whfrp3.database.Database;
 import com.whfrp3.model.player.Player;
+import com.whfrp3.tools.helpers.TalentHelper;
 
 /**
  * Application context provider.
@@ -49,6 +50,9 @@ public class WHFRP3Application extends Application {
         // Initialize mDatabase manager and open mDatabase connection
         mDatabase = new Database(mContext);
         mDatabase.open();
+
+        // Load talents
+        TalentHelper.getInstance().loadTalents();
     }
 
     @Override
