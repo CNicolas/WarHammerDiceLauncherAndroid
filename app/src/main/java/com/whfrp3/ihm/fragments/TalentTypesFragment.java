@@ -20,13 +20,13 @@ import com.whfrp3.tools.constants.ITalentsConstants;
 import java.util.ArrayList;
 import java.util.List;
 
-public class TalentsFragment extends Fragment implements AdapterView.OnItemClickListener {
+public class TalentTypesFragment extends Fragment implements AdapterView.OnItemClickListener {
     private List<TalentType> mTalentTypesList;
 
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View rootView = inflater.inflate(R.layout.fragment_talents, container, false);
+        View rootView = inflater.inflate(R.layout.fragment_talents_type, container, false);
 
         mTalentTypesList = new ArrayList<>();
         mTalentTypesList.add(TalentType.AFFINITY);

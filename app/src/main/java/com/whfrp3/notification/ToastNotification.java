@@ -21,8 +21,24 @@ public class ToastNotification {
     }
 
     public void show() {
+        show(this);
+    }
+
+    public static void info(String message) {
+        show(new ToastNotification(message, ToastType.INFO));
+    }
+
+    public static void warning(String message) {
+        show(new ToastNotification(message, ToastType.WARNING));
+    }
+
+    public static void error(String message) {
+        show(new ToastNotification(message, ToastType.ERROR));
+    }
+
+    private static void show(ToastNotification toastNotification) {
         ToastNotificationBinding toastBinding = DataBindingUtil.inflate(WHFRP3Application.getActivity().getLayoutInflater(), R.layout.toast_notification, null, false);
-        toastBinding.setToast(this);
+        toastBinding.setToast(toastNotification);
 
         Toast toast = new Toast(WHFRP3Application.getAppContext());
         toast.setView(toastBinding.getRoot());
