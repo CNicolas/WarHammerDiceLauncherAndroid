@@ -85,43 +85,43 @@
                 <TextView
                     style="@style/ItemChildValueWithImage"
                     android:layout_marginStart="@dimen/small_padding"
-                    android:drawableStart="@drawable/ic_weight_black_18"
+                    android:drawableStart="@drawable/ic_weight_black_16"
                     android:text="@{item.encumbrance}" />
 
                 <TextView
                     style="@style/ItemChildValueWithImage"
-                    android:drawableStart="@drawable/ic_damage_black_18"
+                    android:drawableStart="@drawable/ic_damage_black_16"
                     android:text="@{item.type == ItemType.WEAPON ? ((Weapon) item).damage : 0}"
                     android:visibility="@{item.type == ItemType.WEAPON ? View.VISIBLE : View.GONE}" />
 
                 <TextView
                     style="@style/ItemChildValueWithImage"
-                    android:drawableStart="@drawable/ic_boon_black_18"
+                    android:drawableStart="@drawable/ic_boon_black_16"
                     android:text="@{item.type == ItemType.WEAPON ? ((Weapon) item).criticalLevel : 0}"
                     android:visibility="@{item.type == ItemType.WEAPON ? View.VISIBLE : View.GONE}" />
 
                 <TextView
                     style="@style/ItemChildValueWithImage"
                     android:layout_weight="2"
-                    android:drawableStart="@drawable/ic_target_black_18"
+                    android:drawableStart="@drawable/ic_target_black_16"
                     android:text="@{item.type == ItemType.WEAPON ? BindingUtils.string(((Weapon) item).range.labelId) : &quot;&quot;}"
                     android:visibility="@{item.type == ItemType.WEAPON ? View.VISIBLE : View.GONE}" />
 
                 <TextView
                     style="@style/ItemChildValueWithImage"
-                    android:drawableStart="@drawable/ic_shield_black_18"
+                    android:drawableStart="@drawable/ic_shield_black_16"
                     android:text="@{item.type == ItemType.ARMOR ? ((Armor) item).defense : 0}"
                     android:visibility="@{item.type == ItemType.ARMOR ? View.VISIBLE : View.GONE}" />
 
                 <TextView
                     style="@style/ItemChildValueWithImage"
-                    android:drawableStart="@drawable/ic_armor_black_18"
+                    android:drawableStart="@drawable/ic_armor_black_16"
                     android:text="@{item.type == ItemType.ARMOR ? ((Armor) item).soak : 0}"
                     android:visibility="@{item.type == ItemType.ARMOR ? View.VISIBLE : View.GONE}" />
 
                 <TextView
                     style="@style/ItemChildValueWithImage"
-                    android:drawableStart="@drawable/ic_loads_black_18"
+                    android:drawableStart="@drawable/ic_loads_black_16"
                     android:text="@{item.type == ItemType.USABLE_ITEM ? ((UsableItem) item).load : 0}"
                     android:visibility="@{item.type == ItemType.USABLE_ITEM ? View.VISIBLE : View.GONE}" />
             </LinearLayout>

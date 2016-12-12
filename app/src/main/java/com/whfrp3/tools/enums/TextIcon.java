@@ -45,42 +45,42 @@ public enum TextIcon {
     /**
      * Boon face.
      */
-    BOON_FACE(R.drawable.ic_boon_black_18),
+    BOON_FACE(R.drawable.ic_boon_black_16),
 
     /**
      * Bane face.
      */
-    BANE_FACE(R.drawable.ic_bane_black_18),
+    BANE_FACE(R.drawable.ic_bane_black_16),
 
     /**
      * Sucess face.
      */
-    SUCCESS_FACE(R.drawable.ic_success_black_18),
+    SUCCESS_FACE(R.drawable.ic_success_black_16),
 
     /**
      * Delay face.
      */
-    DELAY_FACE(R.drawable.ic_delay_black_18),
+    DELAY_FACE(R.drawable.ic_delay_black_16),
 
     /**
      * Exertion face.
      */
-    EXERTION_FACE(R.drawable.ic_exertion_black_18),
+    EXERTION_FACE(R.drawable.ic_exertion_black_16),
 
     /**
      * Failure face.
      */
-    FAILURE_FACE(R.drawable.ic_failure_black_18),
+    FAILURE_FACE(R.drawable.ic_failure_black_16),
 
     /**
      * Sigmar face.
      */
-    SIGMAR_FACE(R.drawable.ic_sigmar_black_18),
+    SIGMAR_FACE(R.drawable.ic_sigmar_black_16),
 
     /**
      * Chaos face.
      */
-    CHAOS_FACE(R.drawable.ic_chaos_black_18);
+    CHAOS_FACE(R.drawable.ic_chaos_black_16);
 
     /**
      * Drawable.
