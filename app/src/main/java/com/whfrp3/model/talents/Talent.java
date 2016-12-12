@@ -1,7 +1,6 @@
-package com.whfrp3.model.player;
+package com.whfrp3.model.talents;
 
 import com.whfrp3.model.AbstractModel;
-import com.whfrp3.model.TalentEffect;
 import com.whfrp3.model.enums.CooldownType;
 import com.whfrp3.model.enums.TalentType;
 
@@ -97,4 +96,17 @@ public class Talent extends AbstractModel {
     }
 
     //endregion
+
+
+    @Override
+    public String toString() {
+        final StringBuilder sb = new StringBuilder("Talent{");
+        sb.append("name='").append(name).append('\'');
+        sb.append(", description='").append(description).append('\'');
+        sb.append(", type=").append(type);
+        sb.append(", cooldown=").append(cooldown);
+        sb.append(", effects=").append(effects);
+        sb.append('}');
+        return sb.toString();
+    }
 }

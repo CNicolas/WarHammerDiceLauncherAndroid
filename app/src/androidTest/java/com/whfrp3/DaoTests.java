@@ -5,12 +5,12 @@ import android.test.RenamingDelegatingContext;
 import android.test.suitebuilder.annotation.MediumTest;
 
 import com.whfrp3.database.Database;
+import com.whfrp3.model.enums.Characteristic;
 import com.whfrp3.model.enums.Race;
 import com.whfrp3.model.player.Characteristics;
 import com.whfrp3.model.player.Money;
 import com.whfrp3.model.player.Player;
 import com.whfrp3.model.player.Skill;
-import com.whfrp3.tools.enums.Characteristic;
 
 import java.util.List;
 

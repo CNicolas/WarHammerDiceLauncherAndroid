@@ -148,6 +148,13 @@
     <string name="page_launch">Lanceur de dés</string>
     <string name="page_item_edit">Création d\'objet</string>
     <string name="talent_order">Ordre</string>
+    <string name="search">Recherche</string>
+    <string name="go">Go !</string>
+    <string name="action">Action</string>
+    <string name="session">Une fois par session</string>
+    <string name="passive">Passif</string>
+    <string name="talent">Talent</string>
+    <string name="cooldown">Recharge</string>
     <!-- End of inventory -->
 
 </resources>

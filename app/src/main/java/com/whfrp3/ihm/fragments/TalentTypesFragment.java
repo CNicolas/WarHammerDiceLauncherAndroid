@@ -3,6 +3,7 @@ package com.whfrp3.ihm.fragments;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -13,6 +14,7 @@ import android.widget.ListView;
 import com.whfrp3.R;
 import com.whfrp3.ihm.activities.TalentsActivity;
 import com.whfrp3.ihm.adapters.TalentTypesListAdapter;
+import com.whfrp3.ihm.fragments.dialog.TalentSearchDialogFragment;
 import com.whfrp3.model.enums.TalentType;
 import com.whfrp3.tools.BindingUtils;
 import com.whfrp3.tools.constants.ITalentsConstants;
@@ -38,6 +40,15 @@ public class TalentTypesFragment extends Fragment implements AdapterView.OnItemC
         ListView talentsList = (ListView) rootView.findViewById(R.id.talents_list);
         talentsList.setAdapter(adapter);
         talentsList.setOnItemClickListener(this);
+
+        FloatingActionButton searchButton = (FloatingActionButton) rootView.findViewById(R.id.search_button);
+        searchButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                TalentSearchDialogFragment dialog = new TalentSearchDialogFragment();
+                dialog.show(getActivity().getSupportFragmentManager(), "TalentSearchDialogFragment");
+            }
+        });
 
         return rootView;
     }

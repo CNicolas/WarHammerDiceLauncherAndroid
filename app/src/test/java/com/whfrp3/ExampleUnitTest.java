@@ -1,6 +1,6 @@
 package com.whfrp3;
 
-import com.whfrp3.tools.enums.Characteristic;
+import com.whfrp3.model.enums.Characteristic;
 
 import org.junit.Test;
 

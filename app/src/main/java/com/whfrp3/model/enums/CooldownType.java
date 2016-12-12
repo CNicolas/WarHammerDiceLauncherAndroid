@@ -1,27 +1,46 @@
 package com.whfrp3.model.enums;
 
+import com.whfrp3.R;
+import com.whfrp3.ihm.adapters.IEnumSpinner;
+
 /**
  * Cooldown type.
  */
-public enum CooldownType {
+public enum CooldownType implements IEnumSpinner {
 
     /**
      * No cooldown.
      */
-    NO_COOLDOWN,
+    NO_COOLDOWN(R.string.passive),
 
     /**
      * Cooldown for the active talents.
      */
-    TALENT,
+    TALENT(R.string.talent),
 
     /**
      * Cooldown for the actions.
      */
-    ACTION,
+    ACTION(R.string.action),
 
     /**
      * Game session cooldown.
      */
-    SESSION;
+    SESSION(R.string.session);
+
+    private int labelId;
+
+    /**
+     * Private constructor.
+     *
+     * @param labelId Item label id.
+     */
+    CooldownType(int labelId) {
+        this.labelId = labelId;
+    }
+
+    @Override
+    public int getLabelId() {
+        return labelId;
+    }
 }

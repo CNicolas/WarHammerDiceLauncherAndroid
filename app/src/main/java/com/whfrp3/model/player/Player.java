@@ -16,6 +16,7 @@ import com.whfrp3.model.player.inventory.ItemType;
 import com.whfrp3.model.player.inventory.Range;
 import com.whfrp3.model.player.inventory.UsableItem;
 import com.whfrp3.model.player.inventory.Weapon;
+import com.whfrp3.model.talents.Talent;
 import com.whfrp3.tools.WHFRP3Application;
 
 import java.util.ArrayList;

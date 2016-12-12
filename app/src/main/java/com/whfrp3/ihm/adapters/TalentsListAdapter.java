@@ -9,7 +9,7 @@ import android.widget.ArrayAdapter;
 
 import com.whfrp3.R;
 import com.whfrp3.databinding.ElementListTalentBinding;
-import com.whfrp3.model.player.Talent;
+import com.whfrp3.model.talents.Talent;
 
 import java.util.List;
 

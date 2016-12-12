@@ -1,4 +1,4 @@
-package com.whfrp3.tools.enums;
+package com.whfrp3.model.enums;
 
 import com.whfrp3.R;
 

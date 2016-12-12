@@ -1,12 +1,14 @@
 package com.whfrp3.tools.helpers;
 
 import android.content.res.XmlResourceParser;
+import android.support.annotation.Nullable;
 import android.util.Log;
 
 import com.whfrp3.R;
 import com.whfrp3.model.enums.CooldownType;
 import com.whfrp3.model.enums.TalentType;
-import com.whfrp3.model.player.Talent;
+import com.whfrp3.model.talents.Talent;
+import com.whfrp3.model.talents.TalentSearchFields;
 import com.whfrp3.tools.WHFRP3Application;
 
 import java.util.ArrayList;
@@ -113,4 +115,33 @@ public class TalentHelper {
 
         return rTalents;
     }
+
+    //region Search
+    public List<Talent> search(TalentSearchFields fields) {
+        List<Talent> allTalents;
+        if (fields.getTalentType() == null) {
+            allTalents = getAllTalents();
+        } else {
+            allTalents = getTalentsByType(fields.getTalentType());
+        }
+
+        List<Talent> res = new ArrayList<>();
+        for (Talent talent : allTalents) {
+            if (isSimilarCooldownOrNull(talent, fields.getCooldownType())
+                    && isTalentNameContainingOrNull(talent, fields.getName())) {
+                res.add(talent);
+            }
+        }
+
+        return res;
+    }
+
+    private boolean isSimilarCooldownOrNull(Talent talent, @Nullable CooldownType cooldownType) {
+        return cooldownType == null || talent.getCooldown().equals(cooldownType);
+    }
+
+    private boolean isTalentNameContainingOrNull(Talent talent, @Nullable String textToSearch) {
+        return textToSearch == null || textToSearch.isEmpty() || talent.getName().toLowerCase().contains(textToSearch.toLowerCase());
+    }
+    //endregion
 }

@@ -1,9 +1,9 @@
 package com.whfrp3.tools.helpers;
 
+import com.whfrp3.model.enums.SkillEnum;
 import com.whfrp3.model.player.Player;
 import com.whfrp3.model.player.Skill;
 import com.whfrp3.tools.WHFRP3Application;
-import com.whfrp3.tools.enums.SkillEnum;
 
 import java.util.ArrayList;
 import java.util.List;

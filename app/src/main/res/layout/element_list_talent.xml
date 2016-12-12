@@ -6,7 +6,7 @@
 
         <variable
             name="talent"
-            type="com.whfrp3.model.player.Talent" />
+            type="com.whfrp3.model.talents.Talent" />
 
         <import type="com.whfrp3.tools.BindingUtils" />
 

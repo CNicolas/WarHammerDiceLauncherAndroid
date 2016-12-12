@@ -51,7 +51,11 @@ public class EnumSpinnerAdapter extends ArrayAdapter {
 
     @Override
     public long getItemId(int position) {
-        return values[position].getLabelId();
+        if (values[position] != null) {
+            return values[position].getLabelId();
+        } else {
+            return R.string.empty_string;
+        }
     }
 
     @Override

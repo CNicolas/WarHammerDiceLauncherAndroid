@@ -5,7 +5,6 @@ import android.databinding.BindingAdapter;
 import android.databinding.InverseBindingAdapter;
 import android.graphics.Typeface;
 import android.graphics.drawable.Drawable;
-import android.graphics.drawable.Icon;
 import android.text.Spannable;
 import android.text.SpannableString;
 import android.text.style.ImageSpan;
@@ -14,7 +13,6 @@ import android.view.LayoutInflater;
 import android.widget.ListView;
 import android.widget.TextView;
 
-import com.whfrp3.R;
 import com.whfrp3.ihm.adapters.SkillsListAdapter;
 import com.whfrp3.ihm.adapters.WeaponsListAdapter;
 import com.whfrp3.model.player.Skill;
@@ -102,7 +100,11 @@ public abstract class BindingUtils {
      * @return String corresponding to the resource id.
      */
     public static String string(int resourceId) {
-        return WHFRP3Application.getResourceString(resourceId);
+        if (resourceId != 0) {
+            return WHFRP3Application.getResourceString(resourceId);
+        } else {
+            return null;
+        }
     }
 
     /**
@@ -112,7 +114,11 @@ public abstract class BindingUtils {
      * @return Drawable corresponding to the resource id.
      */
     public static Drawable drawable(int resourceId) {
-        return WHFRP3Application.getResourceDrawable(resourceId);
+        if (resourceId != 0) {
+            return WHFRP3Application.getResourceDrawable(resourceId);
+        } else {
+            return null;
+        }
     }
 
     /**

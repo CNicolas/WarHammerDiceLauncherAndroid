@@ -2,6 +2,7 @@ package com.whfrp3.ihm.activities;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
@@ -10,8 +11,9 @@ import android.widget.ListView;
 
 import com.whfrp3.R;
 import com.whfrp3.ihm.adapters.TalentsListAdapter;
+import com.whfrp3.ihm.fragments.dialog.TalentSearchDialogFragment;
 import com.whfrp3.model.enums.TalentType;
-import com.whfrp3.model.player.Talent;
+import com.whfrp3.model.talents.Talent;
 import com.whfrp3.tools.WHFRP3Application;
 import com.whfrp3.tools.constants.ITalentsConstants;
 import com.whfrp3.tools.helpers.TalentHelper;
@@ -19,7 +21,7 @@ import com.whfrp3.tools.helpers.TalentHelper;
 import java.util.List;
 
 
-public class TalentsActivity extends AppCompatActivity {
+public class TalentsActivity extends AppCompatActivity implements ITalentsConstants {
     private List<Talent> mTalents;
     private TalentType mTalentType;
 
@@ -29,10 +31,17 @@ public class TalentsActivity extends AppCompatActivity {
         setContentView(R.layout.activity_talents);
 
         if (getIntent().getExtras() != null) {
-            mTalentType = (TalentType) getIntent().getExtras().getSerializable(ITalentsConstants.TALENT_TYPE_BUNDLE_TAG);
-            mTalents = TalentHelper.getInstance().getTalentsByType(mTalentType);
+            setTitle(getString(R.string.page_talents));
+            if (getIntent().hasExtra(TALENT_TYPE_BUNDLE_TAG)) {
+                mTalentType = (TalentType) getIntent().getExtras().getSerializable(TALENT_TYPE_BUNDLE_TAG);
+                setTitle(getString(mTalentType.getLabelId()));
+            }
+            if (getIntent().hasExtra(TALENT_LIST_BUNDLE_TAG)) {
+                mTalents = (List<Talent>) getIntent().getExtras().getSerializable(TALENT_LIST_BUNDLE_TAG);
+            } else {
+                mTalents = TalentHelper.getInstance().getTalentsByType(mTalentType);
+            }
         } else {
-            mTalentType = null;
             mTalents = TalentHelper.getInstance().getAllTalents();
         }
 
@@ -52,7 +61,18 @@ public class TalentsActivity extends AppCompatActivity {
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setHomeButtonEnabled(true);
 
-        setTitle(getString(mTalentType.getLabelId()));
+        FloatingActionButton searchButton = (FloatingActionButton) findViewById(R.id.search_button);
+        searchButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Bundle bundle = new Bundle();
+                bundle.putSerializable(TALENT_TYPE_BUNDLE_TAG, mTalentType);
+
+                TalentSearchDialogFragment dialog = new TalentSearchDialogFragment();
+                dialog.setArguments(bundle);
+                dialog.show(getSupportFragmentManager(), "TalentSearchDialogFragment");
+            }
+        });
 
         WHFRP3Application.setActivity(this);
     }

@@ -5,8 +5,8 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 
 import com.whfrp3.database.entries.ISkillEntryConstants;
+import com.whfrp3.model.enums.Characteristic;
 import com.whfrp3.model.player.Skill;
-import com.whfrp3.tools.enums.Characteristic;
 
 import java.util.List;
 

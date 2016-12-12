@@ -1,7 +1,7 @@
 package com.whfrp3.model.player;
 
 import com.whfrp3.model.AbstractModel;
-import com.whfrp3.tools.enums.Characteristic;
+import com.whfrp3.model.enums.Characteristic;
 
 /**
  * The Skill model.
