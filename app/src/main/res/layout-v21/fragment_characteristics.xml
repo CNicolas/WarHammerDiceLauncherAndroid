@@ -153,7 +153,7 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
                     android:layout_marginStart="@dimen/big_padding"
-                    android:src="@drawable/ic_chaos_black" />
+                    android:src="@drawable/ic_chaos_black_36" />
 
                 <EditText
                     android:id="@+id/player_max_corruption"
