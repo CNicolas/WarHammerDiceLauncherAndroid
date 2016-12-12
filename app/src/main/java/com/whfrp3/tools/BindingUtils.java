@@ -88,7 +88,7 @@ public abstract class BindingUtils {
         while (matcher.find()) {
             TextIcon icon = TextIcon.valueOf(matcher.group(1));
 
-            putImageInStringAtPosition(spanStr, drawable(icon.getDrawable()), matcher.start(), matcher.end());
+            putImageInStringAtPosition(spanStr, drawable(icon.getDrawable()), matcher.start(), matcher.end(), icon.getAlignment());
         }
 
         view.setText(spanStr);
@@ -127,14 +127,14 @@ public abstract class BindingUtils {
 
     public static SpannableString labelDrawableWithColon(String label, Drawable drawable) {
         SpannableString res = new SpannableString(label + "   :");
-        putImageInStringAtPosition(res, drawable, res.length() - 3, res.length() - 2);
+        putImageInStringAtPosition(res, drawable, res.length() - 3, res.length() - 2, ImageSpan.ALIGN_BOTTOM);
         return res;
     }
 
-    private static void putImageInStringAtPosition(SpannableString spannableString, Drawable drawable, int startPosition, int endPosition) {
+    private static void putImageInStringAtPosition(SpannableString spannableString, Drawable drawable, int startPosition, int endPosition, int alignment) {
         drawable.setBounds(0, 0, drawable.getIntrinsicWidth(), drawable.getIntrinsicHeight());
 
-        ImageSpan imageSpan = new ImageSpan(drawable, ImageSpan.ALIGN_BOTTOM);
+        ImageSpan imageSpan = new ImageSpan(drawable, alignment);
 
         spannableString.setSpan(imageSpan, startPosition, endPosition, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
     }
