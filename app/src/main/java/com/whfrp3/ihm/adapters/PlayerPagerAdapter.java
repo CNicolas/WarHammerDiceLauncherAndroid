@@ -14,7 +14,7 @@ import com.whfrp3.R;
 import com.whfrp3.ihm.fragments.player.AdventureFragment;
 import com.whfrp3.ihm.fragments.player.CharacteristicsFragment;
 import com.whfrp3.ihm.fragments.player.InventoryFragment;
-import com.whfrp3.ihm.fragments.player.SkillsFragment;
+import com.whfrp3.ihm.fragments.player.PlayerSkillsFragment;
 import com.whfrp3.tools.WHFRP3Application;
 import com.whfrp3.tools.constants.IPlayerActivityConstants;
 
@@ -26,7 +26,7 @@ public class PlayerPagerAdapter extends FragmentPagerAdapter {
     private int mCurrentPosition;
 
     private CharacteristicsFragment mCharacteristicsFragment;
-    private SkillsFragment mSkillsFragment;
+    private PlayerSkillsFragment mPlayerSkillsFragment;
     private InventoryFragment mInventoryFragment;
     private AdventureFragment mAdventureFragment;
 
@@ -50,10 +50,10 @@ public class PlayerPagerAdapter extends FragmentPagerAdapter {
                 }
                 return mAdventureFragment;
             case IPlayerActivityConstants.SKILLS_FRAGMENT_POSITION:
-                if (mSkillsFragment == null) {
-                    mSkillsFragment = new SkillsFragment();
+                if (mPlayerSkillsFragment == null) {
+                    mPlayerSkillsFragment = new PlayerSkillsFragment();
                 }
-                return mSkillsFragment;
+                return mPlayerSkillsFragment;
             case IPlayerActivityConstants.INVENTORY_FRAGMENT_POSITION:
                 if (mInventoryFragment == null) {
                     mInventoryFragment = new InventoryFragment();

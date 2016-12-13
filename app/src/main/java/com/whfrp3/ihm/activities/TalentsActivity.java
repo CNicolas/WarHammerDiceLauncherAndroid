@@ -15,13 +15,13 @@ import com.whfrp3.ihm.fragments.dialog.TalentSearchDialogFragment;
 import com.whfrp3.model.enums.TalentType;
 import com.whfrp3.model.talents.Talent;
 import com.whfrp3.tools.WHFRP3Application;
-import com.whfrp3.tools.constants.ITalentsConstants;
+import com.whfrp3.tools.constants.IMainConstants;
 import com.whfrp3.tools.helpers.TalentHelper;
 
 import java.util.List;
 
 
-public class TalentsActivity extends AppCompatActivity implements ITalentsConstants {
+public class TalentsActivity extends AppCompatActivity implements IMainConstants {
     private List<Talent> mTalents;
     private TalentType mTalentType;
 

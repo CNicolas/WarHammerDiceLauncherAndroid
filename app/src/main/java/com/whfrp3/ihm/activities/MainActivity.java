@@ -16,9 +16,11 @@ import com.whfrp3.R;
 import com.whfrp3.ihm.fragments.main.CareersFragment;
 import com.whfrp3.ihm.fragments.main.ItemsFragment;
 import com.whfrp3.ihm.fragments.main.PlayersListFragment;
+import com.whfrp3.ihm.fragments.main.SkillsFragment;
+import com.whfrp3.ihm.fragments.main.SpecializationsFragment;
 import com.whfrp3.ihm.fragments.main.TalentTypesFragment;
 import com.whfrp3.tools.WHFRP3Application;
-import com.whfrp3.tools.constants.ITalentsConstants;
+import com.whfrp3.tools.constants.IMainConstants;
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
@@ -68,8 +70,10 @@ public class MainActivity extends AppCompatActivity
         super.onActivityResult(requestCode, resultCode, intent);
 
         if (resultCode == RESULT_CANCELED) {
-            if (requestCode == ITalentsConstants.TALENTS_REQUEST) {
+            if (requestCode == IMainConstants.TALENTS_REQUEST) {
                 displaySelectedFragment(R.id.nav_talents);
+            } else if (requestCode == IMainConstants.PLAYER_REQUEST) {
+                displaySelectedFragment(R.id.nav_home);
             }
         }
     }
@@ -90,6 +94,10 @@ public class MainActivity extends AppCompatActivity
             fragment = new CareersFragment();
         } else if (id == R.id.nav_items) {
             fragment = new ItemsFragment();
+        } else if (id == R.id.nav_skills) {
+            fragment = new SkillsFragment();
+        } else if (id == R.id.nav_specializations) {
+            fragment = new SpecializationsFragment();
         }
 
         if (fragment != null) {

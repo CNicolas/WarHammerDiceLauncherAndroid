@@ -8,21 +8,21 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.whfrp3.R;
-import com.whfrp3.databinding.FragmentSkillsBinding;
+import com.whfrp3.databinding.FragmentPlayerSkillsBinding;
 import com.whfrp3.tools.WHFRP3Application;
 
 /**
  * The SkillFragment.
  */
-public class SkillsFragment extends Fragment {
-    private FragmentSkillsBinding mBinding;
+public class PlayerSkillsFragment extends Fragment {
+    private FragmentPlayerSkillsBinding mBinding;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        mBinding = DataBindingUtil.inflate(inflater, R.layout.fragment_skills, container, false);
+        mBinding = DataBindingUtil.inflate(inflater, R.layout.fragment_player_skills, container, false);
         mBinding.setPlayer(WHFRP3Application.getPlayer());
-        
+
         return mBinding.getRoot();
     }
 }

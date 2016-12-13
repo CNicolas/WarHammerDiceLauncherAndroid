@@ -20,7 +20,7 @@ import com.whfrp3.ihm.adapters.TalentTypesListAdapter;
 import com.whfrp3.ihm.fragments.dialog.TalentSearchDialogFragment;
 import com.whfrp3.model.enums.TalentType;
 import com.whfrp3.tools.BindingUtils;
-import com.whfrp3.tools.constants.ITalentsConstants;
+import com.whfrp3.tools.constants.IMainConstants;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -83,12 +83,12 @@ public class TalentTypesFragment extends Fragment implements AdapterView.OnItemC
     @Override
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
         Bundle bundle = new Bundle();
-        bundle.putSerializable(ITalentsConstants.TALENT_TYPE_BUNDLE_TAG, mTalentTypesList.get(position));
+        bundle.putSerializable(IMainConstants.TALENT_TYPE_BUNDLE_TAG, mTalentTypesList.get(position));
 
         Intent talentsIntent = new Intent(getActivity(), TalentsActivity.class);
         talentsIntent.putExtras(bundle);
 
-        getActivity().startActivityForResult(talentsIntent, ITalentsConstants.TALENTS_REQUEST);
+        getActivity().startActivityForResult(talentsIntent, IMainConstants.TALENTS_REQUEST);
     }
 
     private void openTalentSearchDialog() {

@@ -17,7 +17,7 @@
 
         <variable
             name="viewModel"
-            type="com.whfrp3.ihm.fragments.AdventureFragment" />
+            type="com.whfrp3.ihm.fragments.player.AdventureFragment" />
 
     </data>
 

@@ -20,7 +20,7 @@ import com.whfrp3.tools.helpers.PlayerHelper;
 
 /**
  * The main activity of WHFRP3 :
- * It contains a CharacteristicsFragment, a SkillsFragment and an InventoryFragment.
+ * It contains a CharacteristicsFragment, an AdventureFragment, a PlayerSkillsFragment and an InventoryFragment.
  */
 public class PlayerActivity extends AppCompatActivity implements IPlayerActivityConstants {
 
@@ -105,6 +105,11 @@ public class PlayerActivity extends AppCompatActivity implements IPlayerActivity
     public boolean onOptionsItemSelected(MenuItem item) {
         int id = item.getItemId();
 
+        if (id == android.R.id.home) {
+            Intent intent = new Intent();
+            setResult(RESULT_CANCELED, intent);
+            finish();
+        }
         if (id == R.id.action_in_edition_true || id == R.id.action_in_edition_false) {
             setIsInEdition(!WHFRP3Application.getPlayer().isInEdition());
         } else if (id == R.id.action_launch) {

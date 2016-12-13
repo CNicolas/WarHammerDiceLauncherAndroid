@@ -19,14 +19,11 @@ import com.whfrp3.R;
 import com.whfrp3.ihm.activities.PlayerActivity;
 import com.whfrp3.model.player.Player;
 import com.whfrp3.tools.WHFRP3Application;
+import com.whfrp3.tools.constants.IMainConstants;
 import com.whfrp3.tools.constants.IPlayerActivityConstants;
 
 import java.util.ArrayList;
 import java.util.List;
-
-/**
- * Created by cnicolas on 02/12/2016.
- */
 
 public class PlayersListFragment extends Fragment {
     @Nullable
@@ -55,7 +52,7 @@ public class PlayersListFragment extends Fragment {
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         //you can set the title for your toolbar here for different fragments different titles
-        getActivity().setTitle("Home");
+        getActivity().setTitle(getString(R.string.page_home));
     }
 
     private class PlayerListItemClickListener implements AdapterView.OnItemClickListener {
@@ -64,14 +61,10 @@ public class PlayersListFragment extends Fragment {
         public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
             boolean isInEdition = false;
 
-            if (position == 0)
-
-            {
+            if (position == 0) {
                 isInEdition = true;
                 WHFRP3Application.initEmptyPlayer();
-            } else
-
-            {
+            } else {
                 try {
                     TextView tv = (TextView) view;
                     Player player = WHFRP3Application.getDatabase().getPlayerDao().findByName(tv.getText().toString());
@@ -88,7 +81,7 @@ public class PlayersListFragment extends Fragment {
             stackBuilder.addParentStack(PlayerActivity.class);
             stackBuilder.addNextIntent(playerIntent);
 
-            getActivity().startActivity(playerIntent);
+            getActivity().startActivityForResult(playerIntent, IMainConstants.PLAYER_REQUEST);
         }
     }
 }

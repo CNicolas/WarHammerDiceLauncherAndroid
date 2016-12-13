@@ -184,5 +184,6 @@
         translatable="false" />
     <string name="no_talent_found">No talent found</string>
     <string name="page_items">Items</string>
+    <string name="page_specializations">Specializations</string>
 
 </resources>

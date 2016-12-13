@@ -21,7 +21,7 @@ import com.whfrp3.model.enums.TalentType;
 import com.whfrp3.model.talents.Talent;
 import com.whfrp3.model.talents.TalentSearchFields;
 import com.whfrp3.notification.ToastNotification;
-import com.whfrp3.tools.constants.ITalentsConstants;
+import com.whfrp3.tools.constants.IMainConstants;
 import com.whfrp3.tools.helpers.TalentHelper;
 
 import java.util.ArrayList;
@@ -58,12 +58,12 @@ public class TalentSearchDialogFragment extends DialogFragment {
                 List<Talent> talentsFound = TalentHelper.getInstance().search(mTalentSearch);
                 if (talentsFound.size() > 0) {
                     Bundle bundle = new Bundle();
-                    bundle.putSerializable(ITalentsConstants.TALENT_LIST_BUNDLE_TAG, (ArrayList<Talent>) talentsFound);
+                    bundle.putSerializable(IMainConstants.TALENT_LIST_BUNDLE_TAG, (ArrayList<Talent>) talentsFound);
 
                     Intent talentsIntent = new Intent(getActivity(), TalentsActivity.class);
                     talentsIntent.putExtras(bundle);
 
-                    getActivity().startActivityForResult(talentsIntent, ITalentsConstants.TALENTS_REQUEST);
+                    getActivity().startActivityForResult(talentsIntent, IMainConstants.TALENTS_REQUEST);
                 } else {
                     ToastNotification.error("No Talent Found !");
                 }
@@ -140,7 +140,7 @@ public class TalentSearchDialogFragment extends DialogFragment {
 
         initTalentSearchFields();
 
-        TalentType talentType = (TalentType) bundle.getSerializable(ITalentsConstants.TALENT_TYPE_BUNDLE_TAG);
+        TalentType talentType = (TalentType) bundle.getSerializable(IMainConstants.TALENT_TYPE_BUNDLE_TAG);
         mTalentSearch.setTalentType(talentType);
     }
 
