@@ -155,6 +155,7 @@
     <string name="passive">Passif</string>
     <string name="talent">Talent</string>
     <string name="cooldown">Recharge</string>
+    <string name="no_talent_found">Aucun talent trouvé</string>
     <!-- End of inventory -->
 
 </resources>

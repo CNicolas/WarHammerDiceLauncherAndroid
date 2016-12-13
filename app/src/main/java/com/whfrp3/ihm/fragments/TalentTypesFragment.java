@@ -6,6 +6,9 @@ import android.support.annotation.Nullable;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
@@ -50,7 +53,25 @@ public class TalentTypesFragment extends Fragment implements AdapterView.OnItemC
             }
         });
 
+        setHasOptionsMenu(true);
+
         return rootView;
+    }
+
+    @Override
+    public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
+        getActivity().getMenuInflater().inflate(R.menu.talents, menu);
+        super.onCreateOptionsMenu(menu, inflater);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        int itemId = item.getItemId();
+
+        if (itemId == R.id.action_search_talent) {
+            openTalentSearchDialog();
+        }
+        return super.onOptionsItemSelected(item);
     }
 
     @Override
@@ -68,5 +89,10 @@ public class TalentTypesFragment extends Fragment implements AdapterView.OnItemC
         talentsIntent.putExtras(bundle);
 
         getActivity().startActivityForResult(talentsIntent, ITalentsConstants.TALENTS_REQUEST);
+    }
+
+    private void openTalentSearchDialog() {
+        TalentSearchDialogFragment dialog = new TalentSearchDialogFragment();
+        dialog.show(getActivity().getSupportFragmentManager(), "TalentSearchDialogFragment");
     }
 }

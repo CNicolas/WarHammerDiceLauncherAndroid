@@ -128,7 +128,8 @@ public class TalentHelper {
         List<Talent> res = new ArrayList<>();
         for (Talent talent : allTalents) {
             if (isSimilarCooldownOrNull(talent, fields.getCooldownType())
-                    && isTalentNameContainingOrNull(talent, fields.getName())) {
+                    && isTalentNameContainingOrNull(talent, fields.getName())
+                    && isTalentDescriptionContainingOrNull(talent, fields.getDescription())) {
                 res.add(talent);
             }
         }
@@ -141,7 +142,15 @@ public class TalentHelper {
     }
 
     private boolean isTalentNameContainingOrNull(Talent talent, @Nullable String textToSearch) {
-        return textToSearch == null || textToSearch.isEmpty() || talent.getName().toLowerCase().contains(textToSearch.toLowerCase());
+        return isNullOrEmpty(textToSearch) || talent.getName().toLowerCase().contains(textToSearch.toLowerCase());
+    }
+
+    private boolean isTalentDescriptionContainingOrNull(Talent talent, @Nullable String textToSearch) {
+        return isNullOrEmpty(textToSearch) || talent.getDescription().toLowerCase().contains(textToSearch.toLowerCase());
+    }
+
+    private boolean isNullOrEmpty(@Nullable String text) {
+        return text == null || text.isEmpty();
     }
     //endregion
 }

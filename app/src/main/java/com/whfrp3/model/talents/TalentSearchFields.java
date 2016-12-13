@@ -7,6 +7,7 @@ import com.whfrp3.model.player.Skill;
 
 public class TalentSearchFields {
     private String name;
+    private String description;
     private Characteristic characteristic;
     private Skill skill;
     private TalentType talentType;
@@ -18,6 +19,14 @@ public class TalentSearchFields {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
     }
 
     public Characteristic getCharacteristic() {

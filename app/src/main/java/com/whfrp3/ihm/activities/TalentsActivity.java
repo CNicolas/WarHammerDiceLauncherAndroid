@@ -2,9 +2,9 @@ package com.whfrp3.ihm.activities;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ListView;
@@ -46,11 +46,10 @@ public class TalentsActivity extends AppCompatActivity implements ITalentsConsta
         }
 
         TalentsListAdapter adapter = new TalentsListAdapter(getLayoutInflater(), mTalents);
-        ListView talentsList = (ListView) findViewById(R.id.talents_list);
-        talentsList.setAdapter(adapter);
-
+        final ListView talentsListView = (ListView) findViewById(R.id.talents_list);
+        talentsListView.setAdapter(adapter);
         if (mTalents.isEmpty()) {
-            talentsList.setVisibility(View.GONE);
+            talentsListView.setVisibility(View.GONE);
             findViewById(R.id.no_talent_found).setVisibility(View.VISIBLE);
         } else {
             findViewById(R.id.no_talent_found).setVisibility(View.GONE);
@@ -60,19 +59,6 @@ public class TalentsActivity extends AppCompatActivity implements ITalentsConsta
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setHomeButtonEnabled(true);
-
-        FloatingActionButton searchButton = (FloatingActionButton) findViewById(R.id.search_button);
-        searchButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Bundle bundle = new Bundle();
-                bundle.putSerializable(TALENT_TYPE_BUNDLE_TAG, mTalentType);
-
-                TalentSearchDialogFragment dialog = new TalentSearchDialogFragment();
-                dialog.setArguments(bundle);
-                dialog.show(getSupportFragmentManager(), "TalentSearchDialogFragment");
-            }
-        });
 
         WHFRP3Application.setActivity(this);
     }
@@ -86,13 +72,32 @@ public class TalentsActivity extends AppCompatActivity implements ITalentsConsta
 
     //region Menu
     @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.talents, menu);
+
+        return super.onCreateOptionsMenu(menu);
+    }
+
+    @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         int itemId = item.getItemId();
 
         if (itemId == android.R.id.home) {
             finish();
+        } else if (itemId == R.id.action_search_talent) {
+            openTalentSearchDialog();
         }
+
         return true;
     }
     //endregion
+
+    private void openTalentSearchDialog() {
+        Bundle bundle = new Bundle();
+        bundle.putSerializable(TALENT_TYPE_BUNDLE_TAG, mTalentType);
+
+        TalentSearchDialogFragment dialog = new TalentSearchDialogFragment();
+        dialog.setArguments(bundle);
+        dialog.show(getSupportFragmentManager(), "TalentSearchDialogFragment");
+    }
 }

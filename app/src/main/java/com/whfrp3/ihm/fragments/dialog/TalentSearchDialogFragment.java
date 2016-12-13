@@ -41,7 +41,7 @@ public class TalentSearchDialogFragment extends DialogFragment {
     public Dialog onCreateDialog(Bundle savedInstanceState) {
         AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
 
-        mTalentSearch = new TalentSearchFields();
+        initTalentSearchFields();
 
         // Get the layout inflater
         LayoutInflater inflater = getActivity().getLayoutInflater();
@@ -138,7 +138,15 @@ public class TalentSearchDialogFragment extends DialogFragment {
     public void setArguments(Bundle bundle) {
         super.setArguments(bundle);
 
+        initTalentSearchFields();
+
         TalentType talentType = (TalentType) bundle.getSerializable(ITalentsConstants.TALENT_TYPE_BUNDLE_TAG);
         mTalentSearch.setTalentType(talentType);
+    }
+
+    private void initTalentSearchFields() {
+        if (mTalentSearch == null) {
+            mTalentSearch = new TalentSearchFields();
+        }
     }
 }

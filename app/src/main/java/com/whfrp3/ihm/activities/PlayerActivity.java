@@ -107,14 +107,11 @@ public class PlayerActivity extends AppCompatActivity implements IPlayerActivity
 
         if (id == R.id.action_in_edition_true || id == R.id.action_in_edition_false) {
             setIsInEdition(!WHFRP3Application.getPlayer().isInEdition());
-            return true;
-        }
-        if (id == R.id.action_launch) {
+        } else if (id == R.id.action_launch) {
             startLaunchActivity();
-            return true;
         }
 
-        return super.onOptionsItemSelected(item);
+        return true;
     }
     //endregion
 

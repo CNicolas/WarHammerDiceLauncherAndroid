@@ -3,30 +3,45 @@
 
     <data>
 
-        <import type="com.whfrp3.tools.BindingUtils"/>
+        <import type="com.whfrp3.tools.BindingUtils" />
 
         <variable
             name="talentSearch"
-            type="com.whfrp3.model.talents.TalentSearchFields"/>
+            type="com.whfrp3.model.talents.TalentSearchFields" />
     </data>
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        android:padding="@dimen/medium_padding">
 
         <LinearLayout style="@style/SearchLine">
 
             <TextView
                 style="@style/SearchLabel"
-                android:text="@string/name_label"/>
+                android:text="@string/name_label" />
 
             <EditText
                 style="@style/SearchField"
                 android:inputType="text|textShortMessage"
                 android:lines="1"
                 android:text="@={talentSearch.name}"
-                android:textAllCaps="false"/>
+                android:textAllCaps="false" />
+        </LinearLayout>
+
+        <LinearLayout style="@style/SearchLine">
+
+            <TextView
+                style="@style/SearchLabel"
+                android:text="@string/description_label" />
+
+            <EditText
+                style="@style/SearchField"
+                android:inputType="text|textShortMessage"
+                android:lines="1"
+                android:text="@={talentSearch.description}"
+                android:textAllCaps="false" />
         </LinearLayout>
 
         <LinearLayout
@@ -34,11 +49,11 @@
 
             <TextView
                 style="@style/SearchLabel"
-                android:text="@{BindingUtils.labelWithColon(@string/item_type_label)}"/>
+                android:text="@{BindingUtils.labelWithColon(@string/item_type_label)}" />
 
             <Spinner
                 android:id="@+id/talent_type_spinner"
-                style="@style/SearchField"/>
+                style="@style/SearchField" />
         </LinearLayout>
 
         <LinearLayout
@@ -47,11 +62,11 @@
             <TextView
                 style="@style/SearchLabel"
                 android:hint="@string/cooldown"
-                android:text="@{BindingUtils.labelWithColon(@string/cooldown)}"/>
+                android:text="@{BindingUtils.labelWithColon(@string/cooldown)}" />
 
             <Spinner
                 android:id="@+id/cooldown_spinner"
-                style="@style/SearchField"/>
+                style="@style/SearchField" />
         </LinearLayout>
     </LinearLayout>
 </layout>

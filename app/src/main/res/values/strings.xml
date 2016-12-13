@@ -182,5 +182,6 @@
     <string name="cooldown">Cooldown</string>
     <string name="empty_string"
         translatable="false" />
+    <string name="no_talent_found">No talent found</string>
 
 </resources>
