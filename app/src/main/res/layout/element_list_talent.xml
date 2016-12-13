@@ -1,21 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+        xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <data>
 
         <variable
             name="talent"
-            type="com.whfrp3.model.talents.Talent" />
+            type="com.whfrp3.model.talents.Talent"/>
 
-        <import type="com.whfrp3.tools.BindingUtils" />
+        <import type="com.whfrp3.tools.BindingUtils"/>
 
     </data>
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@drawable/round_border"
+        android:background="@color/white"
         android:clickable="false"
         android:minHeight="100dp"
         android:orientation="vertical">
@@ -31,7 +31,7 @@
             android:text="@{talent.name}"
             android:textColor="@android:color/white"
             android:textSize="@dimen/medium_text_size"
-            android:textStyle="bold" />
+            android:textStyle="bold"/>
 
         <TextView
             android:layout_width="match_parent"
@@ -39,6 +39,6 @@
             android:gravity="fill_horizontal"
             android:hint="@string/dummy_string"
             android:padding="@dimen/small_padding"
-            app:textWithIcons="@{talent.description}" />
+            app:textWithIcons="@{talent.description}"/>
     </LinearLayout>
 </layout>

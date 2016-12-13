@@ -3,11 +3,11 @@
 
     <data>
 
-        <import type="com.whfrp3.tools.BindingUtils" />
+        <import type="com.whfrp3.tools.BindingUtils"/>
 
         <variable
             name="talentSearch"
-            type="com.whfrp3.model.talents.TalentSearchFields" />
+            type="com.whfrp3.model.talents.TalentSearchFields"/>
     </data>
 
     <LinearLayout
@@ -15,69 +15,43 @@
         android:layout_height="match_parent"
         android:orientation="vertical">
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:gravity="center"
-            android:minHeight="30dp"
-            android:weightSum="4">
+        <LinearLayout style="@style/SearchLine">
 
             <TextView
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:gravity="center|end"
-                android:text="@string/name_label" />
+                style="@style/SearchLabel"
+                android:text="@string/name_label"/>
 
             <EditText
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="3"
-                android:text="@={talentSearch.name}" />
+                style="@style/SearchField"
+                android:inputType="text|textShortMessage"
+                android:lines="1"
+                android:text="@={talentSearch.name}"
+                android:textAllCaps="false"/>
         </LinearLayout>
 
         <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:gravity="center"
-            android:minHeight="30dp"
-            android:weightSum="4">
+            style="@style/SearchLine">
 
             <TextView
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:gravity="center|end"
-                android:hint="@string/dummy_string"
-                android:text="@{BindingUtils.labelWithColon(@string/item_type_label)}" />
+                style="@style/SearchLabel"
+                android:text="@{BindingUtils.labelWithColon(@string/item_type_label)}"/>
 
             <Spinner
                 android:id="@+id/talent_type_spinner"
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="3" />
+                style="@style/SearchField"/>
         </LinearLayout>
 
         <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:gravity="center"
-            android:minHeight="30dp"
-            android:weightSum="4">
+            style="@style/SearchLine">
 
             <TextView
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:gravity="center|end"
+                style="@style/SearchLabel"
                 android:hint="@string/cooldown"
-                android:text="@{BindingUtils.labelWithColon(@string/cooldown)}" />
+                android:text="@{BindingUtils.labelWithColon(@string/cooldown)}"/>
 
             <Spinner
                 android:id="@+id/cooldown_spinner"
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="3" />
+                style="@style/SearchField"/>
         </LinearLayout>
     </LinearLayout>
 </layout>
