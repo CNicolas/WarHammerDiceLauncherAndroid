@@ -41,6 +41,8 @@ public class TalentSearchDialogFragment extends DialogFragment {
     public Dialog onCreateDialog(Bundle savedInstanceState) {
         AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
 
+        mTalentSearch = new TalentSearchFields();
+
         // Get the layout inflater
         LayoutInflater inflater = getActivity().getLayoutInflater();
 
@@ -99,21 +101,11 @@ public class TalentSearchDialogFragment extends DialogFragment {
         });
 
         int positionToSelect = 0;
-        switch (mTalentSearch.getTalentType()) {
-            case AFFINITY:
-                positionToSelect = 1;
+        for (int i = 0; i < talentTypes.length; i++) {
+            if (mTalentSearch.getTalentType() == talentTypes[i]) {
+                positionToSelect = i;
                 break;
-            case REPUTATION:
-                positionToSelect = 2;
-                break;
-            case TACTICS:
-                positionToSelect = 3;
-                break;
-            case TOUR:
-                positionToSelect = 4;
-                break;
-            default:
-                break;
+            }
         }
         talentTypesSpinner.setSelection(positionToSelect, false);
     }
@@ -145,8 +137,6 @@ public class TalentSearchDialogFragment extends DialogFragment {
     @Override
     public void setArguments(Bundle bundle) {
         super.setArguments(bundle);
-
-        mTalentSearch = new TalentSearchFields();
 
         TalentType talentType = (TalentType) bundle.getSerializable(ITalentsConstants.TALENT_TYPE_BUNDLE_TAG);
         mTalentSearch.setTalentType(talentType);
