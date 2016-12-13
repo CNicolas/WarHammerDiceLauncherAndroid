@@ -1,4 +1,4 @@
-package com.whfrp3.ihm.fragments;
+package com.whfrp3.ihm.fragments.main;
 
 import android.content.Intent;
 import android.database.sqlite.SQLiteException;

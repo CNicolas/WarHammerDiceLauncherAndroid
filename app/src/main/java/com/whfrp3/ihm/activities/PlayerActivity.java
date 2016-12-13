@@ -13,7 +13,7 @@ import android.view.inputmethod.InputMethodManager;
 
 import com.whfrp3.R;
 import com.whfrp3.ihm.adapters.PlayerPagerAdapter;
-import com.whfrp3.ihm.fragments.InventoryFragment;
+import com.whfrp3.ihm.fragments.player.InventoryFragment;
 import com.whfrp3.tools.WHFRP3Application;
 import com.whfrp3.tools.constants.IPlayerActivityConstants;
 import com.whfrp3.tools.helpers.PlayerHelper;

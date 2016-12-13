@@ -1,4 +1,4 @@
-package com.whfrp3.ihm.fragments;
+package com.whfrp3.ihm.fragments.player;
 
 import android.app.Activity;
 import android.app.AlertDialog;

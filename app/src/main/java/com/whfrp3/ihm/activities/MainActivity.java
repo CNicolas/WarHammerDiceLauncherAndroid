@@ -13,10 +13,10 @@ import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 
 import com.whfrp3.R;
-import com.whfrp3.ihm.fragments.CareersFragment;
-import com.whfrp3.ihm.fragments.ItemsFragment;
-import com.whfrp3.ihm.fragments.PlayersListFragment;
-import com.whfrp3.ihm.fragments.TalentTypesFragment;
+import com.whfrp3.ihm.fragments.main.CareersFragment;
+import com.whfrp3.ihm.fragments.main.ItemsFragment;
+import com.whfrp3.ihm.fragments.main.PlayersListFragment;
+import com.whfrp3.ihm.fragments.main.TalentTypesFragment;
 import com.whfrp3.tools.WHFRP3Application;
 import com.whfrp3.tools.constants.ITalentsConstants;
 
