@@ -14,6 +14,7 @@ import android.view.MenuItem;
 
 import com.whfrp3.R;
 import com.whfrp3.ihm.fragments.CareersFragment;
+import com.whfrp3.ihm.fragments.ItemsFragment;
 import com.whfrp3.ihm.fragments.PlayersListFragment;
 import com.whfrp3.ihm.fragments.TalentTypesFragment;
 import com.whfrp3.tools.WHFRP3Application;
@@ -87,6 +88,8 @@ public class MainActivity extends AppCompatActivity
             fragment = new TalentTypesFragment();
         } else if (id == R.id.nav_careers) {
             fragment = new CareersFragment();
+        } else if (id == R.id.nav_items) {
+            fragment = new ItemsFragment();
         }
 
         if (fragment != null) {

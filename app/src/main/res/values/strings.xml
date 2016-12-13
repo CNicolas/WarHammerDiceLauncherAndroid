@@ -183,5 +183,6 @@
     <string name="empty_string"
         translatable="false" />
     <string name="no_talent_found">No talent found</string>
+    <string name="page_items">Items</string>
 
 </resources>

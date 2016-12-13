@@ -228,9 +228,9 @@
         <!--Equipped Weapons-->
         <ListView
             android:layout_width="match_parent"
-            android:layout_height="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/big_padding"
             android:layout_marginTop="@dimen/big_padding"
-            android:layout_weight="1"
             app:weapons="@{player.equippedWeapons}"
             tools:listitem="@layout/element_list_weapon" />
 

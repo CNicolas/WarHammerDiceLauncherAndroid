@@ -15,6 +15,11 @@
             android:id="@+id/nav_careers"
             android:icon="@drawable/ic_work_black"
             android:title="@string/page_careers" />
+
+        <item
+            android:id="@+id/nav_items"
+            android:icon="@drawable/ic_sword_black"
+            android:title="@string/page_items" />
     </group>
 
     <!--<item android:title="Communicate">-->
