@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!-- fichier généré le 13/12/2016 à 12:13:06 à partir du fichier [WHFRP3.xlsm] -->
+<!-- NE PAS MODIFIER DIRECTEMENT CE FICHIER -->
+<Skills>
+    <Skill Id="1" Characteristic="STRENGTH">
+        <Name>Athlétisme</Name>
+    </Skill>
+    <Skill Id="2" Characteristic="AGILITY">
+        <Name>Capacité de Tir</Name>
+    </Skill>
+    <Skill Id="3" Characteristic="AGILITY">
+        <Name>Coordination</Name>
+    </Skill>
+    <Skill Id="4" Characteristic="STRENGTH">
+        <Name>Intimidation</Name>
+    </Skill>
+    <Skill Id="5" Characteristic="TOUGHNESS">
+        <Name>Résistance</Name>
+    </Skill>
+    <Skill Id="6" Characteristic="AGILITY">
+        <Name>Équitation</Name>
+    </Skill>
+    <Skill Id="7" Characteristic="AGILITY">
+        <Name>Forfait</Name>
+    </Skill>
+    <Skill Id="8" Characteristic="AGILITY">
+        <Name>Furtivité</Name>
+    </Skill>
+    <Skill Id="9" Characteristic="STRENGTH">
+        <Name>Capacité de Combat</Name>
+    </Skill>
+    <Skill Id="10" Characteristic="FELLOWSHIP">
+        <Name>Charisme</Name>
+    </Skill>
+    <Skill Id="11" Characteristic="WILLPOWER">
+        <Name>Discipline</Name>
+    </Skill>
+    <Skill Id="12" Characteristic="INTELLIGENCE">
+        <Name>Premiers Soins</Name>
+    </Skill>
+    <Skill Id="13" Characteristic="INTELLIGENCE">
+        <Name>Folklore</Name>
+    </Skill>
+    <Skill Id="14" Characteristic="FELLOWSHIP">
+        <Name>Ruse</Name>
+    </Skill>
+    <Skill Id="15" Characteristic="FELLOWSHIP">
+        <Name>Intuition</Name>
+    </Skill>
+    <Skill Id="16" Characteristic="FELLOWSHIP">
+        <Name>Commandement</Name>
+    </Skill>
+    <Skill Id="17" Characteristic="INTELLIGENCE">
+        <Name>Connaissance de la Nature</Name>
+    </Skill>
+    <Skill Id="18" Characteristic="INTELLIGENCE">
+        <Name>Observation</Name>
+    </Skill>
+</Skills>

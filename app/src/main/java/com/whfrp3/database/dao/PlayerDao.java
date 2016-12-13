@@ -11,7 +11,7 @@ import com.whfrp3.model.enums.Race;
 import com.whfrp3.model.player.Characteristics;
 import com.whfrp3.model.player.Money;
 import com.whfrp3.model.player.Player;
-import com.whfrp3.model.player.Skill;
+import com.whfrp3.model.player.PlayerSkill;
 import com.whfrp3.model.player.inventory.Item;
 import com.whfrp3.tools.WHFRP3Application;
 
@@ -95,9 +95,9 @@ public class PlayerDao extends AbstractDao<Player> implements IPlayerEntryConsta
         super.insert(player);
 
         // Insert skills
-        for (Skill skill : player.getSkills()) {
-            skill.setPlayerId(player.getId());
-            mSkillDao.insert(skill);
+        for (PlayerSkill playerSkill : player.getSkills()) {
+            playerSkill.setPlayerId(player.getId());
+            mSkillDao.insert(playerSkill);
         }
 
         // Insert items
@@ -120,13 +120,13 @@ public class PlayerDao extends AbstractDao<Player> implements IPlayerEntryConsta
         super.update(player);
 
         // Update skills
-        for (Skill skill : player.getSkills()) {
-            skill.setPlayerId(player.getId());
+        for (PlayerSkill playerSkill : player.getSkills()) {
+            playerSkill.setPlayerId(player.getId());
 
-            if (skill.getId() == 0) {
-                mSkillDao.insert(skill);
+            if (playerSkill.getId() == 0) {
+                mSkillDao.insert(playerSkill);
             } else {
-                mSkillDao.update(skill);
+                mSkillDao.update(playerSkill);
             }
         }
 
@@ -226,9 +226,9 @@ public class PlayerDao extends AbstractDao<Player> implements IPlayerEntryConsta
             model.setCharacteristics(characteristics);
         }
 
-        // Find skills
-        List<Skill> skills = mSkillDao.findAllByPlayerId(model.getId());
-        model.setSkills(skills);
+        // Find playerSkills
+        List<PlayerSkill> playerSkills = mSkillDao.findAllByPlayerId(model.getId());
+        model.setSkills(playerSkills);
 
         // Find items
         List<Item> items = mItemDao.findAllByPlayerId(model.getId());

@@ -6,14 +6,14 @@ import android.database.sqlite.SQLiteDatabase;
 
 import com.whfrp3.database.entries.ISkillEntryConstants;
 import com.whfrp3.model.enums.Characteristic;
-import com.whfrp3.model.player.Skill;
+import com.whfrp3.model.player.PlayerSkill;
 
 import java.util.List;
 
 /**
  * DAO of skills.
  */
-public class SkillDao extends AbstractDao<Skill> implements ISkillEntryConstants {
+public class SkillDao extends AbstractDao<PlayerSkill> implements ISkillEntryConstants {
 
     //region Constructor
 
@@ -30,7 +30,7 @@ public class SkillDao extends AbstractDao<Skill> implements ISkillEntryConstants
 
     //region Find
 
-    public List<Skill> findAllByPlayerId(long playerId) {
+    public List<PlayerSkill> findAllByPlayerId(long playerId) {
         return findAllByColumn(COLUMN_PLAYER_ID, String.valueOf(playerId));
     }
 
@@ -39,20 +39,20 @@ public class SkillDao extends AbstractDao<Skill> implements ISkillEntryConstants
     //region Protected methods
 
     @Override
-    protected ContentValues contentValuesFromModel(Skill skill) {
+    protected ContentValues contentValuesFromModel(PlayerSkill playerSkill) {
         ContentValues values = new ContentValues();
 
-        values.put(ISkillEntryConstants.COLUMN_NAME, skill.getName());
-        values.put(ISkillEntryConstants.COLUMN_CHARACTERISTIC, skill.getCharacteristic().toString());
-        values.put(ISkillEntryConstants.COLUMN_LEVEL, skill.getLevel());
-        values.put(ISkillEntryConstants.COLUMN_PLAYER_ID, skill.getPlayerId());
+        values.put(ISkillEntryConstants.COLUMN_NAME, playerSkill.getName());
+        values.put(ISkillEntryConstants.COLUMN_CHARACTERISTIC, playerSkill.getCharacteristic().toString());
+        values.put(ISkillEntryConstants.COLUMN_LEVEL, playerSkill.getLevel());
+        values.put(ISkillEntryConstants.COLUMN_PLAYER_ID, playerSkill.getPlayerId());
 
         return values;
     }
 
     @Override
-    protected Skill createModelFromCursor(Cursor cursor) {
-        Skill dto = new Skill();
+    protected PlayerSkill createModelFromCursor(Cursor cursor) {
+        PlayerSkill dto = new PlayerSkill();
 
         dto.setId(cursor.getInt(cursor.getColumnIndexOrThrow(ISkillEntryConstants.COLUMN_ID)));
         dto.setName(cursor.getString(cursor.getColumnIndexOrThrow(ISkillEntryConstants.COLUMN_NAME)));

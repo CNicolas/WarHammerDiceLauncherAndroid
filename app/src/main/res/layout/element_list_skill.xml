@@ -9,7 +9,7 @@
 
         <variable
             name="skill"
-            type="com.whfrp3.model.player.Skill" />
+            type="com.whfrp3.model.player.PlayerSkill" />
 
         <variable
             name="handlers"

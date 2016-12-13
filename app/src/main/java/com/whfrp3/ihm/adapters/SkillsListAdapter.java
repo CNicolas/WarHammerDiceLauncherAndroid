@@ -10,7 +10,7 @@ import android.widget.ArrayAdapter;
 import com.whfrp3.R;
 import com.whfrp3.databinding.ElementListSkillBinding;
 import com.whfrp3.ihm.listeners.SkillHandlers;
-import com.whfrp3.model.player.Skill;
+import com.whfrp3.model.player.PlayerSkill;
 import com.whfrp3.tools.WHFRP3Application;
 
 import java.util.List;
@@ -19,19 +19,19 @@ import java.util.List;
  * The Adapter for the Skills list.
  */
 public class SkillsListAdapter extends ArrayAdapter {
-    private final List<Skill> skills;
+    private final List<PlayerSkill> playerSkills;
     private final LayoutInflater inflater;
 
-    public SkillsListAdapter(@NonNull LayoutInflater inflater, List<Skill> skills) {
-        super(inflater.getContext(), R.layout.element_list_weapon, skills);
+    public SkillsListAdapter(@NonNull LayoutInflater inflater, List<PlayerSkill> playerSkills) {
+        super(inflater.getContext(), R.layout.element_list_weapon, playerSkills);
 
         this.inflater = inflater;
-        this.skills = skills;
+        this.playerSkills = playerSkills;
     }
 
     @Override
     public int getCount() {
-        return skills.size();
+        return playerSkills.size();
     }
 
     @Override
@@ -41,7 +41,7 @@ public class SkillsListAdapter extends ArrayAdapter {
 
     @Override
     public Object getItem(int position) {
-        return skills.get(position);
+        return playerSkills.get(position);
     }
 
     @Override
@@ -54,7 +54,7 @@ public class SkillsListAdapter extends ArrayAdapter {
     public View getView(int position, View convertView, @NonNull ViewGroup parent) {
         ElementListSkillBinding binding = DataBindingUtil.inflate(inflater, R.layout.element_list_skill, parent, false);
         binding.setPlayer(WHFRP3Application.getPlayer());
-        binding.setSkill(skills.get(position));
+        binding.setSkill(playerSkills.get(position));
         binding.setHandlers(new SkillHandlers());
 
         return binding.getRoot();

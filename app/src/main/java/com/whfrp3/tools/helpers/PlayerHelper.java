@@ -4,7 +4,7 @@ import android.util.Log;
 
 import com.whfrp3.BR;
 import com.whfrp3.model.player.Player;
-import com.whfrp3.model.player.Skill;
+import com.whfrp3.model.player.PlayerSkill;
 import com.whfrp3.tools.WHFRP3Application;
 
 import java.util.List;
@@ -20,8 +20,8 @@ public abstract class PlayerHelper {
         }
 
         if (player.getSkills().size() == 0) {
-            List<Skill> basicSkills = SkillsHelper.createBasicSkills();
-            player.setSkills(basicSkills);
+            List<PlayerSkill> basicPlayerSkills = SkillHelper.createBasicSkills();
+            player.setSkills(basicPlayerSkills);
         }
 
         if (player.getId() == 0) {

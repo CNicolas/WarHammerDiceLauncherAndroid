@@ -10,7 +10,7 @@ import com.whfrp3.model.enums.Race;
 import com.whfrp3.model.player.Characteristics;
 import com.whfrp3.model.player.Money;
 import com.whfrp3.model.player.Player;
-import com.whfrp3.model.player.Skill;
+import com.whfrp3.model.player.PlayerSkill;
 
 import java.util.List;
 
@@ -58,7 +58,7 @@ public class DaoTests extends AndroidTestCase {
 
     @MediumTest
     public void testSkillDao() throws Exception {
-        List<Skill> res = database.getSkillDao().findAllByPlayerId(database.getPlayerDao().findById(1).getId());
+        List<PlayerSkill> res = database.getSkillDao().findAllByPlayerId(database.getPlayerDao().findById(1).getId());
         assertNotNull(res);
         assertEquals(3, res.size());
     }
@@ -111,19 +111,19 @@ public class DaoTests extends AndroidTestCase {
     private void insertSkillDto() {
         Player player = database.getPlayerDao().findById(1);
 
-        Skill dto1 = new Skill();
+        PlayerSkill dto1 = new PlayerSkill();
         dto1.setCharacteristic(Characteristic.AGILITY);
         dto1.setLevel(1);
         dto1.setName("Capacité de Tir");
         dto1.setPlayerId(player.getId());
 
-        Skill dto2 = new Skill();
+        PlayerSkill dto2 = new PlayerSkill();
         dto2.setCharacteristic(Characteristic.INTELLIGENCE);
         dto2.setLevel(0);
         dto2.setName("Observation");
         dto2.setPlayerId(player.getId());
 
-        Skill dto3 = new Skill();
+        PlayerSkill dto3 = new PlayerSkill();
         dto3.setCharacteristic(Characteristic.WILLPOWER);
         dto3.setLevel(0);
         dto3.setName("Discipline");

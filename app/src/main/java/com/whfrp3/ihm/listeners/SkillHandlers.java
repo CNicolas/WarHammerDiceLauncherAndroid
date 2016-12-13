@@ -8,13 +8,13 @@ import android.util.Log;
 import android.widget.CheckBox;
 
 import com.whfrp3.ihm.activities.LaunchActivity;
-import com.whfrp3.model.player.Skill;
+import com.whfrp3.model.player.PlayerSkill;
 import com.whfrp3.tools.WHFRP3Application;
 import com.whfrp3.tools.constants.IPlayerActivityConstants;
 
 
 public class SkillHandlers implements IPlayerActivityConstants {
-    public void onLevelSelected(Skill skill, int level, CheckBox skillLevel1, CheckBox skillLevel2, CheckBox skillLevel3) {
+    public void onLevelSelected(PlayerSkill playerSkill, int level, CheckBox skillLevel1, CheckBox skillLevel2, CheckBox skillLevel3) {
 
         int newLevel = 0;
         switch (level) {
@@ -49,20 +49,20 @@ public class SkillHandlers implements IPlayerActivityConstants {
                 break;
         }
 
-        skill.setLevel(newLevel);
-        Log.w("SKILL", skill.toString());
+        playerSkill.setLevel(newLevel);
+        Log.w("SKILL", playerSkill.toString());
     }
 
     /**
      * Start a new LaunchActivity with(out) a bundle and add it to the TaskStack.
      *
-     * @param skill
+     * @param playerSkill
      */
-    public void startLaunchActivity(Skill skill) {
+    public void startLaunchActivity(PlayerSkill playerSkill) {
         Activity currentActivity = WHFRP3Application.getActivity();
 
         Bundle bundle = new Bundle();
-        bundle.putSerializable(SKILL_BUNDLE_TAG, skill);
+        bundle.putSerializable(SKILL_BUNDLE_TAG, playerSkill);
         bundle.putInt(CURRENT_FRAGMENT_POSITION_BUNDLE_TAG, ADVENTURE_FRAGMENT_POSITION);
 
         Intent launchIntent = new Intent(currentActivity, LaunchActivity.class);

@@ -61,7 +61,7 @@ public class Player extends AbstractModel {
     private Characteristics characteristics;
     private Money money;
     private List<Item> inventory;
-    private List<Skill> mSkills;
+    private List<PlayerSkill> mPlayerSkills;
     private List<Talent> talents;
 
     /**
@@ -77,7 +77,7 @@ public class Player extends AbstractModel {
     public Player() {
         characteristics = new Characteristics();
         money = new Money(0, 0, 0);
-        mSkills = new ArrayList<>();
+        mPlayerSkills = new ArrayList<>();
         inventory = new ArrayList<>();
         talents = new ArrayList<>();
     }
@@ -540,12 +540,12 @@ public class Player extends AbstractModel {
     }
 
     @Bindable
-    public List<Skill> getSkills() {
-        return mSkills;
+    public List<PlayerSkill> getSkills() {
+        return mPlayerSkills;
     }
 
-    public void setSkills(List<Skill> skills) {
-        this.mSkills = skills;
+    public void setSkills(List<PlayerSkill> playerSkills) {
+        this.mPlayerSkills = playerSkills;
     }
 
     public List<Long> getItemToRemove() {
@@ -578,7 +578,7 @@ public class Player extends AbstractModel {
                 ", money=" + money.toString() +
                 ", characteristics=" + characteristics +
                 ", inventory=" + inventory +
-                ", skills=" + mSkills +
+                ", skills=" + mPlayerSkills +
                 '}';
     }
 

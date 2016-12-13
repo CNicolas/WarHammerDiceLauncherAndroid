@@ -28,7 +28,7 @@ import com.whfrp3.ihm.listeners.LaunchActivityHandlers;
 import com.whfrp3.model.dices.DiceFaces;
 import com.whfrp3.model.dices.Hand;
 import com.whfrp3.model.player.Player;
-import com.whfrp3.model.player.Skill;
+import com.whfrp3.model.player.PlayerSkill;
 import com.whfrp3.tools.WHFRP3Application;
 import com.whfrp3.tools.constants.IHandConstants;
 import com.whfrp3.tools.constants.IPlayerActivityConstants;
@@ -61,10 +61,10 @@ public class LaunchActivity extends AppCompatActivity implements IPlayerActivity
 
         Bundle extras = getIntent().getExtras();
         if (extras != null) {
-            Skill skill = (Skill) extras.getSerializable(SKILL_BUNDLE_TAG);
-            if (skill != null) {
-                mHand = getHandFromSkill(skill);
-                setTitle(skill.getName());
+            PlayerSkill playerSkill = (PlayerSkill) extras.getSerializable(SKILL_BUNDLE_TAG);
+            if (playerSkill != null) {
+                mHand = getHandFromSkill(playerSkill);
+                setTitle(playerSkill.getName());
             }
             mBackToPreviousFragment = extras.getInt(CURRENT_FRAGMENT_POSITION_BUNDLE_TAG);
         }
@@ -282,16 +282,16 @@ public class LaunchActivity extends AppCompatActivity implements IPlayerActivity
     }
 
     /**
-     * Make a Hand from given Skill
+     * Make a Hand from given PlayerSkill
      *
-     * @param skill
+     * @param playerSkill
      * @return
      */
-    private Hand getHandFromSkill(Skill skill) {
+    private Hand getHandFromSkill(PlayerSkill playerSkill) {
         Player player = WHFRP3Application.getPlayer();
 
-        Hand hand = player.getCharacteristics().getCharacteristicHand(skill.getCharacteristic());
-        hand.setExpertise(skill.getLevel());
+        Hand hand = player.getCharacteristics().getCharacteristicHand(playerSkill.getCharacteristic());
+        hand.setExpertise(playerSkill.getLevel());
         hand.setChallenge(1);
 
         int playerConservative = player.getConservative();

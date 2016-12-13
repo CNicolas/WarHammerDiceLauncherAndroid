@@ -15,7 +15,7 @@ import android.widget.TextView;
 
 import com.whfrp3.ihm.adapters.SkillsListAdapter;
 import com.whfrp3.ihm.adapters.WeaponsListAdapter;
-import com.whfrp3.model.player.Skill;
+import com.whfrp3.model.player.PlayerSkill;
 import com.whfrp3.model.player.inventory.Weapon;
 import com.whfrp3.tools.enums.TextIcon;
 
@@ -52,7 +52,7 @@ public abstract class BindingUtils {
 
     //region Custom binding attributes
     @BindingAdapter("skills")
-    public static void bindSkills(ListView view, List<Skill> list) {
+    public static void bindSkills(ListView view, List<PlayerSkill> list) {
         LayoutInflater inflater = (LayoutInflater) WHFRP3Application.getAppContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         SkillsListAdapter adapter = new SkillsListAdapter(inflater, list);
         view.setAdapter(adapter);
