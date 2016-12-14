@@ -95,9 +95,4 @@ public class TalentTypesFragment extends Fragment implements AdapterView.OnItemC
         TalentSearchDialogFragment dialog = new TalentSearchDialogFragment();
         dialog.show(getActivity().getSupportFragmentManager(), "TalentSearchDialogFragment");
     }
-
-    private void openTalentSearchDialog() {
-        TalentSearchDialogFragment dialog = new TalentSearchDialogFragment();
-        dialog.show(getActivity().getSupportFragmentManager(), "TalentSearchDialogFragment");
-    }
 }
