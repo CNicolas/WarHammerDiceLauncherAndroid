@@ -9,7 +9,9 @@ import android.support.v4.content.ContextCompat;
 import com.whfrp3.BR;
 import com.whfrp3.R;
 import com.whfrp3.model.AbstractModel;
+import com.whfrp3.model.Skill;
 import com.whfrp3.model.enums.Race;
+import com.whfrp3.model.enums.SkillType;
 import com.whfrp3.model.player.inventory.Armor;
 import com.whfrp3.model.player.inventory.Item;
 import com.whfrp3.model.player.inventory.ItemType;
@@ -18,6 +20,7 @@ import com.whfrp3.model.player.inventory.UsableItem;
 import com.whfrp3.model.player.inventory.Weapon;
 import com.whfrp3.model.talents.Talent;
 import com.whfrp3.tools.WHFRP3Application;
+import com.whfrp3.tools.helpers.SkillHelper;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -61,7 +64,7 @@ public class Player extends AbstractModel {
     private Characteristics characteristics;
     private Money money;
     private List<Item> inventory;
-    private List<PlayerSkill> mPlayerSkills;
+    private List<PlayerSkill> skills;
     private List<Talent> talents;
 
     /**
@@ -77,9 +80,15 @@ public class Player extends AbstractModel {
     public Player() {
         characteristics = new Characteristics();
         money = new Money(0, 0, 0);
-        mPlayerSkills = new ArrayList<>();
+        skills = new ArrayList<>();
         inventory = new ArrayList<>();
         talents = new ArrayList<>();
+
+        // Initialize skills list
+        List<Skill> basicSkills = SkillHelper.getInstance().getSkillsByType(SkillType.BASIC);
+        for (Skill basicSkill : basicSkills) {
+            skills.add(new PlayerSkill(basicSkill, this, 0));
+        }
     }
     //endregion
 
@@ -541,11 +550,11 @@ public class Player extends AbstractModel {
 
     @Bindable
     public List<PlayerSkill> getSkills() {
-        return mPlayerSkills;
+        return skills;
     }
 
     public void setSkills(List<PlayerSkill> playerSkills) {
-        this.mPlayerSkills = playerSkills;
+        this.skills = playerSkills;
     }
 
     public List<Long> getItemToRemove() {
@@ -578,7 +587,7 @@ public class Player extends AbstractModel {
                 ", money=" + money.toString() +
                 ", characteristics=" + characteristics +
                 ", inventory=" + inventory +
-                ", skills=" + mPlayerSkills +
+                ", skills=" + skills +
                 '}';
     }
 

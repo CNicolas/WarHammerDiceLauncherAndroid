@@ -1,59 +1,86 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<!-- fichier généré le 13/12/2016 à 12:13:06 à partir du fichier [WHFRP3.xlsm] -->
+<!-- fichier généré le 14/12/2016 à 15:35:33 à partir du fichier [WHFRP3.xlsm] -->
 <!-- NE PAS MODIFIER DIRECTEMENT CE FICHIER -->
 <Skills>
-    <Skill Id="1" Characteristic="STRENGTH">
+    <Skill Id="1" Characteristic="STRENGTH" Type="BASIC">
         <Name>Athlétisme</Name>
     </Skill>
-    <Skill Id="2" Characteristic="AGILITY">
+    <Skill Id="2" Characteristic="AGILITY" Type="BASIC">
         <Name>Capacité de Tir</Name>
     </Skill>
-    <Skill Id="3" Characteristic="AGILITY">
+    <Skill Id="3" Characteristic="AGILITY" Type="BASIC">
         <Name>Coordination</Name>
     </Skill>
-    <Skill Id="4" Characteristic="STRENGTH">
+    <Skill Id="4" Characteristic="STRENGTH" Type="BASIC">
         <Name>Intimidation</Name>
     </Skill>
-    <Skill Id="5" Characteristic="TOUGHNESS">
+    <Skill Id="5" Characteristic="TOUGHNESS" Type="BASIC">
         <Name>Résistance</Name>
     </Skill>
-    <Skill Id="6" Characteristic="AGILITY">
+    <Skill Id="6" Characteristic="AGILITY" Type="BASIC">
         <Name>Équitation</Name>
     </Skill>
-    <Skill Id="7" Characteristic="AGILITY">
+    <Skill Id="7" Characteristic="AGILITY" Type="BASIC">
         <Name>Forfait</Name>
     </Skill>
-    <Skill Id="8" Characteristic="AGILITY">
+    <Skill Id="8" Characteristic="AGILITY" Type="BASIC">
         <Name>Furtivité</Name>
     </Skill>
-    <Skill Id="9" Characteristic="STRENGTH">
+    <Skill Id="9" Characteristic="STRENGTH" Type="BASIC">
         <Name>Capacité de Combat</Name>
     </Skill>
-    <Skill Id="10" Characteristic="FELLOWSHIP">
+    <Skill Id="10" Characteristic="FELLOWSHIP" Type="BASIC">
         <Name>Charisme</Name>
     </Skill>
-    <Skill Id="11" Characteristic="WILLPOWER">
+    <Skill Id="11" Characteristic="WILLPOWER" Type="BASIC">
         <Name>Discipline</Name>
     </Skill>
-    <Skill Id="12" Characteristic="INTELLIGENCE">
+    <Skill Id="12" Characteristic="INTELLIGENCE" Type="BASIC">
         <Name>Premiers Soins</Name>
     </Skill>
-    <Skill Id="13" Characteristic="INTELLIGENCE">
+    <Skill Id="13" Characteristic="INTELLIGENCE" Type="BASIC">
         <Name>Folklore</Name>
     </Skill>
-    <Skill Id="14" Characteristic="FELLOWSHIP">
+    <Skill Id="14" Characteristic="FELLOWSHIP" Type="BASIC">
         <Name>Ruse</Name>
     </Skill>
-    <Skill Id="15" Characteristic="FELLOWSHIP">
+    <Skill Id="15" Characteristic="FELLOWSHIP" Type="BASIC">
         <Name>Intuition</Name>
     </Skill>
-    <Skill Id="16" Characteristic="FELLOWSHIP">
+    <Skill Id="16" Characteristic="FELLOWSHIP" Type="BASIC">
         <Name>Commandement</Name>
     </Skill>
-    <Skill Id="17" Characteristic="INTELLIGENCE">
+    <Skill Id="17" Characteristic="INTELLIGENCE" Type="BASIC">
         <Name>Connaissance de la Nature</Name>
     </Skill>
-    <Skill Id="18" Characteristic="INTELLIGENCE">
+    <Skill Id="18" Characteristic="INTELLIGENCE" Type="BASIC">
         <Name>Observation</Name>
+    </Skill>
+    <Skill Id="19" Characteristic="INTELLIGENCE" Type="ADVANCED">
+        <Name>Art de la magie</Name>
+    </Skill>
+    <Skill Id="20" Characteristic="FELLOWSHIP" Type="ADVANCED">
+        <Name>Dressage des animaux</Name>
+    </Skill>
+    <Skill Id="21" Characteristic="INTELLIGENCE" Type="ADVANCED">
+        <Name>Education</Name>
+    </Skill>
+    <Skill Id="22" Characteristic="INTELLIGENCE" Type="ADVANCED">
+        <Name>Focalisation</Name>
+    </Skill>
+    <Skill Id="23" Characteristic="INTELLIGENCE" Type="ADVANCED">
+        <Name>Invocation</Name>
+    </Skill>
+    <Skill Id="24" Characteristic="INTELLIGENCE" Type="ADVANCED">
+        <Name>Médecine</Name>
+    </Skill>
+    <Skill Id="25" Characteristic="INTELLIGENCE" Type="ADVANCED">
+        <Name>Métier</Name>
+    </Skill>
+    <Skill Id="26" Characteristic="INTELLIGENCE" Type="ADVANCED">
+        <Name>Perception de la magie</Name>
+    </Skill>
+    <Skill Id="27" Characteristic="INTELLIGENCE" Type="ADVANCED">
+        <Name>Piété</Name>
     </Skill>
 </Skills>

@@ -32,7 +32,7 @@ public class PlayerDao extends AbstractDao<Player> implements IPlayerEntryConsta
     /**
      * DAO of skills.
      */
-    private final SkillDao mSkillDao;
+    private final PlayerSkillDao mSkillDao;
 
     /**
      * DAO of items.

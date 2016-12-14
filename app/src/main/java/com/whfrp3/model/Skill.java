@@ -1,6 +1,7 @@
 package com.whfrp3.model;
 
 import com.whfrp3.model.enums.Characteristic;
+import com.whfrp3.model.enums.SkillType;
 
 /**
  * The skill model.
@@ -10,35 +11,37 @@ public class Skill extends AbstractModel {
     //region Properties
 
     /**
-     * PlayerSkill name.
+     * Skill name.
      */
-    private String name;
+    private final String name;
 
     /**
      * Associated characteristic.
      */
-    private Characteristic characteristic;
+    private final Characteristic characteristic;
+
+    /**
+     * Skill type.
+     */
+    private final SkillType type;
 
     //endregion
 
     //region Constructor
 
     /**
-     * Default constructor.
-     */
-    public Skill() {
-
-    }
-
-    /**
      * Constructor.
      *
-     * @param name           PlayerSkill name.
+     * @param id             Skill id.
+     * @param name           Skill name.
      * @param characteristic Associated characteristic.
+     * @param type           Skill type.
      */
-    public Skill(String name, Characteristic characteristic) {
+    public Skill(long id, String name, Characteristic characteristic, SkillType type) {
+        this.id = id;
         this.name = name;
         this.characteristic = characteristic;
+        this.type = type;
     }
 
     //endregion
@@ -49,16 +52,12 @@ public class Skill extends AbstractModel {
         return name;
     }
 
-    public void setName(String name) {
-        this.name = name;
-    }
-
     public Characteristic getCharacteristic() {
         return characteristic;
     }
 
-    public void setCharacteristic(Characteristic characteristic) {
-        this.characteristic = characteristic;
+    public SkillType getType() {
+        return type;
     }
 
     //endregion

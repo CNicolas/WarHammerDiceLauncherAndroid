@@ -8,7 +8,7 @@
             type="com.whfrp3.model.player.Player" />
 
         <variable
-            name="skill"
+            name="playerSkill"
             type="com.whfrp3.model.player.PlayerSkill" />
 
         <variable
@@ -27,28 +27,28 @@
             style="@style/SkillName"
             android:background="?android:attr/selectableItemBackground"
             android:clickable="true"
-            android:onClick="@{() -> handlers.startLaunchActivity(skill)}"
-            android:text="@{skill.name}" />
+            android:onClick="@{() -> handlers.startLaunchActivity(playerSkill)}"
+            android:text="@{playerSkill.skill.name}" />
 
         <CheckBox
             android:id="@+id/skill_level1"
             style="@style/SkillCheckbox"
-            android:checked="@{skill.level >= 1}"
+            android:checked="@{playerSkill.level >= 1}"
             android:enabled="@{player.rank >= 1 ? player.inEdition : false}"
-            android:onClick="@{() -> handlers.onLevelSelected(skill, 1, skillLevel1, skillLevel2, skillLevel3)}" />
+            android:onClick="@{() -> handlers.onLevelSelected(playerSkill, 1, skillLevel1, skillLevel2, skillLevel3)}" />
 
         <CheckBox
             android:id="@+id/skill_level2"
             style="@style/SkillCheckbox"
-            android:checked="@{skill.level >= 2}"
+            android:checked="@{playerSkill.level >= 2}"
             android:enabled="@{player.rank >= 2 ? player.inEdition : false}"
-            android:onClick="@{() -> handlers.onLevelSelected(skill, 2, skillLevel1, skillLevel2, skillLevel3)}" />
+            android:onClick="@{() -> handlers.onLevelSelected(playerSkill, 2, skillLevel1, skillLevel2, skillLevel3)}" />
 
         <CheckBox
             android:id="@+id/skill_level3"
             style="@style/SkillCheckbox"
-            android:checked="@{skill.level >= 3}"
+            android:checked="@{playerSkill.level >= 3}"
             android:enabled="@{player.rank >= 3 ? player.inEdition : false}"
-            android:onClick="@{() -> handlers.onLevelSelected(skill, 3, skillLevel1, skillLevel2, skillLevel3)}" />
+            android:onClick="@{() -> handlers.onLevelSelected(playerSkill, 3, skillLevel1, skillLevel2, skillLevel3)}" />
     </LinearLayout>
 </layout>

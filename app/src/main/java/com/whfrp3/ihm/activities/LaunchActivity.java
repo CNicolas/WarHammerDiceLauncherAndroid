@@ -64,7 +64,7 @@ public class LaunchActivity extends AppCompatActivity implements IPlayerActivity
             PlayerSkill playerSkill = (PlayerSkill) extras.getSerializable(SKILL_BUNDLE_TAG);
             if (playerSkill != null) {
                 mHand = getHandFromSkill(playerSkill);
-                setTitle(playerSkill.getName());
+                setTitle(playerSkill.getSkill().getName());
             }
             mBackToPreviousFragment = extras.getInt(CURRENT_FRAGMENT_POSITION_BUNDLE_TAG);
         }
@@ -290,7 +290,7 @@ public class LaunchActivity extends AppCompatActivity implements IPlayerActivity
     private Hand getHandFromSkill(PlayerSkill playerSkill) {
         Player player = WHFRP3Application.getPlayer();
 
-        Hand hand = player.getCharacteristics().getCharacteristicHand(playerSkill.getCharacteristic());
+        Hand hand = player.getCharacteristics().getCharacteristicHand(playerSkill.getSkill().getCharacteristic());
         hand.setExpertise(playerSkill.getLevel());
         hand.setChallenge(1);
 

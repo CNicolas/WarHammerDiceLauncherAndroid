@@ -54,7 +54,7 @@ public class SkillsListAdapter extends ArrayAdapter {
     public View getView(int position, View convertView, @NonNull ViewGroup parent) {
         ElementListSkillBinding binding = DataBindingUtil.inflate(inflater, R.layout.element_list_skill, parent, false);
         binding.setPlayer(WHFRP3Application.getPlayer());
-        binding.setSkill(playerSkills.get(position));
+        binding.setPlayerSkill(playerSkills.get(position));
         binding.setHandlers(new SkillHandlers());
 
         return binding.getRoot();

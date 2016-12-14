@@ -2,18 +2,16 @@ package com.whfrp3.tools.helpers;
 
 import android.content.res.XmlResourceParser;
 import android.util.Log;
+import android.util.LongSparseArray;
 
 import com.whfrp3.R;
 import com.whfrp3.model.Skill;
 import com.whfrp3.model.enums.Characteristic;
-import com.whfrp3.model.enums.CooldownType;
-import com.whfrp3.model.enums.TalentType;
-import com.whfrp3.model.player.Player;
-import com.whfrp3.model.player.PlayerSkill;
-import com.whfrp3.model.talents.Talent;
+import com.whfrp3.model.enums.SkillType;
 import com.whfrp3.tools.WHFRP3Application;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -30,13 +28,22 @@ public class SkillHelper {
     /**
      * Loaded skills by id.
      */
-    private Map<Long, Skill> skills;
+    private LongSparseArray<Skill> skillsById;
+
+    /**
+     * Loaded skills by type.
+     */
+    private Map<SkillType, List<Skill>> skillsByType;
 
     /**
      * Private constructor;
      */
     private SkillHelper() {
-
+        skillsById = new LongSparseArray<>();
+        skillsByType = new HashMap<>();
+        for (SkillType type : SkillType.values()) {
+            skillsByType.put(type, new ArrayList<Skill>());
+        }
     }
 
     /**
@@ -59,31 +66,62 @@ public class SkillHelper {
         try {
             XmlResourceParser xmlParser = WHFRP3Application.getAppContext().getResources().getXml(R.xml.skills);
 
-            Skill skill = null;
+            Long skillId = null;
+            String skillName = null;
+            Characteristic skillCharacteristic = null;
+            SkillType skillType = null;
 
             int eventType = xmlParser.getEventType();
             while (eventType != XmlResourceParser.END_DOCUMENT) {
                 if (eventType == XmlResourceParser.START_TAG) {
                     if (xmlParser.getName().equals(Skill.class.getSimpleName())) {
-                        skill = new Skill();
-                        skill.setId(Long.valueOf(xmlParser.getAttributeValue(0)));
-                        skill.setCharacteristic(Characteristic.valueOf(xmlParser.getAttributeValue(1)));
+                        skillId = Long.valueOf(xmlParser.getAttributeValue(0));
+                        skillCharacteristic = Characteristic.valueOf(xmlParser.getAttributeValue(1));
+                        skillType = SkillType.valueOf(xmlParser.getAttributeValue(2));
                     } else if ("Name".equals(xmlParser.getName())) {
-                        skill.setName(xmlParser.nextText());
+                        skillName = xmlParser.nextText();
                     }
                 } else if (eventType == XmlResourceParser.END_TAG) {
-                    if (xmlParser.getName().equals(Skill.class.getSimpleName()) && skill != null) {
-                        skills.put(skill.getId(), skill);
-                        skill = null;
+                    if (xmlParser.getName().equals(Skill.class.getSimpleName())
+                            && skillId != null && skillName != null && skillCharacteristic != null) {
+                        Skill skill = new Skill(skillId, skillName, skillCharacteristic, skillType);
+
+                        skillsById.put(skill.getId(), skill);
+                        skillsByType.get(skill.getType()).add(skill);
+
+                        skillId = null;
+                        skillName = null;
+                        skillCharacteristic = null;
+                        skillType = null;
                     }
                 }
 
                 eventType = xmlParser.next();
             }
 
-            skills.size();
+            skillsById.size();
         } catch (Exception e) {
             Log.e("SKILL_LOAD", "Erreur de chargement des compétences.", e);
         }
+    }
+
+    /**
+     * Return the skill with de given id.
+     *
+     * @param id Id of the skill.
+     * @return Skill with the given id.
+     */
+    public Skill getSkill(long id) {
+        return skillsById.get(id);
+    }
+
+    /**
+     * Return the skills with the given type.
+     *
+     * @param type Type of the skills.
+     * @return Skills with the given type.
+     */
+    public List<Skill> getSkillsByType(SkillType type) {
+        return skillsByType.get(type);
     }
 }

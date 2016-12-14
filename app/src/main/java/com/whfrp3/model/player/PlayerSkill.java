@@ -1,29 +1,30 @@
 package com.whfrp3.model.player;
 
 import com.whfrp3.model.AbstractModel;
+import com.whfrp3.model.Skill;
 import com.whfrp3.model.enums.Characteristic;
 
 /**
  * Skill of a player.
  */
-public class PlayerSkill extends AbstractModel {
+public class PlayerSkill {
 
     //region Properties
 
     /**
-     * Level of the associated skill.
+     * Associated skill.
      */
-    private int level;
-
-    /**
-     * Id of the associated skill.
-     */
-    private final long skillId;
+    private final Skill skill;
 
     /**
      * Id of the associated player.
      */
     private final long playerId;
+
+    /**
+     * Level of the associated skill.
+     */
+    private int level;
 
     //endregion
 
@@ -32,31 +33,39 @@ public class PlayerSkill extends AbstractModel {
     /**
      * Constructor without skill level.
      *
-     * @param skillId  Id of the associated skill.
-     * @param playerId Id of the associated player.
+     * @param skill  Associated skill.
+     * @param player Associated player.
      */
-    public PlayerSkill(long skillId, long playerId) {
+    public PlayerSkill(Skill skill, Player player) {
+        this.skill = skill;
+        this.playerId = player.getId();
         this.level = 0;
-        this.skillId = skillId;
-        this.playerId = playerId;
     }
 
     /**
      * Constructor with skill level.
      *
-     * @param skillId  Id of the associated skill.
-     * @param playerId Id of the associated player.
-     * @param level    Level of the associated skill.
+     * @param skill  Associated skill.
+     * @param player Associated player.
+     * @param level  Level of the associated skill.
      */
-    public PlayerSkill(long skillId, long playerId, int level) {
+    public PlayerSkill(Skill skill, Player player, int level) {
+        this.skill = skill;
+        this.playerId = player.getId();
         this.level = level;
-        this.skillId = skillId;
-        this.playerId = playerId;
     }
 
     //endregion
 
     //region Get & Set
+
+    public Skill getSkill() {
+        return skill;
+    }
+
+    public long getPlayerId() {
+        return playerId;
+    }
 
     public int getLevel() {
         return level;
@@ -66,14 +75,6 @@ public class PlayerSkill extends AbstractModel {
         this.level = level;
     }
 
-    public long getSkillId() {
-        return skillId;
-    }
-
-    public long getPlayerId() {
-        return playerId;
-    }
-
     //endregion
 
     //region Overrides
@@ -81,9 +82,9 @@ public class PlayerSkill extends AbstractModel {
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder("PlayerSkill [");
-        sb.append("level=").append(level).append(", ");
-        sb.append("skillId=").append(skillId).append(", ");
-        sb.append("playerId=").append(playerId);
+        sb.append("skillId=").append(skill.getId()).append(", ");
+        sb.append("playerId=").append(playerId).append(", ");
+        sb.append("level=").append(level);
         sb.append("]");
 
         return sb.toString();

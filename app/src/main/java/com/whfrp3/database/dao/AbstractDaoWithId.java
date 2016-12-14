@@ -11,11 +11,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Gather the common methods for DAOs.
- *
- * @param <T> The associated model class.
+ * Created by cfresque on 14/12/2016.
  */
-public abstract class AbstractDao<T> implements IDao<T> {
+
+public abstract class AbstractDaoWithId extends AbstractDao<T extends AbstractModel> implements IDao<T> {
 
     //region Properties
 
@@ -57,6 +56,11 @@ public abstract class AbstractDao<T> implements IDao<T> {
         cursor.close();
 
         return res;
+    }
+
+    @Override
+    public T findById(long id) {
+        return findByColumn(IEntryConstants.COLUMN_ID, String.valueOf(id));
     }
 
     /**
@@ -153,6 +157,8 @@ public abstract class AbstractDao<T> implements IDao<T> {
         ContentValues values = contentValuesFromModel(model);
 
         long newId = mDatabase.insert(mTableName, null, values);
+
+        model.setId(newId);
     }
 
     //endregion

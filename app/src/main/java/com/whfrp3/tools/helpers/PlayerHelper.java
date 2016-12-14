@@ -19,11 +19,6 @@ public abstract class PlayerHelper {
             return;
         }
 
-        if (player.getSkills().size() == 0) {
-            List<PlayerSkill> basicPlayerSkills = SkillHelper.createBasicSkills();
-            player.setSkills(basicPlayerSkills);
-        }
-
         if (player.getId() == 0) {
             WHFRP3Application.getDatabase().getPlayerDao().insert(player);
         } else {
