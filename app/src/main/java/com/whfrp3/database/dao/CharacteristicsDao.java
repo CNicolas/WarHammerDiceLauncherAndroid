@@ -11,7 +11,7 @@ import com.whfrp3.model.player.Characteristics;
 /**
  * DAO of characteristics.
  */
-public class CharacteristicsDao extends AbstractDao<Characteristics> implements ICharacteristicsEntryConstants {
+public class CharacteristicsDao extends AbstractDaoWithId<Characteristics> implements ICharacteristicsEntryConstants {
 
     //region Constructor
 

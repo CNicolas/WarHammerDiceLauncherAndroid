@@ -21,7 +21,7 @@ import java.util.List;
 /**
  * DAO of items.
  */
-public class ItemDao extends AbstractDao<Item> implements IItemEntryConstants {
+public class ItemDao extends AbstractDaoWithId<Item> implements IItemEntryConstants {
 
     //region Constructor
 

@@ -4,9 +4,6 @@ import android.content.ContentValues;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 
-import com.whfrp3.database.entries.IEntryConstants;
-import com.whfrp3.model.AbstractModel;
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -33,6 +30,12 @@ public abstract class AbstractDao<T> implements IDao<T> {
 
     //region Constructor
 
+    /**
+     * Constructor.
+     *
+     * @param database  Database connection.
+     * @param tableName Table name.
+     */
     public AbstractDao(SQLiteDatabase database, String tableName) {
         this.mDatabase = database;
         this.mTableName = tableName;
@@ -152,31 +155,12 @@ public abstract class AbstractDao<T> implements IDao<T> {
     public void insert(T model) {
         ContentValues values = contentValuesFromModel(model);
 
-        long newId = mDatabase.insert(mTableName, null, values);
-    }
-
-    //endregion
-
-    //region Update
-
-    @Override
-    public void update(T model) {
-        ContentValues values = contentValuesFromModel(model);
-        String[] filters = {String.valueOf(model.getId())};
-
-        mDatabase.update(mTableName, values, String.format("%s = ?", IEntryConstants.COLUMN_ID), filters);
+        mDatabase.insert(mTableName, null, values);
     }
 
     //endregion
 
     //region Delete
-
-    @Override
-    public void delete(long itemId) {
-        String[] filters = {String.valueOf(itemId)};
-
-        mDatabase.delete(mTableName, String.format("%s = ?", IEntryConstants.COLUMN_ID), filters);
-    }
 
     @Override
     public void deleteAll() {

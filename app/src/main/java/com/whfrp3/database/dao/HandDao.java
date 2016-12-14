@@ -13,7 +13,7 @@ import java.util.List;
 /**
  * DAO of hands.
  */
-public class HandDao extends AbstractDao<Hand> implements IHandEntryConstants {
+public class HandDao extends AbstractDaoWithId<Hand> implements IHandEntryConstants {
 
     //region Constructor
 

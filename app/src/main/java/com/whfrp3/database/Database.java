@@ -60,9 +60,9 @@ public class Database {
     private CharacteristicsDao mCharacteristicsDao;
 
     /**
-     * DAO of skills.
+     * DAO of player skills.
      */
-    private PlayerSkillDao mSkillDao;
+    private PlayerSkillDao mPlayerSkillDao;
 
     /**
      * DAO of items.
@@ -93,12 +93,12 @@ public class Database {
     }
 
     /**
-     * Getter of DAO of skills.
+     * Getter of DAO of player skills.
      *
-     * @return DAO of skills.
+     * @return DAO of player skills.
      */
-    public PlayerSkillDao getSkillDao() {
-        return mSkillDao;
+    public PlayerSkillDao getPlayerSkillDao() {
+        return mPlayerSkillDao;
     }
 
     /**
@@ -144,7 +144,7 @@ public class Database {
         SQLiteDatabase db = mDbHelper.getWritableDatabase();
 
         mCharacteristicsDao = new CharacteristicsDao(db);
-        mSkillDao = new PlayerSkillDao(db);
+        mPlayerSkillDao = new PlayerSkillDao(db);
         mItemDao = new ItemDao(db);
         mHandDao = new HandDao(db);
         mPlayerDao = new PlayerDao(db);

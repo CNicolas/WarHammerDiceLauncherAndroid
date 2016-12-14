@@ -20,7 +20,7 @@ import java.util.List;
 /**
  * DAO of players.
  */
-public class PlayerDao extends AbstractDao<Player> implements IPlayerEntryConstants {
+public class PlayerDao extends AbstractDaoWithId<Player> implements IPlayerEntryConstants {
 
     //region DAOs
 
@@ -30,9 +30,9 @@ public class PlayerDao extends AbstractDao<Player> implements IPlayerEntryConsta
     private final CharacteristicsDao mCharacteristicsDao;
 
     /**
-     * DAO of skills.
+     * DAO of player skills.
      */
-    private final PlayerSkillDao mSkillDao;
+    private final PlayerSkillDao mPlayerSkillDao;
 
     /**
      * DAO of items.
@@ -52,7 +52,7 @@ public class PlayerDao extends AbstractDao<Player> implements IPlayerEntryConsta
         super(database, TABLE_NAME);
 
         mCharacteristicsDao = WHFRP3Application.getDatabase().getCharacteristicsDao();
-        mSkillDao = WHFRP3Application.getDatabase().getSkillDao();
+        mPlayerSkillDao = WHFRP3Application.getDatabase().getPlayerSkillDao();
         mItemDao = WHFRP3Application.getDatabase().getItemDao();
     }
 
@@ -77,7 +77,7 @@ public class PlayerDao extends AbstractDao<Player> implements IPlayerEntryConsta
      */
     public Player findByName(String name) {
         Player player = findByColumn(COLUMN_NAME, name);
-        player.setSkills(mSkillDao.findAllByPlayerId(player.getId()));
+        player.setSkills(mPlayerSkillDao.findAllByPlayerId(player.getId()));
 
         return player;
     }
@@ -97,7 +97,7 @@ public class PlayerDao extends AbstractDao<Player> implements IPlayerEntryConsta
         // Insert skills
         for (PlayerSkill playerSkill : player.getSkills()) {
             playerSkill.setPlayerId(player.getId());
-            mSkillDao.insert(playerSkill);
+            mPlayerSkillDao.insert(playerSkill);
         }
 
         // Insert items
@@ -120,14 +120,9 @@ public class PlayerDao extends AbstractDao<Player> implements IPlayerEntryConsta
         super.update(player);
 
         // Update skills
-        for (PlayerSkill playerSkill : player.getSkills()) {
-            playerSkill.setPlayerId(player.getId());
-
-            if (playerSkill.getId() == 0) {
-                mSkillDao.insert(playerSkill);
-            } else {
-                mSkillDao.update(playerSkill);
-            }
+        mPlayerSkillDao.deleteAllByPlayerId(player.getId());
+        for (PlayerSkill skill : player.getSkills()) {
+            mPlayerSkillDao.insert(skill);
         }
 
         // Update items
@@ -227,7 +222,7 @@ public class PlayerDao extends AbstractDao<Player> implements IPlayerEntryConsta
         }
 
         // Find playerSkills
-        List<PlayerSkill> playerSkills = mSkillDao.findAllByPlayerId(model.getId());
+        List<PlayerSkill> playerSkills = mPlayerSkillDao.findAllByPlayerId(model.getId());
         model.setSkills(playerSkills);
 
         // Find items

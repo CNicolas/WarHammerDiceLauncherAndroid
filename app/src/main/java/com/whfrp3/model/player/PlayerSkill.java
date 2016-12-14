@@ -1,13 +1,15 @@
 package com.whfrp3.model.player;
 
-import com.whfrp3.model.AbstractModel;
+import android.databinding.BaseObservable;
+
 import com.whfrp3.model.Skill;
-import com.whfrp3.model.enums.Characteristic;
+
+import java.io.Serializable;
 
 /**
  * Skill of a player.
  */
-public class PlayerSkill {
+public class PlayerSkill extends BaseObservable implements Serializable {
 
     //region Properties
 
@@ -19,7 +21,7 @@ public class PlayerSkill {
     /**
      * Id of the associated player.
      */
-    private final long playerId;
+    private long playerId;
 
     /**
      * Level of the associated skill.
@@ -45,6 +47,19 @@ public class PlayerSkill {
     /**
      * Constructor with skill level.
      *
+     * @param skill    Associated skill.
+     * @param playerId Id of the associated player.
+     * @param level    Level of the associated skill.
+     */
+    public PlayerSkill(Skill skill, long playerId, int level) {
+        this.skill = skill;
+        this.playerId = playerId;
+        this.level = level;
+    }
+
+    /**
+     * Constructor with skill level.
+     *
      * @param skill  Associated skill.
      * @param player Associated player.
      * @param level  Level of the associated skill.
@@ -65,6 +80,10 @@ public class PlayerSkill {
 
     public long getPlayerId() {
         return playerId;
+    }
+
+    public void setPlayerId(long playerId) {
+        this.playerId = playerId;
     }
 
     public int getLevel() {
