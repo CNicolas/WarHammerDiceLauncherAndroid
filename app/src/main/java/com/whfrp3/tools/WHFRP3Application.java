@@ -10,6 +10,7 @@ import android.util.Log;
 import com.whfrp3.database.Database;
 import com.whfrp3.model.player.Player;
 import com.whfrp3.tools.helpers.SkillHelper;
+import com.whfrp3.tools.helpers.SpecialisationHelper;
 import com.whfrp3.tools.helpers.TalentHelper;
 
 /**
@@ -57,6 +58,9 @@ public class WHFRP3Application extends Application {
 
         // Load skills
         SkillHelper.getInstance().loadSkills();
+
+        // Load specialisations
+        SpecialisationHelper.getInstance().loadSpecialisations();
     }
 
     @Override

@@ -1,0 +1,668 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?><!-- fichier généré le 14/12/2016 à 22:12:35 à partir du fichier [WHFRP3.xlsm] --><!-- NE PAS MODIFIER DIRECTEMENT CE FICHIER -->
+<Specialisations>
+    <Specialisation
+        Id="1"
+        Skill="1">
+        <Name>Escalade</Name>
+    </Specialisation>
+    <Specialisation
+        Id="2"
+        Skill="1">
+        <Name>Natation</Name>
+    </Specialisation>
+    <Specialisation
+        Id="3"
+        Skill="1">
+        <Name>Saut</Name>
+    </Specialisation>
+    <Specialisation
+        Id="4"
+        Skill="1">
+        <Name>Ramer</Name>
+    </Specialisation>
+    <Specialisation
+        Id="5"
+        Skill="1">
+        <Name>Course</Name>
+    </Specialisation>
+    <Specialisation
+        Id="6"
+        Skill="1">
+        <Name>Levage</Name>
+    </Specialisation>
+    <Specialisation
+        Id="7"
+        Skill="2">
+        <Name>Arcs</Name>
+    </Specialisation>
+    <Specialisation
+        Id="8"
+        Skill="2">
+        <Name>Arbalètes</Name>
+    </Specialisation>
+    <Specialisation
+        Id="9"
+        Skill="2">
+        <Name>Armes de Jet</Name>
+    </Specialisation>
+    <Specialisation
+        Id="10"
+        Skill="2">
+        <Name>Armes à Poudre</Name>
+    </Specialisation>
+    <Specialisation
+        Id="11"
+        Skill="3">
+        <Name>Esquive</Name>
+    </Specialisation>
+    <Specialisation
+        Id="12"
+        Skill="3">
+        <Name>Équilibre</Name>
+    </Specialisation>
+    <Specialisation
+        Id="13"
+        Skill="3">
+        <Name>Acrobaties</Name>
+    </Specialisation>
+    <Specialisation
+        Id="14"
+        Skill="3">
+        <Name>Jonglage</Name>
+    </Specialisation>
+    <Specialisation
+        Id="15"
+        Skill="3">
+        <Name>Danse</Name>
+    </Specialisation>
+    <Specialisation
+        Id="16"
+        Skill="3">
+        <Name>Cordes et Nœuds</Name>
+    </Specialisation>
+    <Specialisation
+        Id="17"
+        Skill="4">
+        <Name>Violence</Name>
+    </Specialisation>
+    <Specialisation
+        Id="18"
+        Skill="4">
+        <Name>Interrogation</Name>
+    </Specialisation>
+    <Specialisation
+        Id="19"
+        Skill="4">
+        <Name>Politique</Name>
+    </Specialisation>
+    <Specialisation
+        Id="20"
+        Skill="5">
+        <Name>Blocage au Bouclier</Name>
+    </Specialisation>
+    <Specialisation
+        Id="21"
+        Skill="5">
+        <Name>Récupération Après l'Effort</Name>
+    </Specialisation>
+    <Specialisation
+        Id="22"
+        Skill="5">
+        <Name>Résistance aux Maladies</Name>
+    </Specialisation>
+    <Specialisation
+        Id="23"
+        Skill="5">
+        <Name>Résistance au Poison</Name>
+    </Specialisation>
+    <Specialisation
+        Id="24"
+        Skill="5">
+        <Name>Résistance à la Faim</Name>
+    </Specialisation>
+    <Specialisation
+        Id="25"
+        Skill="6">
+        <Name>Chevaux</Name>
+    </Specialisation>
+    <Specialisation
+        Id="26"
+        Skill="6">
+        <Name>Saut Équestre</Name>
+    </Specialisation>
+    <Specialisation
+        Id="27"
+        Skill="6">
+        <Name>Coches</Name>
+    </Specialisation>
+    <Specialisation
+        Id="28"
+        Skill="6">
+        <Name>Combat Monté</Name>
+    </Specialisation>
+    <Specialisation
+        Id="29"
+        Skill="6">
+        <Name>Longs Voyages</Name>
+    </Specialisation>
+    <Specialisation
+        Id="30"
+        Skill="7">
+        <Name>Pickpocket</Name>
+    </Specialisation>
+    <Specialisation
+        Id="31"
+        Skill="7">
+        <Name>Serrures</Name>
+    </Specialisation>
+    <Specialisation
+        Id="32"
+        Skill="7">
+        <Name>Fabrication de Pièges</Name>
+    </Specialisation>
+    <Specialisation
+        Id="33"
+        Skill="7">
+        <Name>Déjouter les Pièges</Name>
+    </Specialisation>
+    <Specialisation
+        Id="34"
+        Skill="7">
+        <Name>Escamotage</Name>
+    </Specialisation>
+    <Specialisation
+        Id="35"
+        Skill="8">
+        <Name>Mouvement Silencieux (Rural)</Name>
+    </Specialisation>
+    <Specialisation
+        Id="36"
+        Skill="8">
+        <Name>Mouvement Silencieux (Urbain)</Name>
+    </Specialisation>
+    <Specialisation
+        Id="37"
+        Skill="8">
+        <Name>Dissimulation</Name>
+    </Specialisation>
+    <Specialisation
+        Id="38"
+        Skill="8">
+        <Name>Embuscade</Name>
+    </Specialisation>
+    <Specialisation
+        Id="39"
+        Skill="8">
+        <Name>Se Fondre dans la Foule</Name>
+    </Specialisation>
+    <Specialisation
+        Id="40"
+        Skill="9">
+        <Name>Armes à Une Main</Name>
+    </Specialisation>
+    <Specialisation
+        Id="41"
+        Skill="9">
+        <Name>Armes à Deux Mains</Name>
+    </Specialisation>
+    <Specialisation
+        Id="42"
+        Skill="9">
+        <Name>Armes d’Hast</Name>
+    </Specialisation>
+    <Specialisation
+        Id="43"
+        Skill="9">
+        <Name>Parade (Armes à Une Main)</Name>
+    </Specialisation>
+    <Specialisation
+        Id="44"
+        Skill="9">
+        <Name>Parade (Armes à Deux Mains)</Name>
+    </Specialisation>
+    <Specialisation
+        Id="45"
+        Skill="10">
+        <Name>Étiquette</Name>
+    </Specialisation>
+    <Specialisation
+        Id="46"
+        Skill="10">
+        <Name>Commérage</Name>
+    </Specialisation>
+    <Specialisation
+        Id="47"
+        Skill="10">
+        <Name>Diplomatie</Name>
+    </Specialisation>
+    <Specialisation
+        Id="48"
+        Skill="10">
+        <Name>Marchandage</Name>
+    </Specialisation>
+    <Specialisation
+        Id="49"
+        Skill="10">
+        <Name>Séduction</Name>
+    </Specialisation>
+    <Specialisation
+        Id="50"
+        Skill="11">
+        <Name>Résistance au Charisme</Name>
+    </Specialisation>
+    <Specialisation
+        Id="51"
+        Skill="11">
+        <Name>Résistance à la Ruse</Name>
+    </Specialisation>
+    <Specialisation
+        Id="52"
+        Skill="11">
+        <Name>Résistance à l'Intimidation</Name>
+    </Specialisation>
+    <Specialisation
+        Id="53"
+        Skill="11">
+        <Name>Résistance à la Peur</Name>
+    </Specialisation>
+    <Specialisation
+        Id="54"
+        Skill="11">
+        <Name>Résistance à la Terreur</Name>
+    </Specialisation>
+    <Specialisation
+        Id="55"
+        Skill="11">
+        <Name>Résistance à la Torture</Name>
+    </Specialisation>
+    <Specialisation
+        Id="56"
+        Skill="12">
+        <Name>Chirurgie de Terrain</Name>
+    </Specialisation>
+    <Specialisation
+        Id="57"
+        Skill="12">
+        <Name>Soins à Long Terme</Name>
+    </Specialisation>
+    <Specialisation
+        Id="58"
+        Skill="12">
+        <Name>Soins des Blessures Critiques</Name>
+    </Specialisation>
+    <Specialisation
+        Id="59"
+        Skill="12">
+        <Name>Soins des Blessures Ordinaires</Name>
+    </Specialisation>
+    <Specialisation
+        Id="60"
+        Skill="13">
+        <Name>Connaissance des Créatures</Name>
+    </Specialisation>
+    <Specialisation
+        Id="61"
+        Skill="13">
+        <Name>Connaissance du Reikland</Name>
+    </Specialisation>
+    <Specialisation
+        Id="62"
+        Skill="13">
+        <Name>Géographie</Name>
+    </Specialisation>
+    <Specialisation
+        Id="63"
+        Skill="13">
+        <Name>Superstitions</Name>
+    </Specialisation>
+    <Specialisation
+        Id="64"
+        Skill="13">
+        <Name>Coutumes Locales</Name>
+    </Specialisation>
+    <Specialisation
+        Id="65"
+        Skill="14">
+        <Name>Subterfuge</Name>
+    </Specialisation>
+    <Specialisation
+        Id="66"
+        Skill="14">
+        <Name>Baratin</Name>
+    </Specialisation>
+    <Specialisation
+        Id="67"
+        Skill="14">
+        <Name>Escroquerie</Name>
+    </Specialisation>
+    <Specialisation
+        Id="68"
+        Skill="14">
+        <Name>Sous-Entendus</Name>
+    </Specialisation>
+    <Specialisation
+        Id="69"
+        Skill="14">
+        <Name>Feindre l'Innocence</Name>
+    </Specialisation>
+    <Specialisation
+        Id="70"
+        Skill="15">
+        <Name>Discerner les Mensonges</Name>
+    </Specialisation>
+    <Specialisation
+        Id="71"
+        Skill="15">
+        <Name>Compter la Monnaie</Name>
+    </Specialisation>
+    <Specialisation
+        Id="72"
+        Skill="15">
+        <Name>Évaluation</Name>
+    </Specialisation>
+    <Specialisation
+        Id="73"
+        Skill="15">
+        <Name>Appréciation des Adversaires</Name>
+    </Specialisation>
+    <Specialisation
+        Id="74"
+        Skill="16">
+        <Name>Commandement Militaire</Name>
+    </Specialisation>
+    <Specialisation
+        Id="75"
+        Skill="16">
+        <Name>Commandement Politique</Name>
+    </Specialisation>
+    <Specialisation
+        Id="76"
+        Skill="16">
+        <Name>Logistique</Name>
+    </Specialisation>
+    <Specialisation
+        Id="77"
+        Skill="16">
+        <Name>Chef Spirituel</Name>
+    </Specialisation>
+    <Specialisation
+        Id="78"
+        Skill="17">
+        <Name>Trouver Un Abri</Name>
+    </Specialisation>
+    <Specialisation
+        Id="79"
+        Skill="17">
+        <Name>Trouver à Manger</Name>
+    </Specialisation>
+    <Specialisation
+        Id="80"
+        Skill="17">
+        <Name>Trouver à Boire</Name>
+    </Specialisation>
+    <Specialisation
+        Id="81"
+        Skill="17">
+        <Name>Identification des Animaux</Name>
+    </Specialisation>
+    <Specialisation
+        Id="82"
+        Skill="17">
+        <Name>Identification des Plantes</Name>
+    </Specialisation>
+    <Specialisation
+        Id="83"
+        Skill="18">
+        <Name>Acuité Auditive</Name>
+    </Specialisation>
+    <Specialisation
+        Id="84"
+        Skill="18">
+        <Name>Acuité Visuelle</Name>
+    </Specialisation>
+    <Specialisation
+        Id="85"
+        Skill="18">
+        <Name>Pistage</Name>
+    </Specialisation>
+    <Specialisation
+        Id="86"
+        Skill="18">
+        <Name>Sens du Détail</Name>
+    </Specialisation>
+    <Specialisation
+        Id="87"
+        Skill="19">
+        <Name>Histoire de la Magie</Name>
+    </Specialisation>
+    <Specialisation
+        Id="88"
+        Skill="19">
+        <Name>Collèges de Magie</Name>
+    </Specialisation>
+    <Specialisation
+        Id="89"
+        Skill="19">
+        <Name>Sorts de Rang 1</Name>
+    </Specialisation>
+    <Specialisation
+        Id="90"
+        Skill="19">
+        <Name>Sorts de Rang 2</Name>
+    </Specialisation>
+    <Specialisation
+        Id="91"
+        Skill="19">
+        <Name>Sorts de Rang 3</Name>
+    </Specialisation>
+    <Specialisation
+        Id="92"
+        Skill="19">
+        <Name>Sorts de Rang 4</Name>
+    </Specialisation>
+    <Specialisation
+        Id="93"
+        Skill="19">
+        <Name>Sorts de Rang 5</Name>
+    </Specialisation>
+    <Specialisation
+        Id="94"
+        Skill="20">
+        <Name>Commandement</Name>
+    </Specialisation>
+    <Specialisation
+        Id="95"
+        Skill="20">
+        <Name>Entraînement</Name>
+    </Specialisation>
+    <Specialisation
+        Id="96"
+        Skill="20">
+        <Name>Empathie</Name>
+    </Specialisation>
+    <Specialisation
+        Id="97"
+        Skill="20">
+        <Name>Apaisement</Name>
+    </Specialisation>
+    <Specialisation
+        Id="98"
+        Skill="20">
+        <Name>Retour d'Obéissance</Name>
+    </Specialisation>
+    <Specialisation
+        Id="99"
+        Skill="21">
+        <Name>Histoire</Name>
+    </Specialisation>
+    <Specialisation
+        Id="100"
+        Skill="21">
+        <Name>Géographie</Name>
+    </Specialisation>
+    <Specialisation
+        Id="101"
+        Skill="21">
+        <Name>Raisonnement</Name>
+    </Specialisation>
+    <Specialisation
+        Id="102"
+        Skill="21">
+        <Name>Linguistique</Name>
+    </Specialisation>
+    <Specialisation
+        Id="103"
+        Skill="21">
+        <Name>Philosophie</Name>
+    </Specialisation>
+    <Specialisation
+        Id="104"
+        Skill="22">
+        <Name>Demi-Régime</Name>
+    </Specialisation>
+    <Specialisation
+        Id="105"
+        Skill="22">
+        <Name>Surfocalisation</Name>
+    </Specialisation>
+    <Specialisation
+        Id="106"
+        Skill="22">
+        <Name>Prudence</Name>
+    </Specialisation>
+    <Specialisation
+        Id="107"
+        Skill="22">
+        <Name>Témérité</Name>
+    </Specialisation>
+    <Specialisation
+        Id="108"
+        Skill="22">
+        <Name>Collège de Magie Spécifique</Name>
+    </Specialisation>
+    <Specialisation
+        Id="109"
+        Skill="23">
+        <Name>Divinité Spécifique</Name>
+    </Specialisation>
+    <Specialisation
+        Id="110"
+        Skill="23">
+        <Name>Invocation Rituelle</Name>
+    </Specialisation>
+    <Specialisation
+        Id="111"
+        Skill="23">
+        <Name>Invocation de Groupe</Name>
+    </Specialisation>
+    <Specialisation
+        Id="112"
+        Skill="24">
+        <Name>Blessures Critiques</Name>
+    </Specialisation>
+    <Specialisation
+        Id="113"
+        Skill="24">
+        <Name>Poisons</Name>
+    </Specialisation>
+    <Specialisation
+        Id="114"
+        Skill="24">
+        <Name>Maladies</Name>
+    </Specialisation>
+    <Specialisation
+        Id="115"
+        Skill="24">
+        <Name>Soins à Long Terme</Name>
+    </Specialisation>
+    <Specialisation
+        Id="116"
+        Skill="24">
+        <Name>Chirurgie</Name>
+    </Specialisation>
+    <Specialisation
+        Id="117"
+        Skill="25">
+        <Name>Forgeron</Name>
+    </Specialisation>
+    <Specialisation
+        Id="118"
+        Skill="25">
+        <Name>Charpentier</Name>
+    </Specialisation>
+    <Specialisation
+        Id="119"
+        Skill="25">
+        <Name>Joailler</Name>
+    </Specialisation>
+    <Specialisation
+        Id="120"
+        Skill="25">
+        <Name>Brasser</Name>
+    </Specialisation>
+    <Specialisation
+        Id="121"
+        Skill="25">
+        <Name>Ingénieur</Name>
+    </Specialisation>
+    <Specialisation
+        Id="122"
+        Skill="25">
+        <Name>Spectacle</Name>
+    </Specialisation>
+    <Specialisation
+        Id="123"
+        Skill="26">
+        <Name>Observer un Vent Spécifique</Name>
+    </Specialisation>
+    <Specialisation
+        Id="124"
+        Skill="26">
+        <Name>Identification des Sorts</Name>
+    </Specialisation>
+    <Specialisation
+        Id="125"
+        Skill="26">
+        <Name>Discerner les Auras</Name>
+    </Specialisation>
+    <Specialisation
+        Id="126"
+        Skill="26">
+        <Name>Magie Noire</Name>
+    </Specialisation>
+    <Specialisation
+        Id="127"
+        Skill="26">
+        <Name>Estimation de l'Énergie</Name>
+    </Specialisation>
+    <Specialisation
+        Id="128"
+        Skill="27">
+        <Name>Demi-Régime</Name>
+    </Specialisation>
+    <Specialisation
+        Id="129"
+        Skill="27">
+        <Name>Prudence</Name>
+    </Specialisation>
+    <Specialisation
+        Id="130"
+        Skill="27">
+        <Name>Témérité</Name>
+    </Specialisation>
+    <Specialisation
+        Id="131"
+        Skill="27">
+        <Name>En Grand Besoin</Name>
+    </Specialisation>
+    <Specialisation
+        Id="132"
+        Skill="27">
+        <Name>Traditions</Name>
+    </Specialisation>
+    <Specialisation
+        Id="133"
+        Skill="27">
+        <Name>Dogme</Name>
+    </Specialisation>
+</Specialisations>

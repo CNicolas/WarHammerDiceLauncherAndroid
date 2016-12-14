@@ -36,7 +36,7 @@ public class SkillHelper {
     private Map<SkillType, List<Skill>> skillsByType;
 
     /**
-     * Private constructor;
+     * Private constructor.
      */
     private SkillHelper() {
         skillsById = new LongSparseArray<>();
