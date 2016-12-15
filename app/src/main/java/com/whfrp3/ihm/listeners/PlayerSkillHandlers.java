@@ -12,8 +12,8 @@ import android.widget.CheckBox;
 
 import com.whfrp3.R;
 import com.whfrp3.ihm.activities.LaunchActivity;
-import com.whfrp3.model.player.inventory.Weapon;
 import com.whfrp3.model.player.PlayerSkill;
+import com.whfrp3.model.player.inventory.Weapon;
 import com.whfrp3.tools.WHFRP3Application;
 import com.whfrp3.tools.constants.IPlayerActivityConstants;
 import com.whfrp3.tools.helpers.PlayerHelper;
@@ -60,12 +60,12 @@ public class PlayerSkillHandlers implements IPlayerActivityConstants {
         Log.w("SKILL", playerSkill.toString());
     }
 
-    public void launchSkill(final PlayerSkill skill) {
+    public void launchSkill(final PlayerSkill playerSkill) {
         final Weapon[] weapon = {null};
 
-        if (skill.isFightSkill()) {
+        if (playerSkill.isFightSkill()) {
             List<Weapon> weapons;
-            if (skill.isWeaponSkill()) {
+            if (playerSkill.isWeaponSkill()) {
                 weapons = WHFRP3Application.getPlayer().getMeleeUsableWeapons();
             } else {
                 weapons = WHFRP3Application.getPlayer().getDistanceUsableWeapons();
@@ -74,7 +74,7 @@ public class PlayerSkillHandlers implements IPlayerActivityConstants {
             if (weapons.size() > 1) {
                 List<String> items = PlayerHelper.getWeaponsName(weapons);
                 final AlertDialog.Builder rangeDialogBuilder = new AlertDialog.Builder(WHFRP3Application.getActivity());
-                rangeDialogBuilder.setTitle(skill.getName());
+                rangeDialogBuilder.setTitle(playerSkill.getSkill().getName());
 
                 final List<Weapon> finalWeapons = weapons;
                 rangeDialogBuilder.setSingleChoiceItems(items.toArray(new String[]{}), 0, new DialogInterface.OnClickListener() {
@@ -86,17 +86,17 @@ public class PlayerSkillHandlers implements IPlayerActivityConstants {
                 rangeDialogBuilder.setPositiveButton(R.string.ok, new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
-                        startLaunchActivity(skill, weapon[0]);
+                        startLaunchActivity(playerSkill, weapon[0]);
                         dialog.dismiss();
                     }
                 });
 
                 rangeDialogBuilder.show();
             } else if (weapons.size() == 1) {
-                startLaunchActivity(skill, weapon[0]);
+                startLaunchActivity(playerSkill, weapon[0]);
             }
         } else {
-            startLaunchActivity(skill, null);
+            startLaunchActivity(playerSkill, null);
         }
     }
 
@@ -105,7 +105,7 @@ public class PlayerSkillHandlers implements IPlayerActivityConstants {
      *
      * @param playerSkill the skill to launch
      */
-    public void startLaunchActivity(PlayerSkill playerSkill) {
+    private void startLaunchActivity(PlayerSkill playerSkill, @Nullable Weapon weapon) {
         Activity currentActivity = WHFRP3Application.getActivity();
 
         Bundle bundle = new Bundle();

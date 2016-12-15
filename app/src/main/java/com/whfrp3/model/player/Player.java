@@ -64,7 +64,7 @@ public class Player extends AbstractModel {
     private Characteristics characteristics;
     private Money money;
     private List<Item> inventory;
-    private List<PlayerSkill> skills;
+    private List<PlayerSkill> playerSkills;
     private List<Talent> talents;
 
     /**
@@ -80,14 +80,14 @@ public class Player extends AbstractModel {
     public Player() {
         characteristics = new Characteristics();
         money = new Money(0, 0, 0);
-        skills = new ArrayList<>();
+        playerSkills = new ArrayList<>();
         inventory = new ArrayList<>();
         talents = new ArrayList<>();
 
-        // Initialize skills list
+        // Initialize playerSkills list
         List<Skill> basicSkills = SkillHelper.getInstance().getSkillsByType(SkillType.BASIC);
         for (Skill basicSkill : basicSkills) {
-            skills.add(new PlayerSkill(basicSkill, this, 0));
+            playerSkills.add(new PlayerSkill(basicSkill, this, 0));
         }
     }
     //endregion
@@ -558,12 +558,12 @@ public class Player extends AbstractModel {
     }
 
     @Bindable
-    public List<PlayerSkill> getSkills() {
-        return skills;
+    public List<PlayerSkill> getPlayerSkills() {
+        return playerSkills;
     }
 
-    public void setSkills(List<PlayerSkill> playerSkills) {
-        this.skills = playerSkills;
+    public void setPlayerSkills(List<PlayerSkill> playerSkills) {
+        this.playerSkills = playerSkills;
     }
 
     public List<Long> getItemToRemove() {
@@ -596,7 +596,7 @@ public class Player extends AbstractModel {
                 ", money=" + money.toString() +
                 ", characteristics=" + characteristics +
                 ", inventory=" + inventory +
-                ", skills=" + skills +
+                ", playerSkills=" + playerSkills +
                 '}';
     }
 
@@ -633,7 +633,7 @@ public class Player extends AbstractModel {
             return false;
         if (getInventory() != null ? !getInventory().equals(player.getInventory()) : player.getInventory() != null)
             return false;
-        return getSkills() != null ? getSkills().equals(player.getSkills()) : player.getSkills() == null;
+        return getPlayerSkills() != null ? getPlayerSkills().equals(player.getPlayerSkills()) : player.getPlayerSkills() == null;
 
     }
 
@@ -661,7 +661,7 @@ public class Player extends AbstractModel {
         result = 31 * result + getMax_conservative();
         result = 31 * result + (getCharacteristics() != null ? getCharacteristics().hashCode() : 0);
         result = 31 * result + (getInventory() != null ? getInventory().hashCode() : 0);
-        result = 31 * result + (getSkills() != null ? getSkills().hashCode() : 0);
+        result = 31 * result + (getPlayerSkills() != null ? getPlayerSkills().hashCode() : 0);
         return result;
     }
 

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="skill_athletics">Athletics</string>
-    <string name="skill_ballistic">Balistic</string>
+    <string name="skill_ballistic">Ballistic</string>
     <string name="skill_coordination">Coordination</string>
     <string name="skill_intimidate">Intimidate</string>
     <string name="skill_resilience">Resilience</string>

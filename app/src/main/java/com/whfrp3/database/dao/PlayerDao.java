@@ -77,7 +77,7 @@ public class PlayerDao extends AbstractDaoWithId<Player> implements IPlayerEntry
      */
     public Player findByName(String name) {
         Player player = findByColumn(COLUMN_NAME, name);
-        player.setSkills(mPlayerSkillDao.findAllByPlayerId(player.getId()));
+        player.setPlayerSkills(mPlayerSkillDao.findAllByPlayerId(player.getId()));
 
         return player;
     }
@@ -95,7 +95,7 @@ public class PlayerDao extends AbstractDaoWithId<Player> implements IPlayerEntry
         super.insert(player);
 
         // Insert skills
-        for (PlayerSkill playerSkill : player.getSkills()) {
+        for (PlayerSkill playerSkill : player.getPlayerSkills()) {
             playerSkill.setPlayerId(player.getId());
             mPlayerSkillDao.insert(playerSkill);
         }
@@ -121,7 +121,7 @@ public class PlayerDao extends AbstractDaoWithId<Player> implements IPlayerEntry
 
         // Update skills
         mPlayerSkillDao.deleteAllByPlayerId(player.getId());
-        for (PlayerSkill skill : player.getSkills()) {
+        for (PlayerSkill skill : player.getPlayerSkills()) {
             mPlayerSkillDao.insert(skill);
         }
 
@@ -223,7 +223,7 @@ public class PlayerDao extends AbstractDaoWithId<Player> implements IPlayerEntry
 
         // Find playerSkills
         List<PlayerSkill> playerSkills = mPlayerSkillDao.findAllByPlayerId(model.getId());
-        model.setSkills(playerSkills);
+        model.setPlayerSkills(playerSkills);
 
         // Find items
         List<Item> items = mItemDao.findAllByPlayerId(model.getId());

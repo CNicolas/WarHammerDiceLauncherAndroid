@@ -2,7 +2,9 @@ package com.whfrp3.model.player;
 
 import android.databinding.BaseObservable;
 
+import com.whfrp3.R;
 import com.whfrp3.model.Skill;
+import com.whfrp3.tools.BindingUtils;
 
 import java.io.Serializable;
 
@@ -71,6 +73,18 @@ public class PlayerSkill extends BaseObservable implements Serializable {
     }
 
     //endregion
+
+    public boolean isFightSkill() {
+        return isWeaponSkill() || isBallisticSkill();
+    }
+
+    public boolean isWeaponSkill() {
+        return BindingUtils.string(R.string.skill_weapon).equals(getSkill().getName());
+    }
+
+    public boolean isBallisticSkill() {
+        return BindingUtils.string(R.string.skill_ballistic).equals(getSkill().getName());
+    }
 
     //region Get & Set
 
