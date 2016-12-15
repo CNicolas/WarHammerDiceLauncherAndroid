@@ -6,7 +6,6 @@ import android.util.LongSparseArray;
 
 import com.whfrp3.R;
 import com.whfrp3.model.Skill;
-import com.whfrp3.model.Specialisation;
 import com.whfrp3.model.enums.Characteristic;
 import com.whfrp3.model.enums.SkillType;
 import com.whfrp3.tools.WHFRP3Application;

@@ -6,15 +6,28 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ListView;
 
 import com.whfrp3.R;
+import com.whfrp3.ihm.adapters.SpecializationsListAdapter;
+import com.whfrp3.model.Specialization;
 import com.whfrp3.tools.BindingUtils;
+import com.whfrp3.tools.helpers.SpecializationHelper;
+
+import java.util.List;
 
 public class SpecializationsFragment extends Fragment {
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        return inflater.inflate(R.layout.fragment_specializations, container, false);
+        View rootView = inflater.inflate(R.layout.fragment_specializations, container, false);
+
+        List<Specialization> specializations = SpecializationHelper.getInstance().getSpecializations();
+
+        ListView specializationsListView = (ListView) rootView.findViewById(R.id.specializations_list);
+        specializationsListView.setAdapter(new SpecializationsListAdapter(inflater, specializations));
+
+        return rootView;
     }
 
 

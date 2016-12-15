@@ -6,46 +6,46 @@ import android.util.LongSparseArray;
 
 import com.whfrp3.R;
 import com.whfrp3.model.Skill;
-import com.whfrp3.model.Specialisation;
+import com.whfrp3.model.Specialization;
 import com.whfrp3.tools.WHFRP3Application;
 
 import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Specialisation helper used to manage specialisations.
+ * Specialization helper used to manage specializations.
  */
-public class SpecialisationHelper {
+public class SpecializationHelper {
 
     /**
      * Unique instance of the helper.
      */
-    private static SpecialisationHelper instance;
+    private static SpecializationHelper instance;
 
     /**
-     * Loaded specialisations.
+     * Loaded specializations.
      */
-    private List<Specialisation> specialisations;
+    private List<Specialization> specializations;
 
     /**
-     * Loaded specialisations by id.
+     * Loaded specializations by id.
      */
-    private LongSparseArray<Specialisation> specialisationsById;
+    private LongSparseArray<Specialization> specialisationsById;
 
     /**
-     * Loaded specialisations by skill id.
+     * Loaded specializations by skill id.
      */
-    private LongSparseArray<List<Specialisation>> specialisationsBySkillId;
+    private LongSparseArray<List<Specialization>> specialisationsBySkillId;
 
     /**
      * Private constructor.
      */
-    private SpecialisationHelper() {
-        specialisations = new ArrayList<>();
+    private SpecializationHelper() {
+        specializations = new ArrayList<>();
         specialisationsById = new LongSparseArray<>();
         specialisationsBySkillId = new LongSparseArray<>();
         for (Skill skill : SkillHelper.getInstance().getSkills()) {
-            specialisationsBySkillId.put(skill.getId(), new ArrayList<Specialisation>());
+            specialisationsBySkillId.put(skill.getId(), new ArrayList<Specialization>());
         }
     }
 
@@ -54,40 +54,40 @@ public class SpecialisationHelper {
      *
      * @return Unique instance of the specialisation helper.
      */
-    public static SpecialisationHelper getInstance() {
+    public static SpecializationHelper getInstance() {
         if (instance == null) {
-            instance = new SpecialisationHelper();
+            instance = new SpecializationHelper();
         }
 
         return instance;
     }
 
     /**
-     * Loads specialisations stored in specialisations.xml file.
+     * Loads specializations stored in specializations.xml file.
      */
     public void loadSpecialisations() {
         try {
             XmlResourceParser xmlParser = WHFRP3Application.getAppContext().getResources().getXml(R.xml.specialisations);
 
-            Specialisation specialisation = null;
+            Specialization specialization = null;
 
             int eventType = xmlParser.getEventType();
             while (eventType != XmlResourceParser.END_DOCUMENT) {
                 if (eventType == XmlResourceParser.START_TAG) {
-                    if (xmlParser.getName().equals(Specialisation.class.getSimpleName())) {
+                    if (xmlParser.getName().equals(Specialization.class.getSimpleName())) {
                         long skillId = Long.valueOf(xmlParser.getAttributeValue(1));
 
-                        specialisation = new Specialisation();
-                        specialisation.setId(Long.valueOf(xmlParser.getAttributeValue(0)));
-                        specialisation.setSkill(SkillHelper.getInstance().getSkill(skillId));
+                        specialization = new Specialization();
+                        specialization.setId(Long.valueOf(xmlParser.getAttributeValue(0)));
+                        specialization.setSkill(SkillHelper.getInstance().getSkill(skillId));
                     } else if ("Name".equals(xmlParser.getName())) {
-                        specialisation.setName(xmlParser.nextText());
+                        specialization.setName(xmlParser.nextText());
                     }
                 } else if (eventType == XmlResourceParser.END_TAG) {
-                    if (xmlParser.getName().equals(Specialisation.class.getSimpleName()) && specialisation != null) {
-                        specialisations.add(specialisation);
-                        specialisationsById.put(specialisation.getId(), specialisation);
-                        specialisationsBySkillId.get(specialisation.getSkill().getId()).add(specialisation);
+                    if (xmlParser.getName().equals(Specialization.class.getSimpleName()) && specialization != null) {
+                        specializations.add(specialization);
+                        specialisationsById.put(specialization.getId(), specialization);
+                        specialisationsBySkillId.get(specialization.getSkill().getId()).add(specialization);
                     }
                 }
 
@@ -101,31 +101,31 @@ public class SpecialisationHelper {
     }
 
     /**
-     * Return all the specialisations.
+     * Return all the specializations.
      *
-     * @return All the specialisations.
+     * @return All the specializations.
      */
-    public List<Specialisation> getSpecialisations() {
-        return specialisations;
+    public List<Specialization> getSpecializations() {
+        return specializations;
     }
 
     /**
      * Return the specialisation with de given id.
      *
      * @param id Id of the specialisation.
-     * @return Specialisation with the given id.
+     * @return Specialization with the given id.
      */
-    public Specialisation getSpecialisation(long id) {
+    public Specialization getSpecialisation(long id) {
         return specialisationsById.get(id);
     }
 
     /**
-     * Return the specialisations of the given skill.
+     * Return the specializations of the given skill.
      *
      * @param skillId Id of the skill.
      * @return Specialisations of the given skill.
      */
-    public List<Specialisation> getSpecialisationsBySkillId(long skillId) {
+    public List<Specialization> getSpecialisationsBySkillId(long skillId) {
         return specialisationsBySkillId.get(skillId);
     }
 }

@@ -8,28 +8,28 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 
 import com.whfrp3.R;
-import com.whfrp3.databinding.ElementListSkillBinding;
-import com.whfrp3.model.Skill;
+import com.whfrp3.databinding.ElementListSpecializationBinding;
+import com.whfrp3.model.Specialization;
 
 import java.util.List;
 
 /**
  * The Adapter for the talents list.
  */
-public class SkillsListAdapter extends ArrayAdapter {
-    private List<Skill> mSkills;
+public class SpecializationsListAdapter extends ArrayAdapter {
+    private List<Specialization> mSpecializations;
     private final LayoutInflater inflater;
 
-    public SkillsListAdapter(@NonNull LayoutInflater inflater, List<Skill> skills) {
-        super(inflater.getContext(), R.layout.element_list_skill, skills);
+    public SpecializationsListAdapter(@NonNull LayoutInflater inflater, List<Specialization> specializations) {
+        super(inflater.getContext(), R.layout.element_list_specialization, specializations);
 
         this.inflater = inflater;
-        mSkills = skills;
+        mSpecializations = specializations;
     }
 
     @Override
     public int getCount() {
-        return mSkills.size();
+        return mSpecializations.size();
     }
 
     @Override
@@ -39,7 +39,7 @@ public class SkillsListAdapter extends ArrayAdapter {
 
     @Override
     public Object getItem(int position) {
-        return mSkills.get(position);
+        return mSpecializations.get(position);
     }
 
     @Override
@@ -50,8 +50,8 @@ public class SkillsListAdapter extends ArrayAdapter {
     @NonNull
     @Override
     public View getView(int position, View convertView, @NonNull ViewGroup parent) {
-        ElementListSkillBinding binding = DataBindingUtil.inflate(inflater, R.layout.element_list_skill, parent, false);
-        binding.setSkill(mSkills.get(position));
+        ElementListSpecializationBinding binding = DataBindingUtil.inflate(inflater, R.layout.element_list_specialization, parent, false);
+        binding.setSpecialization(mSpecializations.get(position));
 
         return binding.getRoot();
     }
