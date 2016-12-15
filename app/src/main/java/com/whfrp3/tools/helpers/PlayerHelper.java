@@ -4,9 +4,12 @@ import android.util.Log;
 
 import com.whfrp3.BR;
 import com.whfrp3.model.player.Player;
+import com.whfrp3.model.player.inventory.Item;
+import com.whfrp3.model.player.inventory.Weapon;
 import com.whfrp3.model.player.PlayerSkill;
 import com.whfrp3.tools.WHFRP3Application;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -40,6 +43,16 @@ public abstract class PlayerHelper {
         if (newExertionValue >= 0 && newExertionValue <= player.getMaxExertionBeforeComa()) {
             player.setExertion(player.getExertion() + change);
         }
+    }
+
+    public static List<String> getWeaponsName(List<Weapon> items) {
+        List<String> res = new ArrayList<>();
+
+        for (Item item : items) {
+            res.add(item.getName());
+        }
+
+        return res;
     }
 
     public static void notifyBinding() {

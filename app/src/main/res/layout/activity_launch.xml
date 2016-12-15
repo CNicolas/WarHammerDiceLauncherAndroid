@@ -18,6 +18,7 @@
     <android.support.design.widget.CoordinatorLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:background="@android:color/white"
         android:fitsSystemWindows="true"
         tools:context="com.whfrp3.ihm.activities.LaunchActivity">
 
@@ -29,11 +30,11 @@
             <include layout="@layout/toolbar" />
         </android.support.design.widget.AppBarLayout>
 
-        <RelativeLayout
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:background="@android:color/white"
             android:fitsSystemWindows="true"
+            android:orientation="vertical"
             android:padding="@dimen/medium_padding"
             app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
@@ -143,11 +144,10 @@
                 android:id="@+id/hands_spinner"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_below="@id/dice_number_pickers"
                 android:layout_marginBottom="10dp"
                 android:layout_marginTop="10dp"
-                android:minHeight="30dp" />
-
+                android:minHeight="30dp"
+                android:paddingStart="@dimen/medium_padding" />
             <!--END OF HANDS LAYOUT-->
 
             <!--BUTTONS-->
@@ -155,7 +155,6 @@
                 android:id="@+id/launchButton"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_below="@id/hands_spinner"
                 android:enabled="@{hand.notEmpty}"
                 android:onClick="rollDices"
                 android:tag="0"
@@ -164,7 +163,6 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_below="@+id/launchButton"
                 android:layout_marginTop="10dp"
                 android:orientation="vertical">
 
@@ -224,17 +222,14 @@
                         android:text="@string/action_launch10000" />
                 </LinearLayout>
             </LinearLayout>
+        </LinearLayout>
 
-
-            <android.support.design.widget.FloatingActionButton
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentBottom="true"
-                android:layout_alignParentEnd="true"
-                android:layout_margin="@dimen/fab_margin_padding"
-                android:onClick="@{() -> handlers.resetHand(hand)}"
-                app:srcCompat="@drawable/ic_not_interested_white" />
-
-        </RelativeLayout>
+        <android.support.design.widget.FloatingActionButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom|end"
+            android:layout_margin="@dimen/fab_margin_padding"
+            android:onClick="@{() -> handlers.resetHand(hand)}"
+            app:srcCompat="@drawable/ic_not_interested_white" />
     </android.support.design.widget.CoordinatorLayout>
 </layout>

@@ -13,7 +13,7 @@
 
         <variable
             name="handlers"
-            type="com.whfrp3.ihm.listeners.SkillHandlers" />
+            type="com.whfrp3.ihm.listeners.PlayerSkillHandlers" />
     </data>
 
     <LinearLayout
@@ -27,7 +27,7 @@
             style="@style/SkillName"
             android:background="?android:attr/selectableItemBackground"
             android:clickable="true"
-            android:onClick="@{() -> handlers.startLaunchActivity(playerSkill)}"
+            android:onClick="@{() -> handlers.launchSkill(playerSkill)}"
             android:text="@{playerSkill.skill.name}" />
 
         <CheckBox

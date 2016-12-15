@@ -10,6 +10,7 @@ android {
         targetSdkVersion 24
         versionCode 1
         versionName "1.0"
+        vectorDrawables.useSupportLibrary = true
     }
     buildTypes {
         release {
@@ -36,6 +37,4 @@ dependencies {
     compile 'com.android.support:design:24.1.1'
 
     compile 'org.adw.library:discrete-seekbar:1.0.1'
-    compile 'com.nineoldandroids:library:2.4.0+'
-    compile 'com.github.ai212983:android-spinnerwheel:353539d039'
 }

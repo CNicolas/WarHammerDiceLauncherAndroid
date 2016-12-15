@@ -7,6 +7,7 @@ public interface IPlayerActivityConstants {
     String IS_IN_EDITION_BUNDLE_TAG = "isInEdition";
     String CURRENT_FRAGMENT_POSITION_BUNDLE_TAG = "fragmentPosition";
     String SKILL_BUNDLE_TAG = "skill";
+    String WEAPON_BUNDLE_TAG = "weapon";
 
     int CHARACTERISTICS_FRAGMENT_POSITION = 0;
     int ADVENTURE_FRAGMENT_POSITION = 1;

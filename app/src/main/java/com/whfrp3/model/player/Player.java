@@ -225,21 +225,30 @@ public class Player extends AbstractModel {
         return res;
     }
 
-    /**
-     * Returns the first equipped weapon that can be used
-     *
-     * @param range
-     * @return
-     */
-    public Weapon getUsableWeapon(Range range) {
-        List<Weapon> weapons = getWeapons();
+    public List<Weapon> getMeleeUsableWeapons() {
+        List<Weapon> res = new ArrayList<>();
+
+        List<Weapon> weapons = getEquippedWeapons();
         for (Weapon weapon : weapons) {
-            if (weapon.canBeUsed(range)) {
-                return weapon;
+            if (Range.ENGAGED.equals(weapon.getRange())) {
+                res.add(weapon);
             }
         }
 
-        return null;
+        return res;
+    }
+
+    public List<Weapon> getDistanceUsableWeapons() {
+        List<Weapon> res = new ArrayList<>();
+
+        List<Weapon> weapons = getEquippedWeapons();
+        for (Weapon weapon : weapons) {
+            if (weapon.canBeUsed(Range.SHORT)) {
+                res.add(weapon);
+            }
+        }
+
+        return res;
     }
     //endregion
 

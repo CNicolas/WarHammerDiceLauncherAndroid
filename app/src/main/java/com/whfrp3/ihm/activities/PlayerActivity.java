@@ -59,6 +59,12 @@ public class PlayerActivity extends AppCompatActivity implements IPlayerActivity
     }
 
     @Override
+    protected void onResume() {
+        WHFRP3Application.setActivity(this);
+        super.onResume();
+    }
+
+    @Override
     protected void onPause() {
         PlayerHelper.savePlayer(WHFRP3Application.getPlayer());
         super.onPause();
@@ -144,7 +150,7 @@ public class PlayerActivity extends AppCompatActivity implements IPlayerActivity
     /**
      * Effectively changes the edition mode in PlayerHelper and update the UI.
      *
-     * @param isInEdition
+     * @param isInEdition edition state
      */
     private void setIsInEdition(boolean isInEdition) {
         WHFRP3Application.getPlayer().setInEdition(isInEdition);
