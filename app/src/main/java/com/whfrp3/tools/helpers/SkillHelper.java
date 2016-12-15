@@ -6,6 +6,7 @@ import android.util.LongSparseArray;
 
 import com.whfrp3.R;
 import com.whfrp3.model.Skill;
+import com.whfrp3.model.Specialisation;
 import com.whfrp3.model.enums.Characteristic;
 import com.whfrp3.model.enums.SkillType;
 import com.whfrp3.tools.WHFRP3Application;
@@ -26,9 +27,19 @@ public class SkillHelper {
     private static SkillHelper instance;
 
     /**
+     * Loaded skills.
+     */
+    private List<Skill> skills;
+
+    /**
      * Loaded skills by id.
      */
     private LongSparseArray<Skill> skillsById;
+
+    /**
+     * Loaded skills by characteristic.
+     */
+    private Map<Characteristic, List<Skill>> skillsByCharacteristic;
 
     /**
      * Loaded skills by type.
@@ -39,7 +50,12 @@ public class SkillHelper {
      * Private constructor.
      */
     private SkillHelper() {
+        skills = new ArrayList<>();
         skillsById = new LongSparseArray<>();
+        skillsByCharacteristic = new HashMap<>();
+        for (Characteristic characteristic : Characteristic.values()) {
+            skillsByCharacteristic.put(characteristic, new ArrayList<Skill>());
+        }
         skillsByType = new HashMap<>();
         for (SkillType type : SkillType.values()) {
             skillsByType.put(type, new ArrayList<Skill>());
@@ -86,7 +102,9 @@ public class SkillHelper {
                             && skillId != null && skillName != null && skillCharacteristic != null) {
                         Skill skill = new Skill(skillId, skillName, skillCharacteristic, skillType);
 
+                        skills.add(skill);
                         skillsById.put(skill.getId(), skill);
+                        skillsByCharacteristic.get(skill.getCharacteristic()).add(skill);
                         skillsByType.get(skill.getType()).add(skill);
 
                         skillId = null;
@@ -106,6 +124,15 @@ public class SkillHelper {
     }
 
     /**
+     * Return all the skills.
+     *
+     * @return All the skills.
+     */
+    public List<Skill> getSkills() {
+        return skills;
+    }
+
+    /**
      * Return the skill with de given id.
      *
      * @param id Id of the skill.
@@ -113,6 +140,16 @@ public class SkillHelper {
      */
     public Skill getSkill(long id) {
         return skillsById.get(id);
+    }
+
+    /**
+     * Return the skills of the given characteristic.
+     *
+     * @param characteristic Characteristic of the skills.
+     * @return Skills of the given characteristic.
+     */
+    public List<Skill> getSkillsByCharacteristic(Characteristic characteristic) {
+        return skillsByCharacteristic.get(characteristic);
     }
 
     /**

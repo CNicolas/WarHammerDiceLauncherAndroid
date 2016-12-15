@@ -9,6 +9,9 @@ import com.whfrp3.model.Skill;
 import com.whfrp3.model.Specialisation;
 import com.whfrp3.tools.WHFRP3Application;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * Specialisation helper used to manage specialisations.
  */
@@ -20,15 +23,30 @@ public class SpecialisationHelper {
     private static SpecialisationHelper instance;
 
     /**
+     * Loaded specialisations.
+     */
+    private List<Specialisation> specialisations;
+
+    /**
      * Loaded specialisations by id.
      */
     private LongSparseArray<Specialisation> specialisationsById;
 
     /**
+     * Loaded specialisations by skill id.
+     */
+    private LongSparseArray<List<Specialisation>> specialisationsBySkillId;
+
+    /**
      * Private constructor.
      */
     private SpecialisationHelper() {
+        specialisations = new ArrayList<>();
         specialisationsById = new LongSparseArray<>();
+        specialisationsBySkillId = new LongSparseArray<>();
+        for (Skill skill : SkillHelper.getInstance().getSkills()) {
+            specialisationsBySkillId.put(skill.getId(), new ArrayList<Specialisation>());
+        }
     }
 
     /**
@@ -67,7 +85,9 @@ public class SpecialisationHelper {
                     }
                 } else if (eventType == XmlResourceParser.END_TAG) {
                     if (xmlParser.getName().equals(Skill.class.getSimpleName()) && specialisation != null) {
+                        specialisations.add(specialisation);
                         specialisationsById.put(specialisation.getId(), specialisation);
+                        specialisationsBySkillId.get(specialisation.getSkill().getId()).add(specialisation);
                     }
                 }
 
@@ -81,6 +101,15 @@ public class SpecialisationHelper {
     }
 
     /**
+     * Return all the specialisations.
+     *
+     * @return All the specialisations.
+     */
+    public List<Specialisation> getSpecialisations() {
+        return specialisations;
+    }
+
+    /**
      * Return the specialisation with de given id.
      *
      * @param id Id of the specialisation.
@@ -88,5 +117,15 @@ public class SpecialisationHelper {
      */
     public Specialisation getSpecialisation(long id) {
         return specialisationsById.get(id);
+    }
+
+    /**
+     * Return the specialisations of the given skill.
+     *
+     * @param skillId Id of the skill.
+     * @return Specialisations of the given skill.
+     */
+    public List<Specialisation> getSpecialisationsBySkillId(long skillId) {
+        return specialisationsBySkillId.get(skillId);
     }
 }
