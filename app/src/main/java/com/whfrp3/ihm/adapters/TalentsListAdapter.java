@@ -21,7 +21,7 @@ public class TalentsListAdapter extends ArrayAdapter {
     private final LayoutInflater inflater;
 
     public TalentsListAdapter(@NonNull LayoutInflater inflater, List<Talent> talents) {
-        super(inflater.getContext(), R.layout.element_list_weapon, talents);
+        super(inflater.getContext(), R.layout.element_list_talent, talents);
 
         this.inflater = inflater;
         mTalents = talents;

@@ -6,15 +6,30 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ListView;
 
 import com.whfrp3.R;
+import com.whfrp3.ihm.adapters.SkillsListAdapter;
+import com.whfrp3.model.Skill;
+import com.whfrp3.model.enums.SkillType;
 import com.whfrp3.tools.BindingUtils;
+import com.whfrp3.tools.helpers.SkillHelper;
+
+import java.util.List;
 
 public class SkillsFragment extends Fragment {
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        return inflater.inflate(R.layout.fragment_skills, container, false);
+        View rootView = inflater.inflate(R.layout.fragment_skills, container, false);
+
+        final List<Skill> skills = SkillHelper.getInstance().getSkillsByType(SkillType.BASIC);
+        skills.addAll(SkillHelper.getInstance().getSkillsByType(SkillType.ADVANCED));
+
+        ListView skillsListView = (ListView) rootView.findViewById(R.id.skills_list);
+        skillsListView.setAdapter(new SkillsListAdapter(inflater, skills));
+
+        return rootView;
     }
 
 

@@ -13,7 +13,7 @@ import android.view.LayoutInflater;
 import android.widget.ListView;
 import android.widget.TextView;
 
-import com.whfrp3.ihm.adapters.SkillsListAdapter;
+import com.whfrp3.ihm.adapters.PlayerSkillsListAdapter;
 import com.whfrp3.ihm.adapters.WeaponsListAdapter;
 import com.whfrp3.model.player.PlayerSkill;
 import com.whfrp3.model.player.inventory.Weapon;
@@ -54,7 +54,7 @@ public abstract class BindingUtils {
     @BindingAdapter("skills")
     public static void bindSkills(ListView view, List<PlayerSkill> list) {
         LayoutInflater inflater = (LayoutInflater) WHFRP3Application.getAppContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-        SkillsListAdapter adapter = new SkillsListAdapter(inflater, list);
+        PlayerSkillsListAdapter adapter = new PlayerSkillsListAdapter(inflater, list);
         view.setAdapter(adapter);
     }
 
