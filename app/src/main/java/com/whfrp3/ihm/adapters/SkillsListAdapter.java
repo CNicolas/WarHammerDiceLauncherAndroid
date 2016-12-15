@@ -9,6 +9,7 @@ import android.widget.ArrayAdapter;
 
 import com.whfrp3.R;
 import com.whfrp3.databinding.ElementListSkillBinding;
+import com.whfrp3.ihm.listeners.SkillsHandlers;
 import com.whfrp3.model.Skill;
 
 import java.util.List;
@@ -52,6 +53,7 @@ public class SkillsListAdapter extends ArrayAdapter {
     public View getView(int position, View convertView, @NonNull ViewGroup parent) {
         ElementListSkillBinding binding = DataBindingUtil.inflate(inflater, R.layout.element_list_skill, parent, false);
         binding.setSkill(mSkills.get(position));
+        binding.setHandlers(new SkillsHandlers());
 
         return binding.getRoot();
     }

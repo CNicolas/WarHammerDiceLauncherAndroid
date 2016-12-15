@@ -3,12 +3,12 @@ package com.whfrp3.model;
 /**
  * The specialisation model.
  */
-public class Specialization extends AbstractModel {
+public class Specialisation extends AbstractModel {
 
     //region Properties
 
     /**
-     * Specialization name.
+     * Specialisation name.
      */
     private String name;
 
@@ -24,7 +24,7 @@ public class Specialization extends AbstractModel {
     /**
      * Default constructor.
      */
-    public Specialization() {
+    public Specialisation() {
 
     }
 

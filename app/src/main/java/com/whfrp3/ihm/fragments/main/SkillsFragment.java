@@ -22,7 +22,7 @@ public class SkillsFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.fragment_skills, container, false);
 
-        List<Skill> skills = SkillHelper.getInstance().getSkills();
+        final List<Skill> skills = SkillHelper.getInstance().getSkills();
 
         ListView skillsListView = (ListView) rootView.findViewById(R.id.skills_list);
         skillsListView.setAdapter(new SkillsListAdapter(inflater, skills));

@@ -4,8 +4,8 @@
     <data>
 
         <variable
-            name="specialization"
-            type="com.whfrp3.model.Specialization" />
+            name="specialisation"
+            type="com.whfrp3.model.Specialisation" />
 
         <import type="com.whfrp3.tools.BindingUtils" />
     </data>
@@ -25,34 +25,20 @@
             android:layout_weight="3"
             android:gravity="center|start"
             android:hint="@string/dummy_string"
-            android:lines="2"
             android:paddingStart="@dimen/medium_padding"
-            android:text="@{specialization.name}"
+            android:text="@{specialisation.name}"
             android:textSize="@dimen/medium_text_size"
             android:textStyle="bold" />
 
-        <LinearLayout
+        <TextView
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_gravity="center"
             android:layout_weight="1"
-            android:orientation="vertical">
+            android:gravity="center"
+            android:hint="@string/dummy_string"
+            android:padding="@dimen/very_small_padding"
+            android:text="@{specialisation.skill.name}" />
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:gravity="center"
-                android:hint="@string/dummy_string"
-                android:padding="@dimen/very_small_padding"
-                android:text="@{specialization.skill.name}" />
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:gravity="center"
-                android:hint="@string/dummy_string"
-                android:padding="@dimen/very_small_padding"
-                android:text="@{specialization.skill.characteristic.toString}" />
-        </LinearLayout>
     </LinearLayout>
 </layout>

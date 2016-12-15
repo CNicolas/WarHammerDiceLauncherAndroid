@@ -6,14 +6,14 @@ import android.util.LongSparseArray;
 
 import com.whfrp3.R;
 import com.whfrp3.model.Skill;
-import com.whfrp3.model.Specialization;
+import com.whfrp3.model.Specialisation;
 import com.whfrp3.tools.WHFRP3Application;
 
 import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Specialization helper used to manage specializations.
+ * Specialisation helper used to manage specialisations.
  */
 public class SpecializationHelper {
 
@@ -23,29 +23,29 @@ public class SpecializationHelper {
     private static SpecializationHelper instance;
 
     /**
-     * Loaded specializations.
+     * Loaded specialisations.
      */
-    private List<Specialization> specializations;
+    private List<Specialisation> specialisations;
 
     /**
-     * Loaded specializations by id.
+     * Loaded specialisations by id.
      */
-    private LongSparseArray<Specialization> specialisationsById;
+    private LongSparseArray<Specialisation> specialisationsById;
 
     /**
-     * Loaded specializations by skill id.
+     * Loaded specialisations by skill id.
      */
-    private LongSparseArray<List<Specialization>> specialisationsBySkillId;
+    private LongSparseArray<List<Specialisation>> specialisationsBySkillId;
 
     /**
      * Private constructor.
      */
     private SpecializationHelper() {
-        specializations = new ArrayList<>();
+        specialisations = new ArrayList<>();
         specialisationsById = new LongSparseArray<>();
         specialisationsBySkillId = new LongSparseArray<>();
         for (Skill skill : SkillHelper.getInstance().getSkills()) {
-            specialisationsBySkillId.put(skill.getId(), new ArrayList<Specialization>());
+            specialisationsBySkillId.put(skill.getId(), new ArrayList<Specialisation>());
         }
     }
 
@@ -63,31 +63,31 @@ public class SpecializationHelper {
     }
 
     /**
-     * Loads specializations stored in specializations.xml file.
+     * Loads specialisations stored in specialisations.xml file.
      */
     public void loadSpecialisations() {
         try {
             XmlResourceParser xmlParser = WHFRP3Application.getAppContext().getResources().getXml(R.xml.specialisations);
 
-            Specialization specialization = null;
+            Specialisation specialisation = null;
 
             int eventType = xmlParser.getEventType();
             while (eventType != XmlResourceParser.END_DOCUMENT) {
                 if (eventType == XmlResourceParser.START_TAG) {
-                    if (xmlParser.getName().equals(Specialization.class.getSimpleName())) {
+                    if (xmlParser.getName().equals(Specialisation.class.getSimpleName())) {
                         long skillId = Long.valueOf(xmlParser.getAttributeValue(1));
 
-                        specialization = new Specialization();
-                        specialization.setId(Long.valueOf(xmlParser.getAttributeValue(0)));
-                        specialization.setSkill(SkillHelper.getInstance().getSkill(skillId));
+                        specialisation = new Specialisation();
+                        specialisation.setId(Long.valueOf(xmlParser.getAttributeValue(0)));
+                        specialisation.setSkill(SkillHelper.getInstance().getSkill(skillId));
                     } else if ("Name".equals(xmlParser.getName())) {
-                        specialization.setName(xmlParser.nextText());
+                        specialisation.setName(xmlParser.nextText());
                     }
                 } else if (eventType == XmlResourceParser.END_TAG) {
-                    if (xmlParser.getName().equals(Specialization.class.getSimpleName()) && specialization != null) {
-                        specializations.add(specialization);
-                        specialisationsById.put(specialization.getId(), specialization);
-                        specialisationsBySkillId.get(specialization.getSkill().getId()).add(specialization);
+                    if (xmlParser.getName().equals(Specialisation.class.getSimpleName()) && specialisation != null) {
+                        specialisations.add(specialisation);
+                        specialisationsById.put(specialisation.getId(), specialisation);
+                        specialisationsBySkillId.get(specialisation.getSkill().getId()).add(specialisation);
                     }
                 }
 
@@ -101,31 +101,41 @@ public class SpecializationHelper {
     }
 
     /**
-     * Return all the specializations.
+     * Return all the specialisations.
      *
-     * @return All the specializations.
+     * @return All the specialisations.
      */
-    public List<Specialization> getSpecializations() {
-        return specializations;
+    public List<Specialisation> getSpecialisations() {
+        return specialisations;
     }
 
     /**
      * Return the specialisation with de given id.
      *
      * @param id Id of the specialisation.
-     * @return Specialization with the given id.
+     * @return Specialisation with the given id.
      */
-    public Specialization getSpecialisation(long id) {
+    public Specialisation getSpecialisation(long id) {
         return specialisationsById.get(id);
     }
 
     /**
-     * Return the specializations of the given skill.
+     * Return the specialisations of the given skill.
      *
      * @param skillId Id of the skill.
      * @return Specialisations of the given skill.
      */
-    public List<Specialization> getSpecialisationsBySkillId(long skillId) {
+    public List<Specialisation> getSpecialisationsBySkillId(long skillId) {
         return specialisationsBySkillId.get(skillId);
+    }
+
+    public List<String> getSpecializationsName(List<Specialisation> specialisations) {
+        List<String> res = new ArrayList<>();
+
+        for (Specialisation specialisation : specialisations) {
+            res.add(specialisation.getName());
+        }
+
+        return res;
     }
 }
