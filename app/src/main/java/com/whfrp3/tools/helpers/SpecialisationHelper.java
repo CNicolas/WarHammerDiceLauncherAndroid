@@ -84,7 +84,7 @@ public class SpecialisationHelper {
                         specialisation.setName(xmlParser.nextText());
                     }
                 } else if (eventType == XmlResourceParser.END_TAG) {
-                    if (xmlParser.getName().equals(Skill.class.getSimpleName()) && specialisation != null) {
+                    if (xmlParser.getName().equals(Specialisation.class.getSimpleName()) && specialisation != null) {
                         specialisations.add(specialisation);
                         specialisationsById.put(specialisation.getId(), specialisation);
                         specialisationsBySkillId.get(specialisation.getSkill().getId()).add(specialisation);
