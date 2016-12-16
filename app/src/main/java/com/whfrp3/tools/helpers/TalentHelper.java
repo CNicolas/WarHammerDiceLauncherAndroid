@@ -3,6 +3,7 @@ package com.whfrp3.tools.helpers;
 import android.content.res.XmlResourceParser;
 import android.support.annotation.Nullable;
 import android.util.Log;
+import android.util.LongSparseArray;
 
 import com.whfrp3.R;
 import com.whfrp3.model.enums.CooldownType;
@@ -27,17 +28,29 @@ public class TalentHelper {
     private static TalentHelper instance;
 
     /**
+     * Loaded talents.
+     */
+    private List<Talent> talents;
+
+    /**
+     * Loaded talents by id.
+     */
+    private LongSparseArray<Talent> talentsById;
+
+    /**
      * Loaded talents by type.
      */
-    private Map<TalentType, List<Talent>> talents;
+    private Map<TalentType, List<Talent>> talentsByType;
 
     /**
      * Default private constructor.
      */
     private TalentHelper() {
-        talents = new HashMap<>();
+        talents = new ArrayList<>();
+        talentsById = new LongSparseArray<>();
+        talentsByType = new HashMap<>();
         for (TalentType type : TalentType.values()) {
-            talents.put(type, new ArrayList<Talent>());
+            talentsByType.put(type, new ArrayList<Talent>());
         }
     }
 
@@ -77,7 +90,10 @@ public class TalentHelper {
                     }
                 } else if (eventType == XmlResourceParser.END_TAG) {
                     if (xmlParser.getName().equals(Talent.class.getSimpleName()) && talent != null) {
-                        talents.get(talent.getType()).add(talent);
+                        talents.add(talent);
+                        talentsById.put(talent.getId(), talent);
+                        talentsByType.get(talent.getType()).add(talent);
+
                         talent = null;
                     }
                 }
@@ -85,10 +101,29 @@ public class TalentHelper {
                 eventType = xmlParser.next();
             }
 
-            talents.size();
+            talentsByType.size();
         } catch (Exception e) {
             Log.e("TALENT_LOAD", "Erreur de chargement des talents.", e);
         }
+    }
+
+    /**
+     * Returns all loaded talents.
+     *
+     * @return All loaded talents.
+     */
+    public List<Talent> getAllTalents() {
+        return talents;
+    }
+
+    /**
+     * Return the talent with the given id.
+     *
+     * @param talentId Id of the talent to return.
+     * @return Talent with the given id.
+     */
+    public Talent getTalentById(long talentId) {
+        return talentsById.get(talentId);
     }
 
     /**
@@ -98,22 +133,7 @@ public class TalentHelper {
      * @return Talents of the given type.
      */
     public List<Talent> getTalentsByType(TalentType type) {
-        return talents.get(type);
-    }
-
-    /**
-     * Returns all loaded talents.
-     *
-     * @return All loaded talents.
-     */
-    public List<Talent> getAllTalents() {
-        List<Talent> rTalents = new ArrayList<>();
-
-        for (TalentType type : TalentType.values()) {
-            rTalents.addAll(talents.get(type));
-        }
-
-        return rTalents;
+        return talentsByType.get(type);
     }
 
     //region Search

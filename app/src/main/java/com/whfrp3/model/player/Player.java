@@ -67,6 +67,7 @@ public class Player extends AbstractModel {
 
     private List<PlayerSkill> playerSkills;
     private List<PlayerSpecialization> playerSpecializations;
+    private List<PlayerTalent> playerTalents;
 
     /**
      * List of the item to remove of the DB.
@@ -85,6 +86,7 @@ public class Player extends AbstractModel {
 
         playerSkills = new ArrayList<>();
         playerSpecializations = new ArrayList<>();
+        playerTalents = new ArrayList<>();
 
         // Initialize playerSkills list
         // TODO : modifier l'emplacement de l'initialisation des compétences de base
@@ -576,6 +578,15 @@ public class Player extends AbstractModel {
 
     public void setPlayerSpecializations(List<PlayerSpecialization> playerSpecializations) {
         this.playerSpecializations = playerSpecializations;
+    }
+
+    @Bindable
+    public List<PlayerTalent> getPlayerTalents() {
+        return playerTalents;
+    }
+
+    public void setPlayerTalents(List<PlayerTalent> playerTalents) {
+        this.playerTalents = playerTalents;
     }
 
     public List<Long> getItemToRemove() {

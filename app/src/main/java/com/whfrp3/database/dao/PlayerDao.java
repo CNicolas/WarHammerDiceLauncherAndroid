@@ -13,6 +13,7 @@ import com.whfrp3.model.player.Money;
 import com.whfrp3.model.player.Player;
 import com.whfrp3.model.player.PlayerSkill;
 import com.whfrp3.model.player.PlayerSpecialization;
+import com.whfrp3.model.player.PlayerTalent;
 import com.whfrp3.model.player.inventory.Item;
 import com.whfrp3.tools.WHFRP3Application;
 
@@ -41,6 +42,11 @@ public class PlayerDao extends AbstractDaoWithId<Player> implements IPlayerEntry
     private final PlayerSpecializationDao mPlayerSpecializationDao;
 
     /**
+     * DAO of player talents.
+     */
+    private final PlayerTalentDao mPlayerTalentDao;
+
+    /**
      * DAO of items.
      */
     private final ItemDao mItemDao;
@@ -59,7 +65,8 @@ public class PlayerDao extends AbstractDaoWithId<Player> implements IPlayerEntry
 
         mCharacteristicsDao = WHFRP3Application.getDatabase().getCharacteristicsDao();
         mPlayerSkillDao = WHFRP3Application.getDatabase().getPlayerSkillDao();
-        mPlayerSpecializationDao = WHFRP3Application.getDatabase().getPlayerSpecializationDaoDao();
+        mPlayerSpecializationDao = WHFRP3Application.getDatabase().getPlayerSpecializationDao();
+        mPlayerTalentDao = WHFRP3Application.getDatabase().getPlayerTalentDao();
         mItemDao = WHFRP3Application.getDatabase().getItemDao();
     }
 
@@ -113,6 +120,12 @@ public class PlayerDao extends AbstractDaoWithId<Player> implements IPlayerEntry
             mPlayerSpecializationDao.insert(playerSpecialization);
         }
 
+        // Insert talents
+        for (PlayerTalent playerTalent : player.getPlayerTalents()) {
+            playerTalent.setPlayerId(player.getId());
+            mPlayerTalentDao.insert(playerTalent);
+        }
+
         // Insert items
         for (Item item : player.getInventory()) {
             item.setPlayerId(player.getId());
@@ -142,6 +155,12 @@ public class PlayerDao extends AbstractDaoWithId<Player> implements IPlayerEntry
         mPlayerSpecializationDao.deleteAllByPlayerId(player.getId());
         for (PlayerSpecialization playerSpecialization : player.getPlayerSpecializations()) {
             mPlayerSpecializationDao.insert(playerSpecialization);
+        }
+
+        // Update talents
+        mPlayerTalentDao.deleteAllByPlayerId(player.getId());
+        for (PlayerTalent playerTalent : player.getPlayerTalents()) {
+            mPlayerTalentDao.insert(playerTalent);
         }
 
         // Update items
