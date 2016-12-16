@@ -17,7 +17,7 @@ import java.util.List;
 /**
  * The Adapter for the Weapons list.
  */
-public class WeaponsListAdapter extends ArrayAdapter {
+public class WeaponsListAdapter extends ArrayAdapter<Weapon> {
     private final List<Weapon> weapons;
     private final LayoutInflater inflater;
 
@@ -39,7 +39,7 @@ public class WeaponsListAdapter extends ArrayAdapter {
     }
 
     @Override
-    public Object getItem(int position) {
+    public Weapon getItem(int position) {
         return weapons.get(position);
     }
 

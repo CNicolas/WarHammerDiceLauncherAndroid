@@ -1,6 +1,7 @@
 package com.whfrp3.ihm.adapters;
 
 import android.databinding.DataBindingUtil;
+import android.support.annotation.NonNull;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,7 +15,7 @@ import java.util.Arrays;
 /**
  * Adapter used to display enum's label in a spinner.
  */
-public class EnumSpinnerAdapter extends ArrayAdapter {
+public class EnumSpinnerAdapter extends ArrayAdapter<IEnumSpinner> {
 
     /**
      * Inflater.
@@ -40,12 +41,12 @@ public class EnumSpinnerAdapter extends ArrayAdapter {
     }
 
     @Override
-    public View getDropDownView(int position, View convertView, ViewGroup parent) {
+    public View getDropDownView(int position, View convertView, @NonNull ViewGroup parent) {
         return getView(position, convertView, parent);
     }
 
     @Override
-    public Object getItem(int position) {
+    public IEnumSpinner getItem(int position) {
         return values[position];
     }
 
@@ -58,8 +59,9 @@ public class EnumSpinnerAdapter extends ArrayAdapter {
         }
     }
 
+    @NonNull
     @Override
-    public View getView(int position, View convertView, ViewGroup parent) {
+    public View getView(int position, View convertView, @NonNull ViewGroup parent) {
         ElementSpinnerEnumBinding binding = DataBindingUtil.inflate(inflater, R.layout.element_spinner_enum, null, false);
         binding.setSpin(values[position]);
 

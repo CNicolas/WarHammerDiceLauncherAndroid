@@ -16,7 +16,7 @@ import java.util.List;
 /**
  * The Adapter for the specializations list.
  */
-public class SpecializationsListAdapter extends ArrayAdapter {
+public class SpecializationsListAdapter extends ArrayAdapter<Specialization> {
     private List<Specialization> mSpecializations;
     private final LayoutInflater inflater;
 
@@ -38,7 +38,7 @@ public class SpecializationsListAdapter extends ArrayAdapter {
     }
 
     @Override
-    public Object getItem(int position) {
+    public Specialization getItem(int position) {
         return mSpecializations.get(position);
     }
 

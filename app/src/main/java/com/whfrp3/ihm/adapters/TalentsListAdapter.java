@@ -16,7 +16,7 @@ import java.util.List;
 /**
  * The Adapter for the talents list.
  */
-public class TalentsListAdapter extends ArrayAdapter {
+public class TalentsListAdapter extends ArrayAdapter<Talent> {
     private List<Talent> mTalents;
     private final LayoutInflater inflater;
 
@@ -38,7 +38,7 @@ public class TalentsListAdapter extends ArrayAdapter {
     }
 
     @Override
-    public Object getItem(int position) {
+    public Talent getItem(int position) {
         return mTalents.get(position);
     }
 
