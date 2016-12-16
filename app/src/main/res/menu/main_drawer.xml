@@ -29,9 +29,9 @@
                     android:title="@string/page_skills" />
 
                 <item
-                    android:id="@+id/nav_specialisations"
-                    android:icon="@drawable/ic_specialisation_black"
-                    android:title="@string/page_specialisations" />
+                    android:id="@+id/nav_specializations"
+                    android:icon="@drawable/ic_specialization_black"
+                    android:title="@string/page_specializations" />
             </menu>
         </item>
     </group>

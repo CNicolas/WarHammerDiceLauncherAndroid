@@ -157,7 +157,7 @@
     <string name="cooldown">Recharge</string>
     <string name="no_talent_found">Aucun talent trouvé</string>
     <string name="page_items">Objets</string>
-    <string name="page_specialisations">Spécialisations</string>
+    <string name="page_specializations">Spécialisations</string>
     <!-- End of inventory -->
 
 </resources>
