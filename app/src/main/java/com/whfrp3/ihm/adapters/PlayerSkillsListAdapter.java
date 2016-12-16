@@ -10,6 +10,7 @@ import android.widget.ArrayAdapter;
 import com.whfrp3.R;
 import com.whfrp3.databinding.ElementListPlayerSkillBinding;
 import com.whfrp3.ihm.listeners.PlayerSkillHandlers;
+import com.whfrp3.model.player.Player;
 import com.whfrp3.model.player.PlayerSkill;
 import com.whfrp3.tools.WHFRP3Application;
 
@@ -52,9 +53,13 @@ public class PlayerSkillsListAdapter extends ArrayAdapter<PlayerSkill> {
     @NonNull
     @Override
     public View getView(int position, View convertView, @NonNull ViewGroup parent) {
+        Player player = WHFRP3Application.getPlayer();
+        PlayerSkill playerSkill = playerSkills.get(position);
+        playerSkill.setSpecialized(player.isSpecializedSkill(playerSkill));
+
         ElementListPlayerSkillBinding binding = DataBindingUtil.inflate(inflater, R.layout.element_list_player_skill, parent, false);
-        binding.setPlayer(WHFRP3Application.getPlayer());
-        binding.setPlayerSkill(playerSkills.get(position));
+        binding.setPlayer(player);
+        binding.setPlayerSkill(playerSkill);
         binding.setHandlers(new PlayerSkillHandlers());
 
         return binding.getRoot();

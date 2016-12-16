@@ -263,6 +263,10 @@ public class PlayerDao extends AbstractDaoWithId<Player> implements IPlayerEntry
         List<PlayerSkill> playerSkills = mPlayerSkillDao.findAllByPlayerId(model.getId());
         model.setPlayerSkills(playerSkills);
 
+        // Find playerSpecializations
+        List<PlayerSpecialization> playerSpecializations = mPlayerSpecializationDao.findAllByPlayerId(model.getId());
+        model.setPlayerSpecializations(playerSpecializations);
+
         // Find items
         List<Item> items = mItemDao.findAllByPlayerId(model.getId());
         model.setInventory(items);

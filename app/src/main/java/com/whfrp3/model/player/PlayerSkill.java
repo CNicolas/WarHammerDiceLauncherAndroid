@@ -1,6 +1,7 @@
 package com.whfrp3.model.player;
 
 import android.databinding.BaseObservable;
+import android.databinding.Bindable;
 
 import com.whfrp3.model.Skill;
 
@@ -27,6 +28,8 @@ public class PlayerSkill extends BaseObservable implements Serializable {
      * Level of the associated skill.
      */
     private int level;
+
+    private boolean specialized;
 
     //endregion
 
@@ -94,7 +97,15 @@ public class PlayerSkill extends BaseObservable implements Serializable {
         this.level = level;
     }
 
-    //endregion
+    @Bindable
+    public boolean isSpecialized() {
+        return specialized;
+    }
+
+    public void setSpecialized(boolean specialized) {
+        this.specialized = specialized;
+    }
+//endregion
 
     //region Overrides
 

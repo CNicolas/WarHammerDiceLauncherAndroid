@@ -13,6 +13,7 @@ import android.widget.CheckBox;
 import com.whfrp3.R;
 import com.whfrp3.ihm.activities.LaunchActivity;
 import com.whfrp3.model.Specialization;
+import com.whfrp3.model.player.Player;
 import com.whfrp3.model.player.PlayerSkill;
 import com.whfrp3.model.player.inventory.Weapon;
 import com.whfrp3.notification.ToastNotification;
@@ -65,9 +66,17 @@ public class PlayerSkillHandlers implements IPlayerActivityConstants {
     }
 
     public void openSpecializationPopup(final PlayerSkill playerSkill) {
+        final Player player = WHFRP3Application.getPlayer();
+
         final List<Specialization> specializations = SpecializationHelper.getInstance().getSpecializationsBySkillId(playerSkill.getSkill().getId());
-        List<String> specializationsName = SpecializationHelper.getInstance().getSpecializationsName(specializations);
         final boolean[] checkedSpecializations = new boolean[specializations.size()];
+        List<String> specializationsName = SpecializationHelper.getInstance().getSpecializationsName(specializations);
+
+        for (int i = 0; i < specializations.size(); i++) {
+            if (player.hasSpecialization(specializations.get(i)) > -1) {
+                checkedSpecializations[i] = true;
+            }
+        }
 
         AlertDialog.Builder specializationsDialogBuilder = new AlertDialog.Builder(WHFRP3Application.getActivity());
         specializationsDialogBuilder.setTitle(playerSkill.getSkill().getName());
@@ -81,11 +90,18 @@ public class PlayerSkillHandlers implements IPlayerActivityConstants {
             @Override
             public void onClick(DialogInterface dialog, int which) {
                 List<String> newSpecs = new ArrayList<>();
+
                 for (int i = 0; i < specializations.size(); i++) {
                     if (checkedSpecializations[i]) {
+                        player.addSpecialization(specializations.get(i));
                         newSpecs.add(specializations.get(i).getName());
+                    } else {
+                        player.removeSpecialization(specializations.get(i));
                     }
+
+                    PlayerHelper.notifySkillBinding();
                 }
+
                 dialog.dismiss();
                 ToastNotification.info(newSpecs.toString());
             }
@@ -107,11 +123,11 @@ public class PlayerSkillHandlers implements IPlayerActivityConstants {
             }
 
             if (weapons.size() > 1) {
+                final List<Weapon> finalWeapons = weapons;
                 List<String> weaponsName = PlayerHelper.getWeaponsName(weapons);
+
                 final AlertDialog.Builder weaponDialogBuilder = new AlertDialog.Builder(WHFRP3Application.getActivity());
                 weaponDialogBuilder.setTitle(playerSkill.getSkill().getName());
-
-                final List<Weapon> finalWeapons = weapons;
                 weaponDialogBuilder.setSingleChoiceItems(weaponsName.toArray(new String[]{}), 0, new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {

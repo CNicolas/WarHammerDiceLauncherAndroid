@@ -75,5 +75,23 @@ public class PlayerSpecialization {
         return sb.toString();
     }
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        PlayerSpecialization that = (PlayerSpecialization) o;
+
+        if (getPlayerId() != that.getPlayerId()) return false;
+        return getSpecialization() != null ? getSpecialization().equals(that.getSpecialization()) : that.getSpecialization() == null;
+
+    }
+
+    @Override
+    public int hashCode() {
+        int result = getSpecialization() != null ? getSpecialization().hashCode() : 0;
+        result = 31 * result + (int) (getPlayerId() ^ (getPlayerId() >>> 32));
+        return result;
+    }
     //endregion
 }

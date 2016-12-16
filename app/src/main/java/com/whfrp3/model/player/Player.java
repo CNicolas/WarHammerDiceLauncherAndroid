@@ -10,6 +10,7 @@ import com.whfrp3.BR;
 import com.whfrp3.R;
 import com.whfrp3.model.AbstractModel;
 import com.whfrp3.model.Skill;
+import com.whfrp3.model.Specialization;
 import com.whfrp3.model.enums.Race;
 import com.whfrp3.model.enums.SkillType;
 import com.whfrp3.model.player.inventory.Armor;
@@ -18,9 +19,9 @@ import com.whfrp3.model.player.inventory.ItemType;
 import com.whfrp3.model.player.inventory.Range;
 import com.whfrp3.model.player.inventory.UsableItem;
 import com.whfrp3.model.player.inventory.Weapon;
-import com.whfrp3.model.talents.Talent;
 import com.whfrp3.tools.WHFRP3Application;
 import com.whfrp3.tools.helpers.SkillHelper;
+import com.whfrp3.tools.helpers.SpecializationHelper;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -31,7 +32,6 @@ import java.util.List;
 public class Player extends AbstractModel {
 
     //region Constants
-
     private static final int ENCUMBRANCE_BASE = 0;
     private static final int ENCUMBRANCE_BASE_DWARF = 5;
     private static final int ENCUMBRANCE_BY_STRENGTH = 5;
@@ -344,6 +344,54 @@ public class Player extends AbstractModel {
     }
     //endregion
 
+    //region Skill Management
+    public PlayerSpecialization addSpecialization(Specialization specialization) {
+        int indexOfSpecialization = hasSpecialization(specialization);
+
+        if (indexOfSpecialization == -1) {
+            PlayerSpecialization playerSpecialization = new PlayerSpecialization(specialization, this);
+            playerSpecializations.add(playerSpecialization);
+
+            return playerSpecialization;
+        }
+
+        return playerSpecializations.get(indexOfSpecialization);
+    }
+
+    public PlayerSpecialization removeSpecialization(Specialization specialization) {
+        int indexOfSpecialization = hasSpecialization(specialization);
+
+        if (indexOfSpecialization > -1) {
+            PlayerSpecialization playerSpecialization = playerSpecializations.get(indexOfSpecialization);
+            playerSpecializations.remove(playerSpecializations.get(indexOfSpecialization));
+
+            return playerSpecialization;
+        }
+
+        return null;
+    }
+
+    public boolean isSpecializedSkill(PlayerSkill playerSkill) {
+        List<Specialization> specializations = SpecializationHelper.getInstance().getSpecializationsBySkillId(playerSkill.getSkill().getId());
+        for (Specialization specialization : specializations) {
+            int indexOfSpecialization = hasSpecialization(specialization);
+            if (indexOfSpecialization > -1) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public int hasSpecialization(Specialization specialization) {
+        for (int i = 0; i < playerSpecializations.size(); i++) {
+            if (playerSpecializations.get(i).getSpecialization().equals(specialization)) {
+                return i;
+            }
+        }
+        return -1;
+    }
+    //endregion
+
     //region Edition
     @Bindable
     public boolean isInEdition() {
@@ -357,7 +405,7 @@ public class Player extends AbstractModel {
     //endregion
 
     /**
-     * Can the player be saved in the mDatabase ?
+     * Can the player be saved in the Database ?
      *
      * @return yes or no
      */

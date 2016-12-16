@@ -6,7 +6,6 @@ import com.whfrp3.BR;
 import com.whfrp3.model.player.Player;
 import com.whfrp3.model.player.inventory.Item;
 import com.whfrp3.model.player.inventory.Weapon;
-import com.whfrp3.model.player.PlayerSkill;
 import com.whfrp3.tools.WHFRP3Application;
 
 import java.util.ArrayList;
@@ -58,9 +57,21 @@ public abstract class PlayerHelper {
     public static void notifyBinding() {
         Player player = WHFRP3Application.getPlayer();
 
+        player.notifyPropertyChanged(BR.player);
         player.notifyPropertyChanged(BR.currentEncumbrance);
         player.notifyPropertyChanged(BR.encumbranceColor);
+
+        notifySkillBinding();
         notifyEquipmentBinding();
+    }
+
+    public static void notifySkillBinding() {
+        Player player = WHFRP3Application.getPlayer();
+
+        player.notifyPropertyChanged(BR.playerSkill);
+        player.notifyPropertyChanged(BR.playerSkills);
+        player.notifyPropertyChanged(BR.specialization);
+        player.notifyPropertyChanged(BR.specialized);
     }
 
     public static void notifyEquipmentBinding() {
