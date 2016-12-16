@@ -17,7 +17,7 @@ import com.whfrp3.ihm.fragments.main.CareersFragment;
 import com.whfrp3.ihm.fragments.main.ItemsFragment;
 import com.whfrp3.ihm.fragments.main.PlayersListFragment;
 import com.whfrp3.ihm.fragments.main.SkillsFragment;
-import com.whfrp3.ihm.fragments.main.SpecializationsFragment;
+import com.whfrp3.ihm.fragments.main.SpecialisationsFragment;
 import com.whfrp3.ihm.fragments.main.TalentTypesFragment;
 import com.whfrp3.tools.WHFRP3Application;
 import com.whfrp3.tools.constants.IMainConstants;
@@ -96,8 +96,8 @@ public class MainActivity extends AppCompatActivity
             fragment = new ItemsFragment();
         } else if (id == R.id.nav_skills) {
             fragment = new SkillsFragment();
-        } else if (id == R.id.nav_specializations) {
-            fragment = new SpecializationsFragment();
+        } else if (id == R.id.nav_specialisations) {
+            fragment = new SpecialisationsFragment();
         }
 
         if (fragment != null) {

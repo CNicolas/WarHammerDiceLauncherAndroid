@@ -24,7 +24,7 @@
         android:layout_height="wrap_content"
         android:background="@color/white"
         android:clickable="true"
-        android:onClick="@{() -> handlers.openSpecializations(skill)}"
+        android:onClick="@{() -> handlers.openSpecialisations(skill)}"
         android:orientation="horizontal"
         android:padding="@dimen/small_padding"
         android:weightSum="4">

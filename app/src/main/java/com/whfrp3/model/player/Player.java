@@ -31,7 +31,6 @@ import java.util.List;
 public class Player extends AbstractModel {
 
     //region Constants
-
     private static final int ENCUMBRANCE_BASE = 0;
     private static final int ENCUMBRANCE_BASE_DWARF = 5;
     private static final int ENCUMBRANCE_BY_STRENGTH = 5;
