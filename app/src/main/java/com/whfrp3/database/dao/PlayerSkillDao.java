@@ -52,7 +52,7 @@ public class PlayerSkillDao extends AbstractDao<PlayerSkill> implements IPlayerS
     //region Delete
 
     /**
-     * Removes all player skills with the given player id from the database
+     * Removes all player skills with the given player id from the database.
      *
      * @param playerId Player id.
      */

@@ -9,27 +9,27 @@ import android.widget.ArrayAdapter;
 
 import com.whfrp3.R;
 import com.whfrp3.databinding.ElementListSpecializationBinding;
-import com.whfrp3.model.Specialisation;
+import com.whfrp3.model.Specialization;
 
 import java.util.List;
 
 /**
- * The Adapter for the talents list.
+ * The Adapter for the specializations list.
  */
 public class SpecializationsListAdapter extends ArrayAdapter {
-    private List<Specialisation> mSpecialisations;
+    private List<Specialization> mSpecializations;
     private final LayoutInflater inflater;
 
-    public SpecializationsListAdapter(@NonNull LayoutInflater inflater, List<Specialisation> specialisations) {
-        super(inflater.getContext(), R.layout.element_list_specialization, specialisations);
+    public SpecializationsListAdapter(@NonNull LayoutInflater inflater, List<Specialization> specializations) {
+        super(inflater.getContext(), R.layout.element_list_specialization, specializations);
 
         this.inflater = inflater;
-        mSpecialisations = specialisations;
+        mSpecializations = specializations;
     }
 
     @Override
     public int getCount() {
-        return mSpecialisations.size();
+        return mSpecializations.size();
     }
 
     @Override
@@ -39,7 +39,7 @@ public class SpecializationsListAdapter extends ArrayAdapter {
 
     @Override
     public Object getItem(int position) {
-        return mSpecialisations.get(position);
+        return mSpecializations.get(position);
     }
 
     @Override
@@ -51,7 +51,7 @@ public class SpecializationsListAdapter extends ArrayAdapter {
     @Override
     public View getView(int position, View convertView, @NonNull ViewGroup parent) {
         ElementListSpecializationBinding binding = DataBindingUtil.inflate(inflater, R.layout.element_list_specialization, parent, false);
-        binding.setSpecialisation(mSpecialisations.get(position));
+        binding.setSpecialization(mSpecializations.get(position));
 
         return binding.getRoot();
     }

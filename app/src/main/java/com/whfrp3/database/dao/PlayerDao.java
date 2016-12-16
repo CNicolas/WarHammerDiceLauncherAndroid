@@ -12,6 +12,7 @@ import com.whfrp3.model.player.Characteristics;
 import com.whfrp3.model.player.Money;
 import com.whfrp3.model.player.Player;
 import com.whfrp3.model.player.PlayerSkill;
+import com.whfrp3.model.player.PlayerSpecialization;
 import com.whfrp3.model.player.inventory.Item;
 import com.whfrp3.tools.WHFRP3Application;
 
@@ -35,6 +36,11 @@ public class PlayerDao extends AbstractDaoWithId<Player> implements IPlayerEntry
     private final PlayerSkillDao mPlayerSkillDao;
 
     /**
+     * DAO of player specializations.
+     */
+    private final PlayerSpecializationDao mPlayerSpecializationDao;
+
+    /**
      * DAO of items.
      */
     private final ItemDao mItemDao;
@@ -53,6 +59,7 @@ public class PlayerDao extends AbstractDaoWithId<Player> implements IPlayerEntry
 
         mCharacteristicsDao = WHFRP3Application.getDatabase().getCharacteristicsDao();
         mPlayerSkillDao = WHFRP3Application.getDatabase().getPlayerSkillDao();
+        mPlayerSpecializationDao = WHFRP3Application.getDatabase().getPlayerSpecializationDaoDao();
         mItemDao = WHFRP3Application.getDatabase().getItemDao();
     }
 
@@ -100,6 +107,12 @@ public class PlayerDao extends AbstractDaoWithId<Player> implements IPlayerEntry
             mPlayerSkillDao.insert(playerSkill);
         }
 
+        // Insert specializations
+        for (PlayerSpecialization playerSpecialization : player.getPlayerSpecializations()) {
+            playerSpecialization.setPlayerId(player.getId());
+            mPlayerSpecializationDao.insert(playerSpecialization);
+        }
+
         // Insert items
         for (Item item : player.getInventory()) {
             item.setPlayerId(player.getId());
@@ -123,6 +136,12 @@ public class PlayerDao extends AbstractDaoWithId<Player> implements IPlayerEntry
         mPlayerSkillDao.deleteAllByPlayerId(player.getId());
         for (PlayerSkill skill : player.getPlayerSkills()) {
             mPlayerSkillDao.insert(skill);
+        }
+
+        // Update specializations
+        mPlayerSpecializationDao.deleteAllByPlayerId(player.getId());
+        for (PlayerSpecialization playerSpecialization : player.getPlayerSpecializations()) {
+            mPlayerSpecializationDao.insert(playerSpecialization);
         }
 
         // Update items

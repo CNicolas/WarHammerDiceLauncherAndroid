@@ -59,8 +59,8 @@ public class WHFRP3Application extends Application {
         // Load skills
         SkillHelper.getInstance().loadSkills();
 
-        // Load specialisations
-        SpecializationHelper.getInstance().loadSpecialisations();
+        // Load specializations
+        SpecializationHelper.getInstance().loadSpecializations();
     }
 
     @Override

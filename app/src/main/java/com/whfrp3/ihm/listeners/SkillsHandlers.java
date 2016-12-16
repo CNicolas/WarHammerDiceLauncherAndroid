@@ -5,7 +5,7 @@ import android.support.v7.app.AlertDialog;
 
 import com.whfrp3.R;
 import com.whfrp3.model.Skill;
-import com.whfrp3.model.Specialisation;
+import com.whfrp3.model.Specialization;
 import com.whfrp3.tools.WHFRP3Application;
 import com.whfrp3.tools.helpers.SpecializationHelper;
 
@@ -13,9 +13,9 @@ import java.util.List;
 
 public class SkillsHandlers {
     public void openSpecializations(Skill skill) {
-        List<Specialisation> specialisations = SpecializationHelper.getInstance().getSpecialisationsBySkillId(skill.getId());
+        List<Specialization> specializations = SpecializationHelper.getInstance().getSpecializationsBySkillId(skill.getId());
 
-        String[] names = SpecializationHelper.getInstance().getSpecializationsName(specialisations).toArray(new String[]{});
+        String[] names = SpecializationHelper.getInstance().getSpecializationsName(specializations).toArray(new String[]{});
 
         AlertDialog.Builder builder = new AlertDialog.Builder(WHFRP3Application.getActivity());
         builder.setTitle(skill.getName());

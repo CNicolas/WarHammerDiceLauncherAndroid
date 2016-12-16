@@ -64,8 +64,9 @@ public class Player extends AbstractModel {
     private Characteristics characteristics;
     private Money money;
     private List<Item> inventory;
+
     private List<PlayerSkill> playerSkills;
-    private List<Talent> talents;
+    private List<PlayerSpecialization> playerSpecializations;
 
     /**
      * List of the item to remove of the DB.
@@ -80,11 +81,13 @@ public class Player extends AbstractModel {
     public Player() {
         characteristics = new Characteristics();
         money = new Money(0, 0, 0);
-        playerSkills = new ArrayList<>();
         inventory = new ArrayList<>();
-        talents = new ArrayList<>();
+
+        playerSkills = new ArrayList<>();
+        playerSpecializations = new ArrayList<>();
 
         // Initialize playerSkills list
+        // TODO : modifier l'emplacement de l'initialisation des compétences de base
         List<Skill> basicSkills = SkillHelper.getInstance().getSkillsByType(SkillType.BASIC);
         for (Skill basicSkill : basicSkills) {
             playerSkills.add(new PlayerSkill(basicSkill, this, 0));
@@ -564,6 +567,15 @@ public class Player extends AbstractModel {
 
     public void setPlayerSkills(List<PlayerSkill> playerSkills) {
         this.playerSkills = playerSkills;
+    }
+
+    @Bindable
+    public List<PlayerSpecialization> getPlayerSpecializations() {
+        return playerSpecializations;
+    }
+
+    public void setPlayerSpecializations(List<PlayerSpecialization> playerSpecializations) {
+        this.playerSpecializations = playerSpecializations;
     }
 
     public List<Long> getItemToRemove() {

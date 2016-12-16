@@ -9,11 +9,13 @@ import com.whfrp3.database.dao.HandDao;
 import com.whfrp3.database.dao.ItemDao;
 import com.whfrp3.database.dao.PlayerDao;
 import com.whfrp3.database.dao.PlayerSkillDao;
+import com.whfrp3.database.dao.PlayerSpecializationDao;
 import com.whfrp3.database.entries.ICharacteristicsEntryConstants;
 import com.whfrp3.database.entries.IHandEntryConstants;
 import com.whfrp3.database.entries.IItemEntryConstants;
 import com.whfrp3.database.entries.IPlayerEntryConstants;
 import com.whfrp3.database.entries.IPlayerSkillEntryConstants;
+import com.whfrp3.database.entries.IPlayerSpecializationEntryConstants;
 
 /**
  * Application mDatabase manager.
@@ -65,6 +67,11 @@ public class Database {
     private PlayerSkillDao mPlayerSkillDao;
 
     /**
+     * DAO of player specializations.
+     */
+    private PlayerSpecializationDao mPlayerSpecializationDao;
+
+    /**
      * DAO of items.
      */
     private ItemDao mItemDao;
@@ -99,6 +106,15 @@ public class Database {
      */
     public PlayerSkillDao getPlayerSkillDao() {
         return mPlayerSkillDao;
+    }
+
+    /**
+     * Getter of DAO of player specializations.
+     *
+     * @return DAO of player specializations.
+     */
+    public PlayerSpecializationDao getPlayerSpecializationDaoDao() {
+        return mPlayerSpecializationDao;
     }
 
     /**
@@ -145,6 +161,7 @@ public class Database {
 
         mCharacteristicsDao = new CharacteristicsDao(db);
         mPlayerSkillDao = new PlayerSkillDao(db);
+        mPlayerSpecializationDao = new PlayerSpecializationDao(db);
         mItemDao = new ItemDao(db);
         mHandDao = new HandDao(db);
         mPlayerDao = new PlayerDao(db);
@@ -181,6 +198,7 @@ public class Database {
 
             db.execSQL(ICharacteristicsEntryConstants.SQL_CREATE_ENTRIES);
             db.execSQL(IPlayerSkillEntryConstants.SQL_CREATE_ENTRIES);
+            db.execSQL(IPlayerSpecializationEntryConstants.SQL_CREATE_ENTRIES);
             db.execSQL(IPlayerEntryConstants.SQL_CREATE_ENTRIES);
             db.execSQL(IItemEntryConstants.SQL_CREATE_ENTRIES);
         }
@@ -191,6 +209,7 @@ public class Database {
 
             db.execSQL(ICharacteristicsEntryConstants.SQL_DELETE_ENTRIES);
             db.execSQL(IPlayerSkillEntryConstants.SQL_DELETE_ENTRIES);
+            db.execSQL(IPlayerSpecializationEntryConstants.SQL_DELETE_ENTRIES);
             db.execSQL(IPlayerEntryConstants.SQL_DELETE_ENTRIES);
             db.execSQL(IItemEntryConstants.SQL_DELETE_ENTRIES);
 

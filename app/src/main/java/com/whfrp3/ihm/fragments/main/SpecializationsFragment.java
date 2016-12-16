@@ -10,7 +10,7 @@ import android.widget.ListView;
 
 import com.whfrp3.R;
 import com.whfrp3.ihm.adapters.SpecializationsListAdapter;
-import com.whfrp3.model.Specialisation;
+import com.whfrp3.model.Specialization;
 import com.whfrp3.tools.BindingUtils;
 import com.whfrp3.tools.helpers.SpecializationHelper;
 
@@ -22,10 +22,10 @@ public class SpecializationsFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.fragment_specializations, container, false);
 
-        List<Specialisation> specialisations = SpecializationHelper.getInstance().getSpecialisations();
+        List<Specialization> specializations = SpecializationHelper.getInstance().getSpecializations();
 
         ListView specializationsListView = (ListView) rootView.findViewById(R.id.specializations_list);
-        specializationsListView.setAdapter(new SpecializationsListAdapter(inflater, specialisations));
+        specializationsListView.setAdapter(new SpecializationsListAdapter(inflater, specializations));
 
         return rootView;
     }
