@@ -12,12 +12,16 @@ import android.widget.CheckBox;
 
 import com.whfrp3.R;
 import com.whfrp3.ihm.activities.LaunchActivity;
+import com.whfrp3.model.Specialisation;
 import com.whfrp3.model.player.PlayerSkill;
 import com.whfrp3.model.player.inventory.Weapon;
+import com.whfrp3.notification.ToastNotification;
 import com.whfrp3.tools.WHFRP3Application;
 import com.whfrp3.tools.constants.IPlayerActivityConstants;
 import com.whfrp3.tools.helpers.PlayerHelper;
+import com.whfrp3.tools.helpers.SpecialisationHelper;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class PlayerSkillHandlers implements IPlayerActivityConstants {
@@ -60,30 +64,61 @@ public class PlayerSkillHandlers implements IPlayerActivityConstants {
         Log.w("SKILL", playerSkill.toString());
     }
 
+    public void openSpecialisationPopup(final PlayerSkill playerSkill) {
+        final List<Specialisation> specialisations = SpecialisationHelper.getInstance().getSpecialisationsBySkillId(playerSkill.getSkill().getId());
+        List<String> specialisationsName = SpecialisationHelper.getInstance().getSpecialisationsName(specialisations);
+        final boolean[] checkedSpecialisations = new boolean[specialisations.size()];
+
+        AlertDialog.Builder specialisationsDialogBuilder = new AlertDialog.Builder(WHFRP3Application.getActivity());
+        specialisationsDialogBuilder.setTitle(playerSkill.getSkill().getName());
+        specialisationsDialogBuilder.setMultiChoiceItems(specialisationsName.toArray(new String[]{}), checkedSpecialisations, new DialogInterface.OnMultiChoiceClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i, boolean b) {
+                checkedSpecialisations[i] = b;
+            }
+        });
+        specialisationsDialogBuilder.setPositiveButton(R.string.ok, new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                List<String> newSpecs = new ArrayList<>();
+                for (int i = 0; i < specialisations.size(); i++) {
+                    if (checkedSpecialisations[i]) {
+                        newSpecs.add(specialisations.get(i).getName());
+                    }
+                }
+                dialog.dismiss();
+                ToastNotification.info(newSpecs.toString());
+            }
+        });
+
+        specialisationsDialogBuilder.show();
+    }
+
+    //region Launch Skill
     public void launchSkill(final PlayerSkill playerSkill) {
         final Weapon[] weapon = {null};
 
-        if (playerSkill.isFightSkill()) {
+        if (playerSkill.getSkill().isFightSkill()) {
             List<Weapon> weapons;
-            if (playerSkill.isWeaponSkill()) {
+            if (playerSkill.getSkill().isWeaponSkill()) {
                 weapons = WHFRP3Application.getPlayer().getMeleeUsableWeapons();
             } else {
                 weapons = WHFRP3Application.getPlayer().getDistanceUsableWeapons();
             }
 
             if (weapons.size() > 1) {
-                List<String> items = PlayerHelper.getWeaponsName(weapons);
-                final AlertDialog.Builder rangeDialogBuilder = new AlertDialog.Builder(WHFRP3Application.getActivity());
-                rangeDialogBuilder.setTitle(playerSkill.getSkill().getName());
+                List<String> weaponsName = PlayerHelper.getWeaponsName(weapons);
+                final AlertDialog.Builder weaponDialogBuilder = new AlertDialog.Builder(WHFRP3Application.getActivity());
+                weaponDialogBuilder.setTitle(playerSkill.getSkill().getName());
 
                 final List<Weapon> finalWeapons = weapons;
-                rangeDialogBuilder.setSingleChoiceItems(items.toArray(new String[]{}), 0, new DialogInterface.OnClickListener() {
+                weaponDialogBuilder.setSingleChoiceItems(weaponsName.toArray(new String[]{}), 0, new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
                         weapon[0] = finalWeapons.get(which);
                     }
                 });
-                rangeDialogBuilder.setPositiveButton(R.string.ok, new DialogInterface.OnClickListener() {
+                weaponDialogBuilder.setPositiveButton(R.string.ok, new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
                         startLaunchActivity(playerSkill, weapon[0]);
@@ -91,7 +126,7 @@ public class PlayerSkillHandlers implements IPlayerActivityConstants {
                     }
                 });
 
-                rangeDialogBuilder.show();
+                weaponDialogBuilder.show();
             } else if (weapons.size() == 1) {
                 startLaunchActivity(playerSkill, weapon[0]);
             }
@@ -109,7 +144,7 @@ public class PlayerSkillHandlers implements IPlayerActivityConstants {
         Activity currentActivity = WHFRP3Application.getActivity();
 
         Bundle bundle = new Bundle();
-        bundle.putSerializable(SKILL_BUNDLE_TAG, playerSkill);
+        bundle.putSerializable(PLAYER_SKILL_BUNDLE_TAG, playerSkill);
         bundle.putInt(CURRENT_FRAGMENT_POSITION_BUNDLE_TAG, ADVENTURE_FRAGMENT_POSITION);
         if (weapon != null) {
             bundle.putSerializable(WEAPON_BUNDLE_TAG, weapon);
@@ -124,4 +159,5 @@ public class PlayerSkillHandlers implements IPlayerActivityConstants {
 
         currentActivity.startActivityForResult(launchIntent, LAUNCH_REQUEST);
     }
+    //endregion
 }

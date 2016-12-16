@@ -6,8 +6,9 @@ package com.whfrp3.tools.constants;
 public interface IPlayerActivityConstants {
     String IS_IN_EDITION_BUNDLE_TAG = "isInEdition";
     String CURRENT_FRAGMENT_POSITION_BUNDLE_TAG = "fragmentPosition";
-    String SKILL_BUNDLE_TAG = "skill";
+    String PLAYER_SKILL_BUNDLE_TAG = "skill";
     String WEAPON_BUNDLE_TAG = "weapon";
+    String SPECIALISATION_BUNDLE_TAG = "specialisation";
 
     int CHARACTERISTICS_FRAGMENT_POSITION = 0;
     int ADVENTURE_FRAGMENT_POSITION = 1;

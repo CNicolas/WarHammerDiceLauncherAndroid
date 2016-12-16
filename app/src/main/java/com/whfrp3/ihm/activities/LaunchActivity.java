@@ -61,7 +61,7 @@ public class LaunchActivity extends AppCompatActivity implements IPlayerActivity
 
         Bundle extras = getIntent().getExtras();
         if (extras != null) {
-            PlayerSkill playerSkill = (PlayerSkill) extras.getSerializable(SKILL_BUNDLE_TAG);
+            PlayerSkill playerSkill = (PlayerSkill) extras.getSerializable(PLAYER_SKILL_BUNDLE_TAG);
             if (playerSkill != null) {
                 mHand = getHandFromSkill(playerSkill);
                 setTitle(playerSkill.getSkill().getName());
