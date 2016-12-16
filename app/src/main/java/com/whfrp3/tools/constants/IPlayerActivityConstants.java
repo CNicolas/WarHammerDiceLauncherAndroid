@@ -8,7 +8,6 @@ public interface IPlayerActivityConstants {
     String CURRENT_FRAGMENT_POSITION_BUNDLE_TAG = "fragmentPosition";
     String PLAYER_SKILL_BUNDLE_TAG = "skill";
     String WEAPON_BUNDLE_TAG = "weapon";
-    String SPECIALISATION_BUNDLE_TAG = "specialisation";
 
     int CHARACTERISTICS_FRAGMENT_POSITION = 0;
     int ADVENTURE_FRAGMENT_POSITION = 1;

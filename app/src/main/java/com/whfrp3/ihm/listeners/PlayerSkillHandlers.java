@@ -12,14 +12,14 @@ import android.widget.CheckBox;
 
 import com.whfrp3.R;
 import com.whfrp3.ihm.activities.LaunchActivity;
-import com.whfrp3.model.Specialisation;
+import com.whfrp3.model.Specialization;
 import com.whfrp3.model.player.PlayerSkill;
 import com.whfrp3.model.player.inventory.Weapon;
 import com.whfrp3.notification.ToastNotification;
 import com.whfrp3.tools.WHFRP3Application;
 import com.whfrp3.tools.constants.IPlayerActivityConstants;
 import com.whfrp3.tools.helpers.PlayerHelper;
-import com.whfrp3.tools.helpers.SpecialisationHelper;
+import com.whfrp3.tools.helpers.SpecializationHelper;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -64,26 +64,26 @@ public class PlayerSkillHandlers implements IPlayerActivityConstants {
         Log.w("SKILL", playerSkill.toString());
     }
 
-    public void openSpecialisationPopup(final PlayerSkill playerSkill) {
-        final List<Specialisation> specialisations = SpecialisationHelper.getInstance().getSpecialisationsBySkillId(playerSkill.getSkill().getId());
-        List<String> specialisationsName = SpecialisationHelper.getInstance().getSpecialisationsName(specialisations);
-        final boolean[] checkedSpecialisations = new boolean[specialisations.size()];
+    public void openSpecializationPopup(final PlayerSkill playerSkill) {
+        final List<Specialization> specializations = SpecializationHelper.getInstance().getSpecializationsBySkillId(playerSkill.getSkill().getId());
+        List<String> specializationsName = SpecializationHelper.getInstance().getSpecializationsName(specializations);
+        final boolean[] checkedSpecializations = new boolean[specializations.size()];
 
-        AlertDialog.Builder specialisationsDialogBuilder = new AlertDialog.Builder(WHFRP3Application.getActivity());
-        specialisationsDialogBuilder.setTitle(playerSkill.getSkill().getName());
-        specialisationsDialogBuilder.setMultiChoiceItems(specialisationsName.toArray(new String[]{}), checkedSpecialisations, new DialogInterface.OnMultiChoiceClickListener() {
+        AlertDialog.Builder specializationsDialogBuilder = new AlertDialog.Builder(WHFRP3Application.getActivity());
+        specializationsDialogBuilder.setTitle(playerSkill.getSkill().getName());
+        specializationsDialogBuilder.setMultiChoiceItems(specializationsName.toArray(new String[]{}), checkedSpecializations, new DialogInterface.OnMultiChoiceClickListener() {
             @Override
             public void onClick(DialogInterface dialogInterface, int i, boolean b) {
-                checkedSpecialisations[i] = b;
+                checkedSpecializations[i] = b;
             }
         });
-        specialisationsDialogBuilder.setPositiveButton(R.string.ok, new DialogInterface.OnClickListener() {
+        specializationsDialogBuilder.setPositiveButton(R.string.ok, new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
                 List<String> newSpecs = new ArrayList<>();
-                for (int i = 0; i < specialisations.size(); i++) {
-                    if (checkedSpecialisations[i]) {
-                        newSpecs.add(specialisations.get(i).getName());
+                for (int i = 0; i < specializations.size(); i++) {
+                    if (checkedSpecializations[i]) {
+                        newSpecs.add(specializations.get(i).getName());
                     }
                 }
                 dialog.dismiss();
@@ -91,7 +91,7 @@ public class PlayerSkillHandlers implements IPlayerActivityConstants {
             }
         });
 
-        specialisationsDialogBuilder.show();
+        specializationsDialogBuilder.show();
     }
 
     //region Launch Skill

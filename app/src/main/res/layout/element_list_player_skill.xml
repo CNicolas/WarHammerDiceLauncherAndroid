@@ -30,8 +30,8 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:layout_weight="1"
-            android:onClick="@{() -> handlers.openSpecialisationPopup(playerSkill)}"
-            android:src="@drawable/ic_specialisation_black" />
+            android:onClick="@{() -> handlers.openSpecializationPopup(playerSkill)}"
+            android:src="@drawable/ic_specialization_black" />
 
         <TextView
             style="@style/SkillName"

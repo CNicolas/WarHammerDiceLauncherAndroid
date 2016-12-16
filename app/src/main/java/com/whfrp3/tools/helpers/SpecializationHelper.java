@@ -50,9 +50,9 @@ public class SpecializationHelper {
     }
 
     /**
-     * Getter of the unique instance of the specialisation helper.
+     * Getter of the unique instance of the specialization helper.
      *
-     * @return Unique instance of the specialisation helper.
+     * @return Unique instance of the specialization helper.
      */
     public static SpecializationHelper getInstance() {
         if (instance == null) {
