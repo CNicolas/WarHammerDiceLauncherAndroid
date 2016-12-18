@@ -4,13 +4,11 @@
 
     <data>
 
+        <import type="com.whfrp3.model.enums.Characteristic" />
+
         <variable
             name="player"
             type="com.whfrp3.model.player.Player" />
-
-        <variable
-            name="carac"
-            type="com.whfrp3.model.player.Characteristics" />
     </data>
 
     <ScrollView
@@ -179,7 +177,7 @@
                     <TextView
                         style="@style/CharacteristicLabel"
                         android:labelFor="@+id/strength_characteristic"
-                        android:text="@string/strength" />
+                        android:text="@string/charac_strength_long" />
 
                     <LinearLayout style="@style/CharacteristicBlueLinearLayout">
 
@@ -187,7 +185,7 @@
                             android:id="@+id/strength_characteristic"
                             style="@style/CharacteristicNumberEditText"
                             android:enabled="@{player.inEdition}"
-                            android:text="@={carac.strength}" />
+                            android:text="@={player.getCharacteristic(Characteristic.STRENGTH).value}" />
                     </LinearLayout>
 
                     <LinearLayout style="@style/CharacteristicWhiteLinearLayout">
@@ -196,7 +194,7 @@
                             android:id="@+id/strengthFortune"
                             style="@style/CharacteristicFortuneNumberEditText"
                             android:enabled="@{player.inEdition}"
-                            android:text="@={carac.strengthFortune}" />
+                            android:text="@={player.getCharacteristic(Characteristic.STRENGTH).fortuneValue}" />
                     </LinearLayout>
                 </LinearLayout>
 
@@ -208,7 +206,7 @@
                     <TextView
                         style="@style/CharacteristicLabel"
                         android:labelFor="@+id/toughness_characteristic"
-                        android:text="@string/toughness" />
+                        android:text="@string/charac_toughness_long" />
 
                     <LinearLayout style="@style/CharacteristicBlueLinearLayout">
 
@@ -216,7 +214,7 @@
                             android:id="@+id/toughness_characteristic"
                             style="@style/CharacteristicNumberEditText"
                             android:enabled="@{player.inEdition}"
-                            android:text="@={carac.toughness}" />
+                            android:text="@={player.getCharacteristic(Characteristic.TOUGHNESS).value}" />
                     </LinearLayout>
 
                     <LinearLayout style="@style/CharacteristicWhiteLinearLayout">
@@ -225,7 +223,7 @@
                             android:id="@+id/toughnessFortune"
                             style="@style/CharacteristicFortuneNumberEditText"
                             android:enabled="@{player.inEdition}"
-                            android:text="@={carac.toughnessFortune}" />
+                            android:text="@={player.getCharacteristic(Characteristic.TOUGHNESS).fortuneValue}" />
                     </LinearLayout>
                 </LinearLayout>
 
@@ -237,7 +235,7 @@
                     <TextView
                         style="@style/CharacteristicLabel"
                         android:labelFor="@+id/agility_characteristic"
-                        android:text="@string/agility" />
+                        android:text="@string/charac_agility_long" />
 
                     <LinearLayout style="@style/CharacteristicBlueLinearLayout">
 
@@ -245,7 +243,7 @@
                             android:id="@+id/agility_characteristic"
                             style="@style/CharacteristicNumberEditText"
                             android:enabled="@{player.inEdition}"
-                            android:text="@={carac.agility}" />
+                            android:text="@={player.getCharacteristic(Characteristic.AGILITY).value}" />
                     </LinearLayout>
 
                     <LinearLayout style="@style/CharacteristicWhiteLinearLayout">
@@ -254,7 +252,7 @@
                             android:id="@+id/agilityFortune"
                             style="@style/CharacteristicFortuneNumberEditText"
                             android:enabled="@{player.inEdition}"
-                            android:text="@={carac.agilityFortune}" />
+                            android:text="@={player.getCharacteristic(Characteristic.AGILITY).fortuneValue}" />
                     </LinearLayout>
                 </LinearLayout>
 
@@ -266,7 +264,7 @@
                     <TextView
                         style="@style/CharacteristicLabel"
                         android:labelFor="@+id/intelligence_characteristic"
-                        android:text="@string/intelligence" />
+                        android:text="@string/charac_intelligence_long" />
 
                     <LinearLayout style="@style/CharacteristicBlueLinearLayout">
 
@@ -274,7 +272,7 @@
                             android:id="@+id/intelligence_characteristic"
                             style="@style/CharacteristicNumberEditText"
                             android:enabled="@{player.inEdition}"
-                            android:text="@={carac.intelligence}" />
+                            android:text="@={player.getCharacteristic(Characteristic.INTELLIGENCE).value}" />
                     </LinearLayout>
 
                     <LinearLayout style="@style/CharacteristicWhiteLinearLayout">
@@ -283,7 +281,7 @@
                             android:id="@+id/intelligenceFortune"
                             style="@style/CharacteristicFortuneNumberEditText"
                             android:enabled="@{player.inEdition}"
-                            android:text="@={carac.intelligenceFortune}" />
+                            android:text="@={player.getCharacteristic(Characteristic.INTELLIGENCE).fortuneValue}" />
                     </LinearLayout>
                 </LinearLayout>
 
@@ -295,7 +293,7 @@
                     <TextView
                         style="@style/CharacteristicLabel"
                         android:labelFor="@+id/willpower_characteristic"
-                        android:text="@string/willpower" />
+                        android:text="@string/charac_willpower_long" />
 
                     <LinearLayout style="@style/CharacteristicBlueLinearLayout">
 
@@ -303,7 +301,7 @@
                             android:id="@+id/willpower_characteristic"
                             style="@style/CharacteristicNumberEditText"
                             android:enabled="@{player.inEdition}"
-                            android:text="@={carac.willpower}" />
+                            android:text="@={player.getCharacteristic(Characteristic.WILLPOWER).value}" />
                     </LinearLayout>
 
                     <LinearLayout style="@style/CharacteristicWhiteLinearLayout">
@@ -312,7 +310,7 @@
                             android:id="@+id/willpowerFortune"
                             style="@style/CharacteristicFortuneNumberEditText"
                             android:enabled="@{player.inEdition}"
-                            android:text="@={carac.willpowerFortune}" />
+                            android:text="@={player.getCharacteristic(Characteristic.WILLPOWER).fortuneValue}" />
                     </LinearLayout>
                 </LinearLayout>
 
@@ -324,7 +322,7 @@
                     <TextView
                         style="@style/CharacteristicLabel"
                         android:labelFor="@+id/fellowship_characteristic"
-                        android:text="@string/fellowship" />
+                        android:text="@string/charac_fellowship_long" />
 
                     <LinearLayout style="@style/CharacteristicBlueLinearLayout">
 
@@ -332,7 +330,7 @@
                             android:id="@+id/fellowship_characteristic"
                             style="@style/CharacteristicNumberEditText"
                             android:enabled="@{player.inEdition}"
-                            android:text="@={carac.fellowship}" />
+                            android:text="@={player.getCharacteristic(Characteristic.FELLOWSHIP).value}" />
                     </LinearLayout>
 
                     <LinearLayout style="@style/CharacteristicWhiteLinearLayout">
@@ -341,7 +339,7 @@
                             android:id="@+id/fellowshipFortune"
                             style="@style/CharacteristicFortuneNumberEditText"
                             android:enabled="@{player.inEdition}"
-                            android:text="@={carac.fellowshipFortune}" />
+                            android:text="@={player.getCharacteristic(Characteristic.FELLOWSHIP).fortuneValue}" />
                     </LinearLayout>
                 </LinearLayout>
             </LinearLayout>

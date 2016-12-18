@@ -8,9 +8,9 @@ import com.whfrp3.database.entries.IEntryConstants;
 import com.whfrp3.database.entries.IPlayerEntryConstants;
 import com.whfrp3.model.enums.MoneyType;
 import com.whfrp3.model.enums.Race;
-import com.whfrp3.model.player.Characteristics;
 import com.whfrp3.model.player.Money;
 import com.whfrp3.model.player.Player;
+import com.whfrp3.model.player.PlayerCharacteristic;
 import com.whfrp3.model.player.PlayerSkill;
 import com.whfrp3.model.player.PlayerSpecialization;
 import com.whfrp3.model.player.PlayerTalent;
@@ -27,9 +27,9 @@ public class PlayerDao extends AbstractDaoWithId<Player> implements IPlayerEntry
     //region DAOs
 
     /**
-     * DAO of characteristics.
+     * DAO of player characteristics.
      */
-    private final CharacteristicsDao mCharacteristicsDao;
+    private final PlayerCharacteristicDao mPlayerCharacteristicDao;
 
     /**
      * DAO of player skills.
@@ -63,7 +63,7 @@ public class PlayerDao extends AbstractDaoWithId<Player> implements IPlayerEntry
     public PlayerDao(SQLiteDatabase database) {
         super(database, TABLE_NAME);
 
-        mCharacteristicsDao = WHFRP3Application.getDatabase().getCharacteristicsDao();
+        mPlayerCharacteristicDao = WHFRP3Application.getDatabase().getmPlayerCharacteristic();
         mPlayerSkillDao = WHFRP3Application.getDatabase().getPlayerSkillDao();
         mPlayerSpecializationDao = WHFRP3Application.getDatabase().getPlayerSpecializationDao();
         mPlayerTalentDao = WHFRP3Application.getDatabase().getPlayerTalentDao();
@@ -102,11 +102,14 @@ public class PlayerDao extends AbstractDaoWithId<Player> implements IPlayerEntry
 
     @Override
     public void insert(Player player) {
-        // Insert characteristics
-        mCharacteristicsDao.insert(player.getCharacteristics());
-
         // Insert player
         super.insert(player);
+
+        // Insert characteristics
+        for (PlayerCharacteristic playerCharacteristic : player.getPlayerCharacteristics()) {
+            playerCharacteristic.setPlayerId(player.getId());
+            mPlayerCharacteristicDao.insert(playerCharacteristic);
+        }
 
         // Insert skills
         for (PlayerSkill playerSkill : player.getPlayerSkills()) {
@@ -139,11 +142,14 @@ public class PlayerDao extends AbstractDaoWithId<Player> implements IPlayerEntry
 
     @Override
     public void update(Player player) {
-        // Update characteristics
-        mCharacteristicsDao.update(player.getCharacteristics());
-
         // Update player
         super.update(player);
+
+        // Update characteristics
+        mPlayerCharacteristicDao.deleteAllByPlayerId(player.getId());
+        for (PlayerCharacteristic playerCharacteristic : player.getPlayerCharacteristics()) {
+            mPlayerCharacteristicDao.insert(playerCharacteristic);
+        }
 
         // Update skills
         mPlayerSkillDao.deleteAllByPlayerId(player.getId());
@@ -214,8 +220,6 @@ public class PlayerDao extends AbstractDaoWithId<Player> implements IPlayerEntry
         values.put(COLUMN_MONEY_SILVER, player.getMoney().getAmount(MoneyType.SILVER));
         values.put(COLUMN_MONEY_GOLD, player.getMoney().getAmount(MoneyType.GOLD));
 
-        values.put(COLUMN_CHARACTERISTICS_ID, player.getCharacteristics().getId());
-
         return values;
     }
 
@@ -253,11 +257,9 @@ public class PlayerDao extends AbstractDaoWithId<Player> implements IPlayerEntry
 
         model.setMoney(new Money(goldAmount, silverAmount, brassAmount));
 
-        // Find characteristics
-        Characteristics characteristics = mCharacteristicsDao.findById(cursor.getInt(cursor.getColumnIndexOrThrow(COLUMN_CHARACTERISTICS_ID)));
-        if (characteristics != null) {
-            model.setCharacteristics(characteristics);
-        }
+        // Find playerCharacteristics
+        List<PlayerCharacteristic> playerCharacteristics = mPlayerCharacteristicDao.findAllByPlayerId(model.getId());
+        model.setPlayerCharacteristics(playerCharacteristics);
 
         // Find playerSkills
         List<PlayerSkill> playerSkills = mPlayerSkillDao.findAllByPlayerId(model.getId());
@@ -266,6 +268,10 @@ public class PlayerDao extends AbstractDaoWithId<Player> implements IPlayerEntry
         // Find playerSpecializations
         List<PlayerSpecialization> playerSpecializations = mPlayerSpecializationDao.findAllByPlayerId(model.getId());
         model.setPlayerSpecializations(playerSpecializations);
+
+        // Find playerTalents
+        List<PlayerTalent> playerTalents = mPlayerTalentDao.findAllByPlayerId(model.getId());
+        model.setPlayerTalents(playerTalents);
 
         // Find items
         List<Item> items = mItemDao.findAllByPlayerId(model.getId());

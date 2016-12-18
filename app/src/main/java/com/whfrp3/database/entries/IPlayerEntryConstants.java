@@ -31,8 +31,6 @@ public interface IPlayerEntryConstants extends IEntryConstants {
     String COLUMN_MONEY_SILVER = "money_silver";
     String COLUMN_MONEY_GOLD = "money_gold";
 
-    String COLUMN_CHARACTERISTICS_ID = "characteristics_id";
-
     String SQL_CREATE_ENTRIES =
             "CREATE TABLE " + TABLE_NAME + " (" +
                     COLUMN_ID + INTEGER_TYPE + PRIMARY_KEY + AUTO_INCREMENT + COMMA_SEP +
@@ -59,11 +57,8 @@ public interface IPlayerEntryConstants extends IEntryConstants {
 
                     COLUMN_MONEY_BRASS + INTEGER_TYPE + COMMA_SEP +
                     COLUMN_MONEY_SILVER + INTEGER_TYPE + COMMA_SEP +
-                    COLUMN_MONEY_GOLD + INTEGER_TYPE + COMMA_SEP +
+                    COLUMN_MONEY_GOLD + INTEGER_TYPE +
 
-                    COLUMN_CHARACTERISTICS_ID + INTEGER_TYPE + COMMA_SEP +
-
-                    " FOREIGN KEY (" + COLUMN_CHARACTERISTICS_ID + ") REFERENCES " + ICharacteristicsEntryConstants.TABLE_NAME + "(" + ICharacteristicsEntryConstants.COLUMN_ID + ")" +
                     " )";
 
     String SQL_DELETE_ENTRIES = "DROP TABLE IF EXISTS " + TABLE_NAME;

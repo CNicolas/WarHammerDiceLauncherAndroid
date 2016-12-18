@@ -15,12 +15,19 @@
     <string name="close">Fermer</string>
     <string name="cancel">Annuler</string>
 
-    <string name="strength">Force</string>
-    <string name="toughness">Endurance</string>
-    <string name="agility">Agilité</string>
-    <string name="intelligence">Intelligence</string>
-    <string name="willpower">Force mentale</string>
-    <string name="fellowship">Sociabilité</string>
+    <string name="charac_strength_long">Force</string>
+    <string name="charac_toughness_long">Endurance</string>
+    <string name="charac_agility_long">Agilité</string>
+    <string name="charac_intelligence_long">Intelligence</string>
+    <string name="charac_willpower_long">Force mentale</string>
+    <string name="charac_fellowship_long">Sociabilité</string>
+
+    <string name="charac_strength_short">For</string>
+    <string name="charac_toughness_short">End</string>
+    <string name="charac_agility_short">Agi</string>
+    <string name="charac_intelligence_short">Int</string>
+    <string name="charac_willpower_short">FM</string>
+    <string name="charac_fellowship_short">Soc</string>
     <!--Constant Values-->
 
     <string name="btn_launchText">Lancer !</string>

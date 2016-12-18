@@ -19,12 +19,19 @@
     <string name="close">Close</string>
     <string name="cancel">Cancel</string>
 
-    <string name="strength">Strength</string>
-    <string name="toughness">Toughness</string>
-    <string name="agility">Agility</string>
-    <string name="intelligence">Intelligence</string>
-    <string name="willpower">Will power</string>
-    <string name="fellowship">Fellowship</string>
+    <string name="charac_strength_long">Strength</string>
+    <string name="charac_toughness_long">Toughness</string>
+    <string name="charac_agility_long">Agility</string>
+    <string name="charac_intelligence_long">Intelligence</string>
+    <string name="charac_willpower_long">Willpower</string>
+    <string name="charac_fellowship_long">Fellowship</string>
+
+    <string name="charac_strength_short">Str</string>
+    <string name="charac_toughness_short">Tou</string>
+    <string name="charac_agility_short">Agi</string>
+    <string name="charac_intelligence_short">Int</string>
+    <string name="charac_willpower_short">Wil</string>
+    <string name="charac_fellowship_short">Fel</string>
     <!--End of Constant Values-->
 
     <string name="btn_launchText">Roll !</string>

@@ -11,6 +11,7 @@ import com.whfrp3.R;
 import com.whfrp3.model.AbstractModel;
 import com.whfrp3.model.Skill;
 import com.whfrp3.model.Specialization;
+import com.whfrp3.model.enums.Characteristic;
 import com.whfrp3.model.enums.Race;
 import com.whfrp3.model.enums.SkillType;
 import com.whfrp3.model.player.inventory.Armor;
@@ -24,7 +25,9 @@ import com.whfrp3.tools.helpers.SkillHelper;
 import com.whfrp3.tools.helpers.SpecializationHelper;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 /**
  * The Player model.
@@ -61,7 +64,7 @@ public class Player extends AbstractModel {
     private int stress;
     private int exertion;
 
-    private Characteristics characteristics;
+    private Map<Characteristic, PlayerCharacteristic> characteristics;
     private Money money;
     private List<Item> inventory;
 
@@ -80,13 +83,18 @@ public class Player extends AbstractModel {
 
     //region Constructors
     public Player() {
-        characteristics = new Characteristics();
+        characteristics = new HashMap<>();
         money = new Money(0, 0, 0);
         inventory = new ArrayList<>();
 
         playerSkills = new ArrayList<>();
         playerSpecializations = new ArrayList<>();
         playerTalents = new ArrayList<>();
+
+        // Initialize characteristics list
+        for (Characteristic characteristic : Characteristic.values()) {
+            characteristics.put(characteristic, new PlayerCharacteristic(characteristic, this));
+        }
 
         // Initialize playerSkills list
         // TODO : modifier l'emplacement de l'initialisation des compétences de base
@@ -156,10 +164,10 @@ public class Player extends AbstractModel {
         int encumbrance = (race == Race.DWARF) ? ENCUMBRANCE_BASE_DWARF : ENCUMBRANCE_BASE;
 
         // Add strength
-        encumbrance += characteristics.getStrength() * ENCUMBRANCE_BY_STRENGTH;
+        encumbrance += characteristics.get(Characteristic.STRENGTH).getValue() * ENCUMBRANCE_BY_STRENGTH;
 
         // Add strength fortune
-        encumbrance += characteristics.getStrengthFortune() * ENCUMBRANCE_BY_STRENGTH_FORTUNE;
+        encumbrance += characteristics.get(Characteristic.STRENGTH).getFortuneValue() * ENCUMBRANCE_BY_STRENGTH_FORTUNE;
 
         return encumbrance;
     }
@@ -568,7 +576,7 @@ public class Player extends AbstractModel {
     }
 
     public int getMaxStressBeforeComa() {
-        return getCharacteristics().getWillpower() * 2;
+        return characteristics.get(Characteristic.WILLPOWER).getValue() * 2;
     }
 
     @Bindable
@@ -582,7 +590,7 @@ public class Player extends AbstractModel {
     }
 
     public int getMaxExertionBeforeComa() {
-        return getCharacteristics().getToughness() * 2;
+        return characteristics.get(Characteristic.TOUGHNESS).getValue() * 2;
     }
 
     @Bindable
@@ -592,14 +600,6 @@ public class Player extends AbstractModel {
 
     public void setMoney(Money money) {
         this.money = money;
-    }
-
-    public Characteristics getCharacteristics() {
-        return characteristics;
-    }
-
-    public void setCharacteristics(Characteristics characteristics) {
-        this.characteristics = characteristics;
     }
 
     public List<Item> getInventory() {
@@ -639,6 +639,21 @@ public class Player extends AbstractModel {
 
     public List<Long> getItemToRemove() {
         return mItemToRemove;
+    }
+
+    public PlayerCharacteristic getCharacteristic(Characteristic characteristic) {
+        return characteristics.get(characteristic);
+    }
+
+    public void setPlayerCharacteristics(List<PlayerCharacteristic> characteristics) {
+        this.characteristics = new HashMap<>();
+        for (PlayerCharacteristic playerCharacteristic : characteristics) {
+            this.characteristics.put(playerCharacteristic.getCharacteristic(), playerCharacteristic);
+        }
+    }
+
+    public List<PlayerCharacteristic> getPlayerCharacteristics() {
+        return new ArrayList<>(characteristics.values());
     }
     //endregion
 
@@ -700,8 +715,6 @@ public class Player extends AbstractModel {
             return false;
         if (getCareer() != null ? !getCareer().equals(player.getCareer()) : player.getCareer() != null)
             return false;
-        if (getCharacteristics() != null ? !getCharacteristics().equals(player.getCharacteristics()) : player.getCharacteristics() != null)
-            return false;
         if (getInventory() != null ? !getInventory().equals(player.getInventory()) : player.getInventory() != null)
             return false;
         return getPlayerSkills() != null ? getPlayerSkills().equals(player.getPlayerSkills()) : player.getPlayerSkills() == null;
@@ -730,7 +743,6 @@ public class Player extends AbstractModel {
         result = 31 * result + getMax_reckless();
         result = 31 * result + getConservative();
         result = 31 * result + getMax_conservative();
-        result = 31 * result + (getCharacteristics() != null ? getCharacteristics().hashCode() : 0);
         result = 31 * result + (getInventory() != null ? getInventory().hashCode() : 0);
         result = 31 * result + (getPlayerSkills() != null ? getPlayerSkills().hashCode() : 0);
         return result;

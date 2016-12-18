@@ -1,44 +1,78 @@
 package com.whfrp3.model.enums;
 
-import com.whfrp3.database.entries.ICharacteristicsEntryConstants;
+import com.whfrp3.R;
 
 /**
  * List all the different characteristics.
  */
 public enum Characteristic {
-    STRENGTH(ICharacteristicsEntryConstants.COLUMN_STRENGTH),
-    TOUGHNESS(ICharacteristicsEntryConstants.COLUMN_TOUGHNESS),
-    AGILITY(ICharacteristicsEntryConstants.COLUMN_AGILITY),
-    INTELLIGENCE(ICharacteristicsEntryConstants.COLUMN_INTELLIGENCE),
-    WILLPOWER(ICharacteristicsEntryConstants.COLUMN_WILLPOWER),
-    FELLOWSHIP(ICharacteristicsEntryConstants.COLUMN_FELLOWSHIP),
 
-    STRENGTH_FORTUNE(ICharacteristicsEntryConstants.COLUMN_STRENGTH_FORTUNE),
-    TOUGHNESS_FORTUNE(ICharacteristicsEntryConstants.COLUMN_TOUGHNESS_FORTUNE),
-    AGILITY_FORTUNE(ICharacteristicsEntryConstants.COLUMN_AGILITY_FORTUNE),
-    INTELLIGENCE_FORTUNE(ICharacteristicsEntryConstants.COLUMN_INTELLIGENCE_FORTUNE),
-    WILLPOWER_FORTUNE(ICharacteristicsEntryConstants.COLUMN_WILLPOWER_FORTUNE),
-    FELLOWSHIP_FORTUNE(ICharacteristicsEntryConstants.COLUMN_FELLOWSHIP_FORTUNE);
+    /**
+     * Strength.
+     */
+    STRENGTH(R.string.charac_strength_long, R.string.charac_strength_short),
 
-    private final String characteristic;
+    /**
+     * Toughness.
+     */
+    TOUGHNESS(R.string.charac_toughness_long, R.string.charac_toughness_short),
 
-    Characteristic(final String characteristic) {
-        this.characteristic = characteristic;
+    /**
+     * Agility.
+     */
+    AGILITY(R.string.charac_agility_long, R.string.charac_agility_short),
+
+    /**
+     * Intelligence.
+     */
+    INTELLIGENCE(R.string.charac_intelligence_long, R.string.charac_intelligence_short),
+
+    /**
+     * Willpower.
+     */
+    WILLPOWER(R.string.charac_willpower_long, R.string.charac_willpower_short),
+
+    /**
+     * Fellowship.
+     */
+    FELLOWSHIP(R.string.charac_fellowship_long, R.string.charac_fellowship_short);
+
+    /**
+     * Long label id.
+     */
+    private final int longLabelId;
+
+    /**
+     * Short label id.
+     */
+    private final int shortLabelId;
+
+    /**
+     * Private constructor.
+     *
+     * @param longLabelId  Long label id.
+     * @param shortLabelId Short label id.
+     */
+    Characteristic(final int longLabelId, final int shortLabelId) {
+        this.longLabelId = longLabelId;
+        this.shortLabelId = shortLabelId;
     }
 
-    public static Characteristic fromString(String text) {
-        if (text != null) {
-            for (Characteristic b : Characteristic.values()) {
-                if (text.equalsIgnoreCase(b.characteristic)) {
-                    return b;
-                }
-            }
-        }
-        return null;
+    /**
+     * Return characteristic long label id.
+     *
+     * @return Long label id.
+     */
+    public int getLongLabelId() {
+        return longLabelId;
     }
 
-    @Override
-    public String toString() {
-        return characteristic;
+    /**
+     * Return characteristic short label id.
+     *
+     * @return Short label id.
+     */
+    public int getShortLabelId() {
+        return shortLabelId;
     }
 }

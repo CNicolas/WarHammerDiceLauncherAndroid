@@ -4,16 +4,16 @@ import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
-import com.whfrp3.database.dao.CharacteristicsDao;
 import com.whfrp3.database.dao.HandDao;
 import com.whfrp3.database.dao.ItemDao;
+import com.whfrp3.database.dao.PlayerCharacteristicDao;
 import com.whfrp3.database.dao.PlayerDao;
 import com.whfrp3.database.dao.PlayerSkillDao;
 import com.whfrp3.database.dao.PlayerSpecializationDao;
 import com.whfrp3.database.dao.PlayerTalentDao;
-import com.whfrp3.database.entries.ICharacteristicsEntryConstants;
 import com.whfrp3.database.entries.IHandEntryConstants;
 import com.whfrp3.database.entries.IItemEntryConstants;
+import com.whfrp3.database.entries.IPlayerCharacteristicEntryConstants;
 import com.whfrp3.database.entries.IPlayerEntryConstants;
 import com.whfrp3.database.entries.IPlayerSkillEntryConstants;
 import com.whfrp3.database.entries.IPlayerSpecializationEntryConstants;
@@ -59,9 +59,9 @@ public class Database {
     private PlayerDao mPlayerDao;
 
     /**
-     * DAO of characteristics.
+     * DAO of player characteristics.
      */
-    private CharacteristicsDao mCharacteristicsDao;
+    private PlayerCharacteristicDao mPlayerCharacteristic;
 
     /**
      * DAO of player skills.
@@ -98,12 +98,12 @@ public class Database {
     }
 
     /**
-     * Getter of DAO of characteristics.
+     * Getter of DAO of player characteristics.
      *
-     * @return DAO of characteristics.
+     * @return DAO of player characteristics.
      */
-    public CharacteristicsDao getCharacteristicsDao() {
-        return mCharacteristicsDao;
+    public PlayerCharacteristicDao getmPlayerCharacteristic() {
+        return mPlayerCharacteristic;
     }
 
     /**
@@ -175,7 +175,7 @@ public class Database {
         mDbHelper = new DatabaseHelper(mContext);
         SQLiteDatabase db = mDbHelper.getWritableDatabase();
 
-        mCharacteristicsDao = new CharacteristicsDao(db);
+        mPlayerCharacteristic = new PlayerCharacteristicDao(db);
         mPlayerSkillDao = new PlayerSkillDao(db);
         mPlayerSpecializationDao = new PlayerSpecializationDao(db);
         mPlayerTalentDao = new PlayerTalentDao(db);
@@ -213,7 +213,7 @@ public class Database {
         public void onCreate(SQLiteDatabase db) {
             db.execSQL(IHandEntryConstants.SQL_CREATE_ENTRIES);
 
-            db.execSQL(ICharacteristicsEntryConstants.SQL_CREATE_ENTRIES);
+            db.execSQL(IPlayerCharacteristicEntryConstants.SQL_CREATE_ENTRIES);
             db.execSQL(IPlayerSkillEntryConstants.SQL_CREATE_ENTRIES);
             db.execSQL(IPlayerSpecializationEntryConstants.SQL_CREATE_ENTRIES);
             db.execSQL(IPlayerTalentEntryConstants.SQL_CREATE_ENTRIES);
@@ -225,7 +225,7 @@ public class Database {
         public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
             db.execSQL(IHandEntryConstants.SQL_DELETE_ENTRIES);
 
-            db.execSQL(ICharacteristicsEntryConstants.SQL_DELETE_ENTRIES);
+            db.execSQL(IPlayerCharacteristicEntryConstants.SQL_DELETE_ENTRIES);
             db.execSQL(IPlayerSkillEntryConstants.SQL_DELETE_ENTRIES);
             db.execSQL(IPlayerSpecializationEntryConstants.SQL_DELETE_ENTRIES);
             db.execSQL(IPlayerTalentEntryConstants.SQL_DELETE_ENTRIES);

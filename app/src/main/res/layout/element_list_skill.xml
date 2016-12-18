@@ -53,6 +53,6 @@
             android:layout_weight="1"
             android:gravity="center"
             android:hint="@string/dummy_string"
-            android:text="@{skill.characteristic.toString}" />
+            android:text="@{BindingUtils.string(skill.characteristic.shortLabelId)}" />
     </LinearLayout>
 </layout>

@@ -290,7 +290,7 @@ public class LaunchActivity extends AppCompatActivity implements IPlayerActivity
     private Hand getHandFromSkill(PlayerSkill playerSkill) {
         Player player = WHFRP3Application.getPlayer();
 
-        Hand hand = player.getCharacteristics().getCharacteristicHand(playerSkill.getSkill().getCharacteristic());
+        Hand hand = player.getCharacteristic(playerSkill.getSkill().getCharacteristic()).getHand();
         hand.setExpertise(playerSkill.getLevel());
         hand.setChallenge(1);
 

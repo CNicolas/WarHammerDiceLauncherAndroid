@@ -24,7 +24,6 @@ public class CharacteristicsFragment extends Fragment {
                              Bundle savedInstanceState) {
         FragmentCharacteristicsBinding binding = DataBindingUtil.inflate(inflater, R.layout.fragment_characteristics, container, false);
         binding.setPlayer(WHFRP3Application.getPlayer());
-        binding.setCarac(WHFRP3Application.getPlayer().getCharacteristics());
 
         setupRaceSpinner(inflater, binding.getRoot());
 
