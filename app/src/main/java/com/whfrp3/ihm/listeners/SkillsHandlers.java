@@ -4,8 +4,8 @@ import android.content.DialogInterface;
 import android.support.v7.app.AlertDialog;
 
 import com.whfrp3.R;
-import com.whfrp3.model.Skill;
-import com.whfrp3.model.Specialization;
+import com.whfrp3.model.skills.Skill;
+import com.whfrp3.model.skills.Specialization;
 import com.whfrp3.tools.WHFRP3Application;
 import com.whfrp3.tools.helpers.SpecializationHelper;
 

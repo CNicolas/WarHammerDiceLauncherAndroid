@@ -10,7 +10,7 @@ import android.widget.ListView;
 
 import com.whfrp3.R;
 import com.whfrp3.ihm.adapters.SkillsListAdapter;
-import com.whfrp3.model.Skill;
+import com.whfrp3.model.skills.Skill;
 import com.whfrp3.tools.BindingUtils;
 import com.whfrp3.tools.helpers.SkillHelper;
 

@@ -58,7 +58,8 @@ public class Weapon extends Equipment {
     //endregion
 
     public boolean canBeUsed(Range range) {
-        return isEquipable() && isEquipped() && getRange().isGreaterThanOrEqualTo(range);
+        return isEquipable() && isEquipped() &&
+                getRange().ordinal() >= range.ordinal();
     }
 
     //region Get & Set

@@ -18,7 +18,7 @@ import java.util.List;
 import java.util.Map;
 
 /**
- * Talent helper used to manage talents.
+ * Talent helper used to manage search.
  */
 public class TalentHelper {
 
@@ -28,17 +28,17 @@ public class TalentHelper {
     private static TalentHelper instance;
 
     /**
-     * Loaded talents.
+     * Loaded search.
      */
     private List<Talent> talents;
 
     /**
-     * Loaded talents by id.
+     * Loaded search by id.
      */
     private LongSparseArray<Talent> talentsById;
 
     /**
-     * Loaded talents by type.
+     * Loaded search by type.
      */
     private Map<TalentType, List<Talent>> talentsByType;
 
@@ -68,7 +68,7 @@ public class TalentHelper {
     }
 
     /**
-     * Loads talents stored in talents.xml file.
+     * Loads search stored in search.xmlfile.
      */
     public void loadTalents() {
         try {
@@ -103,16 +103,16 @@ public class TalentHelper {
 
             talentsByType.size();
         } catch (Exception e) {
-            Log.e("TALENT_LOAD", "Erreur de chargement des talents.", e);
+            Log.e("TALENT_LOAD", "Erreur de chargement des search.", e);
         }
     }
 
     /**
-     * Returns all loaded talents.
+     * Returns all loaded search.
      *
-     * @return All loaded talents.
+     * @return All loaded search.
      */
-    public List<Talent> getAllTalents() {
+    public List<Talent> getTalents() {
         return talents;
     }
 
@@ -127,9 +127,9 @@ public class TalentHelper {
     }
 
     /**
-     * Return the talents of the given type.
+     * Return the search of the given type.
      *
-     * @param type Type of the talents to return.
+     * @param type Type of the search to return.
      * @return Talents of the given type.
      */
     public List<Talent> getTalentsByType(TalentType type) {
@@ -138,15 +138,15 @@ public class TalentHelper {
 
     //region Search
     public List<Talent> search(TalentSearchFields fields) {
-        List<Talent> allTalents;
+        List<Talent> talents;
         if (fields.getTalentType() == null) {
-            allTalents = getAllTalents();
+            talents = getTalents();
         } else {
-            allTalents = getTalentsByType(fields.getTalentType());
+            talents = getTalentsByType(fields.getTalentType());
         }
 
         List<Talent> res = new ArrayList<>();
-        for (Talent talent : allTalents) {
+        for (Talent talent : talents) {
             if (isSimilarCooldownOrNull(talent, fields.getCooldownType())
                     && isTalentNameContainingOrNull(talent, fields.getName())
                     && isTalentDescriptionContainingOrNull(talent, fields.getDescription())) {

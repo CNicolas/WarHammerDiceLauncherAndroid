@@ -42,7 +42,7 @@ public class PlayerDao extends AbstractDaoWithId<Player> implements IPlayerEntry
     private final PlayerSpecializationDao mPlayerSpecializationDao;
 
     /**
-     * DAO of player talents.
+     * DAO of player search.
      */
     private final PlayerTalentDao mPlayerTalentDao;
 
@@ -123,7 +123,7 @@ public class PlayerDao extends AbstractDaoWithId<Player> implements IPlayerEntry
             mPlayerSpecializationDao.insert(playerSpecialization);
         }
 
-        // Insert talents
+        // Insert search
         for (PlayerTalent playerTalent : player.getPlayerTalents()) {
             playerTalent.setPlayerId(player.getId());
             mPlayerTalentDao.insert(playerTalent);
@@ -163,7 +163,7 @@ public class PlayerDao extends AbstractDaoWithId<Player> implements IPlayerEntry
             mPlayerSpecializationDao.insert(playerSpecialization);
         }
 
-        // Update talents
+        // Update search
         mPlayerTalentDao.deleteAllByPlayerId(player.getId());
         for (PlayerTalent playerTalent : player.getPlayerTalents()) {
             mPlayerTalentDao.insert(playerTalent);

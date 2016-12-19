@@ -46,10 +46,6 @@ public enum Range implements IEnumSpinner {
         this.labelId = labelId;
     }
 
-    public boolean isGreaterThanOrEqualTo(Range otherRange) {
-        return ordinal() >= otherRange.ordinal();
-    }
-
     @Override
     public int getLabelId() {
         return labelId;

@@ -5,8 +5,8 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 
 import com.whfrp3.database.entries.IPlayerSpecializationEntryConstants;
-import com.whfrp3.model.Specialization;
 import com.whfrp3.model.player.PlayerSpecialization;
+import com.whfrp3.model.skills.Specialization;
 import com.whfrp3.tools.helpers.SpecializationHelper;
 
 import java.util.List;

@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <data>
+
+        <import type="com.whfrp3.tools.BindingUtils" />
+
+        <variable
+            name="specSearchFields"
+            type="com.whfrp3.model.skills.SpecializationSearchFields" />
+    </data>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:padding="@dimen/medium_padding">
+
+        <LinearLayout style="@style/SearchLine">
+
+            <TextView
+                style="@style/SearchLabel"
+                android:text="@string/name_label" />
+
+            <EditText
+                style="@style/SearchField"
+                android:inputType="text|textShortMessage"
+                android:lines="1"
+                android:text="@={specSearchFields.name}"
+                android:textAllCaps="false" />
+        </LinearLayout>
+
+        <LinearLayout
+            style="@style/SearchLine">
+
+            <TextView
+                style="@style/SearchLabel"
+                android:hint="@string/skill"
+                android:text="@{BindingUtils.labelWithColon(@string/skill)}" />
+
+            <Spinner
+                android:id="@+id/skills_spinner"
+                style="@style/SearchField" />
+        </LinearLayout>
+
+        <LinearLayout
+            style="@style/SearchLine">
+
+            <TextView
+                style="@style/SearchLabel"
+                android:hint="@string/characteristic"
+                android:text="@{BindingUtils.labelWithColon(@string/characteristic)}" />
+
+            <Spinner
+                android:id="@+id/characteristics_spinner"
+                style="@style/SearchField" />
+        </LinearLayout>
+    </LinearLayout>
+</layout>

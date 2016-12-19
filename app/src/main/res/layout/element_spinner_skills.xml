@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <data>
+
+        <import type="com.whfrp3.tools.BindingUtils" />
+
+        <variable
+            name="skill"
+            type="com.whfrp3.model.skills.Skill" />
+    </data>
+
+    <TextView
+        style="@style/SpinnerItem"
+        android:text="@{skill.name}" />
+</layout>

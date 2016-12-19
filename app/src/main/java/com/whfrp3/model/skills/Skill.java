@@ -1,6 +1,7 @@
-package com.whfrp3.model;
+package com.whfrp3.model.skills;
 
 import com.whfrp3.R;
+import com.whfrp3.model.AbstractModel;
 import com.whfrp3.model.enums.Characteristic;
 import com.whfrp3.model.enums.SkillType;
 import com.whfrp3.tools.BindingUtils;

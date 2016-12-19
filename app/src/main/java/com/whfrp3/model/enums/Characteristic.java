@@ -1,11 +1,12 @@
 package com.whfrp3.model.enums;
 
 import com.whfrp3.R;
+import com.whfrp3.ihm.adapters.IEnumSpinner;
 
 /**
  * List all the different characteristics.
  */
-public enum Characteristic {
+public enum Characteristic implements IEnumSpinner {
 
     /**
      * Strength.
@@ -74,5 +75,10 @@ public enum Characteristic {
      */
     public int getShortLabelId() {
         return shortLabelId;
+    }
+
+    @Override
+    public int getLabelId() {
+        return getLongLabelId();
     }
 }

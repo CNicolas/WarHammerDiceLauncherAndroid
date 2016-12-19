@@ -1,6 +1,6 @@
 package com.whfrp3.model.player;
 
-import com.whfrp3.model.Specialization;
+import com.whfrp3.model.skills.Specialization;
 
 /**
  * Specialization of a player.

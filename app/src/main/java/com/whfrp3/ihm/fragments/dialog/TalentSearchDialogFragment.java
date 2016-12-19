@@ -6,6 +6,7 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.databinding.DataBindingUtil;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.v4.app.DialogFragment;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -37,6 +38,7 @@ public class TalentSearchDialogFragment extends DialogFragment {
      */
     private TalentSearchFields mTalentSearch;
 
+    @NonNull
     @Override
     public Dialog onCreateDialog(Bundle savedInstanceState) {
         AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
@@ -58,7 +60,7 @@ public class TalentSearchDialogFragment extends DialogFragment {
                 List<Talent> talentsFound = TalentHelper.getInstance().search(mTalentSearch);
                 if (talentsFound.size() > 0) {
                     Bundle bundle = new Bundle();
-                    bundle.putSerializable(IMainConstants.TALENT_LIST_BUNDLE_TAG, (ArrayList<Talent>) talentsFound);
+                    bundle.putSerializable(IMainConstants.TALENTS_LIST_BUNDLE_TAG, (ArrayList<Talent>) talentsFound);
 
                     Intent talentsIntent = new Intent(getActivity(), TalentsActivity.class);
                     talentsIntent.putExtras(bundle);

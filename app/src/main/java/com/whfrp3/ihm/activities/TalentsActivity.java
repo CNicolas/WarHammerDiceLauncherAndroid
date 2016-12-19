@@ -36,13 +36,13 @@ public class TalentsActivity extends AppCompatActivity implements IMainConstants
                 mTalentType = (TalentType) getIntent().getExtras().getSerializable(TALENT_TYPE_BUNDLE_TAG);
                 setTitle(getString(mTalentType.getLabelId()));
             }
-            if (getIntent().hasExtra(TALENT_LIST_BUNDLE_TAG)) {
-                mTalents = (List<Talent>) getIntent().getExtras().getSerializable(TALENT_LIST_BUNDLE_TAG);
+            if (getIntent().hasExtra(TALENTS_LIST_BUNDLE_TAG)) {
+                mTalents = (List<Talent>) getIntent().getExtras().getSerializable(TALENTS_LIST_BUNDLE_TAG);
             } else {
                 mTalents = TalentHelper.getInstance().getTalentsByType(mTalentType);
             }
         } else {
-            mTalents = TalentHelper.getInstance().getAllTalents();
+            mTalents = TalentHelper.getInstance().getTalents();
         }
 
         TalentsListAdapter adapter = new TalentsListAdapter(getLayoutInflater(), mTalents);
@@ -73,7 +73,7 @@ public class TalentsActivity extends AppCompatActivity implements IMainConstants
     //region Menu
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.talents, menu);
+        getMenuInflater().inflate(R.menu.search, menu);
 
         return super.onCreateOptionsMenu(menu);
     }
@@ -84,7 +84,7 @@ public class TalentsActivity extends AppCompatActivity implements IMainConstants
 
         if (itemId == android.R.id.home) {
             finish();
-        } else if (itemId == R.id.action_search_talent) {
+        } else if (itemId == R.id.action_search) {
             openTalentSearchDialog();
         }
 

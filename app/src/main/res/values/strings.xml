@@ -192,5 +192,8 @@
     <string name="no_talent_found">No talent found</string>
     <string name="page_items">Items</string>
     <string name="page_specializations">Specializations</string>
+    <string name="characteristic">Characteristic</string>
+    <string name="skill">Skill</string>
+    <string name="no_specialization_found">No specialization found</string>
 
 </resources>

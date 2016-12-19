@@ -3,7 +3,7 @@ package com.whfrp3.model.player;
 import android.databinding.BaseObservable;
 import android.databinding.Bindable;
 
-import com.whfrp3.model.Skill;
+import com.whfrp3.model.skills.Skill;
 
 import java.io.Serializable;
 

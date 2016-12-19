@@ -165,6 +165,9 @@
     <string name="no_talent_found">Aucun talent trouvé</string>
     <string name="page_items">Objets</string>
     <string name="page_specializations">Spécialisations</string>
+    <string name="characteristic">Charactéristique</string>
+    <string name="skill">Compétence</string>
+    <string name="no_specialization_found">Aucune spécialisation trouvée</string>
     <!-- End of inventory -->
 
 </resources>

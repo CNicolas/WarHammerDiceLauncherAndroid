@@ -8,21 +8,21 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 
 import com.whfrp3.R;
-import com.whfrp3.databinding.ElementListSkillBinding;
-import com.whfrp3.ihm.listeners.SkillsHandlers;
+import com.whfrp3.databinding.ElementSpinnerSkillsBinding;
 import com.whfrp3.model.skills.Skill;
+import com.whfrp3.tools.WHFRP3Application;
 
 import java.util.List;
 
 /**
- * The Adapter for the search list.
+ * The Adapter for the Talent Types list.
  */
-public class SkillsListAdapter extends ArrayAdapter<Skill> {
-    private List<Skill> mSkills;
+public class SkillsSpinnerAdapter extends ArrayAdapter<Skill> {
+    private final List<Skill> mSkills;
     private final LayoutInflater inflater;
 
-    public SkillsListAdapter(@NonNull LayoutInflater inflater, List<Skill> skills) {
-        super(inflater.getContext(), R.layout.element_list_skill, skills);
+    public SkillsSpinnerAdapter(@NonNull LayoutInflater inflater, List<Skill> skills) {
+        super(inflater.getContext(), R.layout.element_spinner_skills, skills);
 
         this.inflater = inflater;
         mSkills = skills;
@@ -43,17 +43,15 @@ public class SkillsListAdapter extends ArrayAdapter<Skill> {
         return mSkills.get(position);
     }
 
-    @Override
-    public long getItemId(int position) {
-        return position;
-    }
-
     @NonNull
     @Override
     public View getView(int position, View convertView, @NonNull ViewGroup parent) {
-        ElementListSkillBinding binding = DataBindingUtil.inflate(inflater, R.layout.element_list_skill, parent, false);
-        binding.setSkill(mSkills.get(position));
-        binding.setHandlers(new SkillsHandlers());
+        ElementSpinnerSkillsBinding binding = DataBindingUtil.inflate(inflater, R.layout.element_spinner_skills, null, false);
+        if (mSkills.get(position) == null) {
+            binding.setSkill(new Skill(0, WHFRP3Application.getResourceString(R.string.empty_string), null, null));
+        } else {
+            binding.setSkill(mSkills.get(position));
+        }
 
         return binding.getRoot();
     }

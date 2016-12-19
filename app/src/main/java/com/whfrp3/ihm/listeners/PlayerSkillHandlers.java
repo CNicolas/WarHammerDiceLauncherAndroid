@@ -12,10 +12,10 @@ import android.widget.CheckBox;
 
 import com.whfrp3.R;
 import com.whfrp3.ihm.activities.LaunchActivity;
-import com.whfrp3.model.Specialization;
 import com.whfrp3.model.player.Player;
 import com.whfrp3.model.player.PlayerSkill;
 import com.whfrp3.model.player.inventory.Weapon;
+import com.whfrp3.model.skills.Specialization;
 import com.whfrp3.notification.ToastNotification;
 import com.whfrp3.tools.WHFRP3Application;
 import com.whfrp3.tools.constants.IPlayerActivityConstants;

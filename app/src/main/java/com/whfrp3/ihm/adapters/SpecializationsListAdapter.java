@@ -9,7 +9,7 @@ import android.widget.ArrayAdapter;
 
 import com.whfrp3.R;
 import com.whfrp3.databinding.ElementListSpecializationBinding;
-import com.whfrp3.model.Specialization;
+import com.whfrp3.model.skills.Specialization;
 
 import java.util.List;
 

@@ -1,12 +1,15 @@
 package com.whfrp3.tools.helpers;
 
 import android.content.res.XmlResourceParser;
+import android.support.annotation.Nullable;
 import android.util.Log;
 import android.util.LongSparseArray;
 
 import com.whfrp3.R;
-import com.whfrp3.model.Skill;
-import com.whfrp3.model.Specialization;
+import com.whfrp3.model.enums.Characteristic;
+import com.whfrp3.model.skills.Skill;
+import com.whfrp3.model.skills.Specialization;
+import com.whfrp3.model.skills.SpecializationSearchFields;
 import com.whfrp3.tools.WHFRP3Application;
 
 import java.util.ArrayList;
@@ -138,4 +141,37 @@ public class SpecializationHelper {
 
         return res;
     }
+
+    //region Search
+    public List<Specialization> search(SpecializationSearchFields fields) {
+        List<Specialization> specializations = getSpecializations();
+
+        List<Specialization> res = new ArrayList<>();
+        for (Specialization specialization : specializations) {
+            if (isSimilarCharacteristicOrNull(specialization, fields.getCharacteristic())
+                    && isSimilarSkillOrNull(specialization, fields.getSkill())
+                    && isSpecializationNameContainingOrNull(specialization, fields.getName())) {
+                res.add(specialization);
+            }
+        }
+
+        return res;
+    }
+
+    private boolean isSimilarCharacteristicOrNull(Specialization specialization, @Nullable Characteristic characteristic) {
+        return characteristic == null || specialization.getSkill().getCharacteristic().equals(characteristic);
+    }
+
+    private boolean isSpecializationNameContainingOrNull(Specialization specialization, @Nullable String textToSearch) {
+        return isNullOrEmpty(textToSearch) || specialization.getName().toLowerCase().contains(textToSearch.toLowerCase());
+    }
+
+    private boolean isSimilarSkillOrNull(Specialization specialization, @Nullable Skill skill) {
+        return skill == null || specialization.getSkill().equals(skill);
+    }
+
+    private boolean isNullOrEmpty(@Nullable String text) {
+        return text == null || text.isEmpty();
+    }
+    //endregion
 }

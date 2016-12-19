@@ -334,7 +334,7 @@ public class LaunchActivity extends AppCompatActivity implements IPlayerActivity
         titles.add("");
         titles.addAll(databaseTitles);
 
-        mHandsSpinner.setAdapter(new ArrayAdapter<>(this, R.layout.element_spinner_hand, titles));
+        mHandsSpinner.setAdapter(new ArrayAdapter<>(this, R.layout.element_spinner, titles));
     }
 
     /**

@@ -1,4 +1,6 @@
-package com.whfrp3.model;
+package com.whfrp3.model.skills;
+
+import com.whfrp3.model.AbstractModel;
 
 /**
  * The specialization model.

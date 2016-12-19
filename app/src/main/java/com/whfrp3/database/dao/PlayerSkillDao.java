@@ -5,8 +5,8 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 
 import com.whfrp3.database.entries.IPlayerSkillEntryConstants;
-import com.whfrp3.model.Skill;
 import com.whfrp3.model.player.PlayerSkill;
+import com.whfrp3.model.skills.Skill;
 import com.whfrp3.tools.helpers.SkillHelper;
 
 import java.util.List;

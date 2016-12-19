@@ -48,8 +48,7 @@ public class TalentTypesFragment extends Fragment implements AdapterView.OnItemC
         searchButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                TalentSearchDialogFragment dialog = new TalentSearchDialogFragment();
-                dialog.show(getActivity().getSupportFragmentManager(), "TalentSearchDialogFragment");
+                openTalentSearchDialog();
             }
         });
 
@@ -58,9 +57,10 @@ public class TalentTypesFragment extends Fragment implements AdapterView.OnItemC
         return rootView;
     }
 
+    //region Menu
     @Override
     public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
-        getActivity().getMenuInflater().inflate(R.menu.talents, menu);
+        getActivity().getMenuInflater().inflate(R.menu.search, menu);
         super.onCreateOptionsMenu(menu, inflater);
     }
 
@@ -68,11 +68,12 @@ public class TalentTypesFragment extends Fragment implements AdapterView.OnItemC
     public boolean onOptionsItemSelected(MenuItem item) {
         int itemId = item.getItemId();
 
-        if (itemId == R.id.action_search_talent) {
+        if (itemId == R.id.action_search) {
             openTalentSearchDialog();
         }
         return super.onOptionsItemSelected(item);
     }
+    //endregion
 
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {

@@ -34,7 +34,7 @@
             android:onClick="@{() -> handlers.openSpecializationPopup(playerSkill)}"
             android:padding="@dimen/small_padding"
             android:src="@drawable/ic_specialization_black"
-            android:tint="@{playerSkill.specialized ? @color/dark_blue : @android:color/black}" />
+            android:tint="@{playerSkill.specialized ? @color/dark_red : @android:color/black}" />
 
         <TextView
             style="@style/SkillName"
