@@ -10,7 +10,6 @@ import android.widget.ArrayAdapter;
 import com.whfrp3.R;
 import com.whfrp3.databinding.ElementSpinnerSkillsBinding;
 import com.whfrp3.model.skills.Skill;
-import com.whfrp3.tools.WHFRP3Application;
 
 import java.util.List;
 
@@ -47,8 +46,9 @@ public class SkillsSpinnerAdapter extends ArrayAdapter<Skill> {
     @Override
     public View getView(int position, View convertView, @NonNull ViewGroup parent) {
         ElementSpinnerSkillsBinding binding = DataBindingUtil.inflate(inflater, R.layout.element_spinner_skills, null, false);
+        binding.setIsNull(false);
         if (mSkills.get(position) == null) {
-            binding.setSkill(new Skill(0, WHFRP3Application.getResourceString(R.string.empty_string), null, null));
+            binding.setIsNull(true);
         } else {
             binding.setSkill(mSkills.get(position));
         }

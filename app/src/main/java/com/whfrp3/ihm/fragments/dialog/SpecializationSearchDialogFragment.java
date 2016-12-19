@@ -86,7 +86,7 @@ public class SpecializationSearchDialogFragment extends DialogFragment {
     private void setupSkillsSpinner(LayoutInflater inflater, View rootView) {
         Spinner skillsSpinner = (Spinner) rootView.findViewById(R.id.skills_spinner);
 
-        List<Skill> skills = SkillHelper.getInstance().getSkills();
+        List<Skill> skills = new ArrayList<>(SkillHelper.getInstance().getSkills());
         skills.add(0, null);
 
         skillsSpinner.setAdapter(new SkillsSpinnerAdapter(inflater, skills));

@@ -27,4 +27,6 @@
     <color name="yellow_highlight">#FFFDB8</color>
     <color name="dark_blue">#0f3175</color>
     <color name="dark_red">#AB1818</color>
+    <color name="blue_grey">#46567D</color>
+    <color name="red_grey">#803C3C</color>
 </resources>
