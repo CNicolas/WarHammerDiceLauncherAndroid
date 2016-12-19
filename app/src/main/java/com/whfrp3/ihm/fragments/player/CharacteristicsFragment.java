@@ -35,8 +35,8 @@ public class CharacteristicsFragment extends Fragment {
     /**
      * Configure Race Spinner
      *
-     * @param inflater
-     * @param rootView
+     * @param inflater layout inflater for spinner elements
+     * @param rootView rootView of the spinner
      */
     private void setupRaceSpinner(LayoutInflater inflater, View rootView) {
         Spinner raceSpinner = (Spinner) rootView.findViewById(R.id.player_race_spinner);
@@ -52,8 +52,11 @@ public class CharacteristicsFragment extends Fragment {
 
             @Override
             public void onNothingSelected(AdapterView<?> adapterView) {
-                WHFRP3Application.getPlayer().setRace(null);
+                WHFRP3Application.getPlayer().setRace(Race.HUMAN);
             }
         });
+        if (WHFRP3Application.getPlayer().getRace() != null) {
+            raceSpinner.setSelection(WHFRP3Application.getPlayer().getRace().ordinal(), false);
+        }
     }
 }

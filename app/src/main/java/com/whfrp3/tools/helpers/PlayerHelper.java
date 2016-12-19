@@ -70,8 +70,10 @@ public abstract class PlayerHelper {
 
         player.notifyPropertyChanged(BR.playerSkill);
         player.notifyPropertyChanged(BR.playerSkills);
+        player.notifyPropertyChanged(BR.playerSpecializations);
         player.notifyPropertyChanged(BR.specialization);
         player.notifyPropertyChanged(BR.specialized);
+        player.notifyPropertyChanged(BR.skill);
     }
 
     public static void notifyEquipmentBinding() {
