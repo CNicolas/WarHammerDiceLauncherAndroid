@@ -14,7 +14,7 @@ public enum CooldownType implements IEnumSpinner {
     NO_COOLDOWN(R.string.passive),
 
     /**
-     * Cooldown for the active search.
+     * Cooldown for the active talents.
      */
     TALENT(R.string.talent),
 

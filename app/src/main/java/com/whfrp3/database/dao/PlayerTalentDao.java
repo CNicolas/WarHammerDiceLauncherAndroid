@@ -12,7 +12,7 @@ import com.whfrp3.tools.helpers.TalentHelper;
 import java.util.List;
 
 /**
- * DAO of player search.
+ * DAO of player talents.
  */
 public class PlayerTalentDao extends AbstractDao<PlayerTalent> implements IPlayerTalentEntryConstants {
 
@@ -52,7 +52,7 @@ public class PlayerTalentDao extends AbstractDao<PlayerTalent> implements IPlaye
     //region Delete
 
     /**
-     * Removes all player search with the given player id from the database.
+     * Removes all player talents with the given player id from the database.
      *
      * @param playerId Player id.
      */

@@ -74,7 +74,7 @@ public class Database {
     private PlayerSpecializationDao mPlayerSpecializationDao;
 
     /**
-     * DAO of player search.
+     * DAO of player talents.
      */
     private PlayerTalentDao mPlayerTalentDao;
 
@@ -125,9 +125,9 @@ public class Database {
     }
 
     /**
-     * Getter of DAO of player search.
+     * Getter of DAO of player talents.
      *
-     * @return DAO of player search.
+     * @return DAO of player talents.
      */
     public PlayerTalentDao getPlayerTalentDao() {
         return mPlayerTalentDao;

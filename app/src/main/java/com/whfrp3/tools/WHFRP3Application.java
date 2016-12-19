@@ -53,7 +53,7 @@ public class WHFRP3Application extends Application {
         mDatabase = new Database(mContext);
         mDatabase.open();
 
-        // Load search
+        // Load talents
         TalentHelper.getInstance().loadTalents();
 
         // Load skills

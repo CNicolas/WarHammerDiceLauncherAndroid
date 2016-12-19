@@ -15,7 +15,7 @@ import com.whfrp3.model.skills.Skill;
 import java.util.List;
 
 /**
- * The Adapter for the search list.
+ * The Adapter for the skills list.
  */
 public class SkillsListAdapter extends ArrayAdapter<Skill> {
     private List<Skill> mSkills;

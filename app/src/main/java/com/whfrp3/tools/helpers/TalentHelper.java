@@ -18,7 +18,7 @@ import java.util.List;
 import java.util.Map;
 
 /**
- * Talent helper used to manage search.
+ * Talent helper used to manage talents.
  */
 public class TalentHelper {
 
@@ -28,17 +28,17 @@ public class TalentHelper {
     private static TalentHelper instance;
 
     /**
-     * Loaded search.
+     * Loaded talents.
      */
     private List<Talent> talents;
 
     /**
-     * Loaded search by id.
+     * Loaded talents by id.
      */
     private LongSparseArray<Talent> talentsById;
 
     /**
-     * Loaded search by type.
+     * Loaded talents by type.
      */
     private Map<TalentType, List<Talent>> talentsByType;
 
@@ -68,7 +68,7 @@ public class TalentHelper {
     }
 
     /**
-     * Loads search stored in search.xmlfile.
+     * Loads talents stored in search.xmlfile.
      */
     public void loadTalents() {
         try {
@@ -108,9 +108,9 @@ public class TalentHelper {
     }
 
     /**
-     * Returns all loaded search.
+     * Returns all loaded talents.
      *
-     * @return All loaded search.
+     * @return All loaded talents.
      */
     public List<Talent> getTalents() {
         return talents;
@@ -127,9 +127,9 @@ public class TalentHelper {
     }
 
     /**
-     * Return the search of the given type.
+     * Return the talents of the given type.
      *
-     * @param type Type of the search to return.
+     * @param type Type of the talents to return.
      * @return Talents of the given type.
      */
     public List<Talent> getTalentsByType(TalentType type) {
