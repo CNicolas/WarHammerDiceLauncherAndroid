@@ -160,7 +160,7 @@
                     android:layout_gravity="center"
                     android:layout_marginStart="@dimen/big_padding"
                     android:contentDescription="@string/max_corruption"
-                    android:labelFor="@id/player_max_corruption"
+                    android:labelFor="@+id/player_max_corruption"
                     android:src="@drawable/ic_chaos_black_36" />
 
                 <EditText

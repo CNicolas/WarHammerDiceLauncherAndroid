@@ -41,7 +41,7 @@
                 android:layout_weight="50"
                 android:gravity="end|center_vertical"
                 android:hint="@string/wounds"
-                android:labelFor="@id/player_wounds"
+                android:labelFor="@+id/player_wounds"
                 android:text="@{BindingUtils.labelWithColon(@string/wounds)}" />
 
             <EditText
@@ -282,7 +282,7 @@
                 android:hint="@string/dummy_string"
                 android:paddingEnd="@dimen/very_small_padding"
                 android:paddingStart="@dimen/very_small_padding"
-                android:text="@{String.format(@string/adventure_encumbrance, player.currentEncumbrance, player.encumbranceOverload, player.encumbranceMax)}" />
+                android:text="@{String.format(@string/encumbrance_format, player.currentEncumbrance, player.encumbranceOverload, player.encumbranceMax)}" />
 
         </LinearLayout>
 

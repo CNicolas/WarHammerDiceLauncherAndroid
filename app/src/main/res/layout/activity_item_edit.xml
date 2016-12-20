@@ -82,7 +82,7 @@
                         <TextView
                             style="@style/ItemEditFieldLabel"
                             android:hint="@string/item_type"
-                            android:labelFor="@id/item_edit_type_spinner"
+                            android:labelFor="@+id/item_edit_type_spinner"
                             android:text="@{BindingUtils.labelWithColon(@string/item_type)}" />
 
                         <Spinner
@@ -96,7 +96,7 @@
                         <TextView
                             style="@style/ItemEditFieldLabel"
                             android:hint="@string/quality"
-                            android:labelFor="@id/item_edit_quality_spinner"
+                            android:labelFor="@+id/item_edit_quality_spinner"
                             android:text="@{BindingUtils.labelWithColon(@string/quality)}" />
 
                         <Spinner
@@ -110,7 +110,7 @@
                         <TextView
                             style="@style/ItemEditFieldLabel"
                             android:hint="@string/quantity"
-                            android:labelFor="@id/quantity"
+                            android:labelFor="@+id/quantity"
                             android:text="@{BindingUtils.labelWithColon(@string/quantity)}" />
 
                         <EditText
@@ -125,7 +125,7 @@
                         <TextView
                             style="@style/ItemEditFieldLabel"
                             android:hint="@string/encumbrance"
-                            android:labelFor="@id/encumbrance"
+                            android:labelFor="@+id/encumbrance"
                             android:text="@{BindingUtils.labelWithColon(@string/encumbrance)}" />
 
                         <EditText
@@ -151,7 +151,7 @@
                         <TextView
                             style="@style/ItemEditFieldLabel"
                             android:hint="@string/weapon_damage"
-                            android:labelFor="@id/damage"
+                            android:labelFor="@+id/damage"
                             android:text="@{BindingUtils.labelWithColon(@string/weapon_damage)}" />
 
                         <EditText
@@ -166,7 +166,7 @@
                         <TextView
                             style="@style/ItemEditFieldLabel"
                             android:hint="@string/weapon_critical_level"
-                            android:labelFor="@id/critical_level"
+                            android:labelFor="@+id/critical_level"
                             android:text="@{BindingUtils.labelWithColon(@string/weapon_critical_level)}" />
 
                         <EditText
@@ -206,7 +206,7 @@
                         <TextView
                             style="@style/ItemEditFieldLabel"
                             android:hint="@string/armor_defense"
-                            android:labelFor="@id/defense"
+                            android:labelFor="@+id/defense"
                             android:text="@{BindingUtils.labelWithColon(@string/armor_defense)}" />
 
                         <EditText
@@ -221,7 +221,7 @@
                         <TextView
                             style="@style/ItemEditFieldLabel"
                             android:hint="@string/armor_soak"
-                            android:labelFor="@id/soak"
+                            android:labelFor="@+id/soak"
                             android:text="@{BindingUtils.labelWithColon(@string/armor_soak)}" />
 
                         <EditText
@@ -247,7 +247,7 @@
                         <TextView
                             style="@style/ItemEditFieldLabel"
                             android:hint="@string/usable_item_load"
-                            android:labelFor="@id/load"
+                            android:labelFor="@+id/load"
                             android:text="@{BindingUtils.labelWithColon(@string/usable_item_load)}" />
 
                         <EditText
