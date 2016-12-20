@@ -4,6 +4,8 @@
 
     <data>
 
+        <import type="com.whfrp3.tools.BindingUtils" />
+
         <import type="com.whfrp3.model.enums.Characteristic" />
 
         <variable
@@ -44,8 +46,9 @@
                 <TextView
                     style="@style/PlayerSimpleLabel"
                     android:layout_weight="1"
+                    android:hint="@string/name"
                     android:labelFor="@+id/player_name"
-                    android:text="@string/name_label" />
+                    android:text="@{BindingUtils.labelWithColon(@string/name)}" />
 
                 <EditText
                     android:id="@+id/player_name"
@@ -53,14 +56,15 @@
                     android:layout_width="wrap_content"
                     android:layout_weight="100"
                     android:enabled="@{player.inEdition}"
-                    android:hint="@string/name_hint"
+                    android:hint="@string/name"
                     android:text="@={player.name}" />
 
                 <TextView
                     style="@style/PlayerSimpleLabel"
                     android:layout_weight="1"
+                    android:hint="@string/rank"
                     android:labelFor="@+id/player_rank"
-                    android:text="@string/rank_label" />
+                    android:text="@{BindingUtils.labelWithColon(@string/rank)}" />
 
                 <EditText
                     android:id="@+id/player_rank"
@@ -80,15 +84,16 @@
 
                 <TextView
                     style="@style/PlayerSimpleLabel"
+                    android:hint="@string/career"
                     android:labelFor="@+id/player_career"
-                    android:text="@string/career_label" />
+                    android:text="@{BindingUtils.labelWithColon(@string/career)}" />
 
                 <EditText
                     android:id="@+id/player_career"
                     style="@style/DeactivableCharacteristicText"
                     android:layout_width="match_parent"
                     android:enabled="@{player.inEdition}"
-                    android:hint="@string/career_hint"
+                    android:hint="@string/career"
                     android:text="@={player.career}" />
             </LinearLayout>
 
@@ -104,6 +109,8 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
                     android:layout_marginStart="@dimen/big_padding"
+                    android:contentDescription="@string/max_wounds"
+                    android:labelFor="@+id/player_max_wounds"
                     android:src="@drawable/ic_bandages_black" />
 
                 <EditText
@@ -118,8 +125,9 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
                     android:layout_marginStart="@dimen/big_padding"
+                    android:hint="@string/xp"
                     android:labelFor="@+id/player_experience"
-                    android:text="@string/xp_label"
+                    android:text="@{BindingUtils.labelWithColon(@string/xp)}"
                     android:textColor="@color/black_text"
                     android:textSize="25sp"
                     android:textStyle="bold|italic" />
@@ -151,6 +159,8 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
                     android:layout_marginStart="@dimen/big_padding"
+                    android:contentDescription="@string/max_corruption"
+                    android:labelFor="@id/player_max_corruption"
                     android:src="@drawable/ic_chaos_black_36" />
 
                 <EditText
@@ -366,8 +376,9 @@
                     <TextView
                         style="@style/PlayerSimpleLabel"
                         android:layout_height="match_parent"
+                        android:hint="@string/conservative"
                         android:labelFor="@+id/player_max_conservative"
-                        android:text="@string/conservative_label"
+                        android:text="@{BindingUtils.labelWithColon(@string/conservative)}"
                         android:textColor="@android:color/white" />
 
 
@@ -395,8 +406,9 @@
                     <TextView
                         style="@style/PlayerSimpleLabel"
                         android:layout_height="match_parent"
+                        android:hint="@string/reckless"
                         android:labelFor="@+id/player_max_reckless"
-                        android:text="@string/reckless_label"
+                        android:text="@{BindingUtils.labelWithColon(@string/reckless)}"
                         android:textColor="@android:color/white" />
 
                     <EditText
@@ -424,8 +436,9 @@
 
                 <TextView
                     style="@style/PlayerSimpleLabel"
+                    android:hint="@string/race"
                     android:labelFor="@+id/player_race"
-                    android:text="@string/race_label" />
+                    android:text="@{BindingUtils.labelWithColon(@string/race)}" />
 
                 <Spinner
                     android:id="@+id/player_race_spinner"
@@ -448,8 +461,9 @@
                 <!--Age-->
                 <TextView
                     style="@style/PlayerSimpleLabel"
+                    android:hint="@string/age"
                     android:labelFor="@+id/player_age"
-                    android:text="@string/age_label" />
+                    android:text="@{BindingUtils.labelWithColon(@string/age)}" />
 
                 <EditText
                     android:id="@+id/player_age"
@@ -461,8 +475,9 @@
                 <!--Size-->
                 <TextView
                     style="@style/PlayerSimpleLabel"
+                    android:hint="@string/size"
                     android:labelFor="@+id/player_size"
-                    android:text="@string/size_label" />
+                    android:text="@{BindingUtils.labelWithColon(@string/size)}" />
 
                 <EditText
                     android:id="@+id/player_size"
@@ -472,12 +487,13 @@
                     android:text="@={player.size}" />
 
                 <TextView
-                    android:layout_width="wrap_content"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_gravity="start|center_vertical"
                     android:layout_weight="0"
+                    android:hint="@string/centimeters"
                     android:labelFor="@+id/player_size"
-                    android:text="@string/cm_label" />
+                    android:text="@{BindingUtils.labelWithColon(@string/centimeters)}" />
             </LinearLayout>
 
             <!--Description-->
@@ -494,13 +510,13 @@
                     android:layout_height="wrap_content"
                     android:gravity="center"
                     android:labelFor="@+id/player_description"
-                    android:text="@string/description_label" />
+                    android:text="@{BindingUtils.labelWithColon(@string/description)}" />
 
                 <EditText
                     android:id="@+id/player_description"
                     style="@style/DescriptionField"
                     android:enabled="@{player.inEdition}"
-                    android:hint="@string/description_hint"
+                    android:hint="@string/description"
                     android:text="@={player.description}"
                     android:textColor="@color/characteristic_text" />
             </LinearLayout>

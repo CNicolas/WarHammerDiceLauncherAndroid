@@ -20,14 +20,14 @@
 
             <TextView
                 style="@style/SearchLabel"
-                android:text="@string/name_label" />
+                android:hint="@string/name"
+                android:labelFor="@id/specialization_name"
+                android:text="@{BindingUtils.labelWithColon(@string/name)}" />
 
             <EditText
-                style="@style/SearchField"
-                android:inputType="text|textShortMessage"
-                android:lines="1"
-                android:text="@={specSearchFields.name}"
-                android:textAllCaps="false" />
+                android:id="@+id/specialization_name"
+                style="@style/SearchTextField"
+                android:text="@={specSearchFields.name}" />
         </LinearLayout>
 
         <LinearLayout
@@ -36,6 +36,7 @@
             <TextView
                 style="@style/SearchLabel"
                 android:hint="@string/skill"
+                android:labelFor="@id/skills_spinner"
                 android:text="@{BindingUtils.labelWithColon(@string/skill)}" />
 
             <Spinner
@@ -49,6 +50,7 @@
             <TextView
                 style="@style/SearchLabel"
                 android:hint="@string/characteristic"
+                android:labelFor="@id/characteristics_spinner"
                 android:text="@{BindingUtils.labelWithColon(@string/characteristic)}" />
 
             <Spinner

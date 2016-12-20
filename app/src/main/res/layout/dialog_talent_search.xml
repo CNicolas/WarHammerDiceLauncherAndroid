@@ -20,28 +20,28 @@
 
             <TextView
                 style="@style/SearchLabel"
-                android:text="@string/name_label" />
+                android:hint="@string/name"
+                android:labelFor="@id/talent_name"
+                android:text="@{BindingUtils.labelWithColon(@string/name)}" />
 
             <EditText
-                style="@style/SearchField"
-                android:inputType="text|textShortMessage"
-                android:lines="1"
-                android:text="@={talentSearch.name}"
-                android:textAllCaps="false" />
+                android:id="@+id/talent_name"
+                style="@style/SearchTextField"
+                android:text="@={talentSearch.name}" />
         </LinearLayout>
 
         <LinearLayout style="@style/SearchLine">
 
             <TextView
                 style="@style/SearchLabel"
-                android:text="@string/description_label" />
+                android:hint="@string/description"
+                android:labelFor="@id/talent_description"
+                android:text="@{BindingUtils.labelWithColon(@string/description)}" />
 
             <EditText
-                style="@style/SearchField"
-                android:inputType="text|textShortMessage"
-                android:lines="1"
-                android:text="@={talentSearch.description}"
-                android:textAllCaps="false" />
+                android:id="@+id/talent_description"
+                style="@style/SearchTextField"
+                android:text="@={talentSearch.description}" />
         </LinearLayout>
 
         <LinearLayout
@@ -49,7 +49,8 @@
 
             <TextView
                 style="@style/SearchLabel"
-                android:text="@{BindingUtils.labelWithColon(@string/item_type_label)}" />
+                android:labelFor="@id/talent_type_spinner"
+                android:text="@{BindingUtils.labelWithColon(@string/item_type)}" />
 
             <Spinner
                 android:id="@+id/talent_type_spinner"

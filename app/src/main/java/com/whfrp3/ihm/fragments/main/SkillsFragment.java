@@ -21,11 +21,6 @@ public class SkillsFragment extends Fragment {
         View rootView = inflater.inflate(R.layout.fragment_skills, container, false);
         ListView skillsListView = (ListView) rootView.findViewById(R.id.skills_list);
 
-//        final List<Skill> skills = SkillHelper.getInstance().getSkills();
-//
-//        ListView skillsListView = (ListView) rootView.findViewById(R.id.skills_list);
-//        skillsListView.setAdapter(new SkillsListAdapter(inflater, skills));
-
         SkillsSeparatedListAdapter adapter = new SkillsSeparatedListAdapter(inflater,
                 SkillHelper.getInstance().getSkillsByType(SkillType.BASIC),
                 SkillHelper.getInstance().getSkillsByType(SkillType.ADVANCED));
@@ -34,7 +29,6 @@ public class SkillsFragment extends Fragment {
 
         return rootView;
     }
-
 
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
