@@ -9,7 +9,7 @@
         android:id="@+id/splashscreen"
         android:layout_width="match_parent"
         android:layout_height="150dp"
-        android:contentDescription="WarHammer logo"
+        android:contentDescription="@string/warhammer_logo"
         android:src="@drawable/warhammer_v3_logo" />
 
     <ListView

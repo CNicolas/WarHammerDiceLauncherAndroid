@@ -100,13 +100,11 @@ public class Talent extends AbstractModel {
 
     @Override
     public String toString() {
-        final StringBuilder sb = new StringBuilder("Talent{");
-        sb.append("name='").append(name).append('\'');
-        sb.append(", description='").append(description).append('\'');
-        sb.append(", type=").append(type);
-        sb.append(", cooldown=").append(cooldown);
-        sb.append(", effects=").append(effects);
-        sb.append('}');
-        return sb.toString();
+        return "Talent{" + "name='" + name + '\'' +
+                ", description='" + description + '\'' +
+                ", type=" + type +
+                ", cooldown=" + cooldown +
+                ", effects=" + effects +
+                '}';
     }
 }

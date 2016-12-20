@@ -1,21 +1,17 @@
 package com.whfrp3.database.dao;
 
 import android.content.ContentValues;
-import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 
 import com.whfrp3.database.entries.IEntryConstants;
 import com.whfrp3.model.AbstractModel;
-
-import java.util.ArrayList;
-import java.util.List;
 
 /**
  * Gather the common methods for DAOs.
  *
  * @param <T> The associated model class (must extend AbstractModel class).
  */
-public abstract class AbstractDaoWithId<T extends AbstractModel> extends AbstractDao<T> implements IDaoWithId<T> {
+abstract class AbstractDaoWithId<T extends AbstractModel> extends AbstractDao<T> implements IDaoWithId<T> {
 
     //region Constructor
 

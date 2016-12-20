@@ -196,5 +196,7 @@
     <string name="advanced">Advanced</string>
     <string name="basic">Basic</string>
     <string name="race">Race</string>
+    <string name="warhammer_logo">Warhammer Logo</string>
+    <string name="equipped">Equipped</string>
 
 </resources>

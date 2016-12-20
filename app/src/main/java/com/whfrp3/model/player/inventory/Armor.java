@@ -73,17 +73,14 @@ public class Armor extends Equipment {
     //region Overrides
     @Override
     public String toString() {
-        StringBuilder sb = new StringBuilder("Armor [");
-        sb.append(attributesToString());
-        sb.append(", equipped=");
-        sb.append(isEquipped());
-        sb.append(", soak=");
-        sb.append(getSoak());
-        sb.append(", defense=");
-        sb.append(getDefense());
-        sb.append("]");
-
-        return sb.toString();
+        return "Armor [" + attributesToString() +
+                ", equipped=" +
+                isEquipped() +
+                ", soak=" +
+                getSoak() +
+                ", defense=" +
+                getDefense() +
+                "]";
     }
 
     @Override
@@ -94,8 +91,8 @@ public class Armor extends Equipment {
 
         Armor armor = (Armor) o;
 
-        if (getSoak() != armor.getSoak()) return false;
-        return getDefense() == armor.getDefense();
+        if (getSoak() == armor.getSoak()) if (getDefense() == armor.getDefense()) return true;
+        return false;
 
     }
 

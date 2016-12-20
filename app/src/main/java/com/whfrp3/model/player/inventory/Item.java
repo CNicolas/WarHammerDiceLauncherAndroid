@@ -197,33 +197,29 @@ public class Item extends AbstractModel {
 
     //region Overrides
     protected String attributesToString() {
-        StringBuilder sb = new StringBuilder("id=");
-        sb.append(getId());
-        sb.append(", name=");
-        sb.append(getName());
-        sb.append(", description=");
-        sb.append(getDescription());
-        sb.append(", encumbrance=");
-        sb.append(getEncumbrance());
-        sb.append(", quantity=");
-        sb.append(getQuantity());
-        sb.append(", quality=");
-        sb.append(getQuality());
-        sb.append(", type=");
-        sb.append(getType());
-        sb.append(", playerId=");
-        sb.append(getPlayerId());
-
-        return sb.toString();
+        return "id=" + getId() +
+                ", name=" +
+                getName() +
+                ", description=" +
+                getDescription() +
+                ", encumbrance=" +
+                getEncumbrance() +
+                ", quantity=" +
+                getQuantity() +
+                ", quality=" +
+                getQuality() +
+                ", type=" +
+                getType() +
+                ", playerId=" +
+                getPlayerId();
     }
 
     @Override
     public String toString() {
-        StringBuilder sb = new StringBuilder("Item [");
-        sb.append(attributesToString());
-        sb.append("]");
+        String sb = "Item [" + attributesToString() +
+                "]";
 
-        return sb.toString();
+        return sb;
     }
 
     @Override

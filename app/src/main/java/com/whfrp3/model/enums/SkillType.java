@@ -13,5 +13,5 @@ public enum SkillType {
     /**
      * Advanced skill.
      */
-    ADVANCED;
+    ADVANCED
 }

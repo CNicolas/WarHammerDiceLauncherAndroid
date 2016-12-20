@@ -15,14 +15,13 @@ import com.whfrp3.tools.WHFRP3Application;
  * The SkillFragment.
  */
 public class PlayerSkillsFragment extends Fragment {
-    private FragmentPlayerSkillsBinding mBinding;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        mBinding = DataBindingUtil.inflate(inflater, R.layout.fragment_player_skills, container, false);
-        mBinding.setPlayer(WHFRP3Application.getPlayer());
+        FragmentPlayerSkillsBinding binding = DataBindingUtil.inflate(inflater, R.layout.fragment_player_skills, container, false);
+        binding.setPlayer(WHFRP3Application.getPlayer());
 
-        return mBinding.getRoot();
+        return binding.getRoot();
     }
 }

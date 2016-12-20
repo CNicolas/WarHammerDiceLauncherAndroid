@@ -17,6 +17,7 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:layout_marginTop="@dimen/nav_header_vertical_spacing"
+        android:contentDescription="@string/warhammer_logo"
         android:paddingTop="@dimen/nav_header_vertical_spacing"
         app:srcCompat="@drawable/warhammer_v3_logo" />
 

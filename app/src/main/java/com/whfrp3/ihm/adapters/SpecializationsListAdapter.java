@@ -58,7 +58,12 @@ public class SpecializationsListAdapter extends ArrayAdapter<Specialization> {
     @NonNull
     @Override
     public View getView(int position, View convertView, @NonNull ViewGroup parent) {
-        ElementListSpecializationBinding binding = DataBindingUtil.inflate(inflater, R.layout.element_list_specialization, parent, false);
+        ElementListSpecializationBinding binding = DataBindingUtil.getBinding(convertView);
+
+        if (binding == null) {
+            binding = DataBindingUtil.inflate(inflater, R.layout.element_list_specialization, parent, false);
+        }
+
         binding.setSpecialization(mSpecializations.get(position));
 
         return binding.getRoot();

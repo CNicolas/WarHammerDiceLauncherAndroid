@@ -52,7 +52,7 @@
     <string name="successful_launches_number_format">Vous avez réussi %1$d lancés  (%2$s%%)</string>
     <string name="average_sigmar_format">Nombre moyen de comètes de Sigmar : %1$s</string>
     <string name="average_chaos_format">Nombre moyen d\'étoiles du Chaos : %1$s</string>
-    <string name="launches_number_format">Sur %s lancés…</string>
+    <string name="launches_number_format">Sur %d lancés…</string>
     <string name="empty_hand_name">Nom invalide</string>
 
     <string name="btn_resetText">Reset</string>
@@ -169,6 +169,8 @@
     <string name="basic_skills">Compétences de base</string>
     <string name="basic">Basiques</string>
     <string name="advanced">Avancées</string>
+    <string name="warhammer_logo">Warhammer Logo</string>
+    <string name="equipped">Equipé</string>
     <!-- End of inventory -->
 
 </resources>

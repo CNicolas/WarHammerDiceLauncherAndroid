@@ -67,12 +67,9 @@ public class PlayerSpecialization {
 
     @Override
     public String toString() {
-        StringBuilder sb = new StringBuilder("PlayerSpecialization [");
-        sb.append("specializationId=").append(specialization.getId()).append(", ");
-        sb.append("playerId=").append(playerId);
-        sb.append("]");
-
-        return sb.toString();
+        return "PlayerSpecialization [" + "specializationId=" + specialization.getId() + ", " +
+                "playerId=" + playerId +
+                "]";
     }
 
     @Override
@@ -82,8 +79,7 @@ public class PlayerSpecialization {
 
         PlayerSpecialization that = (PlayerSpecialization) o;
 
-        if (getPlayerId() != that.getPlayerId()) return false;
-        return getSpecialization() != null ? getSpecialization().equals(that.getSpecialization()) : that.getSpecialization() == null;
+        return getPlayerId() == that.getPlayerId() && (getSpecialization() != null ? getSpecialization().equals(that.getSpecialization()) : that.getSpecialization() == null);
 
     }
 

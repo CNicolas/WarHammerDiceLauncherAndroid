@@ -57,6 +57,7 @@
                     android:layout_weight="100"
                     android:enabled="@{player.inEdition}"
                     android:hint="@string/name"
+                    android:inputType="textCapWords|textNoSuggestions"
                     android:text="@={player.name}" />
 
                 <TextView

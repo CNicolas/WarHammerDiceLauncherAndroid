@@ -111,13 +111,7 @@ public class PlayerSkill extends BaseObservable implements Serializable {
 
     @Override
     public String toString() {
-        StringBuilder sb = new StringBuilder("PlayerSkill [");
-        sb.append("skillId=").append(skill.getId()).append(", ");
-        sb.append("playerId=").append(playerId).append(", ");
-        sb.append("level=").append(level);
-        sb.append("]");
-
-        return sb.toString();
+        return "PlayerSkill [" + "skillId=" + skill.getId() + ", " + "playerId=" + playerId + ", " + "level=" + level + "]";
     }
 
     //endregion

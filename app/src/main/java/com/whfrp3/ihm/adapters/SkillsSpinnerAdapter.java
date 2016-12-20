@@ -45,7 +45,12 @@ public class SkillsSpinnerAdapter extends ArrayAdapter<Skill> {
     @NonNull
     @Override
     public View getView(int position, View convertView, @NonNull ViewGroup parent) {
-        ElementSpinnerSkillsBinding binding = DataBindingUtil.inflate(inflater, R.layout.element_spinner_skills, null, false);
+        ElementSpinnerSkillsBinding binding = DataBindingUtil.getBinding(convertView);
+
+        if (binding == null) {
+            binding = DataBindingUtil.inflate(inflater, R.layout.element_spinner_skills, null, false);
+        }
+
         binding.setIsNull(false);
         if (mSkills.get(position) == null) {
             binding.setIsNull(true);

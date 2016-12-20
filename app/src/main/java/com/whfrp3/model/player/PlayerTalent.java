@@ -67,12 +67,7 @@ public class PlayerTalent {
 
     @Override
     public String toString() {
-        StringBuilder sb = new StringBuilder("PlayerTalent [");
-        sb.append("talentId=").append(talent.getId()).append(", ");
-        sb.append("playerId=").append(playerId);
-        sb.append("]");
-
-        return sb.toString();
+        return "PlayerTalent [" + "talentId=" + talent.getId() + ", " + "playerId=" + playerId + "]";
     }
 
     //endregion

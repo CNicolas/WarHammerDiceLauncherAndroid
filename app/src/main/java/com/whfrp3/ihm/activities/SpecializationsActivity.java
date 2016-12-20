@@ -23,7 +23,6 @@ import java.util.List;
 
 
 public class SpecializationsActivity extends AppCompatActivity implements IMainConstants {
-    private List<Specialization> mSpecializations;
     private Characteristic mCharacteristic;
     private Skill mSkill;
 
@@ -32,6 +31,7 @@ public class SpecializationsActivity extends AppCompatActivity implements IMainC
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_specializations);
 
+        List<Specialization> specializations;
         if (getIntent().getExtras() != null) {
             setTitle(getString(R.string.page_specializations));
             if (getIntent().hasExtra(CHARACTERISTIC_BUNDLE_TAG)) {
@@ -42,18 +42,18 @@ public class SpecializationsActivity extends AppCompatActivity implements IMainC
             }
 
             if (getIntent().hasExtra(SPECIALIZATIONS_LIST_BUNDLE_TAG)) {
-                mSpecializations = (List<Specialization>) getIntent().getExtras().getSerializable(SPECIALIZATIONS_LIST_BUNDLE_TAG);
+                specializations = (List<Specialization>) getIntent().getExtras().getSerializable(SPECIALIZATIONS_LIST_BUNDLE_TAG);
             } else {
-                mSpecializations = SpecializationHelper.getInstance().getSpecializations();
+                specializations = SpecializationHelper.getInstance().getSpecializations();
             }
         } else {
-            mSpecializations = SpecializationHelper.getInstance().getSpecializations();
+            specializations = SpecializationHelper.getInstance().getSpecializations();
         }
 
-        SpecializationsListAdapter adapter = new SpecializationsListAdapter(getLayoutInflater(), mSpecializations);
+        SpecializationsListAdapter adapter = new SpecializationsListAdapter(getLayoutInflater(), specializations);
         final ListView specializationsListView = (ListView) findViewById(R.id.specializations_list);
         specializationsListView.setAdapter(adapter);
-        if (mSpecializations.isEmpty()) {
+        if (specializations.isEmpty()) {
             specializationsListView.setVisibility(View.GONE);
             findViewById(R.id.no_specialization_found).setVisibility(View.VISIBLE);
         } else {

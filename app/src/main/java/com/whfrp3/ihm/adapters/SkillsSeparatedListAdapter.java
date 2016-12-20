@@ -75,13 +75,18 @@ public class SkillsSeparatedListAdapter extends BaseAdapter {
         int rowType = getItemViewType(position);
 
         if (rowType == TYPE_ITEM) {
-            ElementListSkillBinding binding = DataBindingUtil.inflate(mInflater, R.layout.element_list_skill, parent, false);
+            ElementListSkillBinding binding = DataBindingUtil.getBinding(convertView);
+
+            if (binding == null) {
+                binding = DataBindingUtil.inflate(mInflater, R.layout.element_list_skill, parent, false);
+            }
+
             binding.setSkill(mSkills.get(position));
             binding.setHandlers(new SkillsHandlers());
 
             convertView = binding.getRoot();
         } else {
-            convertView = mInflater.inflate(R.layout.element_list_skill_separator, null);
+            convertView = mInflater.inflate(R.layout.element_list_skill_separator, parent, false);
             TextView textView = (TextView) convertView.findViewById(R.id.skill_type_header);
             textView.setText(mSkills.get(position).getName());
         }

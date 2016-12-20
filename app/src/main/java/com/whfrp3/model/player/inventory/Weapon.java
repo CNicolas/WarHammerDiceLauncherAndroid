@@ -91,19 +91,16 @@ public class Weapon extends Equipment {
     //region Overrides
     @Override
     public String toString() {
-        StringBuilder sb = new StringBuilder("Weapon [");
-        sb.append(attributesToString());
-        sb.append(", equipped=");
-        sb.append(isEquipped());
-        sb.append(", damage=");
-        sb.append(getDamage());
-        sb.append(", criticalLevel=");
-        sb.append(getCriticalLevel());
-        sb.append(", range=");
-        sb.append(getRange());
-        sb.append("]");
-
-        return sb.toString();
+        return "Weapon [" + attributesToString() +
+                ", equipped=" +
+                isEquipped() +
+                ", damage=" +
+                getDamage() +
+                ", criticalLevel=" +
+                getCriticalLevel() +
+                ", range=" +
+                getRange() +
+                "]";
     }
 
     @Override
@@ -114,9 +111,7 @@ public class Weapon extends Equipment {
 
         Weapon weapon = (Weapon) o;
 
-        if (getDamage() != weapon.getDamage()) return false;
-        if (getCriticalLevel() != weapon.getCriticalLevel()) return false;
-        return getRange() == weapon.getRange();
+        return getDamage() == weapon.getDamage() && getCriticalLevel() == weapon.getCriticalLevel() && getRange() == weapon.getRange();
 
     }
 

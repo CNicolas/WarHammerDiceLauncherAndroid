@@ -55,11 +55,7 @@ public class Specialization extends AbstractModel {
     //region Overrides
     @Override
     public String toString() {
-        final StringBuilder sb = new StringBuilder("Specialization{");
-        sb.append("name='").append(name).append('\'');
-        sb.append(", skill=").append(skill);
-        sb.append('}');
-        return sb.toString();
+        return "Specialization{" + "name='" + name + '\'' + ", skill=" + skill + '}';
     }
 
     @Override

@@ -10,5 +10,5 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:src="@drawable/warhammer_v3_logo"
-        android:contentDescription="Warhammer Logo" />
+        android:contentDescription="@string/warhammer_logo" />
 </LinearLayout>

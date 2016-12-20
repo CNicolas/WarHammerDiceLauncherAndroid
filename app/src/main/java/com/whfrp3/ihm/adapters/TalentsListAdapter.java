@@ -50,7 +50,12 @@ public class TalentsListAdapter extends ArrayAdapter<Talent> {
     @NonNull
     @Override
     public View getView(int position, View convertView, @NonNull ViewGroup parent) {
-        ElementListTalentBinding binding = DataBindingUtil.inflate(inflater, R.layout.element_list_talent, parent, false);
+        ElementListTalentBinding binding = DataBindingUtil.getBinding(convertView);
+
+        if (binding == null) {
+            binding = DataBindingUtil.inflate(inflater, R.layout.element_list_talent, parent, false);
+        }
+
         binding.setTalent(mTalents.get(position));
 
         return binding.getRoot();

@@ -15,14 +15,13 @@ import com.whfrp3.tools.WHFRP3Application;
  * Player actions Fragment
  */
 public class PlayerActionsFragment extends Fragment {
-    private FragmentPlayerActionsBinding mBinding;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        mBinding = DataBindingUtil.inflate(inflater, R.layout.fragment_player_actions, container, false);
-        mBinding.setPlayer(WHFRP3Application.getPlayer());
+        FragmentPlayerActionsBinding binding = DataBindingUtil.inflate(inflater, R.layout.fragment_player_actions, container, false);
+        binding.setPlayer(WHFRP3Application.getPlayer());
 
-        return mBinding.getRoot();
+        return binding.getRoot();
     }
 }

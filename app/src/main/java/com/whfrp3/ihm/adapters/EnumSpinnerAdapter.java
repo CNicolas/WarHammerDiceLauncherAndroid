@@ -62,7 +62,12 @@ public class EnumSpinnerAdapter extends ArrayAdapter<IEnumSpinner> {
     @NonNull
     @Override
     public View getView(int position, View convertView, @NonNull ViewGroup parent) {
-        ElementSpinnerEnumBinding binding = DataBindingUtil.inflate(inflater, R.layout.element_spinner_enum, null, false);
+        ElementSpinnerEnumBinding binding = DataBindingUtil.getBinding(convertView);
+
+        if (binding == null) {
+            binding = DataBindingUtil.inflate(inflater, R.layout.element_spinner_enum, null, false);
+        }
+
         binding.setSpin(values[position]);
 
         return binding.getRoot();

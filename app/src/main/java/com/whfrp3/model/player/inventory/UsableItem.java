@@ -61,13 +61,7 @@ public class UsableItem extends Item {
     //region Overrides
     @Override
     public String toString() {
-        StringBuilder sb = new StringBuilder("UsableItem [");
-        sb.append(attributesToString());
-        sb.append(", load=");
-        sb.append(getLoad());
-        sb.append("]");
-
-        return sb.toString();
+        return "UsableItem [" + attributesToString() + ", load=" + getLoad() + "]";
     }
 
     @Override

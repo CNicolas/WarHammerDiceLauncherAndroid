@@ -57,7 +57,12 @@ public class PlayerSkillsListAdapter extends ArrayAdapter<PlayerSkill> {
         PlayerSkill playerSkill = playerSkills.get(position);
         playerSkill.setSpecialized(player.isSpecializedSkill(playerSkill));
 
-        ElementListPlayerSkillBinding binding = DataBindingUtil.inflate(inflater, R.layout.element_list_player_skill, parent, false);
+        ElementListPlayerSkillBinding binding = DataBindingUtil.getBinding(convertView);
+
+        if (binding == null) {
+            binding = DataBindingUtil.inflate(inflater, R.layout.element_list_player_skill, parent, false);
+        }
+
         binding.setPlayer(player);
         binding.setPlayerSkill(playerSkill);
         binding.setHandlers(new PlayerSkillHandlers());

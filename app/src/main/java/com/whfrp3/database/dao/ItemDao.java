@@ -6,7 +6,6 @@ import android.database.sqlite.SQLiteDatabase;
 
 import com.whfrp3.database.entries.IEntryConstants;
 import com.whfrp3.database.entries.IItemEntryConstants;
-import com.whfrp3.model.player.Player;
 import com.whfrp3.model.player.inventory.Armor;
 import com.whfrp3.model.player.inventory.Item;
 import com.whfrp3.model.player.inventory.ItemType;
@@ -15,7 +14,6 @@ import com.whfrp3.model.player.inventory.Range;
 import com.whfrp3.model.player.inventory.UsableItem;
 import com.whfrp3.model.player.inventory.Weapon;
 
-import java.util.ArrayList;
 import java.util.List;
 
 /**

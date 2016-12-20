@@ -106,7 +106,7 @@ public class InventoryListAdapter extends AnimatedExpandableListView.AnimatedExp
         ItemType itemType = (ItemType) getGroup(groupPosition);
 
         if (convertView == null) {
-            convertView = inflater.inflate(R.layout.element_inventory_header, null);
+            convertView = inflater.inflate(R.layout.element_inventory_header, parent, false);
         }
 
         TextView txtView = (TextView) convertView.findViewById(R.id.inventoryGroupName);

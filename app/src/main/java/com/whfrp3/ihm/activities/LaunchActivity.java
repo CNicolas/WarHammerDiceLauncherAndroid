@@ -284,8 +284,8 @@ public class LaunchActivity extends AppCompatActivity implements IPlayerActivity
     /**
      * Make a Hand from given PlayerSkill
      *
-     * @param playerSkill
-     * @return
+     * @param playerSkill link between the player and a skill
+     * @return the hand for the skill
      */
     private Hand getHandFromSkill(PlayerSkill playerSkill) {
         Player player = WHFRP3Application.getPlayer();

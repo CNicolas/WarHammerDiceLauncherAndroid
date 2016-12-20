@@ -51,7 +51,12 @@ public class WeaponsListAdapter extends ArrayAdapter<Weapon> {
     @NonNull
     @Override
     public View getView(int position, View convertView, @NonNull ViewGroup parent) {
-        ElementListWeaponBinding binding = DataBindingUtil.inflate(inflater, R.layout.element_list_weapon, null, false);
+        ElementListWeaponBinding binding = DataBindingUtil.getBinding(convertView);
+
+        if (binding == null) {
+            binding = DataBindingUtil.inflate(inflater, R.layout.element_list_weapon, null, false);
+        }
+
         binding.setWeapon(weapons.get(position));
         binding.setHandlers(new AdventureActivityHandlers());
 

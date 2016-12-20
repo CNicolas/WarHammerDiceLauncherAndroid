@@ -125,14 +125,11 @@ public class PlayerCharacteristic extends BaseObservable implements Serializable
 
     @Override
     public String toString() {
-        StringBuilder sb = new StringBuilder("PlayerCharacteristic [");
-        sb.append("characteristic=").append(characteristic.toString()).append(", ");
-        sb.append("playerId=").append(playerId).append(", ");
-        sb.append("value=").append(value).append(", ");
-        sb.append("fortuneValue=").append(fortuneValue);
-        sb.append("]");
-
-        return sb.toString();
+        return "PlayerCharacteristic [" + "characteristic=" + characteristic.toString() + ", " +
+                "playerId=" + playerId + ", " +
+                "value=" + value + ", " +
+                "fortuneValue=" + fortuneValue +
+                "]";
     }
 
     //endregion
