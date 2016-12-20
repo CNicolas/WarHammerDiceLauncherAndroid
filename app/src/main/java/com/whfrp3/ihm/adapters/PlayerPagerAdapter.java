@@ -14,7 +14,9 @@ import com.whfrp3.R;
 import com.whfrp3.ihm.fragments.player.AdventureFragment;
 import com.whfrp3.ihm.fragments.player.CharacteristicsFragment;
 import com.whfrp3.ihm.fragments.player.InventoryFragment;
+import com.whfrp3.ihm.fragments.player.PlayerActionsFragment;
 import com.whfrp3.ihm.fragments.player.PlayerSkillsFragment;
+import com.whfrp3.ihm.fragments.player.PlayerTalentsFragment;
 import com.whfrp3.tools.WHFRP3Application;
 import com.whfrp3.tools.constants.IPlayerActivityConstants;
 
@@ -26,9 +28,11 @@ public class PlayerPagerAdapter extends FragmentPagerAdapter {
     private int mCurrentPosition;
 
     private CharacteristicsFragment mCharacteristicsFragment;
+    private AdventureFragment mAdventureFragment;
     private PlayerSkillsFragment mPlayerSkillsFragment;
     private InventoryFragment mInventoryFragment;
-    private AdventureFragment mAdventureFragment;
+    private PlayerActionsFragment mPlayerActionsFragment;
+    private PlayerTalentsFragment mPlayerTalentsFragment;
 
     public PlayerPagerAdapter(FragmentManager fm) {
         super(fm);
@@ -49,7 +53,7 @@ public class PlayerPagerAdapter extends FragmentPagerAdapter {
                     mAdventureFragment = new AdventureFragment();
                 }
                 return mAdventureFragment;
-            case IPlayerActivityConstants.SKILLS_FRAGMENT_POSITION:
+            case IPlayerActivityConstants.PLAYER_SKILLS_FRAGMENT_POSITION:
                 if (mPlayerSkillsFragment == null) {
                     mPlayerSkillsFragment = new PlayerSkillsFragment();
                 }
@@ -59,6 +63,16 @@ public class PlayerPagerAdapter extends FragmentPagerAdapter {
                     mInventoryFragment = new InventoryFragment();
                 }
                 return mInventoryFragment;
+            case IPlayerActivityConstants.PLAYER_ACTIONS_FRAGMENT_POSITION:
+                if (mPlayerActionsFragment == null) {
+                    mPlayerActionsFragment = new PlayerActionsFragment();
+                }
+                return mPlayerActionsFragment;
+            case IPlayerActivityConstants.PLAYER_TALENTS_FRAGMENT_POSITION:
+                if (mPlayerTalentsFragment == null) {
+                    mPlayerTalentsFragment = new PlayerTalentsFragment();
+                }
+                return mPlayerTalentsFragment;
             default:
                 return null;
         }
@@ -66,7 +80,7 @@ public class PlayerPagerAdapter extends FragmentPagerAdapter {
 
     @Override
     public int getCount() {
-        return 4;
+        return 6;
     }
 
 
@@ -75,16 +89,22 @@ public class PlayerPagerAdapter extends FragmentPagerAdapter {
         Context context = WHFRP3Application.getAppContext();
         switch (position) {
             case IPlayerActivityConstants.CHARACTERISTICS_FRAGMENT_POSITION:
-                Drawable image = ContextCompat.getDrawable(context, R.drawable.ic_person_black);
+                Drawable image = WHFRP3Application.getResourceDrawable(R.drawable.ic_person_black);
                 return setTabIcon(image);
             case IPlayerActivityConstants.ADVENTURE_FRAGMENT_POSITION:
-                image = ContextCompat.getDrawable(context, R.drawable.ic_explore_black);
+                image = WHFRP3Application.getResourceDrawable(R.drawable.ic_explore_black);
                 return setTabIcon(image);
-            case IPlayerActivityConstants.SKILLS_FRAGMENT_POSITION:
-                image = ContextCompat.getDrawable(context, R.drawable.ic_skills_black);
+            case IPlayerActivityConstants.PLAYER_SKILLS_FRAGMENT_POSITION:
+                image = WHFRP3Application.getResourceDrawable(R.drawable.ic_skills_black);
                 return setTabIcon(image);
             case IPlayerActivityConstants.INVENTORY_FRAGMENT_POSITION:
                 image = ContextCompat.getDrawable(context, R.drawable.ic_bag_black);
+                return setTabIcon(image);
+            case IPlayerActivityConstants.PLAYER_ACTIONS_FRAGMENT_POSITION:
+                image = ContextCompat.getDrawable(context, R.drawable.ic_action_black);
+                return setTabIcon(image);
+            case IPlayerActivityConstants.PLAYER_TALENTS_FRAGMENT_POSITION:
+                image = ContextCompat.getDrawable(context, R.drawable.ic_talents_black);
                 return setTabIcon(image);
         }
         return null;
