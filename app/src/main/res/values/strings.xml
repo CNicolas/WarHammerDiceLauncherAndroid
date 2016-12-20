@@ -195,5 +195,10 @@
     <string name="characteristic">Characteristic</string>
     <string name="skill">Skill</string>
     <string name="no_specialization_found">No specialization found</string>
+    <string name="s">S</string>
+    <string name="advanced_skills">Advanced skills</string>
+    <string name="basic_skills">Basic skills</string>
+    <string name="advanced">Advanced</string>
+    <string name="basic">Basic</string>
 
 </resources>

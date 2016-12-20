@@ -11,6 +11,8 @@ import com.whfrp3.R;
 import com.whfrp3.databinding.ElementListSpecializationBinding;
 import com.whfrp3.model.skills.Specialization;
 
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 
 /**
@@ -25,6 +27,12 @@ public class SpecializationsListAdapter extends ArrayAdapter<Specialization> {
 
         this.inflater = inflater;
         mSpecializations = specializations;
+        Collections.sort(mSpecializations, new Comparator<Specialization>() {
+            @Override
+            public int compare(Specialization specialization, Specialization t1) {
+                return specialization.getName().compareTo(t1.getName());
+            }
+        });
     }
 
     @Override

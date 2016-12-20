@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="40dp"
+    android:layout_height="match_parent"
     android:background="@color/colorPrimary"
     android:gravity="center_vertical"
     android:orientation="horizontal"
@@ -9,22 +9,15 @@
     android:paddingStart="@dimen/medium_padding">
 
     <TextView
-        android:id="@+id/inventoryGroupName"
-        android:layout_width="match_parent"
+        android:id="@+id/skill_type_header"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_weight="90"
+        android:layout_weight="10"
+        android:gravity="center"
         android:hint="@string/dummy_string"
+        android:padding="@dimen/small_padding"
         android:textColor="@android:color/white"
         android:textSize="@dimen/medium_text_size"
         android:textStyle="bold" />
-
-    <ImageView
-        android:id="@+id/inventoryGroupArrow"
-        android:layout_width="40dp"
-        android:layout_height="40dp"
-        android:layout_gravity="center_vertical"
-        android:layout_weight="10"
-        android:rotation="90"
-        android:src="@drawable/ic_keyboard_arrow_down_white" />
 
 </LinearLayout>

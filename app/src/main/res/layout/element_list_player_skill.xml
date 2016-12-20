@@ -26,16 +26,6 @@
         android:orientation="horizontal"
         android:weightSum="10">
 
-        <ImageView
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_gravity="center"
-            android:layout_weight="1"
-            android:onClick="@{() -> handlers.openSpecializationPopup(playerSkill)}"
-            android:padding="@dimen/small_padding"
-            android:src="@drawable/ic_specialization_black"
-            android:tint="@{playerSkill.specialized ? @color/dark_red : @android:color/black}" />
-
         <TextView
             style="@style/SkillName"
             android:background="?android:attr/selectableItemBackground"
@@ -63,5 +53,17 @@
             android:checked="@{playerSkill.level >= 3}"
             android:enabled="@{player.rank >= 3 ? player.inEdition : false}"
             android:onClick="@{() -> handlers.onLevelSelected(playerSkill, 3, skillLevel1, skillLevel2, skillLevel3)}" />
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:clickable="true"
+            android:gravity="center"
+            android:onClick="@{() -> handlers.openSpecializationPopup(playerSkill)}"
+            android:text="@string/s"
+            android:textColor="@{playerSkill.specialized ? @color/dark_red : @android:color/black}"
+            android:textSize="25sp"
+            android:textStyle="bold|italic" />
     </LinearLayout>
 </layout>

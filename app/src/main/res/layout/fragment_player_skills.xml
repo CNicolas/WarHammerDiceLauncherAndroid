@@ -16,11 +16,9 @@
         android:orientation="vertical">
 
         <ListView
-            android:id="@+id/skills_list"
+            android:id="@+id/basic_skills_list"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_margin="@dimen/small_padding"
-            android:clickable="true"
             app:skills="@{player.playerSkills}"
             tools:listitem="@layout/element_list_player_skill" />
     </LinearLayout>

@@ -168,6 +168,11 @@
     <string name="characteristic">Charactéristique</string>
     <string name="skill">Compétence</string>
     <string name="no_specialization_found">Aucune spécialisation trouvée</string>
+    <string name="s">S</string>
+    <string name="advanced_skills">Compétences avancées</string>
+    <string name="basic_skills">Compétences de base</string>
+    <string name="basic">Basiques</string>
+    <string name="advanced">Avancées</string>
     <!-- End of inventory -->
 
 </resources>
