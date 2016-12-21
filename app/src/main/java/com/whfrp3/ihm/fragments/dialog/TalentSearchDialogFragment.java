@@ -23,6 +23,7 @@ import com.whfrp3.model.talents.Talent;
 import com.whfrp3.model.talents.TalentSearchFields;
 import com.whfrp3.notification.ToastNotification;
 import com.whfrp3.tools.constants.IMainConstants;
+import com.whfrp3.tools.constants.IPlayerActivityConstants;
 import com.whfrp3.tools.helpers.TalentHelper;
 
 import java.util.ArrayList;
@@ -37,6 +38,7 @@ public class TalentSearchDialogFragment extends DialogFragment {
      * Search fields used by the dialog.
      */
     private TalentSearchFields mTalentSearch;
+    private boolean mCanAddToPlayer;
 
     @NonNull
     @Override
@@ -61,6 +63,7 @@ public class TalentSearchDialogFragment extends DialogFragment {
                 if (talentsFound.size() > 0) {
                     Bundle bundle = new Bundle();
                     bundle.putSerializable(IMainConstants.TALENTS_LIST_BUNDLE_TAG, (ArrayList<Talent>) talentsFound);
+                    bundle.putBoolean(IPlayerActivityConstants.CAN_ADD_TO_PLAYER_BUNDLE_TAG, mCanAddToPlayer);
 
                     Intent talentsIntent = new Intent(getActivity(), TalentsActivity.class);
                     talentsIntent.putExtras(bundle);
@@ -144,6 +147,9 @@ public class TalentSearchDialogFragment extends DialogFragment {
 
         TalentType talentType = (TalentType) bundle.getSerializable(IMainConstants.TALENT_TYPE_BUNDLE_TAG);
         mTalentSearch.setTalentType(talentType);
+
+        mCanAddToPlayer = bundle.getBoolean(IPlayerActivityConstants.CAN_ADD_TO_PLAYER_BUNDLE_TAG);
+
     }
 
     private void initTalentSearchFields() {

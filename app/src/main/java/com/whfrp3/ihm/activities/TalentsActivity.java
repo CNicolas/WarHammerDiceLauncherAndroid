@@ -7,15 +7,18 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
 import com.whfrp3.R;
+import com.whfrp3.ihm.adapters.PlayerTalentsListAdapter;
 import com.whfrp3.ihm.adapters.TalentsListAdapter;
 import com.whfrp3.ihm.fragments.dialog.TalentSearchDialogFragment;
 import com.whfrp3.model.enums.TalentType;
 import com.whfrp3.model.talents.Talent;
 import com.whfrp3.tools.WHFRP3Application;
 import com.whfrp3.tools.constants.IMainConstants;
+import com.whfrp3.tools.constants.IPlayerActivityConstants;
 import com.whfrp3.tools.helpers.TalentHelper;
 
 import java.util.List;
@@ -23,6 +26,7 @@ import java.util.List;
 
 public class TalentsActivity extends AppCompatActivity implements IMainConstants {
     private TalentType mTalentType;
+    private boolean canSearchFurther = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,6 +40,7 @@ public class TalentsActivity extends AppCompatActivity implements IMainConstants
                 mTalentType = (TalentType) getIntent().getExtras().getSerializable(TALENT_TYPE_BUNDLE_TAG);
                 setTitle(getString(mTalentType.getLabelId()));
             }
+
             if (getIntent().hasExtra(TALENTS_LIST_BUNDLE_TAG)) {
                 talents = (List<Talent>) getIntent().getExtras().getSerializable(TALENTS_LIST_BUNDLE_TAG);
             } else {
@@ -45,7 +50,14 @@ public class TalentsActivity extends AppCompatActivity implements IMainConstants
             talents = TalentHelper.getInstance().getTalents();
         }
 
-        TalentsListAdapter adapter = new TalentsListAdapter(getLayoutInflater(), talents);
+        ArrayAdapter<Talent> adapter;
+        if (getIntent().getExtras() != null && getIntent().hasExtra(IPlayerActivityConstants.CAN_ADD_TO_PLAYER_BUNDLE_TAG)) {
+            adapter = new PlayerTalentsListAdapter(getLayoutInflater(), talents);
+        } else {
+            canSearchFurther = true;
+            adapter = new TalentsListAdapter(getLayoutInflater(), talents);
+        }
+
         final ListView talentsListView = (ListView) findViewById(R.id.talents_list);
         talentsListView.setAdapter(adapter);
         if (talents.isEmpty()) {
@@ -74,6 +86,10 @@ public class TalentsActivity extends AppCompatActivity implements IMainConstants
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.search, menu);
+
+        if (!canSearchFurther) {
+            menu.findItem(R.id.action_search).setVisible(false);
+        }
 
         return super.onCreateOptionsMenu(menu);
     }

@@ -14,11 +14,15 @@ import android.widget.ListView;
 import android.widget.TextView;
 
 import com.whfrp3.ihm.adapters.PlayerSkillsListAdapter;
+import com.whfrp3.ihm.adapters.TalentsListAdapter;
 import com.whfrp3.ihm.adapters.WeaponsListAdapter;
 import com.whfrp3.model.player.PlayerSkill;
+import com.whfrp3.model.player.PlayerTalent;
 import com.whfrp3.model.player.inventory.Weapon;
+import com.whfrp3.model.talents.Talent;
 import com.whfrp3.tools.enums.TextIcon;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -62,6 +66,17 @@ public abstract class BindingUtils {
     public static void bindWeapons(ListView view, List<Weapon> list) {
         LayoutInflater inflater = (LayoutInflater) WHFRP3Application.getAppContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         WeaponsListAdapter adapter = new WeaponsListAdapter(inflater, list);
+        view.setAdapter(adapter);
+    }
+
+    @BindingAdapter("talents")
+    public static void bindPlayerTalents(ListView view, List<PlayerTalent> list) {
+        List<Talent> talents = new ArrayList<>();
+        for (PlayerTalent playerTalent : list) {
+            talents.add(playerTalent.getTalent());
+        }
+        LayoutInflater inflater = (LayoutInflater) WHFRP3Application.getAppContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+        TalentsListAdapter adapter = new TalentsListAdapter(inflater, talents);
         view.setAdapter(adapter);
     }
 

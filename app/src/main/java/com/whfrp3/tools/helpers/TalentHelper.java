@@ -81,8 +81,9 @@ public class TalentHelper {
                 if (eventType == XmlResourceParser.START_TAG) {
                     if (xmlParser.getName().equals(Talent.class.getSimpleName())) {
                         talent = new Talent();
-                        talent.setType(TalentType.valueOf(xmlParser.getAttributeValue(0)));
-                        talent.setCooldown(CooldownType.valueOf(xmlParser.getAttributeValue(1)));
+                        talent.setId(Long.valueOf(xmlParser.getAttributeValue(0)));
+                        talent.setType(TalentType.valueOf(xmlParser.getAttributeValue(1)));
+                        talent.setCooldown(CooldownType.valueOf(xmlParser.getAttributeValue(2)));
                     } else if ("Name".equals(xmlParser.getName())) {
                         talent.setName(xmlParser.nextText());
                     } else if ("Description".equals(xmlParser.getName())) {

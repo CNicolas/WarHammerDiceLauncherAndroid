@@ -230,6 +230,6 @@
             android:layout_gravity="bottom|end"
             android:layout_margin="@dimen/fab_margin"
             android:onClick="@{() -> handlers.resetHand(hand)}"
-            app:srcCompat="@drawable/ic_not_interested_white" />
+            android:src="@drawable/ic_not_interested_white" />
     </android.support.design.widget.CoordinatorLayout>
 </layout>

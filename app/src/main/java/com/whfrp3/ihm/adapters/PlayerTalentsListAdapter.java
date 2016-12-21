@@ -9,6 +9,7 @@ import android.widget.ArrayAdapter;
 
 import com.whfrp3.R;
 import com.whfrp3.databinding.ElementListTalentBinding;
+import com.whfrp3.ihm.listeners.TalentsHandlers;
 import com.whfrp3.model.talents.Talent;
 
 import java.util.List;
@@ -16,11 +17,11 @@ import java.util.List;
 /**
  * The Adapter for the talents   list.
  */
-public class TalentsListAdapter extends ArrayAdapter<Talent> {
+public class PlayerTalentsListAdapter extends ArrayAdapter<Talent> {
     private final List<Talent> mTalents;
     private final LayoutInflater mInflater;
 
-    public TalentsListAdapter(@NonNull LayoutInflater inflater, List<Talent> talents) {
+    public PlayerTalentsListAdapter(@NonNull LayoutInflater inflater, List<Talent> talents) {
         super(inflater.getContext(), R.layout.element_list_talent, talents);
 
         mInflater = inflater;
@@ -57,6 +58,8 @@ public class TalentsListAdapter extends ArrayAdapter<Talent> {
         }
 
         binding.setTalent(mTalents.get(position));
+        binding.setHandlers(new TalentsHandlers());
+        binding.setCanAddToPlayer(true);
 
         return binding.getRoot();
     }

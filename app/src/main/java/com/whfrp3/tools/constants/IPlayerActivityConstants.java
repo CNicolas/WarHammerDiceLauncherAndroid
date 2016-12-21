@@ -8,6 +8,7 @@ public interface IPlayerActivityConstants {
     String CURRENT_FRAGMENT_POSITION_BUNDLE_TAG = "fragmentPosition";
     String PLAYER_SKILL_BUNDLE_TAG = "skill";
     String WEAPON_BUNDLE_TAG = "weapon";
+    String CAN_ADD_TO_PLAYER_BUNDLE_TAG = "canAddToPlayer";
 
     int CHARACTERISTICS_FRAGMENT_POSITION = 0;
     int ADVENTURE_FRAGMENT_POSITION = 1;
@@ -21,4 +22,6 @@ public interface IPlayerActivityConstants {
     int ADD_ITEM_REQUEST = 1;
     int EDIT_ITEM_REQUEST = 2;
     int STATS_REQUEST = 3;
+    int ACTIONS_REQUEST = 4;
+    int TALENTS_REQUEST = 5;
 }
