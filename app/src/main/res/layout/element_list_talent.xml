@@ -27,6 +27,7 @@
         android:clickable="@{canAddToPlayer}"
         android:minHeight="100dp"
         android:onClick="@{() -> handlers.addTalent(talent)}"
+        android:longClickable="true"
         android:orientation="vertical">
 
         <TextView
@@ -48,6 +49,7 @@
             android:gravity="fill_horizontal"
             android:hint="@string/dummy_string"
             android:padding="@dimen/small_padding"
+            android:textColor="@android:color/tab_indicator_text"
             app:textWithIcons="@{talent.description}" />
     </LinearLayout>
 </layout>

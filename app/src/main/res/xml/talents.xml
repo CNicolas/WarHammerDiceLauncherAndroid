@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="UTF-8" ?>
-<!-- fichier généré le 21/12/2016 à 15:30:34 à partir du fichier [WHFRP3.xlsm] -->
+<!-- fichier généré le 21/12/2016 à 16:55:29 à partir du fichier [WHFRP3.xlsm] -->
 <!-- NE PAS MODIFIER DIRECTEMENT CE FICHIER -->
 <Talents>
     <Talent Id="1" Type="AFFINITY" Cooldown="NO_COOLDOWN">
@@ -110,354 +110,354 @@
         <Name>Touche-à-tout</Name>
         <Description>Gagnez 1 stress pour bénéficier d'un {FORTUNE_DICE} supplémentaire à l'occasion de n'importe quel test de compétence.</Description>
     </Talent>
-    <Talent Id="" Type="AFFINITY" Cooldown="NO_COOLDOWN">
+    <Talent Id="28" Type="AFFINITY" Cooldown="NO_COOLDOWN">
         <Name>Vue Perçante</Name>
         <Description>Vous bénéficiez d'un {FORTUNE_DICE} supplémentaire à l'occasion des tests d'Observation basés sur la vue.</Description>
     </Talent>
-    <Talent Id="" Type="TOUR" Cooldown="NO_COOLDOWN">
+    <Talent Id="29" Type="TOUR" Cooldown="NO_COOLDOWN">
         <Name>Aboie !</Name>
         <Description>Tant que vous et vos alliés demeurez à portée moyenne ou moins de votre familier, vous bénéficiez d'un {FORTUNE_DICE} à l'occasion de vos tests d'Observation (Int) et d'Initiative.</Description>
     </Talent>
-    <Talent Id="" Type="TOUR" Cooldown="NO_COOLDOWN">
+    <Talent Id="30" Type="TOUR" Cooldown="NO_COOLDOWN">
         <Name>Bon Chien !</Name>
         <Description>À l'occasion de vos tests de Dressage des animaux (Soc), {BOON_FACE} {BOON_FACE} Votre familier gagne 1 Obéissance.</Description>
     </Talent>
-    <Talent Id="" Type="TOUR" Cooldown="NO_COOLDOWN">
+    <Talent Id="31" Type="TOUR" Cooldown="NO_COOLDOWN">
         <Name>Embête-les !</Name>
         <Description>Les ennemis engagés au combat contre votre familier subissent un {MISFORTUNE_DICE} à l'occasion de leurs actions d'Attaque de Corps à Corps, d'Attaque à Distance ou de Bénédiction.</Description>
     </Talent>
-    <Talent Id="" Type="TOUR" Cooldown="NO_COOLDOWN">
+    <Talent Id="32" Type="TOUR" Cooldown="NO_COOLDOWN">
         <Name>Meilleur Ami de l'Homme</Name>
         <Description>Tant que vous êtes engagé au combat aux côtés de votre familier, votre valeur d'encaissement augmente de 1 contre les attaques de Corps à Corps et les Attaques à Distance.</Description>
     </Talent>
-    <Talent Id="" Type="TOUR" Cooldown="NO_COOLDOWN">
+    <Talent Id="33" Type="TOUR" Cooldown="NO_COOLDOWN">
         <Name>Mords et Tiens Bon !</Name>
         <Description>Tant que votre familier est engagé au corps à corps avec un ennemi, les Attaques de Corps à Corps et les Attaques à Distance que vous et vos alliés portez bénéficient d'un {FORTUNE_DICE} supplémentaire.</Description>
     </Talent>
-    <Talent Id="" Type="TOUR" Cooldown="NO_COOLDOWN">
+    <Talent Id="34" Type="TOUR" Cooldown="NO_COOLDOWN">
         <Name>Mords-Lui les Chevilles !</Name>
         <Description>Les ennemis engagés au combat contre votre familier ne bénéficient pas de manœuvre gratuite au cours de leur tour. À l'occasion de vos tests de Dressage des animaux (Soc), {BANE_FACE} {BANE_FACE} Votre familier perd 1 Obéissance.</Description>
     </Talent>
-    <Talent Id="" Type="REPUTATION" Cooldown="NO_COOLDOWN">
+    <Talent Id="35" Type="REPUTATION" Cooldown="NO_COOLDOWN">
         <Name>Accointances</Name>
         <Description>Épuiser cette carte vous permet de bénéficier de {FORTUNE_DICE} {FORTUNE_DICE} à l'occasion d'une action sociale.</Description>
     </Talent>
-    <Talent Id="" Type="REPUTATION" Cooldown="NO_COOLDOWN">
+    <Talent Id="36" Type="REPUTATION" Cooldown="NO_COOLDOWN">
         <Name>Ambitieux</Name>
         <Description>Vous pouvez dépenser un point de fortune pour convertir un dé de caractéristique supplémentaire en dé d'attitude.</Description>
     </Talent>
-    <Talent Id="" Type="REPUTATION" Cooldown="NO_COOLDOWN">
+    <Talent Id="37" Type="REPUTATION" Cooldown="NO_COOLDOWN">
         <Name>Ascétisme</Name>
         <Description>Vous bénéficiez d'un {FORTUNE_DICE} supplémentaire à l'occasion de vos tests de Résistance et de Discipline.</Description>
     </Talent>
-    <Talent Id="" Type="REPUTATION" Cooldown="NO_COOLDOWN">
+    <Talent Id="38" Type="REPUTATION" Cooldown="NO_COOLDOWN">
         <Name>Baroudeur</Name>
         <Description>Vous bénéficiez d'un {FORTUNE_DICE} à l'occasion de vos tests de Charisme, d'Éducation et de Folklore lorsque ces tests concernent des lieux exotiques ou les individus qui en proviennent. Épuiser cette carte vous permet d'ignorer un malus imposé à vos actions Sociales si ce malus est dû à des différences d'ordre culturel.</Description>
     </Talent>
-    <Talent Id="" Type="REPUTATION" Cooldown="NO_COOLDOWN">
+    <Talent Id="39" Type="REPUTATION" Cooldown="NO_COOLDOWN">
         <Name>Beau Parleur</Name>
         <Description>Un {BOON_FACE} est ajouté aux résultats de votre jet de dés lorsque vous obtenez au moins {SUCCESS_FACE} {SUCCESS_FACE} {SUCCESS_FACE} à l'occasion d'un test de Sociabilité.</Description>
     </Talent>
-    <Talent Id="" Type="REPUTATION" Cooldown="NO_COOLDOWN">
+    <Talent Id="40" Type="REPUTATION" Cooldown="NO_COOLDOWN">
         <Name>Charismatique</Name>
         <Description>Lorsque vous dépensez des points de fortune à l'occasion d'un test de Sociabilité, {BOON_FACE} {BOON_FACE} Ajoutez {SUCCESS_FACE} aux résultats.</Description>
     </Talent>
-    <Talent Id="" Type="REPUTATION" Cooldown="TALENT">
+    <Talent Id="41" Type="REPUTATION" Cooldown="TALENT">
         <Name>Confiant</Name>
         <Description>Épuisez cette carte afin d'annuler {BANE_FACE} {BANE_FACE} obtenus lors d'un test d'Intelligence, de Force Mentale ou de Sociabilité.</Description>
     </Talent>
-    <Talent Id="" Type="REPUTATION" Cooldown="TALENT">
+    <Talent Id="42" Type="REPUTATION" Cooldown="TALENT">
         <Name>Débrouillard</Name>
         <Description>Épuiser cette carte vous permet de bénéficier d'un {EXPERTISE_DICE} à l'occasion d'un test d'Intelligence.</Description>
     </Talent>
-    <Talent Id="" Type="REPUTATION" Cooldown="NO_COOLDOWN">
+    <Talent Id="43" Type="REPUTATION" Cooldown="NO_COOLDOWN">
         <Name>Éducation Universitaire</Name>
         <Description>À l'occasion de vos tests d'Éducation et de Folklore, {BOON_FACE} {BOON_FACE} Ajoutez {SUCCESS_FACE} aux résultats.</Description>
     </Talent>
-    <Talent Id="" Type="REPUTATION" Cooldown="NO_COOLDOWN">
+    <Talent Id="44" Type="REPUTATION" Cooldown="NO_COOLDOWN">
         <Name>Empathie avec les Magiciens</Name>
         <Description>Vous bénéficiez d'un {FORTUNE_DICE} à l'occasion de vos tests de Sociabilité et vos actions Sociales qui visent les sorciers.</Description>
     </Talent>
-    <Talent Id="" Type="REPUTATION" Cooldown="TALENT">
+    <Talent Id="45" Type="REPUTATION" Cooldown="TALENT">
         <Name>Favorisé par le Destin</Name>
         <Description>Épuiser cette carte après avoir effectué un test d'Intelligence, de Force Mentale ou de Sociabilité vous permet de relancer tous les {FORTUNE_DICE} et {MISFORTUNE_DICE} qui se trouvaient dans la réserve de dés employée lors du test en question.</Description>
     </Talent>
-    <Talent Id="" Type="REPUTATION" Cooldown="NO_COOLDOWN">
+    <Talent Id="46" Type="REPUTATION" Cooldown="NO_COOLDOWN">
         <Name>Goujaterie</Name>
         <Description>À l'occasion de vos actions Sociales, {BOON_FACE} {BOON_FACE} la cible de votre action progresse d'un cran dans l'attitude téméraire.</Description>
     </Talent>
-    <Talent Id="" Type="REPUTATION" Cooldown="NO_COOLDOWN">
+    <Talent Id="47" Type="REPUTATION" Cooldown="NO_COOLDOWN">
         <Name>Grégaire</Name>
         <Description>Vos tests de Charisme bénéficient d'un {FORTUNE_DICE} supplémentaire.</Description>
     </Talent>
-    <Talent Id="" Type="REPUTATION" Cooldown="TALENT">
+    <Talent Id="48" Type="REPUTATION" Cooldown="TALENT">
         <Name>Inflexible</Name>
         <Description>Épuiser cette carte vous permet d'éliminer 1 stress et 1 fatigue.</Description>
     </Talent>
-    <Talent Id="" Type="REPUTATION" Cooldown="NO_COOLDOWN">
+    <Talent Id="49" Type="REPUTATION" Cooldown="NO_COOLDOWN">
         <Name>Insensible aux Éléments</Name>
         <Description>Lorsque vous gagnez du stress, de la fatigue ou subissez une ou plusieurs blessures à cause de mauvaises conditions météorologiques ou environnementales, ces valeurs sont réduites de 1 (jusqu'à un minimum de 1). Par ailleurs, le mauvais temps vous impose un {MISFORTUNE_DICE} de moins.</Description>
     </Talent>
-    <Talent Id="" Type="REPUTATION" Cooldown="TALENT">
+    <Talent Id="50" Type="REPUTATION" Cooldown="TALENT">
         <Name>Je Connais un Gars…</Name>
         <Description>Épuiser cette carte vous permet de bénéficier de {FORTUNE_DICE} {FORTUNE_DICE} à l'occasion d'un test de Sociabilité. Si ce test se solde par un échec, gagnez 1 stress.</Description>
     </Talent>
-    <Talent Id="" Type="REPUTATION" Cooldown="NO_COOLDOWN">
+    <Talent Id="51" Type="REPUTATION" Cooldown="NO_COOLDOWN">
         <Name>Malhonnête</Name>
         <Description>Vous bénéficiez d'un {FORTUNE_DICE} à l'occasion de vos tests de Forfaits.</Description>
     </Talent>
-    <Talent Id="" Type="REPUTATION" Cooldown="NO_COOLDOWN">
+    <Talent Id="52" Type="REPUTATION" Cooldown="NO_COOLDOWN">
         <Name>Mondain</Name>
         <Description>Éliminez 1 stress chaque fois que vous réussissez un test de Charisme ou de Ruse dont le niveau de difficulté est au moins Facile (1d).</Description>
     </Talent>
-    <Talent Id="" Type="REPUTATION" Cooldown="NO_COOLDOWN">
+    <Talent Id="53" Type="REPUTATION" Cooldown="NO_COOLDOWN">
         <Name>Pieux</Name>
         <Description>Vous bénéficiez d'un {FORTUNE_DICE} à l'occasion de vos tests de Sociabilité et de vos actions Sociales qui visent les prêtres et les dévots.</Description>
     </Talent>
-    <Talent Id="" Type="REPUTATION" Cooldown="NO_COOLDOWN">
+    <Talent Id="54" Type="REPUTATION" Cooldown="NO_COOLDOWN">
         <Name>Plus Chanceux que Talentueux</Name>
         <Description>Lorsque vous dépensez des points de fortune pour ajouter un dé à l'occasion d'un test fait avec une compétence e base à laquelle nous n'êtes pas formé, vous bénéficiez d'un bonus de {FORTUNE_DICE} {FORTUNE_DICE} au lieu de {FORTUNE_DICE}.</Description>
     </Talent>
-    <Talent Id="" Type="REPUTATION" Cooldown="NO_COOLDOWN">
+    <Talent Id="55" Type="REPUTATION" Cooldown="NO_COOLDOWN">
         <Name>Plus d'Argent que de Jugeote</Name>
         <Description>À l'occasion de vos tests de Sociabilité ou des actions Sociales, faites étalage de votre richesse en dépensant une pièce d'or au moment de la résolution de votre action. Ceci vous permet de bénéficier d'un {EXPERTISE_DICE} pour ce test.</Description>
     </Talent>
-    <Talent Id="" Type="REPUTATION" Cooldown="TALENT">
+    <Talent Id="56" Type="REPUTATION" Cooldown="TALENT">
         <Name>Pouvoir de la Foi</Name>
         <Description>Épuiser cette carte vous permet de substituer votre Force Mentale à votre Intelligence à l'occasion d'un test de compétence. À l'occasion de ce test : {BANE_FACE} Ajoutez {FAILURE_FACE} aux résultats.</Description>
     </Talent>
-    <Talent Id="" Type="REPUTATION" Cooldown="NO_COOLDOWN">
+    <Talent Id="57" Type="REPUTATION" Cooldown="NO_COOLDOWN">
         <Name>Protecteur</Name>
         <Description>Vous bénéficiez d'un {FORTUNE_DICE} à l'occasion de vos tests si un de vos alliés à portée moyenne ou moins a subi une blessure critique.</Description>
     </Talent>
-    <Talent Id="" Type="REPUTATION" Cooldown="NO_COOLDOWN">
+    <Talent Id="58" Type="REPUTATION" Cooldown="NO_COOLDOWN">
         <Name>Regard Glacial</Name>
         <Description>Vos actions de Sociabilité utilisant la Ruse gagnent : {BOON_FACE} {BOON_FACE} La cible doit passer un test moyen de Discipline (2d) ou être secouée pendant 2 rounds.</Description>
     </Talent>
-    <Talent Id="" Type="REPUTATION" Cooldown="NO_COOLDOWN">
+    <Talent Id="59" Type="REPUTATION" Cooldown="NO_COOLDOWN">
         <Name>Réputé</Name>
         <Description>Vous bénéficiez d'un {FORTUNE_DICE} supplémentaire à l'occasion de tous vos tests de Ruse.</Description>
     </Talent>
-    <Talent Id="" Type="REPUTATION" Cooldown="NO_COOLDOWN">
+    <Talent Id="60" Type="REPUTATION" Cooldown="NO_COOLDOWN">
         <Name>Sans Peur</Name>
         <Description>Vous bénéficiez d'un {FORTUNE_DICE} à l'occasion de vos tests de Discipline lorsque vous tentez de résister à la Peur ou à la Terreur. Épuiser cette carte vous permet de relancer un test de Discipline lorsque vous tentez de résister à la Peur ou à la Terreur.</Description>
     </Talent>
-    <Talent Id="" Type="REPUTATION" Cooldown="NO_COOLDOWN">
+    <Talent Id="61" Type="REPUTATION" Cooldown="NO_COOLDOWN">
         <Name>Sens de l'Humour</Name>
         <Description>À l'occasion de vos tests de Sociabilité, {BOON_FACE} {BOON_FACE} Le niveau de tension de votre groupe baisse de 1.</Description>
     </Talent>
-    <Talent Id="" Type="REPUTATION" Cooldown="TALENT">
+    <Talent Id="62" Type="REPUTATION" Cooldown="TALENT">
         <Name>Sociable</Name>
         <Description>Épuiser cette carte vous permet de recharger une carte d'action Sociale.</Description>
     </Talent>
-    <Talent Id="" Type="REPUTATION" Cooldown="NO_COOLDOWN">
+    <Talent Id="63" Type="REPUTATION" Cooldown="NO_COOLDOWN">
         <Name>Stoïcisme</Name>
         <Description>Vous pouvez dépenser 1 point de fortune lorsque vous êtes affecté par une carte d'état dont la durée est limitée par un nombre de rounds pour réduire cette durée de 2 rounds.</Description>
     </Talent>
-    <Talent Id="" Type="REPUTATION" Cooldown="TALENT">
+    <Talent Id="64" Type="REPUTATION" Cooldown="TALENT">
         <Name>Voix de la Raison</Name>
         <Description>Épuiser cette carte vous permet de substituer votre Intelligence à votre Force Mentale à l'occasion d'un test de compétence. À l'occasion de ce test : {BANE_FACE} Ajoutez {FAILURE_FACE} aux résultats.</Description>
     </Talent>
-    <Talent Id="" Type="FAITH" Cooldown="NO_COOLDOWN">
+    <Talent Id="65" Type="FAITH" Cooldown="NO_COOLDOWN">
         <Name>Manann, Dieu des Mers</Name>
         <Description>Vous bénéficiez d'un {FORTUNE_DICE} à l'occasion de vos tests d'Invocation et de Piété lorsque vous vous trouvez à portée longue ou moins d'une étendue d'eau.
             Jauge d'Attitude de Départ : PPNTT
         </Description>
     </Talent>
-    <Talent Id="" Type="FAITH" Cooldown="NO_COOLDOWN">
+    <Talent Id="66" Type="FAITH" Cooldown="NO_COOLDOWN">
         <Name>Morr, Dieu des Rêves et de la Mort</Name>
         <Description>Une fois par tour, vous pouvez administrer l'extrême onction de Morr à une personne morte ou mourante qui se trouve à portée courte pour gagner 1 faveur. Ces rites exigent d'effectuer une manœuvre.
             Jauge d'Attitude de Départ : PPNTT
         </Description>
     </Talent>
-    <Talent Id="" Type="FAITH" Cooldown="NO_COOLDOWN">
+    <Talent Id="67" Type="FAITH" Cooldown="NO_COOLDOWN">
         <Name>Myrmidia, Déesse de la Guerre</Name>
         <Description>Vous gagnez 1 faveur chaque fois que vous obtenez un {SIGMAR_FACE} ou plus lorsque vous portez une Attaque de Corps à Corps.
             Jauge d'Attitude de Départ : PPPNT
         </Description>
     </Talent>
-    <Talent Id="" Type="FAITH" Cooldown="NO_COOLDOWN">
+    <Talent Id="68" Type="FAITH" Cooldown="NO_COOLDOWN">
         <Name>Ranald, Dieu de la Chance et de la Tromperie</Name>
         <Description>Vous commencez chaque session pourvu d'un point de fortune supplémentaire. Lorsque vous dépensez un point de fortune ou plus à l'occasion d'un test de compétence et que ce test est un succès, gagnez 1 faveur.
             Jauge d'Attitude de Départ : PNTTT
         </Description>
     </Talent>
-    <Talent Id="" Type="FAITH" Cooldown="NO_COOLDOWN">
+    <Talent Id="69" Type="FAITH" Cooldown="NO_COOLDOWN">
         <Name>Shallya, Déesse de la Guérison et de la Compassion</Name>
         <Description>Chaque fois qu'on de vos alliés qui se trouve à portée courte de vous subit une blessure critique, gagnez 1 faveur.
             Jauge d'Attitude de Départ : PPPNT
         </Description>
     </Talent>
-    <Talent Id="" Type="FAITH" Cooldown="NO_COOLDOWN">
+    <Talent Id="70" Type="FAITH" Cooldown="NO_COOLDOWN">
         <Name>Sigmar, Dieu de l'Empire</Name>
         <Description>Gagnez 1 faveur chaque fois que vous infligez 1 blessure critique ou plus.
             Jauge d'Attitude de Départ : CNTTT
         </Description>
     </Talent>
-    <Talent Id="" Type="FAITH" Cooldown="NO_COOLDOWN">
+    <Talent Id="71" Type="FAITH" Cooldown="NO_COOLDOWN">
         <Name>Taal, Dieu de la Nature et des Étendues Sauvages</Name>
         <Description>Vous bénéficiez d'un {FORTUNE_DICE} à l'occasion de vos tests de Piété et d'Invocation tant que vous vous trouvez en forêt ou dans la nature.
             Jauge d'Attitude de Départ : PPNTT
         </Description>
     </Talent>
-    <Talent Id="" Type="FAITH" Cooldown="NO_COOLDOWN">
+    <Talent Id="72" Type="FAITH" Cooldown="NO_COOLDOWN">
         <Name>Ulric, Dieu des Batailles, des Loups et de l'Hiver</Name>
         <Description>Gagnez 1 faveur chaque fois que vous subissez une blessure critique.
             Jauge d'Attitude de Départ : PNTTT
         </Description>
     </Talent>
-    <Talent Id="" Type="FAITH" Cooldown="NO_COOLDOWN">
+    <Talent Id="73" Type="FAITH" Cooldown="NO_COOLDOWN">
         <Name>Verena, Déesse du Savoir et de la Justice</Name>
         <Description>Vous pouvez associez un talent Affinité à votre carte de Foi comme si cette dernière était un emplacement de talent de votre fiche de carrière. Tant qu'un talent actif est associé à cet emplacement, vous bénéficiez d'un {FORTUNE_DICE} à l'occasion de vos tests d'Éducation.
             Jauge d'Attitude de Départ : PPNTT
         </Description>
     </Talent>
-    <Talent Id="" Type="ORDER" Cooldown="NO_COOLDOWN">
+    <Talent Id="74" Type="ORDER" Cooldown="NO_COOLDOWN">
         <Name>Aqshy, Domaine du Feu, Ordre Flamboyant</Name>
         <Description>Lorsque vous infligez des dégâts avec un Sort du Collège Flamboyant, vous pouvez augmenter ces dégâts de 1 pour chaque point d'énergie supplémentaire que vous choisissez d'investir.</Description>
     </Talent>
-    <Talent Id="" Type="ORDER" Cooldown="NO_COOLDOWN">
+    <Talent Id="75" Type="ORDER" Cooldown="NO_COOLDOWN">
         <Name>Azyr, Domaine des Cieux, Ordre Céleste</Name>
         <Description>Lorsque vous employez un Sort du Collège Céleste, vous pouvez dépenser 1 énergie supplémentaire pour bénéficier d'un {FORTUNE_DICE} supplémentaire à l'occasion de ce test.
             Jauge d'Attitude de Départ : PPPNT
         </Description>
     </Talent>
-    <Talent Id="" Type="ORDER" Cooldown="NO_COOLDOWN">
+    <Talent Id="76" Type="ORDER" Cooldown="NO_COOLDOWN">
         <Name>Chamon, Domaine du Métal, Ordre Doré</Name>
         <Description>Lorsque vous employez un Sort de l'Ordre Doré, vous pouvez dépenser 1 énergie pour convertir un de vos dés de caractéristiques {CHARACTERISTIC_DICE} en dé de prudence {CONSERVATIVE_DICE}, quelle que soit votre attitude actuelle.
             Jaude d'Attitude de Départ : PPPNT
         </Description>
     </Talent>
-    <Talent Id="" Type="ORDER" Cooldown="NO_COOLDOWN">
+    <Talent Id="77" Type="ORDER" Cooldown="NO_COOLDOWN">
         <Name>Ghur, Domaine des Bêtes, Ordre d'Ambre</Name>
         <Description>Tant que vous êtes sous Forme Animale, vous pouvez dépenser 1 énergie pour effectuer une manœuvre supplémentaire lors de votre tour. Il n'est possible de dépenser que 1 énergie de la sorte par tour.
             Jauge d'Attitude de Départ : PNTTT
         </Description>
     </Talent>
-    <Talent Id="" Type="ORDER" Cooldown="NO_COOLDOWN">
+    <Talent Id="78" Type="ORDER" Cooldown="NO_COOLDOWN">
         <Name>Ghyran, Domaine de la Vie, Ordre de Jade</Name>
         <Description>Vous bénéficiez d'un {FORTUNE_DICE} lorsque vous employez un Sort du Collège de Jade si la saison mentionnée par ce sort correspond à la saison actuelle. Si la saison mentionnée est l'opposé de la saison actuelle, vous devez en revanche ajouter un {MISFORTUNE_DICE} à votre réserve de dés.
             Jauge d'Attitude de Départ : PPPNT
         </Description>
     </Talent>
-    <Talent Id="" Type="ORDER" Cooldown="NO_COOLDOWN">
+    <Talent Id="79" Type="ORDER" Cooldown="NO_COOLDOWN">
         <Name>Hysh, Domaine de la Lumière, Ordre Lumineux</Name>
         <Description>Après avoir lancé un Sort de l'Ordre Lumineux, vous pouvez dépenser 1 énergie afin de retirer ou d'ajouter un jeton de recharge à ce sort ou à une carte d'état obtenue à l'aide de celui-ci.
             Jauge d'Attitude de Départ : PPPNT
         </Description>
     </Talent>
-    <Talent Id="" Type="ORDER" Cooldown="NO_COOLDOWN">
+    <Talent Id="80" Type="ORDER" Cooldown="NO_COOLDOWN">
         <Name>Magie Noire</Name>
         <Description>Vous pouvez apprendre et employer des Sorts de Magie Noire et des Sorts du Chaos. Lorsque vous focalisez l'énergie ou que vous lancez un sort, vous bénéficiez d'un {EXPERTISE_DICE} à l'occasion de votre test. Si vous générez un ou plusieurs {EXERTION_FACE} ou {DELAY_FACE} à l'occasion de ces tests, ajoutez {CHAOS_FACE} aux résultats.
             À l'occasion de vos tests de Focalisation et l'Art de la magie, {BANE_DICE} {BANE_DICE}
             Ajoutez {CHAOS_FACE} aux résultats.
         </Description>
     </Talent>
-    <Talent Id="" Type="ORDER" Cooldown="NO_COOLDOWN">
+    <Talent Id="81" Type="ORDER" Cooldown="NO_COOLDOWN">
         <Name>Shyish, Domaine de la Mort, Ordre d'Améthyste</Name>
         <Description>Si une créature vivante meurt au cours d'un tour qui suit immédiatement un tour ou vous avez employé un Sort de l'Ordre d'Améthyste, vous pouvez immédiatement dépenser 1 énergie afin d'ajouter ou de retirer 1 jeton de recharge se trouvant sur une de vos cartes d'action de Sort de l'Ordre d'Améthyste.
             Jauge d'Attitude de Départ : PPNTT
         </Description>
     </Talent>
-    <Talent Id="" Type="ORDER" Cooldown="NO_COOLDOWN">
+    <Talent Id="82" Type="ORDER" Cooldown="NO_COOLDOWN">
         <Name>Ulgu, Dmaine des Ombres, Ordre Gris</Name>
         <Description>Vous pouvez dépenser 1 énergie supplémentaire lorsque vous employez un Sort de l'Ordre Gris afin d'ajouter ou de retirer 1 jeton de recharge à sa carte d'action.
             Jauge d'Attitude de Départ : PPNTT
         </Description>
     </Talent>
-    <Talent Id="" Type="TACTICS" Cooldown="NO_COOLDOWN">
+    <Talent Id="83" Type="TACTICS" Cooldown="NO_COOLDOWN">
         <Name>À Bras-le-Corps</Name>
         <Description>Si vous êtes engagé au combat avec une cible qui tente d'employer la Défense Active Esquive et que votre Attaque de Corps à Corps réussit malgré tout, rajoutez un jeton de recharge supplémentaire sur sa carte d'action Esquive.</Description>
     </Talent>
-    <Talent Id="" Type="TACTICS" Cooldown="TALENT">
+    <Talent Id="84" Type="TACTICS" Cooldown="TALENT">
         <Name>Assaut sans Relâche</Name>
         <Description>Épuiser cette carte vous permet de relancer tous les {FORTUNE_DICE} et les {MISFORTUNE_DICE} suite à un test de Force, d'Endurance ou d'Agilité.</Description>
     </Talent>
-    <Talent Id="" Type="TACTICS" Cooldown="NO_COOLDOWN">
+    <Talent Id="85" Type="TACTICS" Cooldown="NO_COOLDOWN">
         <Name>Cavalier Invétéré</Name>
         <Description>Toutes les attques que vous effectuez alors que vous êtes monté bénéficient d'un {FORTUNE_DICE} supplémentaire. Toutes les formes actives de défense dont vous vous servez alors que vous êtes à cheval imposent un {MISFORTUNE_DICE} supplémentaire aux attaques portées contre vous.</Description>
     </Talent>
-    <Talent Id="" Type="TACTICS" Cooldown="NO_COOLDOWN">
+    <Talent Id="86" Type="TACTICS" Cooldown="NO_COOLDOWN">
         <Name>Charge</Name>
         <Description>Vous bénéficiez d'un {FORTUNE_DICE} à l'occasion de toutes vos Attaques de Corps à Corps au cours d'un tour où vous engagez le combat avec un ennemi.</Description>
     </Talent>
-    <Talent Id="" Type="TACTICS" Cooldown="TALENT">
+    <Talent Id="87" Type="TACTICS" Cooldown="TALENT">
         <Name>Coup de Rein</Name>
         <Description>Épuiser cette carte vous permet de bénéficier de {FORTUNE_DICE} {FORTUNE_DICE} à l'occasion de n'importe quel test de Force. Si ce test est un échec, gagnez 1 fatigue.</Description>
     </Talent>
-    <Talent Id="" Type="TACTICS" Cooldown="NO_COOLDOWN">
+    <Talent Id="88" Type="TACTICS" Cooldown="NO_COOLDOWN">
         <Name>Couteau dans la Plaie</Name>
         <Description>Vous pouvez infliger 1 fatigue à votre cible en effectuant une manœuvre supplémentaire immédiatement après l'avoir attaquée au corps à corps.</Description>
     </Talent>
-    <Talent Id="" Type="TACTICS" Cooldown="NO_COOLDOWN">
+    <Talent Id="89" Type="TACTICS" Cooldown="NO_COOLDOWN">
         <Name>Efforts Coordonnés</Name>
         <Description>À l'occasion d'un test d'Agilité pour lequel vous avez dépensé des points de fortune, {BOON_FACE} {BOON_FACE} Ajoutez {SUCCESS_FACE} aux résultats.</Description>
     </Talent>
-    <Talent Id="" Type="TACTICS" Cooldown="TALENT">
+    <Talent Id="90" Type="TACTICS" Cooldown="TALENT">
         <Name>Entraînement Exceptionnel</Name>
         <Description>Épuiser cette carte vous permet d'annulez jusqu'à {BANE_FACE} {BANE_FACE} lors de vos tests de Force, d'Agilité ou d'Endurance.</Description>
     </Talent>
-    <Talent Id="" Type="TACTICS" Cooldown="NO_COOLDOWN">
+    <Talent Id="91" Type="TACTICS" Cooldown="NO_COOLDOWN">
         <Name>Escrimeur</Name>
         <Description>Votre valeur de défense augmente de 1 lorsque vous êtes armé d'une arme d'escrime ou d'une arme d'escrime et d'une dague.</Description>
     </Talent>
-    <Talent Id="" Type="TACTICS" Cooldown="NO_COOLDOWN">
+    <Talent Id="92" Type="TACTICS" Cooldown="NO_COOLDOWN">
         <Name>Exploiter les Vulnérabilités</Name>
         <Description>Vous bénéficez d'un {FORTUNE_DICE} à l'occasion de vos attaques lorsque votre adversaire souffre d'une blessure critique.</Description>
     </Talent>
-    <Talent Id="" Type="TACTICS" Cooldown="NO_COOLDOWN">
+    <Talent Id="93" Type="TACTICS" Cooldown="NO_COOLDOWN">
         <Name>Fait de Fer</Name>
         <Description>Si vous gagnez 2 points de fatigue ou plus d'un seul coup, ce total est réduit de 1.</Description>
     </Talent>
-    <Talent Id="" Type="TACTICS" Cooldown="TALENT">
+    <Talent Id="94" Type="TACTICS" Cooldown="TALENT">
         <Name>Impavide</Name>
         <Description>Épuiser cette carte vous permet d'augmenter votre valeur d'encaissement de 2 contre une source de dégâts. Vous pouvez utiliser ce talent après avoir pris connaissance des dégâts.</Description>
     </Talent>
-    <Talent Id="" Type="TACTICS" Cooldown="NO_COOLDOWN">
+    <Talent Id="95" Type="TACTICS" Cooldown="NO_COOLDOWN">
         <Name>Intouchable</Name>
         <Description>Vous pouvez subir 1 fatigue pour utiliser la défense active Parade contre Attaque à Distance.</Description>
     </Talent>
-    <Talent Id="" Type="TACTICS" Cooldown="NO_COOLDOWN">
+    <Talent Id="96" Type="TACTICS" Cooldown="NO_COOLDOWN">
         <Name>La Force Justifie Tout</Name>
         <Description>À l'occasion d'un test de Force pour lequel vous avez dépensé des points de fortune, {BOON_FACE} {BOON_FACE} Ajoutez {SUCCESS_FACE} aux résultats.</Description>
     </Talent>
-    <Talent Id="" Type="TACTICS" Cooldown="NO_COOLDOWN">
+    <Talent Id="97" Type="TACTICS" Cooldown="NO_COOLDOWN">
         <Name>Manœuvre sur les Flancs</Name>
         <Description>Tant que vous êtes engagé au combat avec au moins 1 allié, vous et vos alliés bénéficiez tous d'un {FORTUNE_DICE} supplémentaire à l'occasion de vos Attaques au Corps à Corps.</Description>
     </Talent>
-    <Talent Id="" Type="TACTICS" Cooldown="NO_COOLDOWN">
+    <Talent Id="98" Type="TACTICS" Cooldown="NO_COOLDOWN">
         <Name>Meneur au Front</Name>
         <Description>Vous bénéficiez d'un {FORTUNE_DICE} à l'occasion d'un test de compétence si aucun ennemi n'a agi depuis le début du tour en cours.</Description>
     </Talent>
-    <Talent Id="" Type="TACTICS" Cooldown="NO_COOLDOWN">
+    <Talent Id="99" Type="TACTICS" Cooldown="NO_COOLDOWN">
         <Name>Mur de Boucliers</Name>
         <Description>Votre valeur de défense augmente de +1 si vous vous battez aux côtés d'au moins deux alliés équipés de boucliers.</Description>
     </Talent>
-    <Talent Id="" Type="TACTICS" Cooldown="TALENT">
+    <Talent Id="100" Type="TACTICS" Cooldown="TALENT">
         <Name>Pas de Repos pour les Braves</Name>
         <Description>Épuiser cette carte vous permet d'éliminer 2 fatigue.</Description>
     </Talent>
-    <Talent Id="" Type="TACTICS" Cooldown="TALENT">
+    <Talent Id="101" Type="TACTICS" Cooldown="TALENT">
         <Name>Poursuite sans Relâche</Name>
         <Description>Vous jouissez d'une manœuvre gratuite dès que vous vainquez le dernier ennemi avec lequel vous étiez aux prises.</Description>
     </Talent>
-    <Talent Id="" Type="TACTICS" Cooldown="TALENT">
+    <Talent Id="102" Type="TACTICS" Cooldown="TALENT">
         <Name>Réflexes Éclairs</Name>
         <Description>Épuiser cette carte vous permet de bénéficier de {FORTUNE_DICE} {FORTUNE_DICE} à l'occasion d'un test d'Agilité ou impose {MISFORTUNE_DICE} {MISFORTUNE_DICE} à une tentative d'Esquive. SI votre test d'Agilité est un échec, gagnez 1 fatigue.</Description>
     </Talent>
-    <Talent Id="" Type="TACTICS" Cooldown="NO_COOLDOWN">
+    <Talent Id="103" Type="TACTICS" Cooldown="NO_COOLDOWN">
         <Name>Sens du Combat</Name>
         <Description>Votre valeur de défense contre les Attaques de Corps à Corps augmente de 1 lorsque aucune de vos cartes d'action Défensive n'est en recharge.</Description>
     </Talent>
-    <Talent Id="" Type="TACTICS" Cooldown="NO_COOLDOWN">
+    <Talent Id="104" Type="TACTICS" Cooldown="NO_COOLDOWN">
         <Name>Serrer les Dents</Name>
         <Description>À l'occasion d'un test d'Endurance pour lequel vous avez dépensé des points de fortune, {BOON_FACE} {BOON_FACE} Ajoutez {SUCCESS_FACE} aux résultats.</Description>
     </Talent>
-    <Talent Id="" Type="TACTICS" Cooldown="NO_COOLDOWN">
+    <Talent Id="105" Type="TACTICS" Cooldown="NO_COOLDOWN">
         <Name>Robuste</Name>
         <Description>Le niveau de gravité de vos blessures critiques est réduit de 1 lorsqu'elles sont traitées ou guéries, jusqu'à un minimum de 1. Les blessures critiques dont le niveau de gravité déjà égal à 0 ne sont pas affectées par ce talent.</Description>
     </Talent>
-    <Talent Id="" Type="TACTICS" Cooldown="TALENT">
+    <Talent Id="106" Type="TACTICS" Cooldown="TALENT">
         <Name>Vigilance</Name>
         <Description>Épuiser cette carte vous confère {FORTUNE_DICE} {FORTUNE_DICE} à l'occasion d'un test d'Initiative.</Description>
     </Talent>

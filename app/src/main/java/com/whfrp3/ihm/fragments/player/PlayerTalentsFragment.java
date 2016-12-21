@@ -7,10 +7,13 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
+import android.widget.ListView;
 
 import com.whfrp3.R;
 import com.whfrp3.databinding.FragmentPlayerTalentsBinding;
 import com.whfrp3.ihm.fragments.dialog.TalentSearchDialogFragment;
+import com.whfrp3.notification.ToastNotification;
 import com.whfrp3.tools.WHFRP3Application;
 import com.whfrp3.tools.constants.IPlayerActivityConstants;
 
@@ -29,6 +32,15 @@ public class PlayerTalentsFragment extends Fragment {
             @Override
             public void onClick(View view) {
                 openTalentSearchDialog();
+            }
+        });
+
+        ListView talentsList = (ListView) binding.getRoot().findViewById(R.id.talents_list);
+        talentsList.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
+            @Override
+            public boolean onItemLongClick(AdapterView<?> adapterView, View view, int i, long l) {
+                ToastNotification.info("You clicked for a very long time !");
+                return false;
             }
         });
 
