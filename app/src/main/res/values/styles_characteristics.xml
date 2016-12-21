@@ -9,20 +9,6 @@
         <item name="android:paddingStart">@dimen/small_padding</item>
         <item name="android:weightSum">6</item>
     </style>
-
-    <style name="CharacteristicBlueLinearLayout">
-        <item name="android:layout_width">0dp</item>
-        <item name="android:layout_height">match_parent</item>
-        <item name="android:layout_weight">2</item>
-        <item name="android:background">@color/characteristic_blue</item>
-        <item name="android:layout_margin">@dimen/very_small_padding</item>
-    </style>
-
-    <style name="CharacteristicWhiteLinearLayout" parent="CharacteristicBlueLinearLayout">
-        <item name="android:layout_width">0dp</item>
-        <item name="android:background">@android:color/white</item>
-        <item name="android:layout_weight">1</item>
-    </style>
     <!--End LinearLayout-->
 
     <!--Labels-->
@@ -51,9 +37,11 @@
 
     <!--EditTexts-->
     <style name="CharacteristicNumberEditText" parent="@android:style/Widget.EditText">
-        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_width">0dp</item>
         <item name="android:layout_height">match_parent</item>
-        <item name="android:background">@android:color/transparent</item>
+        <item name="android:layout_weight">2</item>
+        <item name="android:layout_margin">@dimen/very_small_padding</item>
+        <item name="android:background">@color/characteristic_blue</item>
         <item name="android:gravity">center</item>
         <item name="android:hint">@string/zero</item>
         <item name="android:singleLine">true</item>
@@ -70,11 +58,14 @@
     </style>
 
     <style name="CharacteristicFortuneNumberEditText" parent="CharacteristicNumberEditText">
+        <item name="android:layout_width">0dp</item>
         <item name="android:textColor">@android:color/black</item>
         <item name="android:background">@drawable/characteristics_fortune_border</item>
         <item name="android:layout_marginStart">@dimen/very_small_padding</item>
-        <item name="android:layout_marginTop">@dimen/very_small_padding</item>
-        <item name="android:layout_marginBottom">@dimen/very_small_padding</item>
+        <item name="android:layout_marginBottom">@dimen/small_padding</item>
+        <item name="android:layout_marginEnd">@dimen/small_padding</item>
+        <item name="android:layout_marginTop">@dimen/small_padding</item>
+        <item name="android:layout_weight">1</item>
     </style>
 
     <style name="SimpleCharacteristicNumberEditText" parent="DeactivableCharacteristicText">
