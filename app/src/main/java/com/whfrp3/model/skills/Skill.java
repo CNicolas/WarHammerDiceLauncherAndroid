@@ -76,4 +76,33 @@ public class Skill extends AbstractModel {
     }
 
     //endregion
+
+    //region Overrides
+    @Override
+    public String toString() {
+        return "Skill{" + "name='" + name + '\'' + ", characteristic=" + characteristic + ", type=" + type + '}';
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        Skill skill = (Skill) o;
+
+        if (getName() != null ? !getName().equals(skill.getName()) : skill.getName() != null)
+            return false;
+        if (getCharacteristic() != skill.getCharacteristic()) return false;
+        return getType() == skill.getType();
+
+    }
+
+    @Override
+    public int hashCode() {
+        int result = getName() != null ? getName().hashCode() : 0;
+        result = 31 * result + (getCharacteristic() != null ? getCharacteristic().hashCode() : 0);
+        result = 31 * result + (getType() != null ? getType().hashCode() : 0);
+        return result;
+    }
+    //endregion
 }

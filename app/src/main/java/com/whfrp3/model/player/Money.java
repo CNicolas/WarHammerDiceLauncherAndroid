@@ -108,6 +108,6 @@ public class Money {
             sb.append(",");
         }
 
-        return super.toString();
+        return sb.toString();
     }
 }

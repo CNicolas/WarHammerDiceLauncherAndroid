@@ -74,13 +74,9 @@ public class Armor extends Equipment {
     @Override
     public String toString() {
         return "Armor [" + attributesToString() +
-                ", equipped=" +
-                isEquipped() +
-                ", soak=" +
-                getSoak() +
-                ", defense=" +
-                getDefense() +
-                "]";
+                ", equipped=" + isEquipped() +
+                ", soak=" + getSoak() +
+                ", defense=" + getDefense() + "]";
     }
 
     @Override
@@ -91,8 +87,8 @@ public class Armor extends Equipment {
 
         Armor armor = (Armor) o;
 
-        if (getSoak() == armor.getSoak()) if (getDefense() == armor.getDefense()) return true;
-        return false;
+        if (getSoak() != armor.getSoak()) return false;
+        return getDefense() == armor.getDefense();
 
     }
 

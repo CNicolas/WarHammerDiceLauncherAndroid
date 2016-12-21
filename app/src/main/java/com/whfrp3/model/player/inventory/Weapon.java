@@ -92,15 +92,10 @@ public class Weapon extends Equipment {
     @Override
     public String toString() {
         return "Weapon [" + attributesToString() +
-                ", equipped=" +
-                isEquipped() +
-                ", damage=" +
-                getDamage() +
-                ", criticalLevel=" +
-                getCriticalLevel() +
-                ", range=" +
-                getRange() +
-                "]";
+                ", equipped=" + isEquipped() +
+                ", damage=" + getDamage() +
+                ", criticalLevel=" + getCriticalLevel() +
+                ", range=" + getRange() + "]";
     }
 
     @Override
@@ -111,7 +106,9 @@ public class Weapon extends Equipment {
 
         Weapon weapon = (Weapon) o;
 
-        return getDamage() == weapon.getDamage() && getCriticalLevel() == weapon.getCriticalLevel() && getRange() == weapon.getRange();
+        if (getDamage() != weapon.getDamage()) return false;
+        if (getCriticalLevel() != weapon.getCriticalLevel()) return false;
+        return getRange() == weapon.getRange();
 
     }
 
@@ -120,8 +117,8 @@ public class Weapon extends Equipment {
         int result = super.hashCode();
         result = 31 * result + getDamage();
         result = 31 * result + getCriticalLevel();
-        result = 31 * result + getRange().hashCode();
+        result = 31 * result + (getRange() != null ? getRange().hashCode() : 0);
         return result;
     }
-    //endregion
+//endregion
 }

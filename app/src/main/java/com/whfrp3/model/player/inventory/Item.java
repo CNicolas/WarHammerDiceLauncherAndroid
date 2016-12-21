@@ -198,28 +198,18 @@ public class Item extends AbstractModel {
     //region Overrides
     protected String attributesToString() {
         return "id=" + getId() +
-                ", name=" +
-                getName() +
-                ", description=" +
-                getDescription() +
-                ", encumbrance=" +
-                getEncumbrance() +
-                ", quantity=" +
-                getQuantity() +
-                ", quality=" +
-                getQuality() +
-                ", type=" +
-                getType() +
-                ", playerId=" +
-                getPlayerId();
+                ", name='" + getName() + '\'' +
+                ", description=" + getDescription() +
+                ", encumbrance=" + getEncumbrance() +
+                ", quantity=" + getQuantity() +
+                ", quality=" + getQuality() +
+                ", type=" + getType() +
+                ", playerId=" + getPlayerId();
     }
 
     @Override
     public String toString() {
-        String sb = "Item [" + attributesToString() +
-                "]";
-
-        return sb;
+        return "Item [" + attributesToString() + "]";
     }
 
     @Override

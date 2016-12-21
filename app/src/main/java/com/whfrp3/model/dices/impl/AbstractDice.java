@@ -78,5 +78,8 @@ abstract class AbstractDice implements IDice {
         return rand.nextInt(facesNumber);
     }
 
-
+    @Override
+    public String toString() {
+        return "AbstractDice{" + "faces=" + faces + ", facesNumber=" + facesNumber + '}';
+    }
 }

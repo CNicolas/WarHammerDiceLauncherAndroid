@@ -146,15 +146,14 @@ public class Hand extends AbstractModel {
     public String toString() {
         return "Hand{" +
                 "id=" + id +
-                ", title='" + title + '\'' +
+                ", title=" + title +
                 ", characteristic=" + characteristic +
                 ", reckless=" + reckless +
                 ", conservative=" + conservative +
                 ", expertise=" + expertise +
                 ", fortune=" + fortune +
                 ", misfortune=" + misfortune +
-                ", challenge=" + challenge +
-                '}';
+                ", challenge=" + challenge + '}';
     }
 
     @Override

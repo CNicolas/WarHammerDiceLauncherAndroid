@@ -104,7 +104,6 @@ public class Talent extends AbstractModel {
                 ", description='" + description + '\'' +
                 ", type=" + type +
                 ", cooldown=" + cooldown +
-                ", effects=" + effects +
-                '}';
+                ", effects=" + effects + '}';
     }
 }

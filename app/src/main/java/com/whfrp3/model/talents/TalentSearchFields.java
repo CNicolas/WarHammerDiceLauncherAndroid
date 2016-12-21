@@ -60,4 +60,46 @@ public class TalentSearchFields {
     public void setCooldownType(CooldownType cooldownType) {
         this.cooldownType = cooldownType;
     }
+
+    //region Overrides
+    @Override
+    public String toString() {
+        return "TalentSearchFields{" + "name='" + name + '\'' +
+                ", description='" + description + '\'' +
+                ", characteristic=" + characteristic +
+                ", skill=" + skill +
+                ", talentType=" + talentType +
+                ", cooldownType=" + cooldownType + '}';
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        TalentSearchFields that = (TalentSearchFields) o;
+
+        if (getName() != null ? !getName().equals(that.getName()) : that.getName() != null)
+            return false;
+        if (getDescription() != null ? !getDescription().equals(that.getDescription()) : that.getDescription() != null)
+            return false;
+        if (getCharacteristic() != that.getCharacteristic()) return false;
+        if (getSkill() != null ? !getSkill().equals(that.getSkill()) : that.getSkill() != null)
+            return false;
+        if (getTalentType() != that.getTalentType()) return false;
+        return getCooldownType() == that.getCooldownType();
+
+    }
+
+    @Override
+    public int hashCode() {
+        int result = getName() != null ? getName().hashCode() : 0;
+        result = 31 * result + (getDescription() != null ? getDescription().hashCode() : 0);
+        result = 31 * result + (getCharacteristic() != null ? getCharacteristic().hashCode() : 0);
+        result = 31 * result + (getSkill() != null ? getSkill().hashCode() : 0);
+        result = 31 * result + (getTalentType() != null ? getTalentType().hashCode() : 0);
+        result = 31 * result + (getCooldownType() != null ? getCooldownType().hashCode() : 0);
+        return result;
+    }
+    //endregion
 }
