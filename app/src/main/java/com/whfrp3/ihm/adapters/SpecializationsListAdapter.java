@@ -19,7 +19,7 @@ import java.util.List;
  * The Adapter for the specializations list.
  */
 public class SpecializationsListAdapter extends ArrayAdapter<Specialization> {
-    private List<Specialization> mSpecializations;
+    private final List<Specialization> mSpecializations;
     private final LayoutInflater inflater;
 
     public SpecializationsListAdapter(@NonNull LayoutInflater inflater, List<Specialization> specializations) {

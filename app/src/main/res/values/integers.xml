@@ -1,12 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <integer name="zero">0</integer>
-    <integer name="sideItems">1</integer>
-    <integer name="itemPadding">1</integer>
-
-    <integer name="weight_half">50</integer>
-    <integer name="weight_third">33</integer>
-    <integer name="weight_fourth">25</integer>
 
     <integer name="max_dice_number_picker">50</integer>
 </resources>

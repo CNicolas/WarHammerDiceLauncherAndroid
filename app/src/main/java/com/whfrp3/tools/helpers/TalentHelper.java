@@ -30,17 +30,17 @@ public class TalentHelper {
     /**
      * Loaded talents.
      */
-    private List<Talent> talents;
+    private final List<Talent> talents;
 
     /**
      * Loaded talents by id.
      */
-    private LongSparseArray<Talent> talentsById;
+    private final LongSparseArray<Talent> talentsById;
 
     /**
      * Loaded talents by type.
      */
-    private Map<TalentType, List<Talent>> talentsByType;
+    private final Map<TalentType, List<Talent>> talentsByType;
 
     /**
      * Default private constructor.

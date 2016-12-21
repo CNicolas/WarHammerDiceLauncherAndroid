@@ -75,7 +75,7 @@ public class Player extends AbstractModel {
     /**
      * List of the item to remove of the DB.
      */
-    private List<Long> mItemToRemove = new ArrayList<>();
+    private final List<Long> mItemToRemove = new ArrayList<>();
 
     private boolean mInEdition;
 
@@ -93,7 +93,7 @@ public class Player extends AbstractModel {
 
         // Initialize characteristics list
         for (Characteristic characteristic : Characteristic.values()) {
-            characteristics.put(characteristic, new PlayerCharacteristic(characteristic, this));
+            characteristics.put(characteristic, new PlayerCharacteristic(characteristic, this.getId()));
         }
 
         // Initialize playerSkills list
@@ -256,7 +256,7 @@ public class Player extends AbstractModel {
 
         List<Weapon> weapons = getEquippedWeapons();
         for (Weapon weapon : weapons) {
-            if (weapon.canBeUsed(Range.SHORT)) {
+            if (weapon.isDistance()) {
                 res.add(weapon);
             }
         }
@@ -353,30 +353,22 @@ public class Player extends AbstractModel {
     //endregion
 
     //region Skill Management
-    public PlayerSpecialization addSpecialization(Specialization specialization) {
+    public void addSpecialization(Specialization specialization) {
         int indexOfSpecialization = hasSpecialization(specialization);
 
         if (indexOfSpecialization == -1) {
             PlayerSpecialization playerSpecialization = new PlayerSpecialization(specialization, this);
             playerSpecializations.add(playerSpecialization);
-
-            return playerSpecialization;
         }
-
-        return playerSpecializations.get(indexOfSpecialization);
     }
 
-    public PlayerSpecialization removeSpecialization(Specialization specialization) {
+    public void removeSpecialization(Specialization specialization) {
         int indexOfSpecialization = hasSpecialization(specialization);
 
         if (indexOfSpecialization > -1) {
             PlayerSpecialization playerSpecialization = playerSpecializations.get(indexOfSpecialization);
             playerSpecializations.remove(playerSpecializations.get(indexOfSpecialization));
-
-            return playerSpecialization;
         }
-
-        return null;
     }
 
     public boolean isSpecializedSkill(PlayerSkill playerSkill) {

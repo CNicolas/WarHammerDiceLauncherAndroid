@@ -250,7 +250,7 @@ public class LaunchActivity extends AppCompatActivity implements IPlayerActivity
     /**
      * Update the selected hand in mDatabase.
      */
-    public void updateHand() {
+    private void updateHand() {
         String currentHandName = (String) mHandsSpinner.getSelectedItem();
         if (!currentHandName.isEmpty()) {
             try {

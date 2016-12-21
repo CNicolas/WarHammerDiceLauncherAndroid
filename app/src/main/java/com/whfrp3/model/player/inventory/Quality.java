@@ -30,12 +30,12 @@ public enum Quality implements IEnumSpinner {
     /**
      * Quality label id.
      */
-    private int labelId;
+    private final int labelId;
 
     /**
      * Quality color
      */
-    private int colorId;
+    private final int colorId;
 
     /**
      * Private constructor.

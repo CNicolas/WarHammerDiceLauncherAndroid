@@ -28,22 +28,22 @@ public class SkillHelper {
     /**
      * Loaded skills.
      */
-    private List<Skill> skills;
+    private final List<Skill> skills;
 
     /**
      * Loaded skills by id.
      */
-    private LongSparseArray<Skill> skillsById;
+    private final LongSparseArray<Skill> skillsById;
 
     /**
      * Loaded skills by characteristic.
      */
-    private Map<Characteristic, List<Skill>> skillsByCharacteristic;
+    private final Map<Characteristic, List<Skill>> skillsByCharacteristic;
 
     /**
      * Loaded skills by type.
      */
-    private Map<SkillType, List<Skill>> skillsByType;
+    private final Map<SkillType, List<Skill>> skillsByType;
 
     /**
      * Private constructor.

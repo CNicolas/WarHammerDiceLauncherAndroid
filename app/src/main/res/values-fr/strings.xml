@@ -36,10 +36,6 @@
     <string name="resultsTitle">Résultats</string>
     <string name="insertHandTitleTitle">Insérer un titre pour cette main</string>
 
-    <string name="hands_list">Liste des mains</string>
-    <string name="drawer_open">Ouvrir le panneau</string>
-    <string name="drawer_close">Fermer le panneau</string>
-
     <!--Actions-->
     <string name="action_home">Accueil</string>
     <string name="action_launch10">Lancer 10 fois</string>
@@ -55,32 +51,24 @@
     <string name="launches_number_format">Sur %d lancés…</string>
     <string name="empty_hand_name">Nom invalide</string>
 
-    <string name="btn_resetText">Reset</string>
-
     <!--Pages-->
     <string name="page_home">Accueil</string>
     <string name="page_characteristics">Caractéristiques</string>
     <string name="page_inventory">Inventaire</string>
     <string name="average_success_format">Nombre moyen de succès  : %1$s</string>
-    <string name="action_update_player">Mettre le joueur à jour</string>
     <string name="page_skills">Compétences</string>
-    <string name="action_settings">Paramètres</string>
     <string name="updated">Mis-à-jour avec succès</string>
     <string name="average_failure_format">Nombre moyen d\'échecs  : %1$s</string>
     <string name="average_bane_format">Nombre moyen de fléaux : %1$s</string>
     <string name="home_create_player">Créer un nouveau joueur</string>
-    <string name="action_unlock_edition">Editer</string>
-    <string name="action_lock_edition">Arrêter l\'édition</string>
     <string name="age">Age</string>
     <string name="career">Carrière</string>
     <string name="description">Description</string>
-    <string name="experience">Experience</string>
     <string name="name">Nom</string>
     <string name="rank">Rang</string>
     <string name="race">Race</string>
     <string name="size">Taille</string>
     <string name="wounds">Blessures</string>
-    <string name="corruption">Corruption</string>
     <string name="conservative">Prudence</string>
     <string name="reckless">Témérité</string>
     <string name="stance">Attitude</string>
@@ -90,7 +78,6 @@
     <string name="stance_reckless_format">%d Téméraire</string>
     <string name="neutral">Neutre</string>
     <string name="max_corruption">Points de corruption</string>
-    <string name="max_experience">Total d\'expérience</string>
     <string name="max_wounds">Points de blessure</string>
     <!--End of pages-->
 
@@ -129,7 +116,6 @@
     <string name="race_dwarf">Nain</string>
     <string name="btn_add">Ajouter</string>
     <string name="btn_remove">Enlever</string>
-    <string name="dialog_money_title">Argent</string>
     <string name="error_title">Erreur</string>
     <string name="exertion">Fatigue</string>
     <string name="stress">Stress</string>
@@ -165,8 +151,6 @@
     <string name="skill">Compétence</string>
     <string name="no_specialization_found">Aucune spécialisation trouvée</string>
     <string name="s">S</string>
-    <string name="advanced_skills">Compétences avancées</string>
-    <string name="basic_skills">Compétences de base</string>
     <string name="basic">Basiques</string>
     <string name="advanced">Avancées</string>
     <string name="warhammer_logo">Warhammer Logo</string>

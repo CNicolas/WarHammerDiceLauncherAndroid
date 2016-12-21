@@ -1,10 +1,8 @@
 package com.whfrp3.model.skills;
 
-import com.whfrp3.R;
 import com.whfrp3.model.AbstractModel;
 import com.whfrp3.model.enums.Characteristic;
 import com.whfrp3.model.enums.SkillType;
-import com.whfrp3.tools.BindingUtils;
 
 /**
  * The skill model.
@@ -54,11 +52,11 @@ public class Skill extends AbstractModel {
     }
 
     public boolean isWeaponSkill() {
-        return BindingUtils.string(R.string.skill_weapon).equals(getName());
+        return getId() == 9;
     }
 
     public boolean isBallisticSkill() {
-        return BindingUtils.string(R.string.skill_ballistic).equals(getName());
+        return getId() == 2;
     }
 
     //region Getters

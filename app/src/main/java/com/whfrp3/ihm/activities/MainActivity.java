@@ -79,9 +79,8 @@ public class MainActivity extends AppCompatActivity
         }
     }
 
-    @NonNull
     @Override
-    public boolean onNavigationItemSelected(MenuItem item) {
+    public boolean onNavigationItemSelected(@NonNull MenuItem item) {
         displaySelectedFragment(item.getItemId());
         return true;
     }

@@ -186,7 +186,7 @@ public class ItemEditActivity extends AppCompatActivity {
     }
     //endregion
 
-    public void onSave() {
+    private void onSave() {
         item.setName(itemEdit.getName());
         item.setDescription(itemEdit.getDescription());
         item.setEncumbrance(itemEdit.getEncumbrance());

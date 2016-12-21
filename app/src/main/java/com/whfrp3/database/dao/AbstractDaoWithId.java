@@ -21,7 +21,7 @@ abstract class AbstractDaoWithId<T extends AbstractModel> extends AbstractDao<T>
      * @param database  Database connection.
      * @param tableName Table name.
      */
-    public AbstractDaoWithId(SQLiteDatabase database, String tableName) {
+    AbstractDaoWithId(SQLiteDatabase database, String tableName) {
         super(database, tableName);
 
         this.mDatabase = database;

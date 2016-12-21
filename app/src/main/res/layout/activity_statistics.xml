@@ -31,7 +31,8 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:background="@android:color/white"
-            android:padding="@dimen/medium_padding"
+            android:paddingStart="@dimen/medium_padding"
+            android:paddingTop="@dimen/medium_padding"
             app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
             <ProgressBar
@@ -98,7 +99,7 @@
                 android:layout_height="wrap_content"
                 android:layout_alignParentBottom="true"
                 android:layout_alignParentEnd="true"
-                android:layout_margin="@dimen/fab_margin_padding"
+                android:layout_margin="@dimen/fab_margin"
                 android:onClick="relaunch"
                 android:src="@drawable/ic_dice_white"
                 android:visibility="@{stats.inProgress ? View.GONE : View.VISIBLE}" />

@@ -24,8 +24,8 @@ public class SkillsSeparatedListAdapter extends BaseAdapter {
     private static final int TYPE_SEPARATOR = 1;
 
     private final LayoutInflater mInflater;
-    private List<Skill> mSkills;
-    private TreeSet<Integer> sectionHeader;
+    private final List<Skill> mSkills;
+    private final TreeSet<Integer> sectionHeader;
 
     public SkillsSeparatedListAdapter(@NonNull LayoutInflater inflater, List<Skill> basicSkills, List<Skill> advancedSkills) {
         super();

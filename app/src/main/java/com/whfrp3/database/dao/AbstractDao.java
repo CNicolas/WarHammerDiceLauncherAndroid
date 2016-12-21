@@ -12,19 +12,19 @@ import java.util.List;
  *
  * @param <T> The associated model class.
  */
-public abstract class AbstractDao<T> implements IDao<T> {
+abstract class AbstractDao<T> implements IDao<T> {
 
     //region Properties
 
     /**
      * Database connection.
      */
-    protected SQLiteDatabase mDatabase;
+    SQLiteDatabase mDatabase;
 
     /**
      * Table name.
      */
-    protected String mTableName;
+    String mTableName;
 
     //endregion
 
@@ -36,7 +36,7 @@ public abstract class AbstractDao<T> implements IDao<T> {
      * @param database  Database connection.
      * @param tableName Table name.
      */
-    public AbstractDao(SQLiteDatabase database, String tableName) {
+    AbstractDao(SQLiteDatabase database, String tableName) {
         this.mDatabase = database;
         this.mTableName = tableName;
     }
@@ -69,7 +69,7 @@ public abstract class AbstractDao<T> implements IDao<T> {
      * @param value  Value to search.
      * @return Entry found.
      */
-    protected T findByColumn(String column, String value) {
+    T findByColumn(String column, String value) {
         String[] selectionArgs = {value};
 
         Cursor cursor = mDatabase.query(mTableName, null, column + "=?", selectionArgs, null, null, null);
@@ -94,7 +94,7 @@ public abstract class AbstractDao<T> implements IDao<T> {
      * @param value  Value to search.
      * @return Entries found.
      */
-    protected List<T> findAllByColumn(String column, String value) {
+    List<T> findAllByColumn(String column, String value) {
         List<T> res = new ArrayList<>();
         String[] selectionArgs = {value};
 
@@ -123,7 +123,7 @@ public abstract class AbstractDao<T> implements IDao<T> {
      * @param column Column to use.
      * @return All the values found.
      */
-    protected List<String> findAllValuesOfColumn(String column) {
+    List<String> findAllValuesOfColumn(String column) {
         List<String> res = new ArrayList<>();
         String[] projection = {column};
 
@@ -177,7 +177,7 @@ public abstract class AbstractDao<T> implements IDao<T> {
      * @param bool Boolean to convert.
      * @return Integer corresponding to the boolean.
      */
-    protected int convertBooleanToInteger(boolean bool) {
+    int convertBooleanToInteger(boolean bool) {
         return bool ? 1 : 0;
     }
 
@@ -187,7 +187,7 @@ public abstract class AbstractDao<T> implements IDao<T> {
      * @param i Integer to convert.
      * @return Boolean corresponding to the integer.
      */
-    protected boolean convertIntegerToBoolean(int i) {
+    boolean convertIntegerToBoolean(int i) {
         return i != 0;
     }
 

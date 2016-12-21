@@ -28,7 +28,7 @@ public enum CooldownType implements IEnumSpinner {
      */
     SESSION(R.string.session);
 
-    private int labelId;
+    private final int labelId;
 
     /**
      * Private constructor.

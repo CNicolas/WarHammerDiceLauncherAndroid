@@ -11,8 +11,8 @@ import java.util.Random;
  * Gather the methods common to each dice.
  */
 abstract class AbstractDice implements IDice {
-    protected List<DiceFaces[]> faces;
-    private int facesNumber;
+    final List<DiceFaces[]> faces;
+    private final int facesNumber;
 
     AbstractDice(int facesNumber) {
         this.facesNumber = facesNumber;
@@ -40,13 +40,12 @@ abstract class AbstractDice implements IDice {
     /**
      * Does the given list of dice faces contains given face ?
      *
-     * @param lastFaces  faces list.
-     * @param faceToSeek face to seek.
+     * @param lastFaces faces list.
      * @return Yes or no.
      */
-    private static boolean containsFace(DiceFaces[] lastFaces, DiceFaces faceToSeek) {
+    private static boolean containsSuccessPlus(DiceFaces[] lastFaces) {
         for (DiceFaces face : lastFaces) {
-            if (face == faceToSeek) {
+            if (face == DiceFaces.SUCCESS_PLUS) {
                 return true;
             }
         }
@@ -64,7 +63,7 @@ abstract class AbstractDice implements IDice {
         do {
             lastFaces = faces.get(randomNumber());
             res.addAll(toGoodArray(lastFaces));
-        } while (containsFace(lastFaces, DiceFaces.SUCCESS_PLUS));
+        } while (containsSuccessPlus(lastFaces));
         return res;
     }
 

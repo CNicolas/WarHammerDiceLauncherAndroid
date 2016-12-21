@@ -28,17 +28,17 @@ public class SpecializationHelper {
     /**
      * Loaded specializations.
      */
-    private List<Specialization> specializations;
+    private final List<Specialization> specializations;
 
     /**
      * Loaded specializations by id.
      */
-    private LongSparseArray<Specialization> specializationsById;
+    private final LongSparseArray<Specialization> specializationsById;
 
     /**
      * Loaded specializations by skill id.
      */
-    private LongSparseArray<List<Specialization>> specializationsBySkillId;
+    private final LongSparseArray<List<Specialization>> specializationsBySkillId;
 
     /**
      * Private constructor.

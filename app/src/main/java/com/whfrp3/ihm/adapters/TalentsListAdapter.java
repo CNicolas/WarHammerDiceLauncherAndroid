@@ -17,7 +17,7 @@ import java.util.List;
  * The Adapter for the talents   list.
  */
 public class TalentsListAdapter extends ArrayAdapter<Talent> {
-    private List<Talent> mTalents;
+    private final List<Talent> mTalents;
     private final LayoutInflater inflater;
 
     public TalentsListAdapter(@NonNull LayoutInflater inflater, List<Talent> talents) {

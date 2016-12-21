@@ -23,7 +23,7 @@ public abstract class Equipment extends Item {
     /**
      * Default constructor.
      */
-    public Equipment() {
+    Equipment() {
         super();
     }
 
@@ -32,7 +32,7 @@ public abstract class Equipment extends Item {
      *
      * @param player Player to link with the item.
      */
-    public Equipment(Player player) {
+    Equipment(Player player) {
         super(player);
     }
 
@@ -41,7 +41,7 @@ public abstract class Equipment extends Item {
      *
      * @param item the given item.
      */
-    public Equipment(Item item) {
+    Equipment(Item item) {
         super(item);
 
         if (item instanceof Equipment) {

@@ -51,14 +51,14 @@ public abstract class BindingUtils {
     //endregion
 
     //region Custom binding attributes
-    @BindingAdapter("app:skills")
+    @BindingAdapter("skills")
     public static void bindSkills(ListView view, List<PlayerSkill> list) {
         LayoutInflater inflater = (LayoutInflater) WHFRP3Application.getAppContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         PlayerSkillsListAdapter adapter = new PlayerSkillsListAdapter(inflater, list);
         view.setAdapter(adapter);
     }
 
-    @BindingAdapter("app:weapons")
+    @BindingAdapter("weapons")
     public static void bindWeapons(ListView view, List<Weapon> list) {
         LayoutInflater inflater = (LayoutInflater) WHFRP3Application.getAppContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         WeaponsListAdapter adapter = new WeaponsListAdapter(inflater, list);

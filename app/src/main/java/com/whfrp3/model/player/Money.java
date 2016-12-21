@@ -16,7 +16,7 @@ public class Money {
     /**
      * Money amounts.
      */
-    private Map<MoneyType, Integer> amounts = new HashMap<>();
+    private final Map<MoneyType, Integer> amounts = new HashMap<>();
 
     //endregion
 

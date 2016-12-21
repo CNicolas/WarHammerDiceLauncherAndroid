@@ -26,17 +26,6 @@ public class PlayerTalent {
     /**
      * Constructor.
      *
-     * @param talent Associated talent.
-     * @param player Associated player.
-     */
-    public PlayerTalent(Talent talent, Player player) {
-        this.talent = talent;
-        this.playerId = player.getId();
-    }
-
-    /**
-     * Constructor.
-     *
      * @param talent   Associated talent.
      * @param playerId Id of the associated player.
      */

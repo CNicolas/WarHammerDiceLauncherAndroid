@@ -30,7 +30,7 @@ public enum ItemType implements IEnumSpinner {
     /**
      * Item label id.
      */
-    private int labelId;
+    private final int labelId;
 
     /**
      * Private constructor.

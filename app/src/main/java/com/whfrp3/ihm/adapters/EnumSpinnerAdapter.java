@@ -20,24 +20,24 @@ public class EnumSpinnerAdapter extends ArrayAdapter<IEnumSpinner> {
     /**
      * Inflater.
      */
-    private LayoutInflater inflater;
+    private final LayoutInflater mInflater;
 
     /**
      * Values displayed in the spinner.
      */
-    private IEnumSpinner[] values;
+    private final IEnumSpinner[] mValues;
 
 
     public EnumSpinnerAdapter(LayoutInflater inflater, IEnumSpinner[] values) {
         super(inflater.getContext(), R.layout.element_spinner_enum, Arrays.asList(values));
 
-        this.inflater = inflater;
-        this.values = values;
+        mInflater = inflater;
+        mValues = values;
     }
 
     @Override
     public int getCount() {
-        return values.length;
+        return mValues.length;
     }
 
     @Override
@@ -47,13 +47,13 @@ public class EnumSpinnerAdapter extends ArrayAdapter<IEnumSpinner> {
 
     @Override
     public IEnumSpinner getItem(int position) {
-        return values[position];
+        return mValues[position];
     }
 
     @Override
     public long getItemId(int position) {
-        if (values[position] != null) {
-            return values[position].getLabelId();
+        if (mValues[position] != null) {
+            return mValues[position].getLabelId();
         } else {
             return R.string.empty_string;
         }
@@ -65,10 +65,10 @@ public class EnumSpinnerAdapter extends ArrayAdapter<IEnumSpinner> {
         ElementSpinnerEnumBinding binding = DataBindingUtil.getBinding(convertView);
 
         if (binding == null) {
-            binding = DataBindingUtil.inflate(inflater, R.layout.element_spinner_enum, null, false);
+            binding = DataBindingUtil.inflate(mInflater, R.layout.element_spinner_enum, null, false);
         }
 
-        binding.setSpin(values[position]);
+        binding.setSpin(mValues[position]);
 
         return binding.getRoot();
     }

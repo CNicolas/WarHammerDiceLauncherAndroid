@@ -8,7 +8,7 @@
         <item name="android:layout_weight">6</item>
         <item name="android:clickable">true</item>
         <item name="android:gravity">center|start</item>
-        <item name="android:hint">@string/skill_weapon</item>
+        <item name="android:hint">@string/dummy_string</item>
         <item name="android:paddingEnd">@dimen/medium_padding</item>
         <item name="android:paddingStart">@dimen/medium_padding</item>
         <item name="android:textColor">@android:color/black</item>

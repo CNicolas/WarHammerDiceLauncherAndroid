@@ -40,9 +40,9 @@ public enum TalentType implements IEnumSpinner {
     /**
      * Talent label id.
      */
-    private int labelId;
+    private final int labelId;
 
-    private int colorId;
+    private final int colorId;
 
     /**
      * Private constructor.

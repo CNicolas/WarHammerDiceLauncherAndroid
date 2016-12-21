@@ -100,10 +100,6 @@ public class ChangeMoneyDialogFragment extends DialogFragment {
 
     //region Get & Set
 
-    public int getOperationCode() {
-        return operationCode;
-    }
-
     public void setOperationCode(int operationCode) {
         this.operationCode = operationCode;
     }

@@ -24,7 +24,7 @@ public class InventoryListAdapter extends AnimatedExpandableListView.AnimatedExp
     /**
      * Inflater.
      */
-    private LayoutInflater inflater;
+    private final LayoutInflater mInflater;
 
     /**
      * Map containing inventory items by ItemType.
@@ -37,10 +37,10 @@ public class InventoryListAdapter extends AnimatedExpandableListView.AnimatedExp
     /**
      * Constructor.
      *
-     * @param inflater View inflater.
+     * @param inflater View mInflater.
      */
     public InventoryListAdapter(LayoutInflater inflater) {
-        this.inflater = inflater;
+        mInflater = inflater;
     }
 
     //endregion
@@ -70,10 +70,10 @@ public class InventoryListAdapter extends AnimatedExpandableListView.AnimatedExp
 
     //region Real child
     @Override
-    public View getRealChildView(int groupPosition, int childPosition, boolean isLastChild, View convertView, ViewGroup parent) {
+    public View getRealChildView(int groupPosition, int childPosition) {
         Item item = (Item) getChild(groupPosition, childPosition);
 
-        ElementInventoryChildBinding binding = DataBindingUtil.inflate(inflater, R.layout.element_inventory_child, null, false);
+        ElementInventoryChildBinding binding = DataBindingUtil.inflate(mInflater, R.layout.element_inventory_child, null, false);
         binding.setItem(item);
 
         return binding.getRoot();
@@ -106,7 +106,7 @@ public class InventoryListAdapter extends AnimatedExpandableListView.AnimatedExp
         ItemType itemType = (ItemType) getGroup(groupPosition);
 
         if (convertView == null) {
-            convertView = inflater.inflate(R.layout.element_inventory_header, parent, false);
+            convertView = mInflater.inflate(R.layout.element_inventory_header, parent, false);
         }
 
         TextView txtView = (TextView) convertView.findViewById(R.id.inventoryGroupName);

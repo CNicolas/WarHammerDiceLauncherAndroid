@@ -60,7 +60,7 @@ public class Item extends AbstractModel {
      *
      * @param player Player to link with the item.
      */
-    public Item(Player player) {
+    Item(Player player) {
         playerId = player.getId();
 
         setType(ItemType.ITEM);
@@ -71,7 +71,7 @@ public class Item extends AbstractModel {
      *
      * @param item the given item.
      */
-    public Item(Item item) {
+    Item(Item item) {
         setId(item.getId());
         setName(item.getName());
         setDescription(item.getDescription());
@@ -196,7 +196,7 @@ public class Item extends AbstractModel {
     //endregion
 
     //region Overrides
-    protected String attributesToString() {
+    String attributesToString() {
         return "id=" + getId() +
                 ", name='" + getName() + '\'' +
                 ", description=" + getDescription() +

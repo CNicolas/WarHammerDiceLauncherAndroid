@@ -42,22 +42,9 @@ public class PlayerCharacteristic extends BaseObservable implements Serializable
      * Constructor without characteristic value.
      *
      * @param characteristic Characteristic.
-     * @param player         Associated player.
-     */
-    public PlayerCharacteristic(Characteristic characteristic, Player player) {
-        this.characteristic = characteristic;
-        this.playerId = player.getId();
-        this.value = 0;
-        this.fortuneValue = 0;
-    }
-
-    /**
-     * Constructor without characteristic value.
-     *
-     * @param characteristic Characteristic.
      * @param playerId       Id of the associated player.
      */
-    public PlayerCharacteristic(Characteristic characteristic, long playerId) {
+    PlayerCharacteristic(Characteristic characteristic, long playerId) {
         this.characteristic = characteristic;
         this.playerId = playerId;
         this.value = 0;

@@ -4,9 +4,6 @@ import com.whfrp3.model.AbstractModel;
 import com.whfrp3.model.enums.CooldownType;
 import com.whfrp3.model.enums.TalentType;
 
-import java.util.ArrayList;
-import java.util.List;
-
 /**
  * Talent class.
  */
@@ -33,12 +30,6 @@ public class Talent extends AbstractModel {
      * Cooldown type.
      */
     private CooldownType cooldown;
-
-    /**
-     * Effects.
-     */
-    private List<TalentEffect> effects;
-
     //endregion
 
     //region Constructor
@@ -83,18 +74,6 @@ public class Talent extends AbstractModel {
         this.cooldown = cooldown;
     }
 
-    public List<TalentEffect> getEffects() {
-        if (effects == null) {
-            effects = new ArrayList<>();
-        }
-
-        return effects;
-    }
-
-    public void setEffects(List<TalentEffect> effects) {
-        this.effects = effects;
-    }
-
     //endregion
 
 
@@ -103,7 +82,6 @@ public class Talent extends AbstractModel {
         return "Talent{" + "name='" + name + '\'' +
                 ", description='" + description + '\'' +
                 ", type=" + type +
-                ", cooldown=" + cooldown +
-                ", effects=" + effects + '}';
+                ", cooldown=" + cooldown + '}';
     }
 }

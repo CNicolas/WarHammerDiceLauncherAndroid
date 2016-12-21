@@ -15,7 +15,7 @@ public class ToastNotification {
     private final String mMessage;
     private final ToastType mType;
 
-    public ToastNotification(String message, ToastType type) {
+    private ToastNotification(String message, ToastType type) {
         this.mMessage = message;
         this.mType = type;
     }

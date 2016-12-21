@@ -1,8 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <!-- Dices colors -->
-    <color name="fortune_dice">#FFFFFF</color>
-    <color name="misfortune_dice">#000000</color>
     <color name="expertise_dice">#F4EA4A</color>
     <color name="characteristic_dice">#4471B5</color>
     <color name="conservative_dice">#6ABE45</color>
@@ -24,9 +22,5 @@
     <color name="grey">#999999</color>
     <color name="blue">#3f71b5</color>
     <color name="violet">#6800ff</color>
-    <color name="yellow_highlight">#FFFDB8</color>
-    <color name="dark_blue">#0f3175</color>
     <color name="dark_red">#AB1818</color>
-    <color name="blue_grey">#46567D</color>
-    <color name="red_grey">#803C3C</color>
 </resources>

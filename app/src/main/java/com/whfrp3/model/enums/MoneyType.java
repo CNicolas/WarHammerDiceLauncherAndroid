@@ -23,7 +23,7 @@ public enum MoneyType {
     /**
      * Max amount of the money type.
      */
-    private int maxAmount;
+    private final int maxAmount;
 
     /**
      * Constructor.

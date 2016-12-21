@@ -87,12 +87,12 @@ public enum TextIcon {
     /**
      * Drawable.
      */
-    private int drawable;
+    private final int drawable;
 
     /**
      * Icon alignment.
      */
-    private int alignment;
+    private final int alignment;
 
     /**
      * Constructor.
