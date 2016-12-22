@@ -22,7 +22,7 @@ import com.whfrp3.model.enums.TalentType;
 import com.whfrp3.tools.BindingUtils;
 import com.whfrp3.tools.constants.IMainConstants;
 
-import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 public class TalentTypesFragment extends Fragment implements AdapterView.OnItemClickListener {
@@ -33,11 +33,7 @@ public class TalentTypesFragment extends Fragment implements AdapterView.OnItemC
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.fragment_talents_type, container, false);
 
-        mTalentTypesList = new ArrayList<>();
-        mTalentTypesList.add(TalentType.AFFINITY);
-        mTalentTypesList.add(TalentType.REPUTATION);
-        mTalentTypesList.add(TalentType.TACTICS);
-        mTalentTypesList.add(TalentType.TOUR);
+        mTalentTypesList = Arrays.asList(TalentType.values());
 
         TalentTypesListAdapter adapter = new TalentTypesListAdapter(inflater, mTalentTypesList);
         ListView talentsList = (ListView) rootView.findViewById(R.id.talents_list);
