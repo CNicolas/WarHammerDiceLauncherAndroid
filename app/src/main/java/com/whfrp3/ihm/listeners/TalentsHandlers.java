@@ -23,7 +23,7 @@ public class TalentsHandlers {
     }
 
     private void openTalentPopupMenu(View view) {
-        PopupMenu talentPopupMenu = new PopupMenu(WHFRP3Application.getAppContext(), view);
+        PopupMenu talentPopupMenu = new PopupMenu(WHFRP3Application.getActivity(), view);
         talentPopupMenu.getMenuInflater().inflate(R.menu.player_talent, talentPopupMenu.getMenu());
         talentPopupMenu.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
             @Override

@@ -1,15 +1,16 @@
 package com.whfrp3.ihm.fragments.player;
 
 import android.app.Activity;
-import android.app.AlertDialog;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.TaskStackBuilder;
+import android.support.v7.widget.PopupMenu;
+import android.view.Gravity;
 import android.view.LayoutInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
@@ -124,32 +125,35 @@ public class InventoryFragment extends Fragment
         PlayerHelper.notifyBinding();
     }
 
-    private void showDialogOnLongClick(final Item item, final int menuArrayId) {
-        AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
-        builder.setTitle(R.string.possible_actions).setItems(menuArrayId, new DialogInterface.OnClickListener() {
+    private void showPopupMenuOnLongClick(final Item item, final int menuId, final View view) {
+        PopupMenu itemPopupMenu = new PopupMenu(getActivity(), view, Gravity.END);
+        itemPopupMenu.getMenuInflater().inflate(menuId, itemPopupMenu.getMenu());
+        itemPopupMenu.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
             @Override
-            public void onClick(DialogInterface dialog, int whichPos) {
-                if (menuArrayId == R.array.item_menu_actions3 && whichPos == 0) {
-                    // Unequip the item
-                    ((Equipment) item).setEquipped(false);
-                    PlayerHelper.notifyEquipmentBinding();
-                } else if (menuArrayId == R.array.item_menu_actions2 && whichPos == 0) {
-                    // Equip the item
-                    ((Equipment) item).setEquipped(true);
-                    PlayerHelper.notifyEquipmentBinding();
-                } else if ((menuArrayId == R.array.item_menu_actions1 && whichPos == 0)
-                        || (menuArrayId == R.array.item_menu_actions2 && whichPos == 1)
-                        || (menuArrayId == R.array.item_menu_actions3 && whichPos == 1)) {
-                    // Edit item
-                    startItemEditActivity(item.getId());
-                } else {
-                    // Delete item
-                    WHFRP3Application.getPlayer().removeItem(item);
-                    refreshInventoryView();
+            public boolean onMenuItemClick(MenuItem menuItem) {
+                switch (menuItem.getItemId()) {
+                    case R.id.item_menu_edit:
+                        startItemEditActivity(item.getId());
+                        break;
+                    case R.id.item_menu_delete:
+                        WHFRP3Application.getPlayer().removeItem(item);
+                        refreshInventoryView();
+                        break;
+                    case R.id.item_menu_equip:
+                        ((Equipment) item).setEquipped(true);
+                        PlayerHelper.notifyEquipmentBinding();
+                        break;
+                    case R.id.item_menu_unequip:
+                        ((Equipment) item).setEquipped(false);
+                        PlayerHelper.notifyEquipmentBinding();
+                        break;
+                    default:
+                        break;
                 }
+                return true;
             }
         });
-        builder.create().show();
+        itemPopupMenu.show();
     }
 
     @Override
@@ -164,14 +168,14 @@ public class InventoryFragment extends Fragment
         final Item item = (Item) mExpListView.getExpandableListAdapter().getChild(groupPosition, childPosition);
 
         // Select menu dialog content
-        final int menuArrayId;
+        final int menuId;
         if (item.isEquipable()) {
-            menuArrayId = (((Equipment) item).isEquipped()) ? R.array.item_menu_actions3 : R.array.item_menu_actions2;
+            menuId = (((Equipment) item).isEquipped()) ? R.menu.equiped_item : R.menu.unequiped_item;
         } else {
-            menuArrayId = R.array.item_menu_actions1;
+            menuId = R.menu.simple_item;
         }
 
-        showDialogOnLongClick(item, menuArrayId);
+        showPopupMenuOnLongClick(item, menuId, view);
 
         return true;
     }
