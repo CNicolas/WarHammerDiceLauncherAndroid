@@ -76,7 +76,7 @@ public abstract class BindingUtils {
             talents.add(playerTalent.getTalent());
         }
         LayoutInflater inflater = (LayoutInflater) WHFRP3Application.getAppContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-        TalentsListAdapter adapter = new TalentsListAdapter(inflater, talents);
+        TalentsListAdapter adapter = new TalentsListAdapter(inflater, talents, true);
         view.setAdapter(adapter);
     }
 

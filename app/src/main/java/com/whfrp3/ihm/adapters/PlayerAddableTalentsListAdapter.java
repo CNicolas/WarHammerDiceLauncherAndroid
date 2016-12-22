@@ -17,11 +17,11 @@ import java.util.List;
 /**
  * The Adapter for the talents   list.
  */
-public class PlayerTalentsListAdapter extends ArrayAdapter<Talent> {
+public class PlayerAddableTalentsListAdapter extends ArrayAdapter<Talent> {
     private final List<Talent> mTalents;
     private final LayoutInflater mInflater;
 
-    public PlayerTalentsListAdapter(@NonNull LayoutInflater inflater, List<Talent> talents) {
+    public PlayerAddableTalentsListAdapter(@NonNull LayoutInflater inflater, List<Talent> talents) {
         super(inflater.getContext(), R.layout.element_list_talent, talents);
 
         mInflater = inflater;
@@ -60,6 +60,7 @@ public class PlayerTalentsListAdapter extends ArrayAdapter<Talent> {
         binding.setTalent(mTalents.get(position));
         binding.setHandlers(new TalentsHandlers());
         binding.setCanAddToPlayer(true);
+        binding.setShowOptions(true);
 
         return binding.getRoot();
     }

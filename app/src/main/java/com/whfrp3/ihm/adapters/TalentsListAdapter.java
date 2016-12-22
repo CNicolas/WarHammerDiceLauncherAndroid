@@ -20,12 +20,14 @@ import java.util.List;
 public class TalentsListAdapter extends ArrayAdapter<Talent> {
     private final List<Talent> mTalents;
     private final LayoutInflater mInflater;
+    private final boolean mShowOptions;
 
-    public TalentsListAdapter(@NonNull LayoutInflater inflater, List<Talent> talents) {
+    public TalentsListAdapter(@NonNull LayoutInflater inflater, List<Talent> talents, boolean showOptions) {
         super(inflater.getContext(), R.layout.element_list_talent, talents);
 
         mInflater = inflater;
         mTalents = talents;
+        mShowOptions = showOptions;
     }
 
     @Override
@@ -60,6 +62,7 @@ public class TalentsListAdapter extends ArrayAdapter<Talent> {
         binding.setTalent(mTalents.get(position));
         binding.setHandlers(new TalentsHandlers());
         binding.setCanAddToPlayer(false);
+        binding.setShowOptions(mShowOptions);
 
         return binding.getRoot();
     }

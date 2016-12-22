@@ -39,6 +39,7 @@ public class TalentSearchDialogFragment extends DialogFragment {
      */
     private TalentSearchFields mTalentSearch;
     private boolean mCanAddToPlayer;
+    private boolean mShowOptions;
 
     @NonNull
     @Override
@@ -64,6 +65,7 @@ public class TalentSearchDialogFragment extends DialogFragment {
                     Bundle bundle = new Bundle();
                     bundle.putSerializable(IMainConstants.TALENTS_LIST_BUNDLE_TAG, (ArrayList<Talent>) talentsFound);
                     bundle.putBoolean(IPlayerActivityConstants.CAN_ADD_TO_PLAYER_BUNDLE_TAG, mCanAddToPlayer);
+                    bundle.putBoolean(IPlayerActivityConstants.SHOW_OPTIONS_BUNDLE_TAG, mShowOptions);
 
                     Intent talentsIntent = new Intent(getActivity(), TalentsActivity.class);
                     talentsIntent.putExtras(bundle);
@@ -149,6 +151,7 @@ public class TalentSearchDialogFragment extends DialogFragment {
         mTalentSearch.setTalentType(talentType);
 
         mCanAddToPlayer = bundle.getBoolean(IPlayerActivityConstants.CAN_ADD_TO_PLAYER_BUNDLE_TAG);
+        mShowOptions = bundle.getBoolean(IPlayerActivityConstants.SHOW_OPTIONS_BUNDLE_TAG);
 
     }
 

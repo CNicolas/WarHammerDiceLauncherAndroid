@@ -11,7 +11,7 @@ import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
 import com.whfrp3.R;
-import com.whfrp3.ihm.adapters.PlayerTalentsListAdapter;
+import com.whfrp3.ihm.adapters.PlayerAddableTalentsListAdapter;
 import com.whfrp3.ihm.adapters.TalentsListAdapter;
 import com.whfrp3.ihm.fragments.dialog.TalentSearchDialogFragment;
 import com.whfrp3.model.enums.TalentType;
@@ -53,10 +53,10 @@ public class TalentsActivity extends AppCompatActivity implements IMainConstants
         ArrayAdapter<Talent> adapter;
         if (getIntent().getExtras() != null && getIntent().hasExtra(IPlayerActivityConstants.CAN_ADD_TO_PLAYER_BUNDLE_TAG)
                 && getIntent().getExtras().getBoolean(IPlayerActivityConstants.CAN_ADD_TO_PLAYER_BUNDLE_TAG)) {
-            adapter = new PlayerTalentsListAdapter(getLayoutInflater(), talents);
+            adapter = new PlayerAddableTalentsListAdapter(getLayoutInflater(), talents);
         } else {
             canSearchFurther = true;
-            adapter = new TalentsListAdapter(getLayoutInflater(), talents);
+            adapter = new TalentsListAdapter(getLayoutInflater(), talents, false);
         }
 
         final ListView talentsListView = (ListView) findViewById(R.id.talents_list);

@@ -20,7 +20,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:divider="@android:color/transparent"
-            android:dividerHeight="@dimen/small_padding"
+            android:dividerHeight="@dimen/very_small_padding"
             app:talents="@{player.playerTalents}" />
 
         <android.support.design.widget.FloatingActionButton
