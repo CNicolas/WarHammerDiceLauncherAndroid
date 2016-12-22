@@ -17,6 +17,7 @@ import com.whfrp3.R;
 import com.whfrp3.databinding.DialogTalentSearchBinding;
 import com.whfrp3.ihm.activities.TalentsActivity;
 import com.whfrp3.ihm.adapters.EnumSpinnerAdapter;
+import com.whfrp3.ihm.adapters.IEnumSpinner;
 import com.whfrp3.model.enums.CooldownType;
 import com.whfrp3.model.enums.TalentType;
 import com.whfrp3.model.talents.Talent;
@@ -86,14 +87,11 @@ public class TalentSearchDialogFragment extends DialogFragment {
     private void setupTalentTypesSpinner(LayoutInflater inflater, View rootView) {
         Spinner talentTypesSpinner = (Spinner) rootView.findViewById(R.id.talent_type_spinner);
 
-        TalentType[] talentTypes = new TalentType[5];
-        talentTypes[0] = null;
-        talentTypes[1] = TalentType.AFFINITY;
-        talentTypes[2] = TalentType.REPUTATION;
-        talentTypes[3] = TalentType.TACTICS;
-        talentTypes[4] = TalentType.TOUR;
 
-        talentTypesSpinner.setAdapter(new EnumSpinnerAdapter(inflater, talentTypes));
+        List<TalentType> talentTypes = TalentType.getDisplayableTypes();
+        talentTypes.add(0, null);
+
+        talentTypesSpinner.setAdapter(new EnumSpinnerAdapter(inflater, talentTypes.toArray(new IEnumSpinner[]{})));
         talentTypesSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int pos, long id) {
@@ -108,8 +106,8 @@ public class TalentSearchDialogFragment extends DialogFragment {
         });
 
         int positionToSelect = 0;
-        for (int i = 0; i < talentTypes.length; i++) {
-            if (mTalentSearch.getTalentType() == talentTypes[i]) {
+        for (int i = 0; i < talentTypes.size(); i++) {
+            if (mTalentSearch.getTalentType() == talentTypes.get(i)) {
                 positionToSelect = i;
                 break;
             }
@@ -120,13 +118,10 @@ public class TalentSearchDialogFragment extends DialogFragment {
     private void setupCooldownSpinner(LayoutInflater inflater, View rootView) {
         Spinner cooldownSpinner = (Spinner) rootView.findViewById(R.id.cooldown_spinner);
 
-        CooldownType[] cooldownTypes = new CooldownType[4];
-        cooldownTypes[0] = null;
-        cooldownTypes[1] = CooldownType.NO_COOLDOWN;
-        cooldownTypes[2] = CooldownType.TALENT;
-        cooldownTypes[3] = CooldownType.SESSION;
+        List<CooldownType> cooldownTypes = CooldownType.getDisplayableTypes();
+        cooldownTypes.add(0, null);
 
-        cooldownSpinner.setAdapter(new EnumSpinnerAdapter(inflater, cooldownTypes));
+        cooldownSpinner.setAdapter(new EnumSpinnerAdapter(inflater, cooldownTypes.toArray(new IEnumSpinner[]{})));
         cooldownSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int pos, long id) {

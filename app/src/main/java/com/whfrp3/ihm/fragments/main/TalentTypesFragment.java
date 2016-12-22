@@ -18,7 +18,6 @@ import com.whfrp3.ihm.fragments.dialog.TalentSearchDialogFragment;
 import com.whfrp3.model.enums.TalentType;
 import com.whfrp3.tools.BindingUtils;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class TalentTypesFragment extends Fragment {
@@ -28,13 +27,9 @@ public class TalentTypesFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.fragment_talents_type, container, false);
 
-        List<TalentType> mTalentTypesList = new ArrayList<>();
-        mTalentTypesList.add(TalentType.AFFINITY);
-        mTalentTypesList.add(TalentType.REPUTATION);
-        mTalentTypesList.add(TalentType.TACTICS);
-        mTalentTypesList.add(TalentType.TOUR);
+        List<TalentType> talentTypesList = TalentType.getDisplayableTypes();
 
-        TalentTypesListAdapter adapter = new TalentTypesListAdapter(inflater, mTalentTypesList);
+        TalentTypesListAdapter adapter = new TalentTypesListAdapter(inflater, talentTypesList);
         ListView talentsList = (ListView) rootView.findViewById(R.id.talents_list);
         talentsList.setAdapter(adapter);
 

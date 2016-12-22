@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="UTF-8" ?>
-<!-- fichier généré le 21/12/2016 à 16:55:29 à partir du fichier [WHFRP3.xlsm] -->
+<!-- fichier généré le 22/12/2016 à 16:45:00 à partir du fichier [WHFRP3.xlsm] -->
 <!-- NE PAS MODIFIER DIRECTEMENT CE FICHIER -->
 <Talents>
     <Talent Id="1" Type="AFFINITY" Cooldown="NO_COOLDOWN">
@@ -349,8 +349,8 @@
     <Talent Id="80" Type="ORDER" Cooldown="NO_COOLDOWN">
         <Name>Magie Noire</Name>
         <Description>Vous pouvez apprendre et employer des Sorts de Magie Noire et des Sorts du Chaos. Lorsque vous focalisez l'énergie ou que vous lancez un sort, vous bénéficiez d'un {EXPERTISE_DICE} à l'occasion de votre test. Si vous générez un ou plusieurs {EXERTION_FACE} ou {DELAY_FACE} à l'occasion de ces tests, ajoutez {CHAOS_FACE} aux résultats.
-            À l'occasion de vos tests de Focalisation et l'Art de la magie, {BANE_DICE} {BANE_DICE}
-            Ajoutez {CHAOS_FACE} aux résultats.
+            À l'occasion de vos tests de Focalisation et l'Art de la magie, {MISFORTUNE_DICE}
+            {MISFORTUNE_DICE} Ajoutez {CHAOS_FACE} aux résultats.
         </Description>
     </Talent>
     <Talent Id="81" Type="ORDER" Cooldown="NO_COOLDOWN">
