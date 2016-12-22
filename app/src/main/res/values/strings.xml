@@ -111,11 +111,10 @@
     <string name="armor_soak">Soak</string>
     <string name="usable_item_load">Loads</string>
     <string name="item_type">Type</string>
-    <string name="item_menu_title">Item options</string>
-    <string name="item_menu_delete">Delete item</string>
+    <string name="delete">Delete</string>
     <string name="item_menu_edit">Edit item</string>
-    <string name="item_menu_equip">Equip the item</string>
-    <string name="item_menu_unequip">Unequip the item</string>
+    <string name="equip">Equip</string>
+    <string name="unequip">Unequip</string>
     <string name="weapon_range">Range</string>
     <string name="range_engaged">Engaged</string>
     <string name="range_short">Short</string>
@@ -177,5 +176,9 @@
     <string name="race">Race</string>
     <string name="warhammer_logo">Warhammer Logo</string>
     <string name="equipped">Equipped</string>
+    <string name="possible_actions">Possible actions</string>
+    <string name="deleted">Deleted</string>
+    <string name="exhaust">Exhaust</string>
+    <string name="exhausted">Exhausted</string>
 
 </resources>

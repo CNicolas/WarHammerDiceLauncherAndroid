@@ -51,7 +51,8 @@ public class TalentsActivity extends AppCompatActivity implements IMainConstants
         }
 
         ArrayAdapter<Talent> adapter;
-        if (getIntent().getExtras() != null && getIntent().hasExtra(IPlayerActivityConstants.CAN_ADD_TO_PLAYER_BUNDLE_TAG)) {
+        if (getIntent().getExtras() != null && getIntent().hasExtra(IPlayerActivityConstants.CAN_ADD_TO_PLAYER_BUNDLE_TAG)
+                && getIntent().getExtras().getBoolean(IPlayerActivityConstants.CAN_ADD_TO_PLAYER_BUNDLE_TAG)) {
             adapter = new PlayerTalentsListAdapter(getLayoutInflater(), talents);
         } else {
             canSearchFurther = true;

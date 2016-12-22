@@ -126,7 +126,7 @@ public class InventoryFragment extends Fragment
 
     private void showDialogOnLongClick(final Item item, final int menuArrayId) {
         AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
-        builder.setTitle(R.string.item_menu_title).setItems(menuArrayId, new DialogInterface.OnClickListener() {
+        builder.setTitle(R.string.possible_actions).setItems(menuArrayId, new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int whichPos) {
                 if (menuArrayId == R.array.item_menu_actions3 && whichPos == 0) {

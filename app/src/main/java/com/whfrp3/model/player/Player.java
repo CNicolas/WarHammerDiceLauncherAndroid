@@ -20,6 +20,7 @@ import com.whfrp3.model.player.inventory.UsableItem;
 import com.whfrp3.model.player.inventory.Weapon;
 import com.whfrp3.model.skills.Skill;
 import com.whfrp3.model.skills.Specialization;
+import com.whfrp3.model.talents.Talent;
 import com.whfrp3.tools.WHFRP3Application;
 import com.whfrp3.tools.helpers.SkillHelper;
 import com.whfrp3.tools.helpers.SpecializationHelper;
@@ -366,7 +367,6 @@ public class Player extends AbstractModel {
         int indexOfSpecialization = hasSpecialization(specialization);
 
         if (indexOfSpecialization > -1) {
-            PlayerSpecialization playerSpecialization = playerSpecializations.get(indexOfSpecialization);
             playerSpecializations.remove(playerSpecializations.get(indexOfSpecialization));
         }
     }
@@ -385,6 +385,26 @@ public class Player extends AbstractModel {
     public int hasSpecialization(Specialization specialization) {
         for (int i = 0; i < playerSpecializations.size(); i++) {
             if (playerSpecializations.get(i).getSpecialization().equals(specialization)) {
+                return i;
+            }
+        }
+        return -1;
+    }
+    //endregion
+
+    //region Talents Management
+    public void addTalent(Talent talent) {
+        int indexOfTalent = hasTalent(talent);
+
+        if (indexOfTalent == -1) {
+            PlayerTalent playerTalent = new PlayerTalent(talent, getId());
+            getPlayerTalents().add(playerTalent);
+        }
+    }
+
+    private int hasTalent(Talent talent) {
+        for (int i = 0; i < getPlayerTalents().size(); i++) {
+            if (getPlayerTalents().get(i).getTalent().equals(talent)) {
                 return i;
             }
         }

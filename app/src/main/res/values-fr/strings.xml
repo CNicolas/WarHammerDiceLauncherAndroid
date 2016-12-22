@@ -98,11 +98,10 @@
     <string name="armor_soak">Encaissement</string>
     <string name="usable_item_load">Charges</string>
     <string name="item_type">Type</string>
-    <string name="item_menu_title">Actions possibles</string>
-    <string name="item_menu_delete">Supprimer l\'objet</string>
+    <string name="delete">Supprimer</string>
     <string name="item_menu_edit">Modifier l\'objet</string>
-    <string name="item_menu_equip">Equiper l\'objet</string>
-    <string name="item_menu_unequip">Déséquiper l\'objet</string>
+    <string name="equip">Equiper</string>
+    <string name="unequip">Déséquiper</string>
     <string name="weapon_range">Portée</string>
     <string name="range_engaged">Engagé</string>
     <string name="range_extreme">Extrême</string>
@@ -155,6 +154,10 @@
     <string name="advanced">Avancées</string>
     <string name="warhammer_logo">Warhammer Logo</string>
     <string name="equipped">Equipé</string>
+    <string name="possible_actions">Actions possibles</string>
+    <string name="deleted">Supprimé</string>
+    <string name="exhaust">Epuiser</string>
+    <string name="exhausted">Epuisé</string>
     <!-- End of inventory -->
 
 </resources>

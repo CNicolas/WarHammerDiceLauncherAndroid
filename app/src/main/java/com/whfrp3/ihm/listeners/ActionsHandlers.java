@@ -6,4 +6,8 @@ public class ActionsHandlers {
     public void deleteAction() {
         ToastNotification.warning("Nothing to see there, keep swiping");
     }
+
+    public void equipAction() {
+        ToastNotification.info("Hey Dude !");
+    }
 }

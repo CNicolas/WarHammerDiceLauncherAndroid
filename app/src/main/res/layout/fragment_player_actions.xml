@@ -21,24 +21,54 @@
             android:id="@+id/swipe_layout"
             android:layout_width="match_parent"
             android:layout_height="100dp">
+
+            <LinearLayout
+                android:id="@+id/left_wrapper"
+                android:layout_width="200dp"
+                android:layout_height="match_parent"
+                android:layout_gravity="start"
+                android:background="@color/reckless"
+                android:gravity="center"
+                android:orientation="horizontal"
+                android:padding="@dimen/big_padding"
+                android:weightSum="2">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:clickable="true"
+                    android:drawableEnd="@drawable/ic_delete_white"
+                    android:gravity="center|start"
+                    android:onClick="@{() -> handlers.deleteAction()}"
+                    android:text="@string/delete"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/big_text_size" />
+            </LinearLayout>
+            <!-- Bottom View End-->
+
+
             <!-- Bottom View Start-->
             <LinearLayout
-                android:id="@+id/bottom_wrapper"
-                android:layout_width="80dp"
+                android:id="@+id/right_wrapper"
+                android:layout_width="200dp"
                 android:layout_height="match_parent"
                 android:layout_gravity="end"
-                android:background="@color/reckless"
+                android:background="@color/conservative"
+                android:gravity="center"
                 android:orientation="horizontal"
-                android:weightSum="1">
-                <!--What you want to show-->
-                <ImageView
+                android:padding="@dimen/big_padding"
+                android:weightSum="2">
+
+                <TextView
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_gravity="center"
+                    android:layout_height="wrap_content"
                     android:clickable="true"
-                    android:contentDescription="@string/warhammer_logo"
-                    android:onClick="@{() -> handlers.deleteAction()}"
-                    android:src="@drawable/ic_delete_white" />
+                    android:drawableStart="@drawable/ic_add_white"
+                    android:gravity="center|end"
+                    android:onClick="@{() -> handlers.equipAction()}"
+                    android:text="@string/equip"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/big_text_size" />
             </LinearLayout>
             <!-- Bottom View End-->
 
@@ -53,7 +83,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:gravity="center"
-                    android:text="@string/dummy_string"
+                    android:text="- Swipeable -"
                     android:textSize="50sp" />
             </LinearLayout>
             <!-- Surface View End -->
