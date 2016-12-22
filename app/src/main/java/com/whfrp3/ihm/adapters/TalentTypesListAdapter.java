@@ -9,6 +9,7 @@ import android.widget.ArrayAdapter;
 
 import com.whfrp3.R;
 import com.whfrp3.databinding.ElementListTalentTypeBinding;
+import com.whfrp3.ihm.listeners.TalentsHandlers;
 import com.whfrp3.model.enums.TalentType;
 
 import java.util.List;
@@ -52,6 +53,7 @@ public class TalentTypesListAdapter extends ArrayAdapter<TalentType> {
         }
 
         binding.setTalentType(mTalentTypes.get(position));
+        binding.setHandlers(new TalentsHandlers());
 
         return binding.getRoot();
     }
