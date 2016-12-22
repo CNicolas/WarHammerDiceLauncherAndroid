@@ -86,10 +86,12 @@ public class TalentSearchDialogFragment extends DialogFragment {
     private void setupTalentTypesSpinner(LayoutInflater inflater, View rootView) {
         Spinner talentTypesSpinner = (Spinner) rootView.findViewById(R.id.talent_type_spinner);
 
-        TalentType[] allTalentTypes = TalentType.values();
-        TalentType[] talentTypes = new TalentType[allTalentTypes.length + 1];
+        TalentType[] talentTypes = new TalentType[5];
         talentTypes[0] = null;
-        System.arraycopy(allTalentTypes, 0, talentTypes, 1, allTalentTypes.length);
+        talentTypes[1] = TalentType.AFFINITY;
+        talentTypes[2] = TalentType.REPUTATION;
+        talentTypes[3] = TalentType.TACTICS;
+        talentTypes[4] = TalentType.TOUR;
 
         talentTypesSpinner.setAdapter(new EnumSpinnerAdapter(inflater, talentTypes));
         talentTypesSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
