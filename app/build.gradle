@@ -38,4 +38,5 @@ dependencies {
 
     compile 'org.adw.library:discrete-seekbar:1.0.1'
     compile "com.daimajia.swipelayout:library:1.2.0@aar"
+    compile 'org.jetbrains:annotations-java5:15.0'
 }

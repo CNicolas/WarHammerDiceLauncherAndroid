@@ -8,26 +8,24 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 
 import com.whfrp3.R;
-import com.whfrp3.databinding.ElementListTalentBinding;
-import com.whfrp3.ihm.listeners.TalentsHandlers;
-import com.whfrp3.model.talents.Talent;
+import com.whfrp3.databinding.ElementListPlayerTalentBinding;
+import com.whfrp3.ihm.listeners.PlayerTalentsHandlers;
+import com.whfrp3.model.player.PlayerTalent;
 
 import java.util.List;
 
 /**
  * The Adapter for the talents   list.
  */
-public class TalentsListAdapter extends ArrayAdapter<Talent> {
-    private final List<Talent> mTalents;
+public class PlayerTalentsListAdapter extends ArrayAdapter<PlayerTalent> {
+    private final List<PlayerTalent> mTalents;
     private final LayoutInflater mInflater;
-    private final boolean mAddable;
 
-    public TalentsListAdapter(@NonNull LayoutInflater inflater, List<Talent> talents, boolean addable) {
-        super(inflater.getContext(), R.layout.element_list_talent, talents);
+    public PlayerTalentsListAdapter(@NonNull LayoutInflater inflater, List<PlayerTalent> talents) {
+        super(inflater.getContext(), R.layout.element_list_player_talent, talents);
 
         mInflater = inflater;
         mTalents = talents;
-        mAddable = addable;
     }
 
     @Override
@@ -41,7 +39,7 @@ public class TalentsListAdapter extends ArrayAdapter<Talent> {
     }
 
     @Override
-    public Talent getItem(int position) {
+    public PlayerTalent getItem(int position) {
         return mTalents.get(position);
     }
 
@@ -53,15 +51,14 @@ public class TalentsListAdapter extends ArrayAdapter<Talent> {
     @NonNull
     @Override
     public View getView(int position, View convertView, @NonNull ViewGroup parent) {
-        ElementListTalentBinding binding = DataBindingUtil.getBinding(convertView);
+        ElementListPlayerTalentBinding binding = DataBindingUtil.getBinding(convertView);
 
         if (binding == null) {
-            binding = DataBindingUtil.inflate(mInflater, R.layout.element_list_talent, parent, false);
+            binding = DataBindingUtil.inflate(mInflater, R.layout.element_list_player_talent, parent, false);
         }
 
-        binding.setTalent(mTalents.get(position));
-        binding.setHandlers(new TalentsHandlers());
-        binding.setCanAddToPlayer(mAddable);
+        binding.setPlayerTalent(mTalents.get(position));
+        binding.setHandlers(new PlayerTalentsHandlers());
 
         return binding.getRoot();
     }

@@ -8,9 +8,12 @@ import android.util.LongSparseArray;
 import com.whfrp3.R;
 import com.whfrp3.model.enums.CooldownType;
 import com.whfrp3.model.enums.TalentType;
+import com.whfrp3.model.player.Player;
 import com.whfrp3.model.talents.Talent;
 import com.whfrp3.model.talents.TalentSearchFields;
 import com.whfrp3.tools.WHFRP3Application;
+
+import org.jetbrains.annotations.Contract;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -139,18 +142,11 @@ public class TalentHelper {
 
     //region Search
     public List<Talent> search(TalentSearchFields fields) {
-        List<Talent> talents;
-        if (fields.getTalentType() == null) {
-            talents = getTalents();
-        } else {
-            talents = getTalentsByType(fields.getTalentType());
-        }
+        List<Talent> talents = initTalentsListByType(fields.getTalentType());
 
         List<Talent> res = new ArrayList<>();
         for (Talent talent : talents) {
-            if (isSimilarCooldownOrNull(talent, fields.getCooldownType())
-                    && isTalentNameContainingOrNull(talent, fields.getName())
-                    && isTalentDescriptionContainingOrNull(talent, fields.getDescription())) {
+            if (isValid(talent, fields)) {
                 res.add(talent);
             }
         }
@@ -158,6 +154,26 @@ public class TalentHelper {
         return res;
     }
 
+    public List<Talent> searchForPlayer(TalentSearchFields fields, Player player) {
+        List<Talent> talents = initTalentsListByType(fields.getTalentType());
+
+        List<Talent> res = new ArrayList<>();
+        for (Talent talent : talents) {
+            if (isValid(talent, fields) && player.hasTalent(talent) == -1) {
+                res.add(talent);
+            }
+        }
+
+        return res;
+    }
+
+    private boolean isValid(Talent talent, TalentSearchFields fields) {
+        return isSimilarCooldownOrNull(talent, fields.getCooldownType())
+                && isTalentNameContainingOrNull(talent, fields.getName())
+                && isTalentDescriptionContainingOrNull(talent, fields.getDescription());
+    }
+
+    @Contract("_, null -> true")
     private boolean isSimilarCooldownOrNull(Talent talent, @Nullable CooldownType cooldownType) {
         return cooldownType == null || talent.getCooldown().equals(cooldownType);
     }
@@ -170,8 +186,20 @@ public class TalentHelper {
         return isNullOrEmpty(textToSearch) || talent.getDescription().toLowerCase().contains(textToSearch.toLowerCase());
     }
 
+    @Contract("null -> true")
     private boolean isNullOrEmpty(@Nullable String text) {
         return text == null || text.isEmpty();
+    }
+
+    private List<Talent> initTalentsListByType(@Nullable TalentType talentType) {
+        List<Talent> talents;
+        if (talentType == null) {
+            talents = getTalents();
+        } else {
+            talents = getTalentsByType(talentType);
+        }
+
+        return talents;
     }
     //endregion
 }

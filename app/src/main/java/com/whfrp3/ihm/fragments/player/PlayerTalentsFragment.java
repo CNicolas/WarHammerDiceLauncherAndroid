@@ -10,7 +10,7 @@ import android.view.ViewGroup;
 
 import com.whfrp3.R;
 import com.whfrp3.databinding.FragmentPlayerTalentsBinding;
-import com.whfrp3.ihm.fragments.dialog.TalentSearchDialogFragment;
+import com.whfrp3.ihm.fragments.dialog.PlayerTalentSearchDialogFragment;
 import com.whfrp3.tools.WHFRP3Application;
 import com.whfrp3.tools.constants.IPlayerActivityConstants;
 
@@ -39,8 +39,8 @@ public class PlayerTalentsFragment extends Fragment {
         Bundle bundle = new Bundle();
         bundle.putBoolean(IPlayerActivityConstants.CAN_ADD_TO_PLAYER_BUNDLE_TAG, true);
 
-        TalentSearchDialogFragment dialog = new TalentSearchDialogFragment();
+        PlayerTalentSearchDialogFragment dialog = new PlayerTalentSearchDialogFragment();
         dialog.setArguments(bundle);
-        dialog.show(getActivity().getSupportFragmentManager(), "TalentSearchDialogFragment");
+        dialog.show(getActivity().getSupportFragmentManager(), "PlayerTalentSearchDialogFragment");
     }
 }

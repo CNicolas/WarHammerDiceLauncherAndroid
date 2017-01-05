@@ -94,6 +94,8 @@ public class PlayerActivity extends AppCompatActivity implements IPlayerActivity
                 mPlayerPagerAdapter.getItem(intent.getIntExtra(CURRENT_FRAGMENT_POSITION_BUNDLE_TAG, INVENTORY_FRAGMENT_POSITION));
             }
         }
+
+        PlayerHelper.notifyBinding();
     }
     //endregion
 

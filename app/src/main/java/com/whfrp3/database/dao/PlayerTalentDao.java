@@ -80,10 +80,14 @@ public class PlayerTalentDao extends AbstractDao<PlayerTalent> implements IPlaye
     protected PlayerTalent createModelFromCursor(Cursor cursor) {
         long talentId = cursor.getLong(cursor.getColumnIndexOrThrow(COLUMN_TALENT_ID));
         long playerId = cursor.getLong(cursor.getColumnIndexOrThrow(COLUMN_PLAYER_ID));
+        boolean equipped = convertIntegerToBoolean(cursor.getInt(cursor.getColumnIndexOrThrow(COLUMN_IS_EQUIPPED)));
 
         Talent talent = TalentHelper.getInstance().getTalentById(talentId);
 
-        return new PlayerTalent(talent, playerId);
+        PlayerTalent res = new PlayerTalent(talent, playerId);
+        res.setEquipped(equipped);
+
+        return res;
     }
 
     //endregion

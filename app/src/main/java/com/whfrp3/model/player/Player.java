@@ -402,13 +402,23 @@ public class Player extends AbstractModel {
         }
     }
 
-    private int hasTalent(Talent talent) {
+    public int hasTalent(Talent talent) {
         for (int i = 0; i < getPlayerTalents().size(); i++) {
             if (getPlayerTalents().get(i).getTalent().equals(talent)) {
                 return i;
             }
         }
         return -1;
+    }
+
+    public void removeTalent(Talent talent) {
+        int indexOfTalent = hasTalent(talent);
+
+        if (indexOfTalent > -1) {
+            playerTalents.remove(playerTalents.get(indexOfTalent));
+        }
+
+        notifyPropertyChanged(BR.playerTalents);
     }
     //endregion
 
@@ -430,7 +440,7 @@ public class Player extends AbstractModel {
      * @return yes or no
      */
     public boolean isUpdatable() {
-        return getName() != null && !getName().isEmpty();
+        return name != null && !name.isEmpty();
     }
 
     //region Get & Set
@@ -705,31 +715,39 @@ public class Player extends AbstractModel {
 
         Player player = (Player) o;
 
-        if (getId() != player.getId()) return false;
-        if (getAge() != player.getAge()) return false;
-        if (Double.compare(player.getSize(), getSize()) != 0) return false;
-        if (getRank() != player.getRank()) return false;
-        if (getExperience() != player.getExperience()) return false;
-        if (getMax_experience() != player.getMax_experience()) return false;
-        if (getWounds() != player.getWounds()) return false;
-        if (getMax_wounds() != player.getMax_wounds()) return false;
-        if (getCorruption() != player.getCorruption()) return false;
-        if (getMax_corruption() != player.getMax_corruption()) return false;
-        if (getReckless() != player.getReckless()) return false;
-        if (getMax_reckless() != player.getMax_reckless()) return false;
-        if (getConservative() != player.getConservative()) return false;
-        if (getMax_conservative() != player.getMax_conservative()) return false;
-        if (getName() != null ? !getName().equals(player.getName()) : player.getName() != null)
+        if (age != player.age) return false;
+        if (size != player.size) return false;
+        if (rank != player.rank) return false;
+        if (experience != player.experience) return false;
+        if (max_experience != player.max_experience) return false;
+        if (wounds != player.wounds) return false;
+        if (max_wounds != player.max_wounds) return false;
+        if (corruption != player.corruption) return false;
+        if (max_corruption != player.max_corruption) return false;
+        if (reckless != player.reckless) return false;
+        if (max_reckless != player.max_reckless) return false;
+        if (conservative != player.conservative) return false;
+        if (max_conservative != player.max_conservative) return false;
+        if (stress != player.stress) return false;
+        if (exertion != player.exertion) return false;
+        if (mInEdition != player.mInEdition) return false;
+        if (name != null ? !name.equals(player.name) : player.name != null) return false;
+        if (race != player.race) return false;
+        if (description != null ? !description.equals(player.description) : player.description != null)
             return false;
-        if (getRace() != null ? !getRace().equals(player.getRace()) : player.getRace() != null)
+        if (career != null ? !career.equals(player.career) : player.career != null) return false;
+        if (characteristics != null ? !characteristics.equals(player.characteristics) : player.characteristics != null)
             return false;
-        if (getDescription() != null ? !getDescription().equals(player.getDescription()) : player.getDescription() != null)
+        if (money != null ? !money.equals(player.money) : player.money != null) return false;
+        if (inventory != null ? !inventory.equals(player.inventory) : player.inventory != null)
             return false;
-        if (getCareer() != null ? !getCareer().equals(player.getCareer()) : player.getCareer() != null)
+        if (playerSkills != null ? !playerSkills.equals(player.playerSkills) : player.playerSkills != null)
             return false;
-        if (getInventory() != null ? !getInventory().equals(player.getInventory()) : player.getInventory() != null)
+        if (playerSpecializations != null ? !playerSpecializations.equals(player.playerSpecializations) : player.playerSpecializations != null)
             return false;
-        return getPlayerSkills() != null ? getPlayerSkills().equals(player.getPlayerSkills()) : player.getPlayerSkills() == null;
+        if (playerTalents != null ? !playerTalents.equals(player.playerTalents) : player.playerTalents != null)
+            return false;
+        return mItemToRemove != null ? mItemToRemove.equals(player.mItemToRemove) : player.mItemToRemove == null;
 
     }
 

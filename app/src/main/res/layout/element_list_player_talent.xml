@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <variable
+            name="playerTalent"
+            type="com.whfrp3.model.player.PlayerTalent" />
+
+        <variable
+            name="handlers"
+            type="com.whfrp3.ihm.listeners.PlayerTalentsHandlers" />
+
+        <import type="com.whfrp3.tools.BindingUtils" />
+
+        <import type="android.view.View" />
+
+        <import type="android.graphics.Typeface" />
+
+    </data>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@android:color/white"
+        android:minHeight="100dp"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@{BindingUtils.color(playerTalent.talent.type.colorId)}"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:hint="@string/dummy_string"
+                android:lines="2"
+                android:padding="@dimen/very_small_padding"
+                android:text="@{playerTalent.talent.name}"
+                android:textColor="@{playerTalent.equipped ? @color/yellow : @android:color/white}"
+                android:textSize="@dimen/medium_text_size"
+                android:textStyle="bold" />
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginEnd="@dimen/small_padding"
+                android:clickable="true"
+                android:contentDescription="@string/possible_actions"
+                android:onClick="@{(v) -> handlers.showPopupMenu(v, playerTalent)}"
+                android:src="@drawable/ic_settings_white" />
+        </LinearLayout>
+
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="fill_horizontal"
+                android:hint="@string/dummy_string"
+                android:padding="@dimen/small_padding"
+                android:textColor="@android:color/tab_indicator_text"
+                app:textWithIcons="@{playerTalent.talent.description}" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@color/darken_background"
+                android:gravity="center"
+                android:padding="@dimen/small_padding"
+                android:visibility="@{playerTalent.exhausted ? View.VISIBLE : View.GONE}">
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:contentDescription="@string/cooldown"
+                    android:src="@drawable/ic_delay_black_36"
+                    />
+            </LinearLayout>
+        </FrameLayout>
+    </LinearLayout>
+</layout>

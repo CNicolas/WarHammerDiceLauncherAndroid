@@ -180,5 +180,8 @@
     <string name="deleted">Deleted</string>
     <string name="exhaust">Exhaust</string>
     <string name="exhausted">Exhausted</string>
+    <string name="added">added</string>
+    <string name="ready">Ready</string>
+    <string name="unequipped">Unequipped</string>
 
 </resources>

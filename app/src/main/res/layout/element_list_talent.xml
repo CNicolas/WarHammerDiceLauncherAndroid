@@ -13,10 +13,6 @@
             type="com.whfrp3.ihm.listeners.TalentsHandlers" />
 
         <variable
-            name="showOptions"
-            type="boolean" />
-
-        <variable
             name="canAddToPlayer"
             type="boolean" />
 
@@ -58,21 +54,10 @@
                 android:layout_gravity="center"
                 android:clickable="true"
                 android:contentDescription="@string/possible_actions"
-                android:onClick="@{(v) -> handlers.showPopupMenu(v)}"
-                android:layout_marginEnd="@dimen/small_padding"
-                android:src="@drawable/ic_settings_white"
-                android:visibility="@{showOptions &amp;&amp; !canAddToPlayer ? View.VISIBLE : View.GONE}" />
-
-            <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:clickable="true"
-                android:contentDescription="@string/possible_actions"
                 android:onClick="@{() -> handlers.addTalent(talent)}"
                 android:layout_marginEnd="@dimen/small_padding"
                 android:src="@drawable/ic_add_white"
-                android:visibility="@{showOptions &amp;&amp; canAddToPlayer ? View.VISIBLE : View.GONE}" />
+                android:visibility="@{canAddToPlayer ? View.VISIBLE : View.GONE}" />
         </LinearLayout>
 
         <TextView

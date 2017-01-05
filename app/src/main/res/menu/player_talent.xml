@@ -4,8 +4,14 @@
         android:id="@+id/talent_menu_exhaust"
         android:title="@string/exhaust" />
     <item
+        android:id="@+id/talent_menu_ready"
+        android:title="@string/ready" />
+    <item
         android:id="@+id/talent_menu_equip"
         android:title="@string/equip" />
+    <item
+        android:id="@+id/talent_menu_unequip"
+        android:title="@string/unequip" />
     <item
         android:id="@+id/talent_menu_delete"
         android:title="@string/delete" />

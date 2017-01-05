@@ -14,15 +14,15 @@ import android.widget.ListView;
 import android.widget.TextView;
 
 import com.whfrp3.ihm.adapters.PlayerSkillsListAdapter;
-import com.whfrp3.ihm.adapters.TalentsListAdapter;
+import com.whfrp3.ihm.adapters.PlayerTalentsListAdapter;
 import com.whfrp3.ihm.adapters.WeaponsListAdapter;
 import com.whfrp3.model.player.PlayerSkill;
 import com.whfrp3.model.player.PlayerTalent;
 import com.whfrp3.model.player.inventory.Weapon;
-import com.whfrp3.model.talents.Talent;
 import com.whfrp3.tools.enums.TextIcon;
 
-import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -69,14 +69,24 @@ public abstract class BindingUtils {
         view.setAdapter(adapter);
     }
 
-    @BindingAdapter("talents")
+    @BindingAdapter("playerTalents")
     public static void bindPlayerTalents(ListView view, List<PlayerTalent> list) {
-        List<Talent> talents = new ArrayList<>();
-        for (PlayerTalent playerTalent : list) {
-            talents.add(playerTalent.getTalent());
-        }
         LayoutInflater inflater = (LayoutInflater) WHFRP3Application.getAppContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-        TalentsListAdapter adapter = new TalentsListAdapter(inflater, talents, true);
+
+        Collections.sort(list, new Comparator<PlayerTalent>() {
+            @Override
+            public int compare(PlayerTalent playerTalent, PlayerTalent t1) {
+                return playerTalent.getTalent().getName().compareTo(t1.getTalent().getName());
+            }
+        });
+        Collections.sort(list, new Comparator<PlayerTalent>() {
+            @Override
+            public int compare(PlayerTalent playerTalent, PlayerTalent t1) {
+                return playerTalent.getTalent().getType().compareTo(t1.getTalent().getType());
+            }
+        });
+
+        PlayerTalentsListAdapter adapter = new PlayerTalentsListAdapter(inflater, list);
         view.setAdapter(adapter);
     }
 

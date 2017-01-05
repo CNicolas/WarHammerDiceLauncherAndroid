@@ -1,11 +1,16 @@
 package com.whfrp3.model.player;
 
+import android.databinding.BaseObservable;
+import android.databinding.Bindable;
+
+import com.android.databinding.library.baseAdapters.BR;
+import com.whfrp3.model.enums.CooldownType;
 import com.whfrp3.model.talents.Talent;
 
 /**
  * Talent of a player.
  */
-public class PlayerTalent {
+public class PlayerTalent extends BaseObservable {
 
     //region Properties
 
@@ -18,6 +23,16 @@ public class PlayerTalent {
      * Id of the associated player.
      */
     private long playerId;
+
+    /**
+     * Is talent equipped.
+     */
+    private boolean equipped;
+
+    /**
+     * Is talent exhausted.
+     */
+    private boolean exhausted;
 
     //endregion
 
@@ -36,6 +51,11 @@ public class PlayerTalent {
 
     //endregion
 
+    public boolean isExhaustible() {
+        CooldownType cooldown = talent.getCooldown();
+        return cooldown != CooldownType.NO_COOLDOWN;
+    }
+
     //region Get & Set
 
     public long getPlayerId() {
@@ -50,14 +70,38 @@ public class PlayerTalent {
         return talent;
     }
 
+    @Bindable
+    public boolean isEquipped() {
+        return equipped;
+    }
+
+    public void setEquipped(boolean equipped) {
+        this.equipped = equipped;
+        notifyPropertyChanged(BR.equipped);
+    }
+
+    @Bindable
+    public boolean isExhausted() {
+        return exhausted && isExhaustible();
+    }
+
+    public void setExhausted(boolean exhausted) {
+        this.exhausted = exhausted;
+        notifyPropertyChanged(BR.exhausted);
+    }
     //endregion
 
     //region Overrides
 
     @Override
     public String toString() {
-        return "PlayerTalent [" + "talentId=" + talent.getId() + ", " + "playerId=" + playerId + "]";
+        final StringBuffer sb = new StringBuffer("PlayerTalent{");
+        sb.append("talent=").append(talent);
+        sb.append(", playerId=").append(playerId);
+        sb.append(", equipped=").append(equipped);
+        sb.append(", exhausted=").append(exhausted);
+        sb.append('}');
+        return sb.toString();
     }
-
     //endregion
 }

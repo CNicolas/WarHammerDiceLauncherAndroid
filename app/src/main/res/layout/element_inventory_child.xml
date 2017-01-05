@@ -40,7 +40,7 @@
             android:paddingEnd="@dimen/small_padding"
             android:paddingStart="@dimen/small_padding"
             android:src="@drawable/ic_check_black"
-            android:visibility="@{(item.isEquipable &amp;&amp; ((Equipment)item).isEquipped) ? View.VISIBLE : View.INVISIBLE}" />
+            android:visibility="@{(item.equipable &amp;&amp; ((Equipment)item).equipped) ? View.VISIBLE : View.INVISIBLE}" />
         <!--Content-->
         <LinearLayout
             android:layout_width="match_parent"

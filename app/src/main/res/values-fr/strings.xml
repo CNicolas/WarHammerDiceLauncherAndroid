@@ -158,6 +158,9 @@
     <string name="deleted">Supprimé</string>
     <string name="exhaust">Epuiser</string>
     <string name="exhausted">Epuisé</string>
+    <string name="added">ajouté</string>
+    <string name="ready">Prêt</string>
+    <string name="unequipped">Déséquipé</string>
     <!-- End of inventory -->
 
 </resources>

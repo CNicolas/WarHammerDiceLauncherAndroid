@@ -60,7 +60,6 @@ public class PlayerAddableTalentsListAdapter extends ArrayAdapter<Talent> {
         binding.setTalent(mTalents.get(position));
         binding.setHandlers(new TalentsHandlers());
         binding.setCanAddToPlayer(true);
-        binding.setShowOptions(true);
 
         return binding.getRoot();
     }

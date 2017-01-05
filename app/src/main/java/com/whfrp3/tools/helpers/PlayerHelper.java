@@ -62,6 +62,7 @@ public abstract class PlayerHelper {
         player.notifyPropertyChanged(BR.encumbranceColor);
 
         notifySkillBinding();
+        notifyTalentBinding();
         notifyEquipmentBinding();
     }
 
@@ -74,6 +75,15 @@ public abstract class PlayerHelper {
         player.notifyPropertyChanged(BR.specialization);
         player.notifyPropertyChanged(BR.specialized);
         player.notifyPropertyChanged(BR.skill);
+    }
+
+    private static void notifyTalentBinding() {
+        Player player = WHFRP3Application.getPlayer();
+
+        player.notifyPropertyChanged(BR.playerTalent);
+        player.notifyPropertyChanged(BR.playerTalents);
+        player.notifyPropertyChanged(BR.exhausted);
+        player.notifyPropertyChanged(BR.equipped);
     }
 
     public static void notifyEquipmentBinding() {
