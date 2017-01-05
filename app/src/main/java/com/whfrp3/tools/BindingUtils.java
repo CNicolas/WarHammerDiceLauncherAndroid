@@ -75,14 +75,8 @@ public abstract class BindingUtils {
 
         Collections.sort(list, new Comparator<PlayerTalent>() {
             @Override
-            public int compare(PlayerTalent playerTalent, PlayerTalent t1) {
-                return playerTalent.getTalent().getName().compareTo(t1.getTalent().getName());
-            }
-        });
-        Collections.sort(list, new Comparator<PlayerTalent>() {
-            @Override
-            public int compare(PlayerTalent playerTalent, PlayerTalent t1) {
-                return playerTalent.getTalent().getType().compareTo(t1.getTalent().getType());
+            public int compare(PlayerTalent playerTalent, PlayerTalent otherTalent) {
+                return playerTalent.getTalent().compareTo(otherTalent.getTalent());
             }
         });
 

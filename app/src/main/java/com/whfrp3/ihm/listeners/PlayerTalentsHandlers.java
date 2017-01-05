@@ -25,7 +25,6 @@ public class PlayerTalentsHandlers {
                      */
                     case R.id.talent_menu_exhaust:
                         playerTalent.setExhausted(true);
-                        ToastNotification.warning(WHFRP3Application.getResourceString(R.string.exhausted));
                         break;
                     case R.id.talent_menu_ready:
                         playerTalent.setExhausted(false);
@@ -40,19 +39,16 @@ public class PlayerTalentsHandlers {
                         break;
                     case R.id.talent_menu_unequip:
                         playerTalent.setEquipped(false);
-                        ToastNotification.warning(WHFRP3Application.getResourceString(R.string.unequipped));
                         break;
                     /**
                      * Delete
                      */
                     case R.id.talent_menu_delete:
                         WHFRP3Application.getPlayer().removeTalent(playerTalent.getTalent());
-                        ToastNotification.error(WHFRP3Application.getResourceString(R.string.deleted));
                         break;
                     default:
                         break;
                 }
-
                 return true;
             }
         });

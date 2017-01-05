@@ -7,7 +7,7 @@ import com.whfrp3.model.enums.TalentType;
 /**
  * Talent class.
  */
-public class Talent extends AbstractModel {
+public class Talent extends AbstractModel implements Comparable<Talent> {
 
     //region Properties
 
@@ -76,12 +76,45 @@ public class Talent extends AbstractModel {
 
     //endregion
 
-
     @Override
     public String toString() {
         return "Talent{" + "name='" + name + '\'' +
                 ", description='" + description + '\'' +
                 ", type=" + type +
                 ", cooldown=" + cooldown + '}';
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        Talent talent = (Talent) o;
+
+        if (name != null ? !name.equals(talent.name) : talent.name != null) return false;
+        if (description != null ? !description.equals(talent.description) : talent.description != null)
+            return false;
+        if (type != talent.type) return false;
+        return cooldown == talent.cooldown;
+
+    }
+
+    @Override
+    public int hashCode() {
+        int result = name != null ? name.hashCode() : 0;
+        result = 31 * result + (description != null ? description.hashCode() : 0);
+        result = 31 * result + (type != null ? type.hashCode() : 0);
+        result = 31 * result + (cooldown != null ? cooldown.hashCode() : 0);
+        return result;
+    }
+
+
+    @Override
+    public int compareTo(Talent talent) {
+        int compared = type.compareTo(talent.getType());
+        if (compared == 0) {
+            compared = name.compareTo(talent.getName());
+        }
+        return compared;
     }
 }

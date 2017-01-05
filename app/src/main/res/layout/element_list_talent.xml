@@ -54,7 +54,7 @@
                 android:layout_gravity="center"
                 android:clickable="true"
                 android:contentDescription="@string/possible_actions"
-                android:onClick="@{() -> handlers.addTalent(talent)}"
+                android:onClick="@{(v) -> handlers.addTalent(v, talent)}"
                 android:layout_marginEnd="@dimen/small_padding"
                 android:src="@drawable/ic_add_white"
                 android:visibility="@{canAddToPlayer ? View.VISIBLE : View.GONE}" />
