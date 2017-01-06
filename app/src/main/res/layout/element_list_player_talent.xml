@@ -42,7 +42,7 @@
                 android:lines="2"
                 android:padding="@dimen/very_small_padding"
                 android:text="@{playerTalent.talent.name}"
-                android:textColor="@{playerTalent.equipped ? @color/yellow : @android:color/white}"
+                android:textColor="@android:color/white"
                 android:textSize="@dimen/medium_text_size"
                 android:textStyle="bold" />
 

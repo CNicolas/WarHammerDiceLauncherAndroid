@@ -67,11 +67,12 @@ public class PlayerTalentDao extends AbstractDao<PlayerTalent> implements IPlaye
     //region Protected methods
 
     @Override
-    protected ContentValues contentValuesFromModel(PlayerTalent playerSpecialization) {
+    protected ContentValues contentValuesFromModel(PlayerTalent playerTalent) {
         ContentValues values = new ContentValues();
 
-        values.put(COLUMN_TALENT_ID, playerSpecialization.getTalent().getId());
-        values.put(COLUMN_PLAYER_ID, playerSpecialization.getPlayerId());
+        values.put(COLUMN_TALENT_ID, playerTalent.getTalent().getId());
+        values.put(COLUMN_PLAYER_ID, playerTalent.getPlayerId());
+        values.put(COLUMN_IS_EQUIPPED, convertBooleanToInteger(playerTalent.isEquipped()));
 
         return values;
     }

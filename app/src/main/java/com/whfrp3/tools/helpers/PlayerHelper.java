@@ -77,7 +77,7 @@ public abstract class PlayerHelper {
         player.notifyPropertyChanged(BR.skill);
     }
 
-    private static void notifyTalentBinding() {
+    public static void notifyTalentBinding() {
         Player player = WHFRP3Application.getPlayer();
 
         player.notifyPropertyChanged(BR.playerTalent);

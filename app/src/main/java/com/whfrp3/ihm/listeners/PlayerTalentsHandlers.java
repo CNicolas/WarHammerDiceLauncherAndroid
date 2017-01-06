@@ -8,6 +8,7 @@ import com.whfrp3.R;
 import com.whfrp3.model.player.PlayerTalent;
 import com.whfrp3.notification.ToastNotification;
 import com.whfrp3.tools.WHFRP3Application;
+import com.whfrp3.tools.helpers.PlayerHelper;
 
 public class PlayerTalentsHandlers {
     public void showPopupMenu(View v, final PlayerTalent playerTalent) {
@@ -35,9 +36,11 @@ public class PlayerTalentsHandlers {
                      */
                     case R.id.talent_menu_equip:
                         playerTalent.setEquipped(true);
+                        PlayerHelper.notifyTalentBinding();
                         ToastNotification.info(WHFRP3Application.getResourceString(R.string.equipped));
                         break;
                     case R.id.talent_menu_unequip:
+                        PlayerHelper.notifyTalentBinding();
                         playerTalent.setEquipped(false);
                         break;
                     /**

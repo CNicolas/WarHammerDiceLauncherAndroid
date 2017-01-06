@@ -9,41 +9,44 @@ import android.widget.BaseAdapter;
 import android.widget.TextView;
 
 import com.whfrp3.R;
-import com.whfrp3.databinding.ElementListSkillBinding;
-import com.whfrp3.ihm.listeners.SkillsHandlers;
-import com.whfrp3.model.skills.Skill;
+import com.whfrp3.databinding.ElementListPlayerTalentBinding;
+import com.whfrp3.ihm.listeners.PlayerTalentsHandlers;
+import com.whfrp3.model.player.PlayerTalent;
+import com.whfrp3.model.talents.Talent;
 import com.whfrp3.tools.WHFRP3Application;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.TreeSet;
 
-public class SkillsSeparatedListAdapter extends BaseAdapter {
+public class PlayerTalentsSeparatedListAdapter extends BaseAdapter {
 
     private static final int TYPE_ITEM = 0;
     private static final int TYPE_SEPARATOR = 1;
 
     private final LayoutInflater mInflater;
-    private final List<Skill> mSkills;
+    private final List<PlayerTalent> mPlayerTalents;
     private final TreeSet<Integer> sectionHeader;
 
-    public SkillsSeparatedListAdapter(@NonNull LayoutInflater inflater, List<Skill> basicSkills, List<Skill> advancedSkills) {
+    public PlayerTalentsSeparatedListAdapter(@NonNull LayoutInflater inflater, List<PlayerTalent> equippedTalents, List<PlayerTalent> unequippedTalents) {
         super();
 
         mInflater = inflater;
 
-        mSkills = new ArrayList<>();
+        mPlayerTalents = new ArrayList<>();
         sectionHeader = new TreeSet<>();
 
-        addSectionHeaderItem(WHFRP3Application.getResourceString(R.string.basic));
-        mSkills.addAll(basicSkills);
-        addSectionHeaderItem(WHFRP3Application.getResourceString(R.string.advanced));
-        mSkills.addAll(advancedSkills);
+        addSectionHeaderItem(WHFRP3Application.getResourceString(R.string.equipped));
+        mPlayerTalents.addAll(equippedTalents);
+        addSectionHeaderItem(WHFRP3Application.getResourceString(R.string.unequipped));
+        mPlayerTalents.addAll(unequippedTalents);
     }
 
-    private void addSectionHeaderItem(final String item) {
-        mSkills.add(new Skill(0, item, null, null));
-        sectionHeader.add(mSkills.size() - 1);
+    private void addSectionHeaderItem(final String headerTitle) {
+        Talent talent = new Talent();
+        talent.setName(headerTitle);
+        mPlayerTalents.add(new PlayerTalent(talent, -1));
+        sectionHeader.add(mPlayerTalents.size() - 1);
     }
 
     @Override
@@ -58,12 +61,12 @@ public class SkillsSeparatedListAdapter extends BaseAdapter {
 
     @Override
     public int getCount() {
-        return mSkills.size();
+        return mPlayerTalents.size();
     }
 
     @Override
-    public Skill getItem(int position) {
-        return mSkills.get(position);
+    public PlayerTalent getItem(int position) {
+        return mPlayerTalents.get(position);
     }
 
     @Override
@@ -75,20 +78,20 @@ public class SkillsSeparatedListAdapter extends BaseAdapter {
         int rowType = getItemViewType(position);
 
         if (rowType == TYPE_ITEM) {
-            ElementListSkillBinding binding = DataBindingUtil.getBinding(convertView);
+            ElementListPlayerTalentBinding binding = DataBindingUtil.getBinding(convertView);
 
             if (binding == null) {
-                binding = DataBindingUtil.inflate(mInflater, R.layout.element_list_skill, parent, false);
+                binding = DataBindingUtil.inflate(mInflater, R.layout.element_list_player_talent, parent, false);
             }
 
-            binding.setSkill(mSkills.get(position));
-            binding.setHandlers(new SkillsHandlers());
+            binding.setPlayerTalent(mPlayerTalents.get(position));
+            binding.setHandlers(new PlayerTalentsHandlers());
 
             convertView = binding.getRoot();
         } else {
             convertView = mInflater.inflate(R.layout.element_separated_list_header, parent, false);
             TextView textView = (TextView) convertView.findViewById(R.id.separated_list_header);
-            textView.setText(mSkills.get(position).getName());
+            textView.setText(mPlayerTalents.get(position).getTalent().getName());
         }
 
         return convertView;

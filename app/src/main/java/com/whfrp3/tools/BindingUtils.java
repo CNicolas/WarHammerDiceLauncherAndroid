@@ -14,13 +14,14 @@ import android.widget.ListView;
 import android.widget.TextView;
 
 import com.whfrp3.ihm.adapters.PlayerSkillsListAdapter;
-import com.whfrp3.ihm.adapters.PlayerTalentsListAdapter;
+import com.whfrp3.ihm.adapters.PlayerTalentsSeparatedListAdapter;
 import com.whfrp3.ihm.adapters.WeaponsListAdapter;
 import com.whfrp3.model.player.PlayerSkill;
 import com.whfrp3.model.player.PlayerTalent;
 import com.whfrp3.model.player.inventory.Weapon;
 import com.whfrp3.tools.enums.TextIcon;
 
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
@@ -80,7 +81,17 @@ public abstract class BindingUtils {
             }
         });
 
-        PlayerTalentsListAdapter adapter = new PlayerTalentsListAdapter(inflater, list);
+        List<PlayerTalent> equipped = new ArrayList<>();
+        List<PlayerTalent> unequipped = new ArrayList<>();
+        for (PlayerTalent playerTalent : list) {
+            if (playerTalent.isEquipped()) {
+                equipped.add(playerTalent);
+            } else {
+                unequipped.add(playerTalent);
+            }
+        }
+
+        PlayerTalentsSeparatedListAdapter adapter = new PlayerTalentsSeparatedListAdapter(inflater, equipped, unequipped);
         view.setAdapter(adapter);
     }
 
