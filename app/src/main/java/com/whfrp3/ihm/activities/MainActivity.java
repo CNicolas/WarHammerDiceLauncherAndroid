@@ -6,11 +6,13 @@ import android.support.annotation.NonNull;
 import android.support.design.widget.NavigationView;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
+import android.support.v4.app.TaskStackBuilder;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.view.Menu;
 import android.view.MenuItem;
 
 import com.whfrp3.R;
@@ -24,7 +26,7 @@ import com.whfrp3.tools.WHFRP3Application;
 import com.whfrp3.tools.constants.IMainConstants;
 
 public class MainActivity extends AppCompatActivity
-        implements NavigationView.OnNavigationItemSelectedListener {
+        implements NavigationView.OnNavigationItemSelectedListener, IMainConstants {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -56,6 +58,21 @@ public class MainActivity extends AppCompatActivity
 
     //region Menu
     @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.main, menu);
+        return super.onCreateOptionsMenu(menu);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        int id = item.getItemId();
+        if (id == R.id.action_launch) {
+            startLaunchActivity();
+        }
+        return super.onOptionsItemSelected(item);
+    }
+
+    @Override
     public void onBackPressed() {
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         if (drawer.isDrawerOpen(GravityCompat.START)) {
@@ -71,9 +88,9 @@ public class MainActivity extends AppCompatActivity
         super.onActivityResult(requestCode, resultCode, intent);
 
         if (resultCode == RESULT_CANCELED) {
-            if (requestCode == IMainConstants.TALENTS_REQUEST) {
+            if (requestCode == TALENTS_REQUEST) {
                 displaySelectedFragment(R.id.nav_talents);
-            } else if (requestCode == IMainConstants.PLAYER_REQUEST) {
+            } else if (requestCode == PLAYER_REQUEST) {
                 displaySelectedFragment(R.id.nav_home);
             }
         }
@@ -109,5 +126,18 @@ public class MainActivity extends AppCompatActivity
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
+    }
+
+    /**
+     * Start a new LaunchActivity with(out) a bundle and add it to the TaskStack.
+     */
+    private void startLaunchActivity() {
+        Intent launchIntent = new Intent(MainActivity.this, LaunchActivity.class);
+
+        TaskStackBuilder stackBuilder = TaskStackBuilder.create(MainActivity.this);
+        stackBuilder.addParentStack(LaunchActivity.class);
+        stackBuilder.addNextIntent(launchIntent);
+
+        startActivityForResult(launchIntent, LAUNCH_REQUEST);
     }
 }

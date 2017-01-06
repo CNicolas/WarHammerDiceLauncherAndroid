@@ -24,15 +24,16 @@ import android.widget.Toast;
 
 import com.whfrp3.R;
 import com.whfrp3.databinding.ActivityLaunchBinding;
+import com.whfrp3.ihm.fragments.dialog.LaunchResultsDialogFragment;
 import com.whfrp3.ihm.listeners.LaunchActivityHandlers;
 import com.whfrp3.model.dices.DiceFaces;
 import com.whfrp3.model.dices.Hand;
+import com.whfrp3.model.dices.LaunchResult;
 import com.whfrp3.model.player.Player;
 import com.whfrp3.model.player.PlayerSkill;
 import com.whfrp3.tools.WHFRP3Application;
 import com.whfrp3.tools.constants.IHandConstants;
 import com.whfrp3.tools.constants.IPlayerActivityConstants;
-import com.whfrp3.tools.helpers.DialogHelper;
 import com.whfrp3.tools.helpers.DicesRollerHelper;
 
 import java.util.ArrayList;
@@ -167,14 +168,29 @@ public class LaunchActivity extends AppCompatActivity implements IPlayerActivity
                     break;
                 default:
                     Map<DiceFaces, Integer> res = DicesRollerHelper.rollDices(mHand);
-
-                    DialogHelper.showLaunchResults(res, this);
+                    openLaunchResultsDialog(res);
             }
 
         } catch (Exception e) {
             Log.e(getClass().getName(), "rollDices: ", e);
             throw e;
         }
+    }
+
+    private void openLaunchResultsDialog(Map<DiceFaces, Integer> resultsMap) {
+        LaunchResult launchResult = new LaunchResult();
+        launchResult.setSuccessNumber(resultsMap.get(DiceFaces.SUCCESS));
+        launchResult.setBoonNumber(resultsMap.get(DiceFaces.BOON));
+        launchResult.setSigmarNumber(resultsMap.get(DiceFaces.SIGMAR));
+        launchResult.setFailureNumber(resultsMap.get(DiceFaces.FAILURE));
+        launchResult.setBaneNumber(resultsMap.get(DiceFaces.BANE));
+        launchResult.setDelayNumber(resultsMap.get(DiceFaces.DELAY));
+        launchResult.setExhaustionNumber(resultsMap.get(DiceFaces.EXHAUSTION));
+        launchResult.setChaosNumber(resultsMap.get(DiceFaces.CHAOS));
+
+        LaunchResultsDialogFragment dialog = new LaunchResultsDialogFragment();
+        dialog.show(getSupportFragmentManager(), "ItemShowDialogFragment");
+        dialog.setLaunchResult(launchResult);
     }
 
     /**

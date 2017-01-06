@@ -1,6 +1,5 @@
 package com.whfrp3.tools.constants;
 
-import com.whfrp3.R;
 import com.whfrp3.model.dices.DiceFaces;
 
 import java.util.HashMap;
@@ -21,7 +20,7 @@ public abstract class IHandConstants {
     /**
      * Links the dice face with the TextView in the result dialog.
      */
-    public static final Map<DiceFaces, Integer> popupResultsTextViews;
+//    public static final Map<DiceFaces, Integer> popupResultsTextViews;
 
     static {
         Map<DiceFaces, DiceFaces> map = new HashMap<>();
@@ -31,17 +30,17 @@ public abstract class IHandConstants {
         map.put(DiceFaces.BANE, DiceFaces.BOON);
         inversionMap = map;
     }
-
-    static {
-        Map<DiceFaces, Integer> map = new HashMap<>();
-        map.put(DiceFaces.SUCCESS, R.id.successNumberResults);
-        map.put(DiceFaces.BOON, R.id.benefitNumberResults);
-        map.put(DiceFaces.BANE, R.id.mischiefNumberResults);
-        map.put(DiceFaces.FAILURE, R.id.failureNumberResults);
-        map.put(DiceFaces.SIGMAR, R.id.sigmarNumberResults);
-        map.put(DiceFaces.EXERTION, R.id.tirednessNumberResults);
-        map.put(DiceFaces.DELAY, R.id.delayNumberResults);
-        map.put(DiceFaces.CHAOS, R.id.chaosNumberResults);
-        popupResultsTextViews = map;
-    }
+//
+//    static {
+//        Map<DiceFaces, Integer> map = new HashMap<>();
+//        map.put(DiceFaces.SUCCESS, R.id.successNumberResults);
+//        map.put(DiceFaces.BOON, R.id.benefitNumberResults);
+//        map.put(DiceFaces.BANE, R.id.mischiefNumberResults);
+//        map.put(DiceFaces.FAILURE, R.id.failureNumberResults);
+//        map.put(DiceFaces.SIGMAR, R.id.sigmarNumberResults);
+//        map.put(DiceFaces.EXHAUSTION, R.id.tirednessNumberResults);
+//        map.put(DiceFaces.DELAY, R.id.delayNumberResults);
+//        map.put(DiceFaces.CHAOS, R.id.chaosNumberResults);
+//        popupResultsTextViews = map;
+//    }
 }

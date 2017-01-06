@@ -10,7 +10,7 @@ public enum DiceFaces {
     FAILURE,
     BANE,
     SIGMAR,
-    EXERTION,
+    EXHAUSTION,
     SUCCESS,
     SUCCESS_PLUS,
     VOID

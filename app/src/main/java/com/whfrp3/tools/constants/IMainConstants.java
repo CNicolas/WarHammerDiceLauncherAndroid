@@ -9,6 +9,7 @@ public interface IMainConstants {
     String SPECIALIZATIONS_LIST_BUNDLE_TAG = "specializationsList";
 
     int PLAYER_REQUEST = 0;
-    int TALENTS_REQUEST = 1;
-    int SPECIALIZATIONS_REQUEST = 2;
+    int LAUNCH_REQUEST = 1;
+    int TALENTS_REQUEST = 2;
+    int SPECIALIZATIONS_REQUEST = 3;
 }

@@ -1,8 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:orientation="vertical">
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <data>
+
+        <import type="android.view.View" />
+
+        <variable
+            name="result"
+            type="com.whfrp3.model.dices.LaunchResult" />
+    </data>
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -10,51 +16,51 @@
         android:orientation="horizontal">
 
         <TextView
-            android:id="@+id/successNumberResults"
             style="@style/ResultDialogImagedTextView"
-            android:drawableTop="@drawable/ic_success_black_36" />
+            android:drawableTop="@drawable/ic_success_black_36"
+            android:text="@{result.successNumber}"
+            android:visibility="@{result.successNumber != 0 ? View.VISIBLE : View.GONE}" />
 
         <TextView
-            android:id="@+id/benefitNumberResults"
             style="@style/ResultDialogImagedTextView"
-            android:drawableTop="@drawable/ic_boon_black_36" />
+            android:drawableTop="@drawable/ic_boon_black_36"
+            android:text="@{result.boonNumber}"
+            android:visibility="@{result.boonNumber != 0 ? View.VISIBLE : View.GONE}" />
 
         <TextView
-            android:id="@+id/mischiefNumberResults"
             style="@style/ResultDialogImagedTextView"
-            android:drawableTop="@drawable/ic_bane_black_36" />
+            android:drawableTop="@drawable/ic_sigmar_black_36"
+            android:text="@{result.sigmarNumber}"
+            android:visibility="@{result.sigmarNumber != 0 ? View.VISIBLE : View.GONE}" />
 
         <TextView
-            android:id="@+id/failureNumberResults"
             style="@style/ResultDialogImagedTextView"
-            android:drawableTop="@drawable/ic_failure_black_36" />
+            android:drawableTop="@drawable/ic_failure_black_36"
+            android:text="@{result.failureNumber}"
+            android:visibility="@{result.failureNumber != 0 ? View.VISIBLE : View.GONE}" />
 
         <TextView
-            android:id="@+id/sigmarNumberResults"
             style="@style/ResultDialogImagedTextView"
-            android:drawableTop="@drawable/ic_sigmar_black_36" />
+            android:drawableTop="@drawable/ic_bane_black_36"
+            android:text="@{result.baneNumber}"
+            android:visibility="@{result.baneNumber != 0 ? View.VISIBLE : View.GONE}" />
 
         <TextView
-            android:id="@+id/tirednessNumberResults"
             style="@style/ResultDialogImagedTextView"
-            android:drawableTop="@drawable/ic_exertion_black_36" />
+            android:drawableTop="@drawable/ic_delay_black_36"
+            android:text="@{result.delayNumber}"
+            android:visibility="@{result.delayNumber != 0 ? View.VISIBLE : View.GONE}" />
 
         <TextView
-            android:id="@+id/delayNumberResults"
             style="@style/ResultDialogImagedTextView"
-            android:drawableTop="@drawable/ic_delay_black_36" />
-
+            android:drawableTop="@drawable/ic_exhaustion_black_36"
+            android:text="@{result.exhaustionNumber}"
+            android:visibility="@{result.exhaustionNumber != 0 ? View.VISIBLE : View.GONE}" />
 
         <TextView
-            android:id="@+id/chaosNumberResults"
             style="@style/ResultDialogImagedTextView"
-            android:drawableTop="@drawable/ic_chaos_black_36" />
+            android:drawableTop="@drawable/ic_chaos_black_36"
+            android:text="@{result.chaosNumber}"
+            android:visibility="@{result.chaosNumber != 0 ? View.VISIBLE : View.GONE}" />
     </LinearLayout>
-
-    <Button
-        android:id="@+id/dismissResultsPopupButton"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="@string/close" />
-
-</LinearLayout>
+</layout>
