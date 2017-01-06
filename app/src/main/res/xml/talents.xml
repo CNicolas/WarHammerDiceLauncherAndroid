@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="UTF-8" ?>
-<!-- fichier généré le 22/12/2016 à 16:45:00 à partir du fichier [WHFRP3.xlsm] -->
+<!-- fichier généré le 06/01/2017 à 11:24:49 à partir du fichier [WHFRP3.xlsm] -->
 <!-- NE PAS MODIFIER DIRECTEMENT CE FICHIER -->
 <Talents>
     <Talent Id="1" Type="AFFINITY" Cooldown="NO_COOLDOWN">
@@ -138,7 +138,7 @@
         <Name>Mords-Lui les Chevilles !</Name>
         <Description>Les ennemis engagés au combat contre votre familier ne bénéficient pas de manœuvre gratuite au cours de leur tour. À l'occasion de vos tests de Dressage des animaux (Soc), {BANE_FACE} {BANE_FACE} Votre familier perd 1 Obéissance.</Description>
     </Talent>
-    <Talent Id="35" Type="REPUTATION" Cooldown="NO_COOLDOWN">
+    <Talent Id="35" Type="REPUTATION" Cooldown="TALENT">
         <Name>Accointances</Name>
         <Description>Épuiser cette carte vous permet de bénéficier de {FORTUNE_DICE} {FORTUNE_DICE} à l'occasion d'une action sociale.</Description>
     </Talent>
@@ -261,56 +261,47 @@
     <Talent Id="65" Type="FAITH" Cooldown="NO_COOLDOWN">
         <Name>Manann, Dieu des Mers</Name>
         <Description>Vous bénéficiez d'un {FORTUNE_DICE} à l'occasion de vos tests d'Invocation et de Piété lorsque vous vous trouvez à portée longue ou moins d'une étendue d'eau.
-            Jauge d'Attitude de Départ : PPNTT
-        </Description>
+Jauge d'Attitude de Départ : PPNTT</Description>
     </Talent>
     <Talent Id="66" Type="FAITH" Cooldown="NO_COOLDOWN">
         <Name>Morr, Dieu des Rêves et de la Mort</Name>
         <Description>Une fois par tour, vous pouvez administrer l'extrême onction de Morr à une personne morte ou mourante qui se trouve à portée courte pour gagner 1 faveur. Ces rites exigent d'effectuer une manœuvre.
-            Jauge d'Attitude de Départ : PPNTT
-        </Description>
+Jauge d'Attitude de Départ : PPNTT</Description>
     </Talent>
     <Talent Id="67" Type="FAITH" Cooldown="NO_COOLDOWN">
         <Name>Myrmidia, Déesse de la Guerre</Name>
         <Description>Vous gagnez 1 faveur chaque fois que vous obtenez un {SIGMAR_FACE} ou plus lorsque vous portez une Attaque de Corps à Corps.
-            Jauge d'Attitude de Départ : PPPNT
-        </Description>
+Jauge d'Attitude de Départ : PPPNT</Description>
     </Talent>
     <Talent Id="68" Type="FAITH" Cooldown="NO_COOLDOWN">
         <Name>Ranald, Dieu de la Chance et de la Tromperie</Name>
         <Description>Vous commencez chaque session pourvu d'un point de fortune supplémentaire. Lorsque vous dépensez un point de fortune ou plus à l'occasion d'un test de compétence et que ce test est un succès, gagnez 1 faveur.
-            Jauge d'Attitude de Départ : PNTTT
-        </Description>
+Jauge d'Attitude de Départ : PNTTT</Description>
     </Talent>
     <Talent Id="69" Type="FAITH" Cooldown="NO_COOLDOWN">
         <Name>Shallya, Déesse de la Guérison et de la Compassion</Name>
         <Description>Chaque fois qu'on de vos alliés qui se trouve à portée courte de vous subit une blessure critique, gagnez 1 faveur.
-            Jauge d'Attitude de Départ : PPPNT
-        </Description>
+Jauge d'Attitude de Départ : PPPNT</Description>
     </Talent>
     <Talent Id="70" Type="FAITH" Cooldown="NO_COOLDOWN">
         <Name>Sigmar, Dieu de l'Empire</Name>
         <Description>Gagnez 1 faveur chaque fois que vous infligez 1 blessure critique ou plus.
-            Jauge d'Attitude de Départ : CNTTT
-        </Description>
+Jauge d'Attitude de Départ : CNTTT</Description>
     </Talent>
     <Talent Id="71" Type="FAITH" Cooldown="NO_COOLDOWN">
         <Name>Taal, Dieu de la Nature et des Étendues Sauvages</Name>
         <Description>Vous bénéficiez d'un {FORTUNE_DICE} à l'occasion de vos tests de Piété et d'Invocation tant que vous vous trouvez en forêt ou dans la nature.
-            Jauge d'Attitude de Départ : PPNTT
-        </Description>
+Jauge d'Attitude de Départ : PPNTT</Description>
     </Talent>
     <Talent Id="72" Type="FAITH" Cooldown="NO_COOLDOWN">
         <Name>Ulric, Dieu des Batailles, des Loups et de l'Hiver</Name>
         <Description>Gagnez 1 faveur chaque fois que vous subissez une blessure critique.
-            Jauge d'Attitude de Départ : PNTTT
-        </Description>
+Jauge d'Attitude de Départ : PNTTT</Description>
     </Talent>
     <Talent Id="73" Type="FAITH" Cooldown="NO_COOLDOWN">
         <Name>Verena, Déesse du Savoir et de la Justice</Name>
         <Description>Vous pouvez associez un talent Affinité à votre carte de Foi comme si cette dernière était un emplacement de talent de votre fiche de carrière. Tant qu'un talent actif est associé à cet emplacement, vous bénéficiez d'un {FORTUNE_DICE} à l'occasion de vos tests d'Éducation.
-            Jauge d'Attitude de Départ : PPNTT
-        </Description>
+Jauge d'Attitude de Départ : PPNTT</Description>
     </Talent>
     <Talent Id="74" Type="ORDER" Cooldown="NO_COOLDOWN">
         <Name>Aqshy, Domaine du Feu, Ordre Flamboyant</Name>
@@ -319,51 +310,42 @@
     <Talent Id="75" Type="ORDER" Cooldown="NO_COOLDOWN">
         <Name>Azyr, Domaine des Cieux, Ordre Céleste</Name>
         <Description>Lorsque vous employez un Sort du Collège Céleste, vous pouvez dépenser 1 énergie supplémentaire pour bénéficier d'un {FORTUNE_DICE} supplémentaire à l'occasion de ce test.
-            Jauge d'Attitude de Départ : PPPNT
-        </Description>
+Jauge d'Attitude de Départ : PPPNT</Description>
     </Talent>
     <Talent Id="76" Type="ORDER" Cooldown="NO_COOLDOWN">
         <Name>Chamon, Domaine du Métal, Ordre Doré</Name>
         <Description>Lorsque vous employez un Sort de l'Ordre Doré, vous pouvez dépenser 1 énergie pour convertir un de vos dés de caractéristiques {CHARACTERISTIC_DICE} en dé de prudence {CONSERVATIVE_DICE}, quelle que soit votre attitude actuelle.
-            Jaude d'Attitude de Départ : PPPNT
-        </Description>
+Jaude d'Attitude de Départ : PPPNT</Description>
     </Talent>
     <Talent Id="77" Type="ORDER" Cooldown="NO_COOLDOWN">
         <Name>Ghur, Domaine des Bêtes, Ordre d'Ambre</Name>
         <Description>Tant que vous êtes sous Forme Animale, vous pouvez dépenser 1 énergie pour effectuer une manœuvre supplémentaire lors de votre tour. Il n'est possible de dépenser que 1 énergie de la sorte par tour.
-            Jauge d'Attitude de Départ : PNTTT
-        </Description>
+Jauge d'Attitude de Départ : PNTTT</Description>
     </Talent>
     <Talent Id="78" Type="ORDER" Cooldown="NO_COOLDOWN">
         <Name>Ghyran, Domaine de la Vie, Ordre de Jade</Name>
         <Description>Vous bénéficiez d'un {FORTUNE_DICE} lorsque vous employez un Sort du Collège de Jade si la saison mentionnée par ce sort correspond à la saison actuelle. Si la saison mentionnée est l'opposé de la saison actuelle, vous devez en revanche ajouter un {MISFORTUNE_DICE} à votre réserve de dés.
-            Jauge d'Attitude de Départ : PPPNT
-        </Description>
+Jauge d'Attitude de Départ : PPPNT</Description>
     </Talent>
     <Talent Id="79" Type="ORDER" Cooldown="NO_COOLDOWN">
         <Name>Hysh, Domaine de la Lumière, Ordre Lumineux</Name>
         <Description>Après avoir lancé un Sort de l'Ordre Lumineux, vous pouvez dépenser 1 énergie afin de retirer ou d'ajouter un jeton de recharge à ce sort ou à une carte d'état obtenue à l'aide de celui-ci.
-            Jauge d'Attitude de Départ : PPPNT
-        </Description>
+Jauge d'Attitude de Départ : PPPNT</Description>
     </Talent>
     <Talent Id="80" Type="ORDER" Cooldown="NO_COOLDOWN">
         <Name>Magie Noire</Name>
         <Description>Vous pouvez apprendre et employer des Sorts de Magie Noire et des Sorts du Chaos. Lorsque vous focalisez l'énergie ou que vous lancez un sort, vous bénéficiez d'un {EXPERTISE_DICE} à l'occasion de votre test. Si vous générez un ou plusieurs {EXERTION_FACE} ou {DELAY_FACE} à l'occasion de ces tests, ajoutez {CHAOS_FACE} aux résultats.
-            À l'occasion de vos tests de Focalisation et l'Art de la magie, {MISFORTUNE_DICE}
-            {MISFORTUNE_DICE} Ajoutez {CHAOS_FACE} aux résultats.
-        </Description>
+À l'occasion de vos tests de Focalisation et l'Art de la magie, {MISFORTUNE_DICE} {MISFORTUNE_DICE} Ajoutez {CHAOS_FACE} aux résultats.</Description>
     </Talent>
     <Talent Id="81" Type="ORDER" Cooldown="NO_COOLDOWN">
         <Name>Shyish, Domaine de la Mort, Ordre d'Améthyste</Name>
         <Description>Si une créature vivante meurt au cours d'un tour qui suit immédiatement un tour ou vous avez employé un Sort de l'Ordre d'Améthyste, vous pouvez immédiatement dépenser 1 énergie afin d'ajouter ou de retirer 1 jeton de recharge se trouvant sur une de vos cartes d'action de Sort de l'Ordre d'Améthyste.
-            Jauge d'Attitude de Départ : PPNTT
-        </Description>
+Jauge d'Attitude de Départ : PPNTT</Description>
     </Talent>
     <Talent Id="82" Type="ORDER" Cooldown="NO_COOLDOWN">
         <Name>Ulgu, Dmaine des Ombres, Ordre Gris</Name>
         <Description>Vous pouvez dépenser 1 énergie supplémentaire lorsque vous employez un Sort de l'Ordre Gris afin d'ajouter ou de retirer 1 jeton de recharge à sa carte d'action.
-            Jauge d'Attitude de Départ : PPNTT
-        </Description>
+Jauge d'Attitude de Départ : PPNTT</Description>
     </Talent>
     <Talent Id="83" Type="TACTICS" Cooldown="NO_COOLDOWN">
         <Name>À Bras-le-Corps</Name>
