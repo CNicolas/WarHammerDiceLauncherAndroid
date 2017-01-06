@@ -113,15 +113,23 @@ public class PlayerActivity extends AppCompatActivity implements IPlayerActivity
     public boolean onOptionsItemSelected(MenuItem item) {
         int id = item.getItemId();
 
-        if (id == android.R.id.home) {
-            Intent intent = new Intent();
-            setResult(RESULT_CANCELED, intent);
-            finish();
-        }
-        if (id == R.id.action_in_edition_true || id == R.id.action_in_edition_false) {
-            setIsInEdition(!WHFRP3Application.getPlayer().isInEdition());
-        } else if (id == R.id.action_launch) {
-            startLaunchActivity();
+        switch (id) {
+            case android.R.id.home:
+                Intent intent = new Intent();
+                setResult(RESULT_CANCELED, intent);
+                finish();
+                break;
+            case R.id.action_in_edition_true:
+            case R.id.action_in_edition_false:
+                setIsInEdition(!WHFRP3Application.getPlayer().isInEdition());
+                break;
+            case R.id.action_launch:
+                startLaunchActivity();
+                break;
+            case R.id.action_add:
+                return false;
+            default:
+                return super.onOptionsItemSelected(item);
         }
 
         return true;

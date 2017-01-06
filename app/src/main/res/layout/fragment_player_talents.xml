@@ -22,15 +22,5 @@
             android:divider="@android:color/transparent"
             app:playerTalents="@{player.playerTalents}" />
 
-        <android.support.design.widget.FloatingActionButton
-            android:id="@+id/add_talent"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="bottom|end"
-            android:layout_margin="@dimen/fab_margin"
-            android:src="@drawable/ic_add_white"
-            app:layout_anchor="@id/talents_list"
-            app:layout_anchorGravity="bottom|end" />
-
     </android.support.design.widget.CoordinatorLayout>
 </layout>

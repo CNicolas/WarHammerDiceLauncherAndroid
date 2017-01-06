@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.Menu;
 import android.view.View;
 import android.view.ViewGroup;
 
@@ -65,6 +66,15 @@ public class PlayerActionsFragment extends Fragment {
             }
         });
 
+        setHasOptionsMenu(true);
+
         return binding.getRoot();
+    }
+
+    @Override
+    public void onPrepareOptionsMenu(Menu menu) {
+        super.onPrepareOptionsMenu(menu);
+
+        menu.findItem(R.id.action_add).setVisible(true);
     }
 }

@@ -4,6 +4,7 @@ import android.databinding.DataBindingUtil;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
+import android.view.Menu;
 import android.view.View;
 import android.view.ViewGroup;
 
@@ -23,5 +24,12 @@ public class PlayerSkillsFragment extends Fragment {
         binding.setPlayer(WHFRP3Application.getPlayer());
 
         return binding.getRoot();
+    }
+
+    @Override
+    public void onPrepareOptionsMenu(Menu menu) {
+        super.onPrepareOptionsMenu(menu);
+
+        menu.findItem(R.id.action_add).setVisible(false);
     }
 }

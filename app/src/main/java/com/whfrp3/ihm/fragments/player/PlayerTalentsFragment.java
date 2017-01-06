@@ -2,9 +2,10 @@ package com.whfrp3.ihm.fragments.player;
 
 import android.databinding.DataBindingUtil;
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 
@@ -24,15 +25,28 @@ public class PlayerTalentsFragment extends Fragment {
         final FragmentPlayerTalentsBinding binding = DataBindingUtil.inflate(inflater, R.layout.fragment_player_talents, container, false);
         binding.setPlayer(WHFRP3Application.getPlayer());
 
-        FloatingActionButton addTalentButton = (FloatingActionButton) binding.getRoot().findViewById(R.id.add_talent);
-        addTalentButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                openTalentSearchDialog();
-            }
-        });
+        setHasOptionsMenu(true);
 
         return binding.getRoot();
+    }
+
+    @Override
+    public void onPrepareOptionsMenu(Menu menu) {
+        super.onPrepareOptionsMenu(menu);
+
+        menu.findItem(R.id.action_add).setVisible(true);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        int id = item.getItemId();
+
+        if (id == R.id.action_add) {
+            openTalentSearchDialog();
+            return true;
+        }
+
+        return super.onOptionsItemSelected(item);
     }
 
     private void openTalentSearchDialog() {

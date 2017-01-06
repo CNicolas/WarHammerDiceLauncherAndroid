@@ -10,6 +10,7 @@ import android.support.v4.app.TaskStackBuilder;
 import android.support.v7.widget.PopupMenu;
 import android.view.Gravity;
 import android.view.LayoutInflater;
+import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
@@ -64,6 +65,13 @@ public class InventoryFragment extends Fragment
         mExpListView.setAdapter(adapter);
 
         return rootView;
+    }
+
+    @Override
+    public void onPrepareOptionsMenu(Menu menu) {
+        super.onPrepareOptionsMenu(menu);
+
+        menu.findItem(R.id.action_add).setVisible(false);
     }
 
     @Override
