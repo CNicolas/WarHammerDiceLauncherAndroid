@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools">
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
 
     <data>
 
@@ -21,22 +20,14 @@
         android:padding="@dimen/small_padding">
 
         <!--Only child of ScrollView-->
-        <LinearLayout
+        <RelativeLayout
             android:id="@+id/characteristics_fragment_layout"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical">
-
-            <!--Has the focus when fragment appears-->
-            <LinearLayout
-                android:layout_width="0px"
-                android:layout_height="0px"
-                android:focusable="true"
-                android:focusableInTouchMode="true"
-                tools:ignore="UselessLeaf" />
+            android:layout_height="wrap_content">
 
             <!--Name/Rank-->
             <LinearLayout
+                android:id="@+id/layout_name_rank"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="@dimen/medium_padding"
@@ -77,8 +68,10 @@
 
             <!--Career-->
             <LinearLayout
+                android:id="@+id/layout_career"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_below="@id/layout_name_rank"
                 android:layout_marginEnd="@dimen/big_padding"
                 android:layout_marginStart="@dimen/big_padding"
                 android:gravity="center_horizontal">
@@ -100,8 +93,10 @@
 
             <!--Wounds/XP/Corruption-->
             <LinearLayout
+                android:id="@+id/layout_wounds_xp_corruption"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_below="@+id/layout_career"
                 android:layout_marginTop="@dimen/medium_padding"
                 android:gravity="center_horizontal">
 
@@ -172,9 +167,11 @@
             </LinearLayout>
 
             <!--Characteristics EditTexts-->
-            <LinearLayout
+            <RelativeLayout
+                android:id="@+id/layout_characteristics"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_below="@id/layout_wounds_xp_corruption"
                 android:layout_marginTop="@dimen/medium_padding"
                 android:orientation="vertical"
                 android:paddingEnd="80dp"
@@ -206,7 +203,8 @@
                 <!--Toughness-->
                 <LinearLayout
                     android:id="@+id/toughness_layout"
-                    style="@style/CharacteristicLinearLayout">
+                    style="@style/CharacteristicLinearLayout"
+                    android:layout_below="@id/strength_layout">
 
                     <TextView
                         style="@style/CharacteristicLabel"
@@ -229,7 +227,8 @@
                 <!--Agility-->
                 <LinearLayout
                     android:id="@+id/agility_layout"
-                    style="@style/CharacteristicLinearLayout">
+                    style="@style/CharacteristicLinearLayout"
+                    android:layout_below="@id/toughness_layout">
 
                     <TextView
                         style="@style/CharacteristicLabel"
@@ -252,7 +251,8 @@
                 <!--Intelligence-->
                 <LinearLayout
                     android:id="@+id/intelligence_layout"
-                    style="@style/CharacteristicLinearLayout">
+                    style="@style/CharacteristicLinearLayout"
+                    android:layout_below="@id/agility_layout">
 
                     <TextView
                         style="@style/CharacteristicLabel"
@@ -275,7 +275,8 @@
                 <!--Will Power-->
                 <LinearLayout
                     android:id="@+id/willpower_layout"
-                    style="@style/CharacteristicLinearLayout">
+                    style="@style/CharacteristicLinearLayout"
+                    android:layout_below="@id/intelligence_layout">
 
                     <TextView
                         style="@style/CharacteristicLabel"
@@ -299,7 +300,8 @@
                 <!--Fellowship-->
                 <LinearLayout
                     android:id="@+id/fellowship_layout"
-                    style="@style/CharacteristicLinearLayout">
+                    style="@style/CharacteristicLinearLayout"
+                    android:layout_below="@id/willpower_layout">
 
                     <TextView
                         style="@style/CharacteristicLabel"
@@ -320,12 +322,14 @@
                         android:text="@={player.getCharacteristic(Characteristic.FELLOWSHIP).fortuneValue}" />
 
                 </LinearLayout>
-            </LinearLayout>
+            </RelativeLayout>
 
             <!--Reckless/Max_Reckless, Conservative/Max_Conservative-->
             <LinearLayout
+                android:id="@+id/layout_stance"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_below="@id/layout_characteristics"
                 android:layout_marginEnd="@dimen/big_padding"
                 android:layout_marginStart="@dimen/big_padding"
                 android:layout_marginTop="@dimen/medium_padding"
@@ -394,8 +398,10 @@
 
             <!--Race-->
             <LinearLayout
+                android:id="@+id/layout_race"
                 android:layout_width="match_parent"
                 android:layout_height="36dp"
+                android:layout_below="@id/layout_stance"
                 android:layout_marginEnd="@dimen/big_padding"
                 android:layout_marginStart="@dimen/big_padding"
                 android:layout_marginTop="@dimen/medium_padding"
@@ -415,9 +421,11 @@
             </LinearLayout>
 
             <!--Age/Size-->
-            <LinearLayout
+            <RelativeLayout
+                android:id="@+id/layout_age_size"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_below="@id/layout_race"
                 android:layout_marginEnd="@dimen/medium_padding"
                 android:layout_marginStart="@dimen/medium_padding"
                 android:layout_marginTop="@dimen/medium_padding"
@@ -426,7 +434,10 @@
 
                 <!--Age-->
                 <TextView
+                    android:id="@+id/label_age"
                     style="@style/PlayerSimpleLabel"
+                    android:layout_alignBaseline="@+id/player_age"
+                    android:layout_alignParentStart="true"
                     android:hint="@string/age"
                     android:labelFor="@+id/player_age"
                     android:text="@{BindingUtils.labelWithColon(@string/age)}" />
@@ -434,13 +445,17 @@
                 <EditText
                     android:id="@+id/player_age"
                     style="@style/SimpleCharacteristicNumberEditText"
+                    android:layout_toEndOf="@+id/label_age"
                     android:enabled="@{player.inEdition}"
                     android:maxLength="4"
                     android:text="@={player.age}" />
 
                 <!--Size-->
                 <TextView
+                    android:id="@+id/label_size"
                     style="@style/PlayerSimpleLabel"
+                    android:layout_alignBaseline="@+id/player_size"
+                    android:layout_toEndOf="@+id/player_age"
                     android:hint="@string/size"
                     android:labelFor="@+id/player_size"
                     android:text="@{BindingUtils.labelWithColon(@string/size)}" />
@@ -448,27 +463,28 @@
                 <EditText
                     android:id="@+id/player_size"
                     style="@style/SimpleCharacteristicNumberEditText"
+                    android:layout_toEndOf="@+id/label_size"
                     android:enabled="@{player.inEdition}"
                     android:maxLength="3"
                     android:text="@={player.size}" />
 
                 <TextView
-                    android:layout_width="0dp"
+                    android:layout_width="20dp"
                     android:layout_height="wrap_content"
+                    android:layout_alignBaseline="@+id/player_size"
                     android:layout_gravity="start|center_vertical"
-                    android:layout_weight="0"
-                    android:hint="@string/centimeters"
+                    android:layout_toEndOf="@+id/player_size"
                     android:labelFor="@+id/player_size"
-                    android:text="@{BindingUtils.labelWithColon(@string/centimeters)}" />
-            </LinearLayout>
+                    android:text="@string/centimeters" />
+            </RelativeLayout>
 
             <!--Description-->
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="0dp"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/layout_age_size"
                 android:layout_marginBottom="@dimen/big_padding"
                 android:layout_marginTop="@dimen/medium_padding"
-                android:layout_weight="1"
                 android:orientation="vertical">
 
                 <TextView
@@ -486,6 +502,7 @@
                     android:text="@={player.description}"
                     android:textColor="@color/characteristic_text" />
             </LinearLayout>
-        </LinearLayout>
+
+        </RelativeLayout>
     </ScrollView>
 </layout>
