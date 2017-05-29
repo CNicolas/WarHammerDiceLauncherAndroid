@@ -6,18 +6,10 @@ import android.database.sqlite.SQLiteOpenHelper;
 
 import com.whfrp3.database.dao.HandDao;
 import com.whfrp3.database.dao.ItemDao;
-import com.whfrp3.database.dao.PlayerCharacteristicDao;
 import com.whfrp3.database.dao.PlayerDao;
-import com.whfrp3.database.dao.PlayerSkillDao;
-import com.whfrp3.database.dao.PlayerSpecializationDao;
-import com.whfrp3.database.dao.PlayerTalentDao;
 import com.whfrp3.database.entries.IHandEntryConstants;
 import com.whfrp3.database.entries.IItemEntryConstants;
-import com.whfrp3.database.entries.IPlayerCharacteristicEntryConstants;
 import com.whfrp3.database.entries.IPlayerEntryConstants;
-import com.whfrp3.database.entries.IPlayerSkillEntryConstants;
-import com.whfrp3.database.entries.IPlayerSpecializationEntryConstants;
-import com.whfrp3.database.entries.IPlayerTalentEntryConstants;
 
 /**
  * Application mDatabase manager.
@@ -59,26 +51,6 @@ public class Database {
     private PlayerDao mPlayerDao;
 
     /**
-     * DAO of player characteristics.
-     */
-    private PlayerCharacteristicDao mPlayerCharacteristic;
-
-    /**
-     * DAO of player skills.
-     */
-    private PlayerSkillDao mPlayerSkillDao;
-
-    /**
-     * DAO of player specializations.
-     */
-    private PlayerSpecializationDao mPlayerSpecializationDao;
-
-    /**
-     * DAO of player talents.
-     */
-    private PlayerTalentDao mPlayerTalentDao;
-
-    /**
      * DAO of items.
      */
     private ItemDao mItemDao;
@@ -95,42 +67,6 @@ public class Database {
      */
     public PlayerDao getPlayerDao() {
         return mPlayerDao;
-    }
-
-    /**
-     * Getter of DAO of player characteristics.
-     *
-     * @return DAO of player characteristics.
-     */
-    public PlayerCharacteristicDao getmPlayerCharacteristic() {
-        return mPlayerCharacteristic;
-    }
-
-    /**
-     * Getter of DAO of player skills.
-     *
-     * @return DAO of player skills.
-     */
-    public PlayerSkillDao getPlayerSkillDao() {
-        return mPlayerSkillDao;
-    }
-
-    /**
-     * Getter of DAO of player specializations.
-     *
-     * @return DAO of player specializations.
-     */
-    public PlayerSpecializationDao getPlayerSpecializationDao() {
-        return mPlayerSpecializationDao;
-    }
-
-    /**
-     * Getter of DAO of player talents.
-     *
-     * @return DAO of player talents.
-     */
-    public PlayerTalentDao getPlayerTalentDao() {
-        return mPlayerTalentDao;
     }
 
     /**
@@ -175,10 +111,6 @@ public class Database {
         mDbHelper = new DatabaseHelper(mContext);
         SQLiteDatabase db = mDbHelper.getWritableDatabase();
 
-        mPlayerCharacteristic = new PlayerCharacteristicDao(db);
-        mPlayerSkillDao = new PlayerSkillDao(db);
-        mPlayerSpecializationDao = new PlayerSpecializationDao(db);
-        mPlayerTalentDao = new PlayerTalentDao(db);
         mItemDao = new ItemDao(db);
         mHandDao = new HandDao(db);
         mPlayerDao = new PlayerDao(db);
@@ -213,10 +145,6 @@ public class Database {
         public void onCreate(SQLiteDatabase db) {
             db.execSQL(IHandEntryConstants.SQL_CREATE_ENTRIES);
 
-            db.execSQL(IPlayerCharacteristicEntryConstants.SQL_CREATE_ENTRIES);
-            db.execSQL(IPlayerSkillEntryConstants.SQL_CREATE_ENTRIES);
-            db.execSQL(IPlayerSpecializationEntryConstants.SQL_CREATE_ENTRIES);
-            db.execSQL(IPlayerTalentEntryConstants.SQL_CREATE_ENTRIES);
             db.execSQL(IPlayerEntryConstants.SQL_CREATE_ENTRIES);
             db.execSQL(IItemEntryConstants.SQL_CREATE_ENTRIES);
         }
@@ -225,10 +153,6 @@ public class Database {
         public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
             db.execSQL(IHandEntryConstants.SQL_DELETE_ENTRIES);
 
-            db.execSQL(IPlayerCharacteristicEntryConstants.SQL_DELETE_ENTRIES);
-            db.execSQL(IPlayerSkillEntryConstants.SQL_DELETE_ENTRIES);
-            db.execSQL(IPlayerSpecializationEntryConstants.SQL_DELETE_ENTRIES);
-            db.execSQL(IPlayerTalentEntryConstants.SQL_DELETE_ENTRIES);
             db.execSQL(IPlayerEntryConstants.SQL_DELETE_ENTRIES);
             db.execSQL(IItemEntryConstants.SQL_DELETE_ENTRIES);
 

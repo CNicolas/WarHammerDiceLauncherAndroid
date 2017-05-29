@@ -20,11 +20,6 @@ public class PlayerSkill extends BaseObservable implements Serializable {
     private final Skill skill;
 
     /**
-     * Id of the associated player.
-     */
-    private long playerId;
-
-    /**
      * Level of the associated skill.
      */
     private int level;
@@ -38,38 +33,21 @@ public class PlayerSkill extends BaseObservable implements Serializable {
     /**
      * Constructor without skill level.
      *
-     * @param skill  Associated skill.
-     * @param player Associated player.
+     * @param skill Associated skill.
      */
-    public PlayerSkill(Skill skill, Player player) {
+    public PlayerSkill(Skill skill) {
         this.skill = skill;
-        this.playerId = player.getId();
         this.level = 0;
     }
 
     /**
      * Constructor with skill level.
      *
-     * @param skill    Associated skill.
-     * @param playerId Id of the associated player.
-     * @param level    Level of the associated skill.
+     * @param skill Associated skill.
+     * @param level Level of the associated skill.
      */
-    public PlayerSkill(Skill skill, long playerId, int level) {
+    public PlayerSkill(Skill skill, int level) {
         this.skill = skill;
-        this.playerId = playerId;
-        this.level = level;
-    }
-
-    /**
-     * Constructor with skill level.
-     *
-     * @param skill  Associated skill.
-     * @param player Associated player.
-     * @param level  Level of the associated skill.
-     */
-    public PlayerSkill(Skill skill, Player player, int level) {
-        this.skill = skill;
-        this.playerId = player.getId();
         this.level = level;
     }
 
@@ -79,14 +57,6 @@ public class PlayerSkill extends BaseObservable implements Serializable {
 
     public Skill getSkill() {
         return skill;
-    }
-
-    public long getPlayerId() {
-        return playerId;
-    }
-
-    public void setPlayerId(long playerId) {
-        this.playerId = playerId;
     }
 
     public int getLevel() {
@@ -111,7 +81,7 @@ public class PlayerSkill extends BaseObservable implements Serializable {
 
     @Override
     public String toString() {
-        return "PlayerSkill [" + "skillId=" + skill.getId() + ", " + "playerId=" + playerId + ", " + "level=" + level + "]";
+        return "PlayerSkill [" + "skillId=" + skill.getId() + ", " + "level=" + level + "]";
     }
 
     //endregion

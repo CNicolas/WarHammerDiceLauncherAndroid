@@ -21,6 +21,10 @@ public abstract class PlayerHelper {
             return;
         }
 
+        long time = System.currentTimeMillis();
+        String playerJson = GsonHelper.getInstance().toJson(player);
+        Log.i("PLAYER", "Conversion to json : " + (System.currentTimeMillis() - time));
+
         if (player.getId() == 0) {
             WHFRP3Application.getDatabase().getPlayerDao().insert(player);
         } else {

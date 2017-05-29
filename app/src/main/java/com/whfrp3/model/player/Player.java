@@ -73,12 +73,7 @@ public class Player extends AbstractModel {
     private List<PlayerSpecialization> playerSpecializations;
     private List<PlayerTalent> playerTalents;
 
-    /**
-     * List of the item to remove of the DB.
-     */
-    private final List<Long> mItemToRemove = new ArrayList<>();
-
-    private boolean mInEdition;
+    private transient boolean mInEdition;
 
     //endregion
 
@@ -94,14 +89,14 @@ public class Player extends AbstractModel {
 
         // Initialize characteristics list
         for (Characteristic characteristic : Characteristic.values()) {
-            characteristics.put(characteristic, new PlayerCharacteristic(characteristic, this.getId()));
+            characteristics.put(characteristic, new PlayerCharacteristic(characteristic));
         }
 
         // Initialize playerSkills list
         // TODO : modifier l'emplacement de l'initialisation des compétences de base
         List<Skill> basicSkills = SkillHelper.getInstance().getSkillsByType(SkillType.BASIC);
         for (Skill basicSkill : basicSkills) {
-            playerSkills.add(new PlayerSkill(basicSkill, this, 0));
+            playerSkills.add(new PlayerSkill(basicSkill, 0));
         }
     }
     //endregion
@@ -298,7 +293,6 @@ public class Player extends AbstractModel {
     public void removeItem(Item item) {
         if (item != null) {
             inventory.remove(item);
-            mItemToRemove.add(item.getId());
         }
     }
 
@@ -659,10 +653,6 @@ public class Player extends AbstractModel {
         this.playerTalents = playerTalents;
     }
 
-    public List<Long> getItemToRemove() {
-        return mItemToRemove;
-    }
-
     public PlayerCharacteristic getCharacteristic(Characteristic characteristic) {
         return characteristics.get(characteristic);
     }
@@ -747,8 +737,8 @@ public class Player extends AbstractModel {
             return false;
         if (playerTalents != null ? !playerTalents.equals(player.playerTalents) : player.playerTalents != null)
             return false;
-        return mItemToRemove != null ? mItemToRemove.equals(player.mItemToRemove) : player.mItemToRemove == null;
 
+        return true;
     }
 
     @Override

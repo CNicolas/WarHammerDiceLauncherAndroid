@@ -20,11 +20,6 @@ public class PlayerCharacteristic extends BaseObservable implements Serializable
     private final Characteristic characteristic;
 
     /**
-     * Id of the associated player.
-     */
-    private long playerId;
-
-    /**
      * Value of the characteristic.
      */
     private int value;
@@ -42,11 +37,9 @@ public class PlayerCharacteristic extends BaseObservable implements Serializable
      * Constructor without characteristic value.
      *
      * @param characteristic Characteristic.
-     * @param playerId       Id of the associated player.
      */
-    PlayerCharacteristic(Characteristic characteristic, long playerId) {
+    PlayerCharacteristic(Characteristic characteristic) {
         this.characteristic = characteristic;
-        this.playerId = playerId;
         this.value = 0;
         this.fortuneValue = 0;
     }
@@ -55,13 +48,11 @@ public class PlayerCharacteristic extends BaseObservable implements Serializable
      * Constructor with characteristic value.
      *
      * @param characteristic Characteristic.
-     * @param playerId       Id of the associated player.
      * @param value          Value of the characteristic.
      * @param fortuneValue   Fortune value of the characteristic.
      */
-    public PlayerCharacteristic(Characteristic characteristic, long playerId, int value, int fortuneValue) {
+    public PlayerCharacteristic(Characteristic characteristic, int value, int fortuneValue) {
         this.characteristic = characteristic;
-        this.playerId = playerId;
         this.value = value;
         this.fortuneValue = fortuneValue;
     }
@@ -72,14 +63,6 @@ public class PlayerCharacteristic extends BaseObservable implements Serializable
 
     public Characteristic getCharacteristic() {
         return characteristic;
-    }
-
-    public long getPlayerId() {
-        return playerId;
-    }
-
-    public void setPlayerId(long playerId) {
-        this.playerId = playerId;
     }
 
     public int getValue() {
@@ -113,7 +96,6 @@ public class PlayerCharacteristic extends BaseObservable implements Serializable
     @Override
     public String toString() {
         return "PlayerCharacteristic [" + "characteristic=" + characteristic.toString() + ", " +
-                "playerId=" + playerId + ", " +
                 "value=" + value + ", " +
                 "fortuneValue=" + fortuneValue +
                 "]";
