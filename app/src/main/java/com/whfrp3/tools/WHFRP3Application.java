@@ -78,6 +78,7 @@ public class WHFRP3Application extends Application {
 
     public static void initEmptyPlayer() {
         mPlayer = new Player();
+        mPlayer.initPlayer();
     }
 
     public static void setPlayer(Player player) {

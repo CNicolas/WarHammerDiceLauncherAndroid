@@ -11,7 +11,7 @@ import android.widget.TextView;
 import com.whfrp3.R;
 import com.whfrp3.databinding.ElementListSkillBinding;
 import com.whfrp3.ihm.listeners.SkillsHandlers;
-import com.whfrp3.model.skills.Skill;
+import com.whfrp3.model.Skill;
 import com.whfrp3.tools.WHFRP3Application;
 
 import java.util.ArrayList;
@@ -42,7 +42,7 @@ public class SkillsSeparatedListAdapter extends BaseAdapter {
     }
 
     private void addSectionHeaderItem(final String item) {
-        mSkills.add(new Skill(0, item, null, null));
+        mSkills.add(new Skill());
         sectionHeader.add(mSkills.size() - 1);
     }
 

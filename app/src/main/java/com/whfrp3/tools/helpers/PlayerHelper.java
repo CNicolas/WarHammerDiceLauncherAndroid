@@ -21,17 +21,13 @@ public abstract class PlayerHelper {
             return;
         }
 
-        long time = System.currentTimeMillis();
-        String playerJson = GsonHelper.getInstance().toJson(player);
-        Log.i("PLAYER", "Conversion to json : " + (System.currentTimeMillis() - time));
-
         if (player.getId() == 0) {
             WHFRP3Application.getDatabase().getPlayerDao().insert(player);
         } else {
             WHFRP3Application.getDatabase().getPlayerDao().update(player);
         }
 
-        Log.e("Player Context UPDATE", player.toString());
+        Log.i("Player Context UPDATE", player.toString());
     }
 
     public static void changeStress(Player player, int change) {
@@ -73,9 +69,9 @@ public abstract class PlayerHelper {
     public static void notifySkillBinding() {
         Player player = WHFRP3Application.getPlayer();
 
-        player.notifyPropertyChanged(BR.playerSkill);
-        player.notifyPropertyChanged(BR.playerSkills);
-        player.notifyPropertyChanged(BR.playerSpecializations);
+        //player.notifyPropertyChanged(BR.playerSkill);
+        player.notifyPropertyChanged(BR.skills);
+        player.notifyPropertyChanged(BR.specializations);
         player.notifyPropertyChanged(BR.specialization);
         player.notifyPropertyChanged(BR.specialized);
         player.notifyPropertyChanged(BR.skill);
@@ -84,8 +80,8 @@ public abstract class PlayerHelper {
     public static void notifyTalentBinding() {
         Player player = WHFRP3Application.getPlayer();
 
-        player.notifyPropertyChanged(BR.playerTalent);
-        player.notifyPropertyChanged(BR.playerTalents);
+        //player.notifyPropertyChanged(BR.playerTalent);
+        player.notifyPropertyChanged(BR.talents);
         player.notifyPropertyChanged(BR.exhausted);
         player.notifyPropertyChanged(BR.equipped);
     }

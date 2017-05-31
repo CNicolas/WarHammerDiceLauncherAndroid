@@ -9,8 +9,8 @@ import com.whfrp3.R;
 import com.whfrp3.model.enums.CooldownType;
 import com.whfrp3.model.enums.TalentType;
 import com.whfrp3.model.player.Player;
-import com.whfrp3.model.talents.Talent;
-import com.whfrp3.model.talents.TalentSearchFields;
+import com.whfrp3.model.Talent;
+import com.whfrp3.ihm.model.TalentSearchFields;
 import com.whfrp3.tools.WHFRP3Application;
 
 import org.jetbrains.annotations.Contract;

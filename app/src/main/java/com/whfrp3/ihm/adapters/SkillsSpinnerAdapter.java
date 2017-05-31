@@ -9,7 +9,7 @@ import android.widget.ArrayAdapter;
 
 import com.whfrp3.R;
 import com.whfrp3.databinding.ElementSpinnerSkillsBinding;
-import com.whfrp3.model.skills.Skill;
+import com.whfrp3.model.Skill;
 
 import java.util.List;
 

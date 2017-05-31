@@ -14,7 +14,7 @@ import com.whfrp3.R;
 import com.whfrp3.ihm.adapters.TalentsListAdapter;
 import com.whfrp3.ihm.fragments.dialog.TalentSearchDialogFragment;
 import com.whfrp3.model.enums.TalentType;
-import com.whfrp3.model.talents.Talent;
+import com.whfrp3.model.Talent;
 import com.whfrp3.tools.WHFRP3Application;
 import com.whfrp3.tools.constants.IMainConstants;
 import com.whfrp3.tools.constants.IPlayerActivityConstants;

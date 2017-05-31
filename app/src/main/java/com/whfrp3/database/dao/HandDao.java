@@ -13,7 +13,7 @@ import java.util.List;
 /**
  * DAO of hands.
  */
-public class HandDao extends AbstractDaoWithId<Hand> implements IHandEntryConstants {
+public class HandDao extends AbstractDao<Hand> implements IHandEntryConstants {
 
     //region Constructor
 
@@ -50,6 +50,29 @@ public class HandDao extends AbstractDaoWithId<Hand> implements IHandEntryConsta
     }
 
     //endregion
+
+    @Override
+    public void insert(Hand model) {
+        ContentValues values = contentValuesFromModel(model);
+
+        long newId = mDatabase.insert(mTableName, null, values);
+
+        model.setId(newId);
+    }
+
+    @Override
+    public void update(Hand model) {
+        ContentValues values = contentValuesFromModel(model);
+        String[] filters = {String.valueOf(model.getId())};
+
+        mDatabase.update(mTableName, values, String.format("%s = ?", COLUMN_ID), filters);
+    }
+
+    public void delete(long handId) {
+        String[] filters = {String.valueOf(handId)};
+
+        mDatabase.delete(mTableName, String.format("%s = ?", COLUMN_ID), filters);
+    }
 
     //region Protected methods
 

@@ -5,7 +5,7 @@
 
         <variable
             name="specialization"
-            type="com.whfrp3.model.skills.Specialization" />
+            type="com.whfrp3.model.Specialization" />
 
         <import type="com.whfrp3.tools.BindingUtils" />
     </data>

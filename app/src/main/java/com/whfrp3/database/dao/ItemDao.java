@@ -19,7 +19,7 @@ import java.util.List;
 /**
  * DAO of items.
  */
-public class ItemDao extends AbstractDaoWithId<Item> implements IItemEntryConstants {
+public class ItemDao extends AbstractDao<Item> implements IItemEntryConstants {
 
     //region Constructor
 
@@ -41,6 +41,29 @@ public class ItemDao extends AbstractDaoWithId<Item> implements IItemEntryConsta
     }
 
     //endregion
+
+    @Override
+    public void insert(Item model) {
+        ContentValues values = contentValuesFromModel(model);
+
+        long newId = mDatabase.insert(mTableName, null, values);
+
+        model.setId(newId);
+    }
+
+    @Override
+    public void update(Item model) {
+        ContentValues values = contentValuesFromModel(model);
+        String[] filters = {String.valueOf(model.getId())};
+
+        mDatabase.update(mTableName, values, String.format("%s = ?", COLUMN_ID), filters);
+    }
+
+    public void delete(long itemId) {
+        String[] filters = {String.valueOf(itemId)};
+
+        mDatabase.delete(mTableName, String.format("%s = ?", COLUMN_ID), filters);
+    }
 
     //region Protected methods
 

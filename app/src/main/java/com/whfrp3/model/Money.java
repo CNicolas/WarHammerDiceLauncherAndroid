@@ -1,6 +1,8 @@
-package com.whfrp3.model.player;
+package com.whfrp3.model;
 
 import com.whfrp3.model.enums.MoneyType;
+
+import org.apache.commons.lang3.builder.ToStringBuilder;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -99,15 +101,6 @@ public class Money {
 
     @Override
     public String toString() {
-        StringBuilder sb = new StringBuilder("Money [");
-        Set<MoneyType> keys = amounts.keySet();
-        for (MoneyType type : keys) {
-            sb.append(type.toString());
-            sb.append("=");
-            sb.append(amounts.get(type));
-            sb.append(",");
-        }
-
-        return sb.toString();
+        return ToStringBuilder.reflectionToString(this);
     }
 }

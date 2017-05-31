@@ -1,38 +1,12 @@
-package com.whfrp3.model.skills;
+package com.whfrp3.ihm.model;
 
-import com.whfrp3.model.AbstractModel;
+import com.whfrp3.model.enums.Characteristic;
+import com.whfrp3.model.Skill;
 
-/**
- * The specialization model.
- */
-public class Specialization extends AbstractModel {
-
-    //region Properties
-
-    /**
-     * Specialization name.
-     */
+public class SpecializationSearchFields {
     private String name;
-
-    /**
-     * Associated skill.
-     */
     private Skill skill;
-
-    //endregion
-
-    //region Constructor
-
-    /**
-     * Default constructor.
-     */
-    public Specialization() {
-
-    }
-
-    //endregion
-
-    //region Get & Set
+    private Characteristic characteristic;
 
     public String getName() {
         return name;
@@ -50,12 +24,18 @@ public class Specialization extends AbstractModel {
         this.skill = skill;
     }
 
-    //endregion
+    public Characteristic getCharacteristic() {
+        return characteristic;
+    }
+
+    public void setCharacteristic(Characteristic characteristic) {
+        this.characteristic = characteristic;
+    }
 
     //region Overrides
     @Override
     public String toString() {
-        return "Specialization{" + "name='" + name + '\'' + ", skill=" + skill + '}';
+        return "SpecializationSearchFields{" + "name='" + name + '\'' + ", skill=" + skill + ", characteristic=" + characteristic + '}';
     }
 
     @Override
@@ -63,11 +43,13 @@ public class Specialization extends AbstractModel {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
 
-        Specialization that = (Specialization) o;
+        SpecializationSearchFields that = (SpecializationSearchFields) o;
 
         if (getName() != null ? !getName().equals(that.getName()) : that.getName() != null)
             return false;
-        return getSkill() != null ? getSkill().equals(that.getSkill()) : that.getSkill() == null;
+        if (getSkill() != null ? !getSkill().equals(that.getSkill()) : that.getSkill() != null)
+            return false;
+        return getCharacteristic() == that.getCharacteristic();
 
     }
 
@@ -75,6 +57,7 @@ public class Specialization extends AbstractModel {
     public int hashCode() {
         int result = getName() != null ? getName().hashCode() : 0;
         result = 31 * result + (getSkill() != null ? getSkill().hashCode() : 0);
+        result = 31 * result + (getCharacteristic() != null ? getCharacteristic().hashCode() : 0);
         return result;
     }
     //endregion

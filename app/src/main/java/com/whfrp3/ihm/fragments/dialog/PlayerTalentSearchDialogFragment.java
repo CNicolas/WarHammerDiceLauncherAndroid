@@ -12,7 +12,7 @@ import android.view.LayoutInflater;
 import com.whfrp3.R;
 import com.whfrp3.databinding.DialogTalentSearchBinding;
 import com.whfrp3.ihm.activities.TalentsActivity;
-import com.whfrp3.model.talents.Talent;
+import com.whfrp3.model.Talent;
 import com.whfrp3.notification.ToastNotification;
 import com.whfrp3.tools.WHFRP3Application;
 import com.whfrp3.tools.constants.IMainConstants;

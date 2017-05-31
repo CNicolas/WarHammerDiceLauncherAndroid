@@ -10,7 +10,7 @@ import android.widget.ArrayAdapter;
 import com.whfrp3.R;
 import com.whfrp3.databinding.ElementListTalentBinding;
 import com.whfrp3.ihm.listeners.TalentsHandlers;
-import com.whfrp3.model.talents.Talent;
+import com.whfrp3.model.Talent;
 
 import java.util.List;
 

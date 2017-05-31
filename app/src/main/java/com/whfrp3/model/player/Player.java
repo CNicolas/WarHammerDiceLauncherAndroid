@@ -1,6 +1,7 @@
 package com.whfrp3.model.player;
 
 import android.content.Context;
+import android.databinding.BaseObservable;
 import android.databinding.Bindable;
 import android.databinding.ObservableArrayList;
 import android.databinding.ObservableList;
@@ -8,7 +9,8 @@ import android.support.v4.content.ContextCompat;
 
 import com.whfrp3.BR;
 import com.whfrp3.R;
-import com.whfrp3.model.AbstractModel;
+import com.whfrp3.model.Career;
+import com.whfrp3.model.Money;
 import com.whfrp3.model.enums.Characteristic;
 import com.whfrp3.model.enums.Race;
 import com.whfrp3.model.enums.SkillType;
@@ -18,12 +20,14 @@ import com.whfrp3.model.player.inventory.ItemType;
 import com.whfrp3.model.player.inventory.Range;
 import com.whfrp3.model.player.inventory.UsableItem;
 import com.whfrp3.model.player.inventory.Weapon;
-import com.whfrp3.model.skills.Skill;
-import com.whfrp3.model.skills.Specialization;
-import com.whfrp3.model.talents.Talent;
+import com.whfrp3.model.Skill;
+import com.whfrp3.model.Specialization;
+import com.whfrp3.model.Talent;
 import com.whfrp3.tools.WHFRP3Application;
 import com.whfrp3.tools.helpers.SkillHelper;
 import com.whfrp3.tools.helpers.SpecializationHelper;
+
+import org.apache.commons.lang3.builder.ToStringBuilder;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -33,7 +37,7 @@ import java.util.Map;
 /**
  * The Player model.
  */
-public class Player extends AbstractModel {
+public class Player extends BaseObservable {
 
     //region Constants
     private static final int ENCUMBRANCE_BASE = 0;
@@ -43,7 +47,9 @@ public class Player extends AbstractModel {
     private static final int ENCUMBRANCE_OVERLOAD_TO_MAX = 5;
     //endregion
 
-    //region Fields
+    //region Properties
+
+    private long id;
     private String name;
     private Race race;
     private int age;
@@ -67,11 +73,14 @@ public class Player extends AbstractModel {
 
     private Map<Characteristic, PlayerCharacteristic> characteristics;
     private Money money;
-    private List<Item> inventory;
 
-    private List<PlayerSkill> playerSkills;
-    private List<PlayerSpecialization> playerSpecializations;
-    private List<PlayerTalent> playerTalents;
+    private List<PlayerCareer> careers;
+    private List<PlayerAction> actions;
+    private List<PlayerSkill> skills;
+    private List<PlayerSpecialization> specializations;
+    private List<PlayerTalent> talents;
+
+    private List<Item> inventory;
 
     private transient boolean mInEdition;
 
@@ -79,27 +88,62 @@ public class Player extends AbstractModel {
 
     //region Constructors
     public Player() {
+
+    }
+    //endregion
+
+    /**
+     * Initialize player basics values.
+     */
+    public void initPlayer() {
         characteristics = new HashMap<>();
         money = new Money(0, 0, 0);
-        inventory = new ArrayList<>();
 
-        playerSkills = new ArrayList<>();
-        playerSpecializations = new ArrayList<>();
-        playerTalents = new ArrayList<>();
+        careers = new ArrayList<>();
+        actions = new ArrayList<>();
+        skills = new ArrayList<>();
+        specializations = new ArrayList<>();
+        talents = new ArrayList<>();
+
+        inventory = new ArrayList<>();
 
         // Initialize characteristics list
         for (Characteristic characteristic : Characteristic.values()) {
             characteristics.put(characteristic, new PlayerCharacteristic(characteristic));
         }
 
-        // Initialize playerSkills list
+        // Initialize skills list
         // TODO : modifier l'emplacement de l'initialisation des compétences de base
         List<Skill> basicSkills = SkillHelper.getInstance().getSkillsByType(SkillType.BASIC);
         for (Skill basicSkill : basicSkills) {
-            playerSkills.add(new PlayerSkill(basicSkill, 0));
+            skills.add(new PlayerSkill(basicSkill, 0));
         }
     }
-    //endregion
+
+    /**
+     * Fill transient fields after an unserialization.
+     */
+    public void fillTransientFields() {
+        for (PlayerCareer career : careers) {
+            career.fillTransientFields();
+        }
+
+        for (PlayerAction action : actions) {
+            action.fillTransientFields();
+        }
+
+        for (PlayerSkill skill : skills) {
+            skill.fillTransientFields();
+        }
+
+        for (PlayerSpecialization specialization : specializations) {
+            specialization.fillTransientFields();
+        }
+
+        for (PlayerTalent talent : talents) {
+            talent.fillTransientFields();
+        }
+    }
 
     //region Inventory Management
     //region Armor
@@ -352,8 +396,8 @@ public class Player extends AbstractModel {
         int indexOfSpecialization = hasSpecialization(specialization);
 
         if (indexOfSpecialization == -1) {
-            PlayerSpecialization playerSpecialization = new PlayerSpecialization(specialization, this);
-            playerSpecializations.add(playerSpecialization);
+            PlayerSpecialization playerSpecialization = new PlayerSpecialization(specialization);
+            specializations.add(playerSpecialization);
         }
     }
 
@@ -361,7 +405,7 @@ public class Player extends AbstractModel {
         int indexOfSpecialization = hasSpecialization(specialization);
 
         if (indexOfSpecialization > -1) {
-            playerSpecializations.remove(playerSpecializations.get(indexOfSpecialization));
+            specializations.remove(specializations.get(indexOfSpecialization));
         }
     }
 
@@ -377,8 +421,8 @@ public class Player extends AbstractModel {
     }
 
     public int hasSpecialization(Specialization specialization) {
-        for (int i = 0; i < playerSpecializations.size(); i++) {
-            if (playerSpecializations.get(i).getSpecialization().equals(specialization)) {
+        for (int i = 0; i < specializations.size(); i++) {
+            if (specializations.get(i).getSpecialization().equals(specialization)) {
                 return i;
             }
         }
@@ -391,14 +435,14 @@ public class Player extends AbstractModel {
         int indexOfTalent = hasTalent(talent);
 
         if (indexOfTalent == -1) {
-            PlayerTalent playerTalent = new PlayerTalent(talent, getId());
-            getPlayerTalents().add(playerTalent);
+            PlayerTalent playerTalent = new PlayerTalent(talent);
+            getTalents().add(playerTalent);
         }
     }
 
     public int hasTalent(Talent talent) {
-        for (int i = 0; i < getPlayerTalents().size(); i++) {
-            if (getPlayerTalents().get(i).getTalent().equals(talent)) {
+        for (int i = 0; i < getTalents().size(); i++) {
+            if (getTalents().get(i).getTalent().equals(talent)) {
                 return i;
             }
         }
@@ -409,10 +453,10 @@ public class Player extends AbstractModel {
         int indexOfTalent = hasTalent(talent);
 
         if (indexOfTalent > -1) {
-            playerTalents.remove(playerTalents.get(indexOfTalent));
+            talents.remove(talents.get(indexOfTalent));
         }
 
-        notifyPropertyChanged(BR.playerTalents);
+        notifyPropertyChanged(BR.talents);
     }
     //endregion
 
@@ -438,6 +482,16 @@ public class Player extends AbstractModel {
     }
 
     //region Get & Set
+
+
+    public long getId() {
+        return id;
+    }
+
+    public void setId(long id) {
+        this.id = id;
+    }
+
     public String getName() {
         return name;
     }
@@ -627,30 +681,30 @@ public class Player extends AbstractModel {
     }
 
     @Bindable
-    public List<PlayerSkill> getPlayerSkills() {
-        return playerSkills;
+    public List<PlayerSkill> getSkills() {
+        return skills;
     }
 
-    public void setPlayerSkills(List<PlayerSkill> playerSkills) {
-        this.playerSkills = playerSkills;
-    }
-
-    @Bindable
-    public List<PlayerSpecialization> getPlayerSpecializations() {
-        return playerSpecializations;
-    }
-
-    public void setPlayerSpecializations(List<PlayerSpecialization> playerSpecializations) {
-        this.playerSpecializations = playerSpecializations;
+    public void setSkills(List<PlayerSkill> skills) {
+        this.skills = skills;
     }
 
     @Bindable
-    public List<PlayerTalent> getPlayerTalents() {
-        return playerTalents;
+    public List<PlayerSpecialization> getSpecializations() {
+        return specializations;
     }
 
-    public void setPlayerTalents(List<PlayerTalent> playerTalents) {
-        this.playerTalents = playerTalents;
+    public void setSpecializations(List<PlayerSpecialization> specializations) {
+        this.specializations = specializations;
+    }
+
+    @Bindable
+    public List<PlayerTalent> getTalents() {
+        return talents;
+    }
+
+    public void setTalents(List<PlayerTalent> talents) {
+        this.talents = talents;
     }
 
     public PlayerCharacteristic getCharacteristic(Characteristic characteristic) {
@@ -670,102 +724,10 @@ public class Player extends AbstractModel {
     //endregion
 
     //region Overrides
+
     @Override
     public String toString() {
-        return "Player{" +
-                "id=" + id +
-                ", name='" + name + '\'' +
-                ", race='" + race + '\'' +
-                ", age=" + age +
-                ", size=" + size +
-                ", description='" + description + '\'' +
-                ", career='" + career + '\'' +
-                ", rank=" + rank +
-                ", experience=" + experience +
-                ", max_experience=" + max_experience +
-                ", wounds=" + wounds +
-                ", max_wounds=" + max_wounds +
-                ", corruption=" + corruption +
-                ", max_corruption=" + max_corruption +
-                ", reckless=" + reckless +
-                ", max_reckless=" + max_reckless +
-                ", conservative=" + conservative +
-                ", max_conservative=" + max_conservative +
-                ", money=" + money.toString() +
-                ", characteristics=" + characteristics +
-                ", inventory=" + inventory +
-                ", playerSkills=" + playerSkills +
-                '}';
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-
-        Player player = (Player) o;
-
-        if (age != player.age) return false;
-        if (size != player.size) return false;
-        if (rank != player.rank) return false;
-        if (experience != player.experience) return false;
-        if (max_experience != player.max_experience) return false;
-        if (wounds != player.wounds) return false;
-        if (max_wounds != player.max_wounds) return false;
-        if (corruption != player.corruption) return false;
-        if (max_corruption != player.max_corruption) return false;
-        if (reckless != player.reckless) return false;
-        if (max_reckless != player.max_reckless) return false;
-        if (conservative != player.conservative) return false;
-        if (max_conservative != player.max_conservative) return false;
-        if (stress != player.stress) return false;
-        if (exertion != player.exertion) return false;
-        if (mInEdition != player.mInEdition) return false;
-        if (name != null ? !name.equals(player.name) : player.name != null) return false;
-        if (race != player.race) return false;
-        if (description != null ? !description.equals(player.description) : player.description != null)
-            return false;
-        if (career != null ? !career.equals(player.career) : player.career != null) return false;
-        if (characteristics != null ? !characteristics.equals(player.characteristics) : player.characteristics != null)
-            return false;
-        if (money != null ? !money.equals(player.money) : player.money != null) return false;
-        if (inventory != null ? !inventory.equals(player.inventory) : player.inventory != null)
-            return false;
-        if (playerSkills != null ? !playerSkills.equals(player.playerSkills) : player.playerSkills != null)
-            return false;
-        if (playerSpecializations != null ? !playerSpecializations.equals(player.playerSpecializations) : player.playerSpecializations != null)
-            return false;
-        if (playerTalents != null ? !playerTalents.equals(player.playerTalents) : player.playerTalents != null)
-            return false;
-
-        return true;
-    }
-
-    @Override
-    public int hashCode() {
-        int result;
-        long temp;
-        result = (getName() != null ? getName().hashCode() : 0);
-        result = 31 * result + (getRace() != null ? getRace().hashCode() : 0);
-        result = 31 * result + getAge();
-        temp = Double.doubleToLongBits(getSize());
-        result = 31 * result + (int) (temp ^ (temp >>> 32));
-        result = 31 * result + (getDescription() != null ? getDescription().hashCode() : 0);
-        result = 31 * result + (getCareer() != null ? getCareer().hashCode() : 0);
-        result = 31 * result + getRank();
-        result = 31 * result + getExperience();
-        result = 31 * result + getMax_experience();
-        result = 31 * result + getWounds();
-        result = 31 * result + getMax_wounds();
-        result = 31 * result + getCorruption();
-        result = 31 * result + getMax_corruption();
-        result = 31 * result + getReckless();
-        result = 31 * result + getMax_reckless();
-        result = 31 * result + getConservative();
-        result = 31 * result + getMax_conservative();
-        result = 31 * result + (getInventory() != null ? getInventory().hashCode() : 0);
-        result = 31 * result + (getPlayerSkills() != null ? getPlayerSkills().hashCode() : 0);
-        return result;
+        return ToStringBuilder.reflectionToString(this);
     }
 
     //endregion

@@ -14,7 +14,7 @@ import android.widget.ListView;
 import com.whfrp3.R;
 import com.whfrp3.ihm.adapters.SpecializationsListAdapter;
 import com.whfrp3.ihm.fragments.dialog.SpecializationSearchDialogFragment;
-import com.whfrp3.model.skills.Specialization;
+import com.whfrp3.model.Specialization;
 import com.whfrp3.tools.BindingUtils;
 import com.whfrp3.tools.helpers.SpecializationHelper;
 

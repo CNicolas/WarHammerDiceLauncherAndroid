@@ -70,7 +70,7 @@ public abstract class BindingUtils {
         view.setAdapter(adapter);
     }
 
-    @BindingAdapter("playerTalents")
+    @BindingAdapter("talents")
     public static void bindPlayerTalents(ListView view, List<PlayerTalent> list) {
         LayoutInflater inflater = (LayoutInflater) WHFRP3Application.getAppContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 

@@ -7,7 +7,7 @@
 
         <variable
             name="skill"
-            type="com.whfrp3.model.skills.Skill" />
+            type="com.whfrp3.model.Skill" />
 
         <variable
             name="isNull"

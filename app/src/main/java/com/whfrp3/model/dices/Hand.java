@@ -1,14 +1,17 @@
 package com.whfrp3.model.dices;
 
+import android.databinding.BaseObservable;
 import android.databinding.Bindable;
 
 import com.whfrp3.BR;
-import com.whfrp3.model.AbstractModel;
+
+import java.io.Serializable;
 
 /**
  * The Hand of dices model.
  */
-public class Hand extends AbstractModel {
+public class Hand extends BaseObservable implements Serializable {
+    private long id;
     private String title;
     private int characteristic;
     private int reckless;
@@ -54,6 +57,14 @@ public class Hand extends AbstractModel {
     }
 
     //region Get & Set
+    public long getId() {
+        return id;
+    }
+
+    public void setId(long id) {
+        this.id = id;
+    }
+
     @Bindable
     public String getTitle() {
         return title;

@@ -7,7 +7,7 @@
 
         <variable
             name="talentSearch"
-            type="com.whfrp3.model.talents.TalentSearchFields" />
+            type="com.whfrp3.ihm.model.TalentSearchFields" />
     </data>
 
     <LinearLayout

@@ -1,15 +1,23 @@
-package com.whfrp3.model.talents;
+package com.whfrp3.model;
 
-import com.whfrp3.model.AbstractModel;
 import com.whfrp3.model.enums.CooldownType;
 import com.whfrp3.model.enums.TalentType;
+
+import org.apache.commons.lang3.builder.EqualsBuilder;
+import org.apache.commons.lang3.builder.HashCodeBuilder;
+import org.apache.commons.lang3.builder.ToStringBuilder;
 
 /**
  * Talent class.
  */
-public class Talent extends AbstractModel implements Comparable<Talent> {
+public class Talent implements Comparable<Talent> {
 
     //region Properties
+
+    /**
+     * Technical identifier.
+     */
+    private long id;
 
     /**
      * Name.
@@ -30,6 +38,7 @@ public class Talent extends AbstractModel implements Comparable<Talent> {
      * Cooldown type.
      */
     private CooldownType cooldown;
+
     //endregion
 
     //region Constructor
@@ -41,6 +50,14 @@ public class Talent extends AbstractModel implements Comparable<Talent> {
     //endregion
 
     //region Get & Set
+
+    public long getId() {
+        return id;
+    }
+
+    public void setId(long id) {
+        this.id = id;
+    }
 
     public String getName() {
         return name;
@@ -74,40 +91,38 @@ public class Talent extends AbstractModel implements Comparable<Talent> {
         this.cooldown = cooldown;
     }
 
+
     //endregion
+
+    //region Overrides
 
     @Override
     public String toString() {
-        return "Talent{" + "name='" + name + '\'' +
-                ", description='" + description + '\'' +
-                ", type=" + type +
-                ", cooldown=" + cooldown + '}';
+        return ToStringBuilder.reflectionToString(this);
     }
 
     @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
+    public boolean equals(Object obj) {
+        if (this == obj) return true;
+        if (obj == null || getClass() != obj.getClass()) return false;
 
-        Talent talent = (Talent) o;
+        Talent other = (Talent) obj;
 
-        if (name != null ? !name.equals(talent.name) : talent.name != null) return false;
-        if (description != null ? !description.equals(talent.description) : talent.description != null)
-            return false;
-        if (type != talent.type) return false;
-        return cooldown == talent.cooldown;
-
+        return new EqualsBuilder()
+                .append(id, other.id)
+                .isEquals();
     }
 
     @Override
     public int hashCode() {
-        int result = name != null ? name.hashCode() : 0;
-        result = 31 * result + (description != null ? description.hashCode() : 0);
-        result = 31 * result + (type != null ? type.hashCode() : 0);
-        result = 31 * result + (cooldown != null ? cooldown.hashCode() : 0);
-        return result;
+        return new HashCodeBuilder()
+                .append(id)
+                .append(name)
+                .append(description)
+                .append(type)
+                .append(cooldown)
+                .toHashCode();
     }
-
 
     @Override
     public int compareTo(Talent talent) {
@@ -117,4 +132,6 @@ public class Talent extends AbstractModel implements Comparable<Talent> {
         }
         return compared;
     }
+
+    //endregion
 }

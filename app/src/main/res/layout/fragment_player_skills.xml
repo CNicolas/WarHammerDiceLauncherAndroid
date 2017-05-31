@@ -18,7 +18,7 @@
         <ListView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            app:skills="@{player.playerSkills}"
+            app:skills="@{player.skills}"
             tools:listitem="@layout/element_list_player_skill" />
     </LinearLayout>
 </layout>

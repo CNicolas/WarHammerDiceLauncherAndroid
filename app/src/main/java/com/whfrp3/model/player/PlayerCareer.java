@@ -1,28 +1,32 @@
 package com.whfrp3.model.player;
 
-import com.whfrp3.model.Specialization;
-import com.whfrp3.tools.helpers.SpecializationHelper;
+import com.whfrp3.model.Career;
 
 import org.apache.commons.lang3.builder.EqualsBuilder;
 import org.apache.commons.lang3.builder.HashCodeBuilder;
 import org.apache.commons.lang3.builder.ToStringBuilder;
 
 /**
- * Specialization of a player.
+ * Career of a player
  */
-public class PlayerSpecialization {
+public class PlayerCareer {
 
     //region Properties
 
     /**
-     * Technical identifier of the associated specialization.
+     * Technical identifier of the associated career.
      */
-    private final long specializationId;
+    private final long careerId;
 
     /**
-     * Associated specialization.
+     * Associated career.
      */
-    private transient Specialization specialization;
+    private transient Career career;
+
+    /**
+     * Number of the career for the player.
+     */
+    private int number;
 
     //endregion
 
@@ -31,11 +35,13 @@ public class PlayerSpecialization {
     /**
      * Constructor.
      *
-     * @param specialization Associated specialization.
+     * @param career Associated career.
+     * @param number Number of the career for the player.
      */
-    public PlayerSpecialization(Specialization specialization) {
-        this.specializationId = specialization.getId();
-        this.specialization = specialization;
+    public PlayerCareer(Career career, int number) {
+        this.careerId = career.getId();
+        this.career = career;
+        this.number = number;
     }
 
     //endregion
@@ -46,19 +52,27 @@ public class PlayerSpecialization {
      * Fill transient fields after an unserialization.
      */
     public void fillTransientFields() {
-        this.specialization = SpecializationHelper.getInstance().getSpecialization(specializationId);
+        // TODO : Create CareerHelper
     }
 
     //endregion
 
     //region Get & Set
 
-    public long getSpecializationId() {
-        return specializationId;
+    public long getCareerId() {
+        return careerId;
     }
 
-    public Specialization getSpecialization() {
-        return specialization;
+    public Career getCareer() {
+        return career;
+    }
+
+    public int getNumber() {
+        return number;
+    }
+
+    public void setNumber(int number) {
+        this.number = number;
     }
 
     //endregion
@@ -75,17 +89,17 @@ public class PlayerSpecialization {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
 
-        PlayerSpecialization other = (PlayerSpecialization) o;
+        PlayerCareer other = (PlayerCareer) o;
 
         return new EqualsBuilder()
-                .append(specializationId, other.specializationId)
+                .append(careerId, other.careerId)
                 .isEquals();
     }
 
     @Override
     public int hashCode() {
         return new HashCodeBuilder()
-                .append(specializationId)
+                .append(careerId)
                 .toHashCode();
     }
 

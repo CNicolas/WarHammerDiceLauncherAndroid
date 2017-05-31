@@ -4,38 +4,31 @@ import android.databinding.BaseObservable;
 import android.databinding.Bindable;
 
 import com.android.databinding.library.baseAdapters.BR;
-import com.whfrp3.model.enums.CooldownType;
-import com.whfrp3.model.Talent;
-import com.whfrp3.tools.helpers.TalentHelper;
+import com.whfrp3.model.Action;
 
 import org.apache.commons.lang3.builder.EqualsBuilder;
 import org.apache.commons.lang3.builder.HashCodeBuilder;
 import org.apache.commons.lang3.builder.ToStringBuilder;
 
 /**
- * Talent of a player.
+ * Action of a player.
  */
-public class PlayerTalent extends BaseObservable {
+public class PlayerAction extends BaseObservable {
 
     //region Properties
 
     /**
-     * Technical identifier of the associated talent.
+     * Technical identifier of the associated action.
      */
-    private final long talentId;
+    private final long actionId;
 
     /**
-     * Associated talent.
+     * Associated action.
      */
-    private transient Talent talent;
+    private transient Action action;
 
     /**
-     * Is talent equipped.
-     */
-    private boolean equipped;
-
-    /**
-     * Is talent exhausted.
+     * Is action exhausted.
      */
     private boolean exhausted;
 
@@ -46,11 +39,11 @@ public class PlayerTalent extends BaseObservable {
     /**
      * Constructor.
      *
-     * @param talent Associated talent.
+     * @param action Associated action.
      */
-    public PlayerTalent(Talent talent) {
-        this.talentId = talent.getId();
-        this.talent = talent;
+    public PlayerAction(Action action) {
+        this.actionId = action.getId();
+        this.action = action;
     }
 
     //endregion
@@ -61,45 +54,31 @@ public class PlayerTalent extends BaseObservable {
      * Fill transient fields after an unserialization.
      */
     public void fillTransientFields() {
-        this.talent = TalentHelper.getInstance().getTalentById(talentId);
-    }
-
-    public boolean isExhaustible() {
-        CooldownType cooldown = talent.getCooldown();
-        return cooldown != CooldownType.NO_COOLDOWN;
+        // TODO : Create ActionHelper
     }
 
     //endregion
 
     //region Get & Set
 
-    public long getTalentId() {
-        return talentId;
+    public long getActionId() {
+        return actionId;
     }
 
-    public Talent getTalent() {
-        return talent;
-    }
-
-    @Bindable
-    public boolean isEquipped() {
-        return equipped;
-    }
-
-    public void setEquipped(boolean equipped) {
-        this.equipped = equipped;
-        notifyPropertyChanged(BR.equipped);
+    public Action getAction() {
+        return action;
     }
 
     @Bindable
     public boolean isExhausted() {
-        return exhausted && isExhaustible();
+        return exhausted;
     }
 
     public void setExhausted(boolean exhausted) {
         this.exhausted = exhausted;
         notifyPropertyChanged(BR.exhausted);
     }
+
     //endregion
 
     //region Overrides
@@ -114,17 +93,17 @@ public class PlayerTalent extends BaseObservable {
         if (this == obj) return true;
         if (obj == null || getClass() != obj.getClass()) return false;
 
-        PlayerTalent other = (PlayerTalent) obj;
+        PlayerAction other = (PlayerAction) obj;
 
         return new EqualsBuilder()
-                .append(talentId, other.talentId)
+                .append(actionId, other.actionId)
                 .isEquals();
     }
 
     @Override
     public int hashCode() {
         return new HashCodeBuilder()
-                .append(talentId)
+                .append(actionId)
                 .toHashCode();
     }
 

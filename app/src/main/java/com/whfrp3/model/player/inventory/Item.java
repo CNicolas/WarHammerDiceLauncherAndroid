@@ -1,15 +1,23 @@
 package com.whfrp3.model.player.inventory;
 
+import android.databinding.BaseObservable;
 import android.databinding.Bindable;
 
-import com.whfrp3.model.AbstractModel;
 import com.whfrp3.model.player.Player;
+
+import java.io.Serializable;
 
 /**
  * Item's class.
  */
-public class Item extends AbstractModel {
+public class Item extends BaseObservable implements Serializable {
     //region Properties
+
+    /**
+     * Technical identifier.
+     */
+    private long id;
+
     /**
      * Item's name.
      */
@@ -93,6 +101,14 @@ public class Item extends AbstractModel {
     }
 
     //region Get & Set
+    public long getId() {
+        return id;
+    }
+
+    public void setId(long id) {
+        this.id = id;
+    }
+
     public String getName() {
         return name;
     }

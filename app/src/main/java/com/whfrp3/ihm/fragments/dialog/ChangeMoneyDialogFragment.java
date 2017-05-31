@@ -14,7 +14,7 @@ import com.whfrp3.R;
 import com.whfrp3.databinding.DialogMoneyBinding;
 import com.whfrp3.ihm.fragments.player.AdventureFragment;
 import com.whfrp3.model.enums.MoneyType;
-import com.whfrp3.model.player.Money;
+import com.whfrp3.model.Money;
 import com.whfrp3.tools.WHFRP3Application;
 
 /**

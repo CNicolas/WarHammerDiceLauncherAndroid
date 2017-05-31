@@ -5,6 +5,10 @@ import android.databinding.BaseObservable;
 import com.whfrp3.model.dices.Hand;
 import com.whfrp3.model.enums.Characteristic;
 
+import org.apache.commons.lang3.builder.EqualsBuilder;
+import org.apache.commons.lang3.builder.HashCodeBuilder;
+import org.apache.commons.lang3.builder.ToStringBuilder;
+
 import java.io.Serializable;
 
 /**
@@ -38,7 +42,7 @@ public class PlayerCharacteristic extends BaseObservable implements Serializable
      *
      * @param characteristic Characteristic.
      */
-    PlayerCharacteristic(Characteristic characteristic) {
+    public PlayerCharacteristic(Characteristic characteristic) {
         this.characteristic = characteristic;
         this.value = 0;
         this.fortuneValue = 0;
@@ -95,10 +99,26 @@ public class PlayerCharacteristic extends BaseObservable implements Serializable
 
     @Override
     public String toString() {
-        return "PlayerCharacteristic [" + "characteristic=" + characteristic.toString() + ", " +
-                "value=" + value + ", " +
-                "fortuneValue=" + fortuneValue +
-                "]";
+        return ToStringBuilder.reflectionToString(this);
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        PlayerCharacteristic other = (PlayerCharacteristic) o;
+
+        return new EqualsBuilder()
+                .append(characteristic, other.characteristic)
+                .isEquals();
+    }
+
+    @Override
+    public int hashCode() {
+        return new HashCodeBuilder()
+                .append(characteristic)
+                .toHashCode();
     }
 
     //endregion

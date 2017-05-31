@@ -12,7 +12,7 @@ import com.whfrp3.R;
 import com.whfrp3.databinding.ElementListPlayerTalentBinding;
 import com.whfrp3.ihm.listeners.PlayerTalentsHandlers;
 import com.whfrp3.model.player.PlayerTalent;
-import com.whfrp3.model.talents.Talent;
+import com.whfrp3.model.Talent;
 import com.whfrp3.tools.WHFRP3Application;
 
 import java.util.ArrayList;
@@ -45,7 +45,7 @@ public class PlayerTalentsSeparatedListAdapter extends BaseAdapter {
     private void addSectionHeaderItem(final String headerTitle) {
         Talent talent = new Talent();
         talent.setName(headerTitle);
-        mPlayerTalents.add(new PlayerTalent(talent, -1));
+        mPlayerTalents.add(new PlayerTalent(talent));
         sectionHeader.add(mPlayerTalents.size() - 1);
     }
 

@@ -1,9 +1,9 @@
-package com.whfrp3.model.talents;
+package com.whfrp3.ihm.model;
 
 import com.whfrp3.model.enums.Characteristic;
 import com.whfrp3.model.enums.CooldownType;
 import com.whfrp3.model.enums.TalentType;
-import com.whfrp3.model.skills.Skill;
+import com.whfrp3.model.Skill;
 
 public class TalentSearchFields {
     private String name;

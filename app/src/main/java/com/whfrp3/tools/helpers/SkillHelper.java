@@ -7,7 +7,7 @@ import android.util.LongSparseArray;
 import com.whfrp3.R;
 import com.whfrp3.model.enums.Characteristic;
 import com.whfrp3.model.enums.SkillType;
-import com.whfrp3.model.skills.Skill;
+import com.whfrp3.model.Skill;
 import com.whfrp3.tools.WHFRP3Application;
 
 import java.util.ArrayList;
@@ -99,7 +99,11 @@ public class SkillHelper {
                 } else if (eventType == XmlResourceParser.END_TAG) {
                     if (xmlParser.getName().equals(Skill.class.getSimpleName())
                             && skillId != null && skillName != null && skillCharacteristic != null) {
-                        Skill skill = new Skill(skillId, skillName, skillCharacteristic, skillType);
+                        Skill skill = new Skill();
+                        skill.setId(skillId);
+                        skill.setName(skillName);
+                        skill.setType(skillType);
+                        skill.setCharacteristic(skillCharacteristic);
 
                         skills.add(skill);
                         skillsById.put(skill.getId(), skill);
@@ -138,7 +142,12 @@ public class SkillHelper {
      * @return Skill with the given id.
      */
     public Skill getSkill(long id) {
-        return skillsById.get(id);
+        Skill skill = skillsById.get(id);
+        if (skill == null) {
+            Log.w("SKILL", "Skill not found [" + id + "]");
+        }
+
+        return skill;
     }
 
     /**
