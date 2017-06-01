@@ -11,7 +11,8 @@ import android.view.LayoutInflater;
 
 import com.whfrp3.R;
 import com.whfrp3.databinding.DialogItemBinding;
-import com.whfrp3.model.player.inventory.Item;
+import com.whfrp3.model.item.Item;
+import com.whfrp3.model.player.PlayerItem;
 
 /**
  * Fragment of the dialog used to display item's details.
@@ -21,7 +22,7 @@ public class ItemShowDialogFragment extends DialogFragment {
     /**
      * Item used by the dialog.
      */
-    private Item item;
+    private PlayerItem item;
 
     @NonNull
     @Override
@@ -36,7 +37,7 @@ public class ItemShowDialogFragment extends DialogFragment {
         binding.setItem(item);
 
         builder.setView(binding.getRoot());
-        builder.setTitle(item.getName());
+        builder.setTitle(item.getItem().getName());
         builder.setPositiveButton(R.string.ok, new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int id) {
@@ -54,7 +55,7 @@ public class ItemShowDialogFragment extends DialogFragment {
      * @param item Item used by the dialog.
      */
 
-    public void setItem(Item item) {
+    public void setItem(PlayerItem item) {
         this.item = item;
     }
 }

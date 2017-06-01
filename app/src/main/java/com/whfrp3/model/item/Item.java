@@ -1,9 +1,15 @@
-package com.whfrp3.model.player.inventory;
+package com.whfrp3.model.item;
 
 import android.databinding.BaseObservable;
 import android.databinding.Bindable;
 
+import com.whfrp3.model.enums.ItemQuality;
 import com.whfrp3.model.player.Player;
+import com.whfrp3.model.enums.ItemType;
+
+import org.apache.commons.lang3.builder.EqualsBuilder;
+import org.apache.commons.lang3.builder.HashCodeBuilder;
+import org.apache.commons.lang3.builder.ToStringBuilder;
 
 import java.io.Serializable;
 
@@ -34,24 +40,10 @@ public class Item extends BaseObservable implements Serializable {
     private int encumbrance;
 
     /**
-     * Item's quantity.
-     */
-    private int quantity;
-
-    /**
-     * Item's quality.
-     */
-    private Quality quality;
-
-    /**
      * Item's type.
      */
     private ItemType type;
 
-    /**
-     * Player's id linked with the item.
-     */
-    private long playerId;
     //endregion
 
     //region Constructors
@@ -64,30 +56,14 @@ public class Item extends BaseObservable implements Serializable {
     }
 
     /**
-     * Constructor with linked player.
+     * Constructor with item type.
      *
-     * @param player Player to link with the item.
+     * @param type Item type.
      */
-    Item(Player player) {
-        playerId = player.getId();
-
-        setType(ItemType.ITEM);
+    protected Item(ItemType type) {
+        this.type = type;
     }
 
-    /**
-     * Constructor from another Item.
-     *
-     * @param item the given item.
-     */
-    Item(Item item) {
-        setId(item.getId());
-        setName(item.getName());
-        setDescription(item.getDescription());
-        setEncumbrance(item.getEncumbrance());
-        setQuantity(item.getQuantity());
-        setQuality(item.getQuality());
-        setType(item.getType());
-    }
     //endregion
 
     /**
@@ -101,6 +77,7 @@ public class Item extends BaseObservable implements Serializable {
     }
 
     //region Get & Set
+
     public long getId() {
         return id;
     }
@@ -133,22 +110,6 @@ public class Item extends BaseObservable implements Serializable {
         this.encumbrance = encumbrance;
     }
 
-    public int getQuantity() {
-        return quantity;
-    }
-
-    public void setQuantity(int quantity) {
-        this.quantity = quantity;
-    }
-
-    public Quality getQuality() {
-        return quality;
-    }
-
-    public void setQuality(Quality quality) {
-        this.quality = quality;
-    }
-
     public ItemType getType() {
         return type;
     }
@@ -157,13 +118,6 @@ public class Item extends BaseObservable implements Serializable {
         this.type = type;
     }
 
-    public long getPlayerId() {
-        return playerId;
-    }
-
-    public void setPlayerId(long playerId) {
-        this.playerId = playerId;
-    }
     //endregion
 
     //region Item conversion methods
@@ -212,20 +166,10 @@ public class Item extends BaseObservable implements Serializable {
     //endregion
 
     //region Overrides
-    String attributesToString() {
-        return "id=" + getId() +
-                ", name='" + getName() + '\'' +
-                ", description=" + getDescription() +
-                ", encumbrance=" + getEncumbrance() +
-                ", quantity=" + getQuantity() +
-                ", quality=" + getQuality() +
-                ", type=" + getType() +
-                ", playerId=" + getPlayerId();
-    }
 
     @Override
     public String toString() {
-        return "Item [" + attributesToString() + "]";
+        return ToStringBuilder.reflectionToString(this);
     }
 
     @Override
@@ -233,29 +177,18 @@ public class Item extends BaseObservable implements Serializable {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
 
-        Item item = (Item) o;
+        Item other = (Item) o;
 
-        if (getId() != item.getId()) return false;
-        if (getEncumbrance() != item.getEncumbrance()) return false;
-        if (getQuantity() != item.getQuantity()) return false;
-        if (getPlayerId() != item.getPlayerId()) return false;
-        if (!getName().equals(item.getName())) return false;
-        if (getDescription() != null ? !getDescription().equals(item.getDescription()) : item.getDescription() != null)
-            return false;
-        if (getQuality() != item.getQuality()) return false;
-        return getType() == item.getType();
-
+        return new EqualsBuilder()
+                .append(id, other.id)
+                .isEquals();
     }
 
     @Override
     public int hashCode() {
-        int result = getName().hashCode();
-        result = 31 * result + (getDescription() != null ? getDescription().hashCode() : 0);
-        result = 31 * result + getEncumbrance();
-        result = 31 * result + getQuantity();
-        result = 31 * result + getQuality().hashCode();
-        result = 31 * result + getType().hashCode();
-        return result;
+        return new HashCodeBuilder()
+                .append(id)
+                .toHashCode();
     }
     //endregion
 }

@@ -1,14 +1,16 @@
-package com.whfrp3.model.player.inventory;
+package com.whfrp3.model.item;
 
 import android.databinding.Bindable;
 
 import com.whfrp3.BR;
+import com.whfrp3.model.enums.ItemType;
 import com.whfrp3.model.player.Player;
 
 /**
  * Equipment class (Weapon or Armor).
  */
 public abstract class Equipment extends Item {
+
     //region Properties
 
     /**
@@ -23,40 +25,30 @@ public abstract class Equipment extends Item {
     /**
      * Default constructor.
      */
-    Equipment() {
-        super();
+    public Equipment() {
+
     }
 
     /**
-     * Constructor with linked player.
+     * Constructor with item type.
      *
-     * @param player Player to link with the item.
+     * @param type Item type.
      */
-    Equipment(Player player) {
-        super(player);
-    }
-
-    /**
-     * Constructor from another Item.
-     *
-     * @param item the given item.
-     */
-    Equipment(Item item) {
-        super(item);
-
-        if (item instanceof Equipment) {
-            Equipment equipment = (Equipment) item;
-            setEquipped(equipment.isEquipable() && equipment.isEquipped());
-        }
+    protected Equipment(ItemType type) {
+        super(type);
     }
 
     //endregion
+
+    //region Main methods
 
     @Override
     @Bindable
     public boolean isEquipable() {
         return true;
     }
+
+    //endregion
 
     //region Get & Set
 

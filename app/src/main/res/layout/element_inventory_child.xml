@@ -7,23 +7,23 @@
 
         <import type="com.whfrp3.tools.BindingUtils" />
 
-        <import type="com.whfrp3.model.player.inventory.ItemType" />
+        <import type="com.whfrp3.model.enums.ItemType" />
 
-        <import type="com.whfrp3.model.player.inventory.Quality" />
+        <import type="com.whfrp3.model.enums.ItemQuality" />
 
-        <import type="com.whfrp3.model.player.inventory.Range" />
+        <import type="com.whfrp3.model.enums.Range" />
 
-        <import type="com.whfrp3.model.player.inventory.Weapon" />
+        <import type="com.whfrp3.model.item.Weapon" />
 
-        <import type="com.whfrp3.model.player.inventory.Armor" />
+        <import type="com.whfrp3.model.item.Armor" />
 
-        <import type="com.whfrp3.model.player.inventory.UsableItem" />
+        <import type="com.whfrp3.model.item.UsableItem" />
 
-        <import type="com.whfrp3.model.player.inventory.Equipment" />
+        <import type="com.whfrp3.model.item.Equipment" />
 
         <variable
             name="item"
-            type="com.whfrp3.model.player.inventory.Item" />
+            type="com.whfrp3.model.player.PlayerItem" />
     </data>
 
     <LinearLayout
@@ -40,7 +40,7 @@
             android:paddingEnd="@dimen/small_padding"
             android:paddingStart="@dimen/small_padding"
             android:src="@drawable/ic_check_black"
-            android:visibility="@{(item.equipable &amp;&amp; ((Equipment)item).equipped) ? View.VISIBLE : View.INVISIBLE}" />
+            android:visibility="@{(item.item.equipable &amp;&amp; ((Equipment)item.item).equipped) ? View.VISIBLE : View.INVISIBLE}" />
         <!--Content-->
         <LinearLayout
             android:layout_width="match_parent"
@@ -60,10 +60,10 @@
                     android:hint="@string/dummy_string"
                     android:paddingEnd="@dimen/small_padding"
                     android:paddingStart="@dimen/small_padding"
-                    android:text="@{item.name}"
+                    android:text="@{item.item.name}"
                     android:textColor="@{BindingUtils.color(item.quality.colorId)}"
                     android:textSize="@dimen/medium_text_size"
-                    android:typeface="@{item.quality == Quality.SUPERIOR || item.quality == Quality.MAGIC ? &quot;bold&quot; : &quot;normal&quot;}" />
+                    android:typeface="@{item.quality == ItemQuality.SUPERIOR || item.quality == ItemQuality.MAGIC ? &quot;bold&quot; : &quot;normal&quot;}" />
 
                 <!--Quantity-->
                 <TextView
@@ -87,44 +87,44 @@
                     style="@style/ItemChildValueWithImage"
                     android:layout_marginStart="@dimen/small_padding"
                     android:drawableStart="@drawable/ic_weight_black_16"
-                    android:text="@{item.encumbrance}" />
+                    android:text="@{item.item.encumbrance}" />
 
                 <TextView
                     style="@style/ItemChildValueWithImage"
                     android:drawableStart="@drawable/ic_damage_black_16"
-                    android:text="@{item.type == ItemType.WEAPON ? ((Weapon) item).damage : 0}"
-                    android:visibility="@{item.type == ItemType.WEAPON ? View.VISIBLE : View.GONE}" />
+                    android:text="@{item.item.type == ItemType.WEAPON ? ((Weapon) item.item).damage : 0}"
+                    android:visibility="@{item.item.type == ItemType.WEAPON ? View.VISIBLE : View.GONE}" />
 
                 <TextView
                     style="@style/ItemChildValueWithImage"
                     android:drawableStart="@drawable/ic_boon_black_16"
-                    android:text="@{item.type == ItemType.WEAPON ? ((Weapon) item).criticalLevel : 0}"
-                    android:visibility="@{item.type == ItemType.WEAPON ? View.VISIBLE : View.GONE}" />
+                    android:text="@{item.item.type == ItemType.WEAPON ? ((Weapon) item.item).criticalLevel : 0}"
+                    android:visibility="@{item.item.type == ItemType.WEAPON ? View.VISIBLE : View.GONE}" />
 
                 <TextView
                     style="@style/ItemChildValueWithImage"
                     android:layout_weight="2"
                     android:drawableStart="@drawable/ic_target_black_16"
-                    android:text="@{item.type == ItemType.WEAPON ? BindingUtils.string(((Weapon) item).range.labelId) : &quot;&quot;}"
-                    android:visibility="@{item.type == ItemType.WEAPON ? View.VISIBLE : View.GONE}" />
+                    android:text="@{item.item.type == ItemType.WEAPON ? BindingUtils.string(((Weapon) item.item).range.labelId) : &quot;&quot;}"
+                    android:visibility="@{item.item.type == ItemType.WEAPON ? View.VISIBLE : View.GONE}" />
 
                 <TextView
                     style="@style/ItemChildValueWithImage"
                     android:drawableStart="@drawable/ic_shield_black_16"
-                    android:text="@{item.type == ItemType.ARMOR ? ((Armor) item).defense : 0}"
-                    android:visibility="@{item.type == ItemType.ARMOR ? View.VISIBLE : View.GONE}" />
+                    android:text="@{item.item.type == ItemType.ARMOR ? ((Armor) item.item).defense : 0}"
+                    android:visibility="@{item.item.type == ItemType.ARMOR ? View.VISIBLE : View.GONE}" />
 
                 <TextView
                     style="@style/ItemChildValueWithImage"
                     android:drawableStart="@drawable/ic_armor_black_16"
-                    android:text="@{item.type == ItemType.ARMOR ? ((Armor) item).soak : 0}"
-                    android:visibility="@{item.type == ItemType.ARMOR ? View.VISIBLE : View.GONE}" />
+                    android:text="@{item.item.type == ItemType.ARMOR ? ((Armor) item.item).soak : 0}"
+                    android:visibility="@{item.item.type == ItemType.ARMOR ? View.VISIBLE : View.GONE}" />
 
                 <TextView
                     style="@style/ItemChildValueWithImage"
                     android:drawableStart="@drawable/ic_loads_black_16"
-                    android:text="@{item.type == ItemType.USABLE_ITEM ? ((UsableItem) item).load : 0}"
-                    android:visibility="@{item.type == ItemType.USABLE_ITEM ? View.VISIBLE : View.GONE}" />
+                    android:text="@{item.item.type == ItemType.USABLE_ITEM ? ((UsableItem) item.item).load : 0}"
+                    android:visibility="@{item.item.type == ItemType.USABLE_ITEM ? View.VISIBLE : View.GONE}" />
             </LinearLayout>
         </LinearLayout>
     </LinearLayout>

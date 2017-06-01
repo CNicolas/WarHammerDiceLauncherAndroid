@@ -15,18 +15,13 @@ import android.widget.Spinner;
 import com.whfrp3.R;
 import com.whfrp3.databinding.ActivityItemEditBinding;
 import com.whfrp3.ihm.adapters.EnumSpinnerAdapter;
-import com.whfrp3.model.player.Player;
-import com.whfrp3.model.player.inventory.Armor;
-import com.whfrp3.model.player.inventory.Item;
-import com.whfrp3.model.player.inventory.ItemEdit;
-import com.whfrp3.model.player.inventory.ItemType;
-import com.whfrp3.model.player.inventory.Quality;
-import com.whfrp3.model.player.inventory.Range;
-import com.whfrp3.model.player.inventory.UsableItem;
-import com.whfrp3.model.player.inventory.Weapon;
+import com.whfrp3.model.item.Item;
+import com.whfrp3.ihm.model.ItemEdit;
+import com.whfrp3.model.enums.ItemType;
+import com.whfrp3.model.enums.ItemQuality;
+import com.whfrp3.model.enums.Range;
 import com.whfrp3.tools.WHFRP3Application;
 import com.whfrp3.tools.constants.IPlayerActivityConstants;
-import com.whfrp3.tools.helpers.PlayerHelper;
 
 /**
  * Activity used to modify an item.
@@ -34,9 +29,9 @@ import com.whfrp3.tools.helpers.PlayerHelper;
 public class ItemEditActivity extends AppCompatActivity {
 
     /**
-     * Key used to store the item id to edit in the bundle.
+     * Key used to store the item to edit in the bundle.
      */
-    public static final String ITEM_ID_KEY = "ITEM_ID_KEY";
+    public static final String ITEM_KEY = "ITEM_KEY";
 
     /**
      * Default item id value.
@@ -59,13 +54,13 @@ public class ItemEditActivity extends AppCompatActivity {
 
         // Retrieve item by its id
         if (getIntent().getExtras() != null) {
-            long itemId = getIntent().getExtras().getLong(ITEM_ID_KEY, ITEM_ID_DEFAULT);
+            long itemId = getIntent().getExtras().getLong(ITEM_KEY, ITEM_ID_DEFAULT);
             if (itemId == ITEM_ID_DEFAULT) {
                 item = new Item();
                 item.setId(0);
                 setTitle(getString(R.string.page_item_edit));
             } else {
-                item = WHFRP3Application.getPlayer().getItemById(itemId);
+                item = WHFRP3Application.getPlayer().getItemById(itemId).getItem();
                 if (item == null) {
                     // TODO : Add error treatment
                     Log.e(getLocalClassName(), "item_id_key given but not present in db");
@@ -143,18 +138,18 @@ public class ItemEditActivity extends AppCompatActivity {
 
     private void initQualitySpinner() {
         Spinner qualitySpinner = (Spinner) findViewById(R.id.item_edit_quality_spinner);
-        qualitySpinner.setAdapter(new EnumSpinnerAdapter(this.getLayoutInflater(), Quality.values()));
+        qualitySpinner.setAdapter(new EnumSpinnerAdapter(this.getLayoutInflater(), ItemQuality.values()));
         qualitySpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int pos, long id) {
-                Quality quality = (Quality) adapterView.getItemAtPosition(pos);
+                ItemQuality quality = (ItemQuality) adapterView.getItemAtPosition(pos);
 
                 itemEdit.setQuality(quality);
             }
 
             @Override
             public void onNothingSelected(AdapterView<?> adapterView) {
-                itemEdit.setQuality(Quality.NORMAL);
+                itemEdit.setQuality(ItemQuality.NORMAL);
             }
         });
 
@@ -187,11 +182,10 @@ public class ItemEditActivity extends AppCompatActivity {
     //endregion
 
     private void onSave() {
+        /*
         item.setName(itemEdit.getName());
         item.setDescription(itemEdit.getDescription());
         item.setEncumbrance(itemEdit.getEncumbrance());
-        item.setQuantity(itemEdit.getQuantity());
-        item.setQuality(itemEdit.getQuality());
         item.setType(itemEdit.getType());
 
         switch (item.getType()) {
@@ -224,7 +218,7 @@ public class ItemEditActivity extends AppCompatActivity {
         }
 
         PlayerHelper.savePlayer(player);
-
+        */
         this.setResult(RESULT_OK);
         this.finish();
     }

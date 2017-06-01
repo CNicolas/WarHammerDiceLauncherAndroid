@@ -1,9 +1,16 @@
-package com.whfrp3.model.player.inventory;
+package com.whfrp3.ihm.model;
 
 import android.databinding.BaseObservable;
 import android.databinding.Bindable;
 
 import com.android.databinding.library.baseAdapters.BR;
+import com.whfrp3.model.enums.ItemQuality;
+import com.whfrp3.model.enums.ItemType;
+import com.whfrp3.model.enums.Range;
+import com.whfrp3.model.item.Armor;
+import com.whfrp3.model.item.Item;
+import com.whfrp3.model.item.UsableItem;
+import com.whfrp3.model.item.Weapon;
 
 /**
  * Class used by the ItemEditActivity.
@@ -33,7 +40,7 @@ public class ItemEdit extends BaseObservable {
     /**
      * Item's quality.
      */
-    private Quality quality;
+    private ItemQuality quality;
 
     /**
      * Item's type.
@@ -76,8 +83,6 @@ public class ItemEdit extends BaseObservable {
         setName(item.getName());
         setDescription(item.getDescription());
         setEncumbrance(item.getEncumbrance());
-        setQuantity(item.getQuantity());
-        setQuality(item.getQuality());
         setType(item.getType());
 
         switch (item.getType()) {
@@ -137,11 +142,11 @@ public class ItemEdit extends BaseObservable {
         }
     }
 
-    public Quality getQuality() {
+    public ItemQuality getQuality() {
         return quality;
     }
 
-    public void setQuality(Quality quality) {
+    public void setQuality(ItemQuality quality) {
         this.quality = quality;
     }
 

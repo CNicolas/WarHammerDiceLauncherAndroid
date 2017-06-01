@@ -7,7 +7,8 @@ import android.widget.ImageView;
 
 import com.whfrp3.R;
 import com.whfrp3.ihm.fragments.dialog.ItemShowDialogFragment;
-import com.whfrp3.model.player.inventory.Item;
+import com.whfrp3.model.item.Item;
+import com.whfrp3.model.player.PlayerItem;
 
 
 public abstract class InventoryListeners {
@@ -38,7 +39,7 @@ public abstract class InventoryListeners {
         public boolean onChildClick(ExpandableListView parent, View view, int groupPosition, int childPosition, long id) {
             ItemShowDialogFragment dialog = new ItemShowDialogFragment();
             dialog.show(mFragmentManager, "ItemShowDialogFragment");
-            dialog.setItem((Item) parent.getExpandableListAdapter().getChild(groupPosition, childPosition));
+            dialog.setItem((PlayerItem) parent.getExpandableListAdapter().getChild(groupPosition, childPosition));
 
             return false;
         }

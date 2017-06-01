@@ -1,4 +1,4 @@
-package com.whfrp3.model.player.inventory;
+package com.whfrp3.model.enums;
 
 import com.whfrp3.R;
 import com.whfrp3.ihm.adapters.IEnumSpinner;
@@ -6,7 +6,7 @@ import com.whfrp3.ihm.adapters.IEnumSpinner;
 /**
  * Item qualities.
  */
-public enum Quality implements IEnumSpinner {
+public enum ItemQuality implements IEnumSpinner {
     /**
      * Low.
      */
@@ -28,22 +28,22 @@ public enum Quality implements IEnumSpinner {
     MAGIC(R.string.quality_magic, R.color.reckless);
 
     /**
-     * Quality label id.
+     * ItemQuality label id.
      */
     private final int labelId;
 
     /**
-     * Quality color
+     * ItemQuality color
      */
     private final int colorId;
 
     /**
      * Private constructor.
      *
-     * @param labelId Quality label id.
-     * @param colorId Quality color id
+     * @param labelId ItemQuality label id.
+     * @param colorId ItemQuality color id
      */
-    Quality(int labelId, int colorId) {
+    ItemQuality(int labelId, int colorId) {
         this.labelId = labelId;
         this.colorId = colorId;
     }

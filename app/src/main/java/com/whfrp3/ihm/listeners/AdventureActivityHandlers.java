@@ -3,7 +3,7 @@ package com.whfrp3.ihm.listeners;
 import android.support.design.widget.Snackbar;
 import android.view.View;
 
-import com.whfrp3.model.player.inventory.Weapon;
+import com.whfrp3.model.item.Weapon;
 import com.whfrp3.tools.WHFRP3Application;
 import com.whfrp3.tools.constants.IPlayerActivityConstants;
 import com.whfrp3.tools.helpers.PlayerHelper;

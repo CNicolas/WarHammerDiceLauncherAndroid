@@ -6,13 +6,13 @@ import android.database.sqlite.SQLiteDatabase;
 
 import com.whfrp3.database.entries.IEntryConstants;
 import com.whfrp3.database.entries.IItemEntryConstants;
-import com.whfrp3.model.player.inventory.Armor;
-import com.whfrp3.model.player.inventory.Item;
-import com.whfrp3.model.player.inventory.ItemType;
-import com.whfrp3.model.player.inventory.Quality;
-import com.whfrp3.model.player.inventory.Range;
-import com.whfrp3.model.player.inventory.UsableItem;
-import com.whfrp3.model.player.inventory.Weapon;
+import com.whfrp3.model.item.Armor;
+import com.whfrp3.model.item.Item;
+import com.whfrp3.model.enums.ItemType;
+import com.whfrp3.model.enums.ItemQuality;
+import com.whfrp3.model.enums.Range;
+import com.whfrp3.model.item.UsableItem;
+import com.whfrp3.model.item.Weapon;
 
 import java.util.List;
 
@@ -75,10 +75,7 @@ public class ItemDao extends AbstractDao<Item> implements IItemEntryConstants {
         values.put(COLUMN_NAME, item.getName());
         values.put(COLUMN_DESCRIPTION, item.getDescription());
         values.put(COLUMN_ENCUMBRANCE, item.getEncumbrance());
-        values.put(COLUMN_QUANTITY, item.getQuantity());
-        values.put(COLUMN_QUALITY, item.getQuality().toString());
         values.put(COLUMN_TYPE, item.getType().toString());
-        values.put(COLUMN_PLAYER_ID, item.getPlayerId());
 
         // Usable item data
         if (item.getType() == ItemType.USABLE_ITEM) {
@@ -147,9 +144,6 @@ public class ItemDao extends AbstractDao<Item> implements IItemEntryConstants {
         dto.setName(cursor.getString(cursor.getColumnIndexOrThrow(COLUMN_NAME)));
         dto.setDescription(cursor.getString(cursor.getColumnIndexOrThrow(COLUMN_DESCRIPTION)));
         dto.setEncumbrance(cursor.getInt(cursor.getColumnIndexOrThrow(COLUMN_ENCUMBRANCE)));
-        dto.setQuantity(cursor.getInt(cursor.getColumnIndexOrThrow(COLUMN_QUANTITY)));
-        dto.setQuality(Quality.valueOf(cursor.getString(cursor.getColumnIndexOrThrow(COLUMN_QUALITY))));
-        dto.setPlayerId(cursor.getInt(cursor.getColumnIndexOrThrow(COLUMN_PLAYER_ID)));
 
         return dto;
     }

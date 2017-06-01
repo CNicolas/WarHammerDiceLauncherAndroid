@@ -22,9 +22,10 @@ import com.whfrp3.ihm.activities.ItemEditActivity;
 import com.whfrp3.ihm.adapters.InventoryListAdapter;
 import com.whfrp3.ihm.listeners.InventoryListeners;
 import com.whfrp3.model.player.Player;
-import com.whfrp3.model.player.inventory.Equipment;
-import com.whfrp3.model.player.inventory.Item;
-import com.whfrp3.model.player.inventory.ItemType;
+import com.whfrp3.model.item.Equipment;
+import com.whfrp3.model.item.Item;
+import com.whfrp3.model.enums.ItemType;
+import com.whfrp3.model.player.PlayerItem;
 import com.whfrp3.tools.WHFRP3Application;
 import com.whfrp3.tools.constants.IPlayerActivityConstants;
 import com.whfrp3.tools.helpers.PlayerHelper;
@@ -92,16 +93,16 @@ public class InventoryFragment extends Fragment
     /**
      * Open an ItemEditActivity to edit the selected item.
      *
-     * @param itemId Item's id to edit.
+     * @param item Item to edit.
      */
-    private void startItemEditActivity(@Nullable Long itemId) {
+    private void startItemEditActivity(@Nullable PlayerItem item) {
         int request = ADD_ITEM_REQUEST;
 
         Bundle bundle = new Bundle();
         bundle.putInt(IPlayerActivityConstants.CURRENT_FRAGMENT_POSITION_BUNDLE_TAG, IPlayerActivityConstants.INVENTORY_FRAGMENT_POSITION);
 
-        if (itemId != null) {
-            bundle.putLong(ItemEditActivity.ITEM_ID_KEY, itemId);
+        if (item != null) {
+            bundle.putSerializable(ItemEditActivity.ITEM_KEY, item);
             request = EDIT_ITEM_REQUEST;
         }
 
@@ -133,7 +134,7 @@ public class InventoryFragment extends Fragment
         PlayerHelper.notifyBinding();
     }
 
-    private void showPopupMenuOnLongClick(final Item item, final int menuId, final View view) {
+    private void showPopupMenuOnLongClick(final PlayerItem item, final int menuId, final View view) {
         PopupMenu itemPopupMenu = new PopupMenu(getActivity(), view, Gravity.END);
         itemPopupMenu.getMenuInflater().inflate(menuId, itemPopupMenu.getMenu());
         itemPopupMenu.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
@@ -141,18 +142,18 @@ public class InventoryFragment extends Fragment
             public boolean onMenuItemClick(MenuItem menuItem) {
                 switch (menuItem.getItemId()) {
                     case R.id.item_menu_edit:
-                        startItemEditActivity(item.getId());
+                        startItemEditActivity(item);
                         break;
                     case R.id.item_menu_delete:
                         WHFRP3Application.getPlayer().removeItem(item);
                         refreshInventoryView();
                         break;
                     case R.id.item_menu_equip:
-                        ((Equipment) item).setEquipped(true);
+                        ((Equipment) item.getItem()).setEquipped(true);
                         PlayerHelper.notifyEquipmentBinding();
                         break;
                     case R.id.item_menu_unequip:
-                        ((Equipment) item).setEquipped(false);
+                        ((Equipment) item.getItem()).setEquipped(false);
                         PlayerHelper.notifyEquipmentBinding();
                         break;
                     default:
@@ -173,12 +174,12 @@ public class InventoryFragment extends Fragment
         int groupPosition = ExpandableListView.getPackedPositionGroup(id);
         int childPosition = ExpandableListView.getPackedPositionChild(id);
 
-        final Item item = (Item) mExpListView.getExpandableListAdapter().getChild(groupPosition, childPosition);
+        final PlayerItem item = (PlayerItem) mExpListView.getExpandableListAdapter().getChild(groupPosition, childPosition);
 
         // Select menu dialog content
         final int menuId;
-        if (item.isEquipable()) {
-            menuId = (((Equipment) item).isEquipped()) ? R.menu.equiped_item : R.menu.unequiped_item;
+        if (item.getItem().isEquipable()) {
+            menuId = (((Equipment) item.getItem()).isEquipped()) ? R.menu.equiped_item : R.menu.unequiped_item;
         } else {
             menuId = R.menu.simple_item;
         }

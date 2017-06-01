@@ -9,8 +9,9 @@ import android.widget.TextView;
 import com.whfrp3.R;
 import com.whfrp3.databinding.ElementInventoryChildBinding;
 import com.whfrp3.ihm.components.AnimatedExpandableListView;
-import com.whfrp3.model.player.inventory.Item;
-import com.whfrp3.model.player.inventory.ItemType;
+import com.whfrp3.model.item.Item;
+import com.whfrp3.model.enums.ItemType;
+import com.whfrp3.model.player.PlayerItem;
 
 import java.util.List;
 import java.util.Map;
@@ -71,7 +72,7 @@ public class InventoryListAdapter extends AnimatedExpandableListView.AnimatedExp
     //region Real child
     @Override
     public View getRealChildView(int groupPosition, int childPosition) {
-        Item item = (Item) getChild(groupPosition, childPosition);
+        PlayerItem item = (PlayerItem) getChild(groupPosition, childPosition);
 
         ElementInventoryChildBinding binding = DataBindingUtil.inflate(mInflater, R.layout.element_inventory_child, null, false);
         binding.setItem(item);

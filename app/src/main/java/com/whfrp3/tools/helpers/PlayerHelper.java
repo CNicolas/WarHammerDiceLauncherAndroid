@@ -4,8 +4,8 @@ import android.util.Log;
 
 import com.whfrp3.BR;
 import com.whfrp3.model.player.Player;
-import com.whfrp3.model.player.inventory.Item;
-import com.whfrp3.model.player.inventory.Weapon;
+import com.whfrp3.model.item.Item;
+import com.whfrp3.model.item.Weapon;
 import com.whfrp3.tools.WHFRP3Application;
 
 import java.util.ArrayList;

@@ -7,7 +7,7 @@
 
         <variable
             name="weapon"
-            type="com.whfrp3.model.player.inventory.Weapon" />
+            type="com.whfrp3.model.item.Weapon" />
 
         <variable
             name="handlers"

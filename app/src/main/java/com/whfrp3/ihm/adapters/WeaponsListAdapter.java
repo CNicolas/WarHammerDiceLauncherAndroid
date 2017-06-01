@@ -10,7 +10,7 @@ import android.widget.ArrayAdapter;
 import com.whfrp3.R;
 import com.whfrp3.databinding.ElementListWeaponBinding;
 import com.whfrp3.ihm.listeners.AdventureActivityHandlers;
-import com.whfrp3.model.player.inventory.Weapon;
+import com.whfrp3.model.item.Weapon;
 
 import java.util.List;
 

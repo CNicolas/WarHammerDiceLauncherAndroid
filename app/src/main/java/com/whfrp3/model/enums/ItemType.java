@@ -1,4 +1,4 @@
-package com.whfrp3.model.player.inventory;
+package com.whfrp3.model.enums;
 
 import com.whfrp3.R;
 import com.whfrp3.ihm.adapters.IEnumSpinner;

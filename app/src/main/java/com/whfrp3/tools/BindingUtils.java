@@ -18,7 +18,7 @@ import com.whfrp3.ihm.adapters.PlayerTalentsSeparatedListAdapter;
 import com.whfrp3.ihm.adapters.WeaponsListAdapter;
 import com.whfrp3.model.player.PlayerSkill;
 import com.whfrp3.model.player.PlayerTalent;
-import com.whfrp3.model.player.inventory.Weapon;
+import com.whfrp3.model.item.Weapon;
 import com.whfrp3.tools.enums.TextIcon;
 
 import java.util.ArrayList;

@@ -13,11 +13,11 @@
 
         <variable
             name="item"
-            type="com.whfrp3.model.player.inventory.ItemEdit" />
+            type="com.whfrp3.ihm.model.ItemEdit" />
 
         <import type="android.view.View" />
 
-        <import type="com.whfrp3.model.player.inventory.ItemType" />
+        <import type="com.whfrp3.model.enums.ItemType" />
     </data>
 
     <android.support.design.widget.CoordinatorLayout

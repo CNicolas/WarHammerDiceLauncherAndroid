@@ -9,17 +9,16 @@ import android.support.v4.content.ContextCompat;
 
 import com.whfrp3.BR;
 import com.whfrp3.R;
-import com.whfrp3.model.Career;
 import com.whfrp3.model.Money;
 import com.whfrp3.model.enums.Characteristic;
 import com.whfrp3.model.enums.Race;
 import com.whfrp3.model.enums.SkillType;
-import com.whfrp3.model.player.inventory.Armor;
-import com.whfrp3.model.player.inventory.Item;
-import com.whfrp3.model.player.inventory.ItemType;
-import com.whfrp3.model.player.inventory.Range;
-import com.whfrp3.model.player.inventory.UsableItem;
-import com.whfrp3.model.player.inventory.Weapon;
+import com.whfrp3.model.item.Armor;
+import com.whfrp3.model.item.Item;
+import com.whfrp3.model.enums.ItemType;
+import com.whfrp3.model.enums.Range;
+import com.whfrp3.model.item.UsableItem;
+import com.whfrp3.model.item.Weapon;
 import com.whfrp3.model.Skill;
 import com.whfrp3.model.Specialization;
 import com.whfrp3.model.Talent;
@@ -79,8 +78,7 @@ public class Player extends BaseObservable {
     private List<PlayerSkill> skills;
     private List<PlayerSpecialization> specializations;
     private List<PlayerTalent> talents;
-
-    private List<Item> inventory;
+    private List<PlayerItem> items;
 
     private transient boolean mInEdition;
 
@@ -104,8 +102,7 @@ public class Player extends BaseObservable {
         skills = new ArrayList<>();
         specializations = new ArrayList<>();
         talents = new ArrayList<>();
-
-        inventory = new ArrayList<>();
+        items = new ArrayList<>();
 
         // Initialize characteristics list
         for (Characteristic characteristic : Characteristic.values()) {
@@ -143,6 +140,10 @@ public class Player extends BaseObservable {
         for (PlayerTalent talent : talents) {
             talent.fillTransientFields();
         }
+
+        for (PlayerItem item : items) {
+            item.fillTransientFields();
+        }
     }
 
     //region Inventory Management
@@ -156,9 +157,9 @@ public class Player extends BaseObservable {
     public List<Armor> getArmors() {
         List<Armor> armors = new ArrayList<>();
 
-        for (Item item : inventory) {
-            if (item.getType() == ItemType.ARMOR) {
-                armors.add(item.toArmor());
+        for (PlayerItem item : items) {
+            if (item.getItem().getType() == ItemType.ARMOR) {
+                armors.add(item.getItem().toArmor());
             }
         }
 
@@ -169,9 +170,9 @@ public class Player extends BaseObservable {
     public int getFullDefenseAmount() {
         int res = 0;
 
-        for (Item item : inventory) {
-            if (item.getType() == ItemType.ARMOR) {
-                Armor armor = item.toArmor();
+        for (PlayerItem item : items) {
+            if (item.getItem().getType() == ItemType.ARMOR) {
+                Armor armor = item.getItem().toArmor();
                 if (armor.isEquipped()) {
                     res += armor.getDefense();
                 }
@@ -185,9 +186,9 @@ public class Player extends BaseObservable {
     public int getFullSoakAmount() {
         int res = 0;
 
-        for (Item item : inventory) {
-            if (item.getType() == ItemType.ARMOR) {
-                Armor armor = item.toArmor();
+        for (PlayerItem item : items) {
+            if (item.getItem().getType() == ItemType.ARMOR) {
+                Armor armor = item.getItem().toArmor();
                 if (armor.isEquipped()) {
                     res += armor.getSoak();
                 }
@@ -221,8 +222,8 @@ public class Player extends BaseObservable {
     public int getCurrentEncumbrance() {
         int encumbrance = 0;
 
-        for (Item item : inventory) {
-            encumbrance += item.getEncumbrance() * item.getQuantity();
+        for (PlayerItem item : items) {
+            encumbrance += item.getItem().getEncumbrance() * item.getQuantity();
         }
 
         return encumbrance;
@@ -256,9 +257,9 @@ public class Player extends BaseObservable {
     public ObservableList<Weapon> getWeapons() {
         ObservableList<Weapon> weapons = new ObservableArrayList<>();
 
-        for (Item item : inventory) {
-            if (item.getType() == ItemType.WEAPON) {
-                weapons.add(item.toWeapon());
+        for (PlayerItem item : items) {
+            if (item.getItem().getType() == ItemType.WEAPON) {
+                weapons.add(item.getItem().toWeapon());
             }
         }
 
@@ -283,7 +284,7 @@ public class Player extends BaseObservable {
 
         List<Weapon> weapons = getEquippedWeapons();
         for (Weapon weapon : weapons) {
-            if (Range.ENGAGED.equals(weapon.getRange())) {
+            if (Range.ENGAGED == weapon.getRange()) {
                 res.add(weapon);
             }
         }
@@ -310,22 +311,9 @@ public class Player extends BaseObservable {
      *
      * @param item Item to add.
      */
-    public void addItem(Item item) {
+    public void addItem(PlayerItem item) {
         if (item != null) {
-            inventory.add(item);
-        }
-    }
-
-    /**
-     * Update the given item in the inventory.
-     *
-     * @param item Item to update.
-     */
-    public void updateItem(Item item) {
-        if (item != null) {
-            Item oldItem = getItemById(item.getId());
-            inventory.remove(oldItem);
-            inventory.add(item);
+            items.add(item);
         }
     }
 
@@ -334,9 +322,9 @@ public class Player extends BaseObservable {
      *
      * @param item Item to remove.
      */
-    public void removeItem(Item item) {
+    public void removeItem(PlayerItem item) {
         if (item != null) {
-            inventory.remove(item);
+            items.remove(item);
         }
     }
 
@@ -346,9 +334,9 @@ public class Player extends BaseObservable {
      * @param itemId Item id.
      * @return Player's item or null if not found.
      */
-    public Item getItemById(long itemId) {
-        for (Item item : inventory) {
-            if (item.getId() == itemId) {
+    public PlayerItem getItemById(long itemId) {
+        for (PlayerItem item : items) {
+            if (item.getItemId() == itemId) {
                 return item;
             }
         }
@@ -364,9 +352,9 @@ public class Player extends BaseObservable {
     public List<UsableItem> getUsableItems() {
         List<UsableItem> usableItems = new ArrayList<>();
 
-        for (Item item : inventory) {
-            if (item.getType() == ItemType.USABLE_ITEM) {
-                usableItems.add(item.toUsableItem());
+        for (PlayerItem item : items) {
+            if (item.getItem().getType() == ItemType.USABLE_ITEM) {
+                usableItems.add(item.getItem().toUsableItem());
             }
         }
 
@@ -381,9 +369,9 @@ public class Player extends BaseObservable {
     public List<Item> getItems() {
         List<Item> items = new ArrayList<>();
 
-        for (Item item : inventory) {
-            if (item.getType() == ItemType.ITEM) {
-                items.add(item);
+        for (PlayerItem item : this.items) {
+            if (item.getItem().getType() == ItemType.ITEM) {
+                items.add(item.getItem());
             }
         }
 
@@ -392,6 +380,7 @@ public class Player extends BaseObservable {
     //endregion
 
     //region Skill Management
+
     public void addSpecialization(Specialization specialization) {
         int indexOfSpecialization = hasSpecialization(specialization);
 
@@ -428,9 +417,11 @@ public class Player extends BaseObservable {
         }
         return -1;
     }
+
     //endregion
 
     //region Talents Management
+
     public void addTalent(Talent talent) {
         int indexOfTalent = hasTalent(talent);
 
@@ -458,6 +449,7 @@ public class Player extends BaseObservable {
 
         notifyPropertyChanged(BR.talents);
     }
+
     //endregion
 
     //region Edition
@@ -670,14 +662,6 @@ public class Player extends BaseObservable {
 
     public void setMoney(Money money) {
         this.money = money;
-    }
-
-    public List<Item> getInventory() {
-        return inventory;
-    }
-
-    public void setInventory(List<Item> inventory) {
-        this.inventory = inventory;
     }
 
     @Bindable

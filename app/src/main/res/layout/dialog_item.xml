@@ -7,19 +7,19 @@
 
         <import type="com.whfrp3.tools.BindingUtils" />
 
-        <import type="com.whfrp3.model.player.inventory.ItemType" />
+        <import type="com.whfrp3.model.enums.ItemType" />
 
-        <import type="com.whfrp3.model.player.inventory.Quality" />
+        <import type="com.whfrp3.model.enums.ItemQuality" />
 
-        <import type="com.whfrp3.model.player.inventory.Weapon" />
+        <import type="com.whfrp3.model.item.Weapon" />
 
-        <import type="com.whfrp3.model.player.inventory.Armor" />
+        <import type="com.whfrp3.model.item.Armor" />
 
-        <import type="com.whfrp3.model.player.inventory.UsableItem" />
+        <import type="com.whfrp3.model.item.UsableItem" />
 
         <variable
             name="item"
-            type="com.whfrp3.model.player.inventory.Item" />
+            type="com.whfrp3.model.player.PlayerItem" />
     </data>
 
     <LinearLayout
@@ -38,7 +38,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:gravity="center"
-                android:text="@{item.description}"
+                android:text="@{item.item.description}"
                 android:textSize="@dimen/medium_text_size" />
 
         </LinearLayout>
@@ -66,7 +66,7 @@
                 android:hint="@string/dummy_string"
                 android:text="@{BindingUtils.string(item.quality.labelId)}"
                 android:textColor="@{BindingUtils.color(item.quality.colorId)}"
-                android:typeface="@{item.quality == Quality.SUPERIOR || item.quality == Quality.MAGIC ? &quot;bold&quot; : &quot;normal&quot;}" />
+                android:typeface="@{item.quality == ItemQuality.SUPERIOR || item.quality == ItemQuality.MAGIC ? &quot;bold&quot; : &quot;normal&quot;}" />
 
         </LinearLayout>
 
@@ -78,14 +78,14 @@
 
             <TextView
                 style="@style/ItemDialogTextView.Field"
-                android:text="@{item.encumbrance}" />
+                android:text="@{item.item.encumbrance}" />
 
         </LinearLayout>
 
         <LinearLayout
             style="@style/ItemDialogLine"
             android:layout_marginTop="@dimen/medium_padding"
-            android:visibility="@{item.type == ItemType.WEAPON ? View.VISIBLE : View.GONE}">
+            android:visibility="@{item.item.type == ItemType.WEAPON ? View.VISIBLE : View.GONE}">
 
             <TextView
                 style="@style/ItemDialogTextView.Label"
@@ -93,13 +93,13 @@
 
             <TextView
                 style="@style/ItemDialogTextView.Field"
-                android:text="@{item.type == ItemType.WEAPON ? ((Weapon) item).damage : 0}" />
+                android:text="@{item.item.type == ItemType.WEAPON ? ((Weapon) item.item).damage : 0}" />
 
         </LinearLayout>
 
         <LinearLayout
             style="@style/ItemDialogLine"
-            android:visibility="@{item.type == ItemType.WEAPON ? View.VISIBLE : View.GONE}">
+            android:visibility="@{item.item.type == ItemType.WEAPON ? View.VISIBLE : View.GONE}">
 
             <TextView
                 style="@style/ItemDialogTextView.Label"
@@ -107,13 +107,13 @@
 
             <TextView
                 style="@style/ItemDialogTextView.Field"
-                android:text="@{item.type == ItemType.WEAPON ? ((Weapon) item).criticalLevel : 0}" />
+                android:text="@{item.item.type == ItemType.WEAPON ? ((Weapon) item.item).criticalLevel : 0}" />
 
         </LinearLayout>
 
         <LinearLayout
             style="@style/ItemDialogLine"
-            android:visibility="@{item.type == ItemType.WEAPON ? View.VISIBLE : View.GONE}">
+            android:visibility="@{item.item.type == ItemType.WEAPON ? View.VISIBLE : View.GONE}">
 
             <TextView
                 style="@style/ItemDialogTextView.Label"
@@ -121,14 +121,14 @@
 
             <TextView
                 style="@style/ItemDialogTextView.Field"
-                android:text="@{item.type == ItemType.WEAPON ? BindingUtils.string(((Weapon) item).range.labelId) : &quot;&quot;}" />
+                android:text="@{item.item.type == ItemType.WEAPON ? BindingUtils.string(((Weapon) item.item).range.labelId) : &quot;&quot;}" />
 
         </LinearLayout>
 
         <LinearLayout
             style="@style/ItemDialogLine"
             android:layout_marginTop="@dimen/big_padding"
-            android:visibility="@{item.type == ItemType.ARMOR ? View.VISIBLE : View.GONE}">
+            android:visibility="@{item.item.type == ItemType.ARMOR ? View.VISIBLE : View.GONE}">
 
             <TextView
                 style="@style/ItemDialogTextView.Label"
@@ -136,13 +136,13 @@
 
             <TextView
                 style="@style/ItemDialogTextView.Field"
-                android:text="@{item.type == ItemType.ARMOR ? ((Armor) item).defense : 0}" />
+                android:text="@{item.item.type == ItemType.ARMOR ? ((Armor) item.item).defense : 0}" />
 
         </LinearLayout>
 
         <LinearLayout
             style="@style/ItemDialogLine"
-            android:visibility="@{item.type == ItemType.ARMOR ? View.VISIBLE : View.GONE}">
+            android:visibility="@{item.item.type == ItemType.ARMOR ? View.VISIBLE : View.GONE}">
 
             <TextView
                 style="@style/ItemDialogTextView.Label"
@@ -150,14 +150,14 @@
 
             <TextView
                 style="@style/ItemDialogTextView.Field"
-                android:text="@{item.type == ItemType.ARMOR ? ((Armor) item).soak : 0}" />
+                android:text="@{item.item.type == ItemType.ARMOR ? ((Armor) item.item).soak : 0}" />
 
         </LinearLayout>
 
         <LinearLayout
             style="@style/ItemDialogLine"
             android:layout_marginTop="@dimen/big_padding"
-            android:visibility="@{item.type == ItemType.USABLE_ITEM ? View.VISIBLE : View.GONE}">
+            android:visibility="@{item.item.type == ItemType.USABLE_ITEM ? View.VISIBLE : View.GONE}">
 
             <TextView
                 style="@style/ItemDialogTextView.Label"
@@ -165,7 +165,7 @@
 
             <TextView
                 style="@style/ItemDialogTextView.Field"
-                android:text="@{item.type == ItemType.USABLE_ITEM ? ((UsableItem) item).load : 0}" />
+                android:text="@{item.item.type == ItemType.USABLE_ITEM ? ((UsableItem) item.item).load : 0}" />
 
         </LinearLayout>
     </LinearLayout>
