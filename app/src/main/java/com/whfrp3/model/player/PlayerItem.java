@@ -2,6 +2,7 @@ package com.whfrp3.model.player;
 
 import com.whfrp3.model.enums.ItemQuality;
 import com.whfrp3.model.item.Item;
+import com.whfrp3.tools.helpers.ItemHelper;
 
 import org.apache.commons.lang3.builder.EqualsBuilder;
 import org.apache.commons.lang3.builder.HashCodeBuilder;
@@ -58,7 +59,7 @@ public class PlayerItem implements Serializable {
      * Fill transient fields after an unserialization.
      */
     public void fillTransientFields() {
-        // TODO : Create ItemHelper
+        item = ItemHelper.getInstance().getItemById(itemId);
     }
 
     //endregion
