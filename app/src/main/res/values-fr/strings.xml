@@ -161,6 +161,39 @@
     <string name="added">ajouté</string>
     <string name="ready">Prêt</string>
     <string name="unequipped">Déséquipé</string>
+    <string name="no_item_found">Aucun objet trouvé</string>
+    <string name="weapon_bare_hand">Main Nue</string>
+    <string name="weapon_black_powder">Poudre Noire</string>
+    <string name="weapon_bow">Arc</string>
+    <string name="weapon_cavalry">Cavalerie</string>
+    <string name="weapon_crossbow">Arbalète</string>
+    <string name="weapon_fencing">Escrime</string>
+    <string name="weapon_one_hand">Armes à une Main</string>
+    <string name="weapon_polearm">Arme d\'Hast</string>
+    <string name="weapon_scourge">Fléau</string>
+    <string name="weapon_sling">Fronde</string>
+    <string name="weapon_spear">Lance</string>
+    <string name="weapon_throw">Arme de Jet</string>
+    <string name="weapon_two_hands">Arme à deux Mains</string>
+    <string name="weapon_wand">Bâton</string>
+    <string name="rarity_common">Banal</string>
+    <string name="rarity_very_usual">Très Courant</string>
+    <string name="rarity_exotic">Exotique</string>
+    <string name="rarity_uncommon">Rare</string>
+    <string name="rarity_usual">Courant</string>
+    <string name="weapon_attr_charge">Recharge</string>
+    <string name="weapon_attr_defensive">Défensive</string>
+    <string name="weapon_attr_deflagration">Déflagration</string>
+    <string name="weapon_attr_fast">Rapide</string>
+    <string name="weapon_attr_hateful">Haineuse</string>
+    <string name="weapon_attr_heavy">Lourde</string>
+    <string name="weapon_attr_paralyzing">Paralysante</string>
+    <string name="weapon_attr_pierce_1">Perforante 1</string>
+    <string name="weapon_attr_slow">Lente</string>
+    <string name="weapon_attr_special">Spéciale</string>
+    <string name="weapon_attr_throw">Jet</string>
+    <string name="weapon_attr_unreliable_1">Peu fiable 1</string>
+    <string name="weapon_attr_unreliable_2">Peu fiable 2</string>
     <!-- End of inventory -->
 
 </resources>

@@ -1,6 +1,9 @@
 package com.whfrp3.tools.constants;
 
 public interface IMainConstants {
+    String ITEM_TYPE_BUNDLE_TAG = "itemType";
+    String ITEM_LIST_BUNDLE_TAG = "itemsList";
+
     String TALENT_TYPE_BUNDLE_TAG = "talentType";
     String TALENTS_LIST_BUNDLE_TAG = "talentsList";
 
@@ -12,4 +15,5 @@ public interface IMainConstants {
     int LAUNCH_REQUEST = 1;
     int TALENTS_REQUEST = 2;
     int SPECIALIZATIONS_REQUEST = 3;
+    int ITEMS_REQUEST = 4;
 }

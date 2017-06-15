@@ -4,6 +4,7 @@ import android.databinding.BaseObservable;
 import android.databinding.Bindable;
 
 import com.whfrp3.model.enums.ItemQuality;
+import com.whfrp3.model.enums.Rarity;
 import com.whfrp3.model.player.Player;
 import com.whfrp3.model.enums.ItemType;
 
@@ -38,6 +39,11 @@ public class Item extends BaseObservable implements Serializable {
      * Item's encumbrance.
      */
     private int encumbrance;
+
+    /**
+     * Item's rarity.
+     */
+    private Rarity rarity;
 
     /**
      * Item's type.

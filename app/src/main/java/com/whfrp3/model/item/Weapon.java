@@ -2,6 +2,11 @@ package com.whfrp3.model.item;
 
 import com.whfrp3.model.enums.ItemType;
 import com.whfrp3.model.enums.Range;
+import com.whfrp3.model.enums.WeaponAttributs;
+import com.whfrp3.model.enums.WeaponGroup;
+
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Weapon's class.
@@ -24,6 +29,16 @@ public class Weapon extends Equipment {
      * Range.
      */
     private Range range;
+
+    /**
+     * Group.
+     */
+    private WeaponGroup group;
+
+    /**
+     * Attributs list.
+     */
+    private List<WeaponAttributs> attributs;
 
     //endregion
 
@@ -70,6 +85,26 @@ public class Weapon extends Equipment {
 
     public void setRange(Range range) {
         this.range = range;
+    }
+
+    public WeaponGroup getGroup() {
+        return group;
+    }
+
+    public void setGroup(WeaponGroup group) {
+        this.group = group;
+    }
+
+    public List<WeaponAttributs> getAttributs() {
+        if (attributs == null) {
+            attributs = new ArrayList<>();
+        }
+
+        return attributs;
+    }
+
+    public void setAttributs(List<WeaponAttributs> attributs) {
+        this.attributs = attributs;
     }
 
     //endregion
